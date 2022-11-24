@@ -151,3 +151,12 @@ jsconfig.json
 # Docker Persistence layer
 data/docker/*
 data/wais/db*
+
+node_modules
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
+dist
