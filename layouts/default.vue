@@ -1,6 +1,6 @@
 <template>
-    <div>
-        Some default layout
-        <slot />
-    </div>
+  <div>
+    Some default layout
+    <slot />
+  </div>
 </template>
