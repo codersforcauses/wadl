@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .heading-brandon {
+    font-family: theme("fontFamily.brandon");
+    letter-spacing: theme("letterSpacing.15");
+    font-weight: bold;
+  }
+
+  .heading-lato {
+    font-family: theme("fontFamily.lato");
+  }
+
+  .heading-futura {
+    font-family: theme("fontFamily.futura");
+    font-weight: bold;
+  }
+
+  .heading-jost {
+    font-family: theme("fontFamily.jost");
+  }
+
+  .body-brandon {
+    font-family: theme("fontFamily.brandon");
+    letter-spacing: theme("letterSpacing.12");
+  }
+}
