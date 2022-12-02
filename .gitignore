@@ -1,5 +1,5 @@
 ./data
-.env*
+.env
 
 .DS_Store
 
