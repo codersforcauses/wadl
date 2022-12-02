@@ -7,7 +7,7 @@ export default {
   props: {
     buttonText: {
       type: String,
-      default: () => "Button",
+      default: () => "Login_Button",
     },
   },
 };

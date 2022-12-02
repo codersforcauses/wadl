@@ -5,7 +5,7 @@
     </div>
 
     <div class="justify-end p-6">
-      <Button buttonText="Login" />
+      <Button @click="onClick()" buttonText="Login" />
     </div>
   </div>
 </template>
@@ -14,5 +14,11 @@
 import Home_Button from "./Home_Button.vue";
 import Button from "./Button.vue";
 
-export default {};
+export default {
+  methods: {
+    onClick() {
+      console.log("login");
+    },
+  },
+};
 </script>
