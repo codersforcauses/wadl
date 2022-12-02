@@ -1,10 +1,8 @@
 <template>
-  <div class="flex border-right-1px">
+  <div class="flex">
     <button @click="onClick()">
-      <img
-        class="h-16"
-        src="../assets/logos/Textless Transparent Long Logo.png"
-      />
+      <!-- src="../assets/logos/Textless Transparent Long Logo.png" -->
+      <img class="h-16" />HOME<img />
     </button>
   </div>
 </template>
