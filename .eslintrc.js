@@ -1,24 +1,12 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true
-  },
+  root: true,
   extends: [
-    'plugin:vue/vue3-essential',
-    'standard-with-typescript',
-    'plugin:prettier/recommended',
-    'prettier/@typescript-eslint',
-    'eslint:recommended'
-  ],
-  overrides: [
-  ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module'
-  },
-  plugins: [
-    'vue'
+    "standard-with-typescript",
+    "plugin:vue/vue3-recommended",
+    "@vue/eslint-config-standard-with-typescript",
+    "plugin:prettier/recommended",
   ],
   rules: {
-  }
-}
+    "vue/multi-word-component-names": 0,
+  },
+};
