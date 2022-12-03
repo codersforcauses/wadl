@@ -20,5 +20,6 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
+    "vue/multi-word-component-names": 0,
   }
 }
