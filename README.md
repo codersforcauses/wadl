@@ -13,7 +13,7 @@ Copy environment values from the cfc wadl-backend discord channel
 into their corresponding values in .env  
 > If you do not have access to wadl-backend, message an admin of the project.
 
-### Local Server setup.
+### Local Server setup
 Make sure to install the dependencies:
 
 ```bash
