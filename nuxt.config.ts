@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     },
   },
   typescript: {
-    strict: true
+    strict: true,
   },
   app: {
     head: {
