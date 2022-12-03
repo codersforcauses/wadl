@@ -1,7 +1,7 @@
 <template>
-  <div class="text-3xl">
-    <button>{{ buttonText }}</button>
-  </div>
+  <button class="text-3xl">
+    {{ buttonText }}
+  </button>
 </template>
 
 <script>
