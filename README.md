@@ -7,12 +7,13 @@ Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introdu
 
 ## Setup
 
-### Setup local .env file (Backend Only)
-copy file .env.example into a file called .env
-copy environment values from the cfc wadl-backend discord channel 
-into their corresponding values in .env
-If you do not have access to wadl-backend, message an admin of the project
+### Local .env file **(Backend Only)**
+Create file '.env', and copy content of .env.example into it.  
+Copy environment values from the cfc wadl-backend discord channel 
+into their corresponding values in .env  
+> If you do not have access to wadl-backend, message an admin of the project.
 
+### Local Server setup.
 Make sure to install the dependencies:
 
 ```bash
