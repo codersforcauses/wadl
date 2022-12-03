@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     node: true, // Allow __dirname & other Vite/Node.js variables
