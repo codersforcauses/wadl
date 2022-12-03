@@ -11,15 +11,14 @@ module.exports = {
   ],
   overrides: [
   ],
-  parser: "@typescript-eslint/parser",
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    project: "./tsconfig.json",
+    parser: '@typescript-eslint/parser',
+    project: './tsconfig.json',
+    extraFileExtensions: ['.vue'],
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: [
-    'vue'
-  ],
   rules: {
   }
 }
