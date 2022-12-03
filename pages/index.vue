@@ -1,9 +1,3 @@
-<template>
-  <div></div>
-</template>
+<template></template>
 
-<script lang="ts">
-export default {
-  name: "Index",
-};
-</script>
+<script setup></script>

@@ -4,6 +4,4 @@
   </NuxtLink>
 </template>
 
-<script lang="ts">
-export default {};
-</script>
+<script setup></script>

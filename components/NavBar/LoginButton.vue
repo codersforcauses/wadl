@@ -4,13 +4,6 @@
   </NuxtLink>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    buttonText: {
-      type: String,
-      default: () => "LoginButton",
-    },
-  },
-};
+<script setup>
+const props = defineProps(["buttonText"]);
 </script>
