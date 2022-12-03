@@ -4,11 +4,10 @@ module.exports = {
     es2021: true
   },
   extends: [
-    'plugin:vue/vue3-essential',
+    'eslint:recommended',
     'standard-with-typescript',
+    'plugin:vue/vue3-essential',
     'plugin:prettier/recommended',
-    'prettier/@typescript-eslint',
-    'eslint:recommended'
   ],
   overrides: [
   ],
