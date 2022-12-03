@@ -2,7 +2,7 @@
   <div class="flex">
     <button @click="onClick()">
       <!-- src="../assets/logos/Textless Transparent Long Logo.png" -->
-      <img class="h-16" />HOME<img />
+      <img src="../assets/logos/TextlessTransparentLongLogo.png" class="h-16" />HOME<img />
     </button>
   </div>
 </template>
