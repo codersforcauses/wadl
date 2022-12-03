@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     browser: true,
+    node: true, // Allow __dirname & other Vite/Node.js variables
     es2021: true
   },
   extends: [
