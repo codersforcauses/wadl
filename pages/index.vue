@@ -4,11 +4,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import NavBar from "../components/NavBar/NavBar.vue";
 
 export default {
-  name: "index",
+  name: "Index",
 
   components: {
     NavBar,
