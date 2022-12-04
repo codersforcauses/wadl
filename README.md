@@ -19,14 +19,14 @@ Make sure to install the dependencies:
 ```bash
 # yarn
 yarn install
-
+```
 ## Development Server
 
 Start the development server on http://localhost:3000
 
 ```bash
 yarn dev
-
+```
 ## Production
 
 Build the application for production:
@@ -40,5 +40,5 @@ Locally preview production build:
 ```bash
 yarn run preview
 ```
-
+## More info
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
