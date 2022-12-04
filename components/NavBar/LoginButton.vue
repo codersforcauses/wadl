@@ -1,6 +1,6 @@
 <template>
   <NuxtLink to="/">
-    <button class="text-3xl">{{ buttonText }}</button>
+    <button class="text-2xl">{{ buttonText }}</button>
   </NuxtLink>
 </template>
 
