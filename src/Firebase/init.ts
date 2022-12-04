@@ -6,9 +6,9 @@ let db: Firestore;
 
 let clientSide: boolean = process.client;
 
+// TODO: useRunTimeConfig does not work on server side - docs say it should.
 if (clientSide) {
   const config = useRuntimeConfig();
-  // Runs on the client side
   console.log("config is: \n\n");
   console.log(config.firebaseApiKey);
 
@@ -23,7 +23,6 @@ if (clientSide) {
   app = initializeApp(firebaseConfig);
   db = getFirestore(app);
 } else {
-  // TODO: useRunTimeConfig does not work on server side - docs say it should.
   const firebaseConfig = {
     apiKey: process.env.firebaseApiKey,
     authDomain: process.env.firebaseAuthDomain,
