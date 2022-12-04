@@ -29,6 +29,7 @@
     "typescript": "*"
   },
   "dependencies": {
-    "firebase": "^9.14.0"
+    "firebase": "^9.14.0",
+    "pinia": "^2.0.27"
   }
 }
