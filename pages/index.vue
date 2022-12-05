@@ -1,5 +1,5 @@
 <template>
-  <levelbuttons/>
+  <LevelButtons/>
 </template>
 
 <script setup></script>
