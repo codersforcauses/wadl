@@ -13,6 +13,8 @@
 </script>
 
 <style>
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
   input[type=button]{
     display: block;
     background-color: black;
