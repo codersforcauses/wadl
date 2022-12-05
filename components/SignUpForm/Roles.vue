@@ -5,11 +5,16 @@
     <option value="adjudicator">Adjudicator</option>
     <option value="team_coordinator">Team Coordinator</option>
   </select>
-  <select name="institution" id="institution">
+  <select name="institution" id="institution" style="display: none">
     <option selected disabled hidden>Select Institution</option>
     <option value="trinity">Trinity</option>
   </select>
-  <select name="affiliated_institutions" id="affiliated_institutions" multiple>
+  <select
+    name="affiliated_institutions"
+    id="affiliated_institutions"
+    style="display: none"
+    multiple
+  >
     <option selected disabled hidden>Select Institutions</option>
     <option value="trinity">Trinity</option>
     <option value="hale">Hale School</option>
