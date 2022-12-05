@@ -4,12 +4,12 @@
     <img src="../assets/logos/TransparentLongLogo.png">
   </div>
   <div class="level">
-    
-    <LevelButtons/>
+    <LevelButtons />
   </div>
 </template>
 
 <script setup>
+  import LevelButtons from '~~/components/HomePage/LevelButtons.vue';
 </script>
 
 <style>
@@ -17,25 +17,21 @@
 
   input[type=button]{
     display: block;
-    background-color: black;
-    
-    color: white;
-    padding: 16px 32px;
-    max-width: 100%;
-    width: 300px;
-    
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 20px 26px;
+    max-width: 320px;
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
     font-family: 'Montserrat';
-    
-    justify-content: center;
+    justify-content: center;		
   }
 
   img {
   margin: auto;
   display: block;
   }
-
 
 </style>
