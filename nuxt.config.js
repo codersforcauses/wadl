@@ -7,9 +7,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  typescript: {
-    strict: true,
-  },
   app: {
     head: {
       link: [
