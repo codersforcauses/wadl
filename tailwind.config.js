@@ -14,6 +14,7 @@ module.exports = {
       lato: ["Lato", "sans-serif"],
       futura: ["Futura", "sans-serif"],
       jost: ["Jost", "sans-serif"],
+      montserrat: ["Montserrat", "sans-serif"],
     },
     letterSpacing: {
       12: "0.12em",
