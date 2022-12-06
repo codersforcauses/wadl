@@ -5,8 +5,8 @@
   <div class="flex justify-center">
     <ul class="bg-white rounded-lg w-11/12">
       <li
-        v-for="adjudicator in adjudicators"
-        :key="adjudicator.id"
+        v-for="(adjudicator, idx) in adjudicators"
+        :key="idx"
         class="px-6 py-2 border-b border-gray-20 rounded-t-lg flex justify-between items-center"
       >
         <p>{{ adjudicator.firstName }} {{ adjudicator.lastName }}</p>
@@ -16,7 +16,7 @@
       </li>
     </ul>
   </div>
-  <div class="w-full bg-white fixed inset-x-0 bottom-0">
+  <div class="w-full bg-white fixed inset-x-0 bottom-0 px-3">
     <button class="bg-gold m-5 py-2 px-6 rounded-md shadow-md">
       Add Adjudicator
     </button>
