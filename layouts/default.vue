@@ -1,6 +1,4 @@
 <template>
-  <div>
-    Some default layout
-    <slot />
-  </div>
+  <NavBar />
+  <slot />
 </template>
