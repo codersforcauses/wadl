@@ -1,4 +1,4 @@
-import { FirebaseApp, getApp, getApps, initializeApp } from "firebase/app";
+import { FirebaseApp, initializeApp } from "firebase/app";
 import { Firestore, getFirestore } from "firebase/firestore";
 
 let app: FirebaseApp;
@@ -6,12 +6,10 @@ let db: Firestore;
 
 let clientSide: boolean = process.client;
 
-// TODO: useRunTimeConfig does not work on server side - docs say it should.
+// sets config for client/server
 if (clientSide) {
+  // client/server side have different scopes for env vars.
   const config = useRuntimeConfig();
-  console.log("config is: \n\n");
-  console.log(config.firebaseApiKey);
-
   const firebaseConfig = {
     apiKey: config.firebaseApiKey,
     authDomain: config.firebaseAuthDomain,
