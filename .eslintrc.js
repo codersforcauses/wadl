@@ -1,9 +1,9 @@
 module.exports = {
   root: true,
   extends: [
-    "standard-with-typescript",
+    "standard",
     "plugin:vue/vue3-recommended",
-    "@vue/eslint-config-standard-with-typescript",
+    "@vue/eslint-config-standard",
     "plugin:prettier/recommended",
   ],
   rules: {
