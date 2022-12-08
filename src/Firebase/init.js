@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
+
 
 let app;
 let db;
@@ -18,6 +19,7 @@ if (clientSide) {
     storageBucket: config.firebaseStorageBucket,
     messagingSenderId: config.firebaseMessagingSenderId,
     appId: config.firebaseAppId,
+    firebaseMode: config.firebaseMode,
   };
 } else {
   firebaseConfig = {
@@ -27,9 +29,16 @@ if (clientSide) {
     storageBucket: process.env.firebaseStorageBucket,
     messagingSenderId: process.env.firebasemassagingId,
     appId: process.env.firebaseAppId,
+    firebaseMode: process.env.firebaseMode,
   };
 }
+
 app = initializeApp(firebaseConfig);
 db = getFirestore(app);
+
+if (firebaseConfig.firebaseMode === "dev") {
+  connectFirestoreEmulator(db, "localhost", 8080);
+  console.log("emulate");
+}
 
 export { db };
