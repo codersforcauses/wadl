@@ -1,6 +1,6 @@
 <template>
   <div id="logo">
-    <img src="../assets/logos/TransparentLongLogo.png" />
+    <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
   </div>
 
   <div class="flex h-screen justify-center">
@@ -41,8 +41,4 @@ input[type="button"] {
   justify-content: center;
 }
 
-img {
-  margin: auto;
-  display: block;
-}
 </style>
