@@ -1,38 +1,30 @@
 <template>
-  <select name="roles" id="roles" @change="displayInstitution($event)">
-    <option selected disabled hidden>Select Role</option>
-    <option value="adjudicator_coordinator">Adjudicator Coordinator</option>
-    <option value="adjudicator">Adjudicator</option>
-    <option value="team_coordinator">Team Coordinator</option>
-  </select>
-  <select name="institution" id="institution" style="display: none">
-    <option selected disabled hidden>Select Institution</option>
-    <option value="trinity">Trinity</option>
-  </select>
-  <select
-    name="affiliated_institutions"
-    id="affiliated_institutions"
-    style="display: none"
-    multiple
-  >
-    <option selected disabled hidden>Select Institutions</option>
-    <option value="trinity">Trinity</option>
-    <option value="hale">Hale School</option>
-  </select>
+  <div>
+    <p>Role</p>
+    <select name="role" id="role">
+      <option selected disabled hidden>Select Role</option>
+      <option value="adjudicator_coordinator">Adjudicator Coordinator</option>
+      <option value="adjudicator">Adjudicator</option>
+      <option value="team_coordinator">Team Coordinator</option>
+    </select>
+  </div>
 </template>
 
-<script setup>
-function displayInstitution(event) {
-  var selection = event.target.value;
-  if (selection === "adjudicator_coordinator") {
-    document.getElementById("institution").style.display = "none";
-    document.getElementById("affiliated_institutions").style.display = "none";
-  } else if (selection === "adjudicator") {
-    document.getElementById("institution").style.display = "none";
-    document.getElementById("affiliated_institutions").style.display = "block";
-  } else if (selection === "team_coordinator") {
-    document.getElementById("institution").style.display = "block";
-    document.getElementById("affiliated_institutions").style.display = "none";
-  }
+<script setup></script>
+
+<style scoped>
+p {
+  margin-bottom: 4px;
 }
-</script>
+select {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  border: solid 1px lightgray;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-family: theme("fontFamily.brandon");
+  letter-spacing: theme("letterSpacing.12");
+  width: 100%;
+}
+</style>
