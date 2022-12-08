@@ -39,6 +39,6 @@ db = getFirestore(app);
 if (firebaseConfig.firebaseMode === "dev") {
   connectFirestoreEmulator(db, "localhost", 8080);
   console.log("emulate");
-}
+} 
 
 export { db };
