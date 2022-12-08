@@ -2,11 +2,10 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
 
-
-
 let app;
 let db;
 let firebaseConfig;
+let auth;
 
 let clientSide = process.client;
 
@@ -37,10 +36,12 @@ if (clientSide) {
 
 app = initializeApp(firebaseConfig);
 db = getFirestore(app);
+auth = getAuth();
 
 if (firebaseConfig.firebaseMode === "dev") {
   connectFirestoreEmulator(db, "localhost", 8080);
+  connectAuthEmulator(auth, "http://localhost:9099");
   console.log("emulate");
-} 
+}
 
 export { db };
