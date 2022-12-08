@@ -20,4 +20,6 @@ To start the emualtors run:
 This will provide you with a gui of what is going on like your using the online version, to access this please follow the link that comes up in your terminal. If the link doesn't show in the terminal, this is the default link:
 > localhost:4000
 
+I have added in the basic Auth and Firestore emualtors, and will decide later if any more need to be added
+
 ## Firebase Killswitch
