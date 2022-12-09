@@ -27,6 +27,4 @@ import LevelButton from "../components/HomePage/LevelButton.vue";
 const tournaments = ["Junior", "Novice", "Senior", "SDC", "AIHSA", "RDC"]; // Dummy Data to be replaced
 </script>
 
-<style>
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
-</style>
+<style setup></style>
