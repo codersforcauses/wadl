@@ -21,7 +21,7 @@ Then make sure that there is a variable in the .env file that triggers the dev m
 > NUXT_PUBLIC_FIREBASE_MODE="dev"
 
 Now that all the required packages have been installed, you can run: 
-> firebase emulators:start
+> yarn firebase
 
 This will provide you with a gui of what is going on like your using the online version, to access this please follow the link that comes up in your terminal. If the link doesn't show in the terminal, this is the default link:
 > localhost:4000
