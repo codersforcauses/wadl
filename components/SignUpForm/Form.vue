@@ -5,9 +5,11 @@
     <h1 class="header-brandon text-2xl text-center pb-2">Register</h1>
     <DefaultInputs />
     <Roles />
-    <button class="bg-gold px-8 py-2 rounded-md mt-6 body-brandon shadow-md">
-      Submit
-    </button>
+    <div class="w-full flex justify-center">
+      <button class="bg-gold px-8 py-2 rounded-md mt-6 body-brandon shadow-md">
+        Submit
+      </button>
+    </div>
   </div>
 </template>
 
