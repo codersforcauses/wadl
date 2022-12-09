@@ -28,6 +28,8 @@
   "dependencies": {
     "@heroicons/vue": "^2.0.13",
     "firebase": "^9.14.0",
+    "firebase-admin": "^11.3.0",
+    "firebase-functions": "^4.1.0",
     "pinia": "^2.0.27"
   }
 }
