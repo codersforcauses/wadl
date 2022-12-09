@@ -20,10 +20,13 @@
       </li>
     </ul>
   </div>
-  <div class="w-full bg-white fixed inset-x-0 bottom-0 px-3">
-    <button class="bg-gold m-5 py-2 px-6 rounded-md shadow-md">
-      Add Adjudicator
-    </button>
+  <div class="w-full bg-white fixed inset-x-0 bottom-0">
+    <Button
+      button-text="Add Adjudicator"
+      button-color="bg-gold"
+      @click="addAdjudicator"
+      class="m-5 ml-8"
+    />
   </div>
 </template>
 
@@ -38,5 +41,9 @@ const handleFilter = (searchTerm) => {
   adjudicators.value = data.filter((adj) =>
     adj.firstName.toLowerCase().includes(searchTerm)
   );
+};
+
+const addAdjudicator = () => {
+  console.log("Adding Adjudicator");
 };
 </script>
