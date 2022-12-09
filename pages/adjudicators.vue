@@ -38,12 +38,15 @@ import data from "../data/adjudicators.json";
 const adjudicators = ref(data);
 
 const handleFilter = (searchTerm) => {
-  adjudicators.value = data.filter((adj) =>
-    adj.firstName.toLowerCase().includes(searchTerm)
+  adjudicators.value = data.filter(
+    (adj) =>
+      adj.firstName.toLowerCase().includes(searchTerm) ||
+      adj.lastName.toLowerCase().includes(searchTerm)
   );
 };
 
 const addAdjudicator = () => {
+  // Open Modal
   console.log("Adding Adjudicator");
 };
 </script>
