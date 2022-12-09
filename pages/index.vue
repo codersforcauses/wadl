@@ -1,20 +1,25 @@
 <template>
   <div id="logo">
-    <img src="../assets/logos/TransparentLongLogo.png" />
+    <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
+  </div>
+  <div>
+    <h1 class="text-center font-montserrat text-4xl">Competitions</h1>
   </div>
 
-  <div class="flex h-screen justify-center">
-    <div>
+  <hr class="my-5 w-4/5 h-px mx-auto bg-black border-0"> 
+
+  <div >
+    <div class="flex v-screen justify-center">
       <NuxtLink to="/">
-        <LevelButton buttonText="Junior" />
+        <LevelButton buttonText="SDC" class="bg-[#A8A8A8]" />
       </NuxtLink>
 
       <NuxtLink to="/">
-        <LevelButton buttonText="Novice" />
+        <LevelButton buttonText="AIHSA" class="bg-[#8A8A8A]" />
       </NuxtLink>
 
       <NuxtLink to="/">
-        <LevelButton buttonText="Senior" />
+        <LevelButton buttonText="RDC" class="bg-[#474747]" />
       </NuxtLink>
     </div>
   </div>
@@ -27,22 +32,4 @@ import LevelButton from "../components/HomePage/LevelButton.vue";
 <style>
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 
-input[type="button"] {
-  display: block;
-  background-color: #000000;
-  color: #ffffff;
-  padding: 20px 26px;
-  max-width: 320px;
-  width: 40%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 1%;
-  font-family: "Montserrat";
-  justify-content: center;
-}
-
-img {
-  margin: auto;
-  display: block;
-}
 </style>
