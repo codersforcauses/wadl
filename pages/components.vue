@@ -7,7 +7,11 @@
   <!-- Button Component -->
   <div class="flex flex-row gap-4 justify-center mt-8 mx-2">
     <Button button-text="Undo" button-color="bg-gray-400" @click="handleUndo" />
-    <Button button-text="Save" button-color="bg-gold" @click="handleDelete" />
+    <Button
+      button-text="Create Tournament"
+      button-color="bg-gold"
+      @click="handleDelete"
+    />
     <Button
       button-text="Delete"
       button-color="bg-red-500"
