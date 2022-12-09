@@ -6,6 +6,7 @@ A progressive web-application to assist the Western Australia Debating League wi
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
+For firebase setup please refer to the README located in the src/Firebase folder
 
 ### Local .env file **(Backend Only)**
 Create file '.env', and copy content of .env.example into it.  
