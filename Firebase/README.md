@@ -1,10 +1,37 @@
-# Firebase Init Instructions
+# Firebase Instructions
+
+---
+
 
 This document will include instructions on all things firebase in the Western Australian Debating Legue!!
 
-## Firebase Emulators 
-This project will inlcude the emulators for
+## Firebase Steps
+
 ---
+
+This section will include steps on how to setup firebase for the WADL project 
+
+<em>**Note**</em>: after running most of the yarn commands that involve using the emulators, please run:
+> yarn emu:stop
+
+If you want to start the emulators just by themselves to see if they work, run:
+> yarn firebase
+
+If you want to run the wadl project with the emulators, run:
+> yarn dev:emu
+
+To run the project with the cloud service, run:
+> yarn dev
+
+If you want to kill the ports that the emulators use, run:
+> yarn emu:stop
+
+## Firebase Emulators 
+
+---
+
+This project will inlcude the emulators for
+
 1. Firestore 
 2. Authentication 
 3. Functions
@@ -32,3 +59,5 @@ Now you can run the basic yarn command to start the project:
 I have added in the basic Auth and Firestore emualtors, and will decide later if any more need to be added
 
 ## Firebase Killswitch
+
+---
