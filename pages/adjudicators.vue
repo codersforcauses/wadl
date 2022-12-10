@@ -24,8 +24,8 @@
     <Button
       button-text="Add Adjudicator"
       button-color="bg-gold"
-      @click="addAdjudicator"
       class="m-5 ml-8"
+      @click="addAdjudicator"
     />
   </div>
 </template>
