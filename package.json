@@ -7,11 +7,14 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
-    "lint:fix": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix ."
+    "lint:fix": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix .",
+    "test": "cypress run",
+    "test:menu": "cypress open --e2e"
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^8.0.1",
     "autoprefixer": "^10.4.13",
+    "cypress": "^12.0.2",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
