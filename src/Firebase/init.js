@@ -7,7 +7,7 @@ let db;
 let firebaseConfig;
 let auth;
 
-let clientSide = process.client;
+const clientSide = process.client;
 
 // sets config for client/server
 if (clientSide) {
