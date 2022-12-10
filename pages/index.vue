@@ -1,26 +1,25 @@
 <!-- eslint-disable vue/attribute-hyphenation -->
 <template>
+  
   <!-- long logo -->
   <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
   <!-- competitions -->
-  <h1 class="text-center font-montserrat text-4xl">Competitions</h1>
-
-  <hr class="my-5 w-4/5 h-px mx-auto bg-black border-0" />
-
-  <div class="flex h-screen justify-center">
-    <div class="grid grid-cols-3 grid-rows-6 gap-6 justify-between">
+  <index titleText="Competitions"/>
+  <br>
+  <div class="mx-auto h-screen place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6">
       <!-- replace key with item.key when final data exists -->
-      <div v-for="item in tournaments" :key="item" class="">
+      <div v-for="item in tournaments" :key="item" >
         <NuxtLink to="/">
-          <LevelButton :buttonText="item" />
+          <LevelButton :text="item" />
         </NuxtLink>
       </div>
     </div>
-  </div>
+  
 </template>
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
+import index from "../components/Header/index.vue";
 
 const tournaments = ["Junior", "Novice", "Senior", "SDC", "AIHSA", "RDC"]; // Dummy Data to be replaced
 </script>
