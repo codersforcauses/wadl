@@ -1,7 +1,7 @@
 name: Constant Integration for JavaScript
 on:
   pull_request:
-    type: ['opened', 'edited']
+    type: [opened, edited]
     paths:
       - '**.js'
       - '**.cjs'
