@@ -26,3 +26,4 @@ jobs:
         uses: wearerequired/lint-action@66e2f9c9bf05b7aca19dbb59aebad95da5ddc537
         with:
           eslint: true
+          neutral_check_on_warning: true
