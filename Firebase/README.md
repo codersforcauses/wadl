@@ -2,6 +2,22 @@
 
 This document will include instructions on all things firebase in the Western Australian Debating Legue!!
 
+## Firebase Steps
+
+This section will include steps on how to setup firebase for the WADL project 
+
+If you want to start the emulators just by themselves to see if they work, run:
+> yarn firebase
+
+If you want to run the wadl project with the emulators, run:
+> yarn dev:emu
+
+To run the project with the cloud service, run:
+> yarn dev
+
+If you want to kill the ports that the emulators use, run:
+> yarn emu:stop
+
 ## Firebase Emulators 
 This project will inlcude the emulators for
 ---
