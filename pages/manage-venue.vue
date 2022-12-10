@@ -1,33 +1,34 @@
 <template>
-  <div>
-    <h1 class="text-center text-4xl pt-5">Venues</h1>
-  </div>
   
-  <hr class="my-5 w-4/5 h-px mx-auto bg-black border-0" />
-
-  <div>
-    <venue />
+  <pageHeader titleText="Venues" />
+  
+  <div v-for="venue in venues">
+    <venue :venue="venue" />
   </div>
 
 </template>
 <script setup>
-import venue from '../components/Manage-Venue/venue.vue';
+import venue from "../components/Manage-Venue/venue.vue"
+import pageHeader from "../components/Header/index.vue"
 
 const venues = [
         {
+            index: "1",
             venue: "South Street",
-            roomNum: '024',
+            roomNum: "024",
             day: "Wednesday"
         },
         {
+            index: "2",
             venue: "Adjacent Avenue",
-            roomNum: '96',
+            roomNum: "96",
             day: "Wednesday"
         },
         {
+            index: "3",
             venue: "Rightmost Road",
-            roomNum: '111',
+            roomNum: "111",
             day: "Wednesday"
         },
     ]
-    </script>
+</script>
