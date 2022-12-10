@@ -8,7 +8,7 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "lint:fix": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix .",
-    "firebase": "cd src/Firebase && firebase emulators:start "
+    "firebase": "cd Firebase && firebase emulators:start "
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^8.0.1",
