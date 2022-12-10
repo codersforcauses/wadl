@@ -1,13 +1,9 @@
 <!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <!-- long logo -->
-  <div id="logo">
-    <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
-  </div>
+  <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
   <!-- competitions -->
-  <div>
-    <h1 class="text-center font-montserrat text-4xl">Competitions</h1>
-  </div>
+  <h1 class="text-center font-montserrat text-4xl">Competitions</h1>
 
   <hr class="my-5 w-4/5 h-px mx-auto bg-black border-0" />
 
