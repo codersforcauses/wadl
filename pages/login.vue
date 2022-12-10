@@ -1,3 +1,31 @@
+<script setup>
+  import { ref } from "vue"
+
+    const email = ref('')
+    const password = ref('')
+    const errror = ref('')
+
+  // export default {
+  //   data() {
+  //     return {
+  //       email: '',
+  //       password: '',
+  //       error: ''
+  //     }
+  //   },
+    methods: {
+       tryLogin() {
+        try {
+          //idk
+        } catch (err) {
+          this.error = 'Incorrect username or password.'
+        }
+      }
+    }
+  }
+</script>
+
+
 <template>
     <div class="login mx-auto">
       <h1>Login</h1>
@@ -21,29 +49,6 @@
     </div>
 </template>
   
-<script>
-  export default {
-    data() {
-      return {
-        email: '',
-        password: '',
-        error: ''
-      }
-    },
-    methods: {
-       tryLogin() {
-        try {
-          //idk
-        } catch (err) {
-          this.error = 'Incorrect username or password.'
-        }
-      }
-    }
-  }
-  
-  
-  
-</script>
 
 
   
@@ -62,8 +67,8 @@
   .login {
   text-align: center;
   background-color: rgb(255, 215, 0);
-  width: 60%;
-  height:100%;
+  width: 40%;
+  height: 150%;
   padding-top: 10%;
   padding-bottom: 10%;
   border-radius: 25px;
@@ -79,7 +84,6 @@
   }
   
   .button {
-    margin-right: 100px;
     padding-left: 35px;
     padding-block: 7px;
     padding-right: 35px;
