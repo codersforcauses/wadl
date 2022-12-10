@@ -1,8 +1,8 @@
 name: End-to-End Testing
 on:
-  pull-request:
+  pull_request:
     types: [opened, reopened, edited]
-  workflow-dispatch:
+  workflow_dispatch:
 
 jobs:
   cypress:
