@@ -3,12 +3,15 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:emu": "yarn emu:stop & yarn firebase & (sleep 15 && yarn dev)",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "lint:fix": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix .",
-    "firebase": "cd Firebase && firebase emulators:start "
+    "firebase": "yarn emu:stop & cd Firebase && firebase emulators:start",
+    "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill"
+
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^8.0.1",
