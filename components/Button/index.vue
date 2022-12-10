@@ -5,8 +5,8 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  buttonText: String,
-  buttonColor: String,
+defineProps({
+  buttonText: { type: String, default: "Button" },
+  buttonColor: { type: String, default: "primary" },
 });
 </script>
