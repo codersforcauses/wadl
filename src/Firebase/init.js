@@ -1,35 +1,47 @@
-import { FirebaseApp, initializeApp } from "firebase/app";
-import { Firestore, getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
+import { getAuth, connectAuthEmulator } from "firebase/auth";
 
-let app: FirebaseApp;
-let db: Firestore;
+let app;
+let db;
+let firebaseConfig;
+let auth;
 
-let clientSide: boolean = process.client;
+let clientSide = process.client;
 
 // sets config for client/server
 if (clientSide) {
   // client/server side have different scopes for env vars.
   const config = useRuntimeConfig();
-  const firebaseConfig = {
+  firebaseConfig = {
     apiKey: config.firebaseApiKey,
     authDomain: config.firebaseAuthDomain,
     projectId: config.firebaseProjectId,
     storageBucket: config.firebaseStorageBucket,
     messagingSenderId: config.firebaseMessagingSenderId,
     appId: config.firebaseAppId,
+    firebaseMode: config.firebaseMode,
   };
-  app = initializeApp(firebaseConfig);
-  db = getFirestore(app);
 } else {
-  const firebaseConfig = {
+  firebaseConfig = {
     apiKey: process.env.firebaseApiKey,
     authDomain: process.env.firebaseAuthDomain,
     projectId: process.env.firebaseProjectId,
     storageBucket: process.env.firebaseStorageBucket,
     messagingSenderId: process.env.firebasemassagingId,
     appId: process.env.firebaseAppId,
+    firebaseMode: process.env.firebaseMode,
   };
-  app = initializeApp(firebaseConfig);
-  db = getFirestore(app);
 }
+
+app = initializeApp(firebaseConfig);
+db = getFirestore(app);
+auth = getAuth();
+
+if (firebaseConfig.firebaseMode === "dev") {
+  connectFirestoreEmulator(db, "localhost", 8080);
+  connectAuthEmulator(auth, "http://localhost:9099");
+  console.log("emulate");
+}
+
 export { db };
