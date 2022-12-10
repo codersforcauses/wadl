@@ -1,13 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
+import { useRuntimeConfig } from "../../node_modules/nuxt/dist/app";
 
-let app;
-let db;
 let firebaseConfig;
-let auth;
 
-let clientSide = process.client;
+const clientSide = process.client;
 
 // sets config for client/server
 if (clientSide) {
@@ -34,9 +32,9 @@ if (clientSide) {
   };
 }
 
-app = initializeApp(firebaseConfig);
-db = getFirestore(app);
-auth = getAuth();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth();
 
 if (firebaseConfig.firebaseMode === "dev") {
   connectFirestoreEmulator(db, "localhost", 8080);
