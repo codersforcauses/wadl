@@ -3,7 +3,7 @@
   <!-- long logo -->
   <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
   <!-- competitions -->
-  <index titleText="Competitions" />
+  <Header title-text="Competitions" />
   <br />
   <div
     class="mx-auto h-screen place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6"
@@ -19,7 +19,6 @@
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
-import index from "../components/Header/index.vue";
 
 const tournaments = ["Junior", "Novice", "Senior", "SDC", "AIHSA", "RDC"]; // Dummy Data to be replaced
 </script>
