@@ -8,20 +8,15 @@
     <input
       v-model="searchString"
       type="text"
-      placeholder="Search Adjudicator"
+      placeholder="Search"
       class="px-2 border-2 border-l-0 border-grey-300 rounded-r-md w-11/12 focus:outline-none"
-      @input="onChangeHandler"
+      @input="emit('handleFilter', searchString.toLowerCase())"
     />
   </div>
 </template>
 <script setup>
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
-import { ref } from "vue";
 
 const emit = defineEmits(["handleFilter"]);
-const searchString = ref("");
-// Emit text data to parent
-const onChangeHandler = () => {
-  emit("handleFilter", searchString.value.toLowerCase());
-};
+const searchString = "";
 </script>
