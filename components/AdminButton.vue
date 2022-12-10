@@ -1,25 +1,17 @@
 <script setup>
-//     const props = defineProps({
-//         title: {
-//             type: String,
-//             default: "You forgot",
-//         },
-//         link:{
-//             type: String,
-//             default: "/idkwhere",
-//         }
-// })
-
-const {title} = defineProps(["title"])
+    const {props} = defineProps({
+        title: String,
+        link: String,
+    })
 </script>
 
 <template>
-    <div class="flex justify-center">
+    <div class="flex items-center justify-center">
         <NuxtLink
-            to="/"
+            :to=link
             data-mdb-ripple="true"
             data-mdb-ripple-color="light"
-            class="inline-block px-10 py-1 text-lg text-center text-black transition duration-300 ease-in-out bg-teal-300 shadow-md text-xlg w-1/10 mt-7 rounded-3xl hover:bg-teal-400 hover:shadow-lg focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-500 active:shadow-lg"
+            class="px-2 py-1 m-6 text-center text-black transition duration-300 ease-in-out shadow-md w-80 rounded-xl bg-gold hover:bg-teal-400 hover:shadow-lg focus:bg-teal-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-500 active:shadow-lg"
             >{{ title }}</NuxtLink
         >
     </div>

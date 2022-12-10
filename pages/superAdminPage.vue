@@ -1,26 +1,24 @@
+<script setup>
+    import AdminButton from '~/components/AdminButton.vue';
+    import ProfileInfo from '~/components/ProfileInfo.vue';
+</script>
+
 <template>
     <div>
-        <div class="flex justify">
-            <AdminButton title = "Tournaments" />
-            <AdminButton title = "Institutions" />
-            <AdminButton title = "Adjudicators" />
-        </div>
-        <div class="flex">
-            <AdminButton title = "Teams" />
-            <AdminButton title = "Venues" />
-            <AdminButton title = "Fixtures" />
-        </div>
-        <div class="flex">
-            <AdminButton title = "Users" />
-            <AdminButton title = "Results" />
-            <AdminButton title = "Sign-up Requests" />
+        <ProfileInfo name="Carmen Leong" title="Super Admin"/>
+        <div class="grid w-1/2 grid-cols-3 gap-2 justify-centre">
+            <AdminButton title="Tournaments" link="/" />
+            <AdminButton title="Institutions" link="/" />
+            <AdminButton title="Adjudicators" link="/"/>
+            <AdminButton title="Teams" link="/"/>
+            <AdminButton title="Venues" link="/"/>
+            <AdminButton title="Fixtures" link="/"/>
+            <AdminButton title="Users" link="/"/>
+            <AdminButton title="Results" link="/"/>
+            <AdminButton title="Sign-up Requests" link="/"/>
         </div>
     </div>
 </template>
-
-<script>
-    import AdminButton from '~/components/AdminButton.vue';
-</script>
 
 <style>
 
