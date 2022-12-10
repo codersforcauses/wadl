@@ -5,5 +5,10 @@
 </template>
 
 <script setup>
-const props = defineProps(["buttonText"]);
+defineProps({
+  buttonText: {
+    type: String,
+    default: "Login",
+  },
+});
 </script>
