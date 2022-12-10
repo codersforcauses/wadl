@@ -6,8 +6,8 @@
 </script>
 
 <template>
-    <div>
-        <div>{{username}}</div>
+    <div class="w-4/5">
+        <div class="text-5xl">{{username}}</div>
         <div>{{role}}</div>
     </div>
 </template>

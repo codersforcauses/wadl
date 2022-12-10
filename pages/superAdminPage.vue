@@ -4,9 +4,11 @@
 </script>
 
 <template>
-    <div>
-        <ProfileInfo name="Carmen Leong" title="Super Admin"/>
-        <div class="grid w-1/2 grid-cols-3 gap-2 justify-centre">
+    <div class="flex items-center justify-center">
+        <ProfileInfo username="Carmen Leong" role="Super Admin"/>
+    </div>
+    <div class="flex items-center justify-center w-full">
+        <div class="grid w-2/3 grid-cols-3 gap-2">
             <AdminButton title="Tournaments" link="/" />
             <AdminButton title="Institutions" link="/" />
             <AdminButton title="Adjudicators" link="/"/>
