@@ -7,7 +7,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
-    "lint:fix": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix ."
+    "lint:fix": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix .",
+    "firebase": "cd src/Firebase && firebase emulators:start "
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^8.0.1",
@@ -28,6 +29,8 @@
   "dependencies": {
     "@heroicons/vue": "^2.0.13",
     "firebase": "^9.14.0",
+    "firebase-admin": "^11.3.0",
+    "firebase-functions": "^4.1.0",
     "pinia": "^2.0.27"
   }
 }
