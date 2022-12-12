@@ -1,3 +1,17 @@
+<!-- 
+setup attribute added to script
+states ahndled with ref from vue
+dummy console log added to check login button functionality -->
+
+<!-- 
+Make the page responsive to resolution /screen size / window changes
+NuxtLink
+Decide on the logic of the login page -->
+
+<!-- 
+Work to be done in script 
+Include the the login error into the compositon style API -->
+
 <script setup>
   import { ref } from "vue"
 
@@ -58,7 +72,9 @@
   
 
 
-  
+ <!-- 
+ Work to be done in style
+ Convert to tailwind css  -->
 <style>
   
   h1 {
