@@ -4,7 +4,7 @@
   <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
   <!-- competitions -->
   <Header title-text="Competitions" />
-  <div
+  <main
     class="mx-auto h-screen pt-5 place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6"
   >
     <!-- replace key with item.key when final data exists -->
@@ -13,7 +13,7 @@
         <LevelButton :text="item" />
       </NuxtLink>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup>
