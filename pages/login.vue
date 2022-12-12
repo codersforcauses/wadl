@@ -5,6 +5,10 @@
     const password = ref('')
     const errror = ref('')
 
+    function handleLogin(){
+      console.log("hELLO");
+    }
+
   // export default {
   //   data() {
   //     return {
@@ -13,16 +17,16 @@
   //       error: ''
   //     }
   //   },
-    methods: {
-       tryLogin() {
-        try {
-          //idk
-        } catch (err) {
-          this.error = 'Incorrect username or password.'
-        }
-      }
-    }
-  }
+  //   methods: {
+  //      tryLogin() {
+  //       try {
+  //         //idk
+  //       } catch (err) {
+  //         this.error = 'Incorrect username or password.'
+  //       }
+  //     }
+  //   }
+  // }
 </script>
 
 
@@ -43,7 +47,10 @@
           <input type="password" v-model="password" class="input" placeholder=" Your Password"/>
         </label>
         <br><br>
-        <button type="submit" class="button">Submit</button>
+        <!-- <button type="submit" class="button">Submit</button> -->
+        <Button
+        button-text="Submit"
+        button-color="bg-white" />
         <p v-if="error" class="error">{{ error }}</p>
       </form>
     </div>
