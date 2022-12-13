@@ -9,6 +9,13 @@
     <input type="text" id="email" placeholder="Your Email" required />
     <p>Password</p>
     <input type="password" id="password" placeholder="Your Password" required />
+    <p>Confirm Password</p>
+    <input
+      type="password"
+      id="password"
+      placeholder="Confirm Password"
+      required
+    />
   </div>
 </template>
 
@@ -21,7 +28,7 @@ input {
   padding-left: 10px;
   border: solid 1px lightgray;
   border-radius: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   width: 100%;
 }
 ::placeholder {
