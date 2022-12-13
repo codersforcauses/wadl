@@ -4,6 +4,11 @@
   <div class="flex content-center justify-center">
     <Table :config="config" :venues="venues" />
   </div>
+  <Button
+      button-text="Add Venue"
+      button-color="bg-gold"
+      @click="handleAdd"
+    />
 </template>
 <script setup>
 const venues = [
@@ -40,4 +45,7 @@ const config = [
     title: "Room No.",
   },
 ];
+const handleAdd = () => {
+  console.log("Added");
+};
 </script>
