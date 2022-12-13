@@ -5,10 +5,8 @@
     <h1 class="header-brandon text-2xl text-center pb-2">Register</h1>
     <DefaultInputs />
     <Roles />
-    <div class="w-full flex justify-center">
-      <button class="bg-gold px-8 py-2 rounded-md mt-6 body-brandon shadow-md">
-        Submit
-      </button>
+    <div class="w-full flex justify-center mt-4">
+      <Button button-text="Submit" button-color="bg-gold" />
     </div>
   </div>
 </template>
@@ -16,4 +14,5 @@
 <script setup>
 import DefaultInputs from "./DefaultInputs.vue";
 import Roles from "./Roles.vue";
+import Button from "../Button/index.vue";
 </script>
