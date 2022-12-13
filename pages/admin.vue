@@ -1,6 +1,6 @@
 <script setup>
-import AdminButton from "~/components/AdminPage/AdminButton.vue";
-import ProfileInfo from "~/components/AdminPage/ProfileInfo.vue";
+import AdminButton from "~/components/admin/AdminButton.vue";
+import ProfileInfo from "~/components/admin/ProfileInfo.vue";
 import {
   TrophyIcon,
   BuildingLibraryIcon,
