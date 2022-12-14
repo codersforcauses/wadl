@@ -17,7 +17,7 @@ export default defineNuxtConfig({
       link: [
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Lato&family=Jost&family=Montserrat",
+          href: "https://fonts.googleapis.com/css2?family=Jost&family=Lato&family=Montserrat&display=swap",
         },
       ],
     },
