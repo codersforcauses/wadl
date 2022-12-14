@@ -4,8 +4,20 @@
   <div class="flex content-center justify-center">
     <Table :config="config" :venues="venues" />
   </div>
+  <Button
+      button-text="Add Venue"
+      button-color="bg-gold"
+      @click="(show =! show)"
+    />
+  <Modal v-show="show">
+    <h1>Add Venue</h1>
+  </Modal>
 </template>
 <script setup>
+
+import { ref } from 'vue';
+import Modal from '../components/Modal.vue';
+
 const venues = [
   {
     index: "1",
@@ -40,4 +52,9 @@ const config = [
     title: "Room No.",
   },
 ];
+
+const show = ref(false);
+// const handleAdd = () => {
+//   show = !show;
+// };
 </script>
