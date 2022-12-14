@@ -1,15 +1,15 @@
 <script setup>
-    import ProfileInfo from "~/components/admin/ProfileInfo.vue";
-    import TableHeader from "~/components/coordinator/TableHeader.vue";
+import ProfileInfo from "~/components/admin/ProfileInfo.vue";
+import TableHeader from "~/components/coordinator/TableHeader.vue";
 </script>
 
 <template>
-<div>
+  <div>
     <div>
-        <ProfileInfo username="Carmen Leong" role="Admin" />
+      <ProfileInfo username="Carmen Leong" role="Admin" />
     </div>
     <div>
-        <TableHeader :headings="['Teams', 'Level', 'Division']" />
+      <TableHeader :headings="['Teams', 'Level', 'Division']" />
     </div>
-</div>
+  </div>
 </template>
