@@ -41,8 +41,8 @@ const addInstitution = () => {};
       button-text="Add Institutions"
       button-color="bg-gold"
       type="button"
-      @click="addInstitution"
       class="m-5 ml-8"
+      @click="addInstitution"
     />
   </div>
 </template>
