@@ -66,7 +66,7 @@ const rejectPerson = (id) => {
           <p>{{ person.email }}</p>
         </td>
         <td>
-          <select name="role" id="role" v-model="person.role">
+          <select id="role" v-model="person.role" name="role">
             <option value="Adjudicator">Adjudicator</option>
             <option value="Adjudicator Coordinator">
               Adjudicator Coordinator
@@ -76,14 +76,14 @@ const rejectPerson = (id) => {
         </td>
         <td class="flex flex-row justify-between">
           <Button
-            @click="approvePerson(person.id)"
             button-text="Approve"
             button-color="bg-green-500"
+            @click="approvePerson(person.id)"
           />
           <Button
-            @click="rejectPerson(person.id)"
             button-text="Reject"
             button-color="bg-red-500"
+            @click="rejectPerson(person.id)"
           />
         </td>
       </tr>
