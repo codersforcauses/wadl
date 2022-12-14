@@ -3,60 +3,70 @@
     "first": "Jane",
     "last": "Doe",
     "email": "janedoe@gmail.com",
-    "role": "Adjudicator"
+    "role": "Team Coordinator",
+    "id" : "5895a8d"
   },
   {
     "first": "John",
     "last": "Brown",
     "email": "johnbrown@gmail.com",
-    "role": "Adjudicator Coordinator"
+    "role": "Adjudicator Coordinator",
+    "id" : "8as9cuij"
   },
   {
     "first": "Michael",
     "last": "Johnson",
     "email": "michaeljohnson@gmail.com",
-    "role": "Administrator"
+    "role": "Adjudicator",
+    "id" : "4192uijw"
   },
   {
     "first": "Emily",
     "last": "Jones",
     "email": "emilyjones@gmail.com",
-    "role": "Adjudicator"
+    "role": "Team Coordinator",
+    "id" : "91ioqwk"
   },
   {
     "first": "David",
     "last": "White",
     "email": "davidwhite@gmail.com",
-    "role": "Adjudicator"
+    "role": "Adjudicator",
+    "id" : "19iqowjks"
   },
   {
     "first": "Samantha",
     "last": "Harris",
     "email": "samanthaharris@gmail.com",
-    "role": "Adjudicator"
+    "role": "Adjudicator",
+    "id" : "ncajsj21q"
   },
   {
     "first": "Christopher",
     "last": "Moore",
     "email": "christophermoore@gmail.com",
-    "role": "Adjudicator Coordinator"
+    "role": "Adjudicator Coordinator",
+    "id" : "10l1sje1w"
   },
   {
     "first": "Ashley",
     "last": "Taylor",
     "email": "ashleytaylor@gmail.com",
-    "role": "Adjudicator Coordinator"
+    "role": "Team Coordinator",
+    "id" : "zcx1298"
   },
   {
     "first": "Jessica",
     "last": "Anderson",
     "email": "jessicaanderson@gmail.com",
-    "role": "Adjudicator"
+    "role": "Adjudicator",
+    "id": "t2398u89vd"
   },
   {
     "first": "James",
     "last": "Thomas",
     "email": "jamesthomas@gmail.com",
-    "role": "Adjudicator Coordinator"
+    "role": "Team Coordinator",
+    "id" : "0wqdasok"
   }
 ]
