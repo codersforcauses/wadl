@@ -7,10 +7,17 @@
   <Button
       button-text="Add Venue"
       button-color="bg-gold"
-      @click="handleAdd"
+      @click="(show =! show)"
     />
+  <Modal v-show="show">
+    <h1>Add Venue</h1>
+  </Modal>
 </template>
 <script setup>
+
+import { ref } from 'vue';
+import Modal from '../components/Modal.vue';
+
 const venues = [
   {
     index: "1",
@@ -45,7 +52,9 @@ const config = [
     title: "Room No.",
   },
 ];
-const handleAdd = () => {
-  console.log("Added");
-};
+
+const show = ref(false);
+// const handleAdd = () => {
+//   show = !show;
+// };
 </script>
