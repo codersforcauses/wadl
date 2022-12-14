@@ -1,6 +1,6 @@
 <script setup>
 import ProfileInfo from "~/components/admin/ProfileInfo.vue";
-import TableHeader from "~/components/coordinator/TableHeader.vue";
+import Table from "~/components/coordinator/Table.vue";
 </script>
 
 <template>
@@ -9,7 +9,9 @@ import TableHeader from "~/components/coordinator/TableHeader.vue";
       <ProfileInfo username="Carmen Leong" role="Admin" />
     </div>
     <div>
-      <TableHeader :headings="['Teams', 'Level', 'Division']" />
+      <Table :headings="['Teams', 'Level', 'Division']" 
+      :content="[['Perth', 'Senior', '1'], ['Perth Modern 3', 'Senior', '3']]"
+      />
     </div>
   </div>
 </template>
