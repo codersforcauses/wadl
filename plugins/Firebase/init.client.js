@@ -1,13 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
-import { useRuntimeConfig } from "../../node_modules/nuxt/dist/app";
 
-export default firebaseInit(async (nuxtApp) => {
-
+export default defineNuxtPlugin(async (nuxtApp) => {
   // contains nuxt env vars
   const config = useRuntimeConfig();
-  
+
   let firebaseConfig;
   firebaseConfig = {
     apiKey: config.firebaseApiKey,
@@ -21,7 +19,7 @@ export default firebaseInit(async (nuxtApp) => {
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
-  const auth = getAuth();
+  const auth = getAuth(app);
 
   if (firebaseConfig.mode === "dev") {
     connectFirestoreEmulator(db, "localhost", 8080);
@@ -30,9 +28,9 @@ export default firebaseInit(async (nuxtApp) => {
   }
 
   return {
-      provide: {
-          db: db,
-          auth: auth
-      }
-  }
-})
+    provide: {
+      db,
+      auth,
+    },
+  };
+});
