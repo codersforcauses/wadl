@@ -1,36 +1,35 @@
 <template>
   <form
-    @submit.prevent="registerUser"
     class="p-5 heading-montserrat border border-light-grey rounded-3xl max-w-lg"
+    @submit.prevent="registerUser"
   >
     <h1 class="text-2xl text-center pb-2">Register</h1>
     <div class="grid grid-cols-2 gap-x-4">
       <div>
         <FormField
+          v-model="form.firstName"
           label="Name"
-          v-model="f.firstName"
           placeholder="Your First Name"
         />
       </div>
       <div class="mt-6">
-        <FormField v-model="f.lastName" placeholder="Your Last Name" />
+        <FormField v-model="form.lastName" placeholder="Your Last Name" />
       </div>
     </div>
-    <FormField label="Email" v-model="f.email" placeholder="Your Email" />
+    <FormField v-model="form.email" label="Email" placeholder="Your Email" />
     <FormField
+      v-model="form.password"
       label="Password"
-      v-model="f.password"
       type="password"
       placeholder="Your Password"
     />
     <FormField
+      v-model="form.confirmPassword"
       label="Confirm Password"
-      v-model="f.confirmPassword"
       placeholder="Confirm Password"
       type="password"
     />
-    <!-- <DefaultInputs /> -->
-    <Roles />
+    <Roles v-model="form.role" />
     <div class="w-full flex justify-center mt-4">
       <Button button-text="Submit" button-color="bg-gold" />
     </div>
@@ -38,13 +37,12 @@
 </template>
 
 <script setup>
-import DefaultInputs from "./DefaultInputs.vue";
 import Roles from "./Roles.vue";
-import Button from "../Button/index.vue";
 import { useUserStore } from "../../stores/user";
+import { ref } from "vue";
 
-const user = useUserStore();
-const f = ref({
+const userStore = useUserStore();
+const form = ref({
   firstName: "",
   lastName: "",
   email: "",
@@ -52,12 +50,11 @@ const f = ref({
   confirmPassword: "",
   role: "",
 });
-console.log(f);
 
-console.log(user);
+// TODO VALIDATE FORM
+
+// Call The User Store
 const registerUser = (e) => {
-  console.log(f.value);
-
-  user.registerUser(f.value);
+  userStore.registerUser(form.value);
 };
 </script>

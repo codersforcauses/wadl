@@ -11,12 +11,12 @@
     <Button
       button-text="Create Tournament"
       button-color="bg-gold"
-      @click="handleDelete"
+      @click="handleSave"
     />
     <Button
       button-text="Delete"
       button-color="bg-red-500"
-      @click="handleClick"
+      @click="handleDelete"
     />
   </div>
 </template>
