@@ -25,9 +25,9 @@
 const handleUndo = () => {
   console.log("Undoing");
 };
-// const handleSave = () => {
-//   console.log("Saving");
-// };
+const handleSave = () => {
+  console.log("Saving");
+};
 const handleDelete = () => {
   console.log("Deleting");
 };

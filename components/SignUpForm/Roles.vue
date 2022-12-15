@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="mb-1">Role</p>
+    <label class="mb-1">Role</label>
     <select
       name="role"
       id="role"
