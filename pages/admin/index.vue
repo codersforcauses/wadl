@@ -19,10 +19,14 @@ import {
   <div class="flex items-center justify-center w-full">
     <div class="grid w-2/3 grid-cols-3 gap-2">
       <AdminButton title="Tournaments" link="/" :icon="TrophyIcon" />
-      <AdminButton title="Institutions" link="/" :icon="BuildingLibraryIcon" />
+      <AdminButton
+        title="Institutions"
+        link="admin/institutions"
+        :icon="BuildingLibraryIcon"
+      />
       <AdminButton
         title="Adjudicators"
-        link="/Adjudicators"
+        link="admin/adjudicators"
         :icon="ScaleIcon"
       />
       <AdminButton title="Teams" link="/" :icon="UserGroupIcon" />
