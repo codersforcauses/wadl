@@ -22,6 +22,10 @@
     font-family: theme("fontFamily.jost");
   }
 
+  .heading-montserrat {
+    font-family: theme("fontFamily.montserrat");
+  }
+
   .body-brandon {
     font-family: theme("fontFamily.brandon");
     letter-spacing: theme("letterSpacing.12");
