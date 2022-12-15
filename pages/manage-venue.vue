@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <Header titleText="Venues" />
+  <SearchBar />
   <div class="flex content-center justify-center">
     <Table :config="config" :venues="venues" />
   </div>
