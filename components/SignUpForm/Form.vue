@@ -1,5 +1,6 @@
 <template>
   <form
+    @submit.prevent="registerUser"
     class="p-5 heading-montserrat border border-light-grey rounded-3xl max-w-lg"
   >
     <h1 class="text-2xl text-center pb-2">Register</h1>
@@ -15,4 +16,12 @@
 import DefaultInputs from "./DefaultInputs.vue";
 import Roles from "./Roles.vue";
 import Button from "../Button/index.vue";
+import { useUserStore } from "../../stores/user";
+
+const user = useUserStore();
+
+console.log(user);
+const registerUser = () => {
+  user.registerUser("HELLO");
+};
 </script>

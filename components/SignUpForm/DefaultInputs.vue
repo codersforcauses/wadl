@@ -28,7 +28,6 @@
     <p class="mb-1">Password</p>
     <input
       type="password"
-      id="password"
       placeholder="Your Password"
       required
       class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat"
@@ -36,7 +35,6 @@
     <p class="mb-1">Confirm Password</p>
     <input
       type="password"
-      id="password"
       placeholder="Confirm Password"
       required
       class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat"
