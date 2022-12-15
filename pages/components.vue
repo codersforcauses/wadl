@@ -7,7 +7,6 @@
   <SearchBar @handle-filter="handleFilter" />
   <!-- Button Component -->
   <div class="flex flex-row gap-4 justify-center mt-8 mx-2">
-    <Button button-text="Undo" button-color="bg-gray-400" @click="handleUndo" />
     <Button
       button-text="Create Tournament"
       button-color="bg-gold"
@@ -15,8 +14,40 @@
     />
     <Button
       button-text="Delete"
-      button-color="bg-red-500"
+      button-color="bg-light-red"
+      text-color="text-dark-red"
       @click="handleDelete"
+    />
+  </div>
+  <div class="flex flex-row gap-4 justify-center mt-8 mx-2">
+    <Button
+      button-text="Save"
+      button-color="bg-gold"
+      @click="handleSave"
+      size="medium"
+    />
+    <Button
+      button-text="Delete"
+      button-color="bg-light-red"
+      text-color="text-dark-red"
+      @click="handleDelete"
+      size="medium"
+    />
+  </div>
+  <div class="flex flex-row gap-4 justify-center mt-8 mx-2">
+    <Button
+      button-text="Approve"
+      button-color="bg-light-green"
+      text-color="text-white"
+      @click="handleSave"
+      size="small"
+    />
+    <Button
+      button-text="Reject"
+      button-color="bg-light-red"
+      text-color="text-dark-red"
+      @click="handleDelete"
+      size="small"
     />
   </div>
 </template>
