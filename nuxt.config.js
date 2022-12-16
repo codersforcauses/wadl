@@ -19,9 +19,7 @@ export default defineNuxtConfig({
         {
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Jost&family=Lato&family=Montserrat&display=swap",
-        },
-        {
-          rel: "stylesheet",
+          // eslint-disable-next-line no-dupe-keys
           href: "https://fonts.googleapis.com/css2?family=Carter+One&display=swap",
         },
       ],

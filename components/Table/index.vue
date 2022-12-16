@@ -1,13 +1,13 @@
 <!-- eslint-disable vue/require-valid-default-prop -->
 <template>
-  <div class="h-max-full overflow-auto">
-    <table class="table-fixed overflow-scroll">
-      <thead class="position-relative sticky top-0 bg-white">
+  <div class="h-max-full overflow-auto flex justify-center content-center">
+    <table class="table-fixed overflow-scroll w-11/12">
+      <thead class="sticky top-0 bg-white">
         <tr>
           <th
-            v-for="(object, index) in config"
+            v-for="(object, index) in headers"
             :key="index"
-            class="py-3 w-64 text-5xl text-left font-carterone"
+            class="py-3 text-xl text-left font-carterone"
           >
             {{ object.title }}
           </th>
@@ -17,13 +17,13 @@
       <tbody>
         <tr v-for="(row, index) in venues" :key="index" class="border-b-2">
           <td
-            v-for="(object, ind) in config"
+            v-for="(object, ind) in headers"
             :key="ind"
-            class="font-montserrat text-2xl py-2"
+            class="font-montserrat py-2"
           >
             {{ row[object.key] }}
           </td>
-          <td class="w-48 text-center">
+          <td class="w-48 text-right">
             <button><PencilIcon class="w-4 h-4" /></button>
           </td>
         </tr>
@@ -36,7 +36,7 @@
 import { PencilIcon } from "@heroicons/vue/24/solid";
 
 defineProps({
-  config: {
+  headers: {
     type: Object,
     default: () => ({}),
   },
