@@ -1,6 +1,5 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
-import { getAuth, connectAuthEmulator } from "firebase/auth";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   // contains nuxt env vars
@@ -17,7 +16,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   };
 
   const apps = getApps();
-  console.log(apps.length);
+
   const firebaseApp =
     apps.length === 0 ? initializeApp(firebaseConfig) : apps[0];
 
