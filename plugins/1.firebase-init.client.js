@@ -6,7 +6,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // contains nuxt env vars
   const config = useRuntimeConfig();
 
-  let firebaseConfig = {
+  const firebaseConfig = {
     apiKey: config.firebaseApiKey,
     authDomain: config.firebaseAuthDomain,
     projectId: config.firebaseProjectId,
@@ -16,9 +16,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     mode: config.firebaseMode,
   };
 
-  const apps = getApps()
-  console.log(apps.length)
-  const firebaseApp = (apps.length === 0 ? initializeApp(firebaseConfig) : apps[0])
+  const apps = getApps();
+  console.log(apps.length);
+  const firebaseApp =
+    apps.length === 0 ? initializeApp(firebaseConfig) : apps[0];
 
   const db = getFirestore(firebaseApp);
 
@@ -26,11 +27,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     connectFirestoreEmulator(db, "localhost", 8080);
     console.log("emulate");
   }
-  
+
   return {
     provide: {
-        db,
+      db,
     },
   };
 });
-
