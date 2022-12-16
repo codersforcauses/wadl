@@ -6,7 +6,7 @@
         <th
           v-for="(object, index) in config"
           :key="index"
-          class="py-3 w-64 text-5xl"
+          class="py-3 w-64 text-5xl font-carterone"
         >
           {{ object.title }}
         </th>

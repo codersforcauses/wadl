@@ -20,6 +20,10 @@ export default defineNuxtConfig({
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Jost&family=Lato&family=Montserrat&display=swap",
         },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Carter+One&display=swap",
+        },
       ],
     },
   },
