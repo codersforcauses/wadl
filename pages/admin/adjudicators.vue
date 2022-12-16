@@ -33,7 +33,7 @@
 <script setup>
 import { ref } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/solid";
-import data from "../data/adjudicators.json";
+import data from "../../data/adjudicators.json";
 
 const adjudicators = ref(data);
 
