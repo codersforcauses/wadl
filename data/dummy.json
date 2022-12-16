@@ -1,0 +1,452 @@
+[
+  {
+    "ID": 1,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Lalo",
+    "SURNAME": "Maasze",
+    "PASSWORD": "Qi7y27JRlmvg",
+    "EMAIL": "lmaasze0@cocolog-nifty.com",
+    "PHONE_NUMBER": "5006676188"
+  },
+  {
+    "ID": 2,
+    "ROLE": "admin",
+    "FIRST_NAME": "Darryl",
+    "SURNAME": "Emney",
+    "PASSWORD": "FONEOQ5",
+    "EMAIL": "demney1@imdb.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 3,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Spencer",
+    "SURNAME": "Rime",
+    "PASSWORD": "xoj9mB1",
+    "EMAIL": "srime2@nps.gov",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 4,
+    "ROLE": "admin",
+    "FIRST_NAME": "Kane",
+    "SURNAME": "Gravatt",
+    "PASSWORD": "3MeT9fs",
+    "EMAIL": "kgravatt3@latimes.com",
+    "PHONE_NUMBER": "2243439488"
+  },
+  {
+    "ID": 5,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Charmian",
+    "SURNAME": "Kemwal",
+    "PASSWORD": "5TBIuGGmTeP6",
+    "EMAIL": "ckemwal4@uol.com.br",
+    "PHONE_NUMBER": "5993824227"
+  },
+  {
+    "ID": 6,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Marcelline",
+    "SURNAME": "Ber",
+    "PASSWORD": "ly0pzA",
+    "EMAIL": "mber5@studiopress.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 7,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Saunderson",
+    "SURNAME": "Kingswoode",
+    "PASSWORD": "YNzjYE",
+    "EMAIL": "skingswoode6@jugem.jp",
+    "PHONE_NUMBER": "7212434745"
+  },
+  {
+    "ID": 8,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Marten",
+    "SURNAME": "Brealey",
+    "PASSWORD": "8TiWyQ2Td",
+    "EMAIL": "mbrealey7@goodreads.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 9,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Bonita",
+    "SURNAME": "Harling",
+    "PASSWORD": "3oPnFevRoGB",
+    "EMAIL": "bharling8@tiny.cc",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 10,
+    "ROLE": "admin",
+    "FIRST_NAME": "Addie",
+    "SURNAME": "Baysting",
+    "PASSWORD": "NsTr9PvBYX",
+    "EMAIL": "abaysting9@columbia.edu",
+    "PHONE_NUMBER": "8088968702"
+  },
+  {
+    "ID": 11,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Johannah",
+    "SURNAME": "Hachette",
+    "PASSWORD": "aSsMQlGp",
+    "EMAIL": "jhachettea@domainmarket.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 12,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Annabella",
+    "SURNAME": "Rutherford",
+    "PASSWORD": "KXbiIwtL9w9",
+    "EMAIL": "arutherfordb@photobucket.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 13,
+    "ROLE": "admin",
+    "FIRST_NAME": "Jobi",
+    "SURNAME": "Found",
+    "PASSWORD": "NEHvK1u",
+    "EMAIL": "jfoundc@shareasale.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 14,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Diane-marie",
+    "SURNAME": "Longbottom",
+    "PASSWORD": "F3iupA",
+    "EMAIL": "dlongbottomd@nature.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 15,
+    "ROLE": "admin",
+    "FIRST_NAME": "Hattie",
+    "SURNAME": "Kerswill",
+    "PASSWORD": "ig164FCOqu",
+    "EMAIL": "hkerswille@amazon.com",
+    "PHONE_NUMBER": "8329533118"
+  },
+  {
+    "ID": 16,
+    "ROLE": "admin",
+    "FIRST_NAME": "Morrie",
+    "SURNAME": "Acres",
+    "PASSWORD": "M3BpE3nOF",
+    "EMAIL": "macresf@unblog.fr",
+    "PHONE_NUMBER": "9956997877"
+  },
+  {
+    "ID": 17,
+    "ROLE": "admin",
+    "FIRST_NAME": "Betteanne",
+    "SURNAME": "Middleweek",
+    "PASSWORD": "Tx0dviZ2OFjw",
+    "EMAIL": "bmiddleweekg@seesaa.net",
+    "PHONE_NUMBER": "3031538257"
+  },
+  {
+    "ID": 18,
+    "ROLE": "admin",
+    "FIRST_NAME": "Denise",
+    "SURNAME": "Sperwell",
+    "PASSWORD": "EZdexBxEnK",
+    "EMAIL": "dsperwellh@miitbeian.gov.cn",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 19,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Thia",
+    "SURNAME": "Dymick",
+    "PASSWORD": "kpJBaUDrW55M",
+    "EMAIL": "tdymicki@google.com",
+    "PHONE_NUMBER": "3742476666"
+  },
+  {
+    "ID": 20,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Balduin",
+    "SURNAME": "McNae",
+    "PASSWORD": "x29RJujJBSv",
+    "EMAIL": "bmcnaej@cpanel.net",
+    "PHONE_NUMBER": "1955539577"
+  },
+  {
+    "ID": 21,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Lindy",
+    "SURNAME": "Telega",
+    "PASSWORD": "UrfD9DK",
+    "EMAIL": "ltelegak@skyrock.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 22,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Marilyn",
+    "SURNAME": "Marklew",
+    "PASSWORD": "emNrRZOvyY",
+    "EMAIL": "mmarklewl@ted.com",
+    "PHONE_NUMBER": "2039459338"
+  },
+  {
+    "ID": 23,
+    "ROLE": "admin",
+    "FIRST_NAME": "Donnajean",
+    "SURNAME": "Linsey",
+    "PASSWORD": "mgnsFM7vkKGP",
+    "EMAIL": "dlinseym@facebook.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 24,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Kiele",
+    "SURNAME": "Mulford",
+    "PASSWORD": "UQU5OrI3",
+    "EMAIL": "kmulfordn@cam.ac.uk",
+    "PHONE_NUMBER": "3788813253"
+  },
+  {
+    "ID": 25,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Drud",
+    "SURNAME": "Cockshtt",
+    "PASSWORD": "COznfL",
+    "EMAIL": "dcockshtto@hao123.com",
+    "PHONE_NUMBER": "8426819029"
+  },
+  {
+    "ID": 26,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Emmy",
+    "SURNAME": "Piggford",
+    "PASSWORD": "ypiz7ANoX",
+    "EMAIL": "epiggfordp@arstechnica.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 27,
+    "ROLE": "admin",
+    "FIRST_NAME": "Sergent",
+    "SURNAME": "Bleasby",
+    "PASSWORD": "sQkGnJOOy",
+    "EMAIL": "sbleasbyq@yahoo.com",
+    "PHONE_NUMBER": "3601315894"
+  },
+  {
+    "ID": 28,
+    "ROLE": "admin",
+    "FIRST_NAME": "Leonore",
+    "SURNAME": "Arling",
+    "PASSWORD": "nPxXT6",
+    "EMAIL": "larlingr@utexas.edu",
+    "PHONE_NUMBER": "4039136005"
+  },
+  {
+    "ID": 29,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Inessa",
+    "SURNAME": "DeSousa",
+    "PASSWORD": "TBjc2Io3Mul",
+    "EMAIL": "idesousas@wired.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 30,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Hank",
+    "SURNAME": "Lorenzin",
+    "PASSWORD": "sjVA2hP",
+    "EMAIL": "hlorenzint@wsj.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 31,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Rycca",
+    "SURNAME": "Edlin",
+    "PASSWORD": "dHdJMqbJpW",
+    "EMAIL": "redlinu@freewebs.com",
+    "PHONE_NUMBER": "7705130408"
+  },
+  {
+    "ID": 32,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Lethia",
+    "SURNAME": "Fields",
+    "PASSWORD": "MohAWcDMZ",
+    "EMAIL": "lfieldsv@usatoday.com",
+    "PHONE_NUMBER": "2842002683"
+  },
+  {
+    "ID": 33,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Elyssa",
+    "SURNAME": "Chaffen",
+    "PASSWORD": "DsgcLvcYmFO",
+    "EMAIL": "echaffenw@baidu.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 34,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Nesta",
+    "SURNAME": "Johansson",
+    "PASSWORD": "8XJeJUrfpP3p",
+    "EMAIL": "njohanssonx@reference.com",
+    "PHONE_NUMBER": "4862258879"
+  },
+  {
+    "ID": 35,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Chadd",
+    "SURNAME": "Bennit",
+    "PASSWORD": "0Zr73mWp",
+    "EMAIL": "cbennity@fema.gov",
+    "PHONE_NUMBER": "3273293282"
+  },
+  {
+    "ID": 36,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Bastien",
+    "SURNAME": "Simcox",
+    "PASSWORD": "GoNfn6NsaeX",
+    "EMAIL": "bsimcoxz@artisteer.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 37,
+    "ROLE": "admin",
+    "FIRST_NAME": "Arabela",
+    "SURNAME": "Tulloch",
+    "PASSWORD": "XNzAegsA6zTf",
+    "EMAIL": "atulloch10@bigcartel.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 38,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Rosana",
+    "SURNAME": "Readett",
+    "PASSWORD": "vnnO68kiA",
+    "EMAIL": "rreadett11@tiny.cc",
+    "PHONE_NUMBER": "7901821055"
+  },
+  {
+    "ID": 39,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Grayce",
+    "SURNAME": "Hum",
+    "PASSWORD": "LkyU2tLt",
+    "EMAIL": "ghum12@4shared.com",
+    "PHONE_NUMBER": "8549364758"
+  },
+  {
+    "ID": 40,
+    "ROLE": "adjudicator",
+    "FIRST_NAME": "Analiese",
+    "SURNAME": "Fleote",
+    "PASSWORD": "ICV5qzfsqN",
+    "EMAIL": "afleote13@sitemeter.com",
+    "PHONE_NUMBER": "9186484873"
+  },
+  {
+    "ID": 41,
+    "ROLE": "admin",
+    "FIRST_NAME": "Feodora",
+    "SURNAME": "Aust",
+    "PASSWORD": "JhOlW7djqG",
+    "EMAIL": "faust14@wikia.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 42,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Janaye",
+    "SURNAME": "Hullbrook",
+    "PASSWORD": "NhHX7HJ",
+    "EMAIL": "jhullbrook15@acquirethisname.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 43,
+    "ROLE": "admin",
+    "FIRST_NAME": "Lydie",
+    "SURNAME": "Mathevet",
+    "PASSWORD": "g8avHTCN533",
+    "EMAIL": "lmathevet16@theglobeandmail.com",
+    "PHONE_NUMBER": "8952156650"
+  },
+  {
+    "ID": 44,
+    "ROLE": "admin",
+    "FIRST_NAME": "Marylou",
+    "SURNAME": "Guinan",
+    "PASSWORD": "GEeY6MRF",
+    "EMAIL": "mguinan17@irs.gov",
+    "PHONE_NUMBER": "4259279310"
+  },
+  {
+    "ID": 45,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Noellyn",
+    "SURNAME": "Pietersen",
+    "PASSWORD": "NvMmjg8X",
+    "EMAIL": "npietersen18@youku.com",
+    "PHONE_NUMBER": "3351619286"
+  },
+  {
+    "ID": 46,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Hi",
+    "SURNAME": "Hubbucke",
+    "PASSWORD": "QmQUzMiKj2",
+    "EMAIL": "hhubbucke19@apache.org",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 47,
+    "ROLE": "admin",
+    "FIRST_NAME": "Nickolai",
+    "SURNAME": "Shimony",
+    "PASSWORD": "WVncZgQhT",
+    "EMAIL": "nshimony1a@artisteer.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 48,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Dareen",
+    "SURNAME": "L'Episcopi",
+    "PASSWORD": "d815l3ZG0f",
+    "EMAIL": "dlepiscopi1b@fc2.com",
+    "PHONE_NUMBER": "2891516562"
+  },
+  {
+    "ID": 49,
+    "ROLE": "team coordinator",
+    "FIRST_NAME": "Karine",
+    "SURNAME": "Coutthart",
+    "PASSWORD": "d8JX38GAep",
+    "EMAIL": "kcoutthart1c@purevolume.com",
+    "PHONE_NUMBER": null
+  },
+  {
+    "ID": 50,
+    "ROLE": "adjudicator coordinator",
+    "FIRST_NAME": "Jaquelyn",
+    "SURNAME": "Tattersfield",
+    "PASSWORD": "O62To2kW",
+    "EMAIL": "jtattersfield1d@microsoft.com",
+    "PHONE_NUMBER": null
+  }
+]

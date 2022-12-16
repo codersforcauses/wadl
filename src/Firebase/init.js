@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
 import { useRuntimeConfig } from "../../node_modules/nuxt/dist/app";
+import dummy from "../../data/dummy.json" assert { type: "JSON" };
+
 
 let firebaseConfig;
 
@@ -40,6 +42,8 @@ if (firebaseConfig.firebaseMode === "dev") {
   connectFirestoreEmulator(db, "localhost", 8080);
   connectAuthEmulator(auth, "http://localhost:9099");
   console.log("emulate");
+  console.log(dummy)
+  
 }
 
 export { db };
