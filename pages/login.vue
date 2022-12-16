@@ -45,27 +45,28 @@ Include the the login error into the compositon style API -->
 
 
 <template>
-    <div class="text-center bg-gold w-2/5 h-96 pt-2.5 pb-2.5 border border-light-grey rounded-md flex flex-col justify-center content-center m-auto flex-auto justify-self-center">
-      <h1 class="text-5xl">Login</h1>
+    <div class="text-center bg-gold w-[550px] h-[600px] pt-2.5 pb-2.5 mt-24 border border-light-grey rounded-xl flex flex-col content-center m-auto flex-shrink-1">
+      <h1 class="text-5xl mt-9 mb-10">Login</h1>
       <br>
       <form @submit.prevent="handleLogin">
-        <label>
+        <label >
           Email
           <br>
-          <input type="email" v-model="email" class="border border-light-grey rounded-md h-8 w-1/2" placeholder=" Your Email"/>
+          <input type="email" v-model="email" class="border border-light-grey rounded-md h-[50px] w-[450px] justify-self-center self-center" placeholder=" Your Email"/>
         </label>
         <br><br>
         <label>
           Password
           <br>
-          <input type="password" v-model="password" class="border border-light-grey rounded-md h-8 w-1/2" placeholder=" Your Password"/>
+          <input type="password" v-model="password" class="border border-light-grey rounded-md h-[50px] w-[450px]" placeholder=" Your Password"/>
         </label>
         <br><br>
         <!-- <button type="submit" class="button">Submit</button> -->
-        <Button
+        <Button class="mt-[60px] h-[60px] w-[200px] rounded-xl"
         button-text="Submit"
         button-color="bg-white" />
         <p v-if="error" class="red">{{ error }}</p>
+        
       </form>
     </div>
 </template>
