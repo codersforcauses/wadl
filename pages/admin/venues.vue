@@ -6,12 +6,14 @@
     <div class="flex content-center justify-center h-3/5 px-2">
       <Table :headers="headers" :venues="venues" />
     </div>
-    <Button
-      button-text="Add Venue"
-      button-color="bg-gold"
-      class="m-5 ml-8"
-      @click="show = !show"
-    />
+    <div class="fixed inset-x-0 hottom-0 w-full bg-white">
+      <Button
+        button-text="Add Venue"
+        button-color="bg-gold"
+        class="m-5 ml-8"
+        @click="show = !show"
+      />
+    </div>
   </div>
 </template>
 <script setup>
@@ -44,9 +46,4 @@ const headers = [
     title: "Room No.",
   },
 ];
-
-const show = ref(false);
-// const handleAdd = () => {
-//   show = !show;
-// };
 </script>

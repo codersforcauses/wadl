@@ -18,9 +18,7 @@ export default defineNuxtConfig({
       link: [
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Jost&family=Lato&family=Montserrat&display=swap",
-          // eslint-disable-next-line no-dupe-keys
-          href: "https://fonts.googleapis.com/css2?family=Carter+One&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=Jost&family=Lato&family=Montserrat&display=swap&family=Carter+One&display=swap",
         },
       ],
     },

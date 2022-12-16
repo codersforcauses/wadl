@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/require-valid-default-prop -->
 <template>
   <div
-    class="h-max-full overflow-auto overscroll-contain flex justify-center content-center"
+    class="h-max-full overflow-y-scroll overscroll-contain flex justify-center content-center"
   >
     <table class="table-fixed overflow-scroll w-11/12">
       <thead class="sticky top-0 bg-white">
