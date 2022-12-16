@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <Header titleText="Venues" />
-  <SearchBar @handle-filter="filterVenues" />
+  <SearchBar @handle-filter="handleFilter" />
   <div class="flex content-center justify-center">
     <Table :config="config" :venues="venues" />
   </div>
@@ -21,8 +21,14 @@ import data from "../data/venues.json";
 
 const venues = ref(data);
 
-const filterVenues = (value) => {
-  console.log(value);
+const handleFilter = (searchTerm) => {
+  venues.value = data.filter(
+    (venue) =>
+      venue.day.toLowerCase().includes(searchTerm) ||
+      venue.index.toLowerCase().includes(searchTerm) ||
+      venue.roomNum.toLowerCase().includes(searchTerm) ||
+      venue.venue.toLowerCase().includes(searchTerm)
+  );
 };
 
 const config = [

@@ -35,11 +35,11 @@ import { PencilIcon } from "@heroicons/vue/24/solid";
 defineProps({
   config: {
     type: Object,
-    default: [],
+    default: () => ({}),
   },
   venues: {
     type: Object,
-    default: [],
+    default: () => ({}),
   },
 });
 </script>
