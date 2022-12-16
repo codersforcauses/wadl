@@ -2,17 +2,22 @@
 <template>
   <Header titleText="Venues" />
   <SearchBar @handle-filter="handleFilter" />
-  <div class="flex content-center justify-center">
-    <Table :config="config" :venues="venues" />
+  <div class="h-screen w-screen flex flex-col items-center">
+    <div class="flex content-center justify-center h-3/5 w-10/12">
+      <Table :config="config" :venues="venues" />
+    </div>
+    <div class="p-10 self-start">
+      <Button
+        button-text="Add Venue"
+        button-color="bg-gold"
+        class="h-14 w-80"
+        @click="show = !show"
+      />
+      <Modal v-show="show">
+        <h1>Add Venue</h1>
+      </Modal>
+    </div>
   </div>
-  <Button
-    button-text="Add Venue"
-    button-color="bg-gold"
-    @click="show = !show"
-  />
-  <Modal v-show="show">
-    <h1>Add Venue</h1>
-  </Modal>
 </template>
 <script setup>
 import { ref } from "vue";

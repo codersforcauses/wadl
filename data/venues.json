@@ -25,5 +25,59 @@
     "venue": "Rockeby Road",
     "day": "Wednesday",
     "roomNum": "017"
+  },
+  {
+    "index": "6",
+    "venue": "South Street",
+    "day": "Wednesday",
+    "roomNum": "024"
+  },
+  {
+    "index": "7",
+    "venue": "North Niles",
+    "day": "Tuesday",
+    "roomNum": "023"
+  },{
+    "index": "8",
+    "venue": "Adjacent Avenue",
+    "day": "Tuesday",
+    "roomNum": "096"
+  },{
+    "index": "9",
+    "venue": "Brass Burmingham",
+    "day": "Wednesday",
+    "roomNum": "111"
+  },{
+    "index": "10",
+    "venue": "Rockeby Road",
+    "day": "Wednesday",
+    "roomNum": "017"
+  },
+  {
+    "index": "11",
+    "venue": "South Street",
+    "day": "Wednesday",
+    "roomNum": "024"
+  },
+  {
+    "index": "12",
+    "venue": "North Niles",
+    "day": "Tuesday",
+    "roomNum": "023"
+  },{
+    "index": "13",
+    "venue": "Adjacent Avenue",
+    "day": "Tuesday",
+    "roomNum": "096"
+  },{
+    "index": "14",
+    "venue": "Brass Burmingham",
+    "day": "Wednesday",
+    "roomNum": "111"
+  },{
+    "index": "15",
+    "venue": "Rockeby Road",
+    "day": "Wednesday",
+    "roomNum": "017"
   }
 ]
