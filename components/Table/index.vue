@@ -22,7 +22,7 @@
           {{ row[object.key] }}
         </td>
         <td>
-          <button>Edit</button>
+          <button><PencilIcon class="w-4 h-4" /></button>
         </td>
       </tr>
     </tbody>
@@ -30,6 +30,8 @@
 </template>
 
 <script setup>
+import { PencilIcon } from "@heroicons/vue/24/solid";
+
 defineProps({
   config: {
     type: Object,

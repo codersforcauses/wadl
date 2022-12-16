@@ -17,31 +17,14 @@
 <script setup>
 import { ref } from "vue";
 import Modal from "../components/Venues/Modal.vue";
+import data from "../data/venues.json";
+
+const venues = ref(data);
 
 const filterVenues = (value) => {
-  venues.filter(value);
+  console.log(value);
 };
 
-const venues = [
-  {
-    index: "1",
-    venue: "South Street",
-    day: "Wednesday",
-    roomNum: "024",
-  },
-  {
-    index: "2",
-    venue: "Adjacent Avenue",
-    day: "Wednesday",
-    roomNum: "96",
-  },
-  {
-    index: "3",
-    venue: "Rightmost Road",
-    day: "Wednesday",
-    roomNum: "111",
-  },
-];
 const config = [
   {
     key: "venue",

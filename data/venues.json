@@ -1,0 +1,29 @@
+[
+  {
+    "index": "1",
+    "venue": "South Street",
+    "day": "Wednesday",
+    "roomNum": "024"
+  },
+  {
+    "index": "2",
+    "venue": "North Niles",
+    "day": "Tuesday",
+    "roomNum": "023"
+  },{
+    "index": "3",
+    "venue": "Adjacent Avenue",
+    "day": "Tuesday",
+    "roomNum": "096"
+  },{
+    "index": "4",
+    "venue": "Brass Burmingham",
+    "day": "Wednesday",
+    "roomNum": "111"
+  },{
+    "index": "5",
+    "venue": "Rockeby Road",
+    "day": "Wednesday",
+    "roomNum": "017"
+  }
+]
