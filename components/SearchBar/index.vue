@@ -1,7 +1,7 @@
 <template>
   <div class="flex py-5 justify-center mx-20">
     <span
-      class="inline-flex items-center rounded-full rounded-r-none border-2 border-r-0 px-2 py-2"
+      class="inline-flex items-center rounded-l-md border-2 border-r-0 px-2 py-2"
     >
       <MagnifyingGlassIcon class="h-5 w-5 text-gray-600" />
     </span>
@@ -9,7 +9,7 @@
       v-model="searchString"
       type="text"
       placeholder="Search"
-      class="px-2 border-2 border-l-0 border-grey-300 rounded-full rounded-l-none w-11/12 focus:outline-none"
+      class="px-2 border-2 border-l-0 border-grey-300 rounded-r-md w-11/12 focus:outline-none"
       @input="emit('handleFilter', searchString.toLowerCase())"
     />
   </div>
