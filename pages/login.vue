@@ -45,75 +45,28 @@ Include the the login error into the compositon style API -->
 
 
 <template>
-    <div class="login mx-auto">
-      <h1>Login</h1>
+    <div class="text-center bg-gold w-2/5 h-96 pt-2.5 pb-2.5 border border-light-grey rounded-md flex flex-col justify-center content-center m-auto flex-auto justify-self-center">
+      <h1 class="text-5xl">Login</h1>
       <br>
       <form @submit.prevent="handleLogin">
         <label>
           Email
           <br>
-          <input type="email" v-model="email" class="input" placeholder=" Your Email"/>
+          <input type="email" v-model="email" class="border border-light-grey rounded-md h-8 w-1/2" placeholder=" Your Email"/>
         </label>
         <br><br>
         <label>
           Password
           <br>
-          <input type="password" v-model="password" class="input" placeholder=" Your Password"/>
+          <input type="password" v-model="password" class="border border-light-grey rounded-md h-8 w-1/2" placeholder=" Your Password"/>
         </label>
         <br><br>
         <!-- <button type="submit" class="button">Submit</button> -->
         <Button
         button-text="Submit"
         button-color="bg-white" />
-        <p v-if="error" class="error">{{ error }}</p>
+        <p v-if="error" class="red">{{ error }}</p>
       </form>
     </div>
 </template>
   
-
-
- <!-- 
- Work to be done in style
- Convert to tailwind css  -->
-<style>
-  
-  h1 {
-    font-size: 30px;
-    font-weight: 200px;
-  }
-  .error {
-    color: red;
-  }
-  
-  
-  
-  .login {
-  text-align: center;
-  background-color: rgb(255, 215, 0);
-  width: 40%;
-  height: 150%;
-  padding-top: 10%;
-  padding-bottom: 10%;
-  border-radius: 25px;
-  border: 1px solid rgb(168, 168, 168);
-  }
-  
-  .input{
-    border: 1px solid rgb(168, 168, 168);
-    border-radius: 5px;
-    height: 30px;
-    width:50%
-    
-  }
-  
-  .button {
-    padding-left: 35px;
-    padding-block: 7px;
-    padding-right: 35px;
-    border: 1px solid rgb(168, 168, 168);
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0px 3px 3px 1px rgba(0,0,0,.3);
-        
-  }
-</style>
