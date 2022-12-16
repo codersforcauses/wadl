@@ -2,18 +2,16 @@
 <template>
   <Header titleText="Venues" />
   <SearchBar @handle-filter="handleFilter" />
-  <div class="h-screen flex-col">
-    <div class="flex content-center justify-center h-3/5 px-2">
-      <Table :headers="headers" :venues="venues" />
-    </div>
-    <div class="fixed inset-x-0 hottom-0 w-full bg-white">
-      <Button
-        button-text="Add Venue"
-        button-color="bg-gold"
-        class="m-5 ml-8"
-        @click="show = !show"
-      />
-    </div>
+  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+    <Table :headers="headers" :venues="venues" />
+  </div>
+  <div class="fixed inset-x-0 hottom-0 w-full bg-white">
+    <Button
+      button-text="Add Venue"
+      button-color="bg-gold"
+      class="m-5 ml-8"
+      @click="show = !show"
+    />
   </div>
 </template>
 <script setup>
