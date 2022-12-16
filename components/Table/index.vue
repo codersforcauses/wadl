@@ -1,13 +1,15 @@
 <!-- eslint-disable vue/require-valid-default-prop -->
 <template>
-  <div class="h-max-full overflow-auto flex justify-center content-center">
+  <div
+    class="h-max-full overflow-auto overscroll-contain flex justify-center content-center"
+  >
     <table class="table-fixed overflow-scroll w-11/12">
       <thead class="sticky top-0 bg-white">
         <tr>
           <th
             v-for="(object, index) in headers"
             :key="index"
-            class="py-3 text-xl text-left font-carterone"
+            class="py-3 text-xl text-left font-carterone h-10"
           >
             {{ object.title }}
           </th>
@@ -15,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, index) in venues" :key="index" class="border-b-2">
+        <tr v-for="(row, index) in venues" :key="index" class="border-b-2 h-10">
           <td
             v-for="(object, ind) in headers"
             :key="ind"
@@ -27,6 +29,7 @@
             <button><PencilIcon class="w-4 h-4" /></button>
           </td>
         </tr>
+        <tr class="h-auto border-none" />
       </tbody>
     </table>
   </div>
