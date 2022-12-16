@@ -3,7 +3,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "dev:emu": "yarn emu:stop & yarn firebase & (sleep 15 && yarn dev)",
+    "dev:emu": "yarn firebase & (sleep 15 && yarn dev)",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
