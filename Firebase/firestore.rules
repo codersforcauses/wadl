@@ -16,7 +16,7 @@ service cloud.firestore {
 //         return request.auth.token.email_verified == true
 //       }
 //       function isAdmin(){
-//         return  request.resource.data.role == "admin" 
+//         return  request.resource.data.role == "Admin" 
 //       }
 //       function allowSignup(){
 //         return request.auth.token.email != null  
@@ -25,10 +25,10 @@ service cloud.firestore {
 //         return request.auth.uid == userId
 //       }
 //       function isAdjudicator(){
-//         return request.resource.data.role == "adjudicator"
+//         return request.resource.data.role == "Adjudicator"
 //       }
-//       function isCoordinator(){
-//         return request.resource.data.role == "coordinator"
+//       function isTeamCoordinator(){
+//         return request.resource.data.role == "Team Coordinator"
 //       }
 //       function isAdjudicatorCoordinator(){
 //         return request.resource.data.role == "adjudicatorcoordinator"
