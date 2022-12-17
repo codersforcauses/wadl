@@ -33,19 +33,13 @@ const teams = ref(teamData);
             :key="team.name"
             class="justify-center transition duration-150 ease-in-out odd:bg-white even:bg-light-grey/10 hover:bg-light-gold hover:shadow-lg rounded-xl focus:bg-light-gold focus:shadow-lg focus:outline-none focus:ring-0 active:bg-light-gold active:shadow-lg"
           >
-            <td
-              class="p-2 m-2 text-2xl text-center"
-            >
+            <td class="p-2 m-2 text-2xl text-center">
               {{ team.name }}
             </td>
-            <td
-              class="p-2 m-2 text-2xl text-center"
-            >
+            <td class="p-2 m-2 text-2xl text-center">
               {{ teams[index].level }}
             </td>
-            <td
-              class="p-2 m-2 text-2xl text-center "
-            >
+            <td class="p-2 m-2 text-2xl text-center">
               {{ teams[index].division }}
             </td>
           </tr>
