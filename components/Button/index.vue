@@ -7,6 +7,8 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
+
 const props = defineProps({
   buttonText: { type: String, default: "Button" },
   buttonColor: { type: String, default: "primary" },

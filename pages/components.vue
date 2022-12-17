@@ -23,15 +23,15 @@
     <Button
       button-text="Save"
       button-color="bg-gold"
-      @click="handleSave"
       size="medium"
+      @click="handleSave"
     />
     <Button
       button-text="Delete"
       button-color="bg-light-red"
       text-color="text-dark-red"
-      @click="handleDelete"
       size="medium"
+      @click="handleDelete"
     />
   </div>
   <div class="flex flex-row gap-4 justify-center mt-8 mx-2">
@@ -39,23 +39,23 @@
       button-text="Approve"
       button-color="bg-light-green"
       text-color="text-white"
-      @click="handleSave"
       size="small"
+      @click="handleSave"
     />
     <Button
       button-text="Reject"
       button-color="bg-light-red"
       text-color="text-dark-red"
-      @click="handleDelete"
       size="small"
+      @click="handleDelete"
     />
   </div>
 </template>
 
 <script setup>
-const handleUndo = () => {
-  console.log("Undoing");
-};
+// const handleUndo = () => {
+//   console.log("Undoing");
+// };
 const handleSave = () => {
   console.log("Saving");
 };
