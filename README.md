@@ -12,7 +12,7 @@ Download **'env'**, pinned in discord wadl-backend channel. Rename to **'.env'**
 Alternatively:  
 * Create file '.env' in root directory, and copy content of '.env.example' into it 
 * Copy environment values from the cfc wadl-backend discord channel into their corresponding values in .env  
-* set NUXT_PUBLIC_FIREBASE_MODE to "dev"  
+* Set NUXT_PUBLIC_FIREBASE_MODE to "dev"  
 > If you do not have access to wadl-backend, message an admin of the project.
 
 ## Local Server setup
