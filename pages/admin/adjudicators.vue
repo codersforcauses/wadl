@@ -2,25 +2,25 @@
   <Header title-text="Adjudicators" />
   <SearchBar @handle-filter="handleFilter" />
   <div class="flex justify-center">
-    <ul class="bg-white rounded-lg w-11/12">
+    <ul class="w-11/12 bg-white rounded-lg">
       <li
-        class="text-xl heading-montserrat font-bold px-6 py-3 border-b border-gray-20 rounded-t-lg flex justify-between items-center"
+        class="flex items-center justify-between px-6 py-3 text-xl font-bold border-b rounded-t-lg heading-montserrat border-gray-20"
       >
         Adjudicator
       </li>
       <li
         v-for="(adjudicator, idx) in adjudicators"
         :key="idx"
-        class="px-6 py-2 border-b border-gray-20 rounded-t-lg flex justify-between items-center"
+        class="flex items-center justify-between px-6 py-2 border-b rounded-t-lg border-gray-20"
       >
         <p>{{ adjudicator.firstName }} {{ adjudicator.lastName }}</p>
         <NuxtLink>
-          <button><PencilIcon class="h-4 w-4" /></button>
+          <button><PencilIcon class="w-4 h-4" /></button>
         </NuxtLink>
       </li>
     </ul>
   </div>
-  <div class="w-full bg-white fixed inset-x-0 bottom-0">
+  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
       button-text="Add Adjudicator"
       button-color="bg-gold"
@@ -33,7 +33,7 @@
 <script setup>
 import { ref } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/solid";
-import data from "../data/adjudicators.json";
+import data from "../../data/adjudicators.json";
 
 const adjudicators = ref(data);
 
