@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ["@heroicons/vue"],
   },
+  modules: ["@pinia/nuxt"],
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
@@ -17,7 +18,7 @@ export default defineNuxtConfig({
       link: [
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Lato&family=Jost",
+          href: "https://fonts.googleapis.com/css2?family=Jost&family=Lato&family=Montserrat&display=swap&family=Carter+One&display=swap",
         },
       ],
     },
