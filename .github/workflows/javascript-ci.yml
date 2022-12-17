@@ -41,7 +41,7 @@ jobs:
       - name: Install Dependencies
         run: yarn install
       - name: start emulator 
-        run: yarn dev:emu && sleep 1
+        run: yarn dev:emu & sleep 1
       - name: 
         run: yarn vitest
        
