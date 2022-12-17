@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/solid";
-import data from "../data/institutions.json";
+import data from "../../data/institutions.json";
 
 const institutions = ref(data);
 

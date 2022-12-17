@@ -3,7 +3,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "dev:emu": "yarn emu:stop & yarn firebase & (sleep 15 && yarn dev)",
+    "dev:emu": "yarn firebase & (sleep 15 && yarn dev)",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.13",
+    "@pinia/nuxt": "^0.4.6",
     "firebase": "^9.14.0",
     "firebase-admin": "^11.3.0",
     "firebase-functions": "^4.1.0",
