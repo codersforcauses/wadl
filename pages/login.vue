@@ -19,8 +19,8 @@
       <h1 class="text-5xl mt-9 mb-10 text-center">Login</h1>
       <br>
       <form @submit.prevent="handleLogin" class="flex-col">
-       <FormField v-model="form.email" label="Email" placeholder="Your Email"/>
-       <FormField v-model="form.password" label="Password" placeholder="Your Password"/>
+       <FormField v-model="form.email" label="Email" placeholder="Your Email" type="email"/>
+       <FormField v-model="form.password" label="Password" placeholder="Your Password" type="password"/>
        <div class="mt-20 text-center">
         <Button class
         button-text="Submit"
