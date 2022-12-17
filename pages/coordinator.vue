@@ -11,5 +11,10 @@ import Table from "~/components/coordinator/table.vue";
     <div>
       <Table :headings="['Teams', 'Level', 'Division']" />
     </div>
+    <div class="fixed inset-x-0 bottom-0 w-full bg-white">
+      <div class="flex flex-row gap-4 m-5 justify-left">
+        <Button button-text="Create Team" button-color="bg-gold" />
+      </div>
+    </div>
   </div>
 </template>
