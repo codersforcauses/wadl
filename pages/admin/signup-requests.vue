@@ -84,15 +84,15 @@ const rejectPerson = (id) => {
               button-text="Approve"
               button-color="bg-light-green"
               text-color="text-white"
-              @click="approvePerson(person.id)"
               size="small"
+              @click="approvePerson(person.id)"
             />
             <Button
               button-text="Reject"
               button-color="bg-light-red"
               text-color="text-dark-red"
-              @click="rejectPerson(person.id)"
               size="small"
+              @click="rejectPerson(person.id)"
             />
           </td>
         </tr>
