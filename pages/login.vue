@@ -1,46 +1,18 @@
-<!-- 
-setup attribute added to script
-states ahndled with ref from vue
-dummy console log added to check login button functionality -->
-
-<!-- 
-Make the page responsive to resolution /screen size / window changes
-NuxtLink
-Decide on the logic of the login page -->
-
-<!-- 
-Work to be done in script 
-Include the the login error into the compositon style API -->
-
 <script setup>
   import { ref } from "vue"
-
-    const email = ref('')
-    const password = ref('')
-    const errror = ref('')
+  import { useUserStore } from "../stores/user";
+    const userStore = useUserStore();
+    const form = ref({
+      email : "",
+      password :""
+    })
 
     function handleLogin(){
-      console.log("hELLO");
+      userStore.LoginUser(form.value)
     }
 
-  // export default {
-  //   data() {
-  //     return {
-  //       email: '',
-  //       password: '',
-  //       error: ''
-  //     }
-  //   },
-  //   methods: {
-  //      tryLogin() {
-  //       try {
-  //         //idk
-  //       } catch (err) {
-  //         this.error = 'Incorrect username or password.'
-  //       }
-  //     }
-  //   }
-  // }
+
+
 </script>
 
 
@@ -51,8 +23,8 @@ Include the the login error into the compositon style API -->
       <br>
       <form @submit.prevent="handleLogin" class="flex-col">
         <!-- <input type="email" v-model="email" class="border border-light-grey rounded-md h-[50px] w-[450px] justify-self-center self-center" placeholder=" Your Email"/> -->
-       <FormField label="Email" placeholder="Your Email"/>
-       <FormField label="Password" placeholder="Your Password"/>
+       <FormField v-model="form.email" label="Email" placeholder="Your Email"/>
+       <FormField v-model="form.password" label="Password" placeholder="Your Password"/>
        <div class="mt-20 text-center">
         <Button class
         button-text="Submit"
