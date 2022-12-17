@@ -30,6 +30,8 @@ If you want to kill the ports that the emulators use, run:
 
 > yarn emu:stop
 
+If you want to use the most up to date rules for emulation, please check the wadl firebase project, or use the draft rules in the Firebase/firestore.rules file
+
 ## Firebase Emulators
 
 ---
