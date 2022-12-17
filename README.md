@@ -6,15 +6,16 @@ A progressive web-application to assist the Western Australia Debating League wi
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
-For firebase setup please refer to the README located in the src/Firebase folder
 
-### Local .env file **(Backend Only)**
-Create file '.env', and copy content of .env.example into it.  
-Copy environment values from the cfc wadl-backend discord channel 
-into their corresponding values in .env  
+### Local .env file
+Download **'env'**, pinned in discord wadl-backend channel. Rename to **'.env'** and place in root directory.  
+Alternatively:  
+* Create file '.env' in root directory, and copy content of '.env.example' into it 
+* Copy environment values from the cfc wadl-backend discord channel into their corresponding values in .env  
+* set NUXT_PUBLIC_FIREBASE_MODE to "dev"  
 > If you do not have access to wadl-backend, message an admin of the project.
 
-### Local Server setup
+## Local Server setup
 Make sure to install the dependencies:
 
 ```bash
@@ -41,5 +42,8 @@ Locally preview production build:
 ```bash
 yarn run preview
 ```
+## Firebase Setup
+Refer to the README located in the src/Firebase folder
+
 ## More info
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
