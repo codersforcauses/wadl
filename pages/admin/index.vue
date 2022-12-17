@@ -64,7 +64,7 @@ import {
       <AdminButton
         data-test="signUpRequests"
         title="Sign-up Requests"
-        link="/"
+        link="admin/signup-requests"
         :icon="UserPlusIcon"
       />
     </div>

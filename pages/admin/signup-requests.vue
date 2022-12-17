@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import data from "../data/pretendpeople.json";
+import data from "../../data/pretendpeople.json";
 
 // Reference to list of pretend people
 const people = ref(data);
@@ -98,18 +98,22 @@ const rejectPerson = (id) => {
               </option>
             </select>
           </td>
-          <td class="flex flex-row justify-between">
+          <td class="flex flex-row justify-evenly">
             <Button
               data-test="signUpRequestApprove"
               button-text="Approve"
-              button-color="bg-green-500"
+              button-color="bg-light-green"
+              text-color="text-white"
               @click="approvePerson(person.id)"
+              size="small"
             />
             <Button
               data-test="signUpRequestReject"
               button-text="Reject"
-              button-color="bg-red-500"
+              button-color="bg-light-red"
+              text-color="text-dark-red"
               @click="rejectPerson(person.id)"
+              size="small"
             />
           </td>
         </tr>
