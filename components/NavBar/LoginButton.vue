@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink to="/">
+  <NuxtLink data-test="loginButton" to="/">
     <button class="text-2xl">{{ buttonText }}</button>
   </NuxtLink>
 </template>

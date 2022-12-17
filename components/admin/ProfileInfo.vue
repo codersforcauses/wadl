@@ -16,8 +16,10 @@ defineProps({
   <div class="flex items-center justify-center">
     <UserIcon class="w-28 h-28" />
     <div class="w-2/3">
-      <div class="text-6xl">{{ username }}</div>
-      <div class="mt-3 ml-6 text-xl">{{ role }}</div>
+      <div data-test="profileInfoUsername" class="text-6xl">{{ username }}</div>
+      <div data-test="profileInfoRole" class="mt-3 ml-6 text-xl">
+        {{ role }}
+      </div>
       <hr class="w-full mt-5 mb-5 border-black border-solid" />
     </div>
   </div>
