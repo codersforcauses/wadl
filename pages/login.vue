@@ -10,9 +10,6 @@
     function handleLogin(){
       userStore.LoginUser(form.value)
     }
-
-
-
 </script>
 
 
@@ -22,7 +19,6 @@
       <h1 class="text-5xl mt-9 mb-10 text-center">Login</h1>
       <br>
       <form @submit.prevent="handleLogin" class="flex-col">
-        <!-- <input type="email" v-model="email" class="border border-light-grey rounded-md h-[50px] w-[450px] justify-self-center self-center" placeholder=" Your Email"/> -->
        <FormField v-model="form.email" label="Email" placeholder="Your Email"/>
        <FormField v-model="form.password" label="Password" placeholder="Your Password"/>
        <div class="mt-20 text-center">
@@ -32,7 +28,6 @@
         size = "large"/>
         <NuxtLink to="/"> <p class="underline mt-16">Forgot my password</p> </NuxtLink>
        </div>
-       
       </form>
     </div>
     </div>
