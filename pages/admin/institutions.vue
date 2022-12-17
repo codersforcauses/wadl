@@ -53,7 +53,7 @@ const deleteInstitution = () => {
     v-show="modalVisibility"
     class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-slate-300 bg-opacity-60"
   >
-    <div class="bg-white min-w-[50%] min-h-[50%] rounded-2xl">
+    <div class="bg-white max-w-[40%] min-w-[400px] rounded-2xl">
       <header
         class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl"
       >
@@ -66,23 +66,24 @@ const deleteInstitution = () => {
         <FormField v-model="form.institutionName" label="Institution Name" />
         <FormField v-model="form.code" label="Code" />
         <FormField v-model="form.abbreviation" label="Abbreviation" />
-        <div class="flex justify-evenly items-center">
-          <Button
-            button-text="Save"
-            button-color="bg-gold"
-            type="button"
-            class="m-5 ml-8"
-            @click="updateInstitution"
-          />
-          <Button
-            button-text="Delete"
-            button-color="bg-red-200"
-            type="button"
-            class="m-5 ml-8"
-            @click="deleteInstitution"
-          />
-        </div>
       </form>
+      <div class="flex justify-evenly items-center">
+        <Button
+          button-text="Save"
+          button-color="bg-gold"
+          type="button"
+          class="m-5 ml-8"
+          @click="updateInstitution"
+        />
+        <Button
+          button-text="Delete"
+          button-color="bg-red-200"
+          textColor="text-dark-red"
+          type="button"
+          class="m-5 ml-8"
+          @click="deleteInstitution"
+        />
+      </div>
     </div>
   </div>
   <Header title-text="Institutions" />
