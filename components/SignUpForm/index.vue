@@ -1,9 +1,9 @@
 <template>
   <form
-    class="p-5 heading-montserrat border border-light-grey rounded-3xl max-w-lg"
+    class="max-w-lg p-5 border heading-montserrat border-light-grey rounded-3xl"
     @submit.prevent="registerUser"
   >
-    <h1 class="text-2xl text-center pb-2">Register</h1>
+    <h1 class="pb-2 text-2xl text-center">Register</h1>
     <div class="grid grid-cols-2 gap-x-4">
       <div>
         <FormField
@@ -30,7 +30,7 @@
       type="password"
     />
     <Roles v-model="form.role" />
-    <div class="w-full flex justify-center mt-4">
+    <div class="flex justify-center w-full mt-4">
       <Button button-text="Submit" button-color="bg-gold" />
     </div>
   </form>
