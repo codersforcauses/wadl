@@ -34,7 +34,11 @@ import {
       <AdminButton title="Fixtures" link="/" :icon="TableCellsIcon" />
       <AdminButton title="Users" link="/" :icon="UsersIcon" />
       <AdminButton title="Results" link="/" :icon="ClipboardIcon" />
-      <AdminButton title="Sign-up Requests" link="/" :icon="UserPlusIcon" />
+      <AdminButton
+        title="Sign-up Requests"
+        link="admin/signup-requests"
+        :icon="UserPlusIcon"
+      />
     </div>
   </div>
 </template>
