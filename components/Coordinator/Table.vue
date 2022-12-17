@@ -27,34 +27,28 @@ const teams = ref(teamData);
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-if="teams.length != 0">
           <tr
-            v-for="(team, index) in teams"
+            v-for="team in teams"
             :key="team.name"
             class="justify-center transition duration-150 ease-in-out odd:bg-white even:bg-light-grey/10 hover:bg-light-gold hover:shadow-lg rounded-xl focus:bg-light-gold focus:shadow-lg focus:outline-none focus:ring-0 active:bg-light-gold active:shadow-lg"
           >
-            <td class="p-2 m-2 text-2xl text-center">
-              {{ team.name }}
-            </td>
-            <td class="p-2 m-2 text-2xl text-center">
-              {{ teams[index].level }}
-            </td>
-            <td class="p-2 m-2 text-2xl text-center">
-              {{ teams[index].division }}
+            <td
+              v-for="field in team"
+              :key="field"
+              class="p-2 m-2 text-2xl text-center"
+            >
+              {{ field }}
             </td>
           </tr>
         </tbody>
       </table>
+      <div
+        v-if="teams.length == 0"
+        class="flex justify-center text-lg text-light-grey"
+      >
+        No teams registerd
+      </div>
     </div>
   </div>
 </template>
-
-<style>
-.datarow {
-  margin: 5px;
-  padding: 5px;
-  border-top: 1px solid;
-  text-align: left;
-  border-color: dark-grey;
-}
-</style>

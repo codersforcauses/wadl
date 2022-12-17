@@ -1,14 +1,3 @@
 [
-    {"name": "Perth Modern 1", "level": "Senior", "division": "1"},
-    {"name": "Perth Modern 3", "level": "Senior", "division": "3"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"},
-    {"name": "Perth Modern 4", "level": "Senior", "division": "4"}
+    {"name": "nvjas", "level": "anji", "division": "1"}
 ]

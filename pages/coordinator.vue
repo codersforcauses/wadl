@@ -13,7 +13,11 @@ import Table from "~/components/Coordinator/Table.vue";
     </div>
     <div class="fixed inset-x-0 bottom-0 w-full bg-white">
       <div class="flex flex-row gap-4 m-5 justify-left">
-        <Button button-text="Create Team" button-color="bg-gold" />
+        <Button
+          button-text="Team Registration"
+          button-color="bg-gold"
+          class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
+        />
       </div>
     </div>
   </div>
