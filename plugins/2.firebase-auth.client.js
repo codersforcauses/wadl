@@ -1,5 +1,6 @@
 import { getApp } from "firebase/app";
 import { getAuth, connectAuthEmulator } from "firebase/auth";
+import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   // contains nuxt env vars
