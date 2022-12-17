@@ -3,15 +3,14 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "dev:emu": "yarn emu:stop & yarn firebase & (sleep 15 && yarn dev)",
+    "dev:emu": "yarn firebase & (sleep 15 && yarn dev)",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
-    "lint:fix": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix .",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "eslint --ignore-path .gitignore --fix .",
     "firebase": "yarn emu:stop & cd Firebase && firebase emulators:start",
     "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill"
-
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^8.0.1",
@@ -31,6 +30,7 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.13",
+    "@pinia/nuxt": "^0.4.6",
     "firebase": "^9.14.0",
     "firebase-admin": "^11.3.0",
     "firebase-functions": "^4.1.0",
