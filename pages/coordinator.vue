@@ -1,6 +1,6 @@
 <script setup>
 import ProfileInfo from "~/components/admin/ProfileInfo.vue";
-import Table from "~/components/coordinator/Table.vue";
+import Table from "~/components/coordinator/table.vue";
 </script>
 
 <template>
