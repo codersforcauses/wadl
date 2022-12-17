@@ -9,9 +9,7 @@ import Table from "~/components/coordinator/Table.vue";
       <ProfileInfo username="Carmen Leong" role="Admin" />
     </div>
     <div>
-      <Table :headings="['Teams', 'Level', 'Division']" 
-      :content="[['Perth', 'Senior', '1'], ['Perth Modern 3', 'Senior', '3']]"
-      />
+      <Table :headings="['Teams', 'Level', 'Division']" />
     </div>
   </div>
 </template>

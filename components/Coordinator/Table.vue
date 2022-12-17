@@ -1,14 +1,14 @@
 <script setup>
-defineProps({
-  headings: {
-    type: Array,
-    default: [],
-  },
-  content:{
-    type: Array,
-    default: [[]],
-  },
-});
+  import teamData from "~/data/teams.json";
+
+  defineProps({
+    headings: {
+      type: Array,
+      default: [],
+    },
+  });
+
+  const teams = ref(teamData);
 </script>
 
 <template>
@@ -17,21 +17,35 @@ defineProps({
       <table class="w-full table-auto">
         <thead>
           <tr>
-            <th v-for="({ heading }, index) in headings" class="text-4xl text-black">
+            <th v-for="({ heading }, index) in headings" class="text-4xl text-dark-grey">
               {{ headings[index] }}
-              <!-- {{ index }} -->
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="cont in content">
-            <td v-for="con in cont" class="p-2 m-1 text-2xl border-t border-black solid">
-              {{ con }}
+          <tr v-for="(team, index) in teams">
+            <td class="p-2 m-1 text-2xl border-t border-solid border-dark-grey">
+              {{ teams[index].team }}
+            </td>
+            <td class="p-2 m-1 text-2xl border-t border-solid border-dark-grey">
+              {{ teams[index].level }}
+            </td>
+            <td class="p-2 m-1 text-2xl border-t border-solid border-dark-grey">
+              {{ teams[index].division }}
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div></div>
   </div>
 </template>
+
+<style>
+  .datarow{
+    margin: 5px;
+    padding: 5px;
+    border-top: 1px solid;
+    text-align: left;
+    border-color: dark-grey;
+  }
+</style>
