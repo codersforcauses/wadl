@@ -8,29 +8,6 @@ const PROJECT_ID = "wadl-7e1f7";
 const PROJECT_NAME = `projects/${PROJECT_ID}`;
 const billing = new CloudBillingClient();
 
-// Google Cloud Functions
-// exports.stopBilling = async (pubsubEvent) => {
-//   const pubsubData = JSON.parse(
-//       Buffer.from(pubsubEvent.data, "base64").toString()
-//   );
-//   console.log("pubsubEvent.data", pubsubEvent.data);
-//   console.log("pubsubData", pubsubData);
-//   console.log("pubsubData.costAmount", pubsubData.costAmount);
-//   console.log("pubsubData.budgetAmount", pubsubData.budgetAmount);
-
-//   if (pubsubData.costAmount <= pubsubData.budgetAmount) {
-//     console.log("No action necessary.");
-//     return `No action necessary. (Current cost: ${pubsubData.costAmount})`;
-//   }
-//   const billingEnabled = await _isBillingEnabled(PROJECT_NAME);
-//   if (billingEnabled) {
-//     return _disableBillingForProject(PROJECT_NAME);
-//   } else {
-//     console.log("Billing already disabled");
-//     return "Billing already disabled";
-//   }
-// };
-
 /**
  * Determine whether billing is enabled for a project
  * @param {string} projectName Name of project to check if billing is enabled
@@ -65,13 +42,6 @@ const _disableBillingForProject = async (projectName) => {
   return `Billing disabled: ${JSON.stringify(res)}`;
 };
 
-// Firebase Functions
-// exports.stopBilling = functions.region("australia-southeast1").runWith({
-//   failurePolicy: true,
-//   memory: '512MB',
-//   timeoutSeconds: 60
-// }).pubsub.topic("billing").onPublish(async (pubsubEvent) => {  // Not Tested
-/* eslint-disable-next-line max-len */
 exports.stopBilling = functions
   .region("australia-southeast1")
   .pubsub.topic("billing")
