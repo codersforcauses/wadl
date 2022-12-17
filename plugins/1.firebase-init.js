@@ -17,13 +17,14 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   };
 
   const apps = getApps();
+  const newApp = apps.length === 0;
 
   const firebaseApp =
     apps.length === 0 ? initializeApp(firebaseConfig) : apps[0];
 
   const db = getFirestore(firebaseApp);
 
-  if (config.firebaseMode === "dev") {
+  if (config.firebaseMode === "dev" && newApp) {
     connectFirestoreEmulator(db, "localhost", 8080);
     console.log("emulate");
   }
