@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, index) in venues" :key="index" class="border-b-2 h-10">
+        <tr v-for="(row, index) in data" :key="index" class="border-b-2 h-10">
           <td
             v-for="(object, ind) in headers"
             :key="ind"
@@ -43,7 +43,7 @@ defineProps({
     type: Object,
     default: () => ({}),
   },
-  venues: {
+  data: {
     type: Object,
     default: () => ({}),
   },
