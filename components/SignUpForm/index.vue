@@ -16,7 +16,12 @@
         <FormField v-model="form.lastName" placeholder="Your Last Name" />
       </div>
     </div>
-    <FormField v-model="form.email" label="Email" placeholder="Your Email" />
+    <FormField
+      v-model="form.email"
+      label="Email"
+      type="email"
+      placeholder="Your Email"
+    />
     <FormField
       v-model="form.password"
       label="Password"
@@ -52,7 +57,9 @@ const form = ref({
 });
 
 // TODO VALIDATE FORM
-
+const validate = (v) => {
+  if(form.email)
+};
 // Call The User Store
 const registerUser = (e) => {
   userStore.registerUser(form.value);
