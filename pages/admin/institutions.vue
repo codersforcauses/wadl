@@ -4,10 +4,10 @@ import { XMarkIcon, PencilIcon } from "@heroicons/vue/24/solid";
 import data from "../../data/institutions.json";
 
 const institutions = ref(data);
-var modal_visibility = ref(false);
+const modalVisibility = ref(false);
 
 const form = ref({
-  institution_name: "",
+  institutionName: "",
   code: "",
   abbreviation: "",
 });
@@ -19,51 +19,53 @@ const filterInstitutions = (searchTerm) => {
 };
 
 // Launches the modal and fills in with values
-const editInstitution = (institution_name, code, abbreviation) => {
-  form.value.institution_name = institution_name;
+const editInstitution = (institutionName, code, abbreviation) => {
+  form.value.institutionName = institutionName;
   form.value.code = code;
   form.value.abbreviation = abbreviation;
   showModal();
 };
 
-// Launches the modal 
+// Launches the modal
 const showModal = () => {
-  modal_visibility.value = true;
+  modalVisibility.value = true;
 };
 
-// Closes the modal 
+// Closes the modal
 const closeModal = () => {
-  modal_visibility.value = false;
+  modalVisibility.value = false;
 };
 
 // Request sent to server to create or update an institution
 const updateInstitution = () => {
-  console.log("Updating with")
+  console.log("Updating with");
   console.log(form);
 };
 // Request sent to server to delete an institution
 const deleteInstitution = () => {
-  console.log("Deleting with")
+  console.log("Deleting with");
   console.log(form);
 };
 </script>
 
 <template>
   <div
-    v-show="modal_visibility"
+    v-show="modalVisibility"
     class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-slate-300 bg-opacity-60"
   >
     <div class="bg-white min-w-[50%] min-h-[50%] rounded-2xl">
-      <header class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl">
+      <header
+        class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl"
+      >
         <XMarkIcon class="h-6 w-6 cursor-pointer" @click="closeModal" />
       </header>
       <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
         Edit Institutions
       </p>
       <form class="px-10">
-        <FormField label="Institution Name" v-model="form.institution_name" />
-        <FormField label="Code" v-model="form.code" />
-        <FormField label="Abbreviation" v-model="form.abbreviation" />
+        <FormField v-model="form.institutionName" label="Institution Name" />
+        <FormField v-model="form.code" label="Code" />
+        <FormField v-model="form.abbreviation" label="Abbreviation" />
         <div class="flex justify-evenly items-center">
           <Button
             button-text="Save"
@@ -99,7 +101,13 @@ const deleteInstitution = () => {
       >
         <p>{{ inst.name }}</p>
         <button
-          @click="editInstitution(inst.name, inst.code, inst.name.slice(0, Math.min(3,inst.name.length)))"
+          @click="
+            editInstitution(
+              inst.name,
+              inst.code,
+              inst.name.slice(0, Math.min(3, inst.name.length))
+            )
+          "
         >
           <PencilIcon class="h-4 w-4" />
         </button>
