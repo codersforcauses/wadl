@@ -15,6 +15,7 @@ module.exports = {
       futura: ["Futura", "sans-serif"],
       jost: ["Jost", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
+      carterone: ["Carter One", "cursive"],
     },
     letterSpacing: {
       12: "0.12em",
