@@ -53,5 +53,25 @@
         "id": "11",
         "tournament": "Vivacious Vibers",
         "venue": "Pondering Parade"
+    },
+    {
+        "id": "12",
+        "tournament": "Silly Sausages",
+        "venue": "Naughty Dog Productions"
+    },
+    {
+        "id": "13",
+        "tournament": "Zaney Zanathustras",
+        "venue": "Illios"
+    },
+    {
+        "id": "14",
+        "tournament": "Naughty Nihilists",
+        "venue": "Poignant Point"
+    },
+    {
+        "id": "15",
+        "tournament": "Salacious Salubriants",
+        "venue": "Omicron Persei 8"
     }
 ]
