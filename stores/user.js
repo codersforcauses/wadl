@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -53,13 +53,23 @@ export const useUserStore = defineStore("user", {
         });
     },
     async LoginUser(user) {
-      const { $auth } = useNuxtApp();
+      const { $auth, $db } = useNuxtApp();
       signInWithEmailAndPassword($auth, user.email, user.password)
         .then((userCredential) => {
-          const user = userCredential;
+          const person = userCredential.user;
           // remove after debug
-          console.log("Store - Login User");
-          console.log(user);
+          console.log("Store - Login User", person.uid);
+          const docRef = doc($db, "users", person.uid);
+          getDoc(docRef).then((doc) => {
+            console.log(doc.data();
+          });
+
+          // if (docSnap.exists()) {
+          //   console.log("Document data:", docSnap.data());
+          // } else {
+          //   // doc.data() will be undefined in this case
+          //   console.log("No such document!");
+          // }
         })
         .catch((error) => {
           const errorCode = error.code;
