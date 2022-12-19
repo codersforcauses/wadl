@@ -61,7 +61,7 @@ export const useUserStore = defineStore("user", {
           console.log("Store - Login User", person.uid);
           const docRef = doc($db, "users", person.uid);
           getDoc(docRef).then((doc) => {
-            console.log(doc.data();
+            console.log(doc.data());
           });
 
           // if (docSnap.exists()) {
