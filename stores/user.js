@@ -59,7 +59,9 @@ export const useUserStore = defineStore("user", {
           const user = userCredential;
           // remove after debug
           console.log("Store - Login User");
-          console.log(user);
+          // console.log(user);
+          // this.firstName = user.firstName;
+          // console.log(this.user);
         })
         .catch((error) => {
           const errorCode = error.code;

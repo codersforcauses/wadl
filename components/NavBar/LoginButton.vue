@@ -1,6 +1,6 @@
 <template>
   <NuxtLink to="/">
-    <button class="text-2xl">{{ buttonText }}</button>
+    <button>{{ buttonText }}</button>
   </NuxtLink>
 </template>
 
@@ -8,7 +8,7 @@
 defineProps({
   buttonText: {
     type: String,
-    default: "Login",
+    default: "Signup",
   },
 });
 </script>
