@@ -6,7 +6,7 @@
       <HomeButton class="pl-3" />
       <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
     </div>
-    <div class="mr-2" v-if="!firstName">
+    <div v-if="!firstName" class="mr-2">
       <NuxtLink to="/signup">
         <Button button-text="Signup" size="small" class="shadow-none" />
       </NuxtLink>
