@@ -16,10 +16,13 @@ export const useUserStore = defineStore("user", {
   },
   getters: {},
   actions: {
+    // to view how the data and other stuff happens inside these functions please read the README in the Firebase folder
     async registerUser(user) {
       const { $db, $auth } = useNuxtApp();
       createUserWithEmailAndPassword($auth, user.email, user.password)
         .then((userCredential) => {
+          // remove this after enough debugging has been done
+          console.log(userCredential);
           const person = userCredential.user;
           const usersRef = doc($db, "users", person.uid);
           const data = {
@@ -48,10 +51,11 @@ export const useUserStore = defineStore("user", {
         });
     },
     async LoginUser(user) {
-      const { $db, $auth } = useNuxtApp();
+      const { $auth } = useNuxtApp();
       signInWithEmailAndPassword($auth, user.email, user.password)
         .then((userCredential) => {
           const user = userCredential;
+          // remove after debug 
           console.log("Store - Login User");
           console.log(user);
         })
