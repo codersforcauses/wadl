@@ -75,5 +75,12 @@ export const useUserStore = defineStore("user", {
           console.log(errorCode, errorMessage);
         });
     },
+    clearStore() {
+      this.id = null;
+      this.firstName = null;
+      this.lastName = null;
+      this.email = null;
+      this.role = null;
+    },
   },
 });

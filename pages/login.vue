@@ -7,9 +7,9 @@ const form = ref({
   password: "",
 });
 
-function handleLogin() {
+const handleLogin = () => {
   userStore.LoginUser(form.value);
-}
+};
 </script>
 
 <template>
