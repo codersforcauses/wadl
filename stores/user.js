@@ -22,7 +22,15 @@ export const useUserStore = defineStore("user", {
         .then((userCredential) => {
           const person = userCredential.user;
           const usersRef = doc($db, "users", person.uid);
-          const data = { ID: person.uid, role: user.role };
+          const data = {
+            ID: person.uid,
+            role: user.role,
+            requesting: true,
+            first_name: user.firstName,
+            last_name: user.lastName,
+            password: user.password,
+            email: user.email,
+          };
           setDoc(usersRef, data)
             .then(() => {
               console.log("added");
