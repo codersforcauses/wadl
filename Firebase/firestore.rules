@@ -34,7 +34,7 @@ service cloud.firestore {
 //         return request.resource.data.role == "Adjudicator Coordinator"
 //       }
 //       allow create: if allowSignup();
-//       allow create, read, update, delete: if isAdmin() && verifiedEmail();
+//       allow create, get, update, delete: if isAdmin() && verifiedEmail();
 //       allow read, update: if isOwner() && (isAdjudicator() || isCoordinator() || isAdjudicatorCoordinator());
 //     }
 //   }
