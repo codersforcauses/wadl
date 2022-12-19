@@ -13,10 +13,14 @@ export const useUserStore = defineStore("user", {
   getters: {},
   actions: {
     async registerUser(user) {
-      console.log("Store - Register User", user);
+      const { $db, $auth } = useNuxtApp();
+
+      console.log("Store - Register User", user, $db, $auth);
     },
     async LoginUser(user) {
-      console.log("Store - Login User", user);
+      const { $db, $auth } = useNuxtApp();
+
+      console.log("Store - Login User", user, $db, $auth);
     },
   },
 });
