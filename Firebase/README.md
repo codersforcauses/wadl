@@ -32,7 +32,11 @@ If you want to kill the ports that the emulators use, run:
 
 If you want to use the most up to date rules for emulation, please check the wadl firebase project, or use the draft rules in the Firebase/firestore.rules file
 
-If you want to use the most up to date rules for emulation, please check the wadl firebase project, or use the draft rules in the Firebase/firestore.rules file
+The emulators are now linked to a pinia store that will allow for easy access of data in different pages, this will also allow for a fully functioning login & register page when linked to routes. 
+
+To access the data that is inputted into these forms, if using the emulators, go to:
+
+> http://127.0.0.1:4000/
 
 ## Firebase Emulators
 

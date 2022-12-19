@@ -8,9 +8,9 @@
       @input="updateInput"
     >
       <option selected disabled hidden>Select Role</option>
-      <option value="adjudicator_coordinator">Adjudicator Coordinator</option>
-      <option value="adjudicator">Adjudicator</option>
-      <option value="team_coordinator">Team Coordinator</option>
+      <option>Adjudicator Coordinator</option>
+      <option>Adjudicator</option>
+      <option>Team Coordinator</option>
     </select>
   </div>
 </template>
