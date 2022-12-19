@@ -55,7 +55,7 @@ export const useUserStore = defineStore("user", {
       signInWithEmailAndPassword($auth, user.email, user.password)
         .then((userCredential) => {
           const user = userCredential;
-          // remove after debug 
+          // remove after debug
           console.log("Store - Login User");
           console.log(user);
         })
