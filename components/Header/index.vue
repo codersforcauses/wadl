@@ -1,5 +1,8 @@
 <template>
-  <h1 class="text-4xl py-5 text-center divide-y-4 font-montserrat">
+  <h1
+    data-test="header"
+    class="text-4xl py-5 text-center divide-y-4 font-montserrat"
+  >
     {{ titleText }}
   </h1>
   <hr class="mx-8" />
