@@ -4,6 +4,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { useNuxtApp } from "#imports";
+
 export const useUserStore = defineStore("user", {
   state() {
     return {
