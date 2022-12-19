@@ -27,7 +27,7 @@ const rejectPerson = (id) => {
 
 <template>
   <Header title-text="Sign Up Requests" />
-  <SearchBar @handle-filter="filterPeople" />
+  <SearchBar data-test="searchBar" @handle-filter="filterPeople" />
   <div class="flex justify-center">
     <table class="w-10/12 table-fixed">
       <thead>
@@ -59,28 +59,48 @@ const rejectPerson = (id) => {
         <tr
           v-for="person in people"
           :key="person.email"
+          data-test="signUpRequest"
           class="py-md bg-white border-b h-10"
         >
           <td>
-            <p>{{ person.first }}</p>
+            <p data-test="signUpRequestFirstName">{{ person.first }}</p>
           </td>
           <td>
-            <p>{{ person.last }}</p>
+            <p data-test="signUpRequestLastName">{{ person.last }}</p>
           </td>
           <td>
-            <p>{{ person.email }}</p>
+            <p data-test="signUpRequestEmail">{{ person.email }}</p>
           </td>
           <td>
-            <select id="role" v-model="person.role" name="role">
-              <option value="Adjudicator">Adjudicator</option>
-              <option value="Adjudicator Coordinator">
+            <select
+              id="role"
+              v-model="person.role"
+              data-test="signUpRequestRole"
+              name="role"
+            >
+              <option
+                data-test="signUpRequestRoleAbjudicator"
+                value="Adjudicator"
+              >
+                Adjudicator
+              </option>
+              <option
+                data-test="signUpRequestRoleAbjudicatorCoordinator"
+                value="Adjudicator Coordinator"
+              >
                 Adjudicator Coordinator
               </option>
-              <option value="Team Coordinator">Team Coordinator</option>
+              <option
+                data-test="signUpRequestTeamCoordinator"
+                value="Team Coordinator"
+              >
+                Team Coordinator
+              </option>
             </select>
           </td>
           <td class="flex flex-row justify-evenly">
             <Button
+              data-test="signUpRequestApprove"
               button-text="Approve"
               button-color="bg-light-green"
               text-color="text-white"
@@ -88,6 +108,7 @@ const rejectPerson = (id) => {
               @click="approvePerson(person.id)"
             />
             <Button
+              data-test="signUpRequestReject"
               button-text="Reject"
               button-color="bg-light-red"
               text-color="text-dark-red"

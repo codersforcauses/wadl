@@ -8,30 +8,42 @@
       <div>
         <FormField
           v-model="form.firstName"
+          data-test="firstName"
           label="Name"
           placeholder="Your First Name"
         />
       </div>
       <div class="mt-6">
-        <FormField v-model="form.lastName" placeholder="Your Last Name" />
+        <FormField
+          v-model="form.lastName"
+          data-test="lastName"
+          placeholder="Your Last Name"
+        />
       </div>
     </div>
-    <FormField v-model="form.email" label="Email" placeholder="Your Email" />
+    <FormField
+      v-model="form.email"
+      data-test="email"
+      label="Email"
+      placeholder="Your Email"
+    />
     <FormField
       v-model="form.password"
+      data-test="password"
       label="Password"
       type="password"
       placeholder="Your Password"
     />
     <FormField
       v-model="form.confirmPassword"
+      data-test="confirmPassword"
       label="Confirm Password"
       placeholder="Confirm Password"
       type="password"
     />
     <Roles v-model="form.role" />
     <div class="w-full flex justify-center mt-4">
-      <Button button-text="Submit" button-color="bg-gold" />
+      <Button data-test="submit" button-text="Submit" button-color="bg-gold" />
     </div>
   </form>
 </template>
