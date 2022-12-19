@@ -59,17 +59,15 @@ export const useUserStore = defineStore("user", {
           const person = userCredential.user;
           // remove after debug
           console.log("Store - Login User", person.uid);
+
           const docRef = doc($db, "users", person.uid);
           getDoc(docRef).then((doc) => {
-            console.log(doc.data());
+            this.id = doc.data().ID;
+            this.firstName = doc.data().first_name;
+            this.lastName = doc.data().last_name;
+            this.email = doc.data().email;
+            this.role = doc.data().role;
           });
-
-          // if (docSnap.exists()) {
-          //   console.log("Document data:", docSnap.data());
-          // } else {
-          //   // doc.data() will be undefined in this case
-          //   console.log("No such document!");
-          // }
         })
         .catch((error) => {
           const errorCode = error.code;

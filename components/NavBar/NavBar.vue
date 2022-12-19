@@ -4,7 +4,7 @@
   >
     <div class="flex place-items-center">
       <HomeButton class="pl-3" />
-      <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}</p>
+      <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
     </div>
     <div class="mr-2">
       <NuxtLink to="/signup">
@@ -23,13 +23,10 @@
 
 <script setup>
 import HomeButton from "./HomeButton.vue";
-import LoginButton from "./LoginButton.vue";
 import { useUserStore } from "~/stores/user.js";
 import { storeToRefs } from "pinia";
-// import { ref } from "vue";
 
-const firstName = ref("Test");
-// const userStore = useUserStore();
-// const { firstName } = storeToRefs(userStore);
-// console.log(firstName);
+const userStore = useUserStore();
+// Will be updated when user store changes
+const { firstName } = storeToRefs(userStore);
 </script>
