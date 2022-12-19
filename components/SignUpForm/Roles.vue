@@ -9,16 +9,13 @@
       @input="updateInput"
     >
       <option selected disabled hidden>Select Role</option>
-      <option
-        data-test="roleAdjudicatorCoordinator"
-        value="adjudicator_coordinator"
-      >
+      <option data-test="roleAdjudicatorCoordinator">
         Adjudicator Coordinator
       </option>
-      <option data-test="roleAdjudicator" value="adjudicator">
+      <option data-test="roleAdjudicator">
         Adjudicator
       </option>
-      <option data-test="roleTeamCoordinator" value="team_coordinator">
+      <option data-test="roleTeamCoordinator">
         Team Coordinator
       </option>
     </select>
