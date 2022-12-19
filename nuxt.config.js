@@ -29,13 +29,35 @@ export default defineNuxtConfig({
 
     // public Keys, exposed to client.
     public: {
-      firebaseApiKey: "", // NUXT_PUBLIC_FIREBASE_API_KEY
-      firebaseAuthDomain: "",
-      firebaseProjectId: "",
-      firebaseStorageBucket: "",
-      firebaseMessagingSenderId: "",
-      firebaseAppId: "",
-      firebaseMode: "",
+      firebaseApiKey:
+        typeof process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN !== "undefined"
+          ? ""
+          : "",
+      firebaseAuthDomain:
+        typeof process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN !== "undefined"
+          ? process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+          : "",
+      firebaseProjectId:
+        typeof process.env.NUXT_PUBLIC_FIREBASE_PROJECT_ID !== "undefined"
+          ? process.env.NUXT_PUBLIC_FIREBASE_PROJECT_ID
+          : "",
+      firebaseStorageBucket:
+        typeof process.env.NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET !== "undefined"
+          ? process.env.NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+          : "",
+      firebaseMessagingSenderId:
+        typeof process.env.NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID !==
+        "undefined"
+          ? process.env.NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+          : "",
+      firebaseAppId:
+        typeof process.env.NUXT_PUBLIC_FIREBASE_APP_ID !== "undefined"
+          ? process.env.NUXT_PUBLIC_FIREBASE_APP_ID
+          : "",
+      firebaseMode:
+        typeof process.env.NUXT_PUBLIC_FIREBASE_MODE !== "undefined"
+          ? process.env.NUXT_PUBLIC_FIREBASE_MODE
+          : "",
     },
   },
 });
