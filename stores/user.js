@@ -1,5 +1,9 @@
 import { defineStore } from "pinia";
-
+import { doc, setDoc } from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 export const useUserStore = defineStore("user", {
   state() {
     return {
@@ -14,13 +18,40 @@ export const useUserStore = defineStore("user", {
   actions: {
     async registerUser(user) {
       const { $db, $auth } = useNuxtApp();
-
-      console.log("Store - Register User", user, $db, $auth);
+      createUserWithEmailAndPassword($auth, user.email, user.password)
+        .then((userCredential) => {
+          const person = userCredential.user;
+          const usersRef = doc($db, "users", person.uid);
+          const data = { ID: person.uid, role: user.role };
+          setDoc(usersRef, data)
+            .then(() => {
+              console.log("added");
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorCode, errorMessage);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + errorMessage);
+        });
     },
     async LoginUser(user) {
       const { $db, $auth } = useNuxtApp();
-
-      console.log("Store - Login User", user, $db, $auth);
+      signInWithEmailAndPassword($auth, user.email, user.password)
+        .then((userCredential) => {
+          const user = userCredential;
+          console.log("Store - Login User");
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
     },
   },
 });
