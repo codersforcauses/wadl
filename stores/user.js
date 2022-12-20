@@ -67,6 +67,8 @@ export const useUserStore = defineStore("user", {
             this.lastName = doc.data().last_name;
             this.email = doc.data().email;
             this.role = doc.data().role;
+          }).catch((err) => {
+            console.log(err);
           });
         })
         .catch((error) => {
