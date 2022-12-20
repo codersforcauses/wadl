@@ -61,15 +61,17 @@ export const useUserStore = defineStore("user", {
           console.log("Store - Login User", person.uid);
 
           const docRef = doc($db, "users", person.uid);
-          getDoc(docRef).then((doc) => {
-            this.id = doc.data().ID;
-            this.firstName = doc.data().first_name;
-            this.lastName = doc.data().last_name;
-            this.email = doc.data().email;
-            this.role = doc.data().role;
-          }).catch((err) => {
-            console.log(err);
-          });
+          getDoc(docRef)
+            .then((doc) => {
+              this.id = doc.data().ID;
+              this.firstName = doc.data().first_name;
+              this.lastName = doc.data().last_name;
+              this.email = doc.data().email;
+              this.role = doc.data().role;
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
