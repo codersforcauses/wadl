@@ -1,6 +1,5 @@
 <template>
   <nav
-    data-test="navBar"
     class="bg-gold shadow flex justify-between sticky top-0 z-50 place-items-center w-full"
   >
     <div class="flex place-items-center">

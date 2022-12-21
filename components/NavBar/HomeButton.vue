@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink data-test="homeButton" to="/">
+  <NuxtLink to="/">
     <img class="h-16 py-1" src="~/assets/logos/TextlessTransparentLogo.png" />
   </NuxtLink>
 </template>

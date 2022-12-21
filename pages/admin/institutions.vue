@@ -27,7 +27,6 @@ const addInstitution = () => {};
       <li
         v-for="(inst, idx) in institutions"
         :key="idx"
-        data-test="institution"
         class="justify-between flex px-6 py-2 border-b border-gray-20 items-center"
       >
         <p>{{ inst.name }}</p>
@@ -39,7 +38,6 @@ const addInstitution = () => {};
   </div>
   <div class="w-full bg-white fixed inset-x-0 bottom-0">
     <Button
-      data-test="addInstitution"
       button-text="Add Institutions"
       button-color="bg-gold"
       type="button"
