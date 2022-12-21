@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   build: {
     transpile: ["@heroicons/vue"],
   },
+  modules: ["@pinia/nuxt"],
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
@@ -17,7 +18,7 @@ export default defineNuxtConfig({
       link: [
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css?family=Lato&family=Jost",
+          href: "https://fonts.googleapis.com/css2?family=Jost&family=Lato&family=Montserrat&display=swap&family=Carter+One&display=swap",
         },
       ],
     },
@@ -28,13 +29,15 @@ export default defineNuxtConfig({
 
     // public Keys, exposed to client.
     public: {
-      firebaseApiKey: "", // NUXT_PUBLIC_FIREBASE_API_KEY
-      firebaseAuthDomain: "",
-      firebaseProjectId: "",
-      firebaseStorageBucket: "",
-      firebaseMessagingSenderId: "",
-      firebaseAppId: "",
-      firebaseMode: "",
+      firebaseApiKey: process.env.NUXT_PUBLIC_FIREBASE_API_KEY || "",
+      firebaseAuthDomain: process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "",
+      firebaseProjectId: process.env.NUXT_PUBLIC_FIREBASE_PROJECT_ID || "",
+      firebaseStorageBucket:
+        process.env.NUXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "",
+      firebaseMessagingSenderId:
+        process.env.NUXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "",
+      firebaseAppId: process.env.NUXT_PUBLIC_FIREBASE_APP_ID || "",
+      firebaseMode: process.env.NUXT_PUBLIC_FIREBASE_MODE || "",
     },
   },
 });
