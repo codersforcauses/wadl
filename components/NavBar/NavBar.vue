@@ -1,6 +1,5 @@
 <template>
   <nav
-    data-test="navBar"
     class="bg-gold shadow flex position:relative place-items-center sticky top-0 z-50"
   >
     <HomeButton class="pl-3" />

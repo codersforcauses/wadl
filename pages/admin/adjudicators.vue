@@ -11,13 +11,10 @@
       <li
         v-for="(adjudicator, idx) in adjudicators"
         :key="idx"
-        data-test="abjudicator"
         class="flex items-center justify-between px-6 py-2 border-b rounded-t-lg border-gray-20"
       >
-        <p data-test="abjudicatorFullName">
-          {{ adjudicator.firstName }} {{ adjudicator.lastName }}
-        </p>
-        <NuxtLink data-test="abjudicatorButton">
+        <p>{{ adjudicator.firstName }} {{ adjudicator.lastName }}</p>
+        <NuxtLink>
           <button><PencilIcon class="w-4 h-4" /></button>
         </NuxtLink>
       </li>
@@ -25,7 +22,6 @@
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
-      data-test="addAbjudicator"
       button-text="Add Adjudicator"
       button-color="bg-gold"
       class="m-5 ml-8"

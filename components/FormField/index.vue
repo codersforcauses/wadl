@@ -1,7 +1,6 @@
 <template>
   <label class="heading-montserrat">{{ label }}</label>
   <input
-    data-test="formField"
     :type="type"
     :placeholder="placeholder"
     required
