@@ -7,7 +7,6 @@
     </span>
     <input
       v-model="searchString"
-      data-test="searchBar"
       type="text"
       placeholder="Search"
       class="px-2 border-2 border-l-0 border-grey-300 rounded-r-md w-11/12 focus:outline-none"
