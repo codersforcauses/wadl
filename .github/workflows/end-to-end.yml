@@ -15,6 +15,19 @@ jobs:
         with:
           node-version: 16
           cache: "yarn"
+      - name: Cache Firebase Emulators
+        id: cache-firebase-emulators
+        uses: actions/cache@4723a57e26efda3a62cbde1812113b730952852d
+        with:
+          path: /home/runner/.cache/firebase/emulators
+          key: ${{ runner.os }}-firebase-emulators-${{ hashFiles('/home/runner/.cache/firebase/emulators/**') }}
+      - name: Setup Firebase Emulators
+        if: steps.cache-firebase-emulators.outputs.cache-hit != 'true'
+        run: yarn firebase setup:emulators:database |
+          & yarn firebase setup:emulators:firestore |
+          & yarn firebase setup:emulators:pubsub |
+          & yarn firebase setup:emulators:storage |
+          & yarn firebase setup:emulators:ui
       - name: Run Cypress
         uses: cypress-io/github-action@c5724eda82337bcff977ce14509f47052c12e04c
         with:
