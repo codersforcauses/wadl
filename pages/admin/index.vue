@@ -4,7 +4,6 @@ import ProfileInfo from "~/components/admin/ProfileInfo.vue";
 import {
   TrophyIcon,
   BuildingLibraryIcon,
-  ScaleIcon,
   UserGroupIcon,
   MapPinIcon,
   TableCellsIcon,

@@ -50,12 +50,16 @@
       @click="handleDelete"
     />
   </div>
+
+  <Tabs :tabs="tabs" font-size="text-xl" @handle-tab="handleTabClicked" />
 </template>
 
 <script setup>
-// const handleUndo = () => {
-//   console.log("Undoing");
-// };
+const tabs = [
+  { label: "Novice", active: false },
+  { label: "Junior", active: true },
+  { label: "Senior", active: false },
+];
 const handleSave = () => {
   console.log("Saving");
 };
@@ -64,5 +68,8 @@ const handleDelete = () => {
 };
 const handleFilter = () => {
   console.log("Filtering");
+};
+const handleTabClicked = (tab) => {
+  console.log("Filter data here based on the tab:", tab);
 };
 </script>

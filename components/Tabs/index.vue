@@ -1,8 +1,10 @@
 <script setup>
+import { ref } from "vue";
+
 const props = defineProps({
   tabs: {
     type: Array,
-    default: [],
+    default: () => [],
   },
   fontSize: {
     type: String,
@@ -10,7 +12,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["handleTabClicked"]);
+const emit = defineEmits(["handleTab"]);
 const tabs = ref(props.tabs);
 
 const handleClick = (tab) => {
@@ -18,7 +20,7 @@ const handleClick = (tab) => {
     t.active = false;
   });
   tab.active = true;
-  emit("handleTabClicked", tab.label);
+  emit("handleTab", tab.label);
 };
 </script>
 <template>
@@ -27,7 +29,7 @@ const handleClick = (tab) => {
       <button
         :class="[
           tab.active ? ' bg-light-yellow rounded-t-md' : 'text-gray-400',
-          `w-full heading-montserrat px-6 py-3 my-2 border-b-2 border-b-light-yellow ${fontSize}`,
+          `w-full font-montserrat px-6 py-3 my-2 border-b-2 border-b-light-yellow ${fontSize}`,
         ]"
         @click="handleClick(tab)"
       >

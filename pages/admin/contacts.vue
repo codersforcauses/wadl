@@ -1,9 +1,9 @@
 <template>
   <Header title-text="Contacts" />
   <SearchBar @handle-filter="handleFilter" />
-  <Tabs :tabs="tabs" @handle-tab-clicked="handleTabClicked" />
+  <Tabs :tabs="tabs" @handle-tab="handleTabClicked" />
   <div class="mx-8">
-    <Table :headers="headers" :data="contacts" :canEdit="false" />
+    <Table :headers="headers" :data="contacts" :can-edit="false" />
   </div>
 </template>
 
