@@ -3,7 +3,7 @@
   <Header titleText="Venues" />
   <SearchBar @handle-filter="handleFilter" />
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :venues="venues" />
+    <Table :headers="headers" :data="venues" />
   </div>
   <div class="inset-x-0 hottom-0 w-full bg-white">
     <Button

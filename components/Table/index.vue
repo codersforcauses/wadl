@@ -1,19 +1,17 @@
 <!-- eslint-disable vue/require-valid-default-prop -->
 <template>
-  <div
-    class="h-max-full overflow-y-scroll overscroll-contain flex justify-center content-center"
-  >
+  <div class="flex justify-center">
     <table class="table-fixed overflow-scroll w-11/12">
-      <thead class="sticky top-0 bg-white">
+      <thead class="">
         <tr>
           <th
             v-for="(object, index) in headers"
             :key="index"
-            class="py-3 text-xl text-left font-carterone h-10"
+            class="py-3 text-left font-carterone h-10"
           >
             {{ object.title }}
           </th>
-          <th></th>
+          <th v-if="canEdit"></th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +23,7 @@
           >
             {{ row[object.key] }}
           </td>
-          <td class="w-48 text-right">
+          <td v-if="canEdit" class="w-48 text-right">
             <button><PencilIcon class="w-4 h-4" /></button>
           </td>
         </tr>
@@ -46,6 +44,10 @@ defineProps({
   data: {
     type: Object,
     default: () => ({}),
+  },
+  canEdit: {
+    type: Boolean,
+    default: true,
   },
 });
 </script>
