@@ -4,6 +4,10 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  fontSize: {
+    type: String,
+    default: "",
+  },
 });
 
 const emit = defineEmits(["handleTabClicked"]);
@@ -14,7 +18,6 @@ const handleClick = (tab) => {
     t.active = false;
   });
   tab.active = true;
-  console.log(tab);
   emit("handleTabClicked", tab.label);
 };
 </script>
@@ -24,7 +27,7 @@ const handleClick = (tab) => {
       <button
         :class="[
           tab.active ? ' bg-light-yellow rounded-t-md' : 'text-gray-400',
-          'w-full heading-montserrat px-6 py-3 my-2 border-b-2 border-b-light-yellow',
+          `w-full heading-montserrat px-6 py-3 my-2 border-b-2 border-b-light-yellow ${fontSize}`,
         ]"
         @click="handleClick(tab)"
       >
@@ -33,13 +36,3 @@ const handleClick = (tab) => {
     </li>
   </ul>
 </template>
-
-<style>
-.active {
-  border-top-color: yellow;
-}
-
-.gray {
-  color: gray;
-}
-</style>
