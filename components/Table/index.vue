@@ -1,6 +1,7 @@
-<!-- eslint-disable vue/require-valid-default-prop -->
 <template>
-  <div class="flex justify-center">
+  <div
+    class="h-max-full overflow-y-scroll overscroll-contain flex justify-center content-center"
+  >
     <table class="table-fixed overflow-scroll w-11/12">
       <thead class="">
         <tr>
@@ -11,7 +12,7 @@
           >
             {{ object.title }}
           </th>
-          <th v-if="canEdit"></th>
+          <th v-if="canEdit" class="border-b"></th>
         </tr>
       </thead>
 
@@ -44,11 +45,11 @@ import { PencilIcon } from "@heroicons/vue/24/solid";
 defineProps({
   headers: {
     type: Object,
-    default: () => ({}),
+    default: () => {},
   },
   data: {
     type: Object,
-    default: () => ({}),
+    default: () => {},
   },
   canEdit: {
     type: Boolean,
