@@ -1,11 +1,8 @@
 <template>
   <Header title-text="Contacts" />
-  <SearchBar />
-  <Tabs
-    :tabs="['Team Coordinator', 'Adjudicator', 'Adjudicator Coordinator']"
-    @handleTabClicked="handleTabClicked"
-  />
-  <div class="mx-6">
+  <SearchBar @handle-filter="handleFilter" />
+  <Tabs :tabs="tabs" @handle-tab-clicked="handleTabClicked" />
+  <div class="mx-8">
     <Table :headers="headers" :data="contacts" :canEdit="false" />
   </div>
 </template>
@@ -14,10 +11,23 @@
 import { ref } from "vue";
 import data from "../../data/users.json";
 
-const contacts = ref(data);
+const currentTab = ref("Adjudicator");
+const contacts = ref(
+  data.filter((contact) => contact.role === currentTab.value)
+);
 
 const handleTabClicked = (tab) => {
   contacts.value = data.filter((contact) => contact.role === tab);
+  currentTab.value = tab;
+};
+
+const handleFilter = (searchTerm) => {
+  contacts.value = data.filter(
+    (contact) =>
+      (contact.firstName.toLowerCase().includes(searchTerm) ||
+        contact.lastName.toLowerCase().includes(searchTerm)) &&
+      contact.role === currentTab.value
+  );
 };
 
 const headers = [
@@ -37,5 +47,11 @@ const headers = [
     key: "email",
     title: "Email",
   },
+];
+
+const tabs = [
+  { label: "Team Coordinator", active: false },
+  { label: "Adjudicator", active: true },
+  { label: "Adjudicator Coordinator", active: false },
 ];
 </script>
