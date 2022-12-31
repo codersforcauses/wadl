@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  emulator:
+    build:
+      context: .
+      dockerfile: docker/emulator/Dockerfile
+    container_name: wadl_firebase
+    restart: unless-stopped
+    ports:
+      - 9099:9099
+      - 5001:5001
+      - 8080:8080
+      - 8085:8085
+      - 9199:9199
+      - 4000:4000
+    volumes:
+      - ./Firebase:/app
+    command: firebase emulators:start
