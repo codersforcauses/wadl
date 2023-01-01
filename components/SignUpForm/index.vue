@@ -71,7 +71,6 @@ const form = ref({
 
 // Call The User Store
 const registerUser = (e) => {
-  console.log(form.value);
   userStore.registerUser(form.value);
 };
 </script>
