@@ -30,37 +30,40 @@ watch(role, (currentValue, oldValue) => {
 </script>
 
 <template>
-  <section class="flex justify-center h-screen w-screen">
-    <div
-      class="bg-gold border w-3/12 h-3/4 border-light-grey rounded-xl my-auto p-10"
+  <section class="flex justify-center items-center h-[calc(100vh-72px)]">
+    <form
+      class="p-5 bg-white heading-montserrat border border-light-grey rounded-3xl max-w-lg py-10 mx-4"
+      @submit.prevent="handleLogin"
     >
-      <h1 class="text-5xl mt-9 mb-10 text-center">Login</h1>
-      <br />
-      <form class="flex-col" @submit.prevent="handleLogin">
-        <FormField
-          v-model="form.email"
-          label="Email"
-          placeholder="Your Email"
-          type="email"
-        />
-        <FormField
-          v-model="form.password"
-          label="Password"
-          placeholder="Your Password"
-          type="password"
-        />
-        <div class="mt-20 text-center">
-          <Button
-            class
-            button-text="Submit"
-            button-color="bg-white"
-            size="large"
-          />
-          <NuxtLink to="/">
-            <p class="underline mt-16">Forgot my password</p>
-          </NuxtLink>
-        </div>
-      </form>
-    </div>
+      <h1 class="text-2xl text-center pb-6">Login</h1>
+      <FormField
+        v-model="form.email"
+        label="Email"
+        placeholder="Your Email"
+        type="email"
+      />
+      <FormField
+        v-model="form.password"
+        label="Password"
+        placeholder="Your Password"
+        type="password"
+      />
+      <div class="w-full flex flex-col gap-6 items-center mt-4">
+        <Button button-text="Submit" button-color="bg-gold " />
+        <NuxtLink
+          to="/"
+          class="underline underline-offset-4 text-xs hover:text-light-orange-gold"
+          >Forgot my password
+        </NuxtLink>
+        <span class="text-xs">
+          Don't have an account?
+          <NuxtLink
+            to="/signup"
+            class="underline underline-offset-4 text-xs hover:text-light-orange-gold"
+            >Sign up
+          </NuxtLink></span
+        >
+      </div>
+    </form>
   </section>
 </template>

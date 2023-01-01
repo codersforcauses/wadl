@@ -1,6 +1,6 @@
 <template>
   <form
-    class="p-5 heading-montserrat border border-light-grey rounded-3xl max-w-lg"
+    class="p-5 heading-montserrat border border-light-grey rounded-3xl max-w-lg mx-4"
     @submit.prevent="registerUser"
   >
     <h1 class="text-2xl text-center pb-2">Register</h1>
@@ -35,8 +35,18 @@
       type="password"
     />
     <Roles v-model="form.role" />
-    <div class="w-full flex justify-center mt-4">
-      <Button button-text="Submit" button-color="bg-gold" />
+    <div class="w-full flex flex-col gap-6 items-center mt-4">
+      <div class="w-full flex justify-center">
+        <Button button-text="Submit" button-color="bg-gold" />
+      </div>
+      <span class="text-xs">
+        Already have an account?
+        <NuxtLink
+          to="/login"
+          class="underline underline-offset-4 text-xs hover:text-light-orange-gold"
+          >Login
+        </NuxtLink></span
+      >
     </div>
   </form>
 </template>
