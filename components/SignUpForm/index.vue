@@ -18,6 +18,11 @@
     </div>
     <FormField v-model="form.email" label="Email" placeholder="Your Email" />
     <FormField
+      v-model="form.phoneNumber"
+      label="Phone Number"
+      placeholder="Your Phone Number"
+    />
+    <FormField
       v-model="form.password"
       label="Password"
       type="password"
@@ -46,6 +51,7 @@ const form = ref({
   firstName: "",
   lastName: "",
   email: "",
+  phoneNumber: "",
   password: "",
   confirmPassword: "",
   role: "",
@@ -55,6 +61,7 @@ const form = ref({
 
 // Call The User Store
 const registerUser = (e) => {
+  console.log(form.value);
   userStore.registerUser(form.value);
 };
 </script>
