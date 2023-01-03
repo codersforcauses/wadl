@@ -1,32 +1,37 @@
 import { defineStore } from "pinia";
-// import { v4 as uuid } from 'uuid';
-
-// export const useInstitutionStore = defineStore("institutions", {
-//   state() {
-//     return {
-//       institutions: []
-//     };
-//   },
-//   getters: {},
-//   actions: {
-//     create(institution) {
-// 			this.institutions.push({...institution, id: uuid()})
-// 		},
-//   },
-// });
 
 export const useInstitutionStore = defineStore("institution", {
-  state() {
+  state: () => {
     return {
-      name: null,
-      code: null,
-      abbreviation: null
-    };
-  },
+      institutions: [
+      
+        { "name": "St Mary's" },
+        { "name": "St Joseph's" },
+        { "name": "St Urban's" },
+        { "name": "St Richards" },
+        { "name": "St Bernards" },
+        { "name": "St Margerettes" },
+        { "name": "St John's" },
+        { "name": "St Peter's" },
+        { "name": "St Paul's" },
+        { "name": "St Mark's" },
+        { "name": "St Martha's" },
+        { "name": "St George's" },
+        { "name": "St Thomas's" },
+        { "name": "St Anne's" },
+        { "name": "St David's" },
+        { "name": "St Catherine's" },
+        { "name": "St Patrick's" },
+      ]
+    }
+},
   getters: {},
   actions: {
     async CreateInst(institution) {
-      console.log("Store - Register Institution", institution);
+      this.institutions.push({
+        ...institution
+      });
+      console.log(institutions)
     },
   },
 });

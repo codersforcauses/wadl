@@ -4,7 +4,7 @@ import { XMarkIcon, PencilIcon } from "@heroicons/vue/24/solid";
 import data from "../../data/institutions.json";
 import { useInstitutionStore } from '../../stores/institutions';
 
-const institutions = ref(data);
+// const institutions = ref(data);
 
 const filterInstitutions = (searchTerm) => {
   institutions.value = data.filter((inst) =>
@@ -30,14 +30,6 @@ const inst_input = ref({
   code: '',
   abbreviation: '',
 });
-// const CreateInst = () => {
-//   inst_store.create(inst_input.value)
-//   inst_input.value = {
-//     name: '',
-//     code: '',
-//     abbreviation:''
-//   }
-// };
 
 const CreateInst = (e) => {
   inst_store.CreateInst(inst_input.value);
@@ -63,12 +55,6 @@ const CreateInst = (e) => {
           <Button button-text="Submit" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
         </div>
       </form>
-      <div class="instution">
-        <div v-for="institution in inst_store.institutions">
-          {{ institution }}
-        </div>
-
-      </div>
     </div>
   </div>
 
@@ -82,7 +68,7 @@ const CreateInst = (e) => {
         Institutions
       </li>
       <li
-        v-for="(inst, idx) in institutions"
+        v-for="(inst, idx) in inst_store.institutions"
         :key="idx"
         class="justify-between flex px-6 py-2 border-b border-gray-20 items-center"
       >
@@ -93,7 +79,7 @@ const CreateInst = (e) => {
       </li>
     </ul>
   </div>
-  <div class="w-full bg-white fixed inset-x-0 bottom-0">
+  <div class="w-full bg-white flex inset-x-0 bottom-0">
     <Button
       button-text="Add Institutions"
       button-color="bg-gold"
