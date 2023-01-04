@@ -61,8 +61,8 @@ watch(role, (currentValue, oldValue) => {
             to="/signup"
             class="underline underline-offset-4 text-xs hover:text-light-orange-gold"
             >Sign up
-          </NuxtLink></span
-        >
+          </NuxtLink>
+        </span>
       </div>
     </form>
   </section>

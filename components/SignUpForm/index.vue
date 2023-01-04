@@ -44,7 +44,8 @@
         <NuxtLink
           to="/login"
           class="underline underline-offset-4 text-xs hover:text-light-orange-gold"
-          >Login
+        >
+          Login
         </NuxtLink></span
       >
     </div>
