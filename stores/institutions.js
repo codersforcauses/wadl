@@ -12,7 +12,6 @@ export const useInstitutionStore = defineStore("institution", {
       this.institutions.push({
         ...institution
       });
-      console.log(institutions)
     },
   },
 });
