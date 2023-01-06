@@ -30,6 +30,11 @@ const inst_input = ref({
 
 const CreateInst = (e) => {
   inst_store.CreateInst(inst_input.value);
+  inst_input.value = {
+    name: '',
+    code: '',
+    abbreviation: ''
+  }
 };
 
 </script>
@@ -37,17 +42,17 @@ const CreateInst = (e) => {
 <template>
   <!-- Modal -->
   <Modal @close="toggleModal" :modal-visibility="modalVisibility">
-  <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
-    Add Institutions
-  </p>
-  <form class="px-10" @submit.prevent="CreateInst">
-    <FormField v-model="inst_input.name" label="Institution Name" />
-    <FormField v-model="inst_input.code" label="Code" />
-    <FormField v-model="inst_input.abbreviation" label="Abbreviation" />
-    <div class="flex justify-evenly items-center">
-      <Button button-text="Submit" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
-    </div>
-  </form>
+    <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+      Add Institutions
+    </p>
+    <form class="px-10" @submit.prevent="CreateInst">
+      <FormField v-model="inst_input.name" label="Institution Name" />
+      <FormField v-model="inst_input.code" label="Code" />
+      <FormField v-model="inst_input.abbreviation" label="Abbreviation" />
+      <div class="flex justify-evenly items-center">
+        <Button button-text="Submit" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
+      </div>
+    </form>
   </Modal>
 
 
