@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from "vue";
-import {  PencilIcon } from "@heroicons/vue/24/solid";
+import { PencilIcon } from "@heroicons/vue/24/solid";
 import data from "../../data/institutions.json";
-import { useInstitutionStore } from '../../stores/institutions';
-import Modal from "../../components/Modal/Modal.vue"
+import { useInstitutionStore } from "../../stores/institutions";
+import Modal from "../../components/Modal/Modal.vue";
 
 const institutions = ref(data);
 
@@ -23,25 +23,24 @@ const toggleModal = () => {
 // Pinia
 const inst_store = useInstitutionStore();
 const inst_input = ref({
-  name: '',
-  code: '',
-  abbreviation: '',
+  name: "",
+  code: "",
+  abbreviation: "",
 });
 
 const CreateInst = (e) => {
   inst_store.CreateInst(inst_input.value);
   inst_input.value = {
-    name: '',
-    code: '',
-    abbreviation: ''
-  }
+    name: "",
+    code: "",
+    abbreviation: "",
+  };
 };
-
 </script>
 
 <template>
   <!-- Modal -->
-  <Modal @close="toggleModal" :modal-visibility="modalVisibility">
+  <Modal :modal-visibility="modalVisibility" @close="toggleModal">
     <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
       Add Institutions
     </p>
@@ -50,11 +49,15 @@ const CreateInst = (e) => {
       <FormField v-model="inst_input.code" label="Code" />
       <FormField v-model="inst_input.abbreviation" label="Abbreviation" />
       <div class="flex justify-evenly items-center">
-        <Button button-text="Submit" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
+        <Button
+          button-text="Submit"
+          button-color="bg-gold"
+          type="Submit"
+          class="m-5 ml-8"
+        />
       </div>
     </form>
   </Modal>
-
 
   <Header title-text="Institutions" />
   <SearchBar @handle-filter="filterInstitutions" />
@@ -85,6 +88,5 @@ const CreateInst = (e) => {
       class="m-5 ml-8"
       @click="toggleModal"
     />
-
   </div>
 </template>
