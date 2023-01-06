@@ -1,0 +1,114 @@
+[
+  {
+    "firstName": "Pongo",
+    "lastName": "Smith",
+    "phoneNumber": "0430139923",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Casper",
+    "lastName": "White",
+    "phoneNumber": "0430159923",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Linx",
+    "lastName": "Green",
+    "phoneNumber": "0430133423",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Zyra",
+    "lastName": "Pyra",
+    "phoneNumber": "043013233",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Kort",
+    "lastName": "Southard",
+    "phoneNumber": "0423139923",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Allys",
+    "lastName": "Haith",
+    "phoneNumber": "0434139923",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Stearn",
+    "lastName": "Riccioppo",
+    "phoneNumber": "0433139923",
+    "email": "blah@gmail.com",
+    "role": "Adjudicator Coordinator"
+  },
+  {
+    "firstName": "Cass",
+    "lastName": "MacArte",
+    "phoneNumber": "0432349923",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Caty",
+    "lastName": "Mohan",
+    "phoneNumber": "044139923",
+    "email": "blah@gmail.com",
+    "role": "Adjudicator Coordinator"
+  },
+  {
+    "firstName": "Oran",
+    "lastName": "Crush",
+    "phoneNumber": "0430139923",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Dal",
+    "lastName": "Farryann",
+    "phoneNumber": "0430139923",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Hercules",
+    "lastName": "Fierro",
+    "phoneNumber": "0430139923",
+    "email": "blah@gmail.com",
+    "role": "Team Coordinator"
+  },
+  {
+    "firstName": "Red",
+    "lastName": "Vampouille",
+    "phoneNumber": "0430139923",
+    "email": "blah@gmail.com",
+    "role": "Adjudicator Coordinator"
+  },
+  {
+    "firstName": "Stewart",
+    "lastName": "Ruos",
+    "phoneNumber": "0430139923",
+    "email": "blah@gmail.com",
+    "role": "Adjudicator"
+  },
+  {
+    "firstName": "Tiphanie",
+    "lastName": "Tombling",
+    "phoneNumber": "0430139923",
+    "email": "blah@gmail.com",
+    "role": "Adjudicator"
+  },
+  {
+    "firstName": "Perceval",
+    "lastName": "Sailor",
+    "phoneNumber": "0430139923",
+    "email": "blah@gmail.com",
+    "role": "Admin"
+  }
+]
