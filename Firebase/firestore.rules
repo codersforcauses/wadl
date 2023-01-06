@@ -1,0 +1,76 @@
+// draft 1.3
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      function isAdmin(){
+        return resource.data.role == "Admin" 
+      }
+      function allowSignup(){
+        return request.auth.token.email != null  
+      }
+      function isOwner(){
+        return request.auth.uid == userId
+      }
+      function isAdjudicator(){
+        return resource.data.role == "Adjudicator"
+      }
+      function isTeamCoordinator(){
+        return resource.data.role == "Team Coordinator"
+      }
+      function isAdjudicatorCoordinator(){
+        return resource.data.role == "Adjudicator Coordinator"
+      }
+      allow create: if allowSignup();
+      allow create, read, update, delete: if isAdmin();
+      allow read, update: if isOwner() && (isAdjudicator() || isTeamCoordinator() || isAdjudicatorCoordinator());
+    }
+    match /venues/{venueId} {
+    function isAdmin(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
+      }
+    allow create, read, update, delete: if isAdmin();
+    allow read: if true;
+    }
+    match /tournaments/{tournamentId}/levels/{levelId} {
+    	function isTeamCoord() {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Team Coordinator'
+      }
+      allow update, read: if isTeamCoord();
+    }
+    match /tournaments/{document=**} {
+    function isAdmin(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
+      }
+      allow create, read, write, delete: if isAdmin();
+      allow read: if true;
+    }
+    match /tournaments/{tournamentId}/levels/{levelId}/divisions/{divisionId}/matchups/{matchupId} {
+    	function isAdjudicatorCoordinator() {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Adjudicator Coordinator'
+      }
+      allow update, read: if isAdjudicatorCoordinator();
+    }
+    
+    match /institutions/{institutionsId} {
+    	function isAdjudicator(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Adjudicator'
+        
+      }
+      function isTeamCoordinator(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Team Coordinator'
+        
+      }
+      function isAdjudicatorCoordinator(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Adjudicator Coordinator'
+        
+      }
+      function isAdmin(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
+      }
+      allow create, update, read: if isAdjudicator() || isTeamCoordinator() || isAdjudicatorCoordinator() || isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+  }
+}
