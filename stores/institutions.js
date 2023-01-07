@@ -8,7 +8,7 @@ export const useInstitutionStore = defineStore("institution", {
   },
   getters: {},
   actions: {
-    async CreateInst(institution) {
+    async createInstitution(institution) {
       this.institutions.push({
         ...institution,
       });
