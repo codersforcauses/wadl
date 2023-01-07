@@ -1,10 +1,11 @@
 <script setup>
 import { ref } from "vue";
-import { XMarkIcon, PencilIcon } from "@heroicons/vue/24/solid";
+import { PencilIcon } from "@heroicons/vue/24/solid";
 import data from "../../data/institutions.json";
+import { useInstitutionStore } from "../../stores/institutions";
+import Modal from "../../components/Modal/Modal.vue";
 
 const institutions = ref(data);
-const modalVisibility = ref(false);
 
 const form = ref({
   institutionName: "",
@@ -18,74 +19,62 @@ const filterInstitutions = (searchTerm) => {
   );
 };
 
-// Launches the modal and fills in with values
+// Modal
+const modalVisibility = ref(false);
+
+const toggleModal = () => {
+  modalVisibility.value = !modalVisibility.value;
+};
+
 const editInstitution = (inst) => {
-  form.value.institutionName = inst.name;
-  form.value.code = inst.code;
-  form.value.abbreviation  = inst.name.slice(0, Math.min(3, inst.name.length));
-  showModal();
+  inst_input.value = {
+    name: inst.name,
+    code: inst.code,
+    abbreviation: inst.abbreviation,
+  };
+  toggleModal();
 };
 
-// Launches the modal
-const showModal = () => {
-  modalVisibility.value = true;
-};
+// Pinia
+const inst_store = useInstitutionStore();
+const inst_input = ref({
+  name: "",
+  code: "",
+  abbreviation: "",
+});
 
-// Closes the modal
-const closeModal = () => {
-  modalVisibility.value = false;
-};
-
-// Request sent to server to create or update an institution
-const updateInstitution = () => {
-  console.log("Updating with");
-  console.log(form);
-};
-// Request sent to server to delete an institution
-const deleteInstitution = () => {
-  console.log("Deleting with");
-  console.log(form);
+const CreateInst = (e) => {
+  inst_store.CreateInst(inst_input.value);
+  inst_input.value = {
+    name: "",
+    code: "",
+    abbreviation: "",
+  };
+  toggleModal();
 };
 </script>
 
 <template>
-  <div
-    v-show="modalVisibility"
-    class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-slate-300 bg-opacity-60"
-  >
-    <div class="bg-white max-w-[40%] min-w-[320px] rounded-2xl">
-      <header
-        class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl"
-      >
-        <XMarkIcon class="h-6 w-6 cursor-pointer" @click="closeModal" />
-      </header>
-      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
-        Edit Institutions
-      </p>
-      <form class="px-10">
-        <FormField v-model="form.institutionName" label="Institution Name" />
-        <FormField v-model="form.code" label="Code" />
-        <FormField v-model="form.abbreviation" label="Abbreviation" />
-      </form>
+  <!-- Modal -->
+  <Modal :modal-visibility="modalVisibility" @close="toggleModal">
+    <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+      Add Institutions
+    </p>
+    <form class="px-10" @submit.prevent="CreateInst">
+      <FormField v-model="inst_input.name" label="Institution Name" />
+      <FormField v-model="inst_input.code" label="Code" />
+      <FormField v-model="inst_input.abbreviation" label="Abbreviation" />
       <div class="flex justify-evenly items-center">
         <Button
-          button-text="Save"
+          button-text="Submit"
           button-color="bg-gold"
-          type="button"
+          type="Submit"
           class="m-5 ml-8"
-          @click="updateInstitution"
-        />
-        <Button
-          button-text="Delete"
-          button-color="bg-red-200"
-          textColor="text-dark-red"
-          type="button"
-          class="m-5 ml-8"
-          @click="deleteInstitution"
         />
       </div>
-    </div>
-  </div>
+    </form>
+  </Modal>
+
   <Header title-text="Institutions" />
   <SearchBar @handle-filter="filterInstitutions" />
   <div class="flex justify-center">
@@ -96,26 +85,24 @@ const deleteInstitution = () => {
         Institutions
       </li>
       <li
-        v-for="(inst, idx) in institutions"
+        v-for="(inst, idx) in inst_store.institutions"
         :key="idx"
         class="justify-between flex px-6 py-2 border-b border-gray-20 items-center"
       >
         <p>{{ inst.name }}</p>
-        <button
-          @click="editInstitution(inst)"
-        >
+        <button @click="editInstitution(inst)">
           <PencilIcon class="h-4 w-4" />
         </button>
       </li>
     </ul>
   </div>
-  <div class="w-full bg-white fixed inset-x-0 bottom-0">
+  <div class="w-full bg-white flex inset-x-0 bottom-0">
     <Button
       button-text="Add Institutions"
       button-color="bg-gold"
       type="button"
       class="m-5 ml-8"
-      @click="editInstitution('', '', '')"
+      @click="toggleModal"
     />
   </div>
 </template>
