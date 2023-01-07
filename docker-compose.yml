@@ -16,4 +16,4 @@ services:
       - 4000:4000
     volumes:
       - ./Firebase:/app
-    command: firebase emulators:start
+    command: firebase emulators:start --import=dummyData

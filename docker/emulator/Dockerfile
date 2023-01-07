@@ -19,4 +19,6 @@ WORKDIR /app
 COPY /Firebase ./
 
 WORKDIR /app/functions
-RUN npm install 
+RUN npm install
+
+WORKDIR /app
