@@ -1,6 +1,6 @@
 <template>
   <form
-    class="max-w-lg p-5 border heading-montserrat border-light-grey rounded-3xl"
+    class="p-5 heading-montserrat border border-light-grey rounded-3xl max-w-lg mx-4"
     @submit.prevent="registerUser"
   >
     <h1 class="pb-2 text-2xl text-center">Register</h1>
@@ -16,12 +16,7 @@
         <FormField v-model="form.lastName" placeholder="Your Last Name" />
       </div>
     </div>
-    <FormField
-      v-model="form.email"
-      label="Email"
-      type="email"
-      placeholder="Your Email"
-    />
+    <FormField v-model="form.email" label="Email" placeholder="Your Email" />
     <FormField
       v-if="isValid"
       v-model="form.password"
@@ -56,8 +51,19 @@
       color="border-red-500"
     />
     <Roles v-model="form.role" />
-    <div class="flex justify-center w-full mt-4">
-      <Button button-text="Submit" button-color="bg-gold" />
+    <div class="w-full flex flex-col gap-6 items-center mt-4">
+      <div class="w-full flex justify-center">
+        <Button button-text="Submit" button-color="bg-gold" />
+      </div>
+      <span class="text-xs">
+        Already have an account?
+        <NuxtLink
+          to="/login"
+          class="underline underline-offset-4 text-xs hover:text-light-orange-gold"
+        >
+          Login
+        </NuxtLink></span
+      >
     </div>
   </form>
 </template>
@@ -72,6 +78,7 @@ const form = ref({
   firstName: "",
   lastName: "",
   email: "",
+  phoneNumber: "",
   password: "",
   confirmPassword: "",
   role: "",
