@@ -19,10 +19,10 @@ const filterInstitutions = (searchTerm) => {
 };
 
 // Launches the modal and fills in with values
-const editInstitution = (institutionName, code, abbreviation) => {
-  form.value.institutionName = institutionName;
-  form.value.code = code;
-  form.value.abbreviation = abbreviation;
+const editInstitution = (inst) => {
+  form.value.institutionName = inst.name;
+  form.value.code = inst.code;
+  form.value.abbreviation  = inst.name.slice(0, Math.min(3, inst.name.length));
   showModal();
 };
 
@@ -102,13 +102,7 @@ const deleteInstitution = () => {
       >
         <p>{{ inst.name }}</p>
         <button
-          @click="
-            editInstitution(
-              inst.name,
-              inst.code,
-              inst.name.slice(0, Math.min(3, inst.name.length))
-            )
-          "
+          @click="editInstitution(inst)"
         >
           <PencilIcon class="h-4 w-4" />
         </button>
