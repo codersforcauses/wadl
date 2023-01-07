@@ -15,7 +15,6 @@
           <th v-if="canEdit" class="border-b"></th>
         </tr>
       </thead>
-
       <tbody>
         <tr
           v-for="(row, index) in data"
