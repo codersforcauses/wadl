@@ -5,12 +5,8 @@ import Table from "~/components/Coordinator/Table.vue";
 
 <template>
   <div>
-    <div>
-      <ProfileInfo username="Carmen Leong" role="Admin" />
-    </div>
-    <div>
-      <Table :headings="['Teams', 'Level', 'Division']" />
-    </div>
+    <ProfileInfo username="Carmen Leong" role="Admin" />
+    <Table :headings="['Teams', 'Level', 'Division']" />
     <div class="fixed inset-x-0 bottom-0 w-full bg-white">
       <div class="flex flex-row gap-4 m-5 justify-left">
         <Button
