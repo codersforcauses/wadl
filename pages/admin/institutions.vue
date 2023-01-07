@@ -81,7 +81,7 @@ const createInstitution = (e) => {
       </li>
     </ul>
   </div>
-  <div class="w-full bg-white flex inset-x-0 bottom-0">
+  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
       button-text="Add Institutions"
       button-color="bg-gold"
