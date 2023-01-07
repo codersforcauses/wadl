@@ -36,16 +36,16 @@ const editInstitution = (inst) => {
 };
 
 // Pinia
-const inst_store = useInstitutionStore();
-const inst_input = ref({
+const instStore = useInstitutionStore();
+const instInput = ref({
   name: "",
   code: "",
   abbreviation: "",
 });
 
-const CreateInst = (e) => {
-  inst_store.CreateInst(inst_input.value);
-  inst_input.value = {
+const createInstitution = (e) => {
+  instStore.createInstitution(instInput.value);
+  instInput.value = {
     name: "",
     code: "",
     abbreviation: "",
@@ -60,10 +60,10 @@ const CreateInst = (e) => {
     <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
       Add Institutions
     </p>
-    <form class="px-10" @submit.prevent="CreateInst">
-      <FormField v-model="inst_input.name" label="Institution Name" />
-      <FormField v-model="inst_input.code" label="Code" />
-      <FormField v-model="inst_input.abbreviation" label="Abbreviation" />
+    <form id="Inst" class="px-10" @submit.prevent="createInstitution">
+      <FormField v-model="instInput.name" label="Institution Name" />
+      <FormField v-model="instInput.code" label="Code" />
+      <FormField v-model="instInput.abbreviation" label="Abbreviation" />
       <div class="flex justify-evenly items-center">
         <Button
           button-text="Submit"
@@ -85,7 +85,7 @@ const CreateInst = (e) => {
         Institutions
       </li>
       <li
-        v-for="(inst, idx) in inst_store.institutions"
+        v-for="(inst, idx) in instStore.institutions"
         :key="idx"
         class="justify-between flex px-6 py-2 border-b border-gray-20 items-center"
       >
@@ -96,7 +96,7 @@ const CreateInst = (e) => {
       </li>
     </ul>
   </div>
-  <div class="w-full bg-white flex inset-x-0 bottom-0">
+  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
       button-text="Add Institutions"
       button-color="bg-gold"

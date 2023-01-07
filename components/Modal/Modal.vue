@@ -16,8 +16,7 @@
 
 <script setup>
 import { XMarkIcon } from "@heroicons/vue/24/solid";
-import { defineProps, defineEmits } from "vue";
-const props = defineProps({
+defineProps({
   modalVisibility: { type: Boolean, default: false },
 });
 const emit = defineEmits(["close"]);
