@@ -27,7 +27,7 @@ export const useInstitutionStore = defineStore("institution", {
       });
     },
     async editInstitution(institution) {
-      this.institutions.map((inst) => {
+      this.institutions.forEach((inst) => {
         if (inst.id == institution.id) {
           Object.assign(inst, institution);
         }
