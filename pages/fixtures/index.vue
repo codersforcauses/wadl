@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 const headers = [
   {
     key: "div",
@@ -46,7 +47,7 @@ const roundTabs = [
   { label: "Round 8", active: false },
 ];
 
-const data = [
+const data = ref([
   {
     div: "Div 1",
     venue: "Rainbow Road",
@@ -74,7 +75,28 @@ const data = [
     negative: "Perth Modern 4",
     topic: "Education",
   },
-];
+  {
+    div: "Div 1",
+    venue: "UWA",
+    date: "Tue 13/10",
+    time: "5:15pm",
+    affirmative: "Perth College 4",
+    negative: "Perth Modern 4",
+    topic: "Education",
+  },
+]);
+const handleFilter = (searchTerm) => {
+  data.value = data.value.filter(
+    (d) =>
+      d.div.toLowerCase().includes(searchTerm) ||
+      d.venue.toLowerCase().includes(searchTerm) ||
+      d.date.toLowerCase().includes(searchTerm) ||
+      d.time.toLowerCase().includes(searchTerm) ||
+      d.affirmative.toLowerCase().includes(searchTerm) ||
+      d.negative.toLowerCase().includes(searchTerm) ||
+      d.topic.toLowerCase().includes(searchTerm)
+  );
+};
 </script>
 
 <template>
