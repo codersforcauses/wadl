@@ -7,49 +7,64 @@ import Modal from "../../components/Modal/Modal.vue";
 
 const institutions = ref(data);
 
-const form = ref({
-  institutionName: "",
-  code: "",
-  abbreviation: "",
-});
-
 const filterInstitutions = (searchTerm) => {
   institutions.value = data.filter((inst) =>
     inst.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 };
+const clearInput = () => {
+  instInput.value = {
+    id: "",
+    name: "",
+    code: "",
+    abbreviation: "",
+  };
+};
 
 // Modal
 const modalVisibility = ref(false);
+const isEditing = ref(false);
 
 const toggleModal = () => {
+  if (!isEditing.value) {
+    clearInput();
+  }
   modalVisibility.value = !modalVisibility.value;
+  if (!modalVisibility.value) {
+    isEditing.value = false;
+  }
 };
 
 const editInstitution = (inst) => {
-  inst_input.value = {
+  instInput.value = {
+    id: inst.id,
     name: inst.name,
     code: inst.code,
     abbreviation: inst.abbreviation,
   };
+  isEditing.value = true;
+
   toggleModal();
 };
 
 // Pinia
 const instStore = useInstitutionStore();
 const instInput = ref({
+  id: "",
   name: "",
   code: "",
   abbreviation: "",
 });
 
+// Calls pinia store
+const updateInstitution = () => {
+  isEditing.value = false;
+  instStore.editInstitution(instInput.value);
+  toggleModal();
+};
+
 const createInstitution = (e) => {
   instStore.createInstitution(instInput.value);
-  instInput.value = {
-    name: "",
-    code: "",
-    abbreviation: "",
-  };
   toggleModal();
 };
 </script>
@@ -57,16 +72,43 @@ const createInstitution = (e) => {
 <template>
   <!-- Modal -->
   <Modal :modal-visibility="modalVisibility" @close="toggleModal">
-    <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+    <p
+      v-if="!isEditing"
+      class="text-3xl heading-montserrat font-bold px-6 py-3 text-center"
+    >
       Add Institutions
     </p>
-    <form id="Inst" class="px-10" @submit.prevent="createInstitution">
+    <p
+      v-else
+      class="text-3xl heading-montserrat font-bold px-6 py-3 text-center"
+    >
+      Edit Institutions
+    </p>
+    <form
+      v-if="!isEditing"
+      id="Inst"
+      class="px-10"
+      @submit.prevent="createInstitution"
+    >
       <FormField v-model="instInput.name" label="Institution Name" />
       <FormField v-model="instInput.code" label="Code" />
       <FormField v-model="instInput.abbreviation" label="Abbreviation" />
       <div class="flex justify-evenly items-center">
         <Button
           button-text="Submit"
+          button-color="bg-gold"
+          type="Submit"
+          class="m-5 ml-8"
+        />
+      </div>
+    </form>
+    <form v-else id="Inst" class="px-10" @submit.prevent="updateInstitution">
+      <FormField v-model="instInput.name" label="Institution Name" />
+      <FormField v-model="instInput.code" label="Code" />
+      <FormField v-model="instInput.abbreviation" label="Abbreviation" />
+      <div class="flex justify-evenly items-center">
+        <Button
+          button-text="Update"
           button-color="bg-gold"
           type="Submit"
           class="m-5 ml-8"
