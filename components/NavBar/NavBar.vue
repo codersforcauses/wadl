@@ -1,13 +1,42 @@
 <template>
   <nav
-    class="bg-gold shadow flex position:relative place-items-center sticky top-0 z-50"
+    class="bg-gold shadow flex justify-between sticky top-0 z-50 place-items-center w-full"
   >
-    <HomeButton class="pl-3" />
-    <LoginButton class="absolute right-3" button-text="Login" />
+    <div class="flex place-items-center">
+      <HomeButton class="pl-3" />
+      <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
+    </div>
+    <div v-if="!firstName" class="mr-2">
+      <NuxtLink to="/signup">
+        <Button button-text="Signup" size="small" class="shadow-none" />
+      </NuxtLink>
+      <NuxtLink to="/login">
+        <Button
+          button-text="Login"
+          button-color="bg-light-yellow"
+          size="small"
+        />
+      </NuxtLink>
+    </div>
+    <div v-else class="mr-2">
+      <NuxtLink to="/">
+        <Button
+          button-text="Signout"
+          button-color="bg-light-yellow"
+          size="small"
+          @click="userStore.clearStore()"
+        />
+      </NuxtLink>
+    </div>
   </nav>
 </template>
 
 <script setup>
 import HomeButton from "./HomeButton.vue";
-import LoginButton from "./LoginButton.vue";
+import { useUserStore } from "~/stores/user.js";
+import { storeToRefs } from "pinia";
+
+const userStore = useUserStore();
+// Will be updated when user store changes
+const { firstName } = storeToRefs(userStore);
 </script>
