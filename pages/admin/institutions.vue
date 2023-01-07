@@ -41,11 +41,11 @@ const createInstitution = (e) => {
 
 <template>
   <!-- Modal -->
-  <Modal :modalVisibility="modalVisibility" @close="toggleModal">
+  <Modal :modal-visibility="modalVisibility" @close="toggleModal">
     <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
       Add Institutions
     </p>
-    <form class="px-10" @submit.prevent="createInstitution" id="Inst">
+    <form id="Inst" class="px-10" @submit.prevent="createInstitution">
       <FormField v-model="instInput.name" label="Institution Name" />
       <FormField v-model="instInput.code" label="Code" />
       <FormField v-model="instInput.abbreviation" label="Abbreviation" />
