@@ -3262,6 +3262,26 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
+<<<<<<< HEAD
+firebase-admin@^11.3.0:
+  version "11.4.0"
+  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-11.4.0.tgz#8ad3f848f1814b6e271bafa3b4dae62a8befc53c"
+  integrity sha512-Nuw7j3mr0qSQqq0lx7yh8F+vVDDojd8FBDibmoiIjFDUu/YQ18fye8CNzS5tdi9YYGN4A/tkVz5bCqxYrf5bvA==
+  dependencies:
+    "@fastify/busboy" "^1.1.0"
+    "@firebase/database-compat" "^0.2.6"
+    "@firebase/database-types" "^0.9.13"
+    "@types/node" ">=12.12.47"
+    jsonwebtoken "^8.5.1"
+    jwks-rsa "^2.1.4"
+    node-forge "^1.3.1"
+    uuid "^9.0.0"
+  optionalDependencies:
+    "@google-cloud/firestore" "^6.4.0"
+    "@google-cloud/storage" "^6.5.2"
+
+=======
+>>>>>>> main
 firebase-functions@^4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-4.1.1.tgz#47c39a40d6cdaad9a46cb7ee3b9ffbb9bcaa7f2c"
@@ -5703,9 +5723,15 @@ rollup@^2.79.1:
     fsevents "~2.3.2"
 
 rollup@^3.7.0:
+<<<<<<< HEAD
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.7.4.tgz#993c3b30eff1df96f5eafb7c2ef7648960f2fa34"
+  integrity sha512-jN9rx3k5pfg9H9al0r0y1EYKSeiRANZRYX32SuNXAnKzh6cVyf4LZVto1KAuDnbHT03E1CpsgqDKaqQ8FZtgxw==
+=======
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.7.5.tgz#db580f8eda50237b0721ddea301fb981cd992933"
   integrity sha512-z0ZbqHBtS/et2EEUKMrAl2CoSdwN7ZPzL17UMiKN9RjjqHShTlv7F9J6ZJZJNREYjBh3TvBrdfjkFDIXFNeuiQ==
+>>>>>>> main
   optionalDependencies:
     fsevents "~2.3.2"
 
