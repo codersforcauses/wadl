@@ -15,8 +15,8 @@
     placeholder:heading-montserrat
     heading-montserrat
     ${color}`"
-    @input="updateInput"
     :value="modelValue"
+    @input="updateInput"
   />
   <p v-if="error" class="invisible mt-2 text-sm text-pink-600">
     Please provide a valid email address.

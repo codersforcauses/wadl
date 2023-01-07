@@ -85,7 +85,7 @@ const form = ref({
 });
 
 const isValid = ref(true);
-let errorMessage = ref("");
+const errorMessage = ref("");
 
 // Call The User Store
 const registerUser = (e) => {
