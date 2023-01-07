@@ -41,7 +41,7 @@ const createInstitution = (e) => {
 
 <template>
   <!-- Modal -->
-  <Modal :modal-visibility="modalVisibility" @close="toggleModal">
+  <Modal :modalVisibility="modalVisibility" @close="toggleModal">
     <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
       Add Institutions
     </p>
