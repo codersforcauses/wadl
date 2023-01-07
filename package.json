@@ -34,6 +34,8 @@
     "firebase": "^9.14.0",
     "firebase-admin": "^11.3.0",
     "firebase-functions": "^4.1.0",
-    "pinia": "^2.0.27"
+    "pinia": "^2.0.27",
+    "vee-validate": "^4.7.3",
+    "yup": "^0.32.11"
   }
 }

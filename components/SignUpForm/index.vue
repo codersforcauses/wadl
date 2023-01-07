@@ -23,16 +23,37 @@
       placeholder="Your Email"
     />
     <FormField
+      v-if="isValid"
       v-model="form.password"
       label="Password"
       type="password"
       placeholder="Your Password"
     />
+
     <FormField
+      v-else
+      v-model="form.password"
+      label="Password"
+      type="password"
+      placeholder="Your Password"
+      color="border-red-500"
+    />
+    <div></div>
+
+    <FormField
+      v-if="isValid"
       v-model="form.confirmPassword"
       label="Confirm Password"
       placeholder="Confirm Password"
       type="password"
+    />
+    <FormField
+      v-else
+      v-model="form.confirmPassword"
+      label="Confirm Password"
+      placeholder="Confirm Password"
+      type="password"
+      color="border-red-500"
     />
     <Roles v-model="form.role" />
     <div class="flex justify-center w-full mt-4">
@@ -56,12 +77,22 @@ const form = ref({
   role: "",
 });
 
-// TODO VALIDATE FORM
-const validate = (v) => {
-  if(form.email)
-};
+const isValid = ref(true);
+let errorMessage = ref("");
+
 // Call The User Store
 const registerUser = (e) => {
-  userStore.registerUser(form.value);
+  if (form.value.password.length > 8) {
+    if (form.value.password === form.value.confirmPassword) {
+      userStore.registerUser(form.value);
+    } else {
+      isValid.value = false;
+      errorMessage.value = "The password does not match";
+    }
+  } else {
+    isValid.value = false;
+    errorMessage.value = "The password has to be at least 8 characters";
+    console.log(errorMessage);
+  }
 };
 </script>
