@@ -1,37 +1,30 @@
 <script setup>
 import { useadminStore } from "../../stores/admin";
-import { ref, onMounted, onUnmounted } from "vue";
-import data from "../../data/pretendpeople.json";
-// Reference to list of pretend people
-const people = ref(data);
+import { onMounted, onUnmounted } from "vue";
 
 // pinia
 const adminStore = useadminStore();
 
-const approvePerson = async (id) => {
+const approveUser = async (id) => {
   adminStore.acceptUser(id);
 };
-
-const rejectPerson = async (id) => {
+const rejectUser = async (id) => {
   adminStore.denyUser(id);
 };
 onMounted(() => {
   adminStore.getUsers();
-  //adminStore.filterUsers();
 });
 onUnmounted(() => {
   adminStore.clearStore();
 });
-console.log(adminStore.filteredUsers);
-
 // Filters people on first,last & email match
 const filterUser = (searchTerm) => {
   adminStore.filteredUsers = adminStore.requestingUsers.filter(
-    (person) =>
-      person.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.role.toLowerCase().includes(searchTerm.toLowerCase())
+    (user) =>
+      user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.role.toLowerCase().includes(searchTerm.toLowerCase())
   );
 };
 </script>
@@ -68,21 +61,21 @@ const filterUser = (searchTerm) => {
       </thead>
       <tbody>
         <tr
-          v-for="person in adminStore.filteredUsers"
-          :key="person.email"
+          v-for="user in adminStore.filteredUsers"
+          :key="user.email"
           class="py-md bg-white border-b h-10"
         >
           <td>
-            <p>{{ person.firstName }}</p>
+            <p>{{ user.firstName }}</p>
           </td>
           <td>
-            <p>{{ person.lastName }}</p>
+            <p>{{ user.lastName }}</p>
           </td>
           <td>
-            <p>{{ person.email }}</p>
+            <p>{{ user.email }}</p>
           </td>
           <td>
-            <select id="role" v-model="person.role" name="role">
+            <select id="role" v-model="user.role" name="role">
               <option value="Adjudicator">Adjudicator</option>
               <option value="Adjudicator Coordinator">
                 Adjudicator Coordinator
@@ -97,14 +90,14 @@ const filterUser = (searchTerm) => {
               button-color="bg-light-green"
               text-color="text-white"
               size="small"
-              @click="approvePerson(person)"
+              @click="approveUser(user)"
             />
             <Button
               button-text="Reject"
               button-color="bg-light-red"
               text-color="text-dark-red"
               size="small"
-              @click="rejectPerson(person)"
+              @click="rejectUser(user)"
             />
           </td>
         </tr>

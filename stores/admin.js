@@ -22,7 +22,7 @@ export const useadminStore = defineStore("admin", {
       const ref = collection($db, "users");
       const querySnapshot = await getDocs(ref);
       querySnapshot.forEach((doc) => {
-        const person = {
+        const user = {
           email: doc.data().email,
           id: doc.id,
           firstName: doc.data().first_name,
@@ -31,8 +31,8 @@ export const useadminStore = defineStore("admin", {
           requesting: doc.data().requesting,
           role: doc.data().role,
         };
-        if (person.requesting === true) {
-          this.requestingUsers.push(person);
+        if (user.requesting === true) {
+          this.requestingUsers.push(user);
         }
       });
       this.filteredUsers = [...this.requestingUsers];
@@ -40,30 +40,26 @@ export const useadminStore = defineStore("admin", {
     async acceptUser(id) {
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
-      await updateDoc(ref, { requesting: null, role: id.role }).catch(
-        (error) => {
+      await updateDoc(ref, { requesting: null, role: id.role })
+        .then(() => {
+          const index = this.requestingUsers.indexOf(id);
+          this.requestingUsers.splice(index, 1);
+        })
+        .catch((error) => {
           console.log(error);
-        }
-      );
-      const index = this.requestingUsers.indexOf(id);
-      this.requestingUsers.splice(index, 1);
+        });
     },
     async denyUser(id) {
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
-      await deleteDoc(ref);
-      const index = this.requestingUsers.indexOf(id);
-      this.requestingUsers.splice(index, 1);
-    },
-    async filterUsers() {
-      console.log(this.requestingUsers);
-      this.filteredUsers = [...this.requestingUsers];
-      // console.log(this.requestingUsers);
-      // this.requestingUsers.forEach((element) => {
-      //   this.filteredUsers.push("hello");
-      //   // console.log(element);
-      // });
-      // console.log(this.filteredUsers);
+      await deleteDoc(ref)
+        .then(() => {
+          const index = this.requestingUsers.indexOf(id);
+          this.requestingUsers.splice(index, 1);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     async clearStore() {
       this.requestingUsers = [];
