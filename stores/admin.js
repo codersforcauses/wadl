@@ -19,7 +19,6 @@ export const useadminStore = defineStore("admin", {
     async getUsers() {
       const { $db } = useNuxtApp();
       const ref = collection($db, "users");
-      // const q = query(ref, where("requesting", "==", true));
       onSnapshot(ref, (snapshot) => {
         snapshot.docs.forEach((doc) => {
           const person = {
@@ -49,13 +48,9 @@ export const useadminStore = defineStore("admin", {
     },
     async denyUser(id) {
       this.requestingUsers = [];
-
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
       await deleteDoc(ref);
-    },
-    async print() {
-      console.log(this.requestingUsers);
     },
   },
 });

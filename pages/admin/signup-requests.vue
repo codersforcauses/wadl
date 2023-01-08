@@ -20,7 +20,6 @@ const adminStore = useadminStore();
 
 const approvePerson = async (id) => {
   adminStore.acceptUser(id);
-  // adminStore.print();
 };
 
 const rejectPerson = async (id) => {
@@ -62,7 +61,11 @@ onMounted(() => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="person in adminStore.requestingUsers" :key="person.email" class="py-md bg-white border-b h-10">
+        <tr
+          v-for="person in adminStore.requestingUsers"
+          :key="person.email"
+          class="py-md bg-white border-b h-10"
+        >
           <td>
             <p>{{ person.firstName }}</p>
           </td>
@@ -83,10 +86,20 @@ onMounted(() => {
             </select>
           </td>
           <td class="flex flex-row justify-evenly">
-            <Button button-text="Approve" button-color="bg-light-green" text-color="text-white" size="small"
-              @click="approvePerson(person)" />
-            <Button button-text="Reject" button-color="bg-light-red" text-color="text-dark-red" size="small"
-              @click="rejectPerson(person)" />
+            <Button
+              button-text="Approve"
+              button-color="bg-light-green"
+              text-color="text-white"
+              size="small"
+              @click="approvePerson(person)"
+            />
+            <Button
+              button-text="Reject"
+              button-color="bg-light-red"
+              text-color="text-dark-red"
+              size="small"
+              @click="rejectPerson(person)"
+            />
           </td>
         </tr>
       </tbody>
