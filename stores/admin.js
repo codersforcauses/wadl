@@ -44,6 +44,7 @@ export const useadminStore = defineStore("admin", {
         .then(() => {
           const index = this.requestingUsers.indexOf(id);
           this.requestingUsers.splice(index, 1);
+          this.filteredUsers = [...this.requestingUsers];
         })
         .catch((error) => {
           console.log(error);
@@ -53,9 +54,11 @@ export const useadminStore = defineStore("admin", {
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
       await deleteDoc(ref)
-        .then(() => {
+        .then((hello) => {
+          console.log(hello);
           const index = this.requestingUsers.indexOf(id);
           this.requestingUsers.splice(index, 1);
+          this.filteredUsers = [...this.requestingUsers];
         })
         .catch((error) => {
           console.log(error);
