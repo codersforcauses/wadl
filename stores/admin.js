@@ -35,6 +35,7 @@ export const useadminStore = defineStore("admin", {
           this.requestingUsers.push(person);
         }
       });
+      this.filteredUsers = [...this.requestingUsers];
     },
     async acceptUser(id) {
       const { $db } = useNuxtApp();

@@ -15,9 +15,9 @@ const approvePerson = async (id) => {
 const rejectPerson = async (id) => {
   adminStore.denyUser(id);
 };
-onMounted( () => {
-   adminStore.getUsers();
-  adminStore.filterUsers();
+onMounted(() => {
+  adminStore.getUsers();
+  //adminStore.filterUsers();
 });
 onUnmounted(() => {
   adminStore.clearStore();
@@ -25,8 +25,8 @@ onUnmounted(() => {
 console.log(adminStore.filteredUsers);
 
 // Filters people on first,last & email match
-const filterPeople = (searchTerm) => {
-  adminStore.requestingUsers = adminStore.requestingUsers.filter(
+const filterUser = (searchTerm) => {
+  adminStore.filteredUsers = adminStore.requestingUsers.filter(
     (person) =>
       person.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       person.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -38,7 +38,7 @@ const filterPeople = (searchTerm) => {
 
 <template>
   <Header title-text="Sign Up Requests" />
-  <SearchBar @handle-filter="filterPeople" />
+  <SearchBar @handle-filter="filterUser" />
   <div class="flex justify-center">
     <table class="w-10/12 table-fixed">
       <thead>
@@ -67,7 +67,11 @@ const filterPeople = (searchTerm) => {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="person in adminStore.requestingUsers" :key="person.email" class="py-md bg-white border-b h-10">
+        <tr
+          v-for="person in adminStore.filteredUsers"
+          :key="person.email"
+          class="py-md bg-white border-b h-10"
+        >
           <td>
             <p>{{ person.firstName }}</p>
           </td>
@@ -88,10 +92,20 @@ const filterPeople = (searchTerm) => {
             </select>
           </td>
           <td class="flex flex-row justify-evenly">
-            <Button button-text="Approve" button-color="bg-light-green" text-color="text-white" size="small"
-              @click="approvePerson(person)" />
-            <Button button-text="Reject" button-color="bg-light-red" text-color="text-dark-red" size="small"
-              @click="rejectPerson(person)" />
+            <Button
+              button-text="Approve"
+              button-color="bg-light-green"
+              text-color="text-white"
+              size="small"
+              @click="approvePerson(person)"
+            />
+            <Button
+              button-text="Reject"
+              button-color="bg-light-red"
+              text-color="text-dark-red"
+              size="small"
+              @click="rejectPerson(person)"
+            />
           </td>
         </tr>
       </tbody>
