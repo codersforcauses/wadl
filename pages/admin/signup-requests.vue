@@ -1,6 +1,6 @@
 <script setup>
 import { useadminStore } from "../../stores/admin";
-import { ref, onBeforeMount } from "vue";
+import { ref, onMounted } from "vue";
 import data from "../../data/pretendpeople.json";
 // Reference to list of pretend people
 const people = ref(data);
@@ -25,7 +25,7 @@ const approvePerson = async (id) => {
 const rejectPerson = async (id) => {
   adminStore.denyUser(id);
 };
-onBeforeMount(() => {
+onMounted(() => {
   adminStore.getUsers();
 });
 </script>

@@ -82,9 +82,6 @@ export const useUserStore = defineStore("user", {
           console.log(errorCode, errorMessage);
         });
     },
-    async getUsers(user) {
-      console.log(user);
-    },
     clearStore() {
       this.id = null;
       this.firstName = null;

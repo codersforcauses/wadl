@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 
 export const useadminStore = defineStore("admin", {
-  state: () => {
+  state() {
     return {
       requestingUsers: [],
     };
@@ -17,7 +17,6 @@ export const useadminStore = defineStore("admin", {
   getters: {},
   actions: {
     async getUsers() {
-      this.requestingUsers.length = 0;
       const { $db } = useNuxtApp();
       const ref = collection($db, "users");
       // const q = query(ref, where("requesting", "==", true));
@@ -33,7 +32,6 @@ export const useadminStore = defineStore("admin", {
             role: doc.data().role,
           };
           if (person.requesting === true) {
-            console.log(person.requesting);
             this.requestingUsers.push(person);
           }
         });
@@ -50,7 +48,6 @@ export const useadminStore = defineStore("admin", {
     },
     async denyUser(id) {
       const { $db } = useNuxtApp();
-
       const ref = doc($db, "users", id.id);
       await deleteDoc(ref);
     },
