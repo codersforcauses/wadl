@@ -69,51 +69,36 @@ const createInstitution = (e) => {
 </script>
 
 <template>
-  <!-- Modal -->
-  <Modal :modal-visibility="modalVisibility" @close="toggleModal">
-    <p
-      v-if="!isEditing"
-      class="text-3xl heading-montserrat font-bold px-6 py-3 text-center"
-    >
-      Add Institutions
-    </p>
-    <p
-      v-else
-      class="text-3xl heading-montserrat font-bold px-6 py-3 text-center"
-    >
-      Edit Institutions
-    </p>
-    <form
-      v-if="!isEditing"
-      id="Inst"
-      class="px-10"
-      @submit.prevent="createInstitution"
-    >
-      <FormField v-model="instInput.name" label="Institution Name" />
-      <FormField v-model="instInput.code" label="Code" />
-      <FormField v-model="instInput.abbreviation" label="Abbreviation" />
-      <div class="flex justify-evenly items-center">
-        <Button
-          button-text="Submit"
-          button-color="bg-gold"
-          type="Submit"
-          class="m-5 ml-8"
-        />
-      </div>
-    </form>
-    <form v-else id="Inst" class="px-10" @submit.prevent="updateInstitution">
-      <FormField v-model="instInput.name" label="Institution Name" />
-      <FormField v-model="instInput.code" label="Code" />
-      <FormField v-model="instInput.abbreviation" label="Abbreviation" />
-      <div class="flex justify-evenly items-center">
-        <Button
-          button-text="Update"
-          button-color="bg-gold"
-          type="Submit"
-          class="m-5 ml-8"
-        />
-      </div>
-    </form>
+  <Modal :modal-visibility="modalVisibility" @close="() => {
+    modalVisibility = false
+    instInput = { ...defaultInputState }
+  }">
+    <div v-if="editMode">
+      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+        Edit Institutions
+      </p>
+      <form id="Inst" class="px-10" @submit.prevent="updateInstitution">
+        <FormField v-model="instInput.name" label="Institution Name" />
+        <FormField v-model="instInput.code" label="Code" />
+        <FormField v-model="instInput.abbreviation" label="Abbreviation" />
+        <div class="flex justify-evenly items-center">
+          <Button button-text="Update" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
+        </div>
+      </form>
+    </div>
+    <div v-else>
+      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+        Add Institutions
+      </p>
+      <form id="Inst" class="px-10" @submit.prevent="createInstitution">
+        <FormField v-model="instInput.name" label="Institution Name" />
+        <FormField v-model="instInput.code" label="Code" />
+        <FormField v-model="instInput.abbreviation" label="Abbreviation" />
+        <div class="flex justify-evenly items-center">
+          <Button button-text="Submit" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
+        </div>
+      </form>
+    </div>
   </Modal>
 
   <Header title-text="Institutions" />
