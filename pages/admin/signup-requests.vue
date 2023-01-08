@@ -20,6 +20,7 @@ const adminStore = useadminStore();
 
 const approvePerson = async (id) => {
   adminStore.acceptUser(id);
+  // adminStore.print();
 };
 
 const rejectPerson = async (id) => {

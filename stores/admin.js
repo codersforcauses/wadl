@@ -38,6 +38,7 @@ export const useadminStore = defineStore("admin", {
       });
     },
     async acceptUser(id) {
+      this.requestingUsers = [];
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
       await updateDoc(ref, { requesting: null, role: id.role }).catch(
@@ -47,9 +48,14 @@ export const useadminStore = defineStore("admin", {
       );
     },
     async denyUser(id) {
+      this.requestingUsers = [];
+
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
       await deleteDoc(ref);
+    },
+    async print() {
+      console.log(this.requestingUsers);
     },
   },
 });
