@@ -1,10 +1,15 @@
 <script setup>
-import { ref } from "vue";
+import { useadminStore } from "../../stores/admin";
+import { ref, onMounted } from "vue";
 import data from "../../data/pretendpeople.json";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useNuxtApp } from "#imports";
 const { $db } = useNuxtApp();
 
+
+onMounted(() => {
+  adminStore.getUsers();
+});
 // Reference to list of pretend people
 const people = ref(data);
 
@@ -18,18 +23,23 @@ const filterPeople = (searchTerm) => {
       person.role.toLowerCase().includes(searchTerm.toLowerCase())
   );
 };
+// pinia
+const adminStore = useadminStore();
 
 const approvePerson = async (id) => {
+  console.log(id);
   const ref = doc($db, "users", id.id);
   await updateDoc(ref, { requesting: null, role: id.role }).then((ele) => {
     console.log("done");
   });
+  adminStore.getUsers();
 };
 
 const rejectPerson = async (id) => {
-  // console.log(`Rejecting applicant with email ${id}`);
+  console.log(id);
   const ref = doc($db, "users", id.id);
   await deleteDoc(ref);
+  adminStore.getUsers();
 };
 </script>
 
@@ -64,16 +74,12 @@ const rejectPerson = async (id) => {
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="person in people"
-          :key="person.email"
-          class="py-md bg-white border-b h-10"
-        >
+        <tr v-for="person in adminStore.requestingUsers" :key="person.email" class="py-md bg-white border-b h-10">
           <td>
-            <p>{{ person.first }}</p>
+            <p>{{ person.first_name }}</p>
           </td>
           <td>
-            <p>{{ person.last }}</p>
+            <p>{{ person.surname }}</p>
           </td>
           <td>
             <p>{{ person.email }}</p>
@@ -85,23 +91,14 @@ const rejectPerson = async (id) => {
                 Adjudicator Coordinator
               </option>
               <option value="Team Coordinator">Team Coordinator</option>
+              <option value="Admin">Admin</option>
             </select>
           </td>
           <td class="flex flex-row justify-evenly">
-            <Button
-              button-text="Approve"
-              button-color="bg-light-green"
-              text-color="text-white"
-              size="small"
-              @click="approvePerson(person)"
-            />
-            <Button
-              button-text="Reject"
-              button-color="bg-light-red"
-              text-color="text-dark-red"
-              size="small"
-              @click="rejectPerson(person)"
-            />
+            <Button button-text="Approve" button-color="bg-light-green" text-color="text-white" size="small"
+              @click="approvePerson(person)" />
+            <Button button-text="Reject" button-color="bg-light-red" text-color="text-dark-red" size="small"
+              @click="rejectPerson(person)" />
           </td>
         </tr>
       </tbody>

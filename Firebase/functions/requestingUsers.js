@@ -26,5 +26,5 @@ exports.requestingUsers = functions.https.onRequest(async (req, res) => {
         information.push(newElement);
       });
     });
-  res.json(information);
+  res.status(200).json(information);
 });
