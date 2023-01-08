@@ -1,9 +1,12 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-admin.initializeApp();
+
+if (admin.apps.length === 0) {
+  admin.initializeApp();
+}
 
 exports.requestingUsers = functions.https.onRequest(async (req, res) => {
-  let information = [];
+  const information = [];
   const db = admin.firestore();
   await db
     .collection("users")
@@ -20,7 +23,7 @@ exports.requestingUsers = functions.https.onRequest(async (req, res) => {
           role: element.data().role,
           last_name: element.data().surname,
         };
-        console.log(information.push(newElement));
+        information.push(newElement);
       });
     });
   res.json(information);

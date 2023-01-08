@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import data from "../../data/pretendpeople.json";
+import { doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { useNuxtApp } from "#imports";
+const { $db, $auth } = useNuxtApp();
 
 // Reference to list of pretend people
 const people = ref(data);
@@ -16,12 +19,17 @@ const filterPeople = (searchTerm) => {
   );
 };
 
-const approvePerson = (id) => {
-  console.log(`Approving applicant with email ${id}`);
+const approvePerson = async (id) => {
+  const ref = doc($db, "users", id.id);
+  await updateDoc(ref, { requesting: null, role: id.role }).then((ele) => {
+    console.log("done");
+  });
 };
 
-const rejectPerson = (id) => {
-  console.log(`Rejecting applicant with email ${id}`);
+const rejectPerson = async (id) => {
+  // console.log(`Rejecting applicant with email ${id}`);
+  const ref = doc($db, "users", id.id);
+  await deleteDoc(ref);
 };
 </script>
 
@@ -56,11 +64,7 @@ const rejectPerson = (id) => {
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="person in people"
-          :key="person.email"
-          class="py-md bg-white border-b h-10"
-        >
+        <tr v-for="person in people" :key="person.email" class="py-md bg-white border-b h-10">
           <td>
             <p>{{ person.first }}</p>
           </td>
@@ -80,20 +84,10 @@ const rejectPerson = (id) => {
             </select>
           </td>
           <td class="flex flex-row justify-evenly">
-            <Button
-              button-text="Approve"
-              button-color="bg-light-green"
-              text-color="text-white"
-              size="small"
-              @click="approvePerson(person.id)"
-            />
-            <Button
-              button-text="Reject"
-              button-color="bg-light-red"
-              text-color="text-dark-red"
-              size="small"
-              @click="rejectPerson(person.id)"
-            />
+            <Button button-text="Approve" button-color="bg-light-green" text-color="text-white" size="small"
+              @click="approvePerson(person)" />
+            <Button button-text="Reject" button-color="bg-light-red" text-color="text-dark-red" size="small"
+              @click="rejectPerson(person)" />
           </td>
         </tr>
       </tbody>
