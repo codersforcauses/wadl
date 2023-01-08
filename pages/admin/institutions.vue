@@ -5,7 +5,6 @@ import data from "../../data/institutions.json";
 import { useInstitutionStore } from "../../stores/institutions";
 import Modal from "../../components/Modal/Modal.vue";
 
-const institutions = ref(data);
 
 const filterInstitutions = (searchTerm) => {
   institutions.value = data.filter((inst) =>
