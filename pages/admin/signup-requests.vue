@@ -1,15 +1,7 @@
 <script setup>
 import { useadminStore } from "../../stores/admin";
-import { ref, onMounted } from "vue";
+import { ref, onBeforeMount } from "vue";
 import data from "../../data/pretendpeople.json";
-import { doc, updateDoc, deleteDoc } from "firebase/firestore";
-import { useNuxtApp } from "#imports";
-const { $db } = useNuxtApp();
-
-
-onMounted(() => {
-  adminStore.getUsers();
-});
 // Reference to list of pretend people
 const people = ref(data);
 
@@ -27,20 +19,15 @@ const filterPeople = (searchTerm) => {
 const adminStore = useadminStore();
 
 const approvePerson = async (id) => {
-  console.log(id);
-  const ref = doc($db, "users", id.id);
-  await updateDoc(ref, { requesting: null, role: id.role }).then((ele) => {
-    console.log("done");
-  });
-  adminStore.getUsers();
+  adminStore.acceptUser(id);
 };
 
 const rejectPerson = async (id) => {
-  console.log(id);
-  const ref = doc($db, "users", id.id);
-  await deleteDoc(ref);
-  adminStore.getUsers();
+  adminStore.denyUser(id);
 };
+onBeforeMount(() => {
+  adminStore.getUsers();
+});
 </script>
 
 <template>
@@ -76,10 +63,10 @@ const rejectPerson = async (id) => {
       <tbody>
         <tr v-for="person in adminStore.requestingUsers" :key="person.email" class="py-md bg-white border-b h-10">
           <td>
-            <p>{{ person.first_name }}</p>
+            <p>{{ person.firstName }}</p>
           </td>
           <td>
-            <p>{{ person.surname }}</p>
+            <p>{{ person.lastName }}</p>
           </td>
           <td>
             <p>{{ person.email }}</p>
