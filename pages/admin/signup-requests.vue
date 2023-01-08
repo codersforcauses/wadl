@@ -1,21 +1,10 @@
 <script setup>
 import { useadminStore } from "../../stores/admin";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import data from "../../data/pretendpeople.json";
 // Reference to list of pretend people
 const people = ref(data);
 
-// Filters people on first,last & email match
-const filterPeople = (searchTerm) => {
-  console.log(people);
-  people.value = data.filter(
-    (person) =>
-      person.first.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.last.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.role.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-};
 // pinia
 const adminStore = useadminStore();
 
@@ -26,9 +15,25 @@ const approvePerson = async (id) => {
 const rejectPerson = async (id) => {
   adminStore.denyUser(id);
 };
-onMounted(() => {
-  adminStore.getUsers();
+onMounted( () => {
+   adminStore.getUsers();
+  adminStore.filterUsers();
 });
+onUnmounted(() => {
+  adminStore.clearStore();
+});
+console.log(adminStore.filteredUsers);
+
+// Filters people on first,last & email match
+const filterPeople = (searchTerm) => {
+  adminStore.requestingUsers = adminStore.requestingUsers.filter(
+    (person) =>
+      person.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      person.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      person.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      person.role.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+};
 </script>
 
 <template>
@@ -62,11 +67,7 @@ onMounted(() => {
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="person in adminStore.requestingUsers"
-          :key="person.email"
-          class="py-md bg-white border-b h-10"
-        >
+        <tr v-for="person in adminStore.requestingUsers" :key="person.email" class="py-md bg-white border-b h-10">
           <td>
             <p>{{ person.firstName }}</p>
           </td>
@@ -87,20 +88,10 @@ onMounted(() => {
             </select>
           </td>
           <td class="flex flex-row justify-evenly">
-            <Button
-              button-text="Approve"
-              button-color="bg-light-green"
-              text-color="text-white"
-              size="small"
-              @click="approvePerson(person)"
-            />
-            <Button
-              button-text="Reject"
-              button-color="bg-light-red"
-              text-color="text-dark-red"
-              size="small"
-              @click="rejectPerson(person)"
-            />
+            <Button button-text="Approve" button-color="bg-light-green" text-color="text-white" size="small"
+              @click="approvePerson(person)" />
+            <Button button-text="Reject" button-color="bg-light-red" text-color="text-dark-red" size="small"
+              @click="rejectPerson(person)" />
           </td>
         </tr>
       </tbody>

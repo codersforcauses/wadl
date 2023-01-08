@@ -12,6 +12,7 @@ export const useadminStore = defineStore("admin", {
   state() {
     return {
       requestingUsers: [],
+      filteredUsers: [],
     };
   },
   getters: {},
@@ -52,6 +53,19 @@ export const useadminStore = defineStore("admin", {
       await deleteDoc(ref);
       const index = this.requestingUsers.indexOf(id);
       this.requestingUsers.splice(index, 1);
+    },
+    async filterUsers() {
+      console.log(this.requestingUsers);
+      this.filteredUsers = [...this.requestingUsers];
+      // console.log(this.requestingUsers);
+      // this.requestingUsers.forEach((element) => {
+      //   this.filteredUsers.push("hello");
+      //   // console.log(element);
+      // });
+      // console.log(this.filteredUsers);
+    },
+    async clearStore() {
+      this.requestingUsers = [];
     },
   },
 });
