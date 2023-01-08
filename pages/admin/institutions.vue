@@ -76,7 +76,9 @@ const createInstitution = (e) => {
       >
         <p>{{ inst.name }}</p>
         <NuxtLink>
-          <button><PencilIcon class="h-4 w-4" /></button>
+          <button>
+            <PencilIcon class="h-4 w-4" />
+          </button>
         </NuxtLink>
       </li>
     </ul>
