@@ -43,47 +43,49 @@ const createInstitution = () => {
 </script>
 
 <template>
-  <Modal :modal-visibility="modalVisibility" @close="
-    () => {
-      modalVisibility = false;
-      resetFormState()
-    }
-  ">
-    <div v-if="editMode">
-      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
-        Edit Institution
-      </p>
-      <form id="Inst" class="px-10" @submit.prevent="
-        () => {
-          modalVisibility = false;
-          updateInstitution();
-        }
-      ">
-        <FormField v-model="formInput.name" label="Institution Name" />
-        <FormField v-model="formInput.code" label="Code" />
-        <FormField v-model="formInput.abbreviation" label="Abbreviation" />
-        <div class="flex justify-evenly items-center">
-          <Button button-text="Update" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
-        </div>
-      </form>
-    </div>
-    <div v-else>
-      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
-        Add Institution
-      </p>
-      <form id="Inst" class="px-10" @submit.prevent="() => {
-        modalVisibility = false
-        createInstitution()
-      }">
-        <FormField v-model="formInput.name" label="Institution Name" />
-        <FormField v-model="formInput.code" label="Code" />
-        <FormField v-model="formInput.abbreviation" label="Abbreviation" />
-        <div class="flex justify-evenly items-center">
-          <Button button-text="Submit" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
-        </div>
-      </form>
-    </div>
-  </Modal>
+  <Teleport to="body">
+    <Modal :modal-visibility="modalVisibility" @close="
+      () => {
+        modalVisibility = false;
+        resetFormState()
+      }
+    ">
+      <div v-if="editMode">
+        <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+          Edit Institution
+        </p>
+        <form id="Inst" class="px-10" @submit.prevent="
+          () => {
+            modalVisibility = false;
+            updateInstitution();
+          }
+        ">
+          <FormField v-model="formInput.name" label="Institution Name" />
+          <FormField v-model="formInput.code" label="Code" />
+          <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+          <div class="flex justify-evenly items-center">
+            <Button button-text="Update" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
+          </div>
+        </form>
+      </div>
+      <div v-else>
+        <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+          Add Institution
+        </p>
+        <form id="Inst" class="px-10" @submit.prevent="() => {
+          modalVisibility = false
+          createInstitution()
+        }">
+          <FormField v-model="formInput.name" label="Institution Name" />
+          <FormField v-model="formInput.code" label="Code" />
+          <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+          <div class="flex justify-evenly items-center">
+            <Button button-text="Submit" button-color="bg-gold" type="Submit" class="m-5 ml-8" />
+          </div>
+        </form>
+      </div>
+    </Modal>
+  </Teleport>
 
   <Header title-text="Institutions" />
   <SearchBar @handle-filter="filterInstitutions" />
