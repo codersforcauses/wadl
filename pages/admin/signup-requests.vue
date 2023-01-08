@@ -7,6 +7,7 @@ const people = ref(data);
 
 // Filters people on first,last & email match
 const filterPeople = (searchTerm) => {
+  console.log(people);
   people.value = data.filter(
     (person) =>
       person.first.toLowerCase().includes(searchTerm.toLowerCase()) ||

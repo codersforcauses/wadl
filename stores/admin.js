@@ -2,10 +2,10 @@ import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
 import {
   collection,
-  onSnapshot,
   updateDoc,
   doc,
   deleteDoc,
+  getDocs,
 } from "firebase/firestore";
 
 export const useadminStore = defineStore("admin", {
@@ -19,25 +19,23 @@ export const useadminStore = defineStore("admin", {
     async getUsers() {
       const { $db } = useNuxtApp();
       const ref = collection($db, "users");
-      onSnapshot(ref, (snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          const person = {
-            email: doc.data().email,
-            id: doc.id,
-            firstName: doc.data().first_name,
-            lastName: doc.data().surname,
-            institutions: doc.data().institutions,
-            requesting: doc.data().requesting,
-            role: doc.data().role,
-          };
-          if (person.requesting === true) {
-            this.requestingUsers.push(person);
-          }
-        });
+      const querySnapshot = await getDocs(ref);
+      querySnapshot.forEach((doc) => {
+        const person = {
+          email: doc.data().email,
+          id: doc.id,
+          firstName: doc.data().first_name,
+          lastName: doc.data().surname,
+          institutions: doc.data().institutions,
+          requesting: doc.data().requesting,
+          role: doc.data().role,
+        };
+        if (person.requesting === true) {
+          this.requestingUsers.push(person);
+        }
       });
     },
     async acceptUser(id) {
-      this.requestingUsers = [];
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
       await updateDoc(ref, { requesting: null, role: id.role }).catch(
@@ -45,12 +43,15 @@ export const useadminStore = defineStore("admin", {
           console.log(error);
         }
       );
+      const index = this.requestingUsers.indexOf(id);
+      this.requestingUsers.splice(index, 1);
     },
     async denyUser(id) {
-      this.requestingUsers = [];
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
       await deleteDoc(ref);
+      const index = this.requestingUsers.indexOf(id);
+      this.requestingUsers.splice(index, 1);
     },
   },
 });
