@@ -24,6 +24,7 @@ export const useInstitutionStore = defineStore("institution", {
     async createInstitution(institution) {
       this.institutions.push({
         ...institution,
+        id: this.institutions.length + 1,
       });
     },
     async editInstitution(institution) {

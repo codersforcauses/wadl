@@ -50,7 +50,7 @@ const editInstitution = (inst) => {
 // Pinia
 const instStore = useInstitutionStore();
 const instInput = ref({
-  id: "",
+  id: null,
   name: "",
   code: "",
   abbreviation: "",
