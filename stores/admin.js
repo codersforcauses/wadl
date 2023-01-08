@@ -54,8 +54,7 @@ export const useadminStore = defineStore("admin", {
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
       await deleteDoc(ref)
-        .then((hello) => {
-          console.log(hello);
+        .then(() => {
           const index = this.requestingUsers.indexOf(id);
           this.requestingUsers.splice(index, 1);
           this.filteredUsers = [...this.requestingUsers];
