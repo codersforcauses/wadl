@@ -8,7 +8,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-export const useadminStore = defineStore("admin", {
+export const useAdminStore = defineStore("admin", {
   state() {
     return {
       requestingUsers: [],
@@ -46,7 +46,6 @@ export const useadminStore = defineStore("admin", {
           this.filteredUsers.splice(indexFilter, 1);
           const indexRequesting = this.requestingUsers.indexOf(id);
           this.requestingUsers.splice(indexRequesting, 1);
-          this.requestingUsers = [...this.requestingUsers];
         })
         .catch((error) => {
           console.log(error);
@@ -61,7 +60,6 @@ export const useadminStore = defineStore("admin", {
           this.filteredUsers.splice(indexFilter, 1);
           const indexRequesting = this.requestingUsers.indexOf(id);
           this.requestingUsers.splice(indexRequesting, 1);
-          this.requestingUsers = [...this.requestingUsers];
         })
         .catch((error) => {
           console.log(error);

@@ -1,9 +1,9 @@
 <script setup>
-import { useadminStore } from "../../stores/admin";
+import { useAdminStore } from "../../stores/admin";
 import { onMounted, onUnmounted } from "vue";
 
 // pinia
-const adminStore = useadminStore();
+const adminStore = useAdminStore();
 
 const approveUser = async (id) => {
   adminStore.acceptUser(id);
