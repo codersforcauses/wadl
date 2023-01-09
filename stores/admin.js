@@ -42,8 +42,10 @@ export const useadminStore = defineStore("admin", {
       const ref = doc($db, "users", id.id);
       await updateDoc(ref, { requesting: null, role: id.role })
         .then(() => {
-          const index = this.filteredUsers.indexOf(id);
-          this.filteredUsers.splice(index, 1);
+          const indexFilter = this.filteredUsers.indexOf(id);
+          this.filteredUsers.splice(indexFilter, 1);
+          const indexRequesting = this.requestingUsers.indexOf(id);
+          this.requestingUsers.splice(indexRequesting, 1);
           this.requestingUsers = [...this.requestingUsers];
         })
         .catch((error) => {
@@ -55,9 +57,11 @@ export const useadminStore = defineStore("admin", {
       const ref = doc($db, "users", id.id);
       await deleteDoc(ref)
         .then(() => {
-          const index = this.requestingUsers.indexOf(id);
-          this.requestingUsers.splice(index, 1);
-          this.filteredUsers = [...this.requestingUsers];
+          const indexFilter = this.filteredUsers.indexOf(id);
+          this.filteredUsers.splice(indexFilter, 1);
+          const indexRequesting = this.requestingUsers.indexOf(id);
+          this.requestingUsers.splice(indexRequesting, 1);
+          this.requestingUsers = [...this.requestingUsers];
         })
         .catch((error) => {
           console.log(error);
