@@ -81,7 +81,6 @@ const filterUser = (searchTerm) => {
                 Adjudicator Coordinator
               </option>
               <option value="Team Coordinator">Team Coordinator</option>
-              <option value="Admin">Admin</option>
             </select>
           </td>
           <td class="flex flex-row justify-evenly">
