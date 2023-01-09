@@ -6,6 +6,7 @@
     required
     class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat heading-montserrat"
     :value="modelValue"
+    min="0"
     @input="updateInput"
   />
 </template>
