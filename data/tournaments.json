@@ -1,77 +1,16 @@
 [
-    {
-        "id": "1",
-        "tournament": "Disinformation Station",
-        "venue": "South Street"
-    },
-    {
-        "id": "2",
-        "tournament": "Objection Prix",
-        "venue": "North Neighbourhood"
-    },
-    {
-        "id": "3",
-        "tournament": "Disagreement Cup",
-        "venue": "West Wayside"
-    },
-    {
-        "id": "4",
-        "tournament": "Misunderstood Misters",
-        "venue": "East Evermoore"
-    },
-    {
-        "id": "5",
-        "tournament": "Miss-Understood Madams",
-        "venue": "Adjacent Avenue"
-    },
-    {
-        "id": "6",
-        "tournament": "Malicious Mediaries",
-        "venue": "Sideways Sidewood"
-    },
-    {
-        "id": "7",
-        "tournament": "Sensationalist Sables",
-        "venue": "Forward Foliage"
-    },
-    {
-        "id": "8",
-        "tournament": "Bedrock Bash",
-        "venue": "Vinacious Venue"
-    },
-    {
-        "id": "9",
-        "tournament": "Bangin' Mashes",
-        "venue": "Whacky Walkway"
-    },
-    {
-        "id": "10",
-        "tournament": "Frosty Chocolate Milkshakes",
-        "venue": "Rowdy Road"
-    },
-    {
-        "id": "11",
-        "tournament": "Vivacious Vibers",
-        "venue": "Pondering Parade"
-    },
-    {
-        "id": "12",
-        "tournament": "Silly Sausages",
-        "venue": "Naughty Dog Productions"
-    },
-    {
-        "id": "13",
-        "tournament": "Zaney Zanathustras",
-        "venue": "Illios"
-    },
-    {
-        "id": "14",
-        "tournament": "Naughty Nihilists",
-        "venue": "Poignant Point"
-    },
-    {
-        "id": "15",
-        "tournament": "Salacious Salubriants",
-        "venue": "Omicron Persei 8"
-    }
+  {
+    "id": "1",
+    "name": "Disinformation Station",
+    "shortName": "DS",
+    "status": "Running",
+    "rounds": "8"
+  },
+  {
+    "id": "2",
+    "name": "Test Tournament",
+    "shortName": "TT",
+    "status": "Complete",
+    "rounds": "6"
+  }
 ]

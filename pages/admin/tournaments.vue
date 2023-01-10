@@ -1,21 +1,20 @@
 <!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <Modal
-    :modal-visibility="modalVisibility"
     @close="
       () => {
-        modalVisibility = false;
+        modalStore.modalVisibility = false;
         resetFormState();
       }
     "
   >
-    <div v-if="editMode">
+    <div v-if="modalStore.editMode">
       <Header titleText="Edit Tournament" />
       <form
         class="px-10"
         @submit.prevent="
           () => {
-            modalVisibility = false;
+            modalStore.modalVisibility = false;
             updateTournament();
           }
         "
@@ -23,17 +22,20 @@
         <div class="grid grid-cols-2 gap-x-4">
           <div>
             <FormField
-              v-model="form.name"
+              v-model="modalStore.form.name"
               label="Tournament Name"
               placeholder="Name"
             />
           </div>
           <div class="mt-6">
-            <FormField v-model="form.shortName" placeholder="Short Name" />
+            <FormField
+              v-model="modalStore.form.shortName"
+              placeholder="Short Name"
+            />
           </div>
         </div>
         <FormField
-          v-model="form.rounds"
+          v-model="modalStore.form.rounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -53,7 +55,7 @@
         class="px-10"
         @submit.prevent="
           () => {
-            modalVisibility = false;
+            modalStore.modalVisibility = false;
             createTournament();
           }
         "
@@ -78,7 +80,7 @@
         />
         <div class="flex justify-evenly items-center">
           <Button
-            button-text="Update"
+            button-text="Save"
             button-color="bg-gold"
             type="Submit"
             class="m-5 ml-8"
@@ -98,13 +100,14 @@
       button-text="Add Tournament"
       button-color="bg-gold"
       class="m-5 ml-8"
-      @click="modalVisibility = true"
+      @click="modalStore.modalVisibility = true"
     />
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
 import data from "../../data/tournaments.json";
+import { useModalStore } from "../../stores/modal";
 
 const defaultInputState = {
   id: null,
@@ -114,15 +117,14 @@ const defaultInputState = {
   rounds: null,
 };
 
-const modalVisibility = ref(false);
-const editMode = ref(false);
 const form = ref({ ...defaultInputState });
 
 //const store = useTournamentStore();
+const modalStore = useModalStore();
 
 const resetFormState = () => {
   form.value = { ...defaultInputState };
-  editMode.value = false;
+  modalStore.editMode = false;
 };
 
 const tournaments = ref(data);
@@ -136,25 +138,21 @@ const handleFilter = (searchTerm) => {
 };
 
 const updateTournament = () => {
-  // update store
-  // store.editInstitution(formInput.value);
   resetFormState();
 };
 
 const createTournament = () => {
-  // update store
-  // store.createInstitution(formInput.value);
   resetFormState();
 };
 
 const headers = [
   {
-    key: "tournament",
+    key: "name",
     title: "Tournament",
   },
   {
-    key: "venue",
-    title: "Venue",
+    key: "status",
+    title: "Status",
   },
 ];
 </script>
