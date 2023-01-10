@@ -38,17 +38,11 @@ export const useAdminStore = defineStore("admin", {
           setDoc(usersRef, data)
             .then(() => {})
             .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log(errorCode, errorMessage);
-              this.errorCode = error.code;
+              this.cleanUpError(error);
             });
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          this.errorCode = error.code;
-          console.log(errorCode + errorMessage);
+          this.cleanUpError(error);
         });
     },
     async getUsers() {
@@ -98,6 +92,25 @@ export const useAdminStore = defineStore("admin", {
         .catch((error) => {
           console.log(error);
         });
+    },
+    async cleanUpError(error) {
+      switch (error.code) {
+        case "auth/weak-password":
+          this.errorCode = "Please use a password greater than 6 characters";
+          break;
+        case "auth/email-already-in-use":
+          this.errorCode = "E-mail already in use";
+          break;
+        case "auth/invalid-email":
+          this.errorCode = "Invalid Email";
+          break;
+        case "auth/network-request-failed":
+          this.errorCode = "Network Failed, Please try again";
+          break;
+        default:
+          this.errorCode = "Error please try again";
+          break;
+      }
     },
     async clearStore() {
       this.requestingUsers = [];

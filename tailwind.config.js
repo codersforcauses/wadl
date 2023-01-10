@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./admin/create-admin.vue",
     "./components/**/*.vue",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
@@ -35,6 +36,7 @@ module.exports = {
         "light-red": "hsl(0, 79%, 72%, 20%)",
         "dark-red": "#C74B4B",
         "light-green": "#3EBD93",
+        "danger-red": "#D63C3C",
       },
     },
   },

@@ -16,7 +16,7 @@ const form = ref({
 // Call The User Store
 const registerUser = (e) => {
   userStore.addUser(form.value);
-  console.log(userStore.errorCode);
+  console.log(userStore.errorCode.value);
 };
 </script>
 <template>
@@ -56,6 +56,9 @@ const registerUser = (e) => {
         placeholder="Confirm Password"
         type="password"
       />
+      <p v-if="userStore.errorCode" class="text-danger-red">
+        {{ userStore.errorCode }}
+      </p>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <div class="w-full flex justify-center">
           <Button button-text="Submit" button-color="bg-gold" />
