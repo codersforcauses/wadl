@@ -12,6 +12,7 @@ export const useUserStore = defineStore("user", {
       id: null,
       firstName: null,
       lastName: null,
+      phoneNumber: null,
       email: null,
       role: null,
     };
@@ -33,6 +34,7 @@ export const useUserStore = defineStore("user", {
             requesting: true,
             first_name: user.firstName,
             last_name: user.lastName,
+            phone_number: user.phoneNumber,
             password: user.password,
             email: user.email,
           };
@@ -66,6 +68,7 @@ export const useUserStore = defineStore("user", {
               this.id = doc.data().ID;
               this.firstName = doc.data().first_name;
               this.lastName = doc.data().last_name;
+              this.phoneNumber = doc.data().phone_number;
               this.email = doc.data().email;
               this.role = doc.data().role;
             })
@@ -84,6 +87,7 @@ export const useUserStore = defineStore("user", {
       this.firstName = null;
       this.lastName = null;
       this.email = null;
+      this.phoneNumber = null;
       this.role = null;
     },
   },
