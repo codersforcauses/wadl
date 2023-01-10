@@ -16,7 +16,6 @@ const form = ref({
 // Call The User Store
 const registerUser = (e) => {
   userStore.addUser(form.value);
-  console.log(userStore.errorCode.value);
 };
 </script>
 <template>

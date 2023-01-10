@@ -95,14 +95,8 @@ export const useAdminStore = defineStore("admin", {
     },
     async cleanUpError(error) {
       switch (error.code) {
-        case "auth/weak-password":
-          this.errorCode = "Please use a password greater than 6 characters";
-          break;
         case "auth/email-already-in-use":
           this.errorCode = "E-mail already in use";
-          break;
-        case "auth/invalid-email":
-          this.errorCode = "Invalid Email";
           break;
         case "auth/network-request-failed":
           this.errorCode = "Network Failed, Please try again";

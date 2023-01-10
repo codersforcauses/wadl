@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./admin/create-admin.vue",
+    "./admin/**/*.vue",
     "./components/**/*.vue",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
