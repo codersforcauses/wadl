@@ -14,6 +14,7 @@ export const useAdminStore = defineStore("admin", {
     return {
       requestingUsers: [],
       filteredUsers: [],
+      errorCode: null,
     };
   },
   getters: {},
@@ -40,11 +41,13 @@ export const useAdminStore = defineStore("admin", {
               const errorCode = error.code;
               const errorMessage = error.message;
               console.log(errorCode, errorMessage);
+              this.errorCode = error.code;
             });
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+          this.errorCode = error.code;
           console.log(errorCode + errorMessage);
         });
     },
