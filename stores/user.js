@@ -83,7 +83,7 @@ export const useUserStore = defineStore("user", {
       console.log(AuthErrorCodes);
       switch (error.code) {
         case "auth/user-not-found":
-          this.errorCode = "Account not found, try again with a new email";
+          this.errorCode = "Account not found, try again with a new account";
           break;
         case "auth/email-already-in-use":
           this.errorCode = "E-mail already in use";

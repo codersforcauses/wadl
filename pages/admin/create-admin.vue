@@ -1,8 +1,11 @@
+<!-- eslint-disable no-undef -->
 <script setup>
 import { useAdminStore } from "../../stores/admin";
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 
 const userStore = useAdminStore();
+const { errorCode } = storeToRefs(userStore);
 const form = ref({
   firstName: "",
   lastName: "",
@@ -16,6 +19,12 @@ const form = ref({
 // Call The User Store
 const registerUser = (e) => {
   userStore.addUser(form.value);
+  console.log(errorCode);
+  watch(errorCode, (currentValue, oldValue) => {
+    if (currentValue === "" || oldValue === "") {
+      navigateTo({ path: "/admin" });
+    }
+  });
 };
 </script>
 <template>

@@ -40,6 +40,7 @@ export const useAdminStore = defineStore("admin", {
             .catch((error) => {
               this.cleanUpError(error);
             });
+          this.errorCode = "";
         })
         .catch((error) => {
           this.cleanUpError(error);
