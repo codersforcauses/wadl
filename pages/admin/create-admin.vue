@@ -17,15 +17,15 @@ const form = ref({
 });
 
 // Call The User Store
-const registerUser = (e) => {
+const registerUser = () => {
   userStore.addUser(form.value);
-  console.log(errorCode);
-  watch(errorCode, (currentValue, oldValue) => {
-    if (currentValue === "" || oldValue === "") {
-      navigateTo({ path: "/admin" });
-    }
-  });
 };
+
+watch(errorCode, (currentValue, oldValue) => {
+  if (currentValue === "") {
+    navigateTo({ path: "/admin" });
+  }
+});
 </script>
 <template>
   <section class="flex justify-center items-center h-[calc(100vh-72px)]">

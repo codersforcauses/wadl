@@ -21,7 +21,7 @@ export const useAdminStore = defineStore("admin", {
   actions: {
     async addUser(user) {
       const { $db, $auth } = useNuxtApp();
-      createUserWithEmailAndPassword($auth, user.email, user.password)
+      await createUserWithEmailAndPassword($auth, user.email, user.password)
         .then((userCredential) => {
           const person = userCredential.user;
           const usersRef = doc($db, "users", person.uid);
@@ -43,7 +43,7 @@ export const useAdminStore = defineStore("admin", {
           this.errorCode = "";
         })
         .catch((error) => {
-          this.cleanUpError(error);
+          this.handleError(error);
         });
     },
     async getUsers() {
@@ -94,7 +94,7 @@ export const useAdminStore = defineStore("admin", {
           console.log(error);
         });
     },
-    async cleanUpError(error) {
+    handleError(error) {
       switch (error.code) {
         case "auth/email-already-in-use":
           this.errorCode = "E-mail already in use";
