@@ -95,7 +95,7 @@
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
     <Table :headers="headers" :data="tournaments" />
   </div>
-  <div class="inset-x-0 hottom-0 w-full bg-white">
+  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
       button-text="Add Tournament"
       button-color="bg-gold"
