@@ -1,9 +1,9 @@
 <script setup>
 import adminRoles from "./adminRoles.vue";
-import { useUserStore } from "../../stores/user";
+import { useAdminStore } from "../../stores/admin";
 import { ref } from "vue";
 
-const userStore = useUserStore();
+const userStore = useAdminStore();
 const form = ref({
   firstName: "",
   lastName: "",
@@ -16,7 +16,7 @@ const form = ref({
 
 // Call The User Store
 const registerUser = (e) => {
-  userStore.registerUser(form.value);
+  userStore.addUser(form.value);
 };
 </script>
 <template>

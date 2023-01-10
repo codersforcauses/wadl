@@ -21,7 +21,6 @@ export const useUserStore = defineStore("user", {
   actions: {
     // to view how the data and other stuff happens inside these functions please read the README in the Firebase folder
     async registerUser(user) {
-      console.log(user);
       const { $db, $auth } = useNuxtApp();
       createUserWithEmailAndPassword($auth, user.email, user.password)
         .then((userCredential) => {

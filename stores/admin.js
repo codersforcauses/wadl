@@ -6,8 +6,9 @@ import {
   doc,
   deleteDoc,
   getDocs,
+  setDoc,
 } from "firebase/firestore";
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
 export const useAdminStore = defineStore("admin", {
   state() {
     return {
@@ -17,6 +18,36 @@ export const useAdminStore = defineStore("admin", {
   },
   getters: {},
   actions: {
+    async addUser(user) {
+      const { $db, $auth } = useNuxtApp();
+      createUserWithEmailAndPassword($auth, user.email, user.password)
+        .then((userCredential) => {
+          const person = userCredential.user;
+          const usersRef = doc($db, "users", person.uid);
+          const data = {
+            ID: person.uid,
+            role: user.role,
+            requesting: false,
+            first_name: user.firstName,
+            last_name: user.lastName,
+            phone_number: user.phoneNumber,
+            password: user.password,
+            email: user.email,
+          };
+          setDoc(usersRef, data)
+            .then(() => {})
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorCode, errorMessage);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode + errorMessage);
+        });
+    },
     async getUsers() {
       const { $db } = useNuxtApp();
       const ref = collection($db, "users");
