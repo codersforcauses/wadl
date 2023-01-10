@@ -1,6 +1,8 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useUserStore } from "../stores/user";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   // contains nuxt env vars
@@ -28,6 +30,17 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     connectFirestoreEmulator(db, "localhost", 8080);
     console.log("emulate");
   }
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("there is a user");
+      const userStore = useUserStore();
+      userStore.SetUser(user);
+    } else {
+      console.log("no user");
+    }
+  });
 
   return {
     provide: {
