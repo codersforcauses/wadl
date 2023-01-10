@@ -8,7 +8,7 @@
           <th
             v-for="(object, index) in headers"
             :key="index"
-            class="py-3 text-left font-carterone h-10 border-b"
+            class="py-3 text-left font-carterone h-10 border-b pl-2"
           >
             {{ object.title }}
           </th>
@@ -25,11 +25,11 @@
           <td
             v-for="(object, ind) in headers"
             :key="ind"
-            class="font-montserrat py-2"
+            class="font-montserrat p-2"
           >
             {{ row[object.key] }}
           </td>
-          <td v-if="canEdit" class="w-48 text-right">
+          <td v-if="canEdit" class="w-48 text-right p-2">
             <button
               @click="
                 () => {

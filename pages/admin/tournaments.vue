@@ -132,8 +132,8 @@ const tournaments = ref(data);
 const handleFilter = (searchTerm) => {
   tournaments.value = data.filter(
     (tournament) =>
-      tournament.tournament.toLowerCase().includes(searchTerm) ||
-      tournament.venue.toLowerCase().includes(searchTerm)
+      tournament.name.toLowerCase().includes(searchTerm) ||
+      tournament.status.toLowerCase().includes(searchTerm)
   );
 };
 
