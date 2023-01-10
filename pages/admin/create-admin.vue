@@ -2,7 +2,7 @@
 import { useAdminStore } from "../../stores/admin";
 import { ref } from "vue";
 
-const userStore = useAdminStore();
+const adminStore = useAdminStore();
 const form = ref({
   firstName: "",
   lastName: "",
@@ -15,7 +15,7 @@ const form = ref({
 
 // Call The User Store
 const registerUser = (e) => {
-  userStore.addUser(form.value);
+  adminStore.addUser(form.value);
 };
 </script>
 <template>
