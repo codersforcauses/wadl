@@ -26,7 +26,7 @@ export const useAdminStore = defineStore("admin", {
           const usersRef = doc($db, "users", person.uid);
           const data = {
             ID: person.uid,
-            role: user.role,
+            role: "Admin",
             requesting: false,
             first_name: user.firstName,
             last_name: user.lastName,

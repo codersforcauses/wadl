@@ -1,5 +1,4 @@
 <script setup>
-import adminRoles from "./adminRoles.vue";
 import { useAdminStore } from "../../stores/admin";
 import { ref } from "vue";
 
@@ -56,7 +55,6 @@ const registerUser = (e) => {
         placeholder="Confirm Password"
         type="password"
       />
-      <adminRoles v-model="form.role" />
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <div class="w-full flex justify-center">
           <Button button-text="Submit" button-color="bg-gold" />

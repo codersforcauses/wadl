@@ -39,7 +39,7 @@ import {
         :icon="UserCircleIcon"
       />
       <AdminButton
-        title="Add Admin"
+        title="Create Admin"
         link="admin/create-admin"
         :icon="UserPlusIcon"
       />
