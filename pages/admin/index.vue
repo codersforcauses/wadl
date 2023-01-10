@@ -36,12 +36,12 @@ import {
       <AdminButton
         title="Sign-up Requests"
         link="admin/signup-requests"
-        :icon="UserPlusIcon"
+        :icon="UserCircleIcon"
       />
       <AdminButton
         title="Add Admin"
         link="admin/create-admin"
-        :icon="UserCircleIcon"
+        :icon="UserPlusIcon"
       />
     </div>
   </div>
