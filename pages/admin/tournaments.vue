@@ -99,7 +99,7 @@
   <Header title-text="Tournaments" />
   <SearchBar @handle-filter="handleFilter" />
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="tournaments" @edit="handleEdit" />
+    <Table :headers="headers" :data="store.tournaments" @edit="handleEdit" />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
@@ -112,7 +112,7 @@
 </template>
 <script setup>
 import { ref } from "vue";
-import data from "../../data/tournaments.json";
+import { useTournamentStore } from "../../stores/tournaments";
 
 const defaultInputState = {
   id: null,
@@ -125,6 +125,7 @@ const defaultInputState = {
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
+const store = useTournamentStore();
 
 const updateSelectedLevels = (chips) => {
   form.value.levels = chips;
@@ -142,7 +143,7 @@ const handleEdit = (row) => {
   form.value = row.data;
 };
 
-const tournaments = ref(data);
+const tournaments = ref();
 
 const handleFilter = (searchTerm) => {
   tournaments.value = data.filter(
@@ -153,10 +154,12 @@ const handleFilter = (searchTerm) => {
 };
 
 const updateTournament = () => {
+  store.editTournament(form.value);
   resetFormState();
 };
 
 const createTournament = () => {
+  store.createTournament(form.value);
   resetFormState();
 };
 
