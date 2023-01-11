@@ -57,7 +57,7 @@ export const useUserStore = defineStore("user", {
         });
     },
     async LoginUser(user) {
-      const { $auth, $db } = useNuxtApp();
+      const { $auth } = useNuxtApp();
       const auth = getAuth();
       setPersistence(auth, browserSessionPersistence)
         .then(() => {
@@ -68,19 +68,7 @@ export const useUserStore = defineStore("user", {
               // remove after debug
               console.log("Store - Login User", person.uid);
 
-              const docRef = doc($db, "users", person.uid);
-              getDoc(docRef)
-                .then((doc) => {
-                  this.id = doc.data().ID;
-                  this.firstName = doc.data().first_name;
-                  this.lastName = doc.data().last_name;
-                  this.phoneNumber = doc.data().phone_number;
-                  this.email = doc.data().email;
-                  this.role = doc.data().role;
-                })
-                .catch((err) => {
-                  this.cleanUpError(err);
-                });
+              this.SetUser(person);
             })
             .catch((error) => {
               this.cleanUpError(error);
@@ -120,8 +108,8 @@ export const useUserStore = defineStore("user", {
           this.email = doc.data().email;
           this.role = doc.data().role;
         })
-        .catch((err) => {
-          console.log(err);
+        .catch((error) => {
+          this.cleanUpError(error);
         });
     },
     clearStore() {
