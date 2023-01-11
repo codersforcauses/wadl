@@ -1,6 +1,11 @@
 import { getApp } from "firebase/app";
-import { getAuth, connectAuthEmulator } from "firebase/auth";
+import {
+  getAuth,
+  connectAuthEmulator,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
+import { useUserStore } from "../stores/auth";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   // contains nuxt env vars
@@ -13,6 +18,14 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   if (config.firebaseMode === "dev") {
     connectAuthEmulator(auth, "http://localhost:9099");
   }
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("there is a user");
+      const userStore = useUserStore();
+      userStore.SetUser(user);
+    }
+  });
 
   return {
     provide: {
