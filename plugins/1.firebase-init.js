@@ -37,8 +37,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       console.log("there is a user");
       const userStore = useUserStore();
       userStore.SetUser(user);
-    } else {
-      console.log("no user");
     }
   });
 
