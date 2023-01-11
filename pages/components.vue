@@ -55,9 +55,9 @@
   <!-- Multiselect -->
   <label class="heading-montserrat">Level</label>
   <Multiselect
-    @change="updateSelectedLevels"
     placeholder="I'm placeholder text"
     :items="['Item 1', 'item 2', 'item 3']"
+    @change="updateSelectedLevels"
   />
 </template>
 

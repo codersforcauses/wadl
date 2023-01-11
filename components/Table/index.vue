@@ -47,7 +47,6 @@ import { PencilIcon } from "@heroicons/vue/24/solid";
 const emit = defineEmits(["edit"]);
 
 const handleEmit = (info) => {
-  console.log();
   emit("edit", {
     editMode: true,
     modalVisibility: true,

@@ -9,7 +9,7 @@
     "
   >
     <div v-if="editMode">
-      <Header titleText="Edit Tournament" />
+      <Header title-text="Edit Tournament" />
       <form
         class="px-10"
         @submit.prevent="
@@ -32,7 +32,10 @@
           </div>
         </div>
         <label class="heading-montserrat">Level</label>
-        <Multiselect @change="updateSelectedLevels" />
+        <Multiselect
+          @change="updateSelectedLevels"
+          :selected-chips="form.levels"
+        />
         <FormField
           v-model="form.rounds"
           label="Rounds"
@@ -49,7 +52,7 @@
       </form>
     </div>
     <div v-else>
-      <Header titleText="Create Tournament" />
+      <Header title-text="Create Tournament" />
       <form
         class="px-10"
         @submit.prevent="
@@ -72,7 +75,10 @@
           </div>
         </div>
         <label class="heading-montserrat">Level</label>
-        <Multiselect @change="updateSelectedLevels" />
+        <Multiselect
+          @change="updateSelectedLevels"
+          :selected-chips="form.levels"
+        />
         <FormField
           v-model="form.rounds"
           label="Rounds"
@@ -90,7 +96,7 @@
     </div>
   </Modal>
 
-  <Header titleText="Tournaments" />
+  <Header title-text="Tournaments" />
   <SearchBar @handle-filter="handleFilter" />
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
     <Table :headers="headers" :data="tournaments" @edit="handleEdit" />
@@ -131,12 +137,9 @@ const resetFormState = () => {
 };
 
 const handleEdit = (row) => {
-  // handle the row data here
-  console.log("***", row);
   modalVisibility.value = row.modalVisibility;
   editMode.value = row.editMode;
   form.value = row.data;
-  console.log(form.value);
 };
 
 const tournaments = ref(data);

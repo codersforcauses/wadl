@@ -26,9 +26,6 @@
 <script setup>
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import { vOnClickOutside } from "@vueuse/components";
-// import { useModalStore } from "../../stores/modal";
-
-// const store = useModalStore();
 
 defineProps({
   modalVisibility: { type: Boolean, default: false },

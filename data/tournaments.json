@@ -4,6 +4,7 @@
     "name": "Disinformation Station",
     "shortName": "DS",
     "status": "Running",
+    "levels": ["Novice", "Junior", "Senior"],
     "rounds": "8"
   },
   {
@@ -11,6 +12,7 @@
     "name": "Test Tournament",
     "shortName": "TT",
     "status": "Complete",
+    "levels": ["Senior"],
     "rounds": "6"
   }
 ]

@@ -16,7 +16,10 @@
               class="px-3 py-1 mr-4 text-sm leading-5 font-medium bg-gold rounded-lg"
             >
               {{ item }}
-              <button class="pb-1 ml-2 align-middle" @click="removeChip(item)">
+              <button
+                class="pb-1 ml-2 align-middle"
+                @click.prevent="removeChip(item)"
+              >
                 <XMarkIcon class="h-4 w-4 cursor-pointer" />
               </button>
             </span>
@@ -61,7 +64,7 @@ import {
   ChevronDownIcon,
 } from "@heroicons/vue/20/solid";
 
-defineProps({
+const props = defineProps({
   items: {
     type: Array,
     default: () => ["Novice", "Junior", "Senior"],
@@ -70,10 +73,14 @@ defineProps({
     type: String,
     default: "Select levels",
   },
+  selectedChips: {
+    type: Array,
+    default: () => [],
+  },
 });
 
 const isOpen = ref(false);
-const selectedChips = ref([]);
+const selectedChips = ref([...props.selectedChips]);
 const emit = defineEmits(["change"]);
 
 const toggleSelection = (item) => {
@@ -86,7 +93,9 @@ const toggleSelection = (item) => {
 };
 
 const removeChip = (item) => {
+  console.log("REMVOING CHIP", isOpen.value, selectedChips.value);
   selectedChips.value = selectedChips.value.filter((i) => i !== item);
   emit("change", selectedChips.value);
+  console.log("after CHIP", isOpen.value, selectedChips.value);
 };
 </script>
