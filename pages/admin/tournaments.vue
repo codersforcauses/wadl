@@ -33,8 +33,8 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          @change="updateSelectedLevels"
           :selected-chips="form.levels"
+          @change="updateSelectedLevels"
         />
         <FormField
           v-model="form.rounds"
@@ -76,8 +76,8 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          @change="updateSelectedLevels"
           :selected-chips="form.levels"
+          @change="updateSelectedLevels"
         />
         <FormField
           v-model="form.rounds"
@@ -129,7 +129,6 @@ const store = useTournamentStore();
 
 const updateSelectedLevels = (chips) => {
   form.value.levels = chips;
-  console.log(form.value);
 };
 
 const resetFormState = () => {
@@ -143,14 +142,12 @@ const handleEdit = (row) => {
   form.value = row.data;
 };
 
-const tournaments = ref();
-
 const handleFilter = (searchTerm) => {
-  tournaments.value = data.filter(
-    (tournament) =>
-      tournament.name.toLowerCase().includes(searchTerm) ||
-      tournament.status.toLowerCase().includes(searchTerm)
-  );
+  // tournaments.value = data.filter(
+  //   (tournament) =>
+  //     tournament.name.toLowerCase().includes(searchTerm) ||
+  //     tournament.status.toLowerCase().includes(searchTerm)
+  // );
 };
 
 const updateTournament = () => {

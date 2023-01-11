@@ -93,9 +93,7 @@ const toggleSelection = (item) => {
 };
 
 const removeChip = (item) => {
-  console.log("REMVOING CHIP", isOpen.value, selectedChips.value);
   selectedChips.value = selectedChips.value.filter((i) => i !== item);
   emit("change", selectedChips.value);
-  console.log("after CHIP", isOpen.value, selectedChips.value);
 };
 </script>
