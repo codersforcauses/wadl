@@ -32,12 +32,12 @@ const headers = [
 ];
 const levelTabs = [
   { label: "Novice", active: false },
-  { label: "Junior", active: true },
+  { label: "Junior", active: false },
   { label: "Senior", active: false },
 ];
 
 const roundTabs = [
-  { label: "Round 1", active: true },
+  { label: "Round 1", active: false },
   { label: "Round 2", active: false },
   { label: "Round 3", active: false },
   { label: "Round 4", active: false },
@@ -97,6 +97,9 @@ const handleFilter = (searchTerm) => {
       d.topic.toLowerCase().includes(searchTerm)
   );
 };
+
+const route = useRoute();
+console.log(route.params.tournamentId);
 </script>
 
 <template>
