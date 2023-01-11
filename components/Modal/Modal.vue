@@ -1,7 +1,7 @@
 <template>
   <Transition name="modal">
     <div
-      v-if="store.modalVisibility"
+      v-if="modalVisibility"
       class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-slate-300 bg-opacity-60 transition"
     >
       <div
@@ -26,13 +26,13 @@
 <script setup>
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import { vOnClickOutside } from "@vueuse/components";
-import { useModalStore } from "../../stores/modal";
+// import { useModalStore } from "../../stores/modal";
 
-const store = useModalStore();
+// const store = useModalStore();
 
-// defineProps({
-//   modalVisibility: { type: Boolean, default: false },
-// });
+defineProps({
+  modalVisibility: { type: Boolean, default: false },
+});
 const emit = defineEmits(["close"]);
 </script>
 <style>

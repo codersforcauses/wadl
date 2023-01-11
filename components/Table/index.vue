@@ -30,15 +30,7 @@
             {{ row[object.key] }}
           </td>
           <td v-if="canEdit" class="w-48 text-right p-2">
-            <button
-              @click="
-                () => {
-                  modalStore.editMode = true;
-                  modalStore.modalVisibility = true;
-                  modalStore.form = row;
-                }
-              "
-            >
+            <button @click="handleEmit(row)">
               <PencilIcon class="w-4 h-4" />
             </button>
           </td>
@@ -51,9 +43,17 @@
 
 <script setup>
 import { PencilIcon } from "@heroicons/vue/24/solid";
-import { useModalStore } from "../../stores/modal";
 
-const modalStore = useModalStore();
+const emit = defineEmits(["edit"]);
+
+const handleEmit = (info) => {
+  console.log();
+  emit("edit", {
+    editMode: true,
+    modalVisibility: true,
+    data: { ...info },
+  });
+};
 
 defineProps({
   headers: {
