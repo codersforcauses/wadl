@@ -2,7 +2,7 @@ import { initializeApp, getApps } from "firebase/app";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useUserStore } from "../stores/user";
+import { useUserStore } from "../stores/auth";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   // contains nuxt env vars

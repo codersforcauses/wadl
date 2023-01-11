@@ -57,7 +57,7 @@
 
 <script setup>
 import Roles from "./Roles.vue";
-import { useUserStore } from "../../stores/user";
+import { useUserStore } from "../../stores/auth";
 import { ref } from "vue";
 
 const userStore = useUserStore();
