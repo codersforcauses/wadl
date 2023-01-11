@@ -130,12 +130,6 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
-console.log(store.tournaments);
-console.log(store.getFiltered);
-// const f = ref(store.filteredTournaments);
-
-// const { filteredTournaments } = useTournamentStore();
-// console.log(filteredTournaments);
 
 const updateSelectedLevels = (chips) => {
   form.value.levels = chips;
