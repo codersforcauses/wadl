@@ -161,3 +161,8 @@ node_modules
 .output
 .env
 dist
+
+# Cypress
+cypress/videos
+cypress/screenshots
+cypress/downloads

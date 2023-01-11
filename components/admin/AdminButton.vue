@@ -18,6 +18,7 @@ defineProps({
 <template>
   <div class="flex items-center justify-self-center">
     <NuxtLink
+      data-test="adminButton"
       :to="link"
       data-mdb-ripple="true"
       data-mdb-ripple-color="light"
