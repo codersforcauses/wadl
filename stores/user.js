@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
+  AuthErrorCodes,
   getAuth,
   setPersistence,
   signInWithEmailAndPassword,
@@ -19,6 +20,7 @@ export const useUserStore = defineStore("user", {
       phoneNumber: null,
       email: null,
       role: null,
+      errorCode: "",
     };
   },
   getters: {},
@@ -47,15 +49,11 @@ export const useUserStore = defineStore("user", {
               console.log("added");
             })
             .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log(errorCode, errorMessage);
+              this.cleanUpError(error);
             });
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode + errorMessage);
+          this.cleanUpError(error);
         });
     },
     async LoginUser(user) {
@@ -81,18 +79,34 @@ export const useUserStore = defineStore("user", {
                   this.role = doc.data().role;
                 })
                 .catch((err) => {
-                  console.log(err);
+                  this.cleanUpError(err);
                 });
             })
             .catch((error) => {
-              console.log(error);
+              this.cleanUpError(error);
             });
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          this.cleanUpError(error);
         });
+    },
+    async cleanUpError(error) {
+      console.log(error);
+      console.log(AuthErrorCodes);
+      switch (error.code) {
+        case "auth/user-not-found":
+          this.errorCode = "Account not found, try again with a new account";
+          break;
+        case "auth/email-already-in-use":
+          this.errorCode = "E-mail already in use";
+          break;
+        case "auth/network-request-failed":
+          this.errorCode = "Network Failed, Please try again";
+          break;
+        default:
+          this.errorCode = "Error please try again";
+          break;
+      }
     },
     SetUser(user) {
       const { $db } = useNuxtApp();
