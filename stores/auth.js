@@ -2,8 +2,12 @@ import { defineStore } from "pinia";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
   AuthErrorCodes,
-  createUserWithEmailAndPassword,
+  getAuth,
+  setPersistence,
   signInWithEmailAndPassword,
+  browserSessionPersistence,
+  createUserWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { useNuxtApp } from "#imports";
 
@@ -53,22 +57,18 @@ export const useUserStore = defineStore("user", {
         });
     },
     async LoginUser(user) {
-      const { $auth, $db } = useNuxtApp();
-      signInWithEmailAndPassword($auth, user.email, user.password)
-        .then((userCredential) => {
-          const person = userCredential.user;
-          // remove after debug
-          console.log("Store - Login User", person.uid);
+      const { $auth } = useNuxtApp();
+      const auth = getAuth();
+      setPersistence(auth, browserSessionPersistence)
+        .then(() => {
+          console.log(auth.currentUser);
+          signInWithEmailAndPassword($auth, user.email, user.password)
+            .then((userCredential) => {
+              const person = userCredential.user;
+              // remove after debug
+              console.log("Store - Login User", person.uid);
 
-          const docRef = doc($db, "users", person.uid);
-          getDoc(docRef)
-            .then((doc) => {
-              this.id = doc.data().ID;
-              this.firstName = doc.data().first_name;
-              this.lastName = doc.data().last_name;
-              this.phoneNumber = doc.data().phone_number;
-              this.email = doc.data().email;
-              this.role = doc.data().role;
+              this.SetUser(person);
             })
             .catch((error) => {
               this.cleanUpError(error);
@@ -96,13 +96,37 @@ export const useUserStore = defineStore("user", {
           break;
       }
     },
+    SetUser(user) {
+      const { $db } = useNuxtApp();
+      const docRef = doc($db, "users", user.uid);
+      getDoc(docRef)
+        .then((doc) => {
+          this.id = doc.data().ID;
+          this.firstName = doc.data().first_name;
+          this.lastName = doc.data().last_name;
+          this.phoneNumber = doc.data().phone_number;
+          this.email = doc.data().email;
+          this.role = doc.data().role;
+        })
+        .catch((error) => {
+          this.cleanUpError(error);
+        });
+    },
     clearStore() {
-      this.id = null;
-      this.firstName = null;
-      this.lastName = null;
-      this.email = null;
-      this.phoneNumber = null;
-      this.role = null;
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          this.id = null;
+          this.firstName = null;
+          this.lastName = null;
+          this.email = null;
+          this.phoneNumber = null;
+          this.role = null;
+          console.log("Sign out successful");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 });

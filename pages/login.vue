@@ -2,7 +2,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
-import { useUserStore } from "../stores/user";
+import { useUserStore } from "../stores/auth";
 
 const userStore = useUserStore();
 const { role } = storeToRefs(userStore);
