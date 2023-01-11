@@ -25,10 +25,10 @@ jobs:
           key: ${{ runner.os }}-firebase-emulators-${{ hashFiles('/home/runner/.cache/firebase/emulators/**') }}
       - name: Setup Firebase Emulators
         if: steps.cache-firebase-emulators.outputs.cache-hit != 'true'
-        run: yarn firebase setup:emulators:database \
-          & yarn firebase setup:emulators:firestore \
-          & yarn firebase setup:emulators:pubsub \
-          & yarn firebase setup:emulators:storage \
+        run: yarn firebase setup:emulators:database\
+          & yarn firebase setup:emulators:firestore\
+          & yarn firebase setup:emulators:pubsub\
+          & yarn firebase setup:emulators:storage\
           & yarn firebase setup:emulators:ui
       - name: Run Cypress
         uses: cypress-io/github-action@c5724eda82337bcff977ce14509f47052c12e04c
