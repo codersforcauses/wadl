@@ -1,8 +1,14 @@
 <template>
-  <div class="relative">
+  <div class="relative mb-2">
     <div class="rounded-md border border-light-grey p-1">
       <div class="cursor-pointer" @click="isOpen = !isOpen">
         <div class="flex items-center w-full">
+          <span
+            v-if="selectedChips.length == 0"
+            class="text-gray-400 font-montserrat pl-2"
+          >
+            {{ placeholder }}
+          </span>
           <div class="flex-1 pl-2">
             <span
               v-for="(item, index) in selectedChips"
@@ -59,6 +65,10 @@ defineProps({
   items: {
     type: Array,
     default: () => ["Novice", "Junior", "Senior"],
+  },
+  placeholder: {
+    type: String,
+    default: "Select levels",
   },
 });
 
