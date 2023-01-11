@@ -34,6 +34,8 @@
             />
           </div>
         </div>
+        <label class="heading-montserrat">Level</label>
+        <Multiselect @change="updateSelectedLevels" />
         <FormField
           v-model="modalStore.form.rounds"
           label="Rounds"
@@ -72,7 +74,8 @@
             <FormField v-model="form.shortName" placeholder="Short Name" />
           </div>
         </div>
-        <FormField v-model="form.levels" label="Levels" placeholder="To Do" />
+        <label class="heading-montserrat">Level</label>
+        <Multiselect @change="updateSelectedLevels" />
         <FormField
           v-model="form.rounds"
           label="Rounds"
@@ -119,7 +122,11 @@ const defaultInputState = {
 
 const form = ref({ ...defaultInputState });
 
-//const store = useTournamentStore();
+const updateSelectedLevels = (chips) => {
+  form.value.levels = chips;
+  console.log(form.value);
+};
+// const store = useTournamentStore();
 const modalStore = useModalStore();
 
 const resetFormState = () => {

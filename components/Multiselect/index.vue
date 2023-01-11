@@ -1,0 +1,82 @@
+<template>
+  <div class="relative">
+    <div class="rounded-md border border-light-grey p-1">
+      <div class="cursor-pointer" @click="isOpen = !isOpen">
+        <div class="flex items-center w-full">
+          <div class="flex-1 pl-2">
+            <span
+              v-for="(item, index) in selectedChips"
+              :key="index"
+              class="px-3 py-1 mr-4 text-sm leading-5 font-medium bg-gold rounded-lg"
+            >
+              {{ item }}
+              <button class="pb-1 ml-2 align-middle" @click="removeChip(item)">
+                <XMarkIcon class="h-4 w-4 cursor-pointer" />
+              </button>
+            </span>
+          </div>
+          <div class="flex items-center">
+            <ChevronUpIcon v-if="isOpen" class="h-5 w-5" />
+            <ChevronDownIcon v-else class="h-5 w-5" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      v-if="isOpen"
+      class="absolute z-10 rounded-b-md bg-white shadow-md w-full"
+    >
+      <ul class="divide-y divide-gray-200">
+        <li
+          v-for="(item, index) in items"
+          :key="index"
+          class="px-4 py-2 text-sm leading-5 cursor-pointer hover:bg-gray-50 focus:outline-none focus:bg-gray-50 accent-gold"
+          @click="toggleSelection(item)"
+        >
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              class="form-checkbox h-4 w-4 mr-4"
+              :checked="selectedChips.includes(item)"
+            />
+            <span class="ml-2">{{ item }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import {
+  XMarkIcon,
+  ChevronUpIcon,
+  ChevronDownIcon,
+} from "@heroicons/vue/20/solid";
+
+defineProps({
+  items: {
+    type: Array,
+    default: () => ["Novice", "Junior", "Senior"],
+  },
+});
+
+const isOpen = ref(false);
+const selectedChips = ref([]);
+const emit = defineEmits(["change"]);
+
+const toggleSelection = (item) => {
+  if (selectedChips.value.includes(item)) {
+    selectedChips.value = selectedChips.value.filter((i) => i !== item);
+  } else {
+    selectedChips.value.push(item);
+  }
+  emit("change", selectedChips.value);
+};
+
+const removeChip = (item) => {
+  selectedChips.value = selectedChips.value.filter((i) => i !== item);
+  emit("change", selectedChips.value);
+};
+</script>
