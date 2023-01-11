@@ -99,7 +99,11 @@
   <Header title-text="Tournaments" />
   <SearchBar @handle-filter="handleFilter" />
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="store.tournaments" @edit="handleEdit" />
+    <Table
+      :headers="headers"
+      :data="store.filteredTournaments"
+      @edit="handleEdit"
+    />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
@@ -126,6 +130,12 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
+console.log(store.tournaments);
+console.log(store.getFiltered);
+// const f = ref(store.filteredTournaments);
+
+// const { filteredTournaments } = useTournamentStore();
+// console.log(filteredTournaments);
 
 const updateSelectedLevels = (chips) => {
   form.value.levels = chips;
@@ -143,11 +153,11 @@ const handleEdit = (row) => {
 };
 
 const handleFilter = (searchTerm) => {
-  // tournaments.value = data.filter(
-  //   (tournament) =>
-  //     tournament.name.toLowerCase().includes(searchTerm) ||
-  //     tournament.status.toLowerCase().includes(searchTerm)
-  // );
+  store.filteredTournaments = store.tournaments.filter(
+    (tournament) =>
+      tournament.name.toLowerCase().includes(searchTerm) ||
+      tournament.status.toLowerCase().includes(searchTerm)
+  );
 };
 
 const updateTournament = () => {

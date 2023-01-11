@@ -21,6 +21,25 @@ export const useTournamentStore = defineStore("tournament", {
           rounds: "6",
         },
       ],
+      // This will look better once firebase is added
+      filteredTournaments: [
+        {
+          id: "1",
+          name: "Disinformation Station",
+          shortName: "DS",
+          status: "Running",
+          levels: ["Novice", "Junior", "Senior"],
+          rounds: "8",
+        },
+        {
+          id: "2",
+          name: "Test Tournament",
+          shortName: "TT",
+          status: "Complete",
+          levels: ["Senior"],
+          rounds: "6",
+        },
+      ],
     };
   },
   getters: {},
@@ -30,6 +49,7 @@ export const useTournamentStore = defineStore("tournament", {
         ...tournament,
         id: this.tournaments.length + 1,
       });
+      this.filteredTournaments = [...this.tournaments];
     },
     async editTournament(tournament) {
       this.tournaments.forEach((t) => {
@@ -37,6 +57,7 @@ export const useTournamentStore = defineStore("tournament", {
           Object.assign(t, tournament);
         }
       });
+      this.filteredTournaments = [...this.tournaments];
     },
   },
 });
