@@ -1,68 +1,6 @@
-<template>
-  <div class="relative mb-2">
-    <div class="rounded-md border border-light-grey p-1">
-      <div class="cursor-pointer" @click="isOpen = !isOpen">
-        <div class="flex items-center w-full">
-          <span
-            v-if="selectedChips.length == 0"
-            class="text-gray-400 font-montserrat pl-2"
-          >
-            {{ placeholder }}
-          </span>
-          <div class="flex-1 pl-2">
-            <span
-              v-for="(item, index) in selectedChips"
-              :key="index"
-              class="px-3 py-1 mr-4 text-sm leading-5 font-medium bg-gold rounded-lg"
-            >
-              {{ item }}
-              <button
-                class="pb-1 ml-2 align-middle"
-                @click.prevent="removeChip(item)"
-              >
-                <XMarkIcon class="h-4 w-4 cursor-pointer" />
-              </button>
-            </span>
-          </div>
-          <div class="flex items-center">
-            <ChevronUpIcon v-if="isOpen" class="h-5 w-5" />
-            <ChevronDownIcon v-else class="h-5 w-5" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      v-if="isOpen"
-      class="absolute z-10 rounded-b-md bg-white shadow-md w-full"
-    >
-      <ul class="divide-y divide-gray-200">
-        <li
-          v-for="(item, index) in items"
-          :key="index"
-          class="px-4 py-2 text-sm leading-5 cursor-pointer hover:bg-gray-50 focus:outline-none focus:bg-gray-50 accent-gold"
-          @click="toggleSelection(item)"
-        >
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              class="form-checkbox h-4 w-4 mr-4"
-              :checked="selectedChips.includes(item)"
-            />
-            <span class="ml-2">{{ item }}</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref } from "vue";
-import {
-  XMarkIcon,
-  ChevronUpIcon,
-  ChevronDownIcon,
-} from "@heroicons/vue/20/solid";
+import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
 
 const props = defineProps({
   items: {
@@ -97,3 +35,54 @@ const removeChip = (item) => {
   emit("change", selectedChips.value);
 };
 </script>
+<template>
+  <div class="relative mb-2">
+    <div class="rounded-md border border-light-grey p-1">
+      <div class="cursor-pointer" @click="isOpen = !isOpen">
+        <div class="flex items-center w-full">
+          <span
+            v-if="selectedChips.length == 0"
+            class="text-gray-400 font-montserrat pl-2"
+          >
+            {{ placeholder }}
+          </span>
+          <div class="flex-1 pl-2">
+            <Chip
+              v-for="(item, index) in selectedChips"
+              :key="index"
+              :text="item"
+              @remove-chip="removeChip"
+            />
+          </div>
+
+          <div class="flex items-center">
+            <ChevronUpIcon v-if="isOpen" class="h-5 w-5" />
+            <ChevronDownIcon v-else class="h-5 w-5" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      v-if="isOpen"
+      class="absolute z-10 rounded-b-md bg-white shadow-md w-full"
+    >
+      <ul class="divide-y divide-gray-200">
+        <li
+          v-for="(item, index) in items"
+          :key="index"
+          class="px-4 py-2 text-sm leading-5 cursor-pointer hover:bg-gray-50 focus:outline-none focus:bg-gray-50 accent-gold"
+          @click="toggleSelection(item)"
+        >
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              class="form-checkbox h-4 w-4 mr-4"
+              :checked="selectedChips.includes(item)"
+            />
+            <span class="ml-2">{{ item }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
