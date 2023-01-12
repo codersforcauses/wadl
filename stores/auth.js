@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
-  AuthErrorCodes,
   getAuth,
   setPersistence,
   signInWithEmailAndPassword,
@@ -20,6 +19,7 @@ export const useUserStore = defineStore("user", {
       phoneNumber: null,
       email: null,
       role: null,
+      requesting: null,
       errorCode: "",
     };
   },
@@ -79,8 +79,6 @@ export const useUserStore = defineStore("user", {
         });
     },
     async cleanUpError(error) {
-      console.log(error);
-      console.log(AuthErrorCodes);
       switch (error.code) {
         case "auth/user-not-found":
           this.errorCode = "Account not found, try again with a new account";
@@ -107,6 +105,7 @@ export const useUserStore = defineStore("user", {
           this.phoneNumber = doc.data().phone_number;
           this.email = doc.data().email;
           this.role = doc.data().role;
+          this.requesting = doc.data().requesting;
         })
         .catch((error) => {
           this.cleanUpError(error);
@@ -122,6 +121,7 @@ export const useUserStore = defineStore("user", {
           this.email = null;
           this.phoneNumber = null;
           this.role = null;
+          this.errorCode = null;
           console.log("Sign out successful");
         })
         .catch((error) => {
