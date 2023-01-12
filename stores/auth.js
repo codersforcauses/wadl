@@ -28,7 +28,7 @@ export const useUserStore = defineStore("user", {
     // to view how the data and other stuff happens inside these functions please read the README in the Firebase folder
     async registerUser(user) {
       const { $db, $auth } = useNuxtApp();
-      createUserWithEmailAndPassword($auth, user.email, user.password)
+      await createUserWithEmailAndPassword($auth, user.email, user.password)
         .then((userCredential) => {
           // remove this after enough debugging has been done
           console.log(userCredential);
@@ -59,10 +59,10 @@ export const useUserStore = defineStore("user", {
     async LoginUser(user) {
       const { $auth } = useNuxtApp();
       const auth = getAuth();
-      setPersistence(auth, browserSessionPersistence)
-        .then(() => {
+      await setPersistence(auth, browserSessionPersistence)
+        .then(async () => {
           console.log(auth.currentUser);
-          signInWithEmailAndPassword($auth, user.email, user.password)
+          await signInWithEmailAndPassword($auth, user.email, user.password)
             .then((userCredential) => {
               const person = userCredential.user;
               // remove after debug
@@ -78,7 +78,7 @@ export const useUserStore = defineStore("user", {
           this.cleanUpError(error);
         });
     },
-    async cleanUpError(error) {
+    cleanUpError(error) {
       switch (error.code) {
         case "auth/user-not-found":
           this.errorCode = "Account not found, try again with a new account";
@@ -94,10 +94,10 @@ export const useUserStore = defineStore("user", {
           break;
       }
     },
-    SetUser(user) {
+    async SetUser(user) {
       const { $db } = useNuxtApp();
       const docRef = doc($db, "users", user.uid);
-      getDoc(docRef)
+      await getDoc(docRef)
         .then((doc) => {
           this.id = doc.data().ID;
           this.firstName = doc.data().first_name;
@@ -111,9 +111,9 @@ export const useUserStore = defineStore("user", {
           this.cleanUpError(error);
         });
     },
-    clearStore() {
+    async clearStore() {
       const auth = getAuth();
-      signOut(auth)
+      await signOut(auth)
         .then(() => {
           this.id = null;
           this.firstName = null;

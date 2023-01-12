@@ -10,6 +10,7 @@ import { useUserStore } from "../stores/auth";
 export default defineNuxtPlugin(async (nuxtApp) => {
   // contains nuxt env vars
   const config = useRuntimeConfig();
+  const userStore = useUserStore();
 
   const firebaseApp = getApp(); // app initialized in 1.firebase-init.js
 
@@ -21,8 +22,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("there is a user");
-      const userStore = useUserStore();
+      console.log("there is a user", user);
       userStore.SetUser(user);
     }
   });
