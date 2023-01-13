@@ -22,8 +22,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      console.log("there is a user", user);
       userStore.SetUser(user);
+    } else {
+      userStore.SetUser(null);
     }
   });
 

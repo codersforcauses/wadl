@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
-  getAuth,
   setPersistence,
   signInWithEmailAndPassword,
   browserSessionPersistence,
@@ -22,6 +21,15 @@ export const useUserStore = defineStore("user", {
       requesting: null,
       errorCode: "",
     };
+  },
+  persist: {
+    key: "pinia-store",
+    beforeRestore: (ctx) => {
+      console.log(`about to restore '${ctx.store.$id}'`);
+    },
+    debug: true,
+    persist: true,
+    storage: persistedState.sessionStorage,
   },
   getters: {},
   actions: {
@@ -58,21 +66,11 @@ export const useUserStore = defineStore("user", {
     },
     async LoginUser(user) {
       const { $auth } = useNuxtApp();
-      const auth = getAuth();
-      await setPersistence(auth, browserSessionPersistence)
-        .then(async () => {
-          console.log(auth.currentUser);
-          await signInWithEmailAndPassword($auth, user.email, user.password)
-            .then((userCredential) => {
-              const person = userCredential.user;
-              // remove after debug
-              console.log("Store - Login User", person.uid);
-
-              this.SetUser(person);
-            })
-            .catch((error) => {
-              this.cleanUpError(error);
-            });
+      await signInWithEmailAndPassword($auth, user.email, user.password)
+        .then((userCredential) => {
+          console.log(userCredential);
+          const person = userCredential.user;
+          this.SetUser(person);
         })
         .catch((error) => {
           this.cleanUpError(error);
@@ -95,25 +93,27 @@ export const useUserStore = defineStore("user", {
       }
     },
     async SetUser(user) {
-      const { $db } = useNuxtApp();
-      const docRef = doc($db, "users", user.uid);
-      await getDoc(docRef)
-        .then((doc) => {
-          this.id = doc.data().ID;
-          this.firstName = doc.data().first_name;
-          this.lastName = doc.data().last_name;
-          this.phoneNumber = doc.data().phone_number;
-          this.email = doc.data().email;
-          this.role = doc.data().role;
-          this.requesting = doc.data().requesting;
-        })
-        .catch((error) => {
-          this.cleanUpError(error);
-        });
+      if (user !== null) {
+        const { $db } = useNuxtApp();
+        const docRef = doc($db, "users", user.uid);
+        await getDoc(docRef)
+          .then((doc) => {
+            this.id = doc.data().ID;
+            this.firstName = doc.data().first_name;
+            this.lastName = doc.data().last_name;
+            this.phoneNumber = doc.data().phone_number;
+            this.email = doc.data().email;
+            this.role = doc.data().role;
+            this.requesting = doc.data().requesting;
+          })
+          .catch((error) => {
+            this.cleanUpError(error);
+          });
+      }
     },
     async clearStore() {
-      const auth = getAuth();
-      await signOut(auth)
+      const { $auth } = useNuxtApp();
+      await signOut($auth)
         .then(() => {
           this.id = null;
           this.firstName = null;
