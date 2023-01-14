@@ -14,6 +14,7 @@
     "dev:docker": "docker-compose up"
   },
   "devDependencies": {
+    "@kevinmarrec/nuxt-pwa": "^0.15.0",
     "@vue/eslint-config-standard": "^8.0.1",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.0.1",
