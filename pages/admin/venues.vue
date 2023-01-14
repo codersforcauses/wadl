@@ -125,12 +125,6 @@ const headers = [
             type="Submit"
             class="m-5 ml-8"
           />
-          <!-- <Button
-            button-text="Delete"
-            button-color="bg-red"
-            type="Submit"
-            class="m-5 ml-8"
-          /> -->
         </div>
       </form>
     </div>
@@ -148,9 +142,27 @@ const headers = [
         "
       >
         <FormField v-model="formInput.name" label="Venue Name" />
-        <FormField v-model="formInput.roomNo" label="Room Number" />
-        <FormField v-model="formInput.capacity" label="Team Capacity" />
-        <FormField v-model="formInput.days" label="Days" />
+        <div class="grid grid-cols-2 gap-x-4">
+          <div>
+            <FormField v-model="formInput.roomNo" label="Room Number" />
+          </div>
+          <div>
+            <FormField v-model="formInput.capacity" label="Team Capacity" />
+          </div>
+        </div>
+        <label class="heading-montserrat">Days</label>
+        <Multiselect
+          :selected-chips="formInput.days"
+          :items="[
+            'Tuesday W1',
+            'Tuesday W2',
+            'Wednesday W1',
+            'Wednesday W2',
+            'Any',
+          ]"
+          placeholder="Select Days"
+          @change="updateSelectedDays"
+        />
         <div class="flex justify-evenly items-center">
           <Button
             button-text="Submit"
