@@ -48,11 +48,11 @@ const chipSize = computed(() => {
         }
       "
     >
-    <div class="hover:bg-amber-500 transition rounded-lg">
-      <XMarkIcon
-        class="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5"
-        :class="`${buttonSize}`"
-      />
+      <div class="hover:bg-amber-500 transition rounded-lg">
+        <XMarkIcon
+          class="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5"
+          :class="`${buttonSize}`"
+        />
       </div>
     </button>
   </span>

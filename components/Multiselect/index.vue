@@ -54,7 +54,6 @@ const removeChip = (item) => {
               @remove-chip="removeChip"
             />
           </div>
-
           <div class="flex items-center">
             <ChevronUpIcon v-if="isOpen" class="h-5 w-5" />
             <ChevronDownIcon v-else class="h-5 w-5" />
@@ -62,27 +61,37 @@ const removeChip = (item) => {
         </div>
       </div>
     </div>
-    <div
-      v-if="isOpen"
-      class="absolute z-10 rounded-b-md bg-white shadow-md w-full"
-    >
-      <ul class="divide-y divide-gray-200">
-        <li
-          v-for="(item, index) in items"
-          :key="index"
-          class="px-4 py-2 text-sm leading-5 cursor-pointer hover:bg-gray-50 focus:outline-none focus:bg-gray-50 accent-gold"
-          @click="toggleSelection(item)"
-        >
-          <div class="flex items-center">
-            <input
-              type="checkbox"
-              class="form-checkbox h-4 w-4 mr-4"
-              :checked="selectedChips.includes(item)"
-            />
-            <span class="ml-2">{{ item }}</span>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <Transition name="drop-down">
+      <div
+        v-if="isOpen"
+        class="absolute z-10 rounded-b-md bg-white shadow-md w-full transition"
+      >
+        <ul class="divide-y divide-gray-200">
+          <li
+            v-for="(item, index) in items"
+            :key="index"
+            class="px-4 py-2 text-sm leading-5 cursor-pointer hover:bg-gray-50 focus:outline-none focus:bg-gray-50 accent-gold"
+            @click="toggleSelection(item)"
+          >
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                class="form-checkbox h-4 w-4 mr-4"
+                :checked="selectedChips.includes(item)"
+              />
+              <span class="ml-2">{{ item }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </Transition>
   </div>
 </template>
+<style>
+.drop-down-enter-from,
+.drop-down-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+</style>
+
