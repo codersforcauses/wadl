@@ -19,8 +19,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   if (config.firebaseMode === "dev") {
     connectAuthEmulator(auth, "http://localhost:9099");
   }
-
-  onAuthStateChanged(auth, (user) => {
+  
+  await onAuthStateChanged(auth, (user) => {
     if (user) {
       userStore.SetUser(user);
     } else {

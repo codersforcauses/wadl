@@ -4,9 +4,10 @@
   >
     <div class="flex place-items-center">
       <HomeButton class="pl-3" />
-      <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
+      <client-only>
+        <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
+      </client-only>
     </div>
-    <!-- user info to be rendered on client side -->
     <client-only>
       <div v-if="!firstName" class="mr-2">
         <NuxtLink to="/signup">
