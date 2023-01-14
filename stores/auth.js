@@ -66,9 +66,14 @@ export const useUserStore = defineStore("user", {
     async LoginUser(user) {
       const { $auth } = useNuxtApp();
       await signInWithEmailAndPassword($auth, user.email, user.password)
-        .then((userCredential) => {
-          console.log(userCredential);
+        .then(async (userCredential) => {
           const person = userCredential.user;
+          // const ref = doc($db, "users", person.uid);
+          // const docSnap = await getDoc(ref);
+          // if (docSnap.exists() && docSnap.data().requesting === true) {
+          //   this.errorCode = "Unable to log in account, try again later.";
+          // } else {
+          // }
           this.SetUser(person);
         })
         .catch((error) => {
@@ -121,6 +126,7 @@ export const useUserStore = defineStore("user", {
           this.phoneNumber = null;
           this.role = null;
           this.errorCode = null;
+          this.requesting = null;
           console.log("Sign out successful");
         })
         .catch((error) => {
