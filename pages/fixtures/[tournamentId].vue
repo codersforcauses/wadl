@@ -1,8 +1,11 @@
 <script setup>
 import { ref } from "vue";
 import tournamentsData from "../../data/tournaments.json";
+import teamsData from "../../data/teams.json";
+import venuesData from "../../data/venues.json";
 const tournaments = ref(tournamentsData);
-console.log(tournaments);
+const teams = ref(teamsData);
+const venues = ref(venuesData);
 const headers = [
   {
     key: "div",
@@ -50,162 +53,6 @@ const roundTabs = [
   { label: "Round 8", active: false },
 ];
 
-const data = ref([
-  {
-    level: "Novice",
-    rounds: [
-      {
-        round: "Round 1",
-        matchups: [
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-        ],
-      },
-      {
-        round: "Round 2",
-        matchups: [
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    level: "Junior",
-    rounds: [
-      {
-        round: "Round 3",
-        matchups: [
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-        ],
-      },
-      {
-        round: "Round 4",
-        matchups: [
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    level: "Senior",
-    rounds: [
-      {
-        round: "Round 5",
-        matchups: [
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-        ],
-      },
-      {
-        round: "Round 6",
-        matchups: [
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-          {
-            div: "Div 1",
-            venue: "Rainbow Road",
-            date: "Tue 13/10",
-            time: "5:15pm",
-            affirmative: "Perth College 4",
-            negative: "Perth Modern 4",
-            topic: "Education",
-          },
-        ],
-      },
-    ],
-  },
-]);
-
 const handleFilter = (searchTerm) => {
   tableData.value = tableData.value.filter(
     (d) =>
@@ -227,24 +74,20 @@ const currentLevelTab = ref("");
 const levelClicked = (tabName) => {
   currentLevelTab.value = tabName;
 };
-
+const hasNotSelectedRoundTab = ref(true);
 const roundClicked = (roundName) => {
-  tableData.value = [];
-  if (!currentLevelTab.value) {
-    alert("Please select a level first");
-  }
-
-  let rounds = [];
-  data.value.forEach((d) => {
-    if (d.level === currentLevelTab.value) {
-      d.rounds.map((r) => rounds.push(r));
-    }
-  });
-  rounds.forEach((r) => {
-    if (r.round === roundName) {
-      r.matchups.map((m) => tableData.value.push(m));
-    }
-  });
+  hasNotSelectedRoundTab.value = false;
+  // let rounds = [];
+  // data.value.forEach((d) => {
+  //   if (d.level === currentLevelTab.value) {
+  //     d.rounds.map((r) => rounds.push(r));
+  //   }
+  // });
+  // rounds.forEach((r) => {
+  //   if (r.round === roundName) {
+  //     r.matchups.map((m) => tableData.value.push(m));
+  //   }
+  // });
 };
 </script>
 
@@ -253,4 +96,11 @@ const roundClicked = (roundName) => {
   <SearchBar @handle-filter="handleFilter" />
   <Tabs :tabs="roundTabs" font-size="text-base" @handle-tab="roundClicked" />
   <Table :headers="headers" :data="tableData" :can-edit="false" />
+
+  <h1
+    v-if="hasNotSelectedRoundTab"
+    class="font-montserrat text-lg text-center mt-10 font-bold"
+  >
+    Please select a round
+  </h1>
 </template>
