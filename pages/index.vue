@@ -9,11 +9,11 @@
   >
     <!-- replace key with item.key when final data exists -->
     <div v-for="item in tournaments" :key="item">
-      <LevelButton
-        :text="item.name"
-        @click="$router.push(`/fixtures/${item.id}`)"
-      />
+      <NuxtLink :to="`/fixtures/${item.id}`">
+        <LevelButton :text="item.name" />
+      </NuxtLink>
     </div>
+    ß
   </main>
 </template>
 
