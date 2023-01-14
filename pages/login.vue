@@ -2,7 +2,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
-import { useUserStore } from "../stores/user";
+import { useUserStore } from "../stores/auth";
 
 const userStore = useUserStore();
 const { role } = storeToRefs(userStore);
@@ -48,6 +48,9 @@ watch(role, (currentValue, oldValue) => {
         placeholder="Your Password"
         type="password"
       />
+      <p v-if="userStore.errorCode" class="text-danger-red">
+        {{ userStore.errorCode }}
+      </p>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <Button button-text="Submit" button-color="bg-gold " />
         <NuxtLink

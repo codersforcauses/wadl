@@ -33,7 +33,7 @@
 
 <script setup>
 import HomeButton from "./HomeButton.vue";
-import { useUserStore } from "~/stores/user.js";
+import { useUserStore } from "~/stores/auth.js";
 import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
