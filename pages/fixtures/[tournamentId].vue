@@ -71,7 +71,7 @@ const route = useRoute();
 const hasNotSelectedRoundTab = ref(true);
 const tableData = ref([]);
 const levelSelected = ref("Junior");
-const roundSeleccted = ref(undefined);
+const roundSelected = ref(undefined);
 
 const levelClicked = (tabName) => {
   levelSelected.value = tabName;
@@ -79,7 +79,21 @@ const levelClicked = (tabName) => {
 
 const roundClicked = (roundName) => {
   hasNotSelectedRoundTab.value = false;
-  roundSeleccted.value = parseInt(roundName.split("")[roundName.length - 1]);
+  roundSelected.value = parseInt(roundName.split("")[roundName.length - 1]);
+  tournaments.value.forEach((tournament) => {
+    const levelFound = tournament.levels.filter(
+      (l) => l.level === levelSelected.value
+    );
+
+    levelFound.forEach((level) => {
+      level.divisions.forEach((div) => {
+        const roundArray = div.matchups.filter(
+          (matchup) => matchup.round === roundSelected.value
+        );
+        console.log(roundArray);
+      });
+    });
+  });
   // let rounds = [];
   // data.value.forEach((d) => {
   //   if (d.level === currentLevelTab.value) {
