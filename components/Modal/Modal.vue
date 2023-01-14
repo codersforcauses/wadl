@@ -5,8 +5,12 @@
       class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-slate-300 bg-opacity-60 transition"
     >
       <div
-        v-on-click-outside="() => emit('close')"
-        class="bg-white min-w-[50%] min-h-[50%] rounded-2xl"
+        v-on-click-outside="
+          () => {
+            emit('close');
+          }
+        "
+        class="bg-white rounded-2xl"
       >
         <header
           class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl"
@@ -22,6 +26,7 @@
 <script setup>
 import { XMarkIcon } from "@heroicons/vue/24/solid";
 import { vOnClickOutside } from "@vueuse/components";
+
 defineProps({
   modalVisibility: { type: Boolean, default: false },
 });
