@@ -1,6 +1,14 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, doc, updateDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  updateDoc,
+  getCountFromServer,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -35,10 +43,13 @@ export const useInstitutionStore = defineStore("institution", {
     async editInstitution(institution) {
       const { $db } = useNuxtApp();
       const ref = doc($db, "institutions", institution.id);
-      const sameName = doc($db, "institutions", institution.name);
-      console.log(institution);
-      console.log(sameName);
-      if (!sameName.exists()) {
+      const sameName = query(
+        collection($db, "institutions"),
+        where("name", "==", institution.name),
+        where("id", "!=", institution.id)
+      );
+      const snapshot = await getCountFromServer(sameName);
+      if (snapshot.data().count === 0) {
         await updateDoc(ref, institution)
           .then(() => {})
           .catch((error) => {
