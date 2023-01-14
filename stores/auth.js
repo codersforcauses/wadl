@@ -1,11 +1,7 @@
 import { defineStore } from "pinia";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
-  AuthErrorCodes,
-  getAuth,
-  setPersistence,
   signInWithEmailAndPassword,
-  browserSessionPersistence,
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -20,15 +16,26 @@ export const useUserStore = defineStore("user", {
       phoneNumber: null,
       email: null,
       role: null,
+      requesting: null,
       errorCode: "",
     };
+  },
+  persist: {
+    key: "pinia-store",
+    afterRestore: (ctx) => {
+      // console.log(ctx.pinia.state.value);
+    },
+    debug: true,
+    persist: true,
+    // eslint-disable-next-line no-undef
+    storage: persistedState.sessionStorage,
   },
   getters: {},
   actions: {
     // to view how the data and other stuff happens inside these functions please read the README in the Firebase folder
     async registerUser(user) {
       const { $db, $auth } = useNuxtApp();
-      createUserWithEmailAndPassword($auth, user.email, user.password)
+      await createUserWithEmailAndPassword($auth, user.email, user.password)
         .then((userCredential) => {
           // remove this after enough debugging has been done
           console.log(userCredential);
@@ -58,29 +65,17 @@ export const useUserStore = defineStore("user", {
     },
     async LoginUser(user) {
       const { $auth } = useNuxtApp();
-      const auth = getAuth();
-      setPersistence(auth, browserSessionPersistence)
-        .then(() => {
-          console.log(auth.currentUser);
-          signInWithEmailAndPassword($auth, user.email, user.password)
-            .then((userCredential) => {
-              const person = userCredential.user;
-              // remove after debug
-              console.log("Store - Login User", person.uid);
-
-              this.SetUser(person);
-            })
-            .catch((error) => {
-              this.cleanUpError(error);
-            });
+      await signInWithEmailAndPassword($auth, user.email, user.password)
+        .then((userCredential) => {
+          console.log(userCredential);
+          const person = userCredential.user;
+          this.SetUser(person);
         })
         .catch((error) => {
           this.cleanUpError(error);
         });
     },
-    async cleanUpError(error) {
-      console.log(error);
-      console.log(AuthErrorCodes);
+    cleanUpError(error) {
       switch (error.code) {
         case "auth/user-not-found":
           this.errorCode = "Account not found, try again with a new account";
@@ -96,25 +91,28 @@ export const useUserStore = defineStore("user", {
           break;
       }
     },
-    SetUser(user) {
-      const { $db } = useNuxtApp();
-      const docRef = doc($db, "users", user.uid);
-      getDoc(docRef)
-        .then((doc) => {
-          this.id = doc.data().ID;
-          this.firstName = doc.data().first_name;
-          this.lastName = doc.data().last_name;
-          this.phoneNumber = doc.data().phone_number;
-          this.email = doc.data().email;
-          this.role = doc.data().role;
-        })
-        .catch((error) => {
-          this.cleanUpError(error);
-        });
+    async SetUser(user) {
+      if (user !== null) {
+        const { $db } = useNuxtApp();
+        const docRef = doc($db, "users", user.uid);
+        await getDoc(docRef)
+          .then((doc) => {
+            this.id = doc.data().ID;
+            this.firstName = doc.data().first_name;
+            this.lastName = doc.data().last_name;
+            this.phoneNumber = doc.data().phone_number;
+            this.email = doc.data().email;
+            this.role = doc.data().role;
+            this.requesting = doc.data().requesting;
+          })
+          .catch((error) => {
+            this.cleanUpError(error);
+          });
+      }
     },
-    clearStore() {
-      const auth = getAuth();
-      signOut(auth)
+    async clearStore() {
+      const { $auth } = useNuxtApp();
+      await signOut($auth)
         .then(() => {
           this.id = null;
           this.firstName = null;
@@ -122,6 +120,7 @@ export const useUserStore = defineStore("user", {
           this.email = null;
           this.phoneNumber = null;
           this.role = null;
+          this.errorCode = null;
           console.log("Sign out successful");
         })
         .catch((error) => {

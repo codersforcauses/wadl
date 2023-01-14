@@ -9,8 +9,8 @@ defineProps({
     default: "",
   },
   icon: {
-    type: String,
-    default: "",
+    type: Function,
+    default: () => {},
   },
 });
 </script>

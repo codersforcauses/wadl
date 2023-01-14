@@ -4,20 +4,22 @@
   >
     <div class="flex place-items-center">
       <HomeButton class="pl-3" />
-      <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
+      <!-- user vars on client side only  -->
+      <client-only>
+        <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
+      </client-only>
     </div>
     <div class="flex">
-      <div v-if="role === 'Admin'">
-        <NuxtLink to="/admin">
-          <Button
-            button-text="Admin"
-            size="small"
-            class="shadow-none underline underline-offset-4"
-          />
-        </NuxtLink>
-      </div>
-
-      <div>
+      <client-only>
+        <div v-if="role === 'Admin'">
+          <NuxtLink to="/admin">
+            <Button
+              button-text="Admin"
+              size="small"
+              class="shadow-none underline underline-offset-4"
+            />
+          </NuxtLink>
+        </div>
         <div v-if="!firstName" class="mr-2">
           <NuxtLink to="/signup">
             <Button button-text="Signup" size="small" class="shadow-none" />
@@ -40,7 +42,7 @@
             />
           </NuxtLink>
         </div>
-      </div>
+      </client-only>
     </div>
   </nav>
 </template>
@@ -52,6 +54,5 @@ import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
 // Will be updated when user store changes
-const { firstName } = storeToRefs(userStore);
-const { role } = storeToRefs(userStore);
+const { firstName, role } = storeToRefs(userStore);
 </script>

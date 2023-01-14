@@ -58,9 +58,14 @@
 <script setup>
 import Roles from "./Roles.vue";
 import { useUserStore } from "../../stores/auth";
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 
 const userStore = useUserStore();
+
+onBeforeMount(() => {
+  userStore.errorCode = null;
+});
+
 const form = ref({
   firstName: "",
   lastName: "",
