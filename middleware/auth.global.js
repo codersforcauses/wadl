@@ -5,9 +5,11 @@ export default defineNuxtRouteMiddleware(async (to) => {
   const { $auth } = useNuxtApp();
   const authStore = useUserStore();
   console.log("global middleware ran", to);
-  if (to.name.includes("admin") && authStore.$state.role !== "Admin") {
-    console.log(authStore.$state.role);
-  }
+  console.log(authStore.$state);
+  // if (to.name.includes("admin") && authStore.$state.role === "Admin") {
+  //   console.log(authStore.$state.role);
+  //   navigateTo("/adjudicators");
+  // }
   // if (to.path.includes("admin") && authStore.role !== "Admin") {
   //   navigateTo({ path: "/" });
   // }

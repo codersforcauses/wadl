@@ -1,9 +1,7 @@
 import { defineStore } from "pinia";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import {
-  setPersistence,
   signInWithEmailAndPassword,
-  browserSessionPersistence,
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
