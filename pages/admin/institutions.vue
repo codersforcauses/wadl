@@ -4,6 +4,21 @@ import { PencilIcon } from "@heroicons/vue/24/solid";
 import { useInstitutionStore } from "../../stores/institutions";
 import Modal from "../../components/Modal/Modal.vue";
 
+const headers = [
+  {
+    key: "name",
+    title: "Institution",
+  },
+  {
+    key: "email",
+    title: "Email",
+  },
+  {
+    key: "number",
+    title: "Phone Number",
+  },
+];
+
 const defaultInputState = {
   id: null,
   name: null,
@@ -20,7 +35,9 @@ const formInput = ref({ ...defaultInputState });
 const store = useInstitutionStore();
 
 store.getInstitutions();
+
 console.log(store.institutions);
+
 const resetFormState = () => {
   formInput.value = { ...defaultInputState };
   editMode.value = false;
@@ -116,6 +133,13 @@ const createInstitution = () => {
 
   <Header title-text="Institutions" />
   <SearchBar @handle-filter="filterInstitutions" />
+
+  <!-- Institutions Table  View -->
+  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+    <Table :headers="headers" :data="store.institutions" />
+  </div>
+
+  <!--
   <div class="flex justify-center">
     <ul class="bg-white rounded-lg w-11/12">
       <li
@@ -143,6 +167,8 @@ const createInstitution = () => {
       </li>
     </ul>
   </div>
+  -->
+
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
       button-text="Add Institutions"
