@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, doc, setDoc, getDocs } from "firebase/firestore";
+import { collection, doc, updateDoc, getDocs } from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -33,11 +33,20 @@ export const useInstitutionStore = defineStore("institution", {
       });
     },
     async editInstitution(institution) {
-      this.institutions.forEach((inst) => {
-        if (inst.id === institution.id) {
-          Object.assign(inst, institution);
-        }
-      });
+      const { $db } = useNuxtApp();
+      const ref = doc($db, "institutions", institution.id);
+      const sameName = doc($db, "institutions", institution.name);
+      console.log(institution);
+      console.log(sameName);
+      if (!sameName.exists()) {
+        await updateDoc(ref, institution)
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        console.log("institution with same name exists");
+      }
     },
   },
 });
