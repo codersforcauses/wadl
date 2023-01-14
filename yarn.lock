@@ -1507,6 +1507,11 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.45.tgz#a3fffa7489eafff38d984e23d0236e230c818bc2"
   integrity sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==
 
+"@vueform/multiselect@^2.5.8":
+  version "2.5.8"
+  resolved "https://registry.yarnpkg.com/@vueform/multiselect/-/multiselect-2.5.8.tgz#2ebda7286c1bb56ae0c5c2f7f4b5a749a69217a2"
+  integrity sha512-etUJCCDlo3LDsbDLoJdDHFpvgHyl2rzcOG9VQvLJ3caNIHDYm0g+HMIbAydswWr1iWKstqRi9YkkBR75gQ9TBw==
+
 "@vueuse/components@^9.10.0":
   version "9.10.0"
   resolved "https://registry.yarnpkg.com/@vueuse/components/-/components-9.10.0.tgz#5c9686048119227d1cd59549e4a543dabfe860a0"

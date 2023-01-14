@@ -1,88 +1,165 @@
-<!-- eslint-disable vue/attribute-hyphenation -->
-<template>
-  <Header titleText="Venues" />
-  <SearchBar @handle-filter="handleFilter" />
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="venues" />
-  </div>
-  <div class="inset-x-0 hottom-0 w-full bg-white">
-    <Button
-      button-text="Add Venue"
-      button-color="bg-gold"
-      class="m-5 ml-8"
-      @click="showModal"
-    />
-  </div>
-
-  <!-- Modal -->
-  <div
-    v-show="modalVisibility"
-    class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-slate-300 bg-opacity-60"
-  >
-    <div class="bg-white max-w-[40%] min-w-[320px] rounded-2xl">
-      <header
-        class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl"
-      >
-        <XMarkIcon class="h-6 w-6 cursor-pointer" @click="closeModal" />
-      </header>
-      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
-        Add Venue
-      </p>
-      <!-- <form class="px-10">
-        <FormField v-model="form.institutionName" label="Institution Name" />
-        <FormField v-model="form.code" label="Code" />
-        <FormField v-model="form.abbreviation" label="Abbreviation" />
-      </form> -->
-      <div class="flex justify-evenly items-center">
-        <Button
-          button-text="Submit"
-          button-color="bg-gold"
-          type="button"
-          class="m-5 ml-8"
-          @click="addVenue"
-        />
-      </div>
-    </div>
-  </div>
-</template>
 <script setup>
 import { ref } from "vue";
-import data from "../../data/venues.json";
-import { XMarkIcon } from "@heroicons/vue/24/solid";
+import { useVenueStore } from "../../stores/venues";
+import Modal from "../../components/Modal/Modal.vue";
 
-const venues = ref(data);
+const defaultInputState = {
+  id: null,
+  name: null,
+  roomNo: null,
+  capacity: null,
+  days: [],
+};
+
+const formInput = ref({ ...defaultInputState });
+const modalVisibility = ref(false);
+const editMode = ref(false);
+const store = useVenueStore();
+
+const updateSelectedDays = (chips) => {
+  formInput.value.days = chips;
+};
+
+const resetFormState = () => {
+  formInput.value = { ...defaultInputState };
+  editMode.value = false;
+};
+
+const handleEdit = (row) => {
+  modalVisibility.value = row.modalVisibility;
+  editMode.value = row.editMode;
+  formInput.value = row.data;
+};
 
 const handleFilter = (searchTerm) => {
-  venues.value = data.filter(
+  store.filteredVenues = store.venues.filter(
     (venue) =>
-      venue.day.toLowerCase().includes(searchTerm) ||
-      venue.id.toLowerCase().includes(searchTerm) ||
-      venue.roomNum.toLowerCase().includes(searchTerm) ||
-      venue.venue.toLowerCase().includes(searchTerm)
+      venue.name.toLowerCase().includes(searchTerm) ||
+      venue.roomNo.toLowerCase().includes(searchTerm)
   );
 };
 
-// Modal
-const modalVisibility = ref(false);
-const showModal = () => {
-  modalVisibility.value = true;
+const updateVenue = () => {
+  store.editVenue(formInput.value);
+  resetFormState();
 };
-const closeModal = () => {
-  modalVisibility.value = false;
+
+const createVenue = () => {
+  store.createVenue(formInput.value);
+  resetFormState();
 };
 
 const headers = [
   {
-    key: "venue",
+    key: "name",
     title: "Venue",
   },
   {
-    key: "day",
-    title: "Day",
-  },
-  {
-    key: "roomNum",
+    key: "roomNo",
     title: "Room No.",
   },
 ];
 </script>
+
+<template>
+  <Header title-text="Venues" />
+  <SearchBar @handle-filter="handleFilter" />
+  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+    <Table :headers="headers" :data="store.filteredVenues" @edit="handleEdit" />
+  </div>
+  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
+    <Button
+      button-text="Add Venue"
+      button-color="bg-gold"
+      class="m-5 ml-8"
+      @click="modalVisibility = true"
+    />
+  </div>
+
+  <Modal
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+        resetFormState();
+      }
+    "
+  >
+    <div v-if="editMode">
+      <Header title-text="Edit Venue" />
+      <form
+        class="px-10"
+        @submit.prevent="
+          () => {
+            modalVisibility = false;
+            updateVenue();
+          }
+        "
+      >
+        <FormField v-model="formInput.name" label="Venue Name" />
+        <div class="grid grid-cols-2 gap-x-4">
+          <div>
+            <FormField v-model="formInput.roomNo" label="Room Number" />
+          </div>
+          <div>
+            <FormField v-model="formInput.capacity" label="Team Capacity" />
+          </div>
+        </div>
+        <label class="heading-montserrat">Days</label>
+        <Multiselect
+          :selected-chips="formInput.days"
+          :items="[
+            'Tuesday W1',
+            'Tuesday W2',
+            'Wednesday W1',
+            'Wednesday W2',
+            'Any',
+          ]"
+          placeholder="Select Days"
+          @change="updateSelectedDays"
+        />
+        <div class="flex justify-evenly items-center">
+          <Button
+            button-text="Update"
+            button-color="bg-gold"
+            type="Submit"
+            class="m-5 ml-8"
+          />
+          <!-- <Button
+            button-text="Delete"
+            button-color="bg-red"
+            type="Submit"
+            class="m-5 ml-8"
+          /> -->
+        </div>
+      </form>
+    </div>
+    <div v-else>
+      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+        Add Venue
+      </p>
+      <form
+        class="px-10"
+        @submit.prevent="
+          () => {
+            modalVisibility = false;
+            createVenue();
+          }
+        "
+      >
+        <FormField v-model="formInput.name" label="Venue Name" />
+        <FormField v-model="formInput.roomNo" label="Room Number" />
+        <FormField v-model="formInput.capacity" label="Team Capacity" />
+        <FormField v-model="formInput.days" label="Days" />
+        <div class="flex justify-evenly items-center">
+          <Button
+            button-text="Submit"
+            button-color="bg-gold"
+            type="Submit"
+            class="m-5 ml-8"
+          />
+        </div>
+      </form>
+    </div>
+  </Modal>
+</template>
