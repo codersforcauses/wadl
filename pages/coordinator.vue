@@ -37,12 +37,30 @@ const saveTeamRegistration = async () => {
   // POST to backend
   console.log(formInput.value);
   console.log("Team Saved!");
-  modalVisibility.value = false;
+  resetModal();
+};
+const resetModal = () => {
+  formInput.value = {
+    tournament: null,
+    teams: [
+      { teamLevel: "Novice", ...teamState },
+      { teamLevel: "Junior", ...teamState },
+      { teamLevel: "Senior", ...teamState },
+    ],
+  };
 };
 </script>
 
 <template>
-  <Modal :modal-visibility="modalVisibility" @close="modalVisibility = false">
+  <Modal
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+        resetModal();
+      }
+    "
+  >
     <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
       Team Registration
     </p>
@@ -103,7 +121,12 @@ const saveTeamRegistration = async () => {
             button-color="bg-gold"
             button-text="Save"
             type="Submit"
-            @click="saveTeamRegistration"
+            @click="
+              () => {
+                modalVisibility = false;
+                saveTeamRegistration();
+              }
+            "
           />
         </div>
       </form>
