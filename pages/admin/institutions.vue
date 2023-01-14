@@ -36,8 +36,6 @@ const store = useInstitutionStore();
 
 store.getInstitutions();
 
-console.log(store.institutions);
-
 const resetFormState = () => {
   formInput.value = { ...defaultInputState };
   editMode.value = false;
