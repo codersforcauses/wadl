@@ -71,7 +71,7 @@ const removeChip = (item) => {
     <Transition name="drop-down">
       <div
         v-if="isOpen"
-        class="absolute z-10 rounded-b-md bg-white shadow-md w-full transition"
+        class="absolute z-10 rounded-b-md bg-white shadow-md w-full transition duration-100"
       >
         <ul class="divide-y divide-gray-200">
           <li

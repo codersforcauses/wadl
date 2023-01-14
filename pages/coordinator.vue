@@ -22,11 +22,12 @@ const formInput = ref({
   ],
 });
 const updateLevels = (chips) => {
-  formInput.value.teams.forEach((team) => {
+  // if level no longer selected, delete form data for corresponding level
+  formInput.value.teams = formInput.value.teams.map((team) => {
     if (chips.includes(team.teamLevel)) {
-      team.levelPresent = true;
+      return { ...team, levelPresent: true };
     } else {
-      team.levelPresent = false;
+      return { teamLevel: team.teamLevel, ...teamState };
     }
   });
 };
@@ -62,6 +63,7 @@ const updateLevels = (chips) => {
               v-model="team.numberOfTeams"
               type="number"
               :label="team.teamLevel"
+              :disabled="!team.levelPresent"
             />
           </div>
         </div>
@@ -72,6 +74,7 @@ const updateLevels = (chips) => {
               v-model="team.tuesdayAllocation"
               type="number"
               :label="team.teamLevel"
+              :disabled="!team.levelPresent"
             />
           </div>
         </div>
@@ -82,6 +85,7 @@ const updateLevels = (chips) => {
               v-model="team.wednesdayAllocation"
               type="number"
               :label="team.teamLevel"
+              :disabled="!team.levelPresent"
             />
           </div>
         </div>
