@@ -1,4 +1,5 @@
 <script setup>
+import { definePageMeta } from "#imports";
 import AdminButton from "~/components/admin/AdminButton.vue";
 import ProfileInfo from "~/components/admin/ProfileInfo.vue";
 import {
@@ -13,7 +14,7 @@ import {
   UserCircleIcon,
 } from "@heroicons/vue/24/outline";
 definePageMeta({
-  middleware: ["auth"],
+  middleware: ["admin"],
 });
 </script>
 
