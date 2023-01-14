@@ -59,6 +59,13 @@ const createInstitution = () => {
   store.createInstitution(formInput.value);
   resetFormState();
 };
+
+const handleEdit = (row) => {
+  modalVisibility.value = row.modalVisibility;
+  editMode.value = row.editMode;
+  formInput.value = row.data;
+};
+
 </script>
 
 <template>
@@ -134,7 +141,7 @@ const createInstitution = () => {
 
   <!-- Institutions Table  View -->
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="store.institutions" />
+    <Table :headers="headers" :data="store.institutions" @edit="handleEdit" />
   </div>
 
   <!--
