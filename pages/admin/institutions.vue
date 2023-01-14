@@ -9,6 +9,8 @@ const defaultInputState = {
   name: null,
   code: null,
   abbreviation: null,
+  phone: null,
+  email: null,
 };
 
 const modalVisibility = ref(false);
@@ -16,6 +18,8 @@ const editMode = ref(false);
 const formInput = ref({ ...defaultInputState });
 
 const store = useInstitutionStore();
+
+store.getInstitutions();
 
 const resetFormState = () => {
   formInput.value = { ...defaultInputState };

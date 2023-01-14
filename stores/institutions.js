@@ -1,26 +1,31 @@
 import { defineStore } from "pinia";
+import { useNuxtApp } from "#imports";
+import { collection, doc, setDoc, getDocs } from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
     return {
-      institutions: [
-        {
-          id: 1,
-          name: "Perth Modern",
-          code: "1234",
-          abbreviation: "PM",
-        },
-        {
-          id: 2,
-          name: "Ballajura Community College",
-          code: "111",
-          abbreviation: "BCC",
-        },
-      ],
+      institutions: [],
     };
   },
   getters: {},
   actions: {
+    async getInstitutions() {
+      const { $db } = useNuxtApp();
+      const ref = collection($db, "institutions");
+      const querySnapshot = await getDocs(ref);
+      querySnapshot.forEach((doc) => {
+        const institution = {
+          abbreviation: doc.data().abbreviation,
+          code: doc.data().code,
+          email: doc.data().email,
+          id: doc.id,
+          name: doc.data().name,
+          number: doc.data().phone_number,
+        };
+        this.institutions.push(institution);
+      });
+    },
     async createInstitution(institution) {
       this.institutions.push({
         ...institution,
