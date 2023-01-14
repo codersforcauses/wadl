@@ -12,13 +12,6 @@ import {
   UserPlusIcon,
   UserCircleIcon,
 } from "@heroicons/vue/24/outline";
-import { onMounted } from "vue";
-import { useTournamentStore } from "../../stores/tournaments";
-const tournament = useTournamentStore();
-onMounted(() => {
-  tournament.getTournaments();
-  console.log(tournament.tournaments);
-});
 </script>
 
 <template>

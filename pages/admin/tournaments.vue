@@ -115,7 +115,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
 
 const defaultInputState = {
@@ -130,6 +130,12 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
+onMounted(() => {
+  store.getTournaments();
+});
+onUnmounted(() => {
+  store.clearStore();
+});
 
 const updateSelectedLevels = (chips) => {
   form.value.levels = chips;

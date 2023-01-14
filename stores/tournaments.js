@@ -5,7 +5,7 @@ export const useTournamentStore = defineStore("tournament", {
   state: () => {
     return {
       tournaments: [],
-      // filteredTournaments: [],
+      filteredTournaments: [],
     };
   },
   getters: {},
@@ -25,14 +25,14 @@ export const useTournamentStore = defineStore("tournament", {
         };
         this.tournaments.push(tournament);
       });
-      // this.filteredUsers = [...this.requestingUsers];
+      this.filteredTournaments = [...this.tournaments];
     },
     async createTournament(tournament) {
       this.tournaments.push({
         ...tournament,
         id: this.tournaments.length + 1,
       });
-      // this.filteredTournaments = [...this.tournaments];
+      this.filteredTournaments = [...this.tournaments];
     },
     async editTournament(tournament) {
       this.tournaments.forEach((t) => {
@@ -40,7 +40,7 @@ export const useTournamentStore = defineStore("tournament", {
           Object.assign(t, tournament);
         }
       });
-      // this.filteredTournaments = [...this.tournaments];
+      this.filteredTournaments = [...this.tournaments];
     },
   },
 });
