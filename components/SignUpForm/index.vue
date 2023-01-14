@@ -16,7 +16,12 @@
         <FormField v-model="form.lastName" placeholder="Your Last Name" />
       </div>
     </div>
-    <FormField v-model="form.email" label="Email" placeholder="Your Email" />
+    <FormField
+      v-model="form.email"
+      label="Email"
+      type="email"
+      placeholder="Your Email"
+    />
     <FormField
       v-model="form.phoneNumber"
       label="Phone Number"
@@ -47,7 +52,6 @@
       :color="!isRoleValid ? 'border-red-500' : ''"
       @update="updateInput"
     />
-    <Roles v-model="form.role" />
     <p v-if="userStore.errorCode" class="text-danger-red">
       {{ userStore.errorCode }}
     </p>

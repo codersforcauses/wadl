@@ -18,9 +18,6 @@
     :value="modelValue"
     @input="updateInput"
   />
-  <p v-if="error" class="invisible mt-2 text-sm text-pink-600">
-    Please provide a valid email address.
-  </p>
 </template>
 <script setup>
 defineProps({
@@ -28,7 +25,6 @@ defineProps({
   modelValue: { type: String, default: "" },
   placeholder: { type: String, default: "" },
   type: { type: String, default: "text" },
-  error: { type: Boolean, default: false },
   color: { type: String, default: "" },
 });
 const emit = defineEmits(["update:modelValue", "update"]);
