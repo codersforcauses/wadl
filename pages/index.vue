@@ -9,7 +9,7 @@
   >
     <!-- replace key with item.key when final data exists -->
     <div v-for="item in tournaments" :key="item">
-      <NuxtLink :to="`/fixtures/${item.id}`">
+      <NuxtLink :to="`/fixtures/${uuidv4()}`">
         <LevelButton :text="item.name" />
       </NuxtLink>
     </div>
@@ -17,10 +17,21 @@
 </template>
 
 <script setup>
+
+
+
 import LevelButton from "../components/HomePage/LevelButton.vue";
 import tournamentsData from "../data/tournaments.json";
 const tournaments = ref(tournamentsData);
 console.log(tournaments);
+
+//Temporary Function. Will need to remove once we have access to document ID
+function uuidv4() { 
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}
+
 
 // const tournaments = [
 //   { id: "11d3495f-7931-4333-a2be-d153ec893dd5", name: "Junior" },
