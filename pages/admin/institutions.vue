@@ -124,7 +124,7 @@ const createInstitution = () => {
         <button
           @click="
             () => {
-              formInput = institution;
+              formInput = { ...institution };
               editMode = true;
               modalVisibility = true;
             }
