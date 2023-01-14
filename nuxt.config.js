@@ -47,6 +47,7 @@ export default defineNuxtConfig({
       purpose: "any",
     },
     meta: {
+      name: "WADL",
       theme_color: "#FFD700",
       lang: "en-AU",
       ogHost: "https://wadl.vercel.app/",
