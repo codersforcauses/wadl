@@ -1,5 +1,4 @@
 <script setup>
-import { definePageMeta } from "#imports";
 import AdminButton from "~/components/admin/AdminButton.vue";
 import ProfileInfo from "~/components/admin/ProfileInfo.vue";
 import {

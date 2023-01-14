@@ -1,12 +1,12 @@
-<template>
-<div>
-    <NuxtPage />
-</div>
-</template>
-
-<script>
-// This just applies admin middleware to all admin pages
+<script setup>
+import { definePageMeta } from "#imports";
 definePageMeta({
   middleware: ["admin"],
 });
 </script>
+
+<template>
+  <div>
+    <NuxtPage />
+  </div>
+</template>
