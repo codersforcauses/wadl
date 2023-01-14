@@ -33,7 +33,7 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels"
+          :selected-chips="form.levels.map((l) => l.level)"
           @change="updateSelectedLevels"
         />
         <FormField
@@ -76,7 +76,7 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels"
+          :selected-chips="form.levels.map((l) => l.level)"
           @change="updateSelectedLevels"
         />
         <FormField
