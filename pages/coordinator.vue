@@ -21,6 +21,15 @@ const formInput = ref({
     { teamLevel: "Senior", ...teamState },
   ],
 });
+const updateLevels = (chips) => {
+  formInput.value.teams.forEach((team) => {
+    if (chips.includes(team.teamLevel)) {
+      team.levelPresent = true;
+    } else {
+      team.levelPresent = false;
+    }
+  });
+};
 </script>
 
 <template>
@@ -37,7 +46,15 @@ const formInput = ref({
       <hr class="mx-8 h-0.5 bg-slate-500 my-1 border-0" />
       <form @submit.prevent="modalVisibility = false">
         <FormField v-model="formInput.tournament" label="Tournament" />
-        <FormField label="Levels" />
+        <label class="heading-montserrat">Level</label>
+        <Multiselect
+          :items="
+            formInput.teams.map((t) => {
+              return t.teamLevel;
+            })
+          "
+          @change="updateLevels"
+        />
         <label class="heading-montserrat"> Number of Teams </label>
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
