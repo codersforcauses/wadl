@@ -29,7 +29,6 @@ const props = defineProps({
   type: { type: String, default: "text" },
   disabled: { type: Boolean, default: false },
 });
-console.log(props);
 const emit = defineEmits(["update:modelValue"]);
 
 const updateInput = (e) => {
