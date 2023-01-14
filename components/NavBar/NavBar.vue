@@ -20,7 +20,6 @@
             />
           </NuxtLink>
         </div>
-
         <div v-if="!firstName" class="mr-2">
           <NuxtLink to="/signup">
             <Button button-text="Signup" size="small" class="shadow-none" />
