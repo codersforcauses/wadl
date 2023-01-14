@@ -20,8 +20,7 @@ const props = defineProps({
     default: "medium",
   },
 });
-const emit = defineEmits(["removeChip"]);
-
+defineEmits(["removeChip"]);
 // Computes the size based on the given prop and the device size
 const chipSize = computed(() => {
   switch (props.size) {
@@ -42,7 +41,12 @@ const chipSize = computed(() => {
     {{ text }}
     <button
       class="pb-1 pl-2 align-middle"
-      @click.prevent="emit('removeChip', text)"
+      @click.prevent="
+        (e) => {
+          $emit('removeChip', text);
+          e.stopPropagation();
+        }
+      "
     >
       <XMarkIcon
         class="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5"
