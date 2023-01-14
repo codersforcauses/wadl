@@ -18,7 +18,7 @@ const user = useUserStore();
 </script>
 
 <template>
-  <ProfileInfo :username=user.firstName role="Admin" />
+  <ProfileInfo :username="user.firstName" role="Admin" />
   <div class="flex items-center justify-evenly mt-4">
     <div class="grid w-11/12 grid-cols-1 gap-4 md:grid-cols-3">
       <AdminButton
