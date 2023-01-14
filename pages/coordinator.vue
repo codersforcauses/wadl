@@ -4,6 +4,9 @@ definePageMeta({
   middleware: ["team"],
 });
 </script>
+
 <template>
-  <Coordinator />
+  <div>
+    <NuxtPage />
+  </div>
 </template>
