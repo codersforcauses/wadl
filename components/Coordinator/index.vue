@@ -7,7 +7,7 @@ import Table from ".//Table.vue";
   <div>
     <ProfileInfo username="Carmen Leong" role="Admin" />
     <Table :headings="['Teams', 'Level', 'Division']" />
-    <div class="fixed inset-x-0 bottom-0 w-full bg-white">
+    <div class="fixed inset-x-0 bottom-0 w-full">
       <div class="flex flex-row gap-4 m-5 justify-left">
         <Button
           button-text="Team Registration"
