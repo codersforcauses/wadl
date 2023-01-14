@@ -1,19 +1,236 @@
 [
-  { "name": "St Mary's" },
-  { "name": "St Joseph's" },
-  { "name": "St Urban's" },
-  { "name": "St Richards" },
-  { "name": "St Bernards" },
-  { "name": "St Margerettes" },
-  { "name": "St John's" },
-  { "name": "St Peter's" },
-  { "name": "St Paul's" },
-  { "name": "St Mark's" },
-  { "name": "St Martha's" },
-  { "name": "St George's" },
-  { "name": "St Thomas's" },
-  { "name": "St Anne's" },
-  { "name": "St David's" },
-  { "name": "St Catherine's" },
-  { "name": "St Patrick's" }
+  {
+    "name": "Rice - Brown",
+    "abbreviation": "HKD",
+    "code": 7008,
+    "email": "Briana24@RiceBrown.org",
+    "phone_number": "9309323115",
+    "notes": "Culpa cupidatat voluptate eu ea consectetur.",
+    "id": "fab6fc5f-53a1-470b-acb8-64a66ecb9caf"
+  },
+  {
+    "name": "Will - Hammes",
+    "abbreviation": "VES",
+    "code": 7276,
+    "email": "Fatima33@WillHammes.net",
+    "phone_number": "9566673277",
+    "notes": "Consequat labore magna voluptate ipsum commodo magna cupidatat deserunt nulla.",
+    "id": "d2bc0756-a5e0-46b0-9bde-c354c2113ddb"
+  },
+  {
+    "name": "Shields and Sons",
+    "abbreviation": "XAF",
+    "code": 1262,
+    "email": "Ernest94@ShieldsandSons.com",
+    "phone_number": "5294858133",
+    "notes": "Amet ea nisi ad eiusmod ea.",
+    "id": "b2fa6770-24d4-4ae0-8bf1-f7e37c992f0a"
+  },
+  {
+    "name": "Upton, Kris and Cummings",
+    "abbreviation": "GYD",
+    "code": 5556,
+    "email": "Lon.Wiza@UptonKrisandCummings.org",
+    "phone_number": "5301531444",
+    "notes": "",
+    "id": "4c0a1312-d0f4-4fc4-890e-bf9c38cc1b73"
+  },
+  {
+    "name": "Morissette LLC",
+    "abbreviation": "CDF",
+    "code": 7398,
+    "email": "Simeon_Swift33@MorissetteLLC.ac.com",
+    "phone_number": "2065060518",
+    "notes": "Eiusmod qui officia mollit eu.",
+    "id": "ab2882d0-b29c-4ca6-9073-4fe8093e5087"
+  },
+  {
+    "name": "Lindgren Inc",
+    "abbreviation": "BGN",
+    "code": 3226,
+    "email": "Jaron47@LindgrenInc.com",
+    "phone_number": "2813032186",
+    "notes": "",
+    "id": "c58c662b-454e-4fae-badc-a8ba8756df50"
+  },
+  {
+    "name": "Ferry Inc",
+    "abbreviation": "MUR",
+    "code": 4623,
+    "email": "Ewell47@FerryInc.ac.com",
+    "phone_number": "9881019229",
+    "notes": "Labore cillum aliquip fugiat cupidatat tempor enim voluptate est reprehenderit ad veniam proident id.",
+    "id": "d08ffe02-bc32-48e7-ba96-7c3d9890083e"
+  },
+  {
+    "name": "Moore - Abshire",
+    "abbreviation": "BRL",
+    "code": 2537,
+    "email": "Cassandra4@MooreAbshire.com",
+    "phone_number": "2447751045",
+    "notes": "",
+    "id": "35b12390-fc74-4534-baff-ffb9ba0739ee"
+  },
+  {
+    "name": "O'Conner - Wuckert",
+    "abbreviation": "USD",
+    "code": 1206,
+    "email": "Jarvis6@OConnerWuckert.com",
+    "phone_number": "0006922964",
+    "notes": "Veniam dolor ipsum laboris elit cillum sint dolore ullamco ipsum elit ad laboris voluptate.",
+    "id": "ae1f1f98-7bed-43e2-9940-a499030ed5a1"
+  },
+  {
+    "name": "Kilback LLC",
+    "abbreviation": "DKK",
+    "code": 2447,
+    "email": "Brandt.Wintheiser@KilbackLLC.ac.com",
+    "phone_number": "7932253381",
+    "notes": "",
+    "id": "80756d86-dfb1-4939-b51a-7f47588f55fe"
+  },
+  {
+    "name": "McDermott, Macejkovic and Ratke",
+    "abbreviation": "AUD",
+    "code": 9771,
+    "email": "River.Kub92@McDermottMacejkovicandRatke.com",
+    "phone_number": "9741918555",
+    "notes": "Eiusmod cillum reprehenderit irure nostrud laboris laborum in ex labore cillum Lorem.",
+    "id": "8fba9706-eb11-4855-8b66-9c62ea344b33"
+  },
+  {
+    "name": "Bogan LLC",
+    "abbreviation": "USD",
+    "code": 8783,
+    "email": "Mackenzie_Kerluke@BoganLLC.org",
+    "phone_number": "2048987147",
+    "notes": "",
+    "id": "790f38c0-6e58-41da-bca9-26978797eca7"
+  },
+  {
+    "name": "Fahey - Torp",
+    "abbreviation": "CAD",
+    "code": 2656,
+    "email": "Quinten_Bogan73@FaheyTorp.net",
+    "phone_number": "5994159749",
+    "notes": "",
+    "id": "0e283a75-a80e-40d2-9b81-33102bac0fca"
+  },
+  {
+    "name": "Powlowski, Sawayn and Kihn",
+    "abbreviation": "AUD",
+    "code": 8962,
+    "email": "Rodger.Welch@PowlowskiSawaynandKihn.com",
+    "phone_number": "6813875324",
+    "notes": "",
+    "id": "63a14ea6-40fd-49ba-b028-3fb721aac1f9"
+  },
+  {
+    "name": "Turcotte, Corkery and Hegmann",
+    "abbreviation": "EUR",
+    "code": 1001,
+    "email": "Boris65@TurcotteCorkeryandHegmann.org",
+    "phone_number": "7363277377",
+    "notes": "",
+    "id": "22f23475-8fcc-4dbd-9497-373d6ff4724e"
+  },
+  {
+    "name": "Gulgowski Inc",
+    "abbreviation": "EUR",
+    "code": 8714,
+    "email": "Lavonne_Ondricka@GulgowskiInc.net",
+    "phone_number": "1983145702",
+    "notes": "Occaecat exercitation esse dolore ea commodo qui commodo exercitation ex aliqua adipisicing.",
+    "id": "9b0ef490-6be6-4a0c-9f24-1f140041456f"
+  },
+  {
+    "name": "Turcotte LLC",
+    "abbreviation": "AUD",
+    "code": 6513,
+    "email": "Ashly_Gutmann@TurcotteLLC.com",
+    "phone_number": "8220633961",
+    "notes": "",
+    "id": "38ac5265-daff-447b-b270-3da84905fc04"
+  },
+  {
+    "name": "Runolfsson, Reinger and Hansen",
+    "abbreviation": "XOF",
+    "code": 8760,
+    "email": "Jeramie87@RunolfssonReingerandHansen.net",
+    "phone_number": "6201425630",
+    "notes": "Cillum consequat ipsum mollit pariatur.",
+    "id": "0ca568e8-cdd9-4d90-b0bb-7aa0a917aa5c"
+  },
+  {
+    "name": "Nienow, Williamson and Rolfson",
+    "abbreviation": "KGS",
+    "code": 4348,
+    "email": "Keyshawn_Bergstrom@NienowWilliamsonandRolfson.org",
+    "phone_number": "7098056070",
+    "notes": "",
+    "id": "33ee8025-dfed-4324-9de5-4422dfb60a5f"
+  },
+  {
+    "name": "Ryan, Hills and Toy",
+    "abbreviation": "MXN",
+    "code": 9820,
+    "email": "Elian.Schaefer28@RyanHillsandToy.gov",
+    "phone_number": "5619181118",
+    "notes": "Duis laborum esse Lorem elit aliqua reprehenderit dolore proident esse quis enim.",
+    "id": "f0fc933b-061d-4151-a5e5-b0a91622bd2b"
+  },
+  {
+    "name": "Rutherford and Sons",
+    "abbreviation": "FJD",
+    "code": 5228,
+    "email": "Corine.Zboncak76@RutherfordandSons.com",
+    "phone_number": "6963190963",
+    "notes": "Adipisicing officia ullamco Lorem enim eu aliquip ea consequat.",
+    "id": "13cdc757-804a-452e-b0d7-d6f8229f9547"
+  },
+  {
+    "name": "Hagenes, Bogisich and Breitenberg",
+    "abbreviation": "USD",
+    "code": 7463,
+    "email": "Clare.Gorczany@HagenesBogisichandBreitenberg.ac.com",
+    "phone_number": "3870907944",
+    "notes": "",
+    "id": "caf534f8-069d-45fd-ac63-870391d6b762"
+  },
+  {
+    "name": "Stark - Walsh",
+    "abbreviation": "GEL",
+    "code": 8524,
+    "email": "Leon79@StarkWalsh.ac.com",
+    "phone_number": "1101207337",
+    "notes": "",
+    "id": "bfd78a52-ca03-432b-a9de-09d86cef5cc8"
+  },
+  {
+    "name": "Mohr LLC",
+    "abbreviation": "GYD",
+    "code": 1110,
+    "email": "Lauretta_Marks@MohrLLC.gov",
+    "phone_number": "3441757835",
+    "notes": "",
+    "id": "2f5e26c2-d7ec-4752-be52-61fea5420fdf"
+  },
+  {
+    "name": "Hammes and Sons",
+    "abbreviation": "USD",
+    "code": 8191,
+    "email": "Wendell41@HammesandSons.org",
+    "phone_number": "6642133775",
+    "notes": "",
+    "id": "4f3d9792-d64f-4db2-9795-f4d2f47b0fcb"
+  },
+  {
+    "name": "Admins",
+    "abbreviation": "ADMIN",
+    "code": 1234,
+    "email": "admins@admins.com",
+    "phone_number": "0000000000",
+    "notes": "Adjudicator Coordinator@Adjudicator.com:Adjudicator Coordinator, Team Coordinator@Adjudicator.com:Team Coordinator,Adjudicator@Adjudicator.com:Adjudicator,admin@admin.com:adminadmin",
+    "id": "4f3d9792-d64f-4db2-9795-f4d2f47b0fcd"
+  }
 ]
