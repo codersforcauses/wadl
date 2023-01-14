@@ -90,21 +90,17 @@ const roundClicked = (roundName) => {
         const roundArray = div.matchups.filter(
           (matchup) => matchup.round === roundSelected.value
         );
-        console.log(roundArray);
+        const tournamentInfo = div.matchups.map(
+          (matchup) => matchup.topic,
+          matchup.datetime,
+          matchup.affirmative_team,
+          matchup.negative_team
+        );
+
+        console.log(tournamentInfo); //just for debugging
       });
     });
   });
-  // let rounds = [];
-  // data.value.forEach((d) => {
-  //   if (d.level === currentLevelTab.value) {
-  //     d.rounds.map((r) => rounds.push(r));
-  //   }
-  // });
-  // rounds.forEach((r) => {
-  //   if (r.round === roundName) {
-  //     r.matchups.map((m) => tableData.value.push(m));
-  //   }
-  // });
 };
 </script>
 
