@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from "vue";
+import tournamentsData from "../../data/tournaments.json";
+const tournaments = ref(tournamentsData);
+console.log(tournaments);
 const headers = [
   {
     key: "div",

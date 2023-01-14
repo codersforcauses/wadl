@@ -18,13 +18,16 @@
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
+import tournamentsData from "../data/tournaments.json";
+const tournaments = ref(tournamentsData);
+console.log(tournaments);
 
-const tournaments = [
-  { id: "11d3495f-7931-4333-a2be-d153ec893dd5", name: "Junior" },
-  { id: "784685d1-eec4-4041-ab89-9c4c79a48d96", name: "Novice" },
-  { id: "4cd2804b-a3f1-455f-b32e-302dcc8f76c4", name: "Senior" },
-  { id: "8b7083ee-e892-4ad0-8027-2b5127500e2c", name: "SDC" },
-  { id: "dcd8bbcc-aa9e-49e8-89d5-6faaa900cf4b", name: "AIHSA" },
-  { id: "1c9b4a1d-a4f6-4373-a037-0503daff6765", name: "RDC" },
-]; // Dummy Data to be replaced
+// const tournaments = [
+//   { id: "11d3495f-7931-4333-a2be-d153ec893dd5", name: "Junior" },
+//   { id: "784685d1-eec4-4041-ab89-9c4c79a48d96", name: "Novice" },
+//   { id: "4cd2804b-a3f1-455f-b32e-302dcc8f76c4", name: "Senior" },
+//   { id: "8b7083ee-e892-4ad0-8027-2b5127500e2c", name: "SDC" },
+//   { id: "dcd8bbcc-aa9e-49e8-89d5-6faaa900cf4b", name: "AIHSA" },
+//   { id: "1c9b4a1d-a4f6-4373-a037-0503daff6765", name: "RDC" },
+// ]; // Dummy Data to be replaced
 </script>
