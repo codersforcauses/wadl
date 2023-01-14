@@ -23,7 +23,7 @@ export const useUserStore = defineStore("user", {
   persist: {
     key: "pinia-store",
     afterRestore: (ctx) => {
-      console.log(ctx.pinia.state.value);
+      // console.log(ctx.pinia.state.value);
     },
     debug: true,
     persist: true,
