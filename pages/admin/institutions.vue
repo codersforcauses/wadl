@@ -68,6 +68,8 @@ const createInstitution = () => {
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+        <FormField v-model="formInput.number" label="Phone Number" />
+        <FormField v-model="formInput.email" label="Email" />
         <div class="flex justify-evenly items-center">
           <Button
             button-text="Update"
@@ -94,6 +96,8 @@ const createInstitution = () => {
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+        <FormField v-model="formInput.number" label="Phone Number" />
+        <FormField v-model="formInput.email" label="Email" />
         <div class="flex justify-evenly items-center">
           <Button
             button-text="Submit"
