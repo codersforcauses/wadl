@@ -9,7 +9,7 @@ defineProps({
     default: "",
   },
   icon: {
-    type: String,
+    type: Function,
     default: "",
   },
 });
