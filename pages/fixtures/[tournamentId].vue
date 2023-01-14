@@ -68,15 +68,18 @@ const handleFilter = (searchTerm) => {
 
 const route = useRoute();
 
+const hasNotSelectedRoundTab = ref(true);
 const tableData = ref([]);
-const currentLevelTab = ref("");
+const levelSelected = ref("Junior");
+const roundSeleccted = ref(undefined);
 
 const levelClicked = (tabName) => {
-  currentLevelTab.value = tabName;
+  levelSelected.value = tabName;
 };
-const hasNotSelectedRoundTab = ref(true);
+
 const roundClicked = (roundName) => {
   hasNotSelectedRoundTab.value = false;
+  roundSeleccted.value = parseInt(roundName.split("")[roundName.length - 1]);
   // let rounds = [];
   // data.value.forEach((d) => {
   //   if (d.level === currentLevelTab.value) {
