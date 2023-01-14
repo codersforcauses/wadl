@@ -43,7 +43,7 @@ export const useVenueStore = defineStore("venue", {
     async createVenue(venue) {
       this.venues.push({
         ...venue,
-        id: this.venue.length + 1,
+        id: this.venues.length + 1,
       });
       this.filteredVenues = [...this.venues];
     },
