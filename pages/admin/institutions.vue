@@ -10,12 +10,12 @@ const headers = [
     title: "Institution",
   },
   {
-    key: "email",
-    title: "Email",
-  },
-  {
     key: "number",
     title: "Phone Number",
+  },
+  {
+    key: "email",
+    title: "Email",
   },
 ];
 
@@ -65,7 +65,6 @@ const handleEdit = (row) => {
   editMode.value = row.editMode;
   formInput.value = row.data;
 };
-
 </script>
 
 <template>
