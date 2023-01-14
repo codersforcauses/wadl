@@ -13,7 +13,7 @@
       w-full
       placeholder:heading-montserrat
       heading-montserrat
-      ${props.disabled ? 'cursor-not-allowed' : ''}
+      ${props.disabled ? 'cursor-not-allowed bg-stone-100' : ''}
       `"
     :value="modelValue"
     min="0"
