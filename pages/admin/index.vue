@@ -10,6 +10,7 @@ import {
   UsersIcon,
   ClipboardIcon,
   UserPlusIcon,
+  UserCircleIcon,
 } from "@heroicons/vue/24/outline";
 </script>
 
@@ -35,6 +36,11 @@ import {
       <AdminButton
         title="Sign-up Requests"
         link="admin/signup-requests"
+        :icon="UserCircleIcon"
+      />
+      <AdminButton
+        title="Create Admin"
+        link="admin/create-admin"
         :icon="UserPlusIcon"
       />
     </div>
