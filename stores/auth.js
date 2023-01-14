@@ -88,6 +88,12 @@ export const useUserStore = defineStore("user", {
         case "auth/internal-error":
           if (error.message.indexOf("Requesting state is true") !== -1) {
             this.errorCode = "Need approval from admin to gain access";
+          } else if (
+            error.message.indexOf(
+              "Account not found, please register an account"
+            ) !== -1
+          ) {
+            this.errorCode = "Account not found, please register an account";
           }
           break;
         default:
