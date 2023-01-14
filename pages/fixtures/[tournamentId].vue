@@ -217,7 +217,6 @@ const handleFilter = (searchTerm) => {
 };
 
 const route = useRoute();
-console.log(route.params.tournamentId);
 
 const tableData = ref([]);
 const currentLevelTab = ref("");

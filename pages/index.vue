@@ -13,7 +13,6 @@
         <LevelButton :text="item.name" />
       </NuxtLink>
     </div>
-    ß
   </main>
 </template>
 
