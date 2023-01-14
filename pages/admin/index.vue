@@ -12,6 +12,9 @@ import {
   UserPlusIcon,
   UserCircleIcon,
 } from "@heroicons/vue/24/outline";
+definePageMeta({
+  middleware: ["auth"],
+});
 </script>
 
 <template>
