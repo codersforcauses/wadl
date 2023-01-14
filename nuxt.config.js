@@ -45,7 +45,7 @@ export default defineNuxtConfig({
       theme_color: "#FFD700",
       lang: "en-AU",
       ogHost: "https://wadl.vercel.app/",
-      twitterCard: "app",
+      twitterCard: "summary",
       twitterCreator: "@codersforcauses"
     },
   }
