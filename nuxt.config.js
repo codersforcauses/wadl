@@ -44,14 +44,14 @@ export default defineNuxtConfig({
     icon: {
       source: "assets/logos/ShortLogo.png",
       fileName: "ShortLogo.png",
-      purpose: "any"
+      purpose: "any",
     },
     meta: {
       theme_color: "#FFD700",
       lang: "en-AU",
       ogHost: "https://wadl.vercel.app/",
       twitterCard: "summary",
-      twitterCreator: "@codersforcauses"
+      twitterCreator: "@codersforcauses",
     },
-  }
+  },
 });
