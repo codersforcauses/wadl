@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
-
+import { vOnClickOutside } from "@vueuse/components";
 const props = defineProps({
   items: {
     type: Array,
@@ -36,7 +36,14 @@ const removeChip = (item) => {
 };
 </script>
 <template>
-  <div class="relative mb-2">
+  <div
+    v-on-click-outside="
+      () => {
+        isOpen = false;
+      }
+    "
+    class="relative mb-2"
+  >
     <div class="rounded-md border border-light-grey p-1">
       <div class="cursor-pointer" @click="isOpen = !isOpen">
         <div class="flex items-center w-full">
@@ -94,4 +101,3 @@ const removeChip = (item) => {
   opacity: 0;
 }
 </style>
-
