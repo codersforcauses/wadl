@@ -31,9 +31,10 @@ defineProps({
   error: { type: Boolean, default: false },
   color: { type: String, default: "" },
 });
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "update"]);
 
 const updateInput = (e) => {
   emit("update:modelValue", e.target.value);
+  emit("update");
 };
 </script>

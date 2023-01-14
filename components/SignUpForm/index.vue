@@ -18,39 +18,36 @@
     </div>
     <FormField v-model="form.email" label="Email" placeholder="Your Email" />
     <FormField
-      v-if="isValid"
+      v-model="form.phoneNumber"
+      label="Phone Number"
+      type="number"
+      placeholder="Your Phone Number"
+    />
+
+    <FormField
       v-model="form.password"
       label="Password"
       type="password"
       placeholder="Your Password"
+      :color="!isValid ? 'border-red-500' : ''"
+      @update="updateInput"
     />
+    <p class="text-red-500">{{ errorMessage }}</p>
 
     <FormField
-      v-else
-      v-model="form.password"
-      label="Password"
-      type="password"
-      placeholder="Your Password"
-      color="border-red-500"
-    />
-    <div></div>
-
-    <FormField
-      v-if="isValid"
       v-model="form.confirmPassword"
       label="Confirm Password"
       placeholder="Confirm Password"
       type="password"
+      :color="!isValid ? 'border-red-500' : ''"
+      @update="updateInput"
     />
-    <FormField
-      v-else
-      v-model="form.confirmPassword"
-      label="Confirm Password"
-      placeholder="Confirm Password"
-      type="password"
-      color="border-red-500"
+    <Roles
+      v-model="form.role"
+      :color="!isRoleValid ? 'border-red-500' : ''"
+      @update="updateInput"
     />
-    <Roles v-model="form.role" />
+    <p class="text-red-500">{{ errorMessage2 }}</p>
     <div class="w-full flex flex-col gap-6 items-center mt-4">
       <div class="w-full flex justify-center">
         <Button button-text="Submit" button-color="bg-gold" />
@@ -85,13 +82,29 @@ const form = ref({
 });
 
 const isValid = ref(true);
+const isRoleValid = ref(true);
 const errorMessage = ref("");
+const errorMessage2 = ref("");
+
+const updateInput = (e) => {
+  errorMessage.value = "";
+  errorMessage2.value = "";
+  isValid.value = true;
+  isRoleValid.value = true;
+};
 
 // Call The User Store
 const registerUser = (e) => {
+  console.log(form.value.role);
   if (form.value.password.length > 8) {
     if (form.value.password === form.value.confirmPassword) {
-      userStore.registerUser(form.value);
+      if (form.value.role) {
+        userStore.registerUser(form.value);
+      } else {
+        isRoleValid.value = false;
+        console.log(isRoleValid);
+        errorMessage2.value = "You have to choose a role";
+      }
     } else {
       isValid.value = false;
       errorMessage.value = "The password does not match";
@@ -99,7 +112,6 @@ const registerUser = (e) => {
   } else {
     isValid.value = false;
     errorMessage.value = "The password has to be at least 8 characters";
-    console.log(errorMessage);
   }
 };
 </script>
