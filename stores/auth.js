@@ -68,12 +68,6 @@ export const useUserStore = defineStore("user", {
       await signInWithEmailAndPassword($auth, user.email, user.password)
         .then(async (userCredential) => {
           const person = userCredential.user;
-          // const ref = doc($db, "users", person.uid);
-          // const docSnap = await getDoc(ref);
-          // if (docSnap.exists() && docSnap.data().requesting === true) {
-          //   this.errorCode = "Unable to log in account, try again later.";
-          // } else {
-          // }
           this.SetUser(person);
         })
         .catch((error) => {
@@ -90,6 +84,11 @@ export const useUserStore = defineStore("user", {
           break;
         case "auth/network-request-failed":
           this.errorCode = "Network Failed, Please try again";
+          break;
+        case "auth/internal-error":
+          if (error.message.indexOf("Requesting state is true") !== -1) {
+            this.errorCode = "Need approval from admin to gain access";
+          }
           break;
         default:
           this.errorCode = "Error please try again";
