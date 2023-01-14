@@ -2,6 +2,7 @@ import { useUserStore } from "../stores/auth";
 import { useNuxtApp } from "#imports";
 
 export default defineNuxtRouteMiddleware(async (to) => {
+  // TODO: make safe :) rm -rf /hacker(wo)mans
   const { $auth } = useNuxtApp();
   const authStore = useUserStore();
   console.log("global middleware ran", to);

@@ -6,28 +6,31 @@
       <HomeButton class="pl-3" />
       <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
     </div>
-    <div v-if="!firstName" class="mr-2">
-      <NuxtLink to="/signup">
-        <Button button-text="Signup" size="small" class="shadow-none" />
-      </NuxtLink>
-      <NuxtLink to="/login">
-        <Button
-          button-text="Login"
-          button-color="bg-light-yellow"
-          size="small"
-        />
-      </NuxtLink>
-    </div>
-    <div v-else class="mr-2">
-      <NuxtLink to="/">
-        <Button
-          button-text="Signout"
-          button-color="bg-light-yellow"
-          size="small"
-          @click="userStore.clearStore()"
-        />
-      </NuxtLink>
-    </div>
+    <!-- user info to be rendered on client side -->
+    <client-only>
+      <div v-if="!firstName" class="mr-2">
+        <NuxtLink to="/signup">
+          <Button button-text="Signup" size="small" class="shadow-none" />
+        </NuxtLink>
+        <NuxtLink to="/login">
+          <Button
+            button-text="Login"
+            button-color="bg-light-yellow"
+            size="small"
+          />
+        </NuxtLink>
+      </div>
+      <div v-else class="mr-2">
+        <NuxtLink to="/">
+          <Button
+            button-text="Signout"
+            button-color="bg-light-yellow"
+            size="small"
+            @click="userStore.clearStore()"
+          />
+        </NuxtLink>
+      </div>
+    </client-only>
   </nav>
 </template>
 
