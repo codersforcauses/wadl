@@ -1,41 +1,76 @@
+// draft 1.4
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+    match /users/{userId} {
+      function isAdmin(){
+       return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
+      }
+      function allowSignup(){
+        return request.auth.token.email != null  
+      }
+      function isOwner(){
+        return request.auth.uid == userId
+      }
+      function isAdjudicator(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "Adjudicator"
+      }
+      function isTeamCoordinator(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "Team Coordinator"
+      }
+      function isAdjudicatorCoordinator(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "Adjudicator Coordinator"
+      }
+      allow create: if allowSignup();
+      allow create, read, update, delete: if isAdmin();
+      allow read, update: if isOwner() && (isAdjudicator() || isTeamCoordinator() || isAdjudicatorCoordinator());
     }
+    match /venues/{venueId} {
+    function isAdmin(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
+      }
+    allow create, read, update, delete: if isAdmin();
+    allow read: if true;
+    }
+    match /tournaments/{tournamentId}/levels/{levelId} {
+    	function isTeamCoord() {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Team Coordinator'
+      }
+      allow update, read: if isTeamCoord();
+    }
+    match /tournaments/{document=**} {
+    function isAdmin(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
+      }
+      allow create, read, write, delete: if isAdmin();
+      allow read: if true;
+    }
+    match /tournaments/{tournamentId}/levels/{levelId}/divisions/{divisionId}/matchups/{matchupId} {
+    	function isAdjudicatorCoordinator() {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Adjudicator Coordinator'
+      }
+      allow update, read: if isAdjudicatorCoordinator();
+    }
+    
+    match /institutions/{institutionsId} {
+    	function isAdjudicator(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Adjudicator'
+        
+      }
+      function isTeamCoordinator(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Team Coordinator'
+        
+      }
+      function isAdjudicatorCoordinator(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Adjudicator Coordinator'
+        
+      }
+      function isAdmin(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
+      }
+      allow create, update, read: if isAdjudicator() || isTeamCoordinator() || isAdjudicatorCoordinator() || isAdmin();
+      allow delete: if isAdmin();
+    }
+    
   }
 }
-
-// While the rules havent changed, this allows for easy testing, the rules below will be what the first version of what the production will hold
-// rules_version = '2';
-// service cloud.firestore {
-//   match /databases/{database}/documents {
-//     match /users/{userId} {
-//       function verifiedEmail(){
-//         return request.auth.token.email_verified == true
-//       }
-//       function isAdmin(){
-//         return  request.resource.data.role == "Admin" 
-//       }
-//       function allowSignup(){
-//         return request.auth.token.email != null  
-//       }
-//       function isOwner(){
-//         return request.auth.uid == userId
-//       }
-//       function isAdjudicator(){
-//         return request.resource.data.role == "Adjudicator"
-//       }
-//       function isTeamCoordinator(){
-//         return request.resource.data.role == "Team Coordinator"
-//       }
-//       function isAdjudicatorCoordinator(){
-//         return request.resource.data.role == "Adjudicator Coordinator"
-//       }
-//       allow create: if allowSignup();
-//       allow create, read, update, delete: if isAdmin() && verifiedEmail();
-//       allow read, update: if isOwner() && (isAdjudicator() || isCoordinator() || isAdjudicatorCoordinator());
-//     }
-//   }
-// }
