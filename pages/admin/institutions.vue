@@ -1,63 +1,109 @@
 <script setup>
 import { ref } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/solid";
-import data from "../../data/institutions.json";
 import { useInstitutionStore } from "../../stores/institutions";
 import Modal from "../../components/Modal/Modal.vue";
 
-const institutions = ref(data);
+const defaultInputState = {
+  id: null,
+  name: null,
+  code: null,
+  abbreviation: null,
+};
+
+const modalVisibility = ref(false);
+const editMode = ref(false);
+const formInput = ref({ ...defaultInputState });
+
+const store = useInstitutionStore();
+
+const resetFormState = () => {
+  formInput.value = { ...defaultInputState };
+  editMode.value = false;
+};
 
 const filterInstitutions = (searchTerm) => {
-  institutions.value = data.filter((inst) =>
-    inst.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // institutions.value = data.filter((inst) =>
+  //   inst.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // );
+  console.log("Filtering institutions");
 };
 
-// Modal
-const modalVisibility = ref(false);
-
-const toggleModal = () => {
-  modalVisibility.value = !modalVisibility.value;
+const updateInstitution = () => {
+  // update store
+  store.editInstitution(formInput.value);
+  resetFormState();
 };
 
-// Pinia
-const instStore = useInstitutionStore();
-const instInput = ref({
-  name: "",
-  code: "",
-  abbreviation: "",
-});
-
-const createInstitution = (e) => {
-  instStore.createInstitution(instInput.value);
-  instInput.value = {
-    name: "",
-    code: "",
-    abbreviation: "",
-  };
-  toggleModal();
+const createInstitution = () => {
+  // update store
+  store.createInstitution(formInput.value);
+  resetFormState();
 };
 </script>
 
 <template>
-  <!-- Modal -->
-  <Modal :modal-visibility="modalVisibility" @close="toggleModal">
-    <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
-      Add Institutions
-    </p>
-    <form id="Inst" class="px-10" @submit.prevent="createInstitution">
-      <FormField v-model="instInput.name" label="Institution Name" />
-      <FormField v-model="instInput.code" label="Code" />
-      <FormField v-model="instInput.abbreviation" label="Abbreviation" />
-      <div class="flex justify-evenly items-center">
-        <Button
-          button-text="Submit"
-          button-color="bg-gold"
-          type="Submit"
-          class="m-5 ml-8"
-        />
-      </div>
-    </form>
+  <Modal
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+        resetFormState();
+      }
+    "
+  >
+    <div v-if="editMode">
+      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+        Edit Institution
+      </p>
+      <form
+        class="px-10"
+        @submit.prevent="
+          () => {
+            modalVisibility = false;
+            updateInstitution();
+          }
+        "
+      >
+        <FormField v-model="formInput.name" label="Institution Name" />
+        <FormField v-model="formInput.code" label="Code" />
+        <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+        <div class="flex justify-evenly items-center">
+          <Button
+            button-text="Update"
+            button-color="bg-gold"
+            type="Submit"
+            class="m-5 ml-8"
+          />
+        </div>
+      </form>
+    </div>
+    <div v-else>
+      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+        Add Institution
+      </p>
+      <form
+        class="px-10"
+        @submit.prevent="
+          () => {
+            modalVisibility = false;
+            createInstitution();
+          }
+        "
+      >
+        <FormField v-model="formInput.name" label="Institution Name" />
+        <FormField v-model="formInput.code" label="Code" />
+        <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+        <div class="flex justify-evenly items-center">
+          <Button
+            button-text="Submit"
+            button-color="bg-gold"
+            type="Submit"
+            class="m-5 ml-8"
+          />
+        </div>
+      </form>
+    </div>
   </Modal>
 
   <Header title-text="Institutions" />
@@ -70,14 +116,22 @@ const createInstitution = (e) => {
         Institutions
       </li>
       <li
-        v-for="(inst, idx) in instStore.institutions"
-        :key="idx"
+        v-for="institution in store.institutions"
+        :key="institution.id"
         class="justify-between flex px-6 py-2 border-b border-gray-20 items-center"
       >
-        <p>{{ inst.name }}</p>
-        <NuxtLink>
-          <button><PencilIcon class="h-4 w-4" /></button>
-        </NuxtLink>
+        <p>{{ institution.name }}</p>
+        <button
+          @click="
+            () => {
+              formInput = { ...institution };
+              editMode = true;
+              modalVisibility = true;
+            }
+          "
+        >
+          <PencilIcon class="h-4 w-4" />
+        </button>
       </li>
     </ul>
   </div>
@@ -87,7 +141,7 @@ const createInstitution = (e) => {
       button-color="bg-gold"
       type="button"
       class="m-5 ml-8"
-      @click="toggleModal"
+      @click="modalVisibility = true"
     />
   </div>
 </template>

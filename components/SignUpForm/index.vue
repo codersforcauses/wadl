@@ -47,6 +47,10 @@
       :color="!isRoleValid ? 'border-red-500' : ''"
       @update="updateInput"
     />
+    <Roles v-model="form.role" />
+    <p v-if="userStore.errorCode" class="text-danger-red">
+      {{ userStore.errorCode }}
+    </p>
     <p class="text-red-500">{{ errorMessage2 }}</p>
     <div class="w-full flex flex-col gap-6 items-center mt-4">
       <div class="w-full flex justify-center">
@@ -67,7 +71,7 @@
 
 <script setup>
 import Roles from "./Roles.vue";
-import { useUserStore } from "../../stores/user";
+import { useUserStore } from "../../stores/auth";
 import { ref } from "vue";
 
 const userStore = useUserStore();
