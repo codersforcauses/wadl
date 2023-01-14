@@ -41,6 +41,11 @@ export default defineNuxtConfig({
     },
   },
   pwa: {
+    icon: {
+      source: "assets/logos/ShortLogo.png",
+      fileName: "ShortLogo.png",
+      purpose: "any"
+    },
     meta: {
       theme_color: "#FFD700",
       lang: "en-AU",
