@@ -59,6 +59,8 @@
     :items="['Item 1', 'item 2', 'item 3']"
     @change="updateSelectedLevels"
   />
+
+  <Notification> <p>test</p> </Notification>
 </template>
 
 <script setup>
