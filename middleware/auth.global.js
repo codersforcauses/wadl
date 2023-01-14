@@ -1,5 +1,5 @@
 import { useUserStore } from "../stores/auth";
-import { useNuxtApp } from "#imports";
+import { useNuxtApp, defineNuxtRouteMiddleware } from "#imports";
 
 export default defineNuxtRouteMiddleware(async (to) => {
   // TODO: make safe :) rm -rf /hacker(wo)mans
