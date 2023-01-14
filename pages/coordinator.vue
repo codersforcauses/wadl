@@ -31,6 +31,14 @@ const updateLevels = (chips) => {
     }
   });
 };
+const saveTeamRegistration = async () => {
+  // TODO:
+  // Perform validation
+  // POST to backend
+  console.log(formInput.value);
+  console.log("Team Saved!");
+  modalVisibility.value = false;
+};
 </script>
 
 <template>
@@ -95,6 +103,7 @@ const updateLevels = (chips) => {
             button-color="bg-gold"
             button-text="Save"
             type="Submit"
+            @click="saveTeamRegistration"
           />
         </div>
       </form>
