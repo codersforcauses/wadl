@@ -109,7 +109,7 @@ const saveTeamRegistration = async () => {
       </form>
     </div>
   </Modal>
-  <ProfileInfo username="Carmen Leong" role="Admin" />
+  <ProfileInfo username="John Doe" role="Admin" />
   <Table :headings="['Teams', 'Level', 'Division']" />
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <div class="flex flex-row gap-4 m-5 justify-left">
