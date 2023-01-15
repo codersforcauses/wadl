@@ -66,7 +66,7 @@ export const useUserStore = defineStore("user", {
     async LoginUser(user) {
       const { $auth } = useNuxtApp();
       await signInWithEmailAndPassword($auth, user.email, user.password)
-        .then(async (userCredential) => {
+        .then((userCredential) => {
           const person = userCredential.user;
           this.SetUser(person);
         })
