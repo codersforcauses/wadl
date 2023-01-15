@@ -67,7 +67,6 @@ export const useUserStore = defineStore("user", {
       const { $auth } = useNuxtApp();
       await signInWithEmailAndPassword($auth, user.email, user.password)
         .then((userCredential) => {
-          console.log(userCredential);
           const person = userCredential.user;
           this.SetUser(person);
         })
@@ -85,6 +84,17 @@ export const useUserStore = defineStore("user", {
           break;
         case "auth/network-request-failed":
           this.errorCode = "Network Failed, Please try again";
+          break;
+        case "auth/internal-error":
+          if (error.message.indexOf("Requesting state is true") !== -1) {
+            this.errorCode = "Need approval from admin to gain access";
+          } else if (
+            error.message.indexOf(
+              "Account not found, please register an account"
+            ) !== -1
+          ) {
+            this.errorCode = "Account not found, please register an account";
+          }
           break;
         default:
           this.errorCode = "Error please try again";
@@ -121,6 +131,7 @@ export const useUserStore = defineStore("user", {
           this.phoneNumber = null;
           this.role = null;
           this.errorCode = null;
+          this.requesting = null;
           console.log("Sign out successful");
         })
         .catch((error) => {
