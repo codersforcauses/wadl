@@ -59,9 +59,23 @@
     :items="['Item 1', 'item 2', 'item 3']"
     @change="updateSelectedLevels"
   />
+
+  <div class="mx-8">
+    <SearchSelect
+      :items="institutions"
+      @info="getInfo"
+      @search-text="getName"
+    />
+  </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useInstitutionStore } from "../stores/institutions";
+
+const store = useInstitutionStore();
+const institutions = ref(store.institutions);
+
 const tabs = [
   { label: "Novice", active: false },
   { label: "Junior", active: true },
@@ -82,5 +96,12 @@ const handleTabClicked = (tab) => {
 
 const updateSelectedLevels = (chips) => {
   console.log("Chips selected", chips);
+};
+
+const getInfo = (data) => {
+  console.log("DATA:", data);
+};
+const getName = (name) => {
+  console.log("name:", name);
 };
 </script>
