@@ -13,7 +13,8 @@
             label="School Name"
             placeholder="School Name"
             type="search"
-          ></FormField>
+          >
+          </FormField>
         </div>
         <div class="py-1">
           <FormField
@@ -29,7 +30,8 @@
             label="School Email"
             placeholder="School Email"
             type="email"
-          ></FormField>
+          >
+          </FormField>
         </div>
         <div class="w-full flex justify-center pt-8">
           <Button button-text="Submit" button-color="bg-gold" />
@@ -40,7 +42,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useInstitutionStore } from "../../stores/institutions";
+
+const institutions = useInstitutionStore();
+
 const form = ref({
   schoolName: "",
   schoolNumber: "",
@@ -49,4 +55,8 @@ const form = ref({
 const handleTeamJoin = () => {
   console.log(form.value);
 };
+onMounted(() => {
+  institutions.getInstitutions();
+  console.log(institutions.institutions);
+});
 </script>
