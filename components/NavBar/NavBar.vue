@@ -4,39 +4,55 @@
   >
     <div class="flex place-items-center">
       <HomeButton class="pl-3" />
-      <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
+      <!-- user vars on client side only  -->
+      <client-only>
+        <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
+      </client-only>
     </div>
-    <div v-if="!firstName" class="mr-2">
-      <NuxtLink to="/signup">
-        <Button button-text="Signup" size="small" class="shadow-none" />
-      </NuxtLink>
-      <NuxtLink to="/login">
-        <Button
-          button-text="Login"
-          button-color="bg-light-yellow"
-          size="small"
-        />
-      </NuxtLink>
-    </div>
-    <div v-else class="mr-2">
-      <NuxtLink to="/">
-        <Button
-          button-text="Signout"
-          button-color="bg-light-yellow"
-          size="small"
-          @click="userStore.clearStore()"
-        />
-      </NuxtLink>
+    <div class="flex">
+      <client-only>
+        <div v-if="role === 'Admin'">
+          <NuxtLink to="/admin">
+            <Button
+              button-text="Admin"
+              size="small"
+              class="shadow-none underline underline-offset-4"
+            />
+          </NuxtLink>
+        </div>
+        <div v-if="!firstName" class="mr-2">
+          <NuxtLink to="/signup">
+            <Button button-text="Signup" size="small" class="shadow-none" />
+          </NuxtLink>
+          <NuxtLink to="/login">
+            <Button
+              button-text="Login"
+              button-color="bg-light-yellow"
+              size="small"
+            />
+          </NuxtLink>
+        </div>
+        <div v-else class="mr-2">
+          <NuxtLink to="/">
+            <Button
+              button-text="Signout"
+              button-color="bg-light-yellow"
+              size="small"
+              @click="userStore.clearStore()"
+            />
+          </NuxtLink>
+        </div>
+      </client-only>
     </div>
   </nav>
 </template>
 
 <script setup>
 import HomeButton from "./HomeButton.vue";
-import { useUserStore } from "~/stores/user.js";
+import { useUserStore } from "~/stores/auth.js";
 import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
 // Will be updated when user store changes
-const { firstName } = storeToRefs(userStore);
+const { firstName, role } = storeToRefs(userStore);
 </script>

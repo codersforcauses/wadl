@@ -10,11 +10,15 @@ import {
   UsersIcon,
   ClipboardIcon,
   UserPlusIcon,
+  UserCircleIcon,
 } from "@heroicons/vue/24/outline";
+import { useUserStore } from "../../stores/auth";
+
+const user = useUserStore();
 </script>
 
 <template>
-  <ProfileInfo username="Carmen Leong" role="Admin" />
+  <ProfileInfo :username="user.firstName" role="Admin" />
   <div class="flex items-center justify-evenly mt-4">
     <div class="grid w-11/12 grid-cols-1 gap-4 md:grid-cols-3">
       <AdminButton
@@ -35,6 +39,11 @@ import {
       <AdminButton
         title="Sign-up Requests"
         link="admin/signup-requests"
+        :icon="UserCircleIcon"
+      />
+      <AdminButton
+        title="Create Admin"
+        link="admin/create-admin"
         :icon="UserPlusIcon"
       />
     </div>
