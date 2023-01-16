@@ -28,7 +28,7 @@
             />
           </div>
           <div class="mt-6">
-            <FormField v-model="form.shortName" placeholder="Short Name" />
+            <FormField v-model="form.short_name" placeholder="Short Name" />
           </div>
         </div>
         <label class="heading-montserrat">Level</label>
@@ -37,7 +37,7 @@
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.rounds"
+          v-model="form.num_rounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -71,7 +71,7 @@
             />
           </div>
           <div class="mt-6">
-            <FormField v-model="form.shortName" placeholder="Short Name" />
+            <FormField v-model="form.short_name" placeholder="Short Name" />
           </div>
         </div>
         <label class="heading-montserrat">Level</label>
@@ -80,7 +80,7 @@
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.rounds"
+          v-model="form.num_rounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -120,10 +120,11 @@ import { useTournamentStore } from "../../stores/tournaments";
 
 const defaultInputState = {
   id: null,
-  name: null,
-  shortName: null,
   levels: [],
-  rounds: null,
+  name: null,
+  num_rounds: null,
+  short_name: null,
+  status: null,
 };
 
 const form = ref({ ...defaultInputState });
@@ -150,6 +151,7 @@ const handleEdit = (row) => {
   modalVisibility.value = row.modalVisibility;
   editMode.value = row.editMode;
   form.value = row.data;
+  console.log(form);
 };
 
 const handleFilter = (searchTerm) => {
