@@ -39,11 +39,14 @@ export const useInstitutionStore = defineStore("institution", {
         this.institutions.push(data);
       });
     },
+    async checkInstitution(institution) {
+      console.log("done");
+    },
     async updateProfile(institution) {
-      // console.log(institution);
-      // const { $db, $auth } = useNuxtApp();
-      // const ref = doc($db, "users", $auth.currentUser.uid);
-      // await updateDoc(ref, { institutions: institution.id });
+      console.log(institution);
+      const { $db, $auth } = useNuxtApp();
+      const ref = doc($db, "users", $auth.currentUser.uid);
+      await updateDoc(ref, { institutions: institution.id });
     },
     async clearStore() {
       this.institutions = [];

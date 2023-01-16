@@ -68,33 +68,50 @@
       <ul class="flex flex-col items-center divide-y divide-zinc-600">
         <div class="w-full text-center">
           <li class="mx-4 my-1">
-            <NuxtLink class="text-monsterrat" to="/coordinator">Teams</NuxtLink>
+            <NuxtLink
+              class="text-monsterrat"
+              to="/coordinator"
+              @click="visibility = false"
+              >Teams</NuxtLink
+            >
           </li>
         </div>
         <div class="w-full text-center">
           <li class="mx-4 my-1">
-            <NuxtLink class="text-monsterrat" to="/coordinator/draw"
+            <NuxtLink
+              class="text-monsterrat"
+              to="/coordinator/draw"
+              @click="visibility = false"
               >Draw</NuxtLink
             >
           </li>
         </div>
         <div class="w-full text-center">
           <li class="mx-4 my-1">
-            <NuxtLink class="text-monsterrat" to="/coordinator/institutions"
+            <NuxtLink
+              class="text-monsterrat"
+              to="/coordinator/institutions"
+              @click="visibility = false"
               >Institution</NuxtLink
             >
           </li>
         </div>
         <div class="w-full text-center">
           <li class="mx-4 my-1">
-            <NuxtLink class="text-monsterrat" to="/coordinator/userinformation"
+            <NuxtLink
+              class="text-monsterrat"
+              to="/coordinator/userinformation"
+              @click="visibility = false"
               >User Information</NuxtLink
             >
           </li>
         </div>
         <div class="w-full text-center">
           <li class="mx-4 my-1">
-            <NuxtLink class="text-monsterrat" to="/coordinator/changepassword"
+            <NuxtLink
+              class="text-monsterrat"
+              to="/coordinator/changepassword"
+              @click="visibility = false"
               >Change Password</NuxtLink
             >
           </li>
