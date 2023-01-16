@@ -10,7 +10,7 @@
         <div class="py-1">
           <SearchSelect
             placeholder="School Name"
-            :info="institutions"
+            :items="institutions"
             @info="getInfo"
             @search-text="getName"
           >
@@ -46,8 +46,7 @@ import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 
 const store = useInstitutionStore();
-const institutions = ref(store.institutions);
-console.log(institutions);
+const institutions = ref(null);
 
 const form = ref({
   schoolName: "",
@@ -57,8 +56,10 @@ const form = ref({
 const handleTeamJoin = () => {
   console.log(form.value);
 };
-onMounted(() => {
-  store.getInstitutions();
+
+onMounted(async () => {
+  await store.getInstitutions();
+  institutions.value = store.institutions;
 });
 const getInfo = (data) => {
   console.log("DATA:", data);
