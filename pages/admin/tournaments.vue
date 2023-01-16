@@ -139,7 +139,17 @@ onUnmounted(() => {
 });
 
 const updateSelectedLevels = (chips) => {
-  form.value.levels = chips;
+  form.value.levels.forEach(function callback(l, index) {
+    if (!chips.includes(l.level)) {
+      form.value.levels.splice(index, 1);
+    }
+  });
+
+  chips.forEach((level) => {
+    if (!form.value.levels.map((l) => l.level).includes(level)) {
+      form.value.levels.push({ level: level });
+    }
+  });
 };
 
 const resetFormState = () => {
