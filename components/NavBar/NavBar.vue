@@ -11,36 +11,37 @@
     </div>
     <div class="flex">
       <client-only>
+        <!-- <div v-if="role === 'Admin'"> -->
+        <!-- <NuxtLink to="/admin">
+          <Button button-text="Admin" size="small" class="shadow-none underline underline-offset-4" />
+        </NuxtLink> -->
+        <!-- </div> -->
         <div v-if="role === 'Admin'">
-          <NuxtLink to="/admin">
-            <Button
-              button-text="Admin"
-              size="small"
-              class="shadow-none underline underline-offset-4"
-            />
-          </NuxtLink>
+          <Hamburger :icon="Bars3Icon" />
         </div>
-        <div v-if="!firstName" class="mr-2">
-          <NuxtLink to="/signup">
-            <Button button-text="Signup" size="small" class="shadow-none" />
-          </NuxtLink>
-          <NuxtLink to="/login">
-            <Button
-              button-text="Login"
-              button-color="bg-light-yellow"
-              size="small"
-            />
-          </NuxtLink>
-        </div>
-        <div v-else class="mr-2">
-          <NuxtLink to="/">
-            <Button
-              button-text="Signout"
-              button-color="bg-light-yellow"
-              size="small"
-              @click="userStore.clearStore()"
-            />
-          </NuxtLink>
+        <div v-else>
+          <div v-if="!firstName" class="mr-2">
+            <NuxtLink to="/signup">
+              <Button button-text="Signup" size="small" class="shadow-none" />
+            </NuxtLink>
+            <NuxtLink to="/login">
+              <Button
+                button-text="Login"
+                button-color="bg-light-yellow"
+                size="small"
+              />
+            </NuxtLink>
+          </div>
+          <div v-else class="mr-2">
+            <NuxtLink to="/">
+              <Button
+                button-text="Signout"
+                button-color="bg-light-yellow"
+                size="small"
+                @click="userStore.clearStore()"
+              />
+            </NuxtLink>
+          </div>
         </div>
       </client-only>
     </div>
@@ -49,9 +50,10 @@
 
 <script setup>
 import HomeButton from "./HomeButton.vue";
+import Hamburger from "../Hamburger/hamburger.vue";
 import { useUserStore } from "~/stores/auth.js";
 import { storeToRefs } from "pinia";
-
+import { Bars3Icon } from "@heroicons/vue/24/outline";
 const userStore = useUserStore();
 // Will be updated when user store changes
 const { firstName, role } = storeToRefs(userStore);

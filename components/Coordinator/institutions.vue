@@ -13,7 +13,6 @@
             placeholder="School Name"
             :items="institutions"
             @info="getInfo"
-            @search-text="getName"
           >
           </SearchSelect>
         </div>
@@ -51,27 +50,28 @@ const store = useInstitutionStore();
 const institutions = ref(null);
 
 const form = ref({
+  id: "",
   schoolName: "",
   schoolNumber: "",
   schoolEmail: "",
 });
 const handleTeamJoin = () => {
-  console.log(form.value);
+  store.updateProfile(form.value);
 };
 
 onMounted(async () => {
   await store.getInstitutions();
   institutions.value = store.institutions;
+  form.value.schoolNumber = null;
+  form.value.schoolEmail = null;
 });
-onUnmounted(() => {
-  store.clearStore();
+onUnmounted(async () => {
+  await store.clearStore();
 });
 const getInfo = (data) => {
+  form.value.id = data.id;
   form.value.schoolName = data.name;
   form.value.schoolNumber = data.phoneNumber;
   form.value.schoolEmail = data.email;
-};
-const getName = (name) => {
-  console.log("name:", name);
 };
 </script>
