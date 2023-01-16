@@ -49,42 +49,45 @@
         </div>
       </client-only>
     </div>
+    <!-- Team Coordinator Drop down menu - This only could be its own component.-->
+    <div
+      class="px-2 z-60 absolute top-16 bg-gold"
+      :class="visibility ? 'flex' : 'hidden'"
+    >
+      <ul class="flex flex-col items-center">
+        <div class="border-t-2 w-full text-center">
+          <li class="mx-4 my-1">
+            <a class="text-monsterrat">Team</a>
+          </li>
+        </div>
+        <div class="border-t-2 w-full text-center">
+          <li class="mx-4 my-1">
+            <a class="text-monsterrat">Draw</a>
+          </li>
+        </div>
+        <div class="border-t-2 w-full text-center">
+          <li class="mx-4 my-1">
+            <a class="text-monsterrat">Institution</a>
+          </li>
+        </div>
+        <div class="border-t-2 w-full text-center">
+          <li class="mx-4 my-1">
+            <a class="text-monsterrat">User Information</a>
+          </li>
+        </div>
+        <div class="border-t-2 w-full text-center">
+          <li class="mx-4 my-1">
+            <a class="text-monsterrat">Change Password</a>
+          </li>
+        </div>
+        <div class="border-t-2 border-b-2 w-full text-center">
+          <li class="mx-4 my-1">
+            <a class="text-monsterrat">Signout</a>
+          </li>
+        </div>
+      </ul>
+    </div>
   </nav>
-  <!-- Team Coordinator Drop down menu - This only could be its own component.-->
-  <div class="px-2 py-6 z-60 absolute" :class="visibility ? 'flex' : 'hidden'">
-    <ul class="flex flex-col items-center">
-      <div class="border-t-2 w-full text-center">
-        <li class="mx-4 my-1">
-          <a class="text-monsterrat">Team</a>
-        </li>
-      </div>
-      <div class="border-t-2 w-full text-center">
-        <li class="mx-4 my-1">
-          <a class="text-monsterrat">Draw</a>
-        </li>
-      </div>
-      <div class="border-t-2 w-full text-center">
-        <li class="mx-4 my-1">
-          <a class="text-monsterrat">Institution</a>
-        </li>
-      </div>
-      <div class="border-t-2 w-full text-center">
-        <li class="mx-4 my-1">
-          <a class="text-monsterrat">User Information</a>
-        </li>
-      </div>
-      <div class="border-t-2 w-full text-center">
-        <li class="mx-4 my-1">
-          <a class="text-monsterrat">Change Password</a>
-        </li>
-      </div>
-      <div class="border-t-2 border-b-2 w-full text-center">
-        <li class="mx-4 my-1">
-          <a class="text-monsterrat">Signout</a>
-        </li>
-      </div>
-    </ul>
-  </div>
 </template>
 
 <script setup>
