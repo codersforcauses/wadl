@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@vitest/ui": "^0.25.8",
+    "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "@vue/eslint-config-standard": "^8.0.1",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.0.1",
