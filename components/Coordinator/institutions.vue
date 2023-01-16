@@ -8,13 +8,13 @@
       <hr class="border-black mt-8" />
       <div class="py-12 px-48">
         <div class="py-1">
-          <FormField
-            v-model="form.schoolName"
-            label="School Name"
+          <SearchSelect
             placeholder="School Name"
-            type="search"
+            :info="institutions"
+            @info="getInfo"
+            @search-text="getName"
           >
-          </FormField>
+          </SearchSelect>
         </div>
         <div class="py-1">
           <FormField
@@ -45,7 +45,9 @@
 import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 
-const institutions = useInstitutionStore();
+const store = useInstitutionStore();
+const institutions = ref(store.institutions);
+console.log(institutions);
 
 const form = ref({
   schoolName: "",
@@ -56,7 +58,12 @@ const handleTeamJoin = () => {
   console.log(form.value);
 };
 onMounted(() => {
-  institutions.getInstitutions();
-  console.log(institutions.institutions);
+  store.getInstitutions();
 });
+const getInfo = (data) => {
+  console.log("DATA:", data);
+};
+const getName = (name) => {
+  console.log("name:", name);
+};
 </script>
