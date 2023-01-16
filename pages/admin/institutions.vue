@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { PencilIcon } from "@heroicons/vue/24/solid";
 import { useInstitutionStore } from "../../stores/institutions";
-import Modal from "../../components/Modal/Modal.vue";
 
 const defaultInputState = {
   id: null,
