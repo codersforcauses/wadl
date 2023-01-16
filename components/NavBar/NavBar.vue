@@ -17,8 +17,12 @@
         </NuxtLink> -->
         <!-- </div> -->
         <div v-if="role === 'Admin'">
-          <Hamburger :icon="Bars3Icon" />
+          <Bars3Icon
+            class="w-10 h-10 ml-2 mr-6"
+            @click="visibility = !visibility"
+          />
         </div>
+
         <div v-else>
           <div v-if="!firstName" class="mr-2">
             <NuxtLink to="/signup">
@@ -46,6 +50,41 @@
       </client-only>
     </div>
   </nav>
+  <!-- Team Coordinator Drop down menu - This only could be its own component.-->
+  <div class="px-2 py-6 z-60 absolute" :class="visibility ? 'flex' : 'hidden'">
+    <ul class="flex flex-col items-center">
+      <div class="border-t-2 w-full text-center">
+        <li class="mx-4 my-1">
+          <a class="text-monsterrat">Team</a>
+        </li>
+      </div>
+      <div class="border-t-2 w-full text-center">
+        <li class="mx-4 my-1">
+          <a class="text-monsterrat">Draw</a>
+        </li>
+      </div>
+      <div class="border-t-2 w-full text-center">
+        <li class="mx-4 my-1">
+          <a class="text-monsterrat">Institution</a>
+        </li>
+      </div>
+      <div class="border-t-2 w-full text-center">
+        <li class="mx-4 my-1">
+          <a class="text-monsterrat">User Information</a>
+        </li>
+      </div>
+      <div class="border-t-2 w-full text-center">
+        <li class="mx-4 my-1">
+          <a class="text-monsterrat">Change Password</a>
+        </li>
+      </div>
+      <div class="border-t-2 border-b-2 w-full text-center">
+        <li class="mx-4 my-1">
+          <a class="text-monsterrat">Signout</a>
+        </li>
+      </div>
+    </ul>
+  </div>
 </template>
 
 <script setup>
@@ -54,7 +93,10 @@ import Hamburger from "../Hamburger/hamburger.vue";
 import { useUserStore } from "~/stores/auth.js";
 import { storeToRefs } from "pinia";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
+
 const userStore = useUserStore();
 // Will be updated when user store changes
 const { firstName, role } = storeToRefs(userStore);
+
+const visibility = ref(false);
 </script>
