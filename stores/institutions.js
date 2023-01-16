@@ -29,12 +29,16 @@ export const useInstitutionStore = defineStore("institution", {
       const querySnapshot = await getDocs(ref);
       querySnapshot.forEach((doc) => {
         const data = {
+          id: doc.data().id,
           name: doc.data().name,
           phoneNumber: doc.data().phone_number,
           email: doc.data().email,
         };
         this.institutions.push(data);
       });
+    },
+    clearStore() {
+      this.institutions = [];
     },
   },
 });

@@ -7,8 +7,9 @@
       <div class="text-6xl text-center">Institution Settings</div>
       <hr class="border-black mt-8" />
       <div class="py-12 px-48">
-        <div class="py-1">
+        <div>
           <SearchSelect
+            v-model="form.schoolName"
             placeholder="School Name"
             :items="institutions"
             @info="getInfo"
@@ -16,15 +17,16 @@
           >
           </SearchSelect>
         </div>
-        <div class="py-1">
+        <div>
           <FormField
             v-model="form.schoolNumber"
             label="School Number"
             placeholder="School Number"
             type="number"
-          ></FormField>
+          >
+          </FormField>
         </div>
-        <div class="py-1">
+        <div>
           <FormField
             v-model="form.schoolEmail"
             label="School Email"
@@ -42,7 +44,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 
 const store = useInstitutionStore();
@@ -61,8 +63,13 @@ onMounted(async () => {
   await store.getInstitutions();
   institutions.value = store.institutions;
 });
+onUnmounted(() => {
+  store.clearStore();
+});
 const getInfo = (data) => {
-  console.log("DATA:", data);
+  form.value.schoolName = data.name;
+  form.value.schoolNumber = data.phoneNumber;
+  form.value.schoolEmail = data.email;
 };
 const getName = (name) => {
   console.log("name:", name);
