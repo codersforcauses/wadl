@@ -1,11 +1,18 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  updateDoc,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
     return {
       institutions: [],
+      clashTeam: "",
     };
   },
   getters: {},
@@ -39,8 +46,16 @@ export const useInstitutionStore = defineStore("institution", {
         this.institutions.push(data);
       });
     },
-    async checkInstitution(institution) {
-      console.log("done");
+    async checkInstitution() {
+      const { $db, $auth } = useNuxtApp();
+      const ref = doc($db, "users", $auth.currentUser.uid);
+      const snapShot = await getDoc(ref);
+      if (snapShot.data().institutions !== null) {
+        const userRef = doc($db, "institutions", snapShot.data().institutions);
+        const userSnap = await getDoc(userRef);
+        const name = userSnap.data().name;
+        this.clashTeam = name;
+      }
     },
     async updateProfile(institution) {
       console.log(institution);
