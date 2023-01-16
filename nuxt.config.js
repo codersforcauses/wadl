@@ -5,7 +5,11 @@ export default defineNuxtConfig({
   build: {
     transpile: ["@heroicons/vue"],
   },
-  modules: ["@pinia/nuxt", "@kevinmarrec/nuxt-pwa", "@pinia-plugin-persistedstate/nuxt"],
+  modules: [
+    "@pinia/nuxt",
+    "@kevinmarrec/nuxt-pwa",
+    "@pinia-plugin-persistedstate/nuxt",
+  ],
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
