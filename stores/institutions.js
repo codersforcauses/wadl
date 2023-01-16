@@ -33,6 +33,8 @@ export const useInstitutionStore = defineStore("institution", {
           name: doc.data().name,
           phoneNumber: doc.data().phone_number,
           email: doc.data().email,
+          code: doc.data().code,
+          abbreviation: doc.data().abbreviation,
         };
         this.institutions.push(data);
       });

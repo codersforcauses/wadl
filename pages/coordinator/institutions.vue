@@ -34,6 +34,24 @@
           >
           </FormField>
         </div>
+        <div>
+          <FormField
+            v-model="form.schoolAbbreviation"
+            label="School Abbreviation"
+            placeholder="School Abbreviation"
+            type="text"
+          >
+          </FormField>
+        </div>
+        <div>
+          <FormField
+            v-model="form.schoolCode"
+            label="School Code"
+            placeholder="School Code"
+            type="number"
+          >
+          </FormField>
+        </div>
         <div class="w-full flex justify-center pt-8">
           <Button button-text="Submit" button-color="bg-gold" />
         </div>
@@ -54,6 +72,8 @@ const form = ref({
   schoolName: "",
   schoolNumber: "",
   schoolEmail: "",
+  schoolAbbreviation: "",
+  schoolCode: "",
 });
 const handleTeamJoin = () => {
   store.updateProfile(form.value);
@@ -64,6 +84,8 @@ onMounted(async () => {
   institutions.value = store.institutions;
   form.value.schoolNumber = null;
   form.value.schoolEmail = null;
+  form.value.schoolAbbreviation = null;
+  form.value.schoolCode = null;
 });
 onUnmounted(async () => {
   await store.clearStore();
@@ -73,5 +95,7 @@ const getInfo = (data) => {
   form.value.schoolName = data.name;
   form.value.schoolNumber = data.phoneNumber;
   form.value.schoolEmail = data.email;
+  form.value.schoolAbbreviation = data.abbreviation;
+  form.value.schoolCode = data.code;
 };
 </script>

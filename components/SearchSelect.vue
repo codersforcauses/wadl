@@ -20,7 +20,7 @@
   </div>
   <ul
     v-if="isOpen"
-    class="absolute z-10 bg-white rounded-lg shadow-lg transition w-full"
+    class="absolute z-10 bg-white rounded-lg shadow-lg transition w-96"
   >
     <li
       v-for="option in filteredOptions"
