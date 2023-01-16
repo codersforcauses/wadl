@@ -3,7 +3,7 @@
     class="p-5 heading-montserrat border border-light-grey rounded-3xl max-w-lg mx-4"
     @submit.prevent="registerUser"
   >
-    <h1 class="text-2xl text-center pb-2">Register</h1>
+    <h1 class="pb-2 text-2xl text-center">Register</h1>
     <div class="grid grid-cols-2 gap-x-4">
       <div>
         <FormField
@@ -16,28 +16,46 @@
         <FormField v-model="form.lastName" placeholder="Your Last Name" />
       </div>
     </div>
-    <FormField v-model="form.email" label="Email" placeholder="Your Email" />
+    <FormField
+      v-model="form.email"
+      label="Email"
+      type="email"
+      placeholder="Your Email"
+    />
     <FormField
       v-model="form.phoneNumber"
       label="Phone Number"
+      type="number"
       placeholder="Your Phone Number"
     />
+
     <FormField
       v-model="form.password"
       label="Password"
       type="password"
       placeholder="Your Password"
+      :color="!isValid ? 'border-red-500' : ''"
+      @update="updateInput"
     />
+    <p class="text-red-500">{{ errorMessage }}</p>
+
     <FormField
       v-model="form.confirmPassword"
       label="Confirm Password"
       placeholder="Confirm Password"
       type="password"
+      :color="!isValid ? 'border-red-500' : ''"
+      @update="updateInput"
     />
-    <Roles v-model="form.role" />
+    <Roles
+      v-model="form.role"
+      :color="!isRoleValid ? 'border-red-500' : ''"
+      @update="updateInput"
+    />
     <p v-if="userStore.errorCode" class="text-danger-red">
       {{ userStore.errorCode }}
     </p>
+    <p class="text-red-500">{{ errorMessage2 }}</p>
     <div class="w-full flex flex-col gap-6 items-center mt-4">
       <div class="w-full flex justify-center">
         <Button button-text="Submit" button-color="bg-gold" />
@@ -58,9 +76,14 @@
 <script setup>
 import Roles from "./Roles.vue";
 import { useUserStore } from "../../stores/auth";
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 
 const userStore = useUserStore();
+
+onBeforeMount(() => {
+  userStore.errorCode = null;
+});
+
 const form = ref({
   firstName: "",
   lastName: "",
@@ -71,8 +94,37 @@ const form = ref({
   role: "",
 });
 
+const isValid = ref(true);
+const isRoleValid = ref(true);
+const errorMessage = ref("");
+const errorMessage2 = ref("");
+
+const updateInput = (e) => {
+  errorMessage.value = "";
+  errorMessage2.value = "";
+  isValid.value = true;
+  isRoleValid.value = true;
+};
+
 // Call The User Store
 const registerUser = (e) => {
-  userStore.registerUser(form.value);
+  console.log(form.value.role);
+  if (form.value.password.length > 8) {
+    if (form.value.password === form.value.confirmPassword) {
+      if (form.value.role) {
+        userStore.registerUser(form.value);
+      } else {
+        isRoleValid.value = false;
+        console.log(isRoleValid);
+        errorMessage2.value = "You have to choose a role";
+      }
+    } else {
+      isValid.value = false;
+      errorMessage.value = "The password does not match";
+    }
+  } else {
+    isValid.value = false;
+    errorMessage.value = "The password has to be at least 8 characters";
+  }
 };
 </script>
