@@ -41,25 +41,26 @@ const saveTeamRegistration = async () => {
   // POST to backend
   console.log(formInput.value);
   console.log("Team Saved!");
-  resetForm();
+  // resetForm();
 };
-const resetForm = () => {
-  formInput.value = {
-    tournament: null,
-    hasVenuePreference: false,
-    venuePreferences: [],
-    notes: null,
-    teams: [
-      { teamLevel: "Novice", ...teamState },
-      { teamLevel: "Junior", ...teamState },
-      { teamLevel: "Senior", ...teamState },
-    ],
-  };
-};
+// commenting it out for now because we might need it in the future
+// const resetForm = () => {
+//   formInput.value = {
+//     tournament: null,
+//     hasVenuePreference: false,
+//     venuePreferences: [],
+//     notes: null,
+//     teams: [
+//       { teamLevel: "Novice", ...teamState },
+//       { teamLevel: "Junior", ...teamState },
+//       { teamLevel: "Senior", ...teamState },
+//     ],
+//   };
+// };
 </script>
 
 <template>
-  <p class="text-3xl heading-montserrat font-bold px-6 pt-5 py-3 text-center">
+  <p class="text-4xl heading-montserrat px-6 pt-5 py-3 text-center">
     Team Registration
   </p>
   <div class="px-10">
@@ -70,7 +71,7 @@ const resetForm = () => {
     </p>
     <hr class="pb-3" />
     <div class="flex justify-center">
-      <form @submit.prevent="saveTeamRegistration()" class="md:w-7/12">
+      <form class="md:w-7/12" @submit.prevent="saveTeamRegistration()">
         <FormField v-model="formInput.tournament" label="Tournament" />
         <label class="heading-montserrat">Level</label>
         <Multiselect
@@ -81,7 +82,12 @@ const resetForm = () => {
           "
           @change="updateLevels"
         />
-        <label class="heading-montserrat"> Number of Teams </label>
+        <div class="flex items-center pt-5 pb-3">
+          <label class="heading-montserrat text-lg font-medium">
+            Number of Teams
+          </label>
+          <hr class="h-px ml-2 flex-1" />
+        </div>
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
             <FormField
@@ -92,7 +98,12 @@ const resetForm = () => {
             />
           </div>
         </div>
-        <label class="heading-montserrat"> Week Preference </label>
+        <div class="flex items-center pt-5 pb-3">
+          <label class="heading-montserrat text-lg font-medium">
+            Week Preference
+          </label>
+          <hr class="h-px ml-2 flex-1" />
+        </div>
         <div class="flex flex-row space-x-3">
           <Select
             v-for="team in formInput.teams"
@@ -104,7 +115,12 @@ const resetForm = () => {
             :disabled="!team.levelPresent"
           />
         </div>
-        <label class="heading-montserrat"> Tuesday Allocation </label>
+        <div class="flex items-center pt-5 pb-3">
+          <label class="heading-montserrat text-lg font-medium">
+            Tuesday Allocation
+          </label>
+          <hr class="h-px ml-2 flex-1" />
+        </div>
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
             <FormField
@@ -115,7 +131,12 @@ const resetForm = () => {
             />
           </div>
         </div>
-        <label class="heading-montserrat"> Wednesday Allocation </label>
+        <div class="flex items-center pt-5 pb-3">
+          <label class="heading-montserrat text-lg font-medium">
+            Wednesday Allocation
+          </label>
+          <hr class="h-px ml-2 flex-1" />
+        </div>
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
             <FormField
@@ -126,7 +147,7 @@ const resetForm = () => {
             />
           </div>
         </div>
-        <div class="flex flex-row accent-gold my-3">
+        <div class="flex flex-row accent-gold mt-5">
           <input
             v-model="formInput.hasVenuePreference"
             type="checkbox"
@@ -136,8 +157,13 @@ const resetForm = () => {
             >Do you have a venue preference?</label
           >
         </div>
-        <div v-if="formInput.hasVenuePreference">
-          <label class="heading-montserrat"> Venue Preference </label>
+        <div v-if="formInput.hasVenuePreference" class="pb-5">
+          <div class="flex items-center pt-5 pb-3">
+            <label class="heading-montserrat text-lg font-medium">
+              Venue Preferences
+            </label>
+            <hr class="h-px ml-2 flex-1" />
+          </div>
           <div class="flex flex-row space-x-3">
             <div v-for="(pref, idx) in venuePreferenceLabels" :key="idx">
               <FormField
