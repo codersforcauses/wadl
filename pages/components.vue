@@ -51,6 +51,8 @@
     />
   </div>
 
+  <DeleteDialog />
+
   <Tabs :tabs="tabs" font-size="text-xl" @handle-tab="handleTabClicked" />
   <!-- Multiselect -->
   <label class="heading-montserrat">Level</label>
