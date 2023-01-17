@@ -13,6 +13,7 @@
       w-full
       placeholder:heading-montserrat
       heading-montserrat
+      ${color}
       ${props.disabled ? 'cursor-not-allowed bg-stone-100' : ''}
       `"
     :value="modelValue"
@@ -28,10 +29,12 @@ const props = defineProps({
   placeholder: { type: String, default: "" },
   type: { type: String, default: "text" },
   disabled: { type: Boolean, default: false },
+  color: { type: String, default: "" },
 });
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:modelValue", "update"]);
 
 const updateInput = (e) => {
   emit("update:modelValue", e.target.value);
+  emit("update");
 };
 </script>
