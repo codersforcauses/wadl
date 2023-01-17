@@ -6,24 +6,11 @@ export const useInstitutionStore = defineStore("institution", {
   state: () => {
     return {
       institutions: [],
-      clashTeam: "",
+      editInstition: null,
     };
   },
   getters: {},
   actions: {
-    async createInstitution(institution) {
-      this.institutions.push({
-        ...institution,
-        id: this.institutions.length + 1,
-      });
-    },
-    async editInstitution(institution) {
-      this.institutions.forEach((inst) => {
-        if (inst.id === institution.id) {
-          Object.assign(inst, institution);
-        }
-      });
-    },
     async getInstitutions() {
       const { $db } = useNuxtApp();
       const ref = collection($db, "institutions");
@@ -41,29 +28,42 @@ export const useInstitutionStore = defineStore("institution", {
       });
     },
     async checkInstitution(institution) {
-      const { $db } = useNuxtApp();
+      console.log(institution);
+      let newInstitution = true;
       this.institutions.forEach(async (element) => {
         if (
           element.name.toLowerCase() === institution.schoolName.toLowerCase()
         ) {
-          if (
-            element.number !== institution.schoolNumber ||
-            element.email !== institution.schoolEmail ||
-            element.code !== institution.schoolCode ||
-            element.abbreviation !== institution.schoolAbbreviation
-          ) {
-            const ref = doc($db, "institutions", institution.id);
-            await updateDoc(ref, {
-              abbreviation: institution.schoolAbbreviation,
-              code: institution.schoolCode,
-              email: institution.schoolEmail,
-              number: institution.schoolNumber,
-            }).catch((error) => {
-              console.log(error);
-            });
-          }
+          this.editInstition = true;
+          this.updateInstitution(element, institution);
+          newInstitution = false;
         }
       });
+      if (newInstitution) {
+        this.createInstitution(institution);
+      }
+    },
+    async updateInstitution(element, institution) {
+      const { $db } = useNuxtApp();
+      if (
+        element.number !== institution.schoolNumber ||
+        element.email !== institution.schoolEmail ||
+        element.code !== institution.schoolCode ||
+        element.abbreviation !== institution.schoolAbbreviation
+      ) {
+        const ref = doc($db, "institutions", institution.id);
+        await updateDoc(ref, {
+          abbreviation: institution.schoolAbbreviation,
+          code: institution.schoolCode,
+          email: institution.schoolEmail,
+          number: institution.schoolNumber,
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
+    },
+    async createInstitution(institution) {
+      console.log(institution);
     },
     async updateProfile(institution) {
       const { $db, $auth } = useNuxtApp();

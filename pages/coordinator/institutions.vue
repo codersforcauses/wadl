@@ -83,10 +83,6 @@ const handleTeamJoin = () => {
 onMounted(async () => {
   await store.getInstitutions();
   institutions.value = store.institutions;
-  form.value.schoolNumber = null;
-  form.value.schoolEmail = null;
-  form.value.schoolAbbreviation = null;
-  form.value.schoolCode = null;
 });
 onUnmounted(async () => {
   await store.clearStore();
