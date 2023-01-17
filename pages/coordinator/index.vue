@@ -11,6 +11,8 @@ const teamState = {
   numberOfTeams: 0,
   tuesdayAllocation: 0,
   wednesdayAllocation: 0,
+  weekPreference: null,
+  hasNoVenuePreference: false,
 };
 const formInput = ref({
   tournament: null,
@@ -91,6 +93,18 @@ const resetModal = () => {
               :disabled="!team.levelPresent"
             />
           </div>
+        </div>
+        <label class="heading-montserrat"> Week Preference </label>
+        <div class="flex flex-row space-x-3">
+          <Select
+            v-for="team in formInput.teams"
+            :key="team.teamLevel"
+            v-model="team.weekPreference"
+            :options="['W1', 'W2', 'Either']"
+            label="Novice"
+            class="w-full"
+            :disabled="!team.levelPresent"
+          />
         </div>
         <label class="heading-montserrat"> Tuesday Allocation </label>
         <div class="flex flex-row space-x-3">
