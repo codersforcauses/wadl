@@ -51,8 +51,15 @@
     />
   </div>
 
-  <DeleteDialog />
+  <DeleteDialog :modal-visibility="modalVisibility" />
 
+  <Button
+    button-text="Dialog Test"
+    button-color="bg-gold"
+    type="button"
+    class="m-5 ml-8"
+    @click="modalVisibility = true"
+  />
   <Tabs :tabs="tabs" font-size="text-xl" @handle-tab="handleTabClicked" />
   <!-- Multiselect -->
   <label class="heading-montserrat">Level</label>
