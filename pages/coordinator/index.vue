@@ -5,6 +5,11 @@ import Table from "~/components/Coordinator/Table.vue";
 
 const modalVisibility = ref(false);
 const currentTeam = ref("Perth Modern");
+const venuePreferenceLabels = ref([
+  "1st Preference",
+  "2nd Preference",
+  "3rd Preference",
+]);
 
 const teamState = {
   levelPresent: false,
@@ -12,10 +17,11 @@ const teamState = {
   tuesdayAllocation: 0,
   wednesdayAllocation: 0,
   weekPreference: null,
-  hasNoVenuePreference: false,
+  venuePreferences: [],
 };
 const formInput = ref({
   tournament: null,
+  hasVenuePreference: false,
   teams: [
     { teamLevel: "Novice", ...teamState },
     { teamLevel: "Junior", ...teamState },
@@ -100,7 +106,7 @@ const resetModal = () => {
             v-for="team in formInput.teams"
             :key="team.teamLevel"
             v-model="team.weekPreference"
-            :options="['W1', 'W2', 'Either']"
+            :options="['Week 1', 'Week 2', 'Either']"
             label="Novice"
             class="w-full"
             :disabled="!team.levelPresent"
@@ -128,6 +134,30 @@ const resetModal = () => {
             />
           </div>
         </div>
+        <div class="flex flex-row accent-gold my-3">
+          <input
+            v-model="formInput.hasVenuePreference"
+            type="checkbox"
+            class="w-5 h-5"
+          />
+          <label class="ml-3 heading-montserrat"
+            >Do you have a venue preference?</label
+          >
+        </div>
+        <div v-if="formInput.hasVenuePreference">
+          <label class="heading-montserrat"> Venue Preference </label>
+          <div class="flex flex-row space-x-3">
+            <div v-for="(team, idx) in formInput.teams" :key="team.teamLevel">
+              <FormField
+                v-model="team.venuePreferences[idx]"
+                type="text"
+                :disabled="!team.levelPresent"
+                :placeholder="venuePreferenceLabels[idx]"
+              />
+            </div>
+          </div>
+        </div>
+
         <div class="flex justify-evenly items-center mb-2">
           <Button
             class="my-3"
