@@ -13,6 +13,7 @@
             placeholder="School Name"
             :items="institutions"
             @info="getInfo"
+            @search-text="getName"
           >
           </SearchSelect>
         </div>
@@ -94,5 +95,8 @@ const getInfo = (data) => {
   form.value.schoolEmail = data.email;
   form.value.schoolAbbreviation = data.abbreviation;
   form.value.schoolCode = data.code;
+};
+const getName = (name) => {
+  form.value.schoolName = name;
 };
 </script>

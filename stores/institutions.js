@@ -1,6 +1,12 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  updateDoc,
+  doc,
+  addDoc,
+} from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -64,6 +70,17 @@ export const useInstitutionStore = defineStore("institution", {
     },
     async createInstitution(institution) {
       console.log(institution);
+      const { $db } = useNuxtApp();
+      const ref = collection($db, "institutions");
+      await addDoc(ref, {
+        name: institution.schoolName,
+        email: institution.schoolEmail,
+        code: institution.schoolCode,
+        phone_number: institution.schoolNumber,
+        abbreviation: institution.schoolAbbreviation,
+      }).catch((error) => {
+        console.log(error);
+      });
     },
     async updateProfile(institution) {
       const { $db, $auth } = useNuxtApp();
