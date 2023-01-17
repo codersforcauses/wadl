@@ -17,11 +17,12 @@ const teamState = {
   tuesdayAllocation: 0,
   wednesdayAllocation: 0,
   weekPreference: null,
-  venuePreferences: [],
 };
 const formInput = ref({
   tournament: null,
   hasVenuePreference: false,
+  venuePreferences: [],
+  notes: null,
   teams: [
     { teamLevel: "Novice", ...teamState },
     { teamLevel: "Junior", ...teamState },
@@ -49,6 +50,9 @@ const saveTeamRegistration = async () => {
 const resetModal = () => {
   formInput.value = {
     tournament: null,
+    hasVenuePreference: false,
+    venuePreferences: [],
+    notes: null,
     teams: [
       { teamLevel: "Novice", ...teamState },
       { teamLevel: "Junior", ...teamState },
@@ -147,16 +151,22 @@ const resetModal = () => {
         <div v-if="formInput.hasVenuePreference">
           <label class="heading-montserrat"> Venue Preference </label>
           <div class="flex flex-row space-x-3">
-            <div v-for="(team, idx) in formInput.teams" :key="team.teamLevel">
+            <div v-for="(pref, idx) in venuePreferenceLabels" :key="idx">
               <FormField
-                v-model="team.venuePreferences[idx]"
-                type="text"
-                :disabled="!team.levelPresent"
-                :placeholder="venuePreferenceLabels[idx]"
+                v-model="formInput.venuePreferences[idx]"
+                placeholder="Enter Preference"
+                :label="venuePreferenceLabels[idx]"
+                class="w-full"
               />
             </div>
           </div>
         </div>
+        <label class="heading-montserrat">Notes </label>
+        <textarea
+          v-model="formInput.notes"
+          placeholder="Enter any notes"
+          class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat heading-montserrat"
+        ></textarea>
 
         <div class="flex justify-evenly items-center mb-2">
           <Button
