@@ -1,12 +1,5 @@
 <template>
-  <Modal
-    :modal-visibility="modalVisibility"
-    @close="
-      () => {
-        modalVisibility = false;
-      }
-    "
-  >
+  <Modal :modal-visibility="modalVisibility" @close="emit('close')">
     <div class="w-96 h-48">
       <div class="font-montserrat text-2xl text-center font-bold pt-10">
         Are You Sure?

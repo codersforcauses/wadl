@@ -51,7 +51,14 @@
     />
   </div>
 
-  <DeleteDialog :modal-visibility="modalVisibility" />
+  <DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  />
 
   <Button
     button-text="Dialog Test"
@@ -71,6 +78,9 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+const modalVisibility = ref(false);
+
 const tabs = [
   { label: "Novice", active: false },
   { label: "Junior", active: true },
