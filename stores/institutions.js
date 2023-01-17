@@ -8,6 +8,7 @@ import {
   getDocs,
   query,
   where,
+  addDoc,
 } from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
@@ -34,12 +35,6 @@ export const useInstitutionStore = defineStore("institution", {
         this.institutions.push(institution);
       });
     },
-    async createInstitution(institution) {
-      this.institutions.push({
-        ...institution,
-        id: this.institutions.length + 1,
-      });
-    },
     async editInstitution(institution) {
       const { $db } = useNuxtApp();
       const ref = doc($db, "institutions", institution.id);
@@ -51,6 +46,23 @@ export const useInstitutionStore = defineStore("institution", {
       const snapshot = await getCountFromServer(sameName);
       if (snapshot.data().count === 0) {
         await updateDoc(ref, institution)
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        console.log("institution with same name exists");
+      }
+    },
+    async createInstitution(institution) {
+      const { $db } = useNuxtApp();
+      const sameName = query(
+        collection($db, "institutions"),
+        where("name", "==", institution.name)
+      );
+      const snapshot = await getCountFromServer(sameName);
+      if (snapshot.data().count === 0) {
+        await addDoc(collection($db, "institutions"), institution)
           .then(() => {})
           .catch((error) => {
             console.log(error);
