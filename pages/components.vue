@@ -58,6 +58,16 @@
         modalVisibility = false;
       }
     "
+    @accept="
+      () => {
+        handleSave();
+      }
+    "
+    @reject="
+      () => {
+        handleDelete();
+      }
+    "
   />
 
   <Button
