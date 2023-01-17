@@ -41,10 +41,9 @@ const chipSize = computed(() => {
     {{ text }}
     <button
       class="pb-1 pl-2 align-middle"
-      @click.prevent="
+      @click.stop="
         (e) => {
           $emit('removeChip', text);
-          e.stopPropagation();
         }
       "
     >

@@ -65,11 +65,11 @@ const resetModal = () => {
     </p>
     <div class="px-10">
       <p
-        class="text-2xl font-semibold heading-montserrat px-6 py-2 text-slate-500 text-center"
+        class="text-2xl font-semibold heading-montserrat px-6 py-2 text-mid-grey text-center"
       >
         {{ currentTeam }}
       </p>
-      <hr class="mx-8 h-0.5 bg-slate-500 my-1 border-0" />
+      <hr class="pb-3" />
       <form @submit.prevent="modalVisibility = false">
         <FormField v-model="formInput.tournament" label="Tournament" />
         <label class="heading-montserrat">Level</label>
@@ -114,9 +114,9 @@ const resetModal = () => {
             />
           </div>
         </div>
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-evenly items-center mb-2">
           <Button
-            class="my-3 w-9/12"
+            class="my-3"
             button-color="bg-gold"
             button-text="Save"
             type="Submit"
