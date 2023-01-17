@@ -8,7 +8,7 @@
           <th
             v-for="(object, index) in headers"
             :key="index"
-            class="py-3 text-left font-carterone h-10 border-b pl-2"
+            class="py-1 text-left font-carterone h-10 border-b pl-2"
           >
             {{ object.title }}
           </th>
@@ -27,9 +27,19 @@
             :key="ind"
             class="font-montserrat p-2"
           >
-            {{ row[object.key] }}
+            <p v-if="!Array.isArray(row[object.key])">
+              {{ row[object.key] }}
+            </p>
+            <p
+              v-else
+              v-for="(ven, idx) in row[object.key]"
+              :key="idx"
+              class="text-xs"
+            >
+              {{ idx + 1 }}. {{ ven }}
+            </p>
           </td>
-          <td v-if="canEdit" class="w-48 text-right p-2">
+          <td v-if="canEdit" class="text-right p-2">
             <button @click="handleEmit(row)">
               <PencilIcon class="w-4 h-4" />
             </button>

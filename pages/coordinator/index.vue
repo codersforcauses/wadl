@@ -13,23 +13,15 @@ const headers = [
   },
   {
     key: "division",
-    title: "Div",
+    title: "Division",
   },
   {
     key: "timeslot",
     title: "Timeslot",
   },
   {
-    key: "venPref1",
-    title: "Venue Pref 1",
-  },
-  {
-    key: "venPref2",
-    title: "Venue Pref 2",
-  },
-  {
-    key: "venPref3",
-    title: "Venue Pref 3",
+    key: "venuePreferences",
+    title: "Venue Pref.",
   },
 ];
 
@@ -38,9 +30,9 @@ const defaultInputState = {
   level: null,
   division: null,
   timeslot: null,
-  venPref1: null,
-  venPref2: null,
-  venPref3: null,
+  venuePreferences: [],
+  tuesdayAllocation: null,
+  wednesdayAllocation: null,
 };
 
 const form = ref({ ...defaultInputState });
@@ -71,7 +63,7 @@ const updateTeam = () => {
       }
     "
   >
-    <Header title-text="Edit Team" />
+    <Header title-text="Edit Preferences" />
     <form
       class="px-10"
       @submit.prevent="
@@ -81,10 +73,53 @@ const updateTeam = () => {
         }
       "
     >
+      <div class="flex flex-row justify-evenly accent-gold pt-5 pb-2">
+        <div>
+          <input
+            v-model="form.tuesdayAllocation"
+            type="checkbox"
+            class="w-5 h-5"
+          />
+          <label class="ml-3 heading-montserrat">Tuesday Allocation</label>
+        </div>
+        <div>
+          <input
+            v-model="form.wednesdayAllocation"
+            type="checkbox"
+            class="w-5 h-5"
+          />
+
+          <label class="ml-3 heading-montserrat">Wednesday Allocation</label>
+        </div>
+      </div>
       <FormField v-model="form.timeslot" label="Timeslot" />
-      <FormField v-model="form.venPref1" label="1st Venue Preference" />
-      <FormField v-model="form.venPref2" label="2nd Venue Preference" />
-      <FormField v-model="form.venPref3" label="3rd Venue Preference" />
+      <div class="flex flex-row accent-gold py-2">
+        <input
+          v-model="form.hasVenuePreference"
+          type="checkbox"
+          class="w-5 h-5"
+          @change="form.venuePreferences = []"
+        />
+
+        <label class="ml-3 heading-montserrat"
+          >Do you have venue preferences?</label
+        >
+      </div>
+      <FormField
+        v-if="form.hasVenuePreference"
+        v-model="form.venuePreferences[0]"
+        label="1st Venue Preference"
+      />
+      <FormField
+        v-if="form.hasVenuePreference"
+        v-model="form.venuePreferences[1]"
+        label="2nd Venue Preference"
+      />
+      <FormField
+        v-if="form.hasVenuePreference"
+        v-model="form.venuePreferences[2]"
+        label="3rd Venue Preference"
+      />
 
       <div class="flex justify-evenly items-center">
         <Button
