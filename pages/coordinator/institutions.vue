@@ -76,8 +76,8 @@ const form = ref({
   schoolCode: "",
 });
 const handleTeamJoin = () => {
-  store.checkInstitution();
-  // store.updateProfile(form.value);
+  store.checkInstitution(form.value);
+  store.updateProfile(form.value);
 };
 
 onMounted(async () => {

@@ -1,12 +1,6 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import {
-  collection,
-  getDocs,
-  updateDoc,
-  doc,
-  getDoc,
-} from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -46,19 +40,32 @@ export const useInstitutionStore = defineStore("institution", {
         this.institutions.push(data);
       });
     },
-    async checkInstitution() {
-      const { $db, $auth } = useNuxtApp();
-      const ref = doc($db, "users", $auth.currentUser.uid);
-      const snapShot = await getDoc(ref);
-      if (snapShot.data().institutions !== null) {
-        const userRef = doc($db, "institutions", snapShot.data().institutions);
-        const userSnap = await getDoc(userRef);
-        const name = userSnap.data().name;
-        this.clashTeam = name;
-      }
+    async checkInstitution(institution) {
+      const { $db } = useNuxtApp();
+      this.institutions.forEach(async (element) => {
+        if (
+          element.name.toLowerCase() === institution.schoolName.toLowerCase()
+        ) {
+          if (
+            element.number !== institution.schoolNumber ||
+            element.email !== institution.schoolEmail ||
+            element.code !== institution.schoolCode ||
+            element.abbreviation !== institution.schoolAbbreviation
+          ) {
+            const ref = doc($db, "institutions", institution.id);
+            await updateDoc(ref, {
+              abbreviation: institution.schoolAbbreviation,
+              code: institution.schoolCode,
+              email: institution.schoolEmail,
+              number: institution.schoolNumber,
+            }).catch((error) => {
+              console.log(error);
+            });
+          }
+        }
+      });
     },
     async updateProfile(institution) {
-      console.log(institution);
       const { $db, $auth } = useNuxtApp();
       const ref = doc($db, "users", $auth.currentUser.uid);
       await updateDoc(ref, { institutions: institution.id });
