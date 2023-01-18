@@ -62,7 +62,7 @@
         v-model="form.schoolCode"
         label="School Code"
         placeholder="School Code"
-        type="number"
+        type="text"
       >
       </FormField>
       <div class="w-full flex justify-center pt-8">
