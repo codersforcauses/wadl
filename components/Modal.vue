@@ -2,7 +2,7 @@
   <Transition name="modal">
     <div
       v-if="modalVisibility"
-      class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-slate-300 bg-opacity-60 transition"
+      class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-stone-300 bg-opacity-60 backdrop-blur transition"
     >
       <div
         v-on-click-outside="
