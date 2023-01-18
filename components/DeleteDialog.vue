@@ -8,7 +8,7 @@
       <div class="p-5">
         <Button
           class="m-2 mt-5 font-semibold"
-          button-text="Yes2"
+          button-text="Yes"
           button-color="bg-light-green"
           text-color="text-white"
           size="medium"
