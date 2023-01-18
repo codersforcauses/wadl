@@ -58,12 +58,12 @@
         modalVisibility = false;
       }
     "
-    @accept="
+    @yes="
       () => {
         handleSave();
       }
     "
-    @reject="
+    @no="
       () => {
         handleDelete();
       }
