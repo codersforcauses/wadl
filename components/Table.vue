@@ -27,16 +27,34 @@
             :key="ind"
             class="font-montserrat p-2"
           >
-            <p v-if="!Array.isArray(row[object.key])">
-              {{ row[object.key] }}
+            <p
+              v-if="
+                (object.key === 'tuesdayAllocation' ||
+                  object.key === 'wednesdayAllocation') &&
+                row[object.key]
+              "
+            >
+              <CheckIcon class="w-6 h-6" />
             </p>
             <p
-              v-else
+              v-else-if="
+                (object.key === 'tuesdayAllocation' ||
+                  object.key === 'wednesdayAllocation') &&
+                !row[object.key]
+              "
+            >
+              <XMarkIcon class="w-6 h-6" />
+            </p>
+            <p
               v-for="(ven, idx) in row[object.key]"
+              v-else-if="object.key === 'venuePreferences'"
               :key="idx"
               class="text-xs"
             >
               {{ idx + 1 }}. {{ ven }}
+            </p>
+            <p v-else>
+              {{ row[object.key] }}
             </p>
           </td>
           <td v-if="canEdit" class="text-right p-2">
@@ -52,7 +70,7 @@
 </template>
 
 <script setup>
-import { PencilIcon } from "@heroicons/vue/24/solid";
+import { PencilIcon, CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 
 const emit = defineEmits(["edit"]);
 

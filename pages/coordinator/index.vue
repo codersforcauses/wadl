@@ -20,6 +20,18 @@ const headers = [
     title: "Timeslot",
   },
   {
+    key: "weekPreference",
+    title: "Week Pref.",
+  },
+  {
+    key: "tuesdayAllocation",
+    title: "Tue",
+  },
+  {
+    key: "wednesdayAllocation",
+    title: "Wed",
+  },
+  {
     key: "venuePreferences",
     title: "Venue Pref.",
   },
@@ -33,6 +45,7 @@ const defaultInputState = {
   venuePreferences: [],
   tuesdayAllocation: null,
   wednesdayAllocation: null,
+  weekPreference: null,
 };
 
 const form = ref({ ...defaultInputState });
@@ -93,6 +106,12 @@ const updateTeam = () => {
         </div>
       </div>
       <FormField v-model="form.timeslot" label="Timeslot" />
+      <Select
+        v-model="form.weekPreference"
+        :options="['Week 1', 'Week 2', 'Either']"
+        label="Week Preference"
+        class="w-full"
+      />
       <div class="flex flex-row accent-gold py-2">
         <input
           v-model="form.hasVenuePreference"
