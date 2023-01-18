@@ -90,4 +90,4 @@ extra_javascript:
 nav:
 - Home: index.md
 - Installation Guide: installation-guide.md
-- First Page: first-page.md
+- Components: components.md
