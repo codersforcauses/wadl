@@ -4,7 +4,6 @@ import Table from "../../components/Coordinator/Table.vue";
 import { useUserStore } from "~/stores/auth.js";
 
 const user = useUserStore();
-// Will be updated when user store changes
 
 
 </script>
