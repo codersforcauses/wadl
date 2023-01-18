@@ -2,7 +2,7 @@
   <section>
     <Modal :modal-visibility="modalVisible">
       <h1 class="pb-2 text-2xl text-center">Confirm Changes</h1>
-      <ul class="mx-6" v-for="update in instUpdates">
+      <ul v-for="update in instUpdates" class="mx-6">
         <li>
           {{ `${update.key} changed to ${update.update}` }}
         </li>
@@ -90,26 +90,26 @@ const form = ref({
   schoolCode: "",
 });
 const handleTeamJoin = () => {
-  const original_data = institutions.value.filter(
+  const originalData = institutions.value.filter(
     (inst) => inst.id === form.value.id
   )[0];
-  let updates = [];
-  if (form.value.schoolName !== original_data.name) {
+  const updates = [];
+  if (form.value.schoolName !== originalData.name) {
     updates.push({ key: "School Name", update: form.value.schoolName });
   }
-  if (form.value.schoolNumber !== original_data.phoneNumber) {
+  if (form.value.schoolNumber !== originalData.phoneNumber) {
     updates.push({ key: "School Number", update: form.value.schoolNumber });
   }
-  if (form.value.schoolEmail !== original_data.email) {
+  if (form.value.schoolEmail !== originalData.email) {
     updates.push({ key: "School Email", update: form.value.schoolEmail });
   }
-  if (form.value.schoolAbbreviation !== original_data.abbreviation) {
+  if (form.value.schoolAbbreviation !== originalData.abbreviation) {
     updates.push({
       key: "School Abbreviation",
       update: form.value.schoolAbbreviation,
     });
   }
-  if (form.value.schoolCode !== original_data.code) {
+  if (form.value.schoolCode !== originalData.code) {
     updates.push({ key: "School Code", update: form.value.schoolCode });
   }
   if (updates.length !== 0) {
@@ -128,11 +128,10 @@ const handleUpdate = () => {
 };
 
 const handleReject = () => {
-  const original_data = institutions.value.filter(
+  const originalData = institutions.value.filter(
     (inst) => inst.id === form.value.id
   )[0];
-  console.log(original_data);
-  getInfo(original_data);
+  getInfo(originalData);
   modalVisible.value = false;
 };
 
