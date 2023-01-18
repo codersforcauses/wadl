@@ -1,12 +1,19 @@
 <script setup>
 import ProfileInfo from "~/components/admin/ProfileInfo.vue";
-import Table from "~/components/Coordinator/Table.vue";
+import Table from "../../components/Coordinator/Table.vue";
+import { useUserStore } from "~/stores/auth.js";
+import { storeToRefs } from "pinia";
+const userStore = useUserStore();
+// Will be updated when user store changes
+const user = storeToRefs(userStore);
+
 </script>
 
 <template>
   <div>
-    <ProfileInfo username="Carmen Leong" role="Admin" />
+    <ProfileInfo :username="user.firstName" :role="user.role" />
     <Table :headings="['Teams', 'Level', 'Division']" />
+    
     <div class="fixed inset-x-0 bottom-0 w-full">
       <div class="flex flex-row gap-4 m-5 justify-left">
         <Button button-text="Team Registration" button-color="bg-gold"
