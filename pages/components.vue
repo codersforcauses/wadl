@@ -51,6 +51,32 @@
     />
   </div>
 
+  <DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+    @yes="
+      () => {
+        handleSave();
+      }
+    "
+    @no="
+      () => {
+        handleDelete();
+      }
+    "
+  />
+
+  <Button
+    button-text="Dialog Test"
+    button-color="bg-gold"
+    type="button"
+    class="m-5 ml-8"
+    @click="modalVisibility = true"
+  />
   <Tabs :tabs="tabs" font-size="text-xl" @handle-tab="handleTabClicked" />
   <!-- Multiselect -->
   <label class="heading-montserrat">Level</label>
@@ -62,6 +88,9 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+const modalVisibility = ref(false);
+
 const tabs = [
   { label: "Novice", active: false },
   { label: "Junior", active: true },
