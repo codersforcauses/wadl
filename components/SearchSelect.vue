@@ -1,7 +1,7 @@
 <template>
   <label class="heading-montserrat">{{ label }}</label>
   <div
-    class="border border-light-grey flex items-center w-full rounded-md pr-2 mb-2.5"
+    class="border border-light-grey flex items-center w-full rounded-md pr-2"
   >
     <input
       v-model="searchText"
@@ -20,7 +20,7 @@
   </div>
   <ul
     v-if="isOpen"
-    class="absolute z-10 bg-white rounded-lg shadow-lg transition w-96"
+    class="absolute z-10 bg-white rounded-lg shadow-lg transition w-64 h-64 overflow-y-scroll divide-y divide-gray-200"
   >
     <li
       v-for="option in filteredOptions"
