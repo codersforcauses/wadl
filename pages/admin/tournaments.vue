@@ -28,16 +28,16 @@
             />
           </div>
           <div class="mt-6">
-            <FormField v-model="form.short_name" placeholder="Short Name" />
+            <FormField v-model="form.shortName" placeholder="Short Name" />
           </div>
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels.map((l) => l.level)"
+          :selected-chips="form.levels"
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.num_rounds"
+          v-model="form.rounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -71,16 +71,16 @@
             />
           </div>
           <div class="mt-6">
-            <FormField v-model="form.short_name" placeholder="Short Name" />
+            <FormField v-model="form.shortName" placeholder="Short Name" />
           </div>
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels.map((l) => l.level)"
+          :selected-chips="form.levels"
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.num_rounds"
+          v-model="form.rounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -115,41 +115,24 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
 
 const defaultInputState = {
   id: null,
-  levels: [],
   name: null,
-  num_rounds: null,
-  short_name: null,
-  status: null,
+  shortName: null,
+  levels: [],
+  rounds: null,
 };
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
-onMounted(() => {
-  store.getTournaments();
-});
-onUnmounted(() => {
-  store.clearStore();
-});
 
 const updateSelectedLevels = (chips) => {
-  form.value.levels.forEach(function callback(l, index) {
-    if (!chips.includes(l.level)) {
-      form.value.levels.splice(index, 1);
-    }
-  });
-
-  chips.forEach((level) => {
-    if (!form.value.levels.map((l) => l.level).includes(level)) {
-      form.value.levels.push({ level: level });
-    }
-  });
+  form.value.levels = chips;
 };
 
 const resetFormState = () => {
@@ -161,7 +144,6 @@ const handleEdit = (row) => {
   modalVisibility.value = row.modalVisibility;
   editMode.value = row.editMode;
   form.value = row.data;
-  console.log(form);
 };
 
 const handleFilter = (searchTerm) => {

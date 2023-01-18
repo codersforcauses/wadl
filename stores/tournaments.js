@@ -1,32 +1,49 @@
 import { defineStore } from "pinia";
-import { collection, getDocs } from "firebase/firestore";
 
 export const useTournamentStore = defineStore("tournament", {
   state: () => {
     return {
-      tournaments: [],
-      filteredTournaments: [],
+      tournaments: [
+        {
+          id: "1",
+          name: "Disinformation Station",
+          shortName: "DS",
+          status: "Running",
+          levels: ["Novice", "Junior", "Senior"],
+          rounds: "8",
+        },
+        {
+          id: "2",
+          name: "Test Tournament",
+          shortName: "TT",
+          status: "Complete",
+          levels: ["Senior"],
+          rounds: "6",
+        },
+      ],
+      // This will look better once firebase is added
+      filteredTournaments: [
+        {
+          id: "1",
+          name: "Disinformation Station",
+          shortName: "DS",
+          status: "Running",
+          levels: ["Novice", "Junior", "Senior"],
+          rounds: "8",
+        },
+        {
+          id: "2",
+          name: "Test Tournament",
+          shortName: "TT",
+          status: "Complete",
+          levels: ["Senior"],
+          rounds: "6",
+        },
+      ],
     };
   },
   getters: {},
   actions: {
-    async getTournaments() {
-      const { $db } = useNuxtApp();
-      const ref = collection($db, "tournaments");
-      const querySnapshot = await getDocs(ref);
-      querySnapshot.forEach((doc) => {
-        const tournament = {
-          id: doc.id,
-          levels: doc.data().levels,
-          name: doc.data().name,
-          num_rounds: doc.data().num_rounds,
-          short_name: doc.data().short_name,
-          status: doc.data().status,
-        };
-        this.tournaments.push(tournament);
-      });
-      this.filteredTournaments = [...this.tournaments];
-    },
     async createTournament(tournament) {
       this.tournaments.push({
         ...tournament,
