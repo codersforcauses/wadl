@@ -132,7 +132,6 @@ const handleReject = () => {
   const originalData = institutions.value.filter(
     (inst) => inst.id === form.value.id
   )[0];
-  console.log(originalData);
   getInfo(originalData);
   modalVisible.value = false;
 };
