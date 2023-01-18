@@ -1,49 +1,16 @@
 <script setup>
-import { ref } from "vue";
-import teamData from "~/data/teams.json";
-
-defineProps({
-  headings: {
-    type: Array,
-    default: () => [],
-  },
-});
-
-const teams = ref(teamData);
+import ProfileInfo from "~/components/admin/ProfileInfo.vue";
+import Table from "~/components/Coordinator/Table.vue";
 </script>
 
 <template>
-  <div class="flex justify-center">
-    <div class="w-11/12">
-      <table class="w-full mt-2 mb-20 table-auto">
-        <thead>
-          <tr>
-            <th
-              v-for="(heading, index) in headings"
-              :key="heading"
-              class="p-2 text-xl border-b border-dark-grey text-dark-grey"
-            >
-              {{ headings[index] }}
-            </th>
-          </tr>
-        </thead>
-        <tbody v-if="teams.length != 0">
-          <tr
-            v-for="team in teams"
-            :key="team.name"
-            class="justify-center transition duration-150 ease-in-out odd:bg-white even:bg-light-grey/10 hover:bg-light-gold hover:shadow-lg rounded-xl focus:bg-light-gold focus:shadow-lg focus:outline-none focus:ring-0 active:bg-light-gold active:shadow-lg"
-          >
-            <td v-for="field in team" :key="field" class="p-2 m-2 text-center">
-              {{ field }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div
-        v-if="teams.length == 0"
-        class="flex justify-center text-lg text-light-grey"
-      >
-        No teams registerd
+  <div>
+    <ProfileInfo username="Carmen Leong" role="Admin" />
+    <Table :headings="['Teams', 'Level', 'Division']" />
+    <div class="fixed inset-x-0 bottom-0 w-full">
+      <div class="flex flex-row gap-4 m-5 justify-left">
+        <Button button-text="Team Registration" button-color="bg-gold"
+          class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg" />
       </div>
     </div>
   </div>

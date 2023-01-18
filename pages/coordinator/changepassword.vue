@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>coming soon ...</h1>
+    <section class="flex justify-center items-center h-[calc(100vh-72px)]">
+    </section>
   </div>
 </template>
 
