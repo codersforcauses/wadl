@@ -1,4 +1,6 @@
 import { defineStore } from "pinia";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { useNuxtApp } from "#imports";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -33,6 +35,25 @@ export const useInstitutionStore = defineStore("institution", {
           Object.assign(inst, institution);
         }
       });
+    },
+    async registerTeam(team) {
+      const { $db } = useNuxtApp();
+      const ref = doc(collection($db, "teams"));
+      console.log(ref);
+      console.log(team.venuePreferences);
+      await setDoc(ref, {
+        hasvenuePreference: true,
+        notes: team.notes,
+        teams: team.teams,
+        tournamentId: team.tournament,
+        venuePrefernce: team.venuePreferences,
+      })
+        .then((element) => {
+          console.log("Team Saved!");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 });

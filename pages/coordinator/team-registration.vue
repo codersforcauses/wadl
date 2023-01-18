@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from "vue";
+import { useInstitutionStore } from "../../stores/institutions";
+const institutionStore = useInstitutionStore();
 const currentTeam = ref("Perth Modern");
 const venuePreferenceLabels = ref([
   "1st Preference",
@@ -39,8 +41,7 @@ const saveTeamRegistration = async () => {
   // TODO:
   // Perform validation
   // POST to backend
-  console.log(formInput.value);
-  console.log("Team Saved!");
+  institutionStore.registerTeam(formInput.value);
   // resetForm();
 };
 // commenting it out for now because we might need it in the future
@@ -110,7 +111,7 @@ const saveTeamRegistration = async () => {
             :key="team.teamLevel"
             v-model="team.weekPreference"
             :options="['Week 1', 'Week 2', 'Either']"
-            label="Novice"
+            :label="team.teamLevel"
             class="w-full"
             :disabled="!team.levelPresent"
           />
