@@ -8,19 +8,19 @@
       <div class="p-5">
         <Button
           class="m-2 mt-5 font-semibold"
-          button-text="Accept"
+          button-text="Yes2"
           button-color="bg-light-green"
           text-color="text-white"
           size="medium"
-          @click="emit('accept')"
+          @click="emit('yes')"
         />
         <Button
           class="font-semibold"
-          button-text="Reject"
+          button-text="No"
           button-color="bg-light-red"
           text-color="text-dark-red"
           size="medium"
-          @click="emit('reject')"
+          @click="emit('no')"
         />
       </div>
     </div>
@@ -32,5 +32,5 @@ import { ref } from "vue";
 
 const modalVisibility = ref(false);
 
-const emit = defineEmits(["accept", "reject", "close"]);
+const emit = defineEmits(["yes", "no", "close"]);
 </script>
