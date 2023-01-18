@@ -2,10 +2,10 @@
 import ProfileInfo from "~/components/admin/ProfileInfo.vue";
 import Table from "../../components/Coordinator/Table.vue";
 import { useUserStore } from "~/stores/auth.js";
-import { storeToRefs } from "pinia";
-const userStore = useUserStore();
+
+const user = useUserStore();
 // Will be updated when user store changes
-const user = storeToRefs(userStore);
+
 
 </script>
 
