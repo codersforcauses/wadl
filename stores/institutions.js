@@ -15,6 +15,8 @@ export const useInstitutionStore = defineStore("institution", {
   state: () => {
     return {
       institutions: [],
+      filteredInstitutions: [],
+      errorMessage: "",
     };
   },
   getters: {},
@@ -34,6 +36,7 @@ export const useInstitutionStore = defineStore("institution", {
         };
         this.institutions.push(institution);
       });
+      this.filteredInstitutions = [...this.institutions];
     },
     async editInstitution(institution) {
       const { $db } = useNuxtApp();
@@ -44,14 +47,20 @@ export const useInstitutionStore = defineStore("institution", {
         where("id", "!=", institution.id)
       );
       const snapshot = await getCountFromServer(sameName);
+      console.log(snapshot.data().count);
       if (snapshot.data().count === 0) {
         await updateDoc(ref, institution)
-          .then(() => {})
+          .then(() => {
+            this.errorMessage = "";
+            return true;
+          })
           .catch((error) => {
             console.log(error);
           });
       } else {
-        console.log("institution with same name exists");
+        console.log("in else statement");
+        this.errorMessage = "institution with same name exists";
+        return false;
       }
     },
     async createInstitution(institution) {
@@ -63,12 +72,14 @@ export const useInstitutionStore = defineStore("institution", {
       const snapshot = await getCountFromServer(sameName);
       if (snapshot.data().count === 0) {
         await addDoc(collection($db, "institutions"), institution)
-          .then(() => {})
+          .then(() => {
+            this.errorMessage = "";
+          })
           .catch((error) => {
             console.log(error);
           });
       } else {
-        console.log("institution with same name exists");
+        this.errorMessage = "institution with same name exists";
       }
     },
   },
