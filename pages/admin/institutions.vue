@@ -9,7 +9,7 @@ const headers = [
     title: "Institution",
   },
   {
-    key: "number",
+    key: "phone_number",
     title: "Phone Number",
   },
   {
@@ -23,7 +23,7 @@ const defaultInputState = {
   name: null,
   code: null,
   abbreviation: null,
-  phone: null,
+  phone_number: null,
   email: null,
 };
 
@@ -99,7 +99,7 @@ const handleEdit = (row) => {
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
-        <FormField v-model="formInput.number" label="Phone Number" />
+        <FormField v-model="formInput.phone_number" label="Phone Number" />
         <FormField v-model="formInput.email" label="Email" />
         <p v-if="store.errorMessage" class="text-danger-red">
           {{ store.errorMessage }}
@@ -129,7 +129,7 @@ const handleEdit = (row) => {
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
-        <FormField v-model="formInput.number" label="Phone Number" />
+        <FormField v-model="formInput.phone_number" label="Phone Number" />
         <FormField v-model="formInput.email" label="Email" />
         <p v-if="store.errorMessage" class="text-danger-red">
           {{ store.errorMessage }}

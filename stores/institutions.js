@@ -8,7 +8,7 @@ import {
   getDocs,
   query,
   where,
-  addDoc,
+  setDoc,
 } from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
@@ -32,7 +32,7 @@ export const useInstitutionStore = defineStore("institution", {
           email: doc.data().email,
           id: doc.id,
           name: doc.data().name,
-          number: doc.data().phone_number,
+          phone_number: doc.data().phone_number,
         };
         this.institutions.push(institution);
       });
@@ -71,7 +71,8 @@ export const useInstitutionStore = defineStore("institution", {
       );
       const snapshot = await getCountFromServer(sameName);
       if (snapshot.data().count === 0) {
-        await addDoc(collection($db, "institutions"), institution)
+        institution.id = doc(collection($db, "institutions")).id;
+        await setDoc(doc($db, "institutions", institution.id), institution)
           .then(() => {
             this.errorMessage = "";
           })
