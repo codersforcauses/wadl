@@ -20,7 +20,7 @@
         <tr
           v-for="(row, index) in data"
           :key="index"
-          class="h-10 odd:bg-white even:bg-light-grey/10"
+          class="h-10 odd:bg-white even:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out"
         >
           <td
             v-for="(object, ind) in headers"
@@ -66,6 +66,12 @@
         <tr class="h-auto border-none" />
       </tbody>
     </table>
+  </div>
+  <div
+    v-if="data.length == 0"
+    class="flex justify-center text-lg text-light-grey py-16"
+  >
+    No teams registered
   </div>
 </template>
 
