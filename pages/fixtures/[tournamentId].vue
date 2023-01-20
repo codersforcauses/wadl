@@ -3,9 +3,12 @@ import { ref } from "vue";
 import tournamentsData from "../../data/tournaments.json";
 import teamsData from "../../data/teams.json";
 import venuesData from "../../data/venues.json";
+
 const tournaments = ref(tournamentsData);
 const teams = ref(teamsData);
 const venues = ref(venuesData);
+const route = useRoute();
+
 const headers = [
   {
     key: "div",
@@ -66,8 +69,6 @@ const handleFilter = (searchTerm) => {
   );
 };
 
-const route = useRoute();
-
 const hasNotSelectedRoundTab = ref(true);
 const tableData = ref([]);
 const levelSelected = ref("Junior");
@@ -75,30 +76,57 @@ const roundSelected = ref(undefined);
 
 const levelClicked = (tabName) => {
   levelSelected.value = tabName;
+  roundTabs.forEach((round) => (round.active = false));
+  hasNotSelectedRoundTab.value = true;
 };
 
 const roundClicked = (roundName) => {
+  tableData.value = [];
   hasNotSelectedRoundTab.value = false;
   roundSelected.value = parseInt(roundName.split("")[roundName.length - 1]);
-  tournaments.value.forEach((tournament) => {
-    const levelFound = tournament.levels.filter(
-      (l) => l.level === levelSelected.value
-    );
+  const selectedTournament = tournaments.value.filter(
+    (tournament) => tournament.name === route.params.tournamentId
+  );
 
-    levelFound.forEach((level) => {
-      level.divisions.forEach((div) => {
-        const roundArray = div.matchups.filter(
-          (matchup) => matchup.round === roundSelected.value
-        );
-        const tournamentInfo = div.matchups.map(
-          (matchup) => matchup.topic,
-          matchup.datetime,
-          matchup.affirmative_team,
-          matchup.negative_team
-        );
+  const levelFound = selectedTournament[0].levels.filter(
+    (lev) => lev.level === levelSelected.value
+  );
 
-        console.log(tournamentInfo); //just for debugging
-      });
+  const formatAMPM = (date) => {
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let ampm = hours >= 12 ? "pm" : "am";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes.toString().padStart(2, "0");
+    let strTime = hours + ":" + minutes + " " + ampm;
+    return strTime;
+  };
+
+  levelFound[0].divisions.map((div) => {
+    div.matchups.map((matchup) => {
+      const date = new Date(matchup.datetime)
+        .toDateString()
+        .split(" ")
+        .slice(0, 3)
+        .join(" ");
+      const time = formatAMPM(new Date(matchup.datetime));
+      if (matchup.round === roundSelected.value) {
+        const row = {
+          div: div.division,
+          venue: "",
+          date,
+          time,
+          affirmative: teams.value.find(
+            (team) => team.id === matchup.affirmative_team
+          ).name,
+          negative: teams.value.find(
+            (team) => team.id === matchup.negative_team
+          ).name,
+          topic: matchup.topic,
+        };
+        tableData.value.push(row);
+      }
     });
   });
 };
