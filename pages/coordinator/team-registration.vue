@@ -22,9 +22,9 @@ const formInput = ref({
   venuePreferences: [],
   notes: null,
   teams: [
-    { teamLevel: "Novice", ...teamState },
-    { teamLevel: "Junior", ...teamState },
-    { teamLevel: "Senior", ...teamState },
+    { teamLevel: "Novice", timeslot: "5.15pm", ...teamState },
+    { teamLevel: "Junior", timeslot: "6.15pm", ...teamState },
+    { teamLevel: "Senior", timeslot: "7.15pm", ...teamState },
   ],
 });
 const updateLevels = (chips) => {
@@ -33,7 +33,11 @@ const updateLevels = (chips) => {
     if (chips.includes(team.teamLevel)) {
       return { ...team, levelPresent: true };
     } else {
-      return { teamLevel: team.teamLevel, ...teamState };
+      return {
+        teamLevel: team.teamLevel,
+        ...teamState,
+        timeslot: team.timeslot,
+      };
     }
   });
 };

@@ -1,5 +1,11 @@
 import { defineStore } from "pinia";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  setDoc,
+  writeBatch,
+} from "firebase/firestore";
 import { useNuxtApp } from "#imports";
 
 export const useInstitutionStore = defineStore("institution", {
@@ -36,23 +42,41 @@ export const useInstitutionStore = defineStore("institution", {
         }
       });
     },
+    // TODO: figure out best way the do tues/wed allocation
     async registerTeam(team) {
       const { $db } = useNuxtApp();
+      let teamCounter = 1;
       const ref = doc(collection($db, "teams"));
-      await setDoc(ref, {
-        hasvenuePreference: true,
-        notes: team.notes,
-        teams: team.teams,
-        tournamentId: team.tournament,
-        venuePrefernce: team.venuePreferences,
-      })
-        .then((element) => {
-          console.log("Team Saved!");
-        })
-        .catch((error) => {
-          console.log(error);
+      try {
+        const batch = writeBatch($db);
+        console.log(batch);
+        team.teams.map(async (level, index) => {
+          if (level.numberOfTeams > 0) {
+            for (let i = 0; i < level.numberOfTeams; i++) {
+              batch.set(ref, {
+                name: "Perth Modern " + teamCounter,
+                tournamentId: team.tournament,
+                institutionId: 2,
+                level: level.teamLevel,
+                timeslot: level.timeslot,
+                weekPerference: level.weekPerference,
+                tuesdayAllocation: 0,
+                wednesdayAllocation: 1,
+                hasvenuePreference: team.hasVenuePreference,
+                venuePreference: team.venuePreferences,
+                notes: team.notes,
+              });
+              teamCounter++;
+            }
+          }
         });
+        await batch.commit();
+        console.log("Team Saved!");
+      } catch (error) {
+        console.log(error);
+      }
     },
+
     async getTeams() {
       const { $db } = useNuxtApp();
       const ref = collection($db, "teams");
