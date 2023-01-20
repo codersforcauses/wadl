@@ -110,10 +110,9 @@ const createInstitution = () => {
   <div class="flex items-center">
     <SearchBar class="w-3/4" @handle-filter="filterInstitutions" />
     <Button
-      button-text="+"
+      button-text="Add"
       button-color="bg-gold"
       type="button"
-      class="m-1"
       size="medium"
       @click="modalVisibility = true"
     />
