@@ -117,7 +117,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 
 const defaultInputState = {
   id: null,
@@ -164,7 +164,6 @@ const handleEdit = (row) => {
   modalVisibility.value = row.modalVisibility;
   editMode.value = row.editMode;
   form.value = row.data;
-  console.log(form);
 };
 
 const handleFilter = (searchTerm) => {
@@ -176,8 +175,6 @@ const handleFilter = (searchTerm) => {
 };
 
 const updateTournament = async () => {
-  store.editTournament(form.value);
-
   const { $db } = useNuxtApp();
   await setDoc(doc($db, "tournaments", form.value.id), {
     levels: form.value.levels,
@@ -187,10 +184,25 @@ const updateTournament = async () => {
     status: form.value.status
   });
 
+  store.editTournament(form.value);
   resetFormState();
 };
 
-const createTournament = () => {
+const createTournament = async () => {
+  // Status cannot yet be specified in the edit menu
+  form.value.status = "Open";
+
+  const { $db } = useNuxtApp();
+  const tournament = await addDoc(collection($db, "tournaments"), {
+    levels: form.value.levels,
+    name: form.value.name,
+    num_rounds: form.value.num_rounds,
+    short_name: form.value.short_name,
+    status: form.value.status
+  });
+
+  form.value.id = tournament.id;
+
   store.createTournament(form.value);
   resetFormState();
 };

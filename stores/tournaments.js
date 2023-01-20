@@ -30,7 +30,6 @@ export const useTournamentStore = defineStore("tournament", {
     async createTournament(tournament) {
       this.tournaments.push({
         ...tournament,
-        id: this.tournaments.length + 1,
       });
       this.filteredTournaments = [...this.tournaments];
     },
