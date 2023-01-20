@@ -33,7 +33,7 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels.map((l) => l.level)"
+          :selected-chips="getLevels()"
           @change="updateSelectedLevels"
         />
         <FormField
@@ -76,7 +76,7 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels.map((l) => l.level)"
+          :selected-chips="getLevels()"
           @change="updateSelectedLevels"
         />
         <FormField
@@ -117,6 +117,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
+import { doc, setDoc } from "firebase/firestore";
 
 const defaultInputState = {
   id: null,
@@ -138,6 +139,8 @@ onUnmounted(() => {
   store.clearStore();
 });
 
+const getLevels = () => form.value.levels.map((l) => l.level)
+
 const updateSelectedLevels = (chips) => {
   form.value.levels.forEach(function callback(l, index) {
     if (!chips.includes(l.level)) {
@@ -146,7 +149,7 @@ const updateSelectedLevels = (chips) => {
   });
 
   chips.forEach((level) => {
-    if (!form.value.levels.map((l) => l.level).includes(level)) {
+    if (!getLevels().includes(level)) {
       form.value.levels.push({ level: level });
     }
   });
@@ -172,8 +175,18 @@ const handleFilter = (searchTerm) => {
   );
 };
 
-const updateTournament = () => {
+const updateTournament = async () => {
   store.editTournament(form.value);
+
+  const { $db } = useNuxtApp();
+  await setDoc(doc($db, "tournaments", form.value.id), {
+    levels: form.value.levels,
+    name: form.value.name,
+    num_rounds: form.value.num_rounds,
+    short_name: form.value.short_name,
+    status: form.value.status
+  });
+
   resetFormState();
 };
 
