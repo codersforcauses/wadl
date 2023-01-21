@@ -99,8 +99,13 @@ const handleEdit = (row) => {
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
-        <FormField v-model="formInput.phone_number" label="Phone Number" />
-        <FormField v-model="formInput.email" label="Email" />
+        <FormField
+          v-model="formInput.phone_number"
+          label="Phone Number"
+          type="tel"
+          pattern="[0-9]{10}"
+        />
+        <FormField v-model="formInput.email" label="Email" type="email" />
         <p v-if="store.errorMessage" class="text-danger-red">
           {{ store.errorMessage }}
         </p>
@@ -129,8 +134,13 @@ const handleEdit = (row) => {
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
-        <FormField v-model="formInput.phone_number" label="Phone Number" />
-        <FormField v-model="formInput.email" label="Email" />
+        <FormField
+          v-model="formInput.phone_number"
+          label="Phone Number"
+          type="tel"
+          pattern="[0-9]{10}"
+        />
+        <FormField v-model="formInput.email" label="Email" type="email" />
         <p v-if="store.errorMessage" class="text-danger-red">
           {{ store.errorMessage }}
         </p>
