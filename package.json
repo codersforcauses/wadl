@@ -2,16 +2,16 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
-    "dev:emu": "yarn firebase & (sleep 15 && yarn dev)",
+    "dev": "yarn dev:firebase & (sleep 15 && yarn dev:nuxt)",
+    "dev:nuxt": "nuxt dev",
+    "dev:firebase": "yarn emu:stop & cd Firebase && firebase emulators:start",
+    "dev:docker": "docker-compose up",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore --fix .",
-    "firebase": "yarn emu:stop & cd Firebase && firebase emulators:start --import=dummyData",
-    "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill",
-    "dev:docker": "docker-compose up"
+    "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill"
   },
   "devDependencies": {
     "vitest": "^0.25.8",
