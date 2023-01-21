@@ -41,7 +41,7 @@ jobs:
           node-version: 18
           cache: 'yarn'      
       - name: Install Dependencies
-        run: yarn install
+        run: yarn install && npm install -g firebase
       - name: Cache Firebase Emulators
         id: cache-firebase-emulators
         uses: actions/cache@4723a57e26efda3a62cbde1812113b730952852d
@@ -51,10 +51,10 @@ jobs:
       - name: Setup Firebase Emulators
         if: steps.cache-firebase-emulators.outputs.cache-hit != 'true'
         run: |
-          yarn firebase setup:emulators:database
-          yarn firebase setup:emulators:firestore
-          yarn firebase setup:emulators:pubsub
-          yarn firebase setup:emulators:storage
+          firebase setup:emulators:database
+          firebase setup:emulators:firestore
+          firebase setup:emulators:pubsub
+          firebase setup:emulators:storage
       - name: Run Vitest
         run: yarn firebase & (sleep 15 && yarn vitest --run)
        
