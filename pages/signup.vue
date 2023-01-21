@@ -48,7 +48,7 @@
         :color="!isValid ? 'border-red-500' : ''"
         @update="updateInput"
       />
-      <Roles
+      <Select
         v-model="form.role"
         :color="!isRoleValid ? 'border-red-500' : ''"
         @update="updateInput"
