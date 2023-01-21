@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { useVenueStore } from "../../stores/venues";
-import Modal from "../../components/Modal/Modal.vue";
 
 const defaultInputState = {
   id: null,
