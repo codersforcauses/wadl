@@ -13,7 +13,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex items-center justify-center">
+  <div class="mt-5 flex items-center justify-center">
     <UserIcon class="w-28 h-28" />
     <div class="w-2/3">
       <div data-test="profileInfoUsername" class="text-6xl">{{ username }}</div>

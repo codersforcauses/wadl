@@ -4,59 +4,59 @@ import ProfileInfo from "~/components/admin/ProfileInfo.vue";
 import {
   TrophyIcon,
   BuildingLibraryIcon,
-  ScaleIcon,
   UserGroupIcon,
   MapPinIcon,
   TableCellsIcon,
   UsersIcon,
   ClipboardIcon,
   UserPlusIcon,
+  UserCircleIcon,
 } from "@heroicons/vue/24/outline";
+import { useUserStore } from "../../stores/auth";
+
+const user = useUserStore();
 </script>
 
 <template>
-  <ProfileInfo username="Carmen Leong" role="Admin" />
-  <div class="flex items-center justify-center w-full">
-    <div class="grid w-2/3 grid-cols-3 gap-2">
+  <ProfileInfo :username="user.firstName" role="Admin" />
+  <div class="flex items-center justify-evenly mt-4">
+    <div class="grid w-11/12 grid-cols-1 gap-4 md:grid-cols-3">
       <AdminButton
-        data-test="tournaments"
         title="Tournaments"
-        link="/"
+        link="admin/tournaments"
         :icon="TrophyIcon"
       />
       <AdminButton
-        data-test="institutions"
         title="Institutions"
         link="admin/institutions"
         :icon="BuildingLibraryIcon"
       />
       <AdminButton
-        data-test="Adjudicators"
-        title="Adjudicators"
-        link="admin/adjudicators"
-        :icon="ScaleIcon"
+        data-test="Contacts"
+        title="Contacts"
+        link="admin/contacts"
+        :icon="UsersIcon"
       />
       <AdminButton
-        data-test="teams"
+        data-test="Teams"
         title="Teams"
         link="/"
         :icon="UserGroupIcon"
       />
       <AdminButton
-        data-test="venues"
+        data-test="Venues"
         title="Venues"
-        link="/"
+        link="admin/venues"
         :icon="MapPinIcon"
       />
       <AdminButton
-        data-test="fixtures"
+        data-test="Fixtures"
         title="Fixtures"
         link="/"
         :icon="TableCellsIcon"
       />
-      <AdminButton data-test="users" title="Users" link="/" :icon="UsersIcon" />
       <AdminButton
-        data-test="results"
+        data-test="Results"
         title="Results"
         link="/"
         :icon="ClipboardIcon"
@@ -65,6 +65,11 @@ import {
         data-test="signUpRequests"
         title="Sign-up Requests"
         link="admin/signup-requests"
+        :icon="UserCircleIcon"
+      />
+      <AdminButton
+        title="Create Admin"
+        link="admin/create-admin"
         :icon="UserPlusIcon"
       />
     </div>

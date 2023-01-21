@@ -35,6 +35,7 @@ module.exports = {
         "light-red": "hsl(0, 79%, 72%, 20%)",
         "dark-red": "#C74B4B",
         "light-green": "#3EBD93",
+        "danger-red": "#D63C3C",
       },
     },
   },

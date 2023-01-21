@@ -50,12 +50,52 @@
       @click="handleDelete"
     />
   </div>
+
+  <DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+    @yes="
+      () => {
+        handleSave();
+      }
+    "
+    @no="
+      () => {
+        handleDelete();
+      }
+    "
+  />
+
+  <Button
+    button-text="Dialog Test"
+    button-color="bg-gold"
+    type="button"
+    class="m-5 ml-8"
+    @click="modalVisibility = true"
+  />
+  <Tabs :tabs="tabs" font-size="text-xl" @handle-tab="handleTabClicked" />
+  <!-- Multiselect -->
+  <label class="heading-montserrat">Level</label>
+  <Multiselect
+    placeholder="I'm placeholder text"
+    :items="['Item 1', 'item 2', 'item 3']"
+    @change="updateSelectedLevels"
+  />
 </template>
 
 <script setup>
-// const handleUndo = () => {
-//   console.log("Undoing");
-// };
+import { ref } from "vue";
+const modalVisibility = ref(false);
+
+const tabs = [
+  { label: "Novice", active: false },
+  { label: "Junior", active: true },
+  { label: "Senior", active: false },
+];
 const handleSave = () => {
   console.log("Saving");
 };
@@ -64,5 +104,12 @@ const handleDelete = () => {
 };
 const handleFilter = () => {
   console.log("Filtering");
+};
+const handleTabClicked = (tab) => {
+  console.log("Filter data here based on the tab:", tab);
+};
+
+const updateSelectedLevels = (chips) => {
+  console.log("Chips selected", chips);
 };
 </script>

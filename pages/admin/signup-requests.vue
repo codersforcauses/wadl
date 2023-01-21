@@ -1,33 +1,37 @@
 <script setup>
-import { ref } from "vue";
-import data from "../../data/pretendpeople.json";
+import { useAdminStore } from "../../stores/admin";
+import { onMounted, onUnmounted } from "vue";
 
-// Reference to list of pretend people
-const people = ref(data);
+// pinia
+const adminStore = useAdminStore();
 
+const approveUser = async (id) => {
+  adminStore.acceptUser(id);
+};
+const rejectUser = async (id) => {
+  adminStore.denyUser(id);
+};
+onMounted(() => {
+  adminStore.getUsers();
+});
+onUnmounted(() => {
+  adminStore.clearStore();
+});
 // Filters people on first,last & email match
-const filterPeople = (searchTerm) => {
-  people.value = data.filter(
-    (person) =>
-      person.first.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.last.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.role.toLowerCase().includes(searchTerm.toLowerCase())
+const filterUser = (searchTerm) => {
+  adminStore.filteredUsers = adminStore.requestingUsers.filter(
+    (user) =>
+      user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.role.toLowerCase().includes(searchTerm.toLowerCase())
   );
-};
-
-const approvePerson = (id) => {
-  console.log(`Approving applicant with email ${id}`);
-};
-
-const rejectPerson = (id) => {
-  console.log(`Rejecting applicant with email ${id}`);
 };
 </script>
 
 <template>
   <Header title-text="Sign Up Requests" />
-  <SearchBar data-test="searchBar" @handle-filter="filterPeople" />
+  <SearchBar data-test="searchBar" @handle-filter="filterUser" />
   <div class="flex justify-center">
     <table class="w-10/12 table-fixed">
       <thead>
@@ -59,22 +63,21 @@ const rejectPerson = (id) => {
         <tr
           v-for="person in people"
           :key="person.email"
-          data-test="signUpRequest"
           class="py-md bg-white border-b h-10"
         >
           <td>
-            <p data-test="signUpRequestFirstName">{{ person.first }}</p>
+            <p data-test="signUpRequestFirstName">{{ user.firstName }}</p>
           </td>
           <td>
-            <p data-test="signUpRequestLastName">{{ person.last }}</p>
+            <p data-test="signUpRequestLastName">{{ user.lastName }}</p>
           </td>
           <td>
-            <p data-test="signUpRequestEmail">{{ person.email }}</p>
+            <p data-test="signUpRequestEmail">{{ user.email }}</p>
           </td>
           <td>
             <select
               id="role"
-              v-model="person.role"
+              v-model="user.role"
               data-test="signUpRequestRole"
               name="role"
             >
@@ -105,7 +108,7 @@ const rejectPerson = (id) => {
               button-color="bg-light-green"
               text-color="text-white"
               size="small"
-              @click="approvePerson(person.id)"
+              @click="approveUser(user)"
             />
             <Button
               data-test="signUpRequestReject"
@@ -113,7 +116,7 @@ const rejectPerson = (id) => {
               button-color="bg-light-red"
               text-color="text-dark-red"
               size="small"
-              @click="rejectPerson(person.id)"
+              @click="rejectUser(user)"
             />
           </td>
         </tr>
