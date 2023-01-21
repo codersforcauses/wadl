@@ -35,7 +35,7 @@ const user = useUserStore();
       <AdminButton title="Teams" link="/" :icon="UserGroupIcon" />
       <AdminButton title="Venues" link="admin/venues" :icon="MapPinIcon" />
       <AdminButton title="Fixtures" link="/" :icon="TableCellsIcon" />
-      <AdminButton title="Results" link="/" :icon="ClipboardIcon" />
+      <AdminButton title="Export Teams" link="/" :icon="ClipboardIcon" />
       <AdminButton
         title="Sign-up Requests"
         link="admin/signup-requests"
