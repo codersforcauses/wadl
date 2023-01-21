@@ -18,6 +18,8 @@
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
-
+definePageMeta({
+  middleware: ["auth"],
+});
 const tournaments = ["Junior", "Novice", "Senior", "SDC", "AIHSA", "RDC"]; // Dummy Data to be replaced
 </script>
