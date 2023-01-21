@@ -56,5 +56,5 @@ jobs:
           yarn firebase setup:emulators:pubsub
           yarn firebase setup:emulators:storage
       - name: Run Vitest
-        run: yarn firebase & (sleep 15 && yarn vitest --run)
+        run: yarn dev:firebase & (sleep 15 && yarn vitest --run)
        
