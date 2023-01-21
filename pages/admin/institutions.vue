@@ -164,37 +164,6 @@ const handleEdit = (row) => {
       @edit="handleEdit"
     />
   </div>
-
-  <!--
-  <div class="flex justify-center">
-    <ul class="bg-white rounded-lg w-11/12">
-      <li
-        class="text-xl heading-montserrat font-bold px-6 py-3 border-b border-gray-20 rounded-t-lg flex justify-between items-center"
-      >
-        Institutions
-      </li>
-      <li
-        v-for="institution in store.institutions"
-        :key="institution.id"
-        class="justify-between flex px-6 py-2 border-b border-gray-20 items-center"
-      >
-        <p>{{ institution.name }}</p>
-        <button
-          @click="
-            () => {
-              formInput = { ...institution };
-              editMode = true;
-              modalVisibility = true;
-            }
-          "
-        >
-          <PencilIcon class="h-4 w-4" />
-        </button>
-      </li>
-    </ul>
-  </div>
-  -->
-
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
       button-text="Add Institutions"
