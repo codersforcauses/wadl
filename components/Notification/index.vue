@@ -19,7 +19,7 @@
           :class="{ 'text-green-500': isSuccess, 'text-red-500': !isSuccess }"
         >
           <Header
-            :title-text="header || (isSuccess ? 'Success' : 'Not Success')"
+            :title-text="header || (isSuccess ? 'Success!' : 'Oh Snap!')"
             :has-line="false"
           ></Header>
         </div>
@@ -28,7 +28,7 @@
           :button-color="isSuccess ? 'bg-green-500' : 'bg-red-500'"
           button-text="Okay"
           text-color="text-white m-5"
-          @click="emit('close')"
+          @click="$emit('close')"
         ></Button>
       </div>
     </div>
