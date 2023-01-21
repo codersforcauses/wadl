@@ -1,6 +1,6 @@
 <template>
-  <div class="h-max-full overflow-y-scroll overscroll-contain content-center">
-    <table class="table-fixed overflow-scroll md:w-11/12 w-100 mx-1">
+  <div class="h-max-full overflow-y-auto md:flex md:justify-center">
+    <table class="table-fixed overflow-scroll md:w-11/12 w-100">
       <thead class="">
         <tr>
           <th
