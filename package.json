@@ -11,7 +11,8 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore --fix .",
-    "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill"
+    "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill",
+    "test:firebase": "vitest --run"
   },
   "devDependencies": {
     "vitest": "^0.25.8",
