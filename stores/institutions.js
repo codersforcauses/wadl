@@ -47,12 +47,23 @@ export const useInstitutionStore = defineStore("institution", {
         where("id", "!=", institution.id)
       );
       const snapshot = await getCountFromServer(sameName);
-      console.log(snapshot.data().count);
       if (snapshot.data().count === 0) {
         await updateDoc(ref, institution)
           .then(() => {
             this.errorMessage = "";
-            this.refreshInstitutions();
+            const index = this.institutions.findIndex(function (item, i) {
+              return item.id === institution.id;
+            });
+            console.log(index);
+            this.institutions[index] = institution;
+            const indexFiltered = this.filteredInstitutions.findIndex(function (
+              item,
+              i
+            ) {
+              return item.id === institution.id;
+            });
+            console.log(indexFiltered);
+            this.filteredInstitutions[indexFiltered] = institution;
           })
           .catch((error) => {
             console.log(error);
@@ -73,7 +84,8 @@ export const useInstitutionStore = defineStore("institution", {
         await setDoc(doc($db, "institutions", institution.id), institution)
           .then(() => {
             this.errorMessage = "";
-            this.refreshInstitutions();
+            this.institutions.push(institution);
+            this.filteredInstitutions.push(institution);
           })
           .catch((error) => {
             console.log(error);
@@ -82,26 +94,5 @@ export const useInstitutionStore = defineStore("institution", {
         this.errorMessage = "institution with same name exists";
       }
     },
-    async refreshInstitutions() {
-      this.institutions = [];
-      this.filteredInstitutions = [];
-      this.getInstitutions();
-    },
-    async editTeam(team) {
-      this.teams.forEach((t) => {
-        if (t.id === team.id) {
-          Object.assign(t, team);
-        }
-      });
-    },
-    async editTeam(team) {
-      this.teams.forEach((t) => {
-        if (t.id === team.id) {
-          Object.assign(t, team);
-        }
-      });
-    },
-    // return all teams with instititution id
-    async getTeamById(id) {},
   },
 });

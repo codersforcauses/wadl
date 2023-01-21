@@ -102,7 +102,7 @@ const handleEdit = (row) => {
           v-model="formInput.phone_number"
           label="Phone Number"
           type="tel"
-          pattern="[0-9]{10}"
+          pattern="[0-9]{10}|[0-9]{8}"
         />
         <FormField v-model="formInput.email" label="Email" type="email" />
         <p v-if="store.errorMessage" class="text-danger-red">
@@ -137,7 +137,7 @@ const handleEdit = (row) => {
           v-model="formInput.phone_number"
           label="Phone Number"
           type="tel"
-          pattern="[0-9]{10}"
+          pattern="[0-9]{10}|[0-9]{8}"
         />
         <FormField v-model="formInput.email" label="Email" type="email" />
         <p v-if="store.errorMessage" class="text-danger-red">
