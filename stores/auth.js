@@ -18,6 +18,7 @@ export const useUserStore = defineStore("user", {
       role: null,
       requesting: null,
       errorCode: "",
+      authenticated: false,
     };
   },
   persist: {
