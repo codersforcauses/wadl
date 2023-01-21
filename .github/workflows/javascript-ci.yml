@@ -40,8 +40,19 @@ jobs:
           cache: 'yarn'      
       - name: Install Dependencies
         run: yarn install
-      - name: start emulator 
-        run: yarn dev:emu & sleep 1
-      - name: 
-        run: yarn vitest
+      - name: Cache Firebase Emulators
+        id: cache-firebase-emulators
+        uses: actions/cache@4723a57e26efda3a62cbde1812113b730952852d
+        with:
+          path: /home/runner/.cache/firebase/emulators
+          key: ${{ runner.os }}-firebase-emulators-${{ hashFiles('/home/runner/.cache/firebase/emulators/**') }}
+      - name: Setup Firebase Emulators
+        if: steps.cache-firebase-emulators.outputs.cache-hit != 'true'
+        run: |
+          yarn firebase setup:emulators:database
+          yarn firebase setup:emulators:firestore
+          yarn firebase setup:emulators:pubsub
+          yarn firebase setup:emulators:storage
+      - name: Run Vitest
+        run: yarn firebase & (sleep 15 && yarn vitest --run)
        
