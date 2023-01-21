@@ -11,6 +11,7 @@ export const useTournamentStore = defineStore("tournament", {
   getters: {},
   actions: {
     async getTournaments() {
+      this.clearStore();
       const { $db } = useNuxtApp();
       const ref = collection($db, "tournaments");
       const querySnapshot = await getDocs(ref);

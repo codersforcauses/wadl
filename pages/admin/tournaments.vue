@@ -115,7 +115,7 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
 import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 
@@ -132,14 +132,9 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
-onMounted(() => {
-  store.getTournaments();
-});
-onUnmounted(() => {
-  store.clearStore();
-});
+await store.getTournaments();
 
-const getLevels = () => form.value.levels.map((l) => l.level)
+const getLevels = () => form.value.levels.map((l) => l.level);
 
 const updateSelectedLevels = (chips) => {
   form.value.levels.forEach(function callback(l, index) {
@@ -181,7 +176,7 @@ const updateTournament = async () => {
     name: form.value.name,
     num_rounds: form.value.num_rounds,
     short_name: form.value.short_name,
-    status: form.value.status
+    status: form.value.status,
   });
 
   store.editTournament(form.value);
@@ -198,7 +193,7 @@ const createTournament = async () => {
     name: form.value.name,
     num_rounds: form.value.num_rounds,
     short_name: form.value.short_name,
-    status: form.value.status
+    status: form.value.status,
   });
 
   form.value.id = tournament.id;
