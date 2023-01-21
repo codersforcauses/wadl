@@ -87,5 +87,21 @@ export const useInstitutionStore = defineStore("institution", {
       this.filteredInstitutions = [];
       this.getInstitutions();
     },
+    async editTeam(team) {
+      this.teams.forEach((t) => {
+        if (t.id === team.id) {
+          Object.assign(t, team);
+        }
+      });
+    },
+    async editTeam(team) {
+      this.teams.forEach((t) => {
+        if (t.id === team.id) {
+          Object.assign(t, team);
+        }
+      });
+    },
+    // return all teams with instititution id
+    async getTeamById(id) {},
   },
 });

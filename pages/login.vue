@@ -22,7 +22,7 @@ watch(role, (currentValue, oldValue) => {
   } else if (currentValue === "Adjudicator") {
     navigateTo({ path: "/" });
   } else if (currentValue === "Team Coordinator") {
-    navigateTo({ path: "/" });
+    navigateTo({ path: "/coordinator" });
   } else if (currentValue === "Admin") {
     navigateTo({ path: "/admin" });
   }

@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
-import Modal from "../../components/Modal/Modal.vue";
 
 const headers = [
   {
