@@ -17,6 +17,34 @@ export const useInstitutionStore = defineStore("institution", {
       institutions: [],
       filteredInstitutions: [],
       errorMessage: "",
+      teams: [
+        {
+          id: 1,
+          name: "Perth Modern 1",
+          level: "Novice",
+          division: "Not Allocated",
+          timeslot: "5.15pm",
+          venuePreferences: ["Perth Modern", "BCC", "Mercy"],
+          hasVenuePreference: true,
+          weekPreference: "Week 1",
+          tuesdayAllocation: true,
+          wednesdayAllocation: false,
+          notes: "Some note",
+        },
+        {
+          id: 2,
+          name: "Perth Modern 2",
+          level: "Senior",
+          division: "Not Allocated",
+          timeslot: "7.15pm",
+          venuePreferences: ["Perth Modern", "Trinity", "Mercy"],
+          hasVenuePreference: true,
+          weekPreference: "Week 1",
+          tuesdayAllocation: true,
+          wednesdayAllocation: true,
+          notes: "Hi",
+        },
+      ],
     };
   },
   getters: {},
@@ -91,6 +119,13 @@ export const useInstitutionStore = defineStore("institution", {
       } else {
         this.errorMessage = "institution with same name exists";
       }
+    },
+    async editTeam(team) {
+      this.teams.forEach((t) => {
+        if (t.id === team.id) {
+          Object.assign(t, team);
+        }
+      });
     },
   },
 });
