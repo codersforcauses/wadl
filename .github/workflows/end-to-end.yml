@@ -34,6 +34,6 @@ jobs:
         uses: cypress-io/github-action@c5724eda82337bcff977ce14509f47052c12e04c
         with:
           install-command: yarn --frozen-lockfile --silent
-          start: yarn dev
+          start: yarn dev:emu
           wait-on: http://localhost:3000
           wait-on-timeout: 300
