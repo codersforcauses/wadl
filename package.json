@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "yarn dev:firebase & (sleep 15 && yarn dev)",
+    "dev": "yarn dev:firebase & (sleep 15 && yarn dev:nuxt)",
     "dev:nuxt": "nuxt dev",
     "dev:firebase": "yarn emu:stop & cd Firebase && firebase emulators:start",
     "dev:docker": "docker-compose up",
