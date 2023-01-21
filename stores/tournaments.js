@@ -27,6 +27,9 @@ export const useTournamentStore = defineStore("tournament", {
       });
       this.filteredTournaments = [...this.tournaments];
     },
+    async clearStore() {
+      this.filteredTournaments = [];
+    },
     async createTournament(tournament) {
       this.tournaments.push({
         ...tournament,
