@@ -52,15 +52,13 @@ export const useInstitutionStore = defineStore("institution", {
         await updateDoc(ref, institution)
           .then(() => {
             this.errorMessage = "";
-            return true;
+            this.refreshInstitutions();
           })
           .catch((error) => {
             console.log(error);
           });
       } else {
-        console.log("in else statement");
         this.errorMessage = "institution with same name exists";
-        return false;
       }
     },
     async createInstitution(institution) {
@@ -75,6 +73,7 @@ export const useInstitutionStore = defineStore("institution", {
         await setDoc(doc($db, "institutions", institution.id), institution)
           .then(() => {
             this.errorMessage = "";
+            this.refreshInstitutions();
           })
           .catch((error) => {
             console.log(error);
@@ -82,6 +81,11 @@ export const useInstitutionStore = defineStore("institution", {
       } else {
         this.errorMessage = "institution with same name exists";
       }
+    },
+    async refreshInstitutions() {
+      this.institutions = [];
+      this.filteredInstitutions = [];
+      this.getInstitutions();
     },
   },
 });
