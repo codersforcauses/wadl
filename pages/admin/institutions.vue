@@ -33,13 +33,11 @@ const formInput = ref({ ...defaultInputState });
 const store = useInstitutionStore();
 
 store.getInstitutions();
-console.log("init", store.errorMessage);
 
 const resetFormState = () => {
   formInput.value = { ...defaultInputState };
   editMode.value = false;
   store.errorMessage = "";
-  console.log("reset", store.errorMessage);
 };
 
 const filterInstitutions = (searchTerm) => {

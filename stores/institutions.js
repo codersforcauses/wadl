@@ -54,7 +54,6 @@ export const useInstitutionStore = defineStore("institution", {
             const index = this.institutions.findIndex(function (item, i) {
               return item.id === institution.id;
             });
-            console.log(index);
             this.institutions[index] = institution;
             const indexFiltered = this.filteredInstitutions.findIndex(function (
               item,
@@ -62,7 +61,6 @@ export const useInstitutionStore = defineStore("institution", {
             ) {
               return item.id === institution.id;
             });
-            console.log(indexFiltered);
             this.filteredInstitutions[indexFiltered] = institution;
           })
           .catch((error) => {
