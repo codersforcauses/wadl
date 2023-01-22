@@ -115,6 +115,7 @@ export const useUserStore = defineStore("user", {
             this.email = doc.data().email;
             this.role = doc.data().role;
             this.requesting = doc.data().requesting;
+            this.institutions = doc.data().institutions;
           })
           .catch((error) => {
             this.cleanUpError(error);

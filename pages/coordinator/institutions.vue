@@ -75,8 +75,10 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
+import { useUserStore } from "../../stores/auth";
 
-const store = useInstitutionStore();
+const institutionStore = useInstitutionStore();
+const userStore = useUserStore();
 const institutions = ref(null);
 const modalVisible = ref(false);
 const instUpdates = ref([]);
@@ -90,8 +92,8 @@ const form = ref({
   schoolCode: "",
 });
 const handleTeamJoin = async () => {
-  await store.getInstitutions();
-  const originalData = store.institutions.filter(
+  await institutionStore.getInstitutions();
+  const originalData = institutionStore.institutions.filter(
     (inst) => inst.id === form.value.id
   )[0];
   const updates = [];
@@ -123,8 +125,8 @@ const handleTeamJoin = async () => {
 };
 
 const handleUpdate = () => {
-  store.checkInstitution(form.value);
-  store.updateProfile(form.value);
+  institutionStore.checkInstitution(form.value);
+  institutionStore.updateProfile(form.value);
   modalVisible.value = false;
 };
 
@@ -137,20 +139,26 @@ const handleReject = () => {
 };
 
 onMounted(async () => {
-  await store.getInstitutions();
-  institutions.value = store.institutions;
+  const user_institutions = userStore.$state.institutions;
+  if (user_institutions.length !== 0) {
+    getInfo(await institutionStore.getInstitutionByID(user_institutions.institution_ids));
+  }
+  await institutionStore.getInstitutions();
+  institutions.value = institutionStore.institutions;
 });
+
 onUnmounted(async () => {
-  await store.clearStore();
+  await institutionStore.clearStore();
 });
 
 const getInfo = (data) => {
   form.value.id = data.id;
   form.value.schoolName = data.name;
-  form.value.schoolNumber = data.phoneNumber;
+  // Firestore phonenumber is named different to pinia
+  form.value.schoolNumber = data.phoneNumber ? data.phoneNumber : data.phone_number;
   form.value.schoolEmail = data.email;
   form.value.schoolAbbreviation = data.abbreviation;
-  form.value.schoolCode = data.code;
+  form.value.schoolCode = `${data.code}`;
 };
 const getName = (name) => {
   form.value.schoolName = name;
