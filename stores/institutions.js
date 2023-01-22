@@ -33,6 +33,12 @@ export const useInstitutionStore = defineStore("institution", {
         this.institutions.push(data);
       });
     },
+    async getInstitutions(id) {
+      const { $db } = useNuxtApp();
+      const ref = collection($db, "institutions");
+      const querySnapshot = await getDocs(ref);
+      return querySnapshot.filter((doc) => doc.id === id);
+    },
     async checkInstitution(institution) {
       console.log(institution);
       let newInstitution = true;
