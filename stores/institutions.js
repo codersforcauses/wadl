@@ -1,22 +1,22 @@
 import { defineStore } from "pinia";
+import { useNuxtApp } from "#imports";
+import {
+  collection,
+  doc,
+  updateDoc,
+  getCountFromServer,
+  getDocs,
+  query,
+  where,
+  setDoc,
+} from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
     return {
-      institutions: [
-        {
-          id: 1,
-          name: "Perth Modern",
-          code: "1234",
-          abbreviation: "PM",
-        },
-        {
-          id: 2,
-          name: "Ballajura Community College",
-          code: "111",
-          abbreviation: "BCC",
-        },
-      ],
+      institutions: [],
+      filteredInstitutions: [],
+      errorMessage: "",
       teams: [
         {
           id: 1,
@@ -49,18 +49,76 @@ export const useInstitutionStore = defineStore("institution", {
   },
   getters: {},
   actions: {
-    async createInstitution(institution) {
-      this.institutions.push({
-        ...institution,
-        id: this.institutions.length + 1,
+    async getInstitutions() {
+      const { $db } = useNuxtApp();
+      const ref = collection($db, "institutions");
+      const querySnapshot = await getDocs(ref);
+      querySnapshot.forEach((doc) => {
+        const institution = {
+          abbreviation: doc.data().abbreviation,
+          code: doc.data().code,
+          email: doc.data().email,
+          id: doc.id,
+          name: doc.data().name,
+          phone_number: doc.data().phone_number,
+        };
+        this.institutions.push(institution);
       });
+      this.filteredInstitutions = [...this.institutions];
     },
     async editInstitution(institution) {
-      this.institutions.forEach((inst) => {
-        if (inst.id === institution.id) {
-          Object.assign(inst, institution);
-        }
-      });
+      const { $db } = useNuxtApp();
+      const ref = doc($db, "institutions", institution.id);
+      const sameName = query(
+        collection($db, "institutions"),
+        where("name", "==", institution.name),
+        where("id", "!=", institution.id)
+      );
+      const snapshot = await getCountFromServer(sameName);
+      if (snapshot.data().count === 0) {
+        await updateDoc(ref, institution)
+          .then(() => {
+            this.errorMessage = "";
+            const index = this.institutions.findIndex(function (item, i) {
+              return item.id === institution.id;
+            });
+            this.institutions[index] = institution;
+            const indexFiltered = this.filteredInstitutions.findIndex(function (
+              item,
+              i
+            ) {
+              return item.id === institution.id;
+            });
+            this.filteredInstitutions[indexFiltered] = institution;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.errorMessage = "institution with same name exists";
+      }
+    },
+    async createInstitution(institution) {
+      const { $db } = useNuxtApp();
+      const sameName = query(
+        collection($db, "institutions"),
+        where("name", "==", institution.name)
+      );
+      const snapshot = await getCountFromServer(sameName);
+      if (snapshot.data().count === 0) {
+        institution.id = doc(collection($db, "institutions")).id;
+        await setDoc(doc($db, "institutions", institution.id), institution)
+          .then(() => {
+            this.errorMessage = "";
+            this.institutions.push(institution);
+            this.filteredInstitutions.push(institution);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.errorMessage = "institution with same name exists";
+      }
     },
     async editTeam(team) {
       this.teams.forEach((t) => {
@@ -69,7 +127,5 @@ export const useInstitutionStore = defineStore("institution", {
         }
       });
     },
-    // return all teams with instititution id
-    async getTeamById(id) {},
   },
 });
