@@ -19,7 +19,6 @@
     :value="modelValue"
     min="0"
     :disabled="disabled"
-    :pattern="pattern"
     @input="updateInput"
   />
 </template>
@@ -31,7 +30,6 @@ const props = defineProps({
   type: { type: String, default: "text" },
   disabled: { type: Boolean, default: false },
   color: { type: String, default: "" },
-  pattern: { type: String, default: "*" },
 });
 const emit = defineEmits(["update:modelValue", "update"]);
 

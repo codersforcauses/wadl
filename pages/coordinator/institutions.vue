@@ -177,7 +177,6 @@ const getInfo = (data) => {
   form.value.schoolCode = `${data.code}`;
 };
 const getName = (name) => {
-  console.log(name);
   form.value.schoolName = name;
 };
 </script>
