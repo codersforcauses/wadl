@@ -1,32 +1,34 @@
-
 <template>
   <section>
-    <Modal :modal-visibility="modalVisible" 
-    @close="
-      () => {
-        modalVisible = false;
-        resetFormState();
-      }
-    ">
-      <h1 class="pb-2 text-2xl text-center">Confirm Changes</h1>
-      <ul v-for="update in instUpdates" :key="update.key" class="mx-6">
+    <Modal
+      :modal-visibility="modalVisible"
+      @close="
+        () => {
+          modalVisible = false;
+          resetFormState();
+        }
+      "
+    >
+      <h1 class="py-3 text-2xl text-center">Confirm Changes</h1>
+      <hr class="mx-8" />
+      <ul v-for="update in instUpdates" :key="update.key" class="mx-6 pt-2">
         <li>
           {{ `${update.key} changed to ${update.update}` }}
         </li>
       </ul>
-      <div class="flex justify-between items-center">
+      <div class="flex justify-evenly items-center my-6">
         <Button
           button-text="Reject"
-          button-color="bg-red-500"
+          button-color="bg-light-red"
+          text-color="text-dark-red"
           type="Submit"
-          class="m-5 ml-8"
           @click="handleReject"
         />
         <Button
-          button-text="Accept"
-          button-color="bg-green-500"
+          button-text="Approve"
+          button-color="bg-light-green"
+          text-color="text-white"
           type="Submit"
-          class="m-5 ml-8"
           @click="handleUpdate"
         />
       </div>
@@ -148,7 +150,11 @@ const handleReject = () => {
 onMounted(async () => {
   const user_institutions = userStore.$state.institutions;
   if (user_institutions.length !== 0) {
-    getInfo(await institutionStore.getInstitutionByID(user_institutions.institution_ids));
+    getInfo(
+      await institutionStore.getInstitutionByID(
+        user_institutions.institution_ids
+      )
+    );
   }
   await institutionStore.getInstitutions();
   institutions.value = institutionStore.institutions;
@@ -162,7 +168,9 @@ const getInfo = (data) => {
   form.value.id = data.id;
   form.value.schoolName = data.name;
   // Firestore phonenumber is named different to pinia
-  form.value.schoolNumber = data.phoneNumber ? data.phoneNumber : data.phone_number;
+  form.value.schoolNumber = data.phoneNumber
+    ? data.phoneNumber
+    : data.phone_number;
   form.value.schoolEmail = data.email;
   form.value.schoolAbbreviation = data.abbreviation;
   form.value.schoolCode = `${data.code}`;
