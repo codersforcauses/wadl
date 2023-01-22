@@ -175,20 +175,21 @@ export const useInstitutionStore = defineStore("institution", {
         });
       }
     },
-    async createInstitution(institution) {
-      console.log(institution);
-      const { $db } = useNuxtApp();
-      const ref = collection($db, "institutions");
-      await addDoc(ref, {
-        name: institution.schoolName,
-        email: institution.schoolEmail,
-        code: institution.schoolCode,
-        phone_number: institution.schoolNumber,
-        abbreviation: institution.schoolAbbreviation,
-      }).catch((error) => {
-        console.log(error);
-      });
-    },
+    // deleting this one because the one above is working well for admin/inst
+    // async createInstitution(institution) {
+    //   console.log(institution);
+    //   const { $db } = useNuxtApp();
+    //   const ref = collection($db, "institutions");
+    //   await addDoc(ref, {
+    //     name: institution.schoolName,
+    //     email: institution.schoolEmail,
+    //     code: institution.schoolCode,
+    //     phone_number: institution.schoolNumber,
+    //     abbreviation: institution.schoolAbbreviation,
+    //   }).catch((error) => {
+    //     console.log(error);
+    //   });
+    // },
     async updateProfile(institution) {
       const { $db, $auth } = useNuxtApp();
       const ref = doc($db, "users", $auth.currentUser.uid);
