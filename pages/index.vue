@@ -4,20 +4,27 @@
   <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
   <!-- competitions -->
   <Header title-text="Competitions" />
-  <main
-    class="mx-auto h-screen pt-5 place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6"
-  >
-    <!-- replace key with item.key when final data exists -->
-    <div v-for="item in tournaments" :key="item">
-      <NuxtLink to="/">
-        <LevelButton :text="item" />
-      </NuxtLink>
-    </div>
-  </main>
+  <div v-if="store.getRunning.length > 0">
+    <main
+      class="mx-auto h-screen pt-5 place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6"
+    >
+      <div v-for="tournament in store.getRunning">
+        <NuxtLink to="/">
+          <LevelButton :text="tournament.shortName" />
+        </NuxtLink>
+      </div>
+    </main>
+  </div>
+  <div v-else>
+    <p class="text-xl py-5 text-center font-light font-montserrat">
+      There are no running tournaments.
+    </p>
+  </div>
 </template>
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
-
-const tournaments = ["Junior", "Novice", "Senior", "SDC", "AIHSA", "RDC"]; // Dummy Data to be replaced
+import { useTournamentStore } from "../stores/tournaments";
+const store = useTournamentStore();
+store.getTournaments();
 </script>
