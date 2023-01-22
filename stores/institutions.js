@@ -10,6 +10,7 @@ import {
   query,
   where,
   setDoc,
+  getDoc,
 } from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
@@ -69,15 +70,12 @@ export const useInstitutionStore = defineStore("institution", {
       this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
+      console.log(id);
       const { $db } = useNuxtApp();
-      const ref = collection($db, "institutions");
-      const querySnapshot = await getDocs(ref);
-      if (querySnapshot.docs.length > 0) {
-        return querySnapshot.docs
-          .filter((doc) => doc.id === id)
-          .map((doc) => doc.data())[0];
-      }
-      return null;
+      const ref = doc($db, "institutions", id);
+      await getDoc(ref).then((doc) => {
+        console.log(doc.data());
+      });
     },
     async checkInstitution(institution) {
       console.log(institution);
@@ -157,6 +155,7 @@ export const useInstitutionStore = defineStore("institution", {
       }
     },
     async updateInstitution(element, institution) {
+      console.log(element, institution);
       const { $db } = useNuxtApp();
       if (
         element.number !== institution.schoolNumber ||
