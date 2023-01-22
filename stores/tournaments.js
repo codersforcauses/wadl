@@ -12,7 +12,7 @@ export const useTournamentStore = defineStore("tournament", {
   getters: {
     getRunning() {
       return this.tournaments.filter(
-        (tournament) => tournament.status == "Running"
+        (tournament) => tournament.status === "Running"
       );
     },
   },
@@ -73,7 +73,7 @@ export const useTournamentStore = defineStore("tournament", {
           Object.assign(t, tournament);
         }
       });
-      
+
       this.filteredTournaments = [...this.tournaments];
     },
   },
