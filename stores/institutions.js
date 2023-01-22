@@ -19,6 +19,7 @@ export const useInstitutionStore = defineStore("institution", {
       institutions: [],
       editInstition: null,
       filteredInstitutions: [],
+      userInstitutions: [],
       errorMessage: "",
       teams: [
         {

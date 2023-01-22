@@ -42,7 +42,7 @@
       <SearchSelect
         v-model="form.schoolName"
         placeholder="School Name"
-        :items="institutions"
+        :items="institutionStore.institutions"
         @info="getInfo"
         @search-text="getName"
       >
@@ -168,8 +168,17 @@ const handleTeamJoin = async () => {
 
 const toggleEditMode = async () => {
   hasInst.value = !hasInst.value;
-  if (!hasInst.value) {
+  // We only want to call getInstitutions if in editMode & if we don't already have the data
+  if (!hasInst.value && institutionStore.institutions.length === 0) {
     await institutionStore.getInstitutions();
+  } else {
+    // TODO Change - I just added this for testing - we need to hold the original user insts as an object in inst store
+    const userInstitutions = userStore.$state.institutions;
+    getInfo(
+      await institutionStore.getInstitutionByID(
+        userInstitutions.institution_ids
+      )
+    );
   }
 };
 const handleUpdate = () => {
