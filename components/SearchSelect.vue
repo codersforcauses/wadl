@@ -5,7 +5,7 @@
       class="border border-light-grey flex items-center w-full rounded-md pr-2"
     >
       <input
-        v-model="searchText"
+        :value="modelValue"
         v-on-click-outside="
           () => {
             isOpen = false;
@@ -13,7 +13,7 @@
         "
         :placeholder="placeholder"
         class="p-1 pl-2.5 w-full border-solid focus:outline-none rounded-md font-montserrat placeholder:heading-montserrat heading-montserrat"
-        @input="filterOptions"
+        @input="filter"
         @focus="isOpen = true"
       />
       <ChevronUpIcon v-if="isOpen" class="h-5 w-5" @click="isOpen = false" />
@@ -47,21 +47,23 @@ const props = defineProps({
   },
   placeholder: { type: String, default: "School Name" },
   label: { type: String, default: "School Name" },
+  modelValue: { type: String, default: "" },
 });
-const emit = defineEmits(["info", "searchText"]);
+const emit = defineEmits(["info", "update:modelValue"]);
 
-const searchText = ref("");
 const isOpen = ref(false);
+const filteredOptions = ref([]);
 
-const filteredOptions = computed(() => {
-  emit("searchText", searchText.value);
-  return props.items.filter((option) =>
-    option.name.toLowerCase().includes(searchText.value.toLowerCase())
+function filter(e) {
+  let value = e.target.value;
+  emit("update:modelValue", value);
+  filteredOptions.value = props.items.filter((option) =>
+    option.name.toLowerCase().includes(value.toLowerCase())
   );
-});
+}
 
 function selectOption(option) {
-  searchText.value = option.name;
+  props.modelValue = option.name;
   isOpen.value = false;
   emit("info", option);
 }

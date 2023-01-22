@@ -175,7 +175,4 @@ const getInfo = (data) => {
   form.value.schoolAbbreviation = data.abbreviation;
   form.value.schoolCode = `${data.code}`;
 };
-const getName = (name) => {
-  form.value.schoolName = name;
-};
 </script>
