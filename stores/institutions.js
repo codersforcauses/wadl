@@ -6,6 +6,10 @@ import {
   updateDoc,
   doc,
   addDoc,
+  getCountFromServer,
+  query,
+  where,
+  setDoc,
 } from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
@@ -13,6 +17,36 @@ export const useInstitutionStore = defineStore("institution", {
     return {
       institutions: [],
       editInstition: null,
+      filteredInstitutions: [],
+      errorMessage: "",
+      teams: [
+        {
+          id: 1,
+          name: "Perth Modern 1",
+          level: "Novice",
+          division: "Not Allocated",
+          timeslot: "5.15pm",
+          venuePreferences: ["Perth Modern", "BCC", "Mercy"],
+          hasVenuePreference: true,
+          weekPreference: "Week 1",
+          tuesdayAllocation: true,
+          wednesdayAllocation: false,
+          notes: "Some note",
+        },
+        {
+          id: 2,
+          name: "Perth Modern 2",
+          level: "Senior",
+          division: "Not Allocated",
+          timeslot: "7.15pm",
+          venuePreferences: ["Perth Modern", "Trinity", "Mercy"],
+          hasVenuePreference: true,
+          weekPreference: "Week 1",
+          tuesdayAllocation: true,
+          wednesdayAllocation: true,
+          notes: "Hi",
+        },
+      ],
     };
   },
   getters: {},
@@ -32,14 +66,14 @@ export const useInstitutionStore = defineStore("institution", {
         };
         this.institutions.push(data);
       });
+      this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
       const { $db } = useNuxtApp();
       const ref = collection($db, "institutions");
       const querySnapshot = await getDocs(ref);
       if (querySnapshot.docs.length > 0) {
-        return querySnapshot
-          .docs
+        return querySnapshot.docs
           .filter((doc) => doc.id === id)
           .map((doc) => doc.data())[0];
       }
@@ -55,6 +89,67 @@ export const useInstitutionStore = defineStore("institution", {
           this.editInstition = true;
           this.updateInstitution(element, institution);
           newInstitution = false;
+        }
+      });
+    },
+    async editInstitution(institution) {
+      const { $db } = useNuxtApp();
+      const ref = doc($db, "institutions", institution.id);
+      const sameName = query(
+        collection($db, "institutions"),
+        where("name", "==", institution.name),
+        where("id", "!=", institution.id)
+      );
+      const snapshot = await getCountFromServer(sameName);
+      if (snapshot.data().count === 0) {
+        await updateDoc(ref, institution)
+          .then(() => {
+            this.errorMessage = "";
+            const index = this.institutions.findIndex(function (item, i) {
+              return item.id === institution.id;
+            });
+            this.institutions[index] = institution;
+            const indexFiltered = this.filteredInstitutions.findIndex(function (
+              item,
+              i
+            ) {
+              return item.id === institution.id;
+            });
+            this.filteredInstitutions[indexFiltered] = institution;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.errorMessage = "institution with same name exists";
+      }
+    },
+    async createInstitution(institution) {
+      const { $db } = useNuxtApp();
+      const sameName = query(
+        collection($db, "institutions"),
+        where("name", "==", institution.name)
+      );
+      const snapshot = await getCountFromServer(sameName);
+      if (snapshot.data().count === 0) {
+        institution.id = doc(collection($db, "institutions")).id;
+        await setDoc(doc($db, "institutions", institution.id), institution)
+          .then(() => {
+            this.errorMessage = "";
+            this.institutions.push(institution);
+            this.filteredInstitutions.push(institution);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.errorMessage = "institution with same name exists";
+      }
+    },
+    async editTeam(team) {
+      this.teams.forEach((t) => {
+        if (t.id === team.id) {
+          Object.assign(t, team);
         }
       });
       if (newInstitution) {
