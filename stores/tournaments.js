@@ -27,8 +27,8 @@ export const useTournamentStore = defineStore("tournament", {
           id: doc.id,
           levels: doc.data().levels,
           name: doc.data().name,
-          num_rounds: doc.data().num_rounds,
-          short_name: doc.data().short_name,
+          numRounds: doc.data().num_rounds,
+          shortName: doc.data().short_name,
           status: doc.data().status,
         };
         this.tournaments.push(tournament);
@@ -44,8 +44,8 @@ export const useTournamentStore = defineStore("tournament", {
       const t = await addDoc(collection($db, "tournaments"), {
         levels: tournament.levels,
         name: tournament.name,
-        num_rounds: tournament.num_rounds,
-        short_name: tournament.short_name,
+        num_rounds: tournament.numRounds,
+        short_name: tournament.shortName,
         status: tournament.status,
       });
 
@@ -63,8 +63,8 @@ export const useTournamentStore = defineStore("tournament", {
       await setDoc(doc($db, "tournaments", tournament.id), {
         levels: tournament.levels,
         name: tournament.name,
-        num_rounds: tournament.num_rounds,
-        short_name: tournament.short_name,
+        num_rounds: tournament.numRounds,
+        short_name: tournament.shortName,
         status: tournament.status,
       });
 

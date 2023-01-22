@@ -10,7 +10,7 @@
     >
       <div v-for="tournament in store.getRunning">
         <NuxtLink to="/">
-          <LevelButton :text="tournament.short_name" />
+          <LevelButton :text="tournament.shortName" />
         </NuxtLink>
       </div>
     </main>

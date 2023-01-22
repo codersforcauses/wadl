@@ -28,7 +28,7 @@
             />
           </div>
           <div class="mt-6">
-            <FormField v-model="form.short_name" placeholder="Short Name" />
+            <FormField v-model="form.shortName" placeholder="Short Name" />
           </div>
         </div>
         <label class="heading-montserrat">Level</label>
@@ -37,7 +37,7 @@
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.num_rounds"
+          v-model="form.numRounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -71,7 +71,7 @@
             />
           </div>
           <div class="mt-6">
-            <FormField v-model="form.short_name" placeholder="Short Name" />
+            <FormField v-model="form.shortName" placeholder="Short Name" />
           </div>
         </div>
         <label class="heading-montserrat">Level</label>
@@ -80,7 +80,7 @@
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.num_rounds"
+          v-model="form.numRounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -122,8 +122,8 @@ const defaultInputState = {
   id: null,
   levels: [],
   name: null,
-  num_rounds: null,
-  short_name: null,
+  numRounds: null,
+  shortName: null,
   status: "Open",
 };
 
