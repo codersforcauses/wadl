@@ -1,6 +1,13 @@
+
 <template>
   <section>
-    <Modal :modal-visibility="modalVisible">
+    <Modal :modal-visibility="modalVisible" 
+    @close="
+      () => {
+        modalVisible = false;
+        resetFormState();
+      }
+    ">
       <h1 class="pb-2 text-2xl text-center">Confirm Changes</h1>
       <ul v-for="update in instUpdates" :key="update.key" class="mx-6">
         <li>
