@@ -26,5 +26,5 @@
 import LevelButton from "../components/HomePage/LevelButton.vue";
 import { useTournamentStore } from "../stores/tournaments";
 const store = useTournamentStore();
-await store.getTournaments();
+store.getTournaments();
 </script>

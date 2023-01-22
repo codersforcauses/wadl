@@ -131,7 +131,7 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
-await store.getTournaments();
+store.getTournaments();
 
 const getLevels = () => form.value.levels.map((l) => l.level);
 
