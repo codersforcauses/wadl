@@ -70,12 +70,21 @@ export const useInstitutionStore = defineStore("institution", {
       this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
-      console.log(id);
+      // console.log(id);
+      // const { $db } = useNuxtApp();
+      // const ref = doc($db, "institutions", id);
+      // await getDoc(ref).then((doc) => {
+      //   console.log(doc.data());
+      // });
       const { $db } = useNuxtApp();
-      const ref = doc($db, "institutions", id);
-      await getDoc(ref).then((doc) => {
-        console.log(doc.data());
-      });
+      const ref = collection($db, "institutions");
+      const querySnapshot = await getDocs(ref);
+      if (querySnapshot.docs.length > 0) {
+        return querySnapshot.docs
+          .filter((doc) => doc.id === id)
+          .map((doc) => doc.data())[0];
+      }
+      return null;
     },
     async checkInstitution(institution) {
       console.log(institution);

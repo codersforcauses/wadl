@@ -35,6 +35,7 @@
     </Modal>
     <Header title-text="Institution Settings" />
     <form
+      v-if="!hasInst"
       class="bg-white heading-montserrat px-2 md:w-6/12 my-12 flex justify-center flex-col mx-auto"
       @submit.prevent="handleTeamJoin"
     >
@@ -74,10 +75,41 @@
         type="text"
       >
       </FormField>
-      <div class="w-full flex justify-center pt-8">
+      <div class="w-full flex justify-evenly pt-8">
+        <Button
+          button-text="Cancel"
+          button-color="bg-light-red"
+          text-color="text-dark-red"
+          type="Submit"
+          @click="toggleEditMode"
+        />
         <Button button-text="Submit" button-color="bg-gold" />
       </div>
     </form>
+    <div v-else class="flex justify-center items-center my-10">
+      <div class="p-8 heading-montserrat border border-light-grey rounded-3xl">
+        <p class="text-xl">{{ form.schoolName }}</p>
+        <label class="text-light-grey text-xs"> SCHOOL NAME </label>
+        <p class="text-xl pt-2">{{ form.schoolEmail }}</p>
+        <label class="text-light-grey text-xs"> SCHOOL EMAIL </label>
+        <p class="text-xl pt-2">{{ form.schoolNumber }}</p>
+        <label class="text-light-grey text-xs"> SCHOOL NUMBER </label>
+        <p class="text-xl pt-2">{{ form.schoolCode }}</p>
+        <label class="text-light-grey text-xs"> SCHOOL CODE </label>
+        <p class="text-xl pt-2">{{ form.schoolAbbreviation }}</p>
+        <label class="text-light-grey text-xs"> SCHOOL ABBREVIATION </label>
+        <div class="mt-8 flex justify-end">
+          <Button
+            button-text="Edit"
+            button-color="bg-light-green"
+            text-color="text-white"
+            type="Edit"
+            size="small"
+            @click="toggleEditMode"
+          />
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -91,6 +123,7 @@ const userStore = useUserStore();
 const institutions = ref(null);
 const modalVisible = ref(false);
 const instUpdates = ref([]);
+const hasInst = ref(false);
 
 const form = ref({
   id: "",
@@ -101,42 +134,49 @@ const form = ref({
   schoolCode: "",
 });
 const handleTeamJoin = async () => {
-  // await institutionStore.getInstitutions();
-  // const originalData = institutionStore.institutions.filter(
-  //   (inst) => inst.id === form.value.id
-  // )[0];
-  // const updates = [];
-  // if (form.value.schoolName !== originalData.name) {
-  //   updates.push({ key: "School Name", update: form.value.schoolName });
-  // }
-  // if (form.value.schoolNumber !== originalData.phoneNumber) {
-  //   updates.push({ key: "School Number", update: form.value.schoolNumber });
-  // }
-  // if (form.value.schoolEmail !== originalData.email) {
-  //   updates.push({ key: "School Email", update: form.value.schoolEmail });
-  // }
-  // if (form.value.schoolAbbreviation !== originalData.abbreviation) {
-  //   updates.push({
-  //     key: "School Abbreviation",
-  //     update: form.value.schoolAbbreviation,
-  //   });
-  // }
-  // if (form.value.schoolCode !== originalData.code) {
-  //   updates.push({ key: "School Code", update: form.value.schoolCode });
-  // }
-  // if (updates.length !== 0) {
-  //   instUpdates.value = updates;
-  //   modalVisible.value = true;
-  // } else {
-  //   // might need an alert or warning
-  //   console.log("No changes");
-  // }
+  await institutionStore.getInstitutions();
+  const originalData = institutionStore.institutions.filter(
+    (inst) => inst.id === form.value.id
+  )[0];
+  const updates = [];
+  if (form.value.schoolName !== originalData.name) {
+    updates.push({ key: "School Name", update: form.value.schoolName });
+  }
+  if (form.value.schoolNumber !== originalData.phoneNumber) {
+    updates.push({ key: "School Number", update: form.value.schoolNumber });
+  }
+  if (form.value.schoolEmail !== originalData.email) {
+    updates.push({ key: "School Email", update: form.value.schoolEmail });
+  }
+  if (form.value.schoolAbbreviation !== originalData.abbreviation) {
+    updates.push({
+      key: "School Abbreviation",
+      update: form.value.schoolAbbreviation,
+    });
+  }
+  if (form.value.schoolCode !== originalData.code) {
+    updates.push({ key: "School Code", update: form.value.schoolCode });
+  }
+  if (updates.length !== 0) {
+    instUpdates.value = updates;
+    modalVisible.value = true;
+  } else {
+    // might need an alert or warning
+    console.log("No changes");
+  }
 };
 
+const toggleEditMode = async () => {
+  hasInst.value = !hasInst.value;
+  if (!hasInst.value) {
+    await institutionStore.getInstitutions();
+  }
+};
 const handleUpdate = () => {
   institutionStore.checkInstitution(form.value);
   institutionStore.updateProfile(form.value);
   modalVisible.value = false;
+  hasInst.value = true;
 };
 
 const handleReject = () => {
@@ -149,15 +189,22 @@ const handleReject = () => {
 
 onMounted(async () => {
   const userInstitutions = userStore.$state.institutions;
+  console.log(userInstitutions);
   if (userInstitutions.institution_ids) {
-    // getInfo(
-    //   await institutionStore.getInstitutionByID(
-    //     userInstitutions.institution_ids
-    //   )
+    console.log("#$%#$%");
+    getInfo(
+      await institutionStore.getInstitutionByID(
+        userInstitutions.institution_ids
+      )
+    );
     institutionStore.getInstitutionByID(userInstitutions.institution_ids);
+    // Todo change
+    hasInst.value = true;
   }
-  await institutionStore.getInstitutions();
-  institutions.value = institutionStore.institutions;
+  if (!hasInst) {
+    await institutionStore.getInstitutions();
+    institutions.value = institutionStore.institutions;
+  }
 });
 
 onUnmounted(async () => {
