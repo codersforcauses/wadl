@@ -4,11 +4,11 @@
   <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
   <!-- competitions -->
   <Header title-text="Competitions" />
-  <div v-if="runningTournaments.length > 0">
+  <div v-if="store.getRunning.length > 0">
     <main
       class="mx-auto h-screen pt-5 place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6"
     >
-      <div v-for="tournament in runningTournaments">
+      <div v-for="tournament in store.getRunning">
         <NuxtLink to="/">
           <LevelButton :text="tournament.short_name" />
         </NuxtLink>
@@ -17,7 +17,7 @@
   </div>
   <div v-else>
     <p class="text-xl py-5 text-center font-light font-montserrat">
-      There are no running tournaments
+      There are no running tournaments.
     </p>
   </div>
 </template>
@@ -25,12 +25,6 @@
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
 import { useTournamentStore } from "../stores/tournaments";
-
 const store = useTournamentStore();
 await store.getTournaments();
-
-store.filteredTournaments = store.tournaments.filter(
-  (tournament) => tournament.status == "Running"
-);
-const runningTournaments = store.filteredTournaments;
 </script>

@@ -117,7 +117,6 @@
 <script setup>
 import { ref } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
-import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 
 const defaultInputState = {
   id: null,
@@ -125,7 +124,7 @@ const defaultInputState = {
   name: null,
   num_rounds: null,
   short_name: null,
-  status: null,
+  status: "Open",
 };
 
 const form = ref({ ...defaultInputState });
@@ -169,35 +168,12 @@ const handleFilter = (searchTerm) => {
   );
 };
 
-const updateTournament = async () => {
-  const { $db } = useNuxtApp();
-  await setDoc(doc($db, "tournaments", form.value.id), {
-    levels: form.value.levels,
-    name: form.value.name,
-    num_rounds: form.value.num_rounds,
-    short_name: form.value.short_name,
-    status: form.value.status,
-  });
-
+const updateTournament = () => {
   store.editTournament(form.value);
   resetFormState();
 };
 
-const createTournament = async () => {
-  // Status cannot yet be specified in the edit menu
-  form.value.status = "Open";
-
-  const { $db } = useNuxtApp();
-  const tournament = await addDoc(collection($db, "tournaments"), {
-    levels: form.value.levels,
-    name: form.value.name,
-    num_rounds: form.value.num_rounds,
-    short_name: form.value.short_name,
-    status: form.value.status,
-  });
-
-  form.value.id = tournament.id;
-
+const createTournament = () => {
   store.createTournament(form.value);
   resetFormState();
 };
