@@ -4,7 +4,7 @@
     <form
       v-if="!existingInstitution"
       class="bg-white heading-montserrat px-2 md:w-6/12 my-12 flex justify-center flex-col mx-auto"
-      @submit.prevent="handleTeamJoin"
+      @submit.prevent="teamJoin"
     >
       <SearchSelect
         v-model="form.name"
@@ -100,12 +100,9 @@ const form = ref({
   code: null,
 });
 
-// 1. Firstly, have a better function name handleTeamJoin is terrible XD
-// 2. Create Inst (No existing inst attached to user): Add new inst doc -> Gave that id and put that id in user collection and update the userStore.instition with that id.
-// After Create it should take you to the institution settings page that has the list of instition settings (set existingInstitution to true)
 // 3. Update Inst (Completely change inst school name and the rest of data) -> update the userStore.institution with the new id, update insttitionStore.userInstitution with new data
 // 4. Update Inst (fields except school name), NO update of user inst ID
-const handleTeamJoin = async () => {
+const teamJoin = async () => {
   await institutionStore.checkInstitution(form.value).then(async () => {
     existingInstitution.value = true;
   });
