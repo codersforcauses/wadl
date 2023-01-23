@@ -11,6 +11,7 @@
         placeholder="School Name"
         :items="institutionStore.institutions"
         @info="getInfo"
+        @input="clearSchoolForm"
       >
       </SearchSelect>
       <FormField
@@ -87,7 +88,6 @@ import { useUserStore } from "../../stores/auth";
 
 const institutionStore = useInstitutionStore();
 const userStore = useUserStore();
-const institutions = ref(null);
 const instUpdates = ref([]);
 const existingInstitution = ref(false);
 
@@ -139,11 +139,22 @@ const handleTeamJoin = async () => {
 const toggleEditMode = async () => {
   existingInstitution.value = !existingInstitution.value;
   // We only want to call getInstitutions if in editMode & if we don't already have the data
-  if (!existingInstitution.value) {
+  if (!existingInstitution.value && institutionStore.institutions.length == 0) {
     await institutionStore.getInstitutions();
   } else {
     getInfo(institutionStore.userInstitution);
   }
+};
+
+const clearSchoolForm = () => {
+  form.value = {
+    id: null,
+    name: form.value.name,
+    number: null,
+    email: null,
+    abbreviation: null,
+    code: null,
+  };
 };
 // const handleUpdate = () => {
 //   institutionStore.checkInstitution(form.value);
@@ -171,8 +182,8 @@ onMounted(async () => {
     existingInstitution.value = true;
   } else {
     console.log("THERE IS NO INST ID");
+
     await institutionStore.getInstitutions();
-    institutions.value = institutionStore.institutions;
   }
 });
 
@@ -181,7 +192,6 @@ onUnmounted(async () => {
 });
 
 const getInfo = (data) => {
-  console.log("DATA", data);
   form.value = { ...data };
 };
 </script>
