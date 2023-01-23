@@ -198,20 +198,15 @@ const handleReject = () => {
 };
 
 onMounted(async () => {
-  const userInstitutions = userStore.$state.institutions;
-  console.log(userInstitutions);
-  if (userInstitutions.institution_ids) {
+  const institutionId = userStore.institution;
+  if (institutionId) {
     console.log("#$%#$%");
-    getInfo(
-      await institutionStore.getInstitutionByID(
-        userInstitutions.institution_ids
-      )
-    );
-    institutionStore.getInstitutionByID(userInstitutions.institution_ids);
+    institutionStore.getInstitutionByID(institutionId);
+    getInfo(institutionStore.userInstitution);
+
     // Todo change
     hasInst.value = true;
-  }
-  if (!hasInst) {
+  } else {
     await institutionStore.getInstitutions();
     institutions.value = institutionStore.institutions;
   }
