@@ -145,20 +145,20 @@ const toggleEditMode = async () => {
     getInfo(institutionStore.userInstitution);
   }
 };
-const handleUpdate = () => {
-  institutionStore.checkInstitution(form.value);
-  institutionStore.updateProfile(form.value);
-  modalVisible.value = false;
-  hasInst.value = true;
-};
+// const handleUpdate = () => {
+//   institutionStore.checkInstitution(form.value);
+//   institutionStore.updateProfile(form.value);
+//   modalVisible.value = false;
+//   hasInst.value = true;
+// };
 
-const handleReject = () => {
-  const originalData = institutions.value.filter(
-    (inst) => inst.id === form.value.id
-  )[0];
-  getInfo(originalData);
-  modalVisible.value = false;
-};
+// const handleReject = () => {
+//   const originalData = institutions.value.filter(
+//     (inst) => inst.id === form.value.id
+//   )[0];
+//   getInfo(originalData);
+//   modalVisible.value = false;
+// };
 
 onMounted(async () => {
   const institutionId = userStore.institution;
