@@ -19,7 +19,7 @@ export const useInstitutionStore = defineStore("institution", {
       institutions: [],
       editInstition: null,
       filteredInstitutions: [],
-      userInstitutions: [],
+      userInstitution: [],
       errorMessage: "",
       teams: [
         {
@@ -49,11 +49,6 @@ export const useInstitutionStore = defineStore("institution", {
           notes: "Hi",
         },
       ],
-      schoolName: "",
-      schoolEmail: "",
-      schoolNumber: "",
-      schoolCode: "",
-      schoolAbbreviation: "",
     };
   },
   getters: {},
@@ -66,7 +61,7 @@ export const useInstitutionStore = defineStore("institution", {
         const data = {
           id: doc.data().id,
           name: doc.data().name,
-          phone_number: doc.data().phone_number,
+          phoneNumber: doc.data().phone_number,
           email: doc.data().email,
           code: doc.data().code,
           abbreviation: doc.data().abbreviation,
@@ -76,24 +71,21 @@ export const useInstitutionStore = defineStore("institution", {
       this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
+      console.log(id);
       const { $db } = useNuxtApp();
       const ref = doc($db, "institutions", id);
       await getDoc(ref).then((doc) => {
-        this.schoolAbbreviation = doc.data().abbreviation;
-        this.schoolCode = doc.data().code;
-        this.schoolEmail = doc.data().email;
-        this.schoolName = doc.data().name;
-        this.schoolNumber = doc.data().number;
+        console.log(doc.data());
+        this.userInstitution = {
+          id: doc.data().id,
+          name: doc.data().name,
+          email: doc.data().email,
+          number: doc.data().phone_number,
+          code: doc.data().code,
+          abbreviation: doc.data().abbreviation,
+        };
+        console.log(this.userInstitution);
       });
-      // const { $db } = useNuxtApp();
-      // const ref = collection($db, "institutions");
-      // const querySnapshot = await getDocs(ref);
-      // if (querySnapshot.docs.length > 0) {
-      //   return querySnapshot.docs
-      //     .filter((doc) => doc.id === id)
-      //     .map((doc) => doc.data())[0];
-      // }
-      // return null;
     },
     async checkInstitution(institution) {
       console.log(institution);
