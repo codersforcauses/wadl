@@ -8,7 +8,7 @@ const headers = [
     title: "Institution",
   },
   {
-    key: "phone_number",
+    key: "number",
     title: "Phone Number",
   },
   {
