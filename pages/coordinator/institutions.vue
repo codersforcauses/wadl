@@ -134,36 +134,36 @@ const form = ref({
   schoolCode: "",
 });
 const handleTeamJoin = async () => {
-  await institutionStore.getInstitutions();
-  const originalData = institutionStore.institutions.filter(
-    (inst) => inst.id === form.value.id
-  )[0];
-  const updates = [];
-  if (form.value.schoolName !== originalData.name) {
-    updates.push({ key: "School Name", update: form.value.schoolName });
-  }
-  if (form.value.schoolNumber !== originalData.phoneNumber) {
-    updates.push({ key: "School Number", update: form.value.schoolNumber });
-  }
-  if (form.value.schoolEmail !== originalData.email) {
-    updates.push({ key: "School Email", update: form.value.schoolEmail });
-  }
-  if (form.value.schoolAbbreviation !== originalData.abbreviation) {
-    updates.push({
-      key: "School Abbreviation",
-      update: form.value.schoolAbbreviation,
-    });
-  }
-  if (form.value.schoolCode !== originalData.code) {
-    updates.push({ key: "School Code", update: form.value.schoolCode });
-  }
-  if (updates.length !== 0) {
-    instUpdates.value = updates;
-    modalVisible.value = true;
-  } else {
-    // might need an alert or warning
-    console.log("No changes");
-  }
+  // await institutionStore.getInstitutions();
+  // const originalData = institutionStore.institutions.filter(
+  //   (inst) => inst.id === form.value.id
+  // )[0];
+  // const updates = [];
+  // if (form.value.schoolName !== originalData.name) {
+  //   updates.push({ key: "School Name", update: form.value.schoolName });
+  // }
+  // if (form.value.schoolNumber !== originalData.phoneNumber) {
+  //   updates.push({ key: "School Number", update: form.value.schoolNumber });
+  // }
+  // if (form.value.schoolEmail !== originalData.email) {
+  //   updates.push({ key: "School Email", update: form.value.schoolEmail });
+  // }
+  // if (form.value.schoolAbbreviation !== originalData.abbreviation) {
+  //   updates.push({
+  //     key: "School Abbreviation",
+  //     update: form.value.schoolAbbreviation,
+  //   });
+  // }
+  // if (form.value.schoolCode !== originalData.code) {
+  //   updates.push({ key: "School Code", update: form.value.schoolCode });
+  // }
+  // if (updates.length !== 0) {
+  //   instUpdates.value = updates;
+  //   modalVisible.value = true;
+  // } else {
+  //   // might need an alert or warning
+  //   console.log("No changes");
+  // }
 };
 
 const toggleEditMode = async () => {
@@ -197,16 +197,11 @@ const handleReject = () => {
 };
 
 onMounted(async () => {
+  // TODO change to userStore.institutions
   const userInstitutions = userStore.$state.institutions;
-  console.log(userInstitutions);
   if (userInstitutions.institution_ids) {
-    console.log("#$%#$%");
-    getInfo(
-      await institutionStore.getInstitutionByID(
-        userInstitutions.institution_ids
-      )
-    );
     institutionStore.getInstitutionByID(userInstitutions.institution_ids);
+    console.log(form.value);
     // Todo change
     hasInst.value = true;
   }
@@ -221,7 +216,7 @@ onUnmounted(async () => {
 });
 
 const getInfo = (data) => {
-  console.log(data.name);
+  console.log(data);
   form.value.id = data.id;
   form.value.schoolName = data.name;
   // Firestore phonenumber is named different to pinia
