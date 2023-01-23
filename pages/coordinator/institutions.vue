@@ -2,7 +2,7 @@
   <section>
     <Header title-text="Institution Settings" />
     <form
-      v-if="!hasInst"
+      v-if="!existingInstitution"
       class="bg-white heading-montserrat px-2 md:w-6/12 my-12 flex justify-center flex-col mx-auto"
       @submit.prevent="handleTeamJoin"
     >
@@ -89,7 +89,7 @@ const institutionStore = useInstitutionStore();
 const userStore = useUserStore();
 const institutions = ref(null);
 const instUpdates = ref([]);
-const hasInst = ref(false);
+const existingInstitution = ref(false);
 
 const form = ref({
   id: null,
@@ -134,13 +134,27 @@ const handleTeamJoin = async () => {
 };
 
 const toggleEditMode = async () => {
-  hasInst.value = !hasInst.value;
+  existingInstitution.value = !existingInstitution.value;
   // We only want to call getInstitutions if in editMode & if we don't already have the data
-  if (!hasInst.value && !institutionStore.userInstitution) {
+  if (!existingInstitution.value && !institutionStore.userInstitution) {
     await institutionStore.getInstitutions();
   } else {
     getInfo(institutionStore.userInstitution);
   }
+};
+const handleUpdate = () => {
+  institutionStore.checkInstitution(form.value);
+  institutionStore.updateProfile(form.value);
+  modalVisible.value = false;
+  hasInst.value = true;
+};
+
+const handleReject = () => {
+  const originalData = institutions.value.filter(
+    (inst) => inst.id === form.value.id
+  )[0];
+  getInfo(originalData);
+  modalVisible.value = false;
 };
 
 onMounted(async () => {
@@ -151,7 +165,7 @@ onMounted(async () => {
     getInfo(institutionStore.userInstitution);
 
     // Todo change
-    hasInst.value = true;
+    existingInstitution.value = true;
   } else {
     console.log("THERE IS NO INST ID");
     await institutionStore.getInstitutions();
