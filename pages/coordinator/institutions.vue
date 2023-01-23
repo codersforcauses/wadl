@@ -106,7 +106,9 @@ const form = ref({
 // 3. Update Inst (Completely change inst school name and the rest of data) -> update the userStore.institution with the new id, update insttitionStore.userInstitution with new data
 // 4. Update Inst (fields except school name), NO update of user inst ID
 const handleTeamJoin = async () => {
-  institutionStore.checkInstitution(form.value);
+  await institutionStore.checkInstitution(form.value).then(async () => {
+    existingInstitution.value = true;
+  });
 };
 
 const toggleEditMode = async () => {

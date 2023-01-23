@@ -93,9 +93,10 @@ export const useInstitutionStore = defineStore("institution", {
           newInstitution = false;
         }
       });
-      if (newInstitution) {
+      if (newInstitution === null) {
         this.createInstitution(institution);
       } else {
+        this.userInstitution = { ...institution };
         this.updateProfile(institution);
       }
     },
@@ -142,17 +143,17 @@ export const useInstitutionStore = defineStore("institution", {
         element.abbreviation !== institution.abbreviation
       ) {
         const ref = doc($db, "institutions", institution.id);
-        await updateDoc(ref, {
+        const data = {
           abbreviation: institution.abbreviation,
           code: institution.code,
           email: institution.email,
           number: institution.number,
-        })
+        };
+        await updateDoc(ref, data)
           .catch((error) => {
             console.log(error);
           })
           .then(() => {
-            // update profile
             this.updateProfile(ref);
           });
       }
@@ -162,20 +163,21 @@ export const useInstitutionStore = defineStore("institution", {
       const { $db } = useNuxtApp();
       const ref = doc(collection($db, "institutions"));
       console.log(ref);
-      await setDoc(ref, {
+      const data = {
         id: ref.id,
         name: institution.name,
         email: institution.email,
         code: institution.code,
-        phone_number: institution.number,
+        number: institution.number,
         abbreviation: institution.abbreviation,
-      })
+      };
+      await setDoc(ref, data)
+        .then(() => {
+          this.userInstitution = { ...data };
+          this.updateProfile(ref);
+        })
         .catch((error) => {
           console.log(error);
-        })
-        .then(() => {
-          // update profile
-          this.updateProfile(ref);
         });
     },
     async updateProfile(id) {
