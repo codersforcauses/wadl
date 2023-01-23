@@ -75,7 +75,6 @@ export const useInstitutionStore = defineStore("institution", {
       const { $db } = useNuxtApp();
       const ref = doc($db, "institutions", id);
       await getDoc(ref).then((doc) => {
-        console.log(doc.data());
         this.userInstitution = {
           id: doc.data().id,
           name: doc.data().name,
@@ -84,7 +83,7 @@ export const useInstitutionStore = defineStore("institution", {
           code: doc.data().code,
           abbreviation: doc.data().abbreviation,
         };
-        console.log(this.userInstitution);
+        // console.log(this.userInstitution);
       });
     },
     async checkInstitution(institution) {
