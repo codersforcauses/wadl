@@ -108,6 +108,7 @@ export const useInstitutionStore = defineStore("institution", {
         where("name", "==", institution.name),
         where("id", "!=", institution.id)
       );
+      // Do do convert institution to snake case e.g number -> phone_number
       const snapshot = await getCountFromServer(sameName);
       if (snapshot.data().count === 0) {
         await updateDoc(ref, institution)
