@@ -86,19 +86,20 @@
         <Button button-text="Submit" button-color="bg-gold" />
       </div>
     </form>
-    <div v-else class="flex justify-center items-center my-10">
-      <div class="p-8 heading-montserrat border border-light-grey rounded-3xl">
-        <p class="text-xl">{{ form.schoolName }}</p>
+    <div v-else class="flex justify-center items-center w-full">
+      <div class="mt-8 heading-montserrat rounded-3xl w-5/12 border p-5">
         <label class="text-light-grey text-xs"> SCHOOL NAME </label>
-        <p class="text-xl pt-2">{{ form.schoolEmail }}</p>
+        <p class="text-xl pb-5">{{ form.schoolName }}</p>
         <label class="text-light-grey text-xs"> SCHOOL EMAIL </label>
-        <p class="text-xl pt-2">{{ form.schoolNumber }}</p>
+        <p class="text-xl pb-5">{{ form.schoolEmail }}</p>
         <label class="text-light-grey text-xs"> SCHOOL NUMBER </label>
-        <p class="text-xl pt-2">{{ form.schoolCode }}</p>
+        <p class="text-xl pb-5">{{ form.schoolNumber }}</p>
         <label class="text-light-grey text-xs"> SCHOOL CODE </label>
-        <p class="text-xl pt-2">{{ form.schoolAbbreviation }}</p>
+        <p class="text-xl pb-5">{{ form.schoolCode }}</p>
         <label class="text-light-grey text-xs"> SCHOOL ABBREVIATION </label>
-        <div class="mt-8 flex justify-end">
+        <p class="text-xl">{{ form.schoolAbbreviation }}</p>
+
+        <div class="mt-8 flex justify-center">
           <Button
             button-text="Edit"
             button-color="bg-light-green"
