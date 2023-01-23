@@ -54,7 +54,7 @@
       </div>
     </form>
     <div v-else class="flex justify-center items-center w-full">
-      <div class="mt-8 heading-montserrat rounded-3xl w-5/12 border p-5">
+      <div class="mt-8 heading-montserrat rounded-3xl md:w-5/12 border p-5">
         <label class="text-light-grey text-xs"> SCHOOL NAME </label>
         <p class="text-xl pb-5">{{ form.name }}</p>
         <label class="text-light-grey text-xs"> SCHOOL EMAIL </label>
