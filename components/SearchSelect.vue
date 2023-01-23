@@ -5,12 +5,12 @@
       class="border border-light-grey flex items-center w-full rounded-md pr-2"
     >
       <input
-        :value="modelValue"
         v-on-click-outside="
           () => {
             isOpen = false;
           }
         "
+        :value="modelValue"
         :placeholder="placeholder"
         class="p-1 pl-2.5 w-full border-solid focus:outline-none rounded-md font-montserrat placeholder:heading-montserrat heading-montserrat"
         @input="filter"
@@ -55,7 +55,7 @@ const isOpen = ref(false);
 const filteredOptions = ref([]);
 
 function filter(e) {
-  let value = e.target.value;
+  const value = e.target.value;
   emit("update:modelValue", value);
   filteredOptions.value = props.items.filter((option) =>
     option.name.toLowerCase().includes(value.toLowerCase())

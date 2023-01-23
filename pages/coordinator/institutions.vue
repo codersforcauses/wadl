@@ -1,38 +1,5 @@
 <template>
   <section>
-    <Modal
-      :modal-visibility="modalVisible"
-      @close="
-        () => {
-          modalVisible = false;
-          resetFormState();
-        }
-      "
-    >
-      <h1 class="py-3 text-2xl text-center">Confirm Changes</h1>
-      <hr class="mx-8" />
-      <ul v-for="update in instUpdates" :key="update.key" class="mx-6 pt-2">
-        <li>
-          {{ `${update.key} changed to ${update.update}` }}
-        </li>
-      </ul>
-      <div class="flex justify-evenly items-center my-6">
-        <Button
-          button-text="Reject"
-          button-color="bg-light-red"
-          text-color="text-dark-red"
-          type="Submit"
-          @click="handleReject"
-        />
-        <Button
-          button-text="Approve"
-          button-color="bg-light-green"
-          text-color="text-white"
-          type="Submit"
-          @click="handleUpdate"
-        />
-      </div>
-    </Modal>
     <Header title-text="Institution Settings" />
     <form
       v-if="!existingInstitution"
@@ -121,7 +88,6 @@ import { useUserStore } from "../../stores/auth";
 const institutionStore = useInstitutionStore();
 const userStore = useUserStore();
 const institutions = ref(null);
-const modalVisible = ref(false);
 const instUpdates = ref([]);
 const existingInstitution = ref(false);
 
@@ -179,20 +145,20 @@ const toggleEditMode = async () => {
     getInfo(institutionStore.userInstitution);
   }
 };
-const handleUpdate = () => {
-  institutionStore.checkInstitution(form.value);
-  institutionStore.updateProfile(form.value);
-  modalVisible.value = false;
-  existingInstitution.value = true;
-};
+// const handleUpdate = () => {
+//   institutionStore.checkInstitution(form.value);
+//   institutionStore.updateProfile(form.value);
+//   modalVisible.value = false;
+//   hasInst.value = true;
+// };
 
-const handleReject = () => {
-  const originalData = institutions.value.filter(
-    (inst) => inst.id === form.value.id
-  )[0];
-  getInfo(originalData);
-  modalVisible.value = false;
-};
+// const handleReject = () => {
+//   const originalData = institutions.value.filter(
+//     (inst) => inst.id === form.value.id
+//   )[0];
+//   getInfo(originalData);
+//   modalVisible.value = false;
+// };
 
 onMounted(async () => {
   const institutionId = userStore.institution;
