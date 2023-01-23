@@ -107,39 +107,6 @@ const form = ref({
 // 4. Update Inst (fields except school name), NO update of user inst ID
 const handleTeamJoin = async () => {
   institutionStore.checkInstitution(form.value);
-  // await institutionStore.getInstitutions();
-  // const originalData = institutionStore.institutions.filter(
-  //   (inst) => inst.id === form.value.id
-  // )[0];
-  // const updates = [];
-  // if (form.value.schoolName !== originalData.name) {
-  //   updates.push({ key: "School Name", update: form.value.schoolName });
-  // }
-  // if (form.value.schoolNumber !== originalData.phoneNumber) {
-  //   updates.push({ key: "School Number", update: form.value.schoolNumber });
-  // }
-  // if (form.value.schoolEmail !== originalData.email) {
-  //   updates.push({ key: "School Email", update: form.value.schoolEmail });
-  // }
-  // if (form.value.schoolAbbreviation !== originalData.abbreviation) {
-  //   updates.push({
-  //     key: "School Abbreviation",
-  //     update: form.value.schoolAbbreviation,
-  //   });
-  // }
-  // if (form.value.schoolCode !== originalData.code) {
-  //   updates.push({ key: "School Code", update: form.value.schoolCode });
-  // }
-  // if (updates.length !== 0) {
-  //   instUpdates.value = updates;
-  //   modalVisible.value = true;
-  // } else {
-  //   // might need an alert or warning
-  //   console.log("No changes");
-  // }
-
-  // TODO handle institution change & create
-  institutionStore.editInstitution(form.value);
 };
 
 const toggleEditMode = async () => {
