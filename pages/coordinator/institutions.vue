@@ -173,7 +173,7 @@ const handleTeamJoin = async () => {
 const toggleEditMode = async () => {
   existingInstitution.value = !existingInstitution.value;
   // We only want to call getInstitutions if in editMode & if we don't already have the data
-  if (!existingInstitution.value && !institutionStore.userInstitution) {
+  if (!existingInstitution.value) {
     await institutionStore.getInstitutions();
   } else {
     getInfo(institutionStore.userInstitution);
@@ -216,6 +216,6 @@ onUnmounted(async () => {
 
 const getInfo = (data) => {
   console.log("DATA", data);
-  form.value = data;
+  form.value = { ...data };
 };
 </script>
