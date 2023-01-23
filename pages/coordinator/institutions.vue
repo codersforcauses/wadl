@@ -4,7 +4,7 @@
     <form
       v-if="!existingInstitution"
       class="bg-white heading-montserrat px-2 md:w-6/12 my-12 flex justify-center flex-col mx-auto"
-      @submit.prevent="teamJoin"
+      @submit.prevent="handleInstitution"
     >
       <SearchSelect
         v-model="form.name"
@@ -100,9 +100,7 @@ const form = ref({
   code: null,
 });
 
-// 3. Update Inst (Completely change inst school name and the rest of data) -> update the userStore.institution with the new id, update insttitionStore.userInstitution with new data
-// 4. Update Inst (fields except school name), NO update of user inst ID
-const teamJoin = async () => {
+const handleInstitution = async () => {
   await institutionStore.checkInstitution(form.value).then(async () => {
     existingInstitution.value = true;
   });
@@ -110,7 +108,6 @@ const teamJoin = async () => {
 
 const toggleEditMode = async () => {
   existingInstitution.value = !existingInstitution.value;
-  // We only want to call getInstitutions if in editMode & if we don't already have the data
   if (
     !existingInstitution.value &&
     institutionStore.institutions.length === 0
@@ -136,13 +133,10 @@ onMounted(async () => {
   console.log(userStore);
   const institutionId = userStore.institution;
   if (institutionId) {
-    console.log("THERE IS AN INST ID");
     await institutionStore.getInstitutionByID(institutionId);
     getInfo(institutionStore.userInstitution);
-    // Todo change
     existingInstitution.value = true;
   } else {
-    console.log("THERE IS NO INST ID");
     await institutionStore.getInstitutions();
   }
 });
