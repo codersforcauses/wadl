@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative mb-2.5">
     <label class="heading-montserrat">{{ label }}</label>
     <div
       class="border border-light-grey flex items-center w-full rounded-md pr-2"
