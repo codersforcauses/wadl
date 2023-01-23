@@ -131,6 +131,9 @@ const handleTeamJoin = async () => {
   //   // might need an alert or warning
   //   console.log("No changes");
   // }
+
+  // TODO handle institution change & create
+  institutionStore.editInstitution(form.value);
 };
 
 const toggleEditMode = async () => {
