@@ -10,8 +10,8 @@ import {
   where,
   setDoc,
   getDoc,
-  addDoc,
 } from "firebase/firestore";
+import { useUserStore } from "./auth";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -86,8 +86,7 @@ export const useInstitutionStore = defineStore("institution", {
       });
     },
     async checkInstitution(institution) {
-      console.log(institution);
-      let newInstitution = true;
+      let newInstitution = null;
       this.institutions.forEach(async (element) => {
         if (element.name.toLowerCase() === institution.name.toLowerCase()) {
           this.updateInstitution(element, institution);
@@ -96,6 +95,8 @@ export const useInstitutionStore = defineStore("institution", {
       });
       if (newInstitution) {
         this.createInstitution(institution);
+      } else {
+        this.updateProfile(institution);
       }
     },
     async editInstitution(institution) {
@@ -146,29 +147,43 @@ export const useInstitutionStore = defineStore("institution", {
           code: institution.code,
           email: institution.email,
           number: institution.number,
-        }).catch((error) => {
-          console.log(error);
-        });
+        })
+          .catch((error) => {
+            console.log(error);
+          })
+          .then(() => {
+            // update profile
+            this.updateProfile(ref);
+          });
       }
     },
     async createInstitution(institution) {
       console.log(institution);
       const { $db } = useNuxtApp();
-      const ref = collection($db, "institutions");
-      await addDoc(ref, {
+      const ref = doc(collection($db, "institutions"));
+      console.log(ref);
+      await setDoc(ref, {
+        id: ref.id,
         name: institution.name,
         email: institution.email,
         code: institution.code,
         phone_number: institution.number,
         abbreviation: institution.abbreviation,
-      }).catch((error) => {
-        console.log(error);
-      });
+      })
+        .catch((error) => {
+          console.log(error);
+        })
+        .then(() => {
+          // update profile
+          this.updateProfile(ref);
+        });
     },
-    async updateProfile(institution) {
+    async updateProfile(id) {
       const { $db, $auth } = useNuxtApp();
+      const userStore = useUserStore();
       const ref = doc($db, "users", $auth.currentUser.uid);
-      await updateDoc(ref, { institutions: institution.id });
+      await updateDoc(ref, { institution: id.id });
+      userStore.institution = id.id;
     },
     async clearStore() {
       this.institutions = [];
