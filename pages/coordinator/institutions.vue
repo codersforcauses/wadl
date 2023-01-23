@@ -101,6 +101,7 @@ const form = ref({
 });
 
 const handleTeamJoin = async () => {
+  institutionStore.checkInstitution(form.value);
   // await institutionStore.getInstitutions();
   // const originalData = institutionStore.institutions.filter(
   //   (inst) => inst.id === form.value.id
@@ -139,7 +140,10 @@ const handleTeamJoin = async () => {
 const toggleEditMode = async () => {
   existingInstitution.value = !existingInstitution.value;
   // We only want to call getInstitutions if in editMode & if we don't already have the data
-  if (!existingInstitution.value && institutionStore.institutions.length == 0) {
+  if (
+    !existingInstitution.value &&
+    institutionStore.institutions.length === 0
+  ) {
     await institutionStore.getInstitutions();
   } else {
     getInfo(institutionStore.userInstitution);
@@ -156,20 +160,7 @@ const clearSchoolForm = () => {
     code: null,
   };
 };
-// const handleUpdate = () => {
-//   institutionStore.checkInstitution(form.value);
-//   institutionStore.updateProfile(form.value);
-//   modalVisible.value = false;
-//   hasInst.value = true;
-// };
 
-// const handleReject = () => {
-//   const originalData = institutions.value.filter(
-//     (inst) => inst.id === form.value.id
-//   )[0];
-//   getInfo(originalData);
-//   modalVisible.value = false;
-// };
 
 onMounted(async () => {
   const institutionId = userStore.institution;
@@ -179,7 +170,7 @@ onMounted(async () => {
     getInfo(institutionStore.userInstitution);
 
     // Todo change
-    existingInstitution.value = true;
+    // existingInstitution.value = true;
   } else {
     console.log("THERE IS NO INST ID");
 

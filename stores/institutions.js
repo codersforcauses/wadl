@@ -5,19 +5,18 @@ import {
   getDocs,
   updateDoc,
   doc,
-  addDoc,
   getCountFromServer,
   query,
   where,
   setDoc,
   getDoc,
+  addDoc,
 } from "firebase/firestore";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
     return {
       institutions: [],
-      editInstition: null,
       filteredInstitutions: [],
       userInstitution: null,
       errorMessage: "",
@@ -90,14 +89,14 @@ export const useInstitutionStore = defineStore("institution", {
       console.log(institution);
       let newInstitution = true;
       this.institutions.forEach(async (element) => {
-        if (
-          element.name.toLowerCase() === institution.schoolName.toLowerCase()
-        ) {
-          this.editInstition = true;
+        if (element.name.toLowerCase() === institution.name.toLowerCase()) {
           this.updateInstitution(element, institution);
           newInstitution = false;
         }
       });
+      if (newInstitution) {
+        this.createInstitution(institution);
+      }
     },
     async editInstitution(institution) {
       const { $db } = useNuxtApp();
@@ -132,70 +131,40 @@ export const useInstitutionStore = defineStore("institution", {
         this.errorMessage = "institution with same name exists";
       }
     },
-    async createInstitution(institution) {
-      const { $db } = useNuxtApp();
-      const sameName = query(
-        collection($db, "institutions"),
-        where("name", "==", institution.name)
-      );
-      const snapshot = await getCountFromServer(sameName);
-      if (snapshot.data().count === 0) {
-        institution.id = doc(collection($db, "institutions")).id;
-        await setDoc(doc($db, "institutions", institution.id), institution)
-          .then(() => {
-            this.errorMessage = "";
-            this.institutions.push(institution);
-            this.filteredInstitutions.push(institution);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        this.errorMessage = "institution with same name exists";
-      }
-    },
-    async editTeam(team) {
-      this.teams.forEach((t) => {
-        if (t.id === team.id) {
-          Object.assign(t, team);
-        }
-      });
-    },
     async updateInstitution(element, institution) {
-      console.log(element, institution);
+      console.log(institution);
       const { $db } = useNuxtApp();
       if (
-        element.number !== institution.schoolNumber ||
-        element.email !== institution.schoolEmail ||
-        element.code !== institution.schoolCode ||
-        element.abbreviation !== institution.schoolAbbreviation
+        element.number !== institution.number ||
+        element.email !== institution.email ||
+        element.code !== institution.code ||
+        element.abbreviation !== institution.abbreviation
       ) {
         const ref = doc($db, "institutions", institution.id);
         await updateDoc(ref, {
-          abbreviation: institution.schoolAbbreviation,
-          code: institution.schoolCode,
-          email: institution.schoolEmail,
-          number: institution.schoolNumber,
+          abbreviation: institution.abbreviation,
+          code: institution.code,
+          email: institution.email,
+          number: institution.number,
         }).catch((error) => {
           console.log(error);
         });
       }
     },
-    // deleting this one because the one above is working well for admin/inst
-    // async createInstitution(institution) {
-    //   console.log(institution);
-    //   const { $db } = useNuxtApp();
-    //   const ref = collection($db, "institutions");
-    //   await addDoc(ref, {
-    //     name: institution.schoolName,
-    //     email: institution.schoolEmail,
-    //     code: institution.schoolCode,
-    //     phone_number: institution.schoolNumber,
-    //     abbreviation: institution.schoolAbbreviation,
-    //   }).catch((error) => {
-    //     console.log(error);
-    //   });
-    // },
+    async createInstitution(institution) {
+      console.log(institution);
+      const { $db } = useNuxtApp();
+      const ref = collection($db, "institutions");
+      await addDoc(ref, {
+        name: institution.name,
+        email: institution.email,
+        code: institution.code,
+        phone_number: institution.number,
+        abbreviation: institution.abbreviation,
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
     async updateProfile(institution) {
       const { $db, $auth } = useNuxtApp();
       const ref = doc($db, "users", $auth.currentUser.uid);
