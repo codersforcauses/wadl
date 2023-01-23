@@ -10,7 +10,7 @@
             emit('close');
           }
         "
-        class="bg-white rounded-2xl shadow-md"
+        class="bg-white rounded-2xl md:w-7/12"
       >
         <header
           class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl"

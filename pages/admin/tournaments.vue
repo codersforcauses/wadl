@@ -33,11 +33,11 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels"
+          :selected-chips="getLevels()"
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.rounds"
+          v-model="form.numRounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -76,11 +76,11 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels"
+          :selected-chips="getLevels()"
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.rounds"
+          v-model="form.numRounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -120,19 +120,33 @@ import { useTournamentStore } from "../../stores/tournaments";
 
 const defaultInputState = {
   id: null,
-  name: null,
-  shortName: null,
   levels: [],
-  rounds: null,
+  name: null,
+  numRounds: null,
+  shortName: null,
+  status: "Open",
 };
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
+store.getTournaments();
+
+const getLevels = () => form.value.levels.map((l) => l.level);
 
 const updateSelectedLevels = (chips) => {
-  form.value.levels = chips;
+  form.value.levels.forEach(function callback(l, index) {
+    if (!chips.includes(l.level)) {
+      form.value.levels.splice(index, 1);
+    }
+  });
+
+  chips.forEach((level) => {
+    if (!getLevels().includes(level)) {
+      form.value.levels.push({ level: level });
+    }
+  });
 };
 
 const resetFormState = () => {
