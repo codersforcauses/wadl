@@ -44,7 +44,6 @@
         placeholder="School Name"
         :items="institutionStore.institutions"
         @info="getInfo"
-        @search-text="getName"
       >
       </SearchSelect>
       <FormField
@@ -127,59 +126,54 @@ const instUpdates = ref([]);
 const hasInst = ref(false);
 
 const form = ref({
-  id: "",
-  name: "",
-  number: "",
-  email: "",
-  abbreviation: "",
-  code: "",
+  id: null,
+  name: null,
+  number: null,
+  email: null,
+  abbreviation: null,
+  code: null,
 });
+
 const handleTeamJoin = async () => {
-  await institutionStore.getInstitutions();
-  const originalData = institutionStore.institutions.filter(
-    (inst) => inst.id === form.value.id
-  )[0];
-  const updates = [];
-  if (form.value.schoolName !== originalData.name) {
-    updates.push({ key: "School Name", update: form.value.schoolName });
-  }
-  if (form.value.schoolNumber !== originalData.phoneNumber) {
-    updates.push({ key: "School Number", update: form.value.schoolNumber });
-  }
-  if (form.value.schoolEmail !== originalData.email) {
-    updates.push({ key: "School Email", update: form.value.schoolEmail });
-  }
-  if (form.value.schoolAbbreviation !== originalData.abbreviation) {
-    updates.push({
-      key: "School Abbreviation",
-      update: form.value.schoolAbbreviation,
-    });
-  }
-  if (form.value.schoolCode !== originalData.code) {
-    updates.push({ key: "School Code", update: form.value.schoolCode });
-  }
-  if (updates.length !== 0) {
-    instUpdates.value = updates;
-    modalVisible.value = true;
-  } else {
-    // might need an alert or warning
-    console.log("No changes");
-  }
+  // await institutionStore.getInstitutions();
+  // const originalData = institutionStore.institutions.filter(
+  //   (inst) => inst.id === form.value.id
+  // )[0];
+  // const updates = [];
+  // if (form.value.schoolName !== originalData.name) {
+  //   updates.push({ key: "School Name", update: form.value.schoolName });
+  // }
+  // if (form.value.schoolNumber !== originalData.phoneNumber) {
+  //   updates.push({ key: "School Number", update: form.value.schoolNumber });
+  // }
+  // if (form.value.schoolEmail !== originalData.email) {
+  //   updates.push({ key: "School Email", update: form.value.schoolEmail });
+  // }
+  // if (form.value.schoolAbbreviation !== originalData.abbreviation) {
+  //   updates.push({
+  //     key: "School Abbreviation",
+  //     update: form.value.schoolAbbreviation,
+  //   });
+  // }
+  // if (form.value.schoolCode !== originalData.code) {
+  //   updates.push({ key: "School Code", update: form.value.schoolCode });
+  // }
+  // if (updates.length !== 0) {
+  //   instUpdates.value = updates;
+  //   modalVisible.value = true;
+  // } else {
+  //   // might need an alert or warning
+  //   console.log("No changes");
+  // }
 };
 
 const toggleEditMode = async () => {
   hasInst.value = !hasInst.value;
   // We only want to call getInstitutions if in editMode & if we don't already have the data
-  if (!hasInst.value && institutionStore.institutions.length === 0) {
+  if (!hasInst.value && !institutionStore.userInstitution) {
     await institutionStore.getInstitutions();
   } else {
-    // TODO Change - I just added this for testing - we need to hold the original user insts as an object in inst store
-    const userInstitutions = userStore.$state.institutions;
-    getInfo(
-      await institutionStore.getInstitutionByID(
-        userInstitutions.institution_ids
-      )
-    );
+    getInfo(institutionStore.userInstitution);
   }
 };
 const handleUpdate = () => {
@@ -200,13 +194,14 @@ const handleReject = () => {
 onMounted(async () => {
   const institutionId = userStore.institution;
   if (institutionId) {
-    console.log("#$%#$%");
-    institutionStore.getInstitutionByID(institutionId);
+    console.log("THERE IS AN INST ID");
+    await institutionStore.getInstitutionByID(institutionId);
     getInfo(institutionStore.userInstitution);
 
     // Todo change
     hasInst.value = true;
   } else {
+    console.log("THERE IS NO INST ID");
     await institutionStore.getInstitutions();
     institutions.value = institutionStore.institutions;
   }
@@ -217,19 +212,7 @@ onUnmounted(async () => {
 });
 
 const getInfo = (data) => {
-  console.log(data.name);
+  console.log("DATA", data);
   form.value = data;
-  // form.value.id = data.id;
-  // form.value.schoolName = data.name;
-  // // Firestore phonenumber is named different to pinia
-  // form.value.schoolNumber = data.phoneNumber
-  //   ? data.phoneNumber
-  //   : data.phone_number;
-  // form.value.schoolEmail = data.email;
-  // form.value.schoolAbbreviation = data.abbreviation;
-  // form.value.schoolCode = `${data.code}`;
-};
-const getName = (name) => {
-  form.value.schoolName = name;
 };
 </script>

@@ -19,7 +19,7 @@ export const useInstitutionStore = defineStore("institution", {
       institutions: [],
       editInstition: null,
       filteredInstitutions: [],
-      userInstitution: [],
+      userInstitution: null,
       errorMessage: "",
       teams: [
         {
@@ -61,7 +61,7 @@ export const useInstitutionStore = defineStore("institution", {
         const data = {
           id: doc.data().id,
           name: doc.data().name,
-          phoneNumber: doc.data().phone_number,
+          number: doc.data().phone_number,
           email: doc.data().email,
           code: doc.data().code,
           abbreviation: doc.data().abbreviation,
@@ -84,7 +84,7 @@ export const useInstitutionStore = defineStore("institution", {
           code: doc.data().code,
           abbreviation: doc.data().abbreviation,
         };
-        console.log(this.userInstitution);
+        console.log("USER INST", this.userInstitution);
       });
     },
     async checkInstitution(institution) {
@@ -160,9 +160,6 @@ export const useInstitutionStore = defineStore("institution", {
           Object.assign(t, team);
         }
       });
-      if (newInstitution) {
-        this.createInstitution(institution);
-      }
     },
     async updateInstitution(element, institution) {
       console.log(element, institution);
