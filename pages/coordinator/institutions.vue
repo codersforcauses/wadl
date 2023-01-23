@@ -44,6 +44,7 @@
       </FormField>
       <div class="w-full flex justify-evenly pt-8">
         <Button
+          v-if="institutionStore.userInstitution"
           button-text="Cancel"
           button-color="bg-light-red"
           text-color="text-dark-red"
@@ -99,8 +100,46 @@ const form = ref({
   code: null,
 });
 
+// 1. Firstly, have a better function name handleTeamJoin is terrible XD
+// 2. Create Inst (No existing inst attached to user): Add new inst doc -> Gave that id and put that id in user collection and update the userStore.instition with that id.
+// After Create it should take you to the institution settings page that has the list of instition settings (set existingInstitution to true)
+// 3. Update Inst (Completely change inst school name and the rest of data) -> update the userStore.institution with the new id, update insttitionStore.userInstitution with new data
+// 4. Update Inst (fields except school name), NO update of user inst ID
 const handleTeamJoin = async () => {
   institutionStore.checkInstitution(form.value);
+  // await institutionStore.getInstitutions();
+  // const originalData = institutionStore.institutions.filter(
+  //   (inst) => inst.id === form.value.id
+  // )[0];
+  // const updates = [];
+  // if (form.value.schoolName !== originalData.name) {
+  //   updates.push({ key: "School Name", update: form.value.schoolName });
+  // }
+  // if (form.value.schoolNumber !== originalData.phoneNumber) {
+  //   updates.push({ key: "School Number", update: form.value.schoolNumber });
+  // }
+  // if (form.value.schoolEmail !== originalData.email) {
+  //   updates.push({ key: "School Email", update: form.value.schoolEmail });
+  // }
+  // if (form.value.schoolAbbreviation !== originalData.abbreviation) {
+  //   updates.push({
+  //     key: "School Abbreviation",
+  //     update: form.value.schoolAbbreviation,
+  //   });
+  // }
+  // if (form.value.schoolCode !== originalData.code) {
+  //   updates.push({ key: "School Code", update: form.value.schoolCode });
+  // }
+  // if (updates.length !== 0) {
+  //   instUpdates.value = updates;
+  //   modalVisible.value = true;
+  // } else {
+  //   // might need an alert or warning
+  //   console.log("No changes");
+  // }
+
+  // TODO handle institution change & create
+  institutionStore.editInstitution(form.value);
 };
 
 const toggleEditMode = async () => {
