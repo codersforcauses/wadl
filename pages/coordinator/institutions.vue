@@ -89,7 +89,6 @@ import { useUserStore } from "../../stores/auth";
 
 const institutionStore = useInstitutionStore();
 const userStore = useUserStore();
-const instUpdates = ref([]);
 const existingInstitution = ref(false);
 
 const form = ref({
@@ -108,9 +107,6 @@ const form = ref({
 // 4. Update Inst (fields except school name), NO update of user inst ID
 const handleTeamJoin = async () => {
   institutionStore.checkInstitution(form.value);
-
-  // TODO handle institution change & create
-  institutionStore.editInstitution(form.value);
 };
 
 const toggleEditMode = async () => {
@@ -138,17 +134,16 @@ const clearSchoolForm = () => {
 };
 
 onMounted(async () => {
+  console.log(userStore);
   const institutionId = userStore.institution;
   if (institutionId) {
     console.log("THERE IS AN INST ID");
     await institutionStore.getInstitutionByID(institutionId);
     getInfo(institutionStore.userInstitution);
-
     // Todo change
     existingInstitution.value = true;
   } else {
     console.log("THERE IS NO INST ID");
-
     await institutionStore.getInstitutions();
   }
 });
