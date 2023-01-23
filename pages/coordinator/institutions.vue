@@ -161,7 +161,6 @@ const clearSchoolForm = () => {
   };
 };
 
-
 onMounted(async () => {
   const institutionId = userStore.institution;
   if (institutionId) {
