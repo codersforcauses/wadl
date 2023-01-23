@@ -40,7 +40,7 @@
       @submit.prevent="handleTeamJoin"
     >
       <SearchSelect
-        v-model="form.schoolName"
+        v-model="form.name"
         placeholder="School Name"
         :items="institutionStore.institutions"
         @info="getInfo"
@@ -48,28 +48,28 @@
       >
       </SearchSelect>
       <FormField
-        v-model="form.schoolNumber"
+        v-model="form.number"
         label="School Number"
         placeholder="School Number"
         type="number"
       >
       </FormField>
       <FormField
-        v-model="form.schoolEmail"
+        v-model="form.email"
         label="School Email"
         placeholder="School Email"
         type="email"
       >
       </FormField>
       <FormField
-        v-model="form.schoolAbbreviation"
+        v-model="form.abbreviation"
         label="School Abbreviation"
         placeholder="School Abbreviation"
         type="text"
       >
       </FormField>
       <FormField
-        v-model="form.schoolCode"
+        v-model="form.code"
         label="School Code"
         placeholder="School Code"
         type="text"
@@ -89,15 +89,15 @@
     <div v-else class="flex justify-center items-center w-full">
       <div class="mt-8 heading-montserrat rounded-3xl w-5/12 border p-5">
         <label class="text-light-grey text-xs"> SCHOOL NAME </label>
-        <p class="text-xl pb-5">{{ form.schoolName }}</p>
+        <p class="text-xl pb-5">{{ form.name }}</p>
         <label class="text-light-grey text-xs"> SCHOOL EMAIL </label>
-        <p class="text-xl pb-5">{{ form.schoolEmail }}</p>
+        <p class="text-xl pb-5">{{ form.email }}</p>
         <label class="text-light-grey text-xs"> SCHOOL NUMBER </label>
-        <p class="text-xl pb-5">{{ form.schoolNumber }}</p>
+        <p class="text-xl pb-5">{{ form.number }}</p>
         <label class="text-light-grey text-xs"> SCHOOL CODE </label>
-        <p class="text-xl pb-5">{{ form.schoolCode }}</p>
+        <p class="text-xl pb-5">{{ form.code }}</p>
         <label class="text-light-grey text-xs"> SCHOOL ABBREVIATION </label>
-        <p class="text-xl">{{ form.schoolAbbreviation }}</p>
+        <p class="text-xl">{{ form.abbreviation }}</p>
 
         <div class="mt-8 flex justify-center">
           <Button
@@ -128,11 +128,11 @@ const hasInst = ref(false);
 
 const form = ref({
   id: "",
-  schoolName: "",
-  schoolNumber: "",
-  schoolEmail: "",
-  schoolAbbreviation: "",
-  schoolCode: "",
+  name: "",
+  number: "",
+  email: "",
+  abbreviation: "",
+  code: "",
 });
 const handleTeamJoin = async () => {
   await institutionStore.getInstitutions();
@@ -218,15 +218,16 @@ onUnmounted(async () => {
 
 const getInfo = (data) => {
   console.log(data.name);
-  form.value.id = data.id;
-  form.value.schoolName = data.name;
-  // Firestore phonenumber is named different to pinia
-  form.value.schoolNumber = data.phoneNumber
-    ? data.phoneNumber
-    : data.phone_number;
-  form.value.schoolEmail = data.email;
-  form.value.schoolAbbreviation = data.abbreviation;
-  form.value.schoolCode = `${data.code}`;
+  form.value = data;
+  // form.value.id = data.id;
+  // form.value.schoolName = data.name;
+  // // Firestore phonenumber is named different to pinia
+  // form.value.schoolNumber = data.phoneNumber
+  //   ? data.phoneNumber
+  //   : data.phone_number;
+  // form.value.schoolEmail = data.email;
+  // form.value.schoolAbbreviation = data.abbreviation;
+  // form.value.schoolCode = `${data.code}`;
 };
 const getName = (name) => {
   form.value.schoolName = name;
