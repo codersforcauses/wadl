@@ -22,7 +22,7 @@ const defaultInputState = {
   name: null,
   code: null,
   abbreviation: null,
-  phone_number: null,
+  number: null,
   email: null,
 };
 

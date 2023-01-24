@@ -61,7 +61,7 @@ export const useInstitutionStore = defineStore("institution", {
         const data = {
           id: doc.data().id,
           name: doc.data().name,
-          number: doc.data().phone_number,
+          number: doc.data().number,
           email: doc.data().email,
           code: doc.data().code,
           abbreviation: doc.data().abbreviation,
@@ -79,7 +79,7 @@ export const useInstitutionStore = defineStore("institution", {
           id: doc.data().id,
           name: doc.data().name,
           email: doc.data().email,
-          number: doc.data().phone_number,
+          number: doc.data().number,
           code: doc.data().code,
           abbreviation: doc.data().abbreviation,
         };
