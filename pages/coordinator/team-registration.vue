@@ -1,7 +1,14 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
+import { useTournamentStore } from "../../stores/tournaments";
 const institutionStore = useInstitutionStore();
+const tournamentStore = useTournamentStore();
+
+onMounted(() => {
+  tournamentStore.getTournaments();
+});
+
 const currentTeam = ref("Perth Modern");
 const venuePreferenceLabels = ref([
   "1st Preference",
@@ -62,6 +69,10 @@ const saveTeamRegistration = async () => {
 //     ],
 //   };
 // };
+const getInfo = (data) => {
+  console.log("torni info", data);
+  formInput.value.tournament = data.name;
+};
 </script>
 
 <template>
@@ -77,7 +88,13 @@ const saveTeamRegistration = async () => {
     <hr class="pb-3" />
     <div class="flex justify-center">
       <form class="md:w-7/12" @submit.prevent="saveTeamRegistration()">
-        <FormField v-model="formInput.tournament" label="Tournament" />
+        <SearchSelect
+          v-model="formInput.tournament"
+          placeholder="Tournament"
+          label="Tournament"
+          :items="tournamentStore.getOpening"
+          @info="getInfo"
+        />
         <label class="heading-montserrat">Level</label>
         <Multiselect
           :items="

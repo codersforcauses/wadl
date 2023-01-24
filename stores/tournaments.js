@@ -15,6 +15,11 @@ export const useTournamentStore = defineStore("tournament", {
         (tournament) => tournament.status === "Running"
       );
     },
+    getOpening() {
+      return this.tournaments.filter(
+        (tournament) => tournament.status === "Open"
+      );
+    },
   },
   actions: {
     async getTournaments() {
