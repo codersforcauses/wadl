@@ -1,15 +1,19 @@
 <script setup>
 import { ref, onMounted } from "vue";
+import { useUserStore } from "../../stores/auth";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useTournamentStore } from "../../stores/tournaments";
 const institutionStore = useInstitutionStore();
 const tournamentStore = useTournamentStore();
+const userStore = useUserStore();
 
 onMounted(() => {
   tournamentStore.getTournaments();
+  institutionStore.getInstitutionByID(userStore.institution);
+  currentTeam.value = institutionStore.userInstitution.name;
 });
 
-const currentTeam = ref("Perth Modern");
+const currentTeam = ref("");
 const venuePreferenceLabels = ref([
   "1st Preference",
   "2nd Preference",
@@ -80,30 +84,20 @@ const getInfo = (data) => {
     Team Registration
   </p>
   <div class="px-10">
-    <p
-      class="text-2xl font-semibold heading-montserrat px-6 py-2 text-mid-grey text-center"
-    >
+    <p class="text-2xl font-semibold heading-montserrat px-6 py-2 text-mid-grey text-center">
       {{ currentTeam }}
     </p>
     <hr class="pb-3" />
     <div class="flex justify-center">
       <form class="md:w-7/12" @submit.prevent="saveTeamRegistration()">
-        <SearchSelect
-          v-model="formInput.tournament"
-          placeholder="Tournament"
-          label="Tournament"
-          :items="tournamentStore.getOpening"
-          @info="getInfo"
-        />
+        <SearchSelect v-model="formInput.tournament" placeholder="Tournament" label="Tournament"
+          :items="tournamentStore.getOpen" @info="getInfo" />
         <label class="heading-montserrat">Level</label>
-        <Multiselect
-          :items="
-            formInput.teams.map((t) => {
-              return t.teamLevel;
-            })
-          "
-          @change="updateLevels"
-        />
+        <Multiselect :items="
+          formInput.teams.map((t) => {
+            return t.teamLevel;
+          })
+        " @change="updateLevels" />
         <div class="flex items-center pt-5 pb-3">
           <label class="heading-montserrat text-lg font-medium">
             Number of Teams
@@ -112,12 +106,8 @@ const getInfo = (data) => {
         </div>
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
-            <FormField
-              v-model="team.numberOfTeams"
-              type="number"
-              :label="team.teamLevel"
-              :disabled="!team.levelPresent"
-            />
+            <FormField v-model="team.numberOfTeams" type="number" :label="team.teamLevel"
+              :disabled="!team.levelPresent" />
           </div>
         </div>
         <div class="flex items-center pt-5 pb-3">
@@ -127,15 +117,9 @@ const getInfo = (data) => {
           <hr class="h-px ml-2 flex-1" />
         </div>
         <div class="flex flex-row space-x-3">
-          <Select
-            v-for="team in formInput.teams"
-            :key="team.teamLevel"
-            v-model="team.weekPreference"
-            :options="['Week 1', 'Week 2', 'Either']"
-            :label="team.teamLevel"
-            class="w-full"
-            :disabled="!team.levelPresent"
-          />
+          <Select v-for="team in formInput.teams" :key="team.teamLevel" v-model="team.weekPreference"
+            :options="['Week 1', 'Week 2', 'Either']" :label="team.teamLevel" class="w-full"
+            :disabled="!team.levelPresent" />
         </div>
         <div class="flex items-center pt-5 pb-3">
           <label class="heading-montserrat text-lg font-medium">
@@ -145,12 +129,8 @@ const getInfo = (data) => {
         </div>
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
-            <FormField
-              v-model="team.tuesdayAllocation"
-              type="number"
-              :label="team.teamLevel"
-              :disabled="!team.levelPresent"
-            />
+            <FormField v-model="team.tuesdayAllocation" type="number" :label="team.teamLevel"
+              :disabled="!team.levelPresent" />
           </div>
         </div>
         <div class="flex items-center pt-5 pb-3">
@@ -161,23 +141,13 @@ const getInfo = (data) => {
         </div>
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
-            <FormField
-              v-model="team.wednesdayAllocation"
-              type="number"
-              :label="team.teamLevel"
-              :disabled="!team.levelPresent"
-            />
+            <FormField v-model="team.wednesdayAllocation" type="number" :label="team.teamLevel"
+              :disabled="!team.levelPresent" />
           </div>
         </div>
         <div class="flex flex-row accent-gold mt-5">
-          <input
-            v-model="formInput.hasVenuePreference"
-            type="checkbox"
-            class="w-5 h-5"
-          />
-          <label class="ml-3 heading-montserrat"
-            >Do you have a venue preference?</label
-          >
+          <input v-model="formInput.hasVenuePreference" type="checkbox" class="w-5 h-5" />
+          <label class="ml-3 heading-montserrat">Do you have a venue preference?</label>
         </div>
         <div v-if="formInput.hasVenuePreference" class="pb-5">
           <div class="flex items-center pt-5 pb-3">
@@ -188,28 +158,17 @@ const getInfo = (data) => {
           </div>
           <div class="flex flex-row space-x-3">
             <div v-for="(pref, idx) in venuePreferenceLabels" :key="idx">
-              <FormField
-                v-model="formInput.venuePreferences[idx]"
-                placeholder="Enter Preference"
-                :label="venuePreferenceLabels[idx]"
-              />
+              <FormField v-model="formInput.venuePreferences[idx]" placeholder="Enter Preference"
+                :label="venuePreferenceLabels[idx]" />
             </div>
           </div>
         </div>
         <label class="heading-montserrat">Notes </label>
-        <textarea
-          v-model="formInput.notes"
-          placeholder="Enter any notes"
-          class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat heading-montserrat"
-        ></textarea>
+        <textarea v-model="formInput.notes" placeholder="Enter any notes"
+          class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat heading-montserrat"></textarea>
 
         <div class="flex justify-evenly items-center mb-2">
-          <Button
-            class="my-3"
-            button-color="bg-gold"
-            button-text="Save"
-            type="Submit"
-          />
+          <Button class="my-3" button-color="bg-gold" button-text="Save" type="Submit" />
         </div>
       </form>
     </div>

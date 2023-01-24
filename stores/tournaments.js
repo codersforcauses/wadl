@@ -15,7 +15,7 @@ export const useTournamentStore = defineStore("tournament", {
         (tournament) => tournament.status === "Running"
       );
     },
-    getOpening() {
+    getOpen() {
       return this.tournaments.filter(
         (tournament) => tournament.status === "Open"
       );
