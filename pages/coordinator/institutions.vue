@@ -7,6 +7,7 @@
       @submit.prevent="handleInstitution"
     >
       <SearchSelect
+        v-if="institutionStore.institutions"
         v-model="form.name"
         placeholder="School Name"
         :items="institutionStore.institutions"
