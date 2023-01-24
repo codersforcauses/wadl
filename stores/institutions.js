@@ -86,14 +86,14 @@ export const useInstitutionStore = defineStore("institution", {
       });
     },
     async checkInstitution(institution) {
-      let newInstitution = null;
+      let newInstitution = true;
       this.institutions.forEach(async (element) => {
         if (element.name.toLowerCase() === institution.name.toLowerCase()) {
           this.updateInstitution(element, institution);
-          newInstitution = false;
+          newInstitution = !newInstitution;
         }
       });
-      if (newInstitution === null) {
+      if (newInstitution === true) {
         this.createInstitution(institution);
       } else {
         this.userInstitution = { ...institution };
