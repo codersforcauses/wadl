@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
 import { vOnClickOutside } from "@vueuse/components";
 
@@ -63,7 +63,6 @@ function filter(e) {
 }
 
 function selectOption(option) {
-  props.modelValue = option.name;
   isOpen.value = false;
   emit("info", option);
 }

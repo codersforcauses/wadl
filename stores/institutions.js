@@ -185,6 +185,8 @@ export const useInstitutionStore = defineStore("institution", {
           await setDoc(ref, data).catch((error) => {
             console.log(error);
           });
+          this.institutions.push(data);
+          this.filteredInstitutions.push(data);
         } else {
           await setDoc(ref, data)
             .then(() => {
