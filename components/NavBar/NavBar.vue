@@ -20,7 +20,7 @@
             />
           </NuxtLink>
         </div>
-        <div v-if="!firstName" class="mr-2">
+        <div v-if="!id" class="mr-2">
           <NuxtLink to="/signup">
             <Button button-text="Signup" size="small" class="shadow-none" />
           </NuxtLink>
@@ -49,10 +49,10 @@
 
 <script setup>
 import HomeButton from "./HomeButton.vue";
-import { useUserStore } from "~/stores/auth.js";
+import { useUserStore } from "~/stores/user.js";
 import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
 // Will be updated when user store changes
-const { firstName, role } = storeToRefs(userStore);
+const { firstName, id, role } = storeToRefs(userStore);
 </script>

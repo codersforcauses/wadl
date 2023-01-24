@@ -26,12 +26,12 @@ export const useAdminStore = defineStore("admin", {
           const person = userCredential.user;
           const usersRef = doc($db, "users", person.uid);
           const data = {
-            ID: person.uid,
+            id: person.uid,
             role: "Admin",
             requesting: false,
-            first_name: user.firstName,
-            last_name: user.lastName,
-            phone_number: user.phoneNumber,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            phoneNumber: user.phoneNumber,
             password: user.password,
             email: user.email,
           };
@@ -54,8 +54,8 @@ export const useAdminStore = defineStore("admin", {
         const user = {
           email: doc.data().email,
           id: doc.id,
-          firstName: doc.data().first_name,
-          lastName: doc.data().surname,
+          firstName: doc.data().firstName,
+          lastName: doc.data().lastName,
           institutions: doc.data().institutions,
           requesting: doc.data().requesting,
           role: doc.data().role,

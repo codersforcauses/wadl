@@ -76,7 +76,7 @@
 </template>
 
 <script setup>
-import { useUserStore } from "../stores/auth";
+import { useUserStore } from "../stores/user";
 import { ref, onBeforeMount } from "vue";
 
 const userStore = useUserStore();
@@ -109,23 +109,24 @@ const updateInput = (e) => {
 
 // Call The User Store
 const registerUser = (e) => {
-  console.log(form.value.role);
-  if (form.value.password.length > 8) {
-    if (form.value.password === form.value.confirmPassword) {
-      if (form.value.role) {
-        userStore.registerUser(form.value);
-      } else {
-        isRoleValid.value = false;
-        console.log(isRoleValid);
-        errorMessage2.value = "You have to choose a role";
-      }
-    } else {
-      isValid.value = false;
-      errorMessage.value = "The password does not match";
-    }
-  } else {
+  if (form.value.password.length < 8) {
     isValid.value = false;
     errorMessage.value = "The password has to be at least 8 characters";
+    return;
   }
+
+  if (form.value.password !== form.value.confirmPassword) {
+    isValid.value = false;
+    errorMessage.value = "The password does not match";
+    return;
+  }
+
+  if (!form.value.role) {
+    isRoleValid.value = false;
+    errorMessage2.value = "You have to choose a role";
+    return;
+  }
+
+  userStore.registerUser({...form.value});
 };
 </script>
