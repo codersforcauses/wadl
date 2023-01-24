@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
+import { useUserStore } from "../../stores/auth";
 const store = useInstitutionStore();
+const userStore = useUserStore();
 const headers = [
   {
     key: "name",
@@ -50,6 +52,15 @@ const defaultInputState = {
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
+
+onMounted(async () => {
+  console.log(store.teams);
+  if (store.teams.length == 0) {
+    console.log("INST", userStore.institution);
+    await store.getTeamsByID(userStore.institution);
+    console.table(store.teams);
+  }
+});
 
 const resetFormState = () => {
   form.value = { ...defaultInputState };

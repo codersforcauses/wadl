@@ -21,34 +21,7 @@ export const useInstitutionStore = defineStore("institution", {
       filteredInstitutions: [],
       userInstitution: null,
       errorMessage: "",
-      teams: [
-        {
-          id: 1,
-          name: "Perth Modern 1",
-          level: "Novice",
-          division: "Not Allocated",
-          timeslot: "5.15pm",
-          venuePreferences: ["Perth Modern", "BCC", "Mercy"],
-          hasVenuePreference: true,
-          weekPreference: "Week 1",
-          tuesdayAllocation: true,
-          wednesdayAllocation: false,
-          notes: "Some note",
-        },
-        {
-          id: 2,
-          name: "Perth Modern 2",
-          level: "Senior",
-          division: "Not Allocated",
-          timeslot: "7.15pm",
-          venuePreferences: ["Perth Modern", "Trinity", "Mercy"],
-          hasVenuePreference: true,
-          weekPreference: "Week 1",
-          tuesdayAllocation: true,
-          wednesdayAllocation: true,
-          notes: "Hi",
-        },
-      ],
+      teams: [],
     };
   },
   getters: {},
@@ -109,7 +82,7 @@ export const useInstitutionStore = defineStore("institution", {
         where("name", "==", institution.name),
         where("id", "!=", institution.id)
       );
-      // Do do convert institution to snake case e.g number -> phone_number
+
       const snapshot = await getCountFromServer(sameName);
       if (snapshot.data().count === 0) {
         await updateDoc(ref, institution)
@@ -210,54 +183,79 @@ export const useInstitutionStore = defineStore("institution", {
       this.institutions = [];
     },
     // TODO: figure out best way the do tues/wed allocation
+    // Change to perth modern -> inst name
     async registerTeam(team) {
       const { $db } = useNuxtApp();
       let teamCounter = 1;
-      const ref = doc(collection($db, "teams"));
       try {
         const batch = writeBatch($db);
-        console.log(batch);
-        team.teams.map(async (level, index) => {
-          if (level.numberOfTeams > 0) {
-            for (let i = 0; i < level.numberOfTeams; i++) {
+        team.teams.forEach((level) => {
+          const num = parseInt(level.numberOfTeams);
+          if (num > 0) {
+            for (let i = 0; i < num; i++) {
+              const ref = doc(collection($db, "teams"));
               batch.set(ref, {
                 name: "Perth Modern " + teamCounter,
-                tournamentId: team.tournament,
-                institutionId: 2,
+                tournament_id: team.tournamentId,
+                institution_id: team.institutionId,
                 level: level.teamLevel,
                 timeslot: level.timeslot,
-                weekPerference: level.weekPerference,
-                tuesdayAllocation: 0,
-                wednesdayAllocation: 1,
-                hasvenuePreference: team.hasVenuePreference,
-                venuePreference: team.venuePreferences,
+                week_pref: level.weekPreference,
+                allocated_tue: true,
+                allocated_wed: true,
+                has_venue_preference: team.hasVenuePreference,
+                ven_pref: team.venuePreferences,
                 notes: team.notes,
+                division: null,
               });
               teamCounter++;
             }
           }
         });
         await batch.commit();
-        console.log("Team Saved!");
+        console.log("Teams Saved!");
       } catch (error) {
         console.log(error);
       }
     },
 
-    async getTeams() {
-      const { $db } = useNuxtApp();
-      const ref = collection($db, "teams");
-      const snapShot = await getDocs(ref);
-      snapShot.forEach((doc) => {
-        const data = {
-          hasvenuePreference: doc.data().hasvenuePreference,
-          notes: doc.data().notes,
-          teams: doc.data.teams,
-          tournamentId: doc.data().tournamentId,
-          venuePrefernce: doc.data().venuePrefernce,
-        };
-        // this.teams.push(data)
+    // TODO: Update in firebase
+    async editTeam(team) {
+      this.teams.forEach((t) => {
+        if (t.id === team.id) {
+          Object.assign(t, team);
+        }
       });
+    },
+
+    // THIS WORKS PLS DONT TOUCH
+    async getTeamsByID(institutionId) {
+      const { $db } = useNuxtApp();
+      try {
+        const ref = collection($db, "teams");
+        const q = query(ref, where("institution_id", "==", institutionId));
+        const snapShot = await getDocs(q);
+        snapShot.forEach((doc) => {
+          const data = {
+            id: doc.id,
+            name: doc.data().name,
+            tournamentId: doc.data().tournament_id,
+            institutionId: doc.data().institution_id,
+            level: doc.data().level,
+            timeslot: doc.data().timeslot,
+            weekPreference: doc.data().week_pref,
+            tuesdayAllocation: doc.data().allocated_tue,
+            wednesdayAllocation: doc.data().allocated_wed,
+            hasVenuePreference: doc.data().has_venue_preference,
+            venuePreferences: doc.data().ven_pref,
+            notes: doc.data().notes,
+            division: doc.data().division,
+          };
+          this.teams.push(data);
+        });
+      } catch (e) {
+        console.log("NO TEAMS", e);
+      }
     },
   },
 });

@@ -11,7 +11,9 @@ const tournaments = ref(null);
 onMounted(async () => {
   await tournamentStore.getTournaments();
   await institutionStore.getInstitutionByID(userStore.institution);
+
   tournaments.value = tournamentStore.getOpen;
+  formInput.value.institutionId = userStore.institution;
 });
 
 const currentTeam = ref("");
@@ -30,6 +32,8 @@ const teamState = {
 };
 const formInput = ref({
   tournament: null,
+  tournamentId: null,
+  institutionId: null,
   hasVenuePreference: false,
   venuePreferences: [],
   notes: null,
@@ -76,7 +80,8 @@ const saveTeamRegistration = async () => {
 // };
 const getInfo = (data) => {
   console.log("torni info", data);
-  // formInput.value.tournament = data.name;
+  formInput.value.tournament = data.name;
+  formInput.value.tournamentId = data.id;
 };
 </script>
 
