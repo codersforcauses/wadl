@@ -7,6 +7,8 @@
 
 <template>
   <div>
-    <NuxtPage />
+    <client-only>
+      <NuxtPage />
+    </client-only>
   </div>
 </template>
