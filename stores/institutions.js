@@ -159,26 +159,42 @@ export const useInstitutionStore = defineStore("institution", {
       }
     },
     async createInstitution(institution) {
-      console.log(institution);
-      const { $db } = useNuxtApp();
-      const ref = doc(collection($db, "institutions"));
-      console.log(ref);
-      const data = {
-        id: ref.id,
-        name: institution.name,
-        email: institution.email,
-        code: institution.code,
-        number: institution.number,
-        abbreviation: institution.abbreviation,
-      };
-      await setDoc(ref, data)
-        .then(() => {
-          this.userInstitution = { ...data };
-          this.updateProfile(ref);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const userStore = useUserStore();
+      let matchingInstitution = false;
+      this.institutions.forEach((element) => {
+        if (element.name.toLowerCase() === institution.name.toLowerCase()) {
+          matchingInstitution = !matchingInstitution;
+        }
+      });
+      if (matchingInstitution) {
+        this.errorMessage = "An Institution with the same name already exists";
+      } else {
+        this.errorMessage = "";
+        const { $db } = useNuxtApp();
+        const ref = doc(collection($db, "institutions"));
+        const data = {
+          id: ref.id,
+          name: institution.name,
+          email: institution.email,
+          code: institution.code,
+          number: institution.number,
+          abbreviation: institution.abbreviation,
+        };
+        if (userStore.role !== "Team Coordinator") {
+          await setDoc(ref, data).catch((error) => {
+            console.log(error);
+          });
+        } else {
+          await setDoc(ref, data)
+            .then(() => {
+              this.userInstitution = { ...data };
+              this.updateProfile(ref);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      }
     },
     async updateProfile(id) {
       const { $db, $auth } = useNuxtApp();
