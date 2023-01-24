@@ -8,7 +8,7 @@
     <main
       class="mx-auto h-screen pt-5 place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6"
     >
-      <div v-for="tournament in store.getRunning">
+      <div v-for="tournament in store.getRunning" :key="tournament.id">
         <NuxtLink to="/">
           <LevelButton :text="tournament.shortName" />
         </NuxtLink>
@@ -25,6 +25,10 @@
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
 import { useTournamentStore } from "../stores/tournaments";
+import { onMounted } from "vue";
 const store = useTournamentStore();
-store.getTournaments();
+
+onMounted(() => {
+  store.getTournaments();
+});
 </script>

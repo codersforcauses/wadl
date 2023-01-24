@@ -55,7 +55,7 @@ export const useAdminStore = defineStore("admin", {
           email: doc.data().email,
           id: doc.id,
           firstName: doc.data().first_name,
-          lastName: doc.data().surname,
+          lastName: doc.data().last_name,
           institutions: doc.data().institutions,
           requesting: doc.data().requesting,
           role: doc.data().role,
@@ -65,11 +65,12 @@ export const useAdminStore = defineStore("admin", {
         }
       });
       this.filteredUsers = [...this.requestingUsers];
+      console.log(this.filteredUsers);
     },
     async acceptUser(id) {
       const { $db } = useNuxtApp();
       const ref = doc($db, "users", id.id);
-      await updateDoc(ref, { requesting: null, role: id.role })
+      await updateDoc(ref, { requesting: false, role: id.role })
         .then(() => {
           const indexFilter = this.filteredUsers.indexOf(id);
           this.filteredUsers.splice(indexFilter, 1);

@@ -110,7 +110,7 @@ const updateInput = (e) => {
 // Call The User Store
 const registerUser = (e) => {
   console.log(form.value.role);
-  if (form.value.password.length > 8) {
+  if (form.value.password.length >= 8) {
     if (form.value.password === form.value.confirmPassword) {
       if (form.value.role) {
         userStore.registerUser(form.value);
