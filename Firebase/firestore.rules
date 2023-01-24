@@ -72,5 +72,11 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
     
+    match /teams/{teamId} {
+    function isAdmin(){
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
+      }
+    allow create, read, update, delete: if isAdmin();
+    }
   }
 }
