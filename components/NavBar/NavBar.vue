@@ -62,12 +62,14 @@
     </div>
     <!-- Team Coordinator Drop down menu - This only could be its own component.-->
     <div
-      class="bg-gold px-2 z-60 absolute right-0 top-16"
+      class="bg-gold z-60 absolute right-0 top-16 rounded-bl-md"
       :class="visibility ? 'flex' : 'hidden'"
     >
-      <ul class="flex flex-col items-center divide-y divide-zinc-600">
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
+      <ul class="flex flex-col items-center">
+        <div
+          class="w-full text-center hover:bg-light-gold border-b border-black border-opacity-5"
+        >
+          <li class="mx-4 my-3">
             <NuxtLink
               class="text-monsterrat"
               to="/coordinator"
@@ -76,8 +78,10 @@
             >
           </li>
         </div>
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
+        <div
+          class="w-full text-center hover:bg-light-gold border-b border-black border-opacity-5"
+        >
+          <li class="mx-4 my-3">
             <NuxtLink
               class="text-monsterrat"
               to="/coordinator/draw"
@@ -86,8 +90,10 @@
             >
           </li>
         </div>
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
+        <div
+          class="w-full text-center hover:bg-light-gold border-b border-black border-opacity-5"
+        >
+          <li class="mx-4 my-3">
             <NuxtLink
               class="text-monsterrat"
               to="/coordinator/institutions"
@@ -96,8 +102,10 @@
             >
           </li>
         </div>
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
+        <div
+          class="w-full text-center hover:bg-light-gold border-b border-black border-opacity-5"
+        >
+          <li class="mx-4 my-3">
             <NuxtLink
               class="text-monsterrat"
               to="/coordinator/userinformation"
@@ -106,8 +114,10 @@
             >
           </li>
         </div>
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
+        <div
+          class="w-full text-center hover:bg-light-gold border-b border-black border-opacity-5"
+        >
+          <li class="mx-4 my-3">
             <NuxtLink
               class="text-monsterrat"
               to="/coordinator/changepassword"
@@ -116,8 +126,8 @@
             >
           </li>
         </div>
-        <div class="w-full text-center border-b border-zinc-600">
-          <li class="mx-4 my-1">
+        <div class="w-full text-center hover:bg-light-gold">
+          <li class="mx-4 my-3">
             <NuxtLink
               class="text-monsterrat"
               to="/"
