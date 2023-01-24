@@ -20,89 +20,31 @@ const user = useUserStore();
 
 const store = useInstitutionStore();  
 
-//var teams = store.getInstitutions();
-
 const exportTeams = () => {
 
-  const teams = store.institutions;
+  // retreiving teams data from store
+  const teams = store.teams;
 
-  const csvdata = csvmaker(teams);
-  console.log(csvdata);
-  //download(csvdata);
-
+  // converting teams list to csv format
   var teams_list = [];
+  const headings = Object.keys(teams[0]);
+  teams_list.push(headings.join(','));
 
   for (let team of teams) {
   teams_list.push(Object.values(team).join(","));
   }
 
-  console.log(Object.values(teams_list).join("\n"));
-  //console.log(teams_list);
+  teams_list = teams_list.join("\n");
+
+  // downlaoding file as csv
+  // https://www.geeksforgeeks.org/how-to-create-and-download-csv-file-in-javascript/
+  const blob   = new Blob([teams_list], { type: 'text/csv' });
+  const url    = window.URL.createObjectURL(blob)
+  const anchor = document.createElement('a')
+  anchor.setAttribute('href', url)
+  anchor.setAttribute('download', 'WADL Teams List.csv');
+  anchor.click()
 };
-
-
-const download = function (data) {
- 
- // Creating a Blob for having a csv file format
- // and passing the data with type
- const blob = new Blob([data], { type: 'text/csv' });
-
- // Creating an object for downloading url
- const url = window.URL.createObjectURL(blob)
-
- // Creating an anchor(a) tag of HTML
- const a = document.createElement('a')
-
- // Passing the blob downloading url
- a.setAttribute('href', url)
-
- // Setting the anchor tag attribute for downloading
- // and passing the download file name
- a.setAttribute('download', 'download.csv');
-
- // Performing a download with click
- a.click()
-}
-
-const csvmaker = function (data) {
-
- // Empty array for storing the values
- var csvRows = [];
-
- // Headers is basically a keys of an
- // object which is id, name, and
- // profession
- const headers = Object.keys(data[0]);
-
- // As for making csv format, headers
- // must be separated by comma and
- // pushing it into array
- csvRows.push(headers.join(','));
-
- // Pushing Object values into array
- // with comma separation
- for (let team in data){
- csvRows.push(Object.values(team).join(','));
- }
-
- // Returning the array joining with new line
- return csvRows.join('\n')
-}
-
-const get = async function () {
-
- // JavaScript object
- /*
- const data = {
-     id: 1,
-     name: "Geeks",
-     profession: "developer"
- }
- */
-
- const csvdata = csvmaker(data);
- download(csvdata);
-}
 
 </script>
 
