@@ -21,6 +21,7 @@ export const useInstitutionStore = defineStore("institution", {
       filteredInstitutions: [],
       userInstitution: null,
       errorMessage: "",
+      successMessage: "",
       teams: [],
     };
   },
@@ -183,40 +184,85 @@ export const useInstitutionStore = defineStore("institution", {
       this.institutions = [];
     },
     // TODO: figure out best way the do tues/wed allocation
-    // Change to perth modern -> inst name
     async registerTeam(team) {
-      console.log(team);
-      const { $db } = useNuxtApp();
-      let teamCounter = 1;
-      try {
-        const batch = writeBatch($db);
-        team.teams.forEach((level) => {
-          const num = parseInt(level.numberOfTeams);
-          if (num > 0) {
-            for (let i = 0; i < num; i++) {
-              const ref = doc(collection($db, "teams"));
-              batch.set(ref, {
-                name: team.userTeam + " " + teamCounter,
-                tournament_id: team.tournamentId,
-                institution_id: team.institutionId,
-                level: level.teamLevel,
-                timeslot: level.timeslot,
-                week_pref: level.weekPreference,
-                allocated_tue: true,
-                allocated_wed: true,
-                has_venue_preference: team.hasVenuePreference,
-                ven_pref: team.venuePreferences,
-                notes: team.notes,
-                division: null,
-              });
-              teamCounter++;
+      // novice
+      this.errorMessage = "";
+      if (team.teams[0].levelPresent) {
+        const numTeam = parseInt(team.teams[0].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
+        const wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
+        console.log(numTeam, tueAllocation, wedAllocation);
+        if (numTeam !== tueAllocation + wedAllocation) {
+          this.errorMessage =
+            "Please allocate the same number of teams created for NOVICE";
+        } else if (numTeam * 2 < tueAllocation + wedAllocation) {
+          this.errorMessage =
+            "Please reduce the amount of allocations for NOVICE to match number of teams.";
+        }
+      }
+      // junior
+      if (team.teams[1].levelPresent) {
+        const numTeam = parseInt(team.teams[1].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
+        const wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
+        console.log(numTeam, tueAllocation, wedAllocation);
+        if (numTeam !== tueAllocation + wedAllocation) {
+          this.errorMessage =
+            "Please allocate the same number of teams created for JUNIOR";
+        } else if (numTeam * 2 < tueAllocation + wedAllocation) {
+          this.errorMessage =
+            "Please reduce the amount of allocations for JUNIOR to match number of teams.";
+        }
+      }
+      // senior
+      if (team.teams[2].levelPresent) {
+        const numTeam = parseInt(team.teams[2].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
+        const wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
+        console.log(numTeam, tueAllocation, wedAllocation);
+        if (numTeam !== tueAllocation + wedAllocation) {
+          this.errorMessage =
+            "Please allocate the same number of teams created for SENIOR";
+        } else if (numTeam * 2 < tueAllocation + wedAllocation) {
+          this.errorMessage =
+            "Please reduce the amount of allocations for SENIOR to match number of teams.";
+        }
+      }
+      if (!this.errorMessage) {
+        this.errorMessage = "";
+        const { $db } = useNuxtApp();
+        let teamCounter = 1;
+        try {
+          const batch = writeBatch($db);
+          team.teams.forEach((level) => {
+            const num = parseInt(level.numberOfTeams);
+            if (num > 0) {
+              for (let i = 0; i < num; i++) {
+                const ref = doc(collection($db, "teams"));
+                batch.set(ref, {
+                  name: team.userTeam + " " + teamCounter,
+                  tournament_id: team.tournamentId,
+                  institution_id: team.institutionId,
+                  level: level.teamLevel,
+                  timeslot: level.timeslot,
+                  week_pref: level.weekPreference,
+                  allocated_tue: true,
+                  allocated_wed: true,
+                  has_venue_preference: team.hasVenuePreference,
+                  ven_pref: team.venuePreferences,
+                  notes: team.notes,
+                  division: null,
+                });
+                teamCounter++;
+              }
             }
-          }
-        });
-        await batch.commit();
-        console.log("Teams Saved!");
-      } catch (error) {
-        console.log(error);
+          });
+          await batch.commit();
+          console.log("Teams Saved!");
+          this.successMessage = "Teams Saved!";
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
 

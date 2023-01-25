@@ -215,7 +215,12 @@ const getInfo = (data) => {
           placeholder="Enter any notes"
           class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat heading-montserrat"
         ></textarea>
-
+        <p v-if="institutionStore.errorMessage" class="text-danger-red">
+          {{ institutionStore.errorMessage }}
+        </p>
+        <p v-if="institutionStore.successMessage" class="text-light-green">
+          {{ institutionStore.successMessage }}
+        </p>
         <div class="flex justify-evenly items-center mb-2">
           <Button
             class="my-3"
