@@ -13,6 +13,7 @@ import {
   writeBatch,
 } from "firebase/firestore";
 import { useUserStore } from "./auth";
+import { throttledWatch } from "@vueuse/core";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -188,9 +189,9 @@ export const useInstitutionStore = defineStore("institution", {
       // novice
       this.errorMessage = "";
       if (team.teams[0].levelPresent) {
-        const numTeam = parseInt(team.teams[0].numberOfTeams);
-        const tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
-        const wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
+        let numTeam = parseInt(team.teams[0].numberOfTeams);
+        let tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
+        let wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
         if (numTeam !== tueAllocation + wedAllocation) {
           this.errorMessage =
@@ -202,9 +203,9 @@ export const useInstitutionStore = defineStore("institution", {
       }
       // junior
       if (team.teams[1].levelPresent) {
-        const numTeam = parseInt(team.teams[1].numberOfTeams);
-        const tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
-        const wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
+        let numTeam = parseInt(team.teams[1].numberOfTeams);
+        let tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
+        let wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
         if (numTeam !== tueAllocation + wedAllocation) {
           this.errorMessage =
@@ -212,13 +213,16 @@ export const useInstitutionStore = defineStore("institution", {
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please reduce the amount of allocations for JUNIOR to match number of teams.";
+        } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
+          this.errorMessage =
+            "Too many teams allocated to a single day. Please either raise the total number of teams or reduce the number on one day.";
         }
       }
       // senior
       if (team.teams[2].levelPresent) {
-        const numTeam = parseInt(team.teams[2].numberOfTeams);
-        const tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
-        const wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
+        let numTeam = parseInt(team.teams[2].numberOfTeams);
+        let tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
+        let wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
         if (numTeam !== tueAllocation + wedAllocation) {
           this.errorMessage =
@@ -235,9 +239,15 @@ export const useInstitutionStore = defineStore("institution", {
         try {
           const batch = writeBatch($db);
           team.teams.forEach((level) => {
-            const num = parseInt(level.numberOfTeams);
+            let num = parseInt(team.teams[1].numberOfTeams);
+            let tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
+            let wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
+            let overlap = tueAllocation + wedAllocation - numTeam;
+            let tueOnly = tueAllocation - overlap;
+            let wedOnly = wedAllocation - overlap;
+
             if (num > 0) {
-              for (let i = 0; i < num; i++) {
+              for (let i = 0; i < tueOnly; i++) {
                 const ref = doc(collection($db, "teams"));
                 batch.set(ref, {
                   name: team.userTeam + " " + teamCounter,
@@ -247,7 +257,43 @@ export const useInstitutionStore = defineStore("institution", {
                   timeslot: level.timeslot,
                   week_pref: level.weekPreference,
                   allocated_tue: true,
+                  allocated_wed: false,
+                  has_venue_preference: team.hasVenuePreference,
+                  ven_pref: team.venuePreferences,
+                  notes: team.notes,
+                  division: null,
+                });
+                teamCounter++;
+              }
+              for (let i = 0; i < wedOnly; i++) {
+                const ref = doc(collection($db, "teams"));
+                batch.set(ref, {
+                  name: team.userTeam + " " + teamCounter,
+                  tournament_id: team.tournamentId,
+                  institution_id: team.institutionId,
+                  level: level.teamLevel,
+                  timeslot: level.timeslot,
+                  week_pref: level.weekPreference,
+                  allocated_tue: false,
                   allocated_wed: true,
+                  has_venue_preference: team.hasVenuePreference,
+                  ven_pref: team.venuePreferences,
+                  notes: team.notes,
+                  division: null,
+                });
+                teamCounter++;
+              }
+              for (let i = 0; i < overlap; i++) {
+                const ref = doc(collection($db, "teams"));
+                batch.set(ref, {
+                  name: team.userTeam + " " + teamCounter,
+                  tournament_id: team.tournamentId,
+                  institution_id: team.institutionId,
+                  level: level.teamLevel,
+                  timeslot: level.timeslot,
+                  week_pref: level.weekPreference,
+                  allocated_tue: i % 2 == 0,
+                  allocated_wed: i % 2 == 1,
                   has_venue_preference: team.hasVenuePreference,
                   ven_pref: team.venuePreferences,
                   notes: team.notes,
