@@ -244,15 +244,9 @@ export const useInstitutionStore = defineStore("institution", {
             let overlap = tueAllocation + wedAllocation - num;
             let tueOnly = tueAllocation - overlap;
             let wedOnly = wedAllocation - overlap;
-            // number of people to fill into tues till both days are equal.
-            let equalise = tueOnly - wedOnly; // 5 7 (10) over =2 to = 3 wo=5 equ=
-            if (equalise > overlap) equalise = overlap;
-            if (equalise < overlap * -1) equalise = overlap * -1;
-            // can go on either day.
-            let extra = overlap - Math.abs(equalise);
 
             if (num > 0) {
-              for (let i = 0; i < tueOnly; i++) {
+              for (let i = 0; i < num; i++) {
                 const ref = doc(collection($db, "teams"));
                 batch.set(ref, {
                   name: team.userTeam + " " + teamCounter,
@@ -261,62 +255,8 @@ export const useInstitutionStore = defineStore("institution", {
                   level: level.teamLevel,
                   timeslot: level.timeslot,
                   week_pref: level.weekPreference,
-                  allocated_tue: true,
-                  allocated_wed: false,
-                  has_venue_preference: team.hasVenuePreference,
-                  ven_pref: team.venuePreferences,
-                  notes: team.notes,
-                  division: null,
-                });
-                teamCounter++;
-              }
-              for (let i = 0; i < wedOnly; i++) {
-                const ref = doc(collection($db, "teams"));
-                batch.set(ref, {
-                  name: team.userTeam + " " + teamCounter,
-                  tournament_id: team.tournamentId,
-                  institution_id: team.institutionId,
-                  level: level.teamLevel,
-                  timeslot: level.timeslot,
-                  week_pref: level.weekPreference,
-                  allocated_tue: false,
-                  allocated_wed: true,
-                  has_venue_preference: team.hasVenuePreference,
-                  ven_pref: team.venuePreferences,
-                  notes: team.notes,
-                  division: null,
-                });
-                teamCounter++;
-              }
-              for (let i = 0; i < Math.abs(equalise); i++) {
-                const ref = doc(collection($db, "teams"));
-                batch.set(ref, {
-                  name: team.userTeam + " " + teamCounter,
-                  tournament_id: team.tournamentId,
-                  institution_id: team.institutionId,
-                  level: level.teamLevel,
-                  timeslot: level.timeslot,
-                  week_pref: level.weekPreference,
-                  allocated_tue: equalise < 0,
-                  allocated_wed: equalise >= 0,
-                  has_venue_preference: team.hasVenuePreference,
-                  ven_pref: team.venuePreferences,
-                  notes: team.notes,
-                  division: null,
-                });
-                teamCounter++;
-              }
-              for (let i = 0; i < extra; i++) {
-                const ref = doc(collection($db, "teams"));
-                batch.set(ref, {
-                  name: team.userTeam + " " + teamCounter,
-                  tournament_id: team.tournamentId,
-                  institution_id: team.institutionId,
-                  level: level.teamLevel,
-                  timeslot: level.timeslot,
-                  week_pref: level.weekPreference,
-                  allocated_tue: i % 2 == 0,
-                  allocated_wed: i % 2 == 1,
+                  allocated_tue: i < overlap + tueOnly,
+                  allocated_wed: i < overlap || i >= overlap + tueOnly,
                   has_venue_preference: team.hasVenuePreference,
                   ven_pref: team.venuePreferences,
                   notes: team.notes,
