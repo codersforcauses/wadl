@@ -163,7 +163,7 @@ const updateTeam = () => {
   </Modal>
   <section>
     <Header title-text="Teams" />
-    <div class="flex flex-row justify-end p-5">
+    <div v-if="userStore.institution" class="flex flex-row justify-end p-5">
       <NuxtLink to="/coordinator/team-registration">
         <Button
           button-text="Team Registration"

@@ -78,6 +78,31 @@
             >
           </li>
         </div>
+        <client-only>
+          <div
+            v-if="userStore.institution"
+            class="w-full text-center hover:bg-light-gold border-b border-black border-opacity-5"
+          >
+            <li class="mx-4 my-3">
+              <NuxtLink
+                class="text-monsterrat"
+                to="/coordinator/team-registration"
+                @click="visibility = false"
+                >Team Registration</NuxtLink
+              >
+            </li>
+          </div>
+          <div
+            v-else-if="!userStore.institution"
+            class="w-full text-center hover:bg-light-gold border-b border-black border-opacity-5 text-zinc-500"
+          >
+            <li class="mx-4 my-3">
+              <NuxtLink class="text-monsterrat" @click="visibility = false"
+                >Team Registration</NuxtLink
+              >
+            </li>
+          </div>
+        </client-only>
         <div
           class="w-full text-center hover:bg-light-gold border-b border-black border-opacity-5"
         >
@@ -154,4 +179,7 @@ const userStore = useUserStore();
 const { firstName, role } = storeToRefs(userStore);
 
 const visibility = ref(false);
+if (userStore.institution) {
+  console.log("hello");
+}
 </script>
