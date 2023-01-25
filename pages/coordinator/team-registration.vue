@@ -218,7 +218,7 @@ const getInfo = (data) => {
         <p v-if="institutionStore.errorMessage" class="text-danger-red">
           {{ institutionStore.errorMessage }}
         </p>
-        <p v-if="institutionStore.successMessage" class="text-light-green">
+        <p v-if="institutionStore.successMessage" class="text-black">
           {{ institutionStore.successMessage }}
         </p>
         <div class="flex justify-evenly items-center mb-2">
