@@ -7,7 +7,7 @@ definePageMeta({
 });
 
 const userStore = useUserStore();
-const isAdmin = userStore.role === 'Admin'
+const isAdmin = userStore.role === "Admin";
 </script>
 
 <template>

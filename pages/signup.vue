@@ -81,9 +81,11 @@ import { ref, onBeforeMount } from "vue";
 
 const userStore = useUserStore();
 
-onBeforeMount(() => {
-  userStore.errorCode = null;
-});
+if (userStore.auth) {
+  navigateTo("/");
+} else {
+  userStore.clearStore();
+}
 
 const form = ref({
   firstName: "",
@@ -100,7 +102,7 @@ const isRoleValid = ref(true);
 const errorMessage = ref("");
 const errorMessage2 = ref("");
 
-const updateInput = (e) => {
+const updateInput = () => {
   errorMessage.value = "";
   errorMessage2.value = "";
   isValid.value = true;
@@ -108,7 +110,7 @@ const updateInput = (e) => {
 };
 
 // Call The User Store
-const registerUser = (e) => {
+const registerUser = async () => {
   if (form.value.password.length < 8) {
     isValid.value = false;
     errorMessage.value = "The password has to be at least 8 characters";
@@ -127,6 +129,12 @@ const registerUser = (e) => {
     return;
   }
 
-  userStore.registerUser({...form.value});
+  await userStore.registerUser({ ...form.value });
+
+  if (!userStore.errorCode) {
+    await userStore.clearStore();
+    navigateTo("/");
+    window.alert("Account created, please wait for admin approval.");
+  }
 };
 </script>

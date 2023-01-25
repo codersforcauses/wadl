@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { useNuxtApp, useState } from "#imports";
+import { useNuxtApp } from "#imports";
 
 const cleanUpError = (error) => {
   switch (error.code) {
@@ -27,15 +27,13 @@ const cleanUpError = (error) => {
       }
   }
 
-  // TODO: Don't expose detailed error state to client
-  return error;
-  /* return 'Encountered an error'; */
+  return 'Encountered an error';
 };
 
 export const useUserStore = defineStore("user", {
   state() {
     return {
-      id: null,
+      auth: null,
       firstName: null,
       lastName: null,
       phoneNumber: null,
@@ -59,7 +57,6 @@ export const useUserStore = defineStore("user", {
   actions: {
     // to view how the data and other stuff happens inside these functions please read the README in the Firebase folder
     async registerUser(user) {
-      console.log("registerUser", user);
       try {
         const { $db, $auth } = useNuxtApp();
         const authUser = await createUserWithEmailAndPassword(
@@ -68,32 +65,20 @@ export const useUserStore = defineStore("user", {
           user.password
         );
 
-        const docRef = doc($db, "users", authUser.user.uid);
-        console.log("docRef", docRef.id);
-
-        const data = {
-          id: authUser.user.uid,
+        await setDoc(doc($db, "users", authUser.user.uid), {
           role: user.role,
           requesting: true,
           firstName: user.firstName,
           lastName: user.lastName,
           phoneNumber: user.phoneNumber,
-          password: user.password,
           email: user.email,
-        };
-
-        console.log("data", data);
-
-        await setDoc(docRef, data);
-
-        console.log("NEW USER", docRef.id);
+        });
       } catch (err) {
         this.errorCode = cleanUpError(err);
       }
     },
 
     async loginUser(user) {
-      console.log("loginUser", user);
       try {
         const { $auth } = useNuxtApp();
         const authResult = await signInWithEmailAndPassword(
@@ -108,7 +93,6 @@ export const useUserStore = defineStore("user", {
     },
 
     async setUser(user) {
-      console.log("SET USER", user);
       if (user !== null) {
         try {
           const { $db } = useNuxtApp();
@@ -120,15 +104,14 @@ export const useUserStore = defineStore("user", {
           }
 
           const userInfo = userDoc.data();
-          this.id = userInfo.id;
+          this.auth = user;
           this.firstName = userInfo.firstName;
           this.lastName = userInfo.lastName;
           this.phoneNumber = userInfo.phoneNumber;
           this.email = userInfo.email;
           this.role = userInfo.role;
           this.requesting = userInfo.requesting;
-
-          /* useState('authUser', user); */
+          this.errorCode = null;
         } catch (error) {
           this.errorCode = cleanUpError(err);
         }
@@ -139,7 +122,7 @@ export const useUserStore = defineStore("user", {
       try {
         const { $auth } = useNuxtApp();
         await signOut($auth);
-        this.id = null;
+        this.auth = null;
         this.firstName = null;
         this.lastName = null;
         this.email = null;

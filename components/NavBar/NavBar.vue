@@ -20,7 +20,7 @@
             />
           </NuxtLink>
         </div>
-        <div v-if="!id" class="mr-2">
+        <div v-if="!auth" class="mr-2">
           <NuxtLink to="/signup">
             <Button button-text="Signup" size="small" class="shadow-none" />
           </NuxtLink>
@@ -54,5 +54,5 @@ import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
 // Will be updated when user store changes
-const { firstName, id, role } = storeToRefs(userStore);
+const { auth, firstName, role } = storeToRefs(userStore);
 </script>

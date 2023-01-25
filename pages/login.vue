@@ -5,6 +5,12 @@ import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user";
 
 const userStore = useUserStore();
+if (userStore.auth) {
+  navigateTo("/");
+} else {
+  userStore.clearStore();
+}
+
 const { role } = storeToRefs(userStore);
 const form = ref({
   email: "",
@@ -12,7 +18,7 @@ const form = ref({
 });
 
 const handleLogin = async () => {
-  await userStore.loginUser({...form.value});
+  await userStore.loginUser({ ...form.value });
 };
 
 // Wait for the role to be updated before redirecting
