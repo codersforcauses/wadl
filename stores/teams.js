@@ -1,15 +1,6 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import {
-  collection,
-  doc,
-  updateDoc,
-  getCountFromServer,
-  getDocs,
-  query,
-  where,
-  setDoc,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 export const useTeamStore = defineStore("team", {
   state: () => {
@@ -25,7 +16,7 @@ export const useTeamStore = defineStore("team", {
       const querySnapshot = await getDocs(ref);
       querySnapshot.forEach((doc) => {
         const team = {
-          id: doc.id,
+          // id: doc.id,
           name: doc.data().name,
           level: doc.data().level,
           division: doc.data().division,
