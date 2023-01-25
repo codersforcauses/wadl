@@ -18,6 +18,7 @@ export const useUserStore = defineStore("user", {
       role: null,
       requesting: null,
       errorCode: "",
+      institution: null,
     };
   },
   persist: {
@@ -114,6 +115,7 @@ export const useUserStore = defineStore("user", {
             this.email = doc.data().email;
             this.role = doc.data().role;
             this.requesting = doc.data().requesting;
+            this.institution = doc.data().institution;
           })
           .catch((error) => {
             this.cleanUpError(error);

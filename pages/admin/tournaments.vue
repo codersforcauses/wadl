@@ -144,7 +144,7 @@ const updateSelectedLevels = (chips) => {
 
   chips.forEach((level) => {
     if (!getLevels().includes(level)) {
-      form.value.levels.push({ level: level });
+      form.value.levels.push({ level });
     }
   });
 };
