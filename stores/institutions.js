@@ -192,7 +192,12 @@ export const useInstitutionStore = defineStore("institution", {
         const tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
         const wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
-        if (numTeam > tueAllocation + wedAllocation) {
+        if (tueAllocation < 0 || wedAllocation < 0) {
+          this.errorMessage =
+            "Please allocate a positive number of teams created for NOVICE";
+        } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
+          this.errorMessage = "Too many teams allocated to a single day.";
+        } else if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please allocate the same number of teams created for NOVICE";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
@@ -206,14 +211,17 @@ export const useInstitutionStore = defineStore("institution", {
         const tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
         const wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
-        if (numTeam > tueAllocation + wedAllocation) {
+        if (tueAllocation < 0 || wedAllocation < 0) {
+          this.errorMessage =
+            "Please allocate a positive number of teams created for NOVICE";
+        } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
+          this.errorMessage = "Too many teams allocated to a single day.";
+        } else if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please allocate the same number of teams created for JUNIOR";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please reduce the amount of allocations for JUNIOR to match number of teams.";
-        } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
-          this.errorMessage = "Too many teams allocated to a single day.";
         }
       }
       // senior
@@ -222,7 +230,12 @@ export const useInstitutionStore = defineStore("institution", {
         const tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
         const wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
-        if (numTeam > tueAllocation + wedAllocation) {
+        if (tueAllocation < 0 || wedAllocation < 0) {
+          this.errorMessage =
+            "Please allocate a positive number of teams created for NOVICE";
+        } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
+          this.errorMessage = "Too many teams allocated to a single day.";
+        } else if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please allocate the same number of teams created for SENIOR";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
@@ -242,7 +255,7 @@ export const useInstitutionStore = defineStore("institution", {
             const wedAllocation = parseInt(level.wednesdayAllocation);
             const overlap = tueAllocation + wedAllocation - num;
             const tueOnly = tueAllocation - overlap;
-            const wedOnly = wedAllocation - overlap;
+            // wedonly is figured out in function
 
             if (num > 0) {
               for (let i = 0; i < num; i++) {
