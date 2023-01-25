@@ -238,9 +238,9 @@ export const useInstitutionStore = defineStore("institution", {
         try {
           const batch = writeBatch($db);
           team.teams.forEach((level) => {
-            let num = parseInt(team.teams[1].numberOfTeams);
-            let tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
-            let wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
+            let num = parseInt(level.numberOfTeams);
+            let tueAllocation = parseInt(level.tuesdayAllocation);
+            let wedAllocation = parseInt(level.wednesdayAllocation);
             let overlap = tueAllocation + wedAllocation - num;
             let tueOnly = tueAllocation - overlap;
             let wedOnly = wedAllocation - overlap;
