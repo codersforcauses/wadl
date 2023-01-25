@@ -45,7 +45,6 @@ export const useInstitutionStore = defineStore("institution", {
       this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
-      console.log(id);
       const { $db } = useNuxtApp();
       const ref = doc($db, "institutions", id);
       await getDoc(ref).then((doc) => {
@@ -57,7 +56,6 @@ export const useInstitutionStore = defineStore("institution", {
           code: doc.data().code,
           abbreviation: doc.data().abbreviation,
         };
-        console.log("USER INST", this.userInstitution);
       });
     },
     async checkInstitution(institution) {
@@ -109,7 +107,6 @@ export const useInstitutionStore = defineStore("institution", {
       }
     },
     async updateInstitution(element, institution) {
-      console.log(institution);
       const { $db } = useNuxtApp();
       if (
         element.number !== institution.number ||
@@ -191,7 +188,6 @@ export const useInstitutionStore = defineStore("institution", {
         const numTeam = parseInt(team.teams[0].numberOfTeams);
         const tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
         const wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
-        console.log(numTeam, tueAllocation, wedAllocation);
         if (tueAllocation < 0 || wedAllocation < 0) {
           this.errorMessage =
             "Please allocate a positive number of teams created for NOVICE";
@@ -210,7 +206,6 @@ export const useInstitutionStore = defineStore("institution", {
         const numTeam = parseInt(team.teams[1].numberOfTeams);
         const tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
         const wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
-        console.log(numTeam, tueAllocation, wedAllocation);
         if (tueAllocation < 0 || wedAllocation < 0) {
           this.errorMessage =
             "Please allocate a positive number of teams created for NOVICE";
@@ -229,7 +224,6 @@ export const useInstitutionStore = defineStore("institution", {
         const numTeam = parseInt(team.teams[2].numberOfTeams);
         const tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
         const wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
-        console.log(numTeam, tueAllocation, wedAllocation);
         if (tueAllocation < 0 || wedAllocation < 0) {
           this.errorMessage =
             "Please allocate a positive number of teams created for NOVICE";
@@ -279,7 +273,6 @@ export const useInstitutionStore = defineStore("institution", {
             }
           });
           await batch.commit();
-          console.log("Teams Saved!");
           this.successMessage = "Teams Saved!";
         } catch (error) {
           console.log(error);
@@ -289,7 +282,6 @@ export const useInstitutionStore = defineStore("institution", {
 
     async editTeam(team) {
       const { $db } = useNuxtApp();
-      console.log(team);
       const ref = doc($db, "teams", team.id);
       await updateDoc(ref, {
         allocated_tue: team.tuesdayAllocation,
