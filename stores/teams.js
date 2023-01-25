@@ -34,7 +34,7 @@ export const useTeamStore = defineStore("team", {
       // const { $db } = useNuxtApp();
     },
     async createTeam(team) {
-      //const { $db } = useNuxtApp();
+      // const { $db } = useNuxtApp();
     },
   },
 });
