@@ -207,7 +207,7 @@ export const useInstitutionStore = defineStore("institution", {
         let tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
         let wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
-        if (numTeam !== tueAllocation + wedAllocation) {
+        if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please allocate the same number of teams created for JUNIOR";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
@@ -223,7 +223,7 @@ export const useInstitutionStore = defineStore("institution", {
         let tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
         let wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
-        if (numTeam !== tueAllocation + wedAllocation) {
+        if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please allocate the same number of teams created for SENIOR";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
@@ -244,6 +244,11 @@ export const useInstitutionStore = defineStore("institution", {
             let overlap = tueAllocation + wedAllocation - num;
             let tueOnly = tueAllocation - overlap;
             let wedOnly = wedAllocation - overlap;
+            // number of people to fill into tues till both days are equal.
+            let equalise = tueOnly - wedOnly; // 5 7 (10) over =2 to = 3 wo=5 equ=
+            if (equalise > overlap) equalise = overlap;
+            // can go on either day.
+            let extra = overlap - equalise;
 
             if (num > 0) {
               for (let i = 0; i < tueOnly; i++) {
@@ -282,7 +287,25 @@ export const useInstitutionStore = defineStore("institution", {
                 });
                 teamCounter++;
               }
-              for (let i = 0; i < overlap; i++) {
+              for (let i = 0; i < Math.abs(equalise); i++) {
+                const ref = doc(collection($db, "teams"));
+                batch.set(ref, {
+                  name: team.userTeam + " " + teamCounter,
+                  tournament_id: team.tournamentId,
+                  institution_id: team.institutionId,
+                  level: level.teamLevel,
+                  timeslot: level.timeslot,
+                  week_pref: level.weekPreference,
+                  allocated_tue: equalise < 0,
+                  allocated_wed: equalise >= 0,
+                  has_venue_preference: team.hasVenuePreference,
+                  ven_pref: team.venuePreferences,
+                  notes: team.notes,
+                  division: null,
+                });
+                teamCounter++;
+              }
+              for (let i = 0; i < extra; i++) {
                 const ref = doc(collection($db, "teams"));
                 batch.set(ref, {
                   name: team.userTeam + " " + teamCounter,
