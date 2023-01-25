@@ -22,16 +22,14 @@
         </div>
         <div v-if="role === 'Team Coordinator'">
           <div v-if="!visibility">
-            <Bars3Icon
-              class="w-10 h-10 ml-2 mr-6"
-              @click="visibility = !visibility"
-            />
+            <button @click="visibility = !visibility">
+              <Bars3Icon class="w-10 h-10 ml-2 mr-6" />
+            </button>
           </div>
           <div v-else>
-            <XMarkIcon
-              class="w-10 h-10 ml-2 mr-6"
-              @click="visibility = !visibility"
-            />
+            <button @click="visibility = !visibility">
+              <XMarkIcon class="w-10 h-10 ml-2 mr-6" />
+            </button>
           </div>
         </div>
         <div v-else>
@@ -103,7 +101,4 @@ const userStore = useUserStore();
 const { firstName, role } = storeToRefs(userStore);
 
 const visibility = ref(false);
-if (userStore.institution) {
-  console.log("hello");
-}
 </script>
