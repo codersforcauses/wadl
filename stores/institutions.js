@@ -13,7 +13,6 @@ import {
   writeBatch,
 } from "firebase/firestore";
 import { useUserStore } from "./auth";
-import { throttledWatch } from "@vueuse/core";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -189,9 +188,9 @@ export const useInstitutionStore = defineStore("institution", {
       // novice
       this.errorMessage = "";
       if (team.teams[0].levelPresent) {
-        let numTeam = parseInt(team.teams[0].numberOfTeams);
-        let tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
-        let wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
+        const numTeam = parseInt(team.teams[0].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
+        const wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
         if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
@@ -203,9 +202,9 @@ export const useInstitutionStore = defineStore("institution", {
       }
       // junior
       if (team.teams[1].levelPresent) {
-        let numTeam = parseInt(team.teams[1].numberOfTeams);
-        let tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
-        let wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
+        const numTeam = parseInt(team.teams[1].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
+        const wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
         if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
@@ -219,9 +218,9 @@ export const useInstitutionStore = defineStore("institution", {
       }
       // senior
       if (team.teams[2].levelPresent) {
-        let numTeam = parseInt(team.teams[2].numberOfTeams);
-        let tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
-        let wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
+        const numTeam = parseInt(team.teams[2].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
+        const wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
         if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
@@ -238,12 +237,12 @@ export const useInstitutionStore = defineStore("institution", {
         try {
           const batch = writeBatch($db);
           team.teams.forEach((level) => {
-            let num = parseInt(level.numberOfTeams);
-            let tueAllocation = parseInt(level.tuesdayAllocation);
-            let wedAllocation = parseInt(level.wednesdayAllocation);
-            let overlap = tueAllocation + wedAllocation - num;
-            let tueOnly = tueAllocation - overlap;
-            let wedOnly = wedAllocation - overlap;
+            const num = parseInt(level.numberOfTeams);
+            const tueAllocation = parseInt(level.tuesdayAllocation);
+            const wedAllocation = parseInt(level.wednesdayAllocation);
+            const overlap = tueAllocation + wedAllocation - num;
+            const tueOnly = tueAllocation - overlap;
+            const wedOnly = wedAllocation - overlap;
 
             if (num > 0) {
               for (let i = 0; i < num; i++) {
