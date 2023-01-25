@@ -241,7 +241,7 @@ export const useInstitutionStore = defineStore("institution", {
             let num = parseInt(team.teams[1].numberOfTeams);
             let tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
             let wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
-            let overlap = tueAllocation + wedAllocation - numTeam;
+            let overlap = tueAllocation + wedAllocation - num;
             let tueOnly = tueAllocation - overlap;
             let wedOnly = wedAllocation - overlap;
 
