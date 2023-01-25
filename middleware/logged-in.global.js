@@ -6,12 +6,16 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
   // If you are seeing this further down the line, refactor this funciton
   // to run server side for better security.
 
-  const publicRoutes = ["/", "/signup", "/login"];
-  if (publicRoutes.includes(to.path)) return;
-
   if (process.client) {
     const userStore = useUserStore();
-    if (userStore.auth === null || userStore.requesting) {
+    if (userStore.requesting) {
+      userStore.clearStore();
+    }
+
+    const publicRoutes = ["/", "/signup", "/login"];
+    if (publicRoutes.includes(to.path)) return;
+
+    if (userStore.auth === null) {
       return navigateTo({ path: "/login" });
     }
   }

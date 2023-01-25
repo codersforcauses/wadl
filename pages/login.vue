@@ -17,8 +17,8 @@ const form = ref({
   password: "",
 });
 
-const handleLogin = async () => {
-  await userStore.loginUser({ ...form.value });
+const handleLogin = () => {
+  userStore.loginUser(form.value);
 };
 
 // Wait for the role to be updated before redirecting

@@ -78,15 +78,14 @@ export const useUserStore = defineStore("user", {
       }
     },
 
-    async loginUser(user) {
+    loginUser(user) {
       try {
         const { $auth } = useNuxtApp();
-        const authResult = await signInWithEmailAndPassword(
+        signInWithEmailAndPassword(
           $auth,
           user.email,
           user.password
         );
-        await this.setUser(authResult.user);
       } catch (err) {
         this.errorCode = cleanUpError(err);
       }
