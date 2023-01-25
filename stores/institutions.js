@@ -13,7 +13,6 @@ import {
   writeBatch,
 } from "firebase/firestore";
 import { useUserStore } from "./auth";
-import { throttledWatch } from "@vueuse/core";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -189,9 +188,9 @@ export const useInstitutionStore = defineStore("institution", {
       // novice
       this.errorMessage = "";
       if (team.teams[0].levelPresent) {
-        let numTeam = parseInt(team.teams[0].numberOfTeams);
-        let tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
-        let wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
+        const numTeam = parseInt(team.teams[0].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
+        const wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
         if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
@@ -203,9 +202,9 @@ export const useInstitutionStore = defineStore("institution", {
       }
       // junior
       if (team.teams[1].levelPresent) {
-        let numTeam = parseInt(team.teams[1].numberOfTeams);
-        let tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
-        let wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
+        const numTeam = parseInt(team.teams[1].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
+        const wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
         if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
@@ -219,9 +218,9 @@ export const useInstitutionStore = defineStore("institution", {
       }
       // senior
       if (team.teams[2].levelPresent) {
-        let numTeam = parseInt(team.teams[2].numberOfTeams);
-        let tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
-        let wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
+        const numTeam = parseInt(team.teams[2].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
+        const wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
         console.log(numTeam, tueAllocation, wedAllocation);
         if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
@@ -238,18 +237,18 @@ export const useInstitutionStore = defineStore("institution", {
         try {
           const batch = writeBatch($db);
           team.teams.forEach((level) => {
-            let num = parseInt(level.numberOfTeams);
-            let tueAllocation = parseInt(level.tuesdayAllocation);
-            let wedAllocation = parseInt(level.wednesdayAllocation);
-            let overlap = tueAllocation + wedAllocation - num;
-            let tueOnly = tueAllocation - overlap;
-            let wedOnly = wedAllocation - overlap;
+            const num = parseInt(level.numberOfTeams);
+            const tueAllocation = parseInt(level.tuesdayAllocation);
+            const wedAllocation = parseInt(level.wednesdayAllocation);
+            const overlap = tueAllocation + wedAllocation - num;
+            const tueOnly = tueAllocation - overlap;
+            const wedOnly = wedAllocation - overlap;
             // number of people to fill into tues till both days are equal.
             let equalise = tueOnly - wedOnly; // 5 7 (10) over =2 to = 3 wo=5 equ=
             if (equalise > overlap) equalise = overlap;
             if (equalise < overlap * -1) equalise = overlap * -1;
             // can go on either day.
-            let extra = overlap - Math.abs(equalise);
+            const extra = overlap - Math.abs(equalise);
 
             if (num > 0) {
               for (let i = 0; i < tueOnly; i++) {
@@ -315,8 +314,8 @@ export const useInstitutionStore = defineStore("institution", {
                   level: level.teamLevel,
                   timeslot: level.timeslot,
                   week_pref: level.weekPreference,
-                  allocated_tue: i % 2 == 0,
-                  allocated_wed: i % 2 == 1,
+                  allocated_tue: i % 2 === 0,
+                  allocated_wed: i % 2 === 1,
                   has_venue_preference: team.hasVenuePreference,
                   ven_pref: team.venuePreferences,
                   notes: team.notes,
