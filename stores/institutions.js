@@ -247,8 +247,9 @@ export const useInstitutionStore = defineStore("institution", {
             // number of people to fill into tues till both days are equal.
             let equalise = tueOnly - wedOnly; // 5 7 (10) over =2 to = 3 wo=5 equ=
             if (equalise > overlap) equalise = overlap;
+            if (equalise < overlap * -1) equalise = overlap * -1;
             // can go on either day.
-            let extra = overlap - equalise;
+            let extra = Math.abs(overlap - equalise);
 
             if (num > 0) {
               for (let i = 0; i < tueOnly; i++) {
