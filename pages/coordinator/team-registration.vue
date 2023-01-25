@@ -16,7 +16,6 @@ onMounted(async () => {
   formInput.value.institutionId = userStore.institution;
 });
 
-const currentTeam = ref("");
 const venuePreferenceLabels = ref([
   "1st Preference",
   "2nd Preference",
@@ -37,7 +36,9 @@ const formInput = ref({
   hasVenuePreference: false,
   venuePreferences: [],
   notes: null,
+  userTeam: null,
   teams: [
+    // TODO double check on the timeslot allocations
     { teamLevel: "Novice", timeslot: "5.15pm", ...teamState },
     { teamLevel: "Junior", timeslot: "6.15pm", ...teamState },
     { teamLevel: "Senior", timeslot: "7.15pm", ...teamState },
@@ -61,6 +62,7 @@ const saveTeamRegistration = async () => {
   // TODO:
   // Perform validation
   // POST to backend
+  formInput.value.userTeam = institutionStore.userInstitution.name;
   institutionStore.registerTeam(formInput.value);
   // resetForm();
 };

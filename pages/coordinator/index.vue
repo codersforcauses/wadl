@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useUserStore } from "../../stores/auth";
 const store = useInstitutionStore();
@@ -55,7 +55,7 @@ const modalVisibility = ref(false);
 
 onMounted(async () => {
   console.log(store.teams);
-  if (store.teams.length == 0) {
+  if (store.teams.length === 0) {
     console.log("INST", userStore.institution);
     await store.getTeamsByID(userStore.institution);
     console.table(store.teams);

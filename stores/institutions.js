@@ -185,6 +185,7 @@ export const useInstitutionStore = defineStore("institution", {
     // TODO: figure out best way the do tues/wed allocation
     // Change to perth modern -> inst name
     async registerTeam(team) {
+      console.log(team);
       const { $db } = useNuxtApp();
       let teamCounter = 1;
       try {
@@ -195,7 +196,7 @@ export const useInstitutionStore = defineStore("institution", {
             for (let i = 0; i < num; i++) {
               const ref = doc(collection($db, "teams"));
               batch.set(ref, {
-                name: "Perth Modern " + teamCounter,
+                name: team.userTeam + " " + teamCounter,
                 tournament_id: team.tournamentId,
                 institution_id: team.institutionId,
                 level: level.teamLevel,
