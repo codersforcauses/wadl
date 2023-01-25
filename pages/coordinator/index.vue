@@ -163,6 +163,15 @@ const updateTeam = () => {
   </Modal>
   <section>
     <Header title-text="Teams" />
+    <div class="flex flex-row justify-end p-5">
+      <NuxtLink to="/coordinator/team-registration">
+        <Button
+          button-text="Team Registration"
+          button-color="bg-gold"
+          class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
+        />
+      </NuxtLink>
+    </div>
     <!-- <SearchBar /> -->
     <Table
       :headers="headers"
@@ -170,16 +179,5 @@ const updateTeam = () => {
       class="mt-5"
       @edit="handleEdit"
     />
-    <div class="fixed inset-x-0 bottom-0 w-full">
-      <div class="flex flex-row gap-4 m-5 justify-left">
-        <NuxtLink to="/coordinator/team-registration">
-          <Button
-            button-text="Team Registration"
-            button-color="bg-gold"
-            class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
-          />
-        </NuxtLink>
-      </div>
-    </div>
   </section>
 </template>
