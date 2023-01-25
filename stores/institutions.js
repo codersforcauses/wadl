@@ -220,13 +220,11 @@ export const useInstitutionStore = defineStore("institution", {
       }
     },
 
-    // TODO: Update in firebase
     async editTeam(team) {
       const { $db } = useNuxtApp();
       console.log(team);
       const ref = doc($db, "teams", team.id);
       await updateDoc(ref, {
-        // ! change the structure around in the emulator
         allocated_tue: team.tuesdayAllocation,
         allocated_wed: team.wednesdayAllocation,
         division: team.division,
@@ -240,11 +238,11 @@ export const useInstitutionStore = defineStore("institution", {
         ven_pref: team.venuePreferences,
         week_pref: team.weekPreference,
       });
-      // this.teams.forEach((t) => {
-      //   if (t.id === team.id) {
-      //     Object.assign(t, team);
-      //   }
-      // });
+      this.teams.forEach((t) => {
+        if (t.id === team.id) {
+          Object.assign(t, team);
+        }
+      });
     },
 
     // THIS WORKS PLS DONT TOUCH
