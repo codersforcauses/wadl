@@ -249,7 +249,7 @@ export const useInstitutionStore = defineStore("institution", {
             if (equalise > overlap) equalise = overlap;
             if (equalise < overlap * -1) equalise = overlap * -1;
             // can go on either day.
-            let extra = Math.abs(overlap - equalise);
+            let extra = overlap - Math.abs(equalise);
 
             if (num > 0) {
               for (let i = 0; i < tueOnly; i++) {
