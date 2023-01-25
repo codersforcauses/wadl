@@ -65,7 +65,6 @@ export const useAdminStore = defineStore("admin", {
         }
       });
       this.filteredUsers = [...this.requestingUsers];
-      console.log(this.filteredUsers);
     },
     async acceptUser(id) {
       const { $db } = useNuxtApp();
