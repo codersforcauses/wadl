@@ -2,6 +2,11 @@
 import { useAdminStore } from "../../stores/admin";
 import { onMounted, onUnmounted } from "vue";
 
+const searchTerm = ref("");
+const handleFilter = (s) => {
+  searchTerm.value = s;
+};
+
 // pinia
 const adminStore = useAdminStore();
 
@@ -12,11 +17,23 @@ onMounted(() => {
 onUnmounted(() => {
   adminStore.clearStore();
 });
+
+const filterUsers = (searchTerm) => {
+  if (searchTerm === "") return adminStore.requestingUsers;
+
+  return adminStore.requestingUsers.filter(
+    (user) =>
+      user.firstName?.toLowerCase().includes(searchTerm) ||
+      user.lastName?.toLowerCase().includes(searchTerm) ||
+      user.email?.toLowerCase().includes(searchTerm) ||
+      user.role?.toLowerCase().includes(searchTerm)
+  );
+};
 </script>
 
 <template>
   <Header title-text="Sign Up Requests" />
-  <SearchBar search-term="searchTerm" />
+  <SearchBar @handle-filter="handleFilter" />
   <div class="flex justify-center">
     <table class="w-10/12 table-fixed">
       <thead>
@@ -46,7 +63,7 @@ onUnmounted(() => {
       </thead>
       <tbody>
         <tr
-          v-for="user in adminStore.getUsers"
+          v-for="user in filterUsers(searchTerm)"
           :key="user.email"
           class="py-md bg-white border-b h-10"
         >

@@ -24,26 +24,12 @@ const handleError = (error) => {
 export const useAdminStore = defineStore("admin", {
   state() {
     return {
-      searchTerm: "",
       requestingUsers: [],
       errorCode: null,
     };
   },
 
-  getters: {
-    getUsers() {
-      if (this.searchTerm === "") return this.requestingUsers;
-
-      const searchTerm = this.searchTerm.toLowerCase();
-      return this.requestingUsers.filter(
-        (user) =>
-          user.firstName?.toLowerCase().includes(searchTerm) ||
-          user.lastName?.toLowerCase().includes(searchTerm) ||
-          user.email?.toLowerCase().includes(searchTerm) ||
-          user.role?.toLowerCase().includes(searchTerm)
-      );
-    },
-  },
+  getters: {},
 
   actions: {
     async createAdmin(user) {
