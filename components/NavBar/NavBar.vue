@@ -6,12 +6,12 @@
       <HomeButton class="pl-3" />
       <!-- user vars on client side only  -->
       <client-only>
-        <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
+        <p v-if="userStore.firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
       </client-only>
     </div>
     <div class="flex">
       <client-only>
-        <div v-if="role === 'Admin'">
+        <div v-if="userStore.role === 'Admin'">
           <NuxtLink to="/admin">
             <Button
               button-text="Admin"
@@ -20,7 +20,7 @@
             />
           </NuxtLink>
         </div>
-        <div v-if="!auth" class="mr-2">
+        <div v-if="!userStore.auth" class="mr-2">
           <NuxtLink to="/signup">
             <Button button-text="Signup" size="small" class="shadow-none" />
           </NuxtLink>
@@ -54,5 +54,5 @@ import { storeToRefs } from "pinia";
 
 const userStore = useUserStore();
 // Will be updated when user store changes
-const { auth, firstName, role } = storeToRefs(userStore);
+/* const { auth, firstName, role } = storeToRefs(userStore); */
 </script>

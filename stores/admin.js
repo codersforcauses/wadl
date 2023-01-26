@@ -6,14 +6,14 @@ import {
   doc,
   deleteDoc,
   getDocs,
-  setDoc,
 } from "firebase/firestore";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const handleError = (error) => {
   switch (error.code) {
     case "auth/email-already-in-use":
       return "E-mail already in use";
+    case "auth/email-already-exists":
+      return "E-mail already exists";
     case "auth/network-request-failed":
       return "Network Failed, Please try again";
   }
@@ -34,29 +34,25 @@ export const useAdminStore = defineStore("admin", {
   actions: {
     async createAdmin(user) {
       try {
-        const { $db, $auth } = useNuxtApp();
-        const authUser = await createUserWithEmailAndPassword(
-          $auth,
-          user.email,
-          user.password
-        );
+        const { $clientAuth } = useNuxtApp();
+        const adminToken = await $clientAuth.currentUser.getIdToken();
 
-        await setDoc(doc($db, "users", authUser.user.uid), {
-          role: "Admin",
-          requesting: false,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          phoneNumber: user.phoneNumber,
-          email: user.email,
+        $fetch("/api/create-admin", {
+          method: "post",
+          body: {
+            adminToken: adminToken,
+            newUser: user,
+          },
         });
       } catch (err) {
-        this.errorCode = handleError(err);
+        // BUG: Errors aren't propogating from the fetch
+        this.errorCode = handleError(err.data.statusMessage.code);
       }
     },
 
     async fetchUsers() {
-      const { $db } = useNuxtApp();
-      const snap = await getDocs(collection($db, "users"));
+      const { $clientFirestore } = useNuxtApp();
+      const snap = await getDocs(collection($clientFirestore, "users"));
       this.requestingUsers = snap.docs
         .map((doc) => {
           const user = doc.data();
@@ -78,8 +74,8 @@ export const useAdminStore = defineStore("admin", {
 
     async acceptUser(user) {
       try {
-        const { $db } = useNuxtApp();
-        updateDoc(doc($db, "users", user.id), {
+        const { $clientFirestore } = useNuxtApp();
+        updateDoc(doc($clientFirestore, "users", user.id), {
           requesting: null,
           role: user.role,
         }).then(() => {
@@ -94,8 +90,8 @@ export const useAdminStore = defineStore("admin", {
 
     async denyUser(user) {
       try {
-        const { $db } = useNuxtApp();
-        deleteDoc(doc($db, "users", user.id), {
+        const { $clientFirestore } = useNuxtApp();
+        deleteDoc(doc($clientFirestore, "users", user.id), {
           requesting: null,
           role: user.role,
         }).then(() => {

@@ -50,8 +50,8 @@ export const useInstitutionStore = defineStore("institution", {
   getters: {},
   actions: {
     async getInstitutions() {
-      const { $db } = useNuxtApp();
-      const ref = collection($db, "institutions");
+      const { $clientFirestore } = useNuxtApp();
+      const ref = collection($clientFirestore, "institutions");
       const querySnapshot = await getDocs(ref);
       querySnapshot.forEach((doc) => {
         const institution = {
@@ -67,10 +67,10 @@ export const useInstitutionStore = defineStore("institution", {
       this.filteredInstitutions = [...this.institutions];
     },
     async editInstitution(institution) {
-      const { $db } = useNuxtApp();
-      const ref = doc($db, "institutions", institution.id);
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "institutions", institution.id);
       const sameName = query(
-        collection($db, "institutions"),
+        collection($clientFirestore, "institutions"),
         where("name", "==", institution.name),
         where("id", "!=", institution.id)
       );
@@ -99,15 +99,15 @@ export const useInstitutionStore = defineStore("institution", {
       }
     },
     async createInstitution(institution) {
-      const { $db } = useNuxtApp();
+      const { $clientFirestore } = useNuxtApp();
       const sameName = query(
-        collection($db, "institutions"),
+        collection($clientFirestore, "institutions"),
         where("name", "==", institution.name)
       );
       const snapshot = await getCountFromServer(sameName);
       if (snapshot.data().count === 0) {
-        institution.id = doc(collection($db, "institutions")).id;
-        await setDoc(doc($db, "institutions", institution.id), institution)
+        institution.id = doc(collection($clientFirestore, "institutions")).id;
+        await setDoc(doc($clientFirestore, "institutions", institution.id), institution)
           .then(() => {
             this.errorMessage = "";
             this.institutions.push(institution);

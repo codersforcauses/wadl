@@ -27,7 +27,7 @@ const cleanUpError = (error) => {
       }
   }
 
-  return 'Encountered an error';
+  return "Encountered an error";
 };
 
 export const useUserStore = defineStore("user", {
@@ -58,14 +58,14 @@ export const useUserStore = defineStore("user", {
     // to view how the data and other stuff happens inside these functions please read the README in the Firebase folder
     async registerUser(user) {
       try {
-        const { $db, $auth } = useNuxtApp();
+        const { $clientFirestore, $clientAuth } = useNuxtApp();
         const authUser = await createUserWithEmailAndPassword(
-          $auth,
+          $clientAuth,
           user.email,
           user.password
         );
 
-        await setDoc(doc($db, "users", authUser.user.uid), {
+        await setDoc(doc($clientFirestore, "users", authUser.user.uid), {
           role: user.role,
           requesting: true,
           firstName: user.firstName,
@@ -80,12 +80,8 @@ export const useUserStore = defineStore("user", {
 
     loginUser(user) {
       try {
-        const { $auth } = useNuxtApp();
-        signInWithEmailAndPassword(
-          $auth,
-          user.email,
-          user.password
-        );
+        const { $clientAuth } = useNuxtApp();
+        signInWithEmailAndPassword($clientAuth, user.email, user.password);
       } catch (err) {
         this.errorCode = cleanUpError(err);
       }
@@ -94,8 +90,8 @@ export const useUserStore = defineStore("user", {
     async setUser(user) {
       if (user !== null) {
         try {
-          const { $db } = useNuxtApp();
-          const docRef = doc($db, "users", user.uid);
+          const { $clientFirestore } = useNuxtApp();
+          const docRef = doc($clientFirestore, "users", user.uid);
 
           const userDoc = await getDoc(docRef);
           if (!userDoc.exists()) {
@@ -119,8 +115,8 @@ export const useUserStore = defineStore("user", {
 
     async clearStore() {
       try {
-        const { $auth } = useNuxtApp();
-        await signOut($auth);
+        const { $clientAuth } = useNuxtApp();
+        await signOut($clientAuth);
         this.auth = null;
         this.firstName = null;
         this.lastName = null;
