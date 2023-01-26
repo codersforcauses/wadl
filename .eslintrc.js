@@ -14,4 +14,7 @@ module.exports = {
       files: ["**.js", "**.cjs", "**.mjs", "**.vue"],
     },
   ],
+  globals: {
+    $fetch: false,
+  },
 };

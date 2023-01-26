@@ -6,7 +6,7 @@
       <HomeButton class="pl-3" />
       <!-- user vars on client side only  -->
       <client-only>
-        <p v-if="firstName" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
+        <p v-if="auth" class="ml-4 text-xl">Welcome, {{ firstName }}!</p>
       </client-only>
     </div>
     <div class="flex">
@@ -33,7 +33,7 @@
           </div>
         </div>
         <div v-else>
-          <div v-if="!firstName" class="mr-2">
+          <div v-if="!auth" class="mr-2">
             <NuxtLink to="/signup">
               <Button button-text="Signup" size="small" class="shadow-none" />
             </NuxtLink>
@@ -91,14 +91,14 @@
 
 <script setup>
 import HomeButton from "./HomeButton.vue";
-import { useUserStore } from "~/stores/auth.js";
+import { useUserStore } from "~/stores/user.js";
 import { storeToRefs } from "pinia";
 import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 import { ref } from "vue";
 
 const userStore = useUserStore();
 // Will be updated when user store changes
-const { firstName, role } = storeToRefs(userStore);
+const { auth, firstName, role } = storeToRefs(userStore);
 
 const visibility = ref(false);
 </script>

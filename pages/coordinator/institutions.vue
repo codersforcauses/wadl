@@ -86,7 +86,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
-import { useUserStore } from "../../stores/auth";
+import { useUserStore } from "../../stores/user";
 
 const institutionStore = useInstitutionStore();
 const userStore = useUserStore();

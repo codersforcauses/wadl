@@ -12,7 +12,7 @@ import {
   getDoc,
   writeBatch,
 } from "firebase/firestore";
-import { useUserStore } from "./auth";
+import { useUserStore } from "./user";
 
 export const useInstitutionStore = defineStore("institution", {
   state: () => {
@@ -28,8 +28,8 @@ export const useInstitutionStore = defineStore("institution", {
   getters: {},
   actions: {
     async getInstitutions() {
-      const { $db } = useNuxtApp();
-      const ref = collection($db, "institutions");
+      const { $clientFirestore } = useNuxtApp();
+      const ref = collection($clientFirestore, "institutions");
       const querySnapshot = await getDocs(ref);
       querySnapshot.forEach((doc) => {
         const data = {
@@ -45,8 +45,8 @@ export const useInstitutionStore = defineStore("institution", {
       this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
-      const { $db } = useNuxtApp();
-      const ref = doc($db, "institutions", id);
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "institutions", id);
       await getDoc(ref).then((doc) => {
         this.userInstitution = {
           id: doc.data().id,
@@ -74,10 +74,10 @@ export const useInstitutionStore = defineStore("institution", {
       }
     },
     async editInstitution(institution) {
-      const { $db } = useNuxtApp();
-      const ref = doc($db, "institutions", institution.id);
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "institutions", institution.id);
       const sameName = query(
-        collection($db, "institutions"),
+        collection($clientFirestore, "institutions"),
         where("name", "==", institution.name),
         where("id", "!=", institution.id)
       );
@@ -107,14 +107,14 @@ export const useInstitutionStore = defineStore("institution", {
       }
     },
     async updateInstitution(element, institution) {
-      const { $db } = useNuxtApp();
+      const { $clientFirestore } = useNuxtApp();
       if (
         element.number !== institution.number ||
         element.email !== institution.email ||
         element.code !== institution.code ||
         element.abbreviation !== institution.abbreviation
       ) {
-        const ref = doc($db, "institutions", institution.id);
+        const ref = doc($clientFirestore, "institutions", institution.id);
         const data = {
           abbreviation: institution.abbreviation,
           code: institution.code,
@@ -142,8 +142,8 @@ export const useInstitutionStore = defineStore("institution", {
         this.errorMessage = "An Institution with the same name already exists";
       } else {
         this.errorMessage = "";
-        const { $db } = useNuxtApp();
-        const ref = doc(collection($db, "institutions"));
+        const { $clientFirestore } = useNuxtApp();
+        const ref = doc(collection($clientFirestore, "institutions"));
         const data = {
           id: ref.id,
           name: institution.name,
@@ -171,9 +171,9 @@ export const useInstitutionStore = defineStore("institution", {
       }
     },
     async updateProfile(id) {
-      const { $db, $auth } = useNuxtApp();
+      const { $clientFirestore, $clientAuth } = useNuxtApp();
       const userStore = useUserStore();
-      const ref = doc($db, "users", $auth.currentUser.uid);
+      const ref = doc($clientFirestore, "users", $clientAuth.currentUser.uid);
       await updateDoc(ref, { institution: id.id });
       userStore.institution = id.id;
     },
@@ -239,10 +239,10 @@ export const useInstitutionStore = defineStore("institution", {
       }
       if (!this.errorMessage) {
         this.errorMessage = "";
-        const { $db } = useNuxtApp();
+        const { $clientFirestore } = useNuxtApp();
         let teamCounter = 1;
         try {
-          const batch = writeBatch($db);
+          const batch = writeBatch($clientFirestore);
           team.teams.forEach((level) => {
             const num = parseInt(level.numberOfTeams);
             const tueAllocation = parseInt(level.tuesdayAllocation);
@@ -253,7 +253,7 @@ export const useInstitutionStore = defineStore("institution", {
 
             if (num > 0) {
               for (let i = 0; i < num; i++) {
-                const ref = doc(collection($db, "teams"));
+                const ref = doc(collection($clientFirestore, "teams"));
                 batch.set(ref, {
                   name: team.userTeam + " " + teamCounter,
                   tournament_id: team.tournamentId,
@@ -281,8 +281,8 @@ export const useInstitutionStore = defineStore("institution", {
     },
 
     async editTeam(team) {
-      const { $db } = useNuxtApp();
-      const ref = doc($db, "teams", team.id);
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "teams", team.id);
       await updateDoc(ref, {
         allocated_tue: team.tuesdayAllocation,
         allocated_wed: team.wednesdayAllocation,
@@ -306,9 +306,9 @@ export const useInstitutionStore = defineStore("institution", {
 
     // THIS WORKS PLS DONT TOUCH
     async getTeamsByID(institutionId) {
-      const { $db } = useNuxtApp();
+      const { $clientFirestore } = useNuxtApp();
       try {
-        const ref = collection($db, "teams");
+        const ref = collection($clientFirestore, "teams");
         const q = query(ref, where("institution_id", "==", institutionId));
         const snapShot = await getDocs(q);
         snapShot.forEach((doc) => {

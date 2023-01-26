@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { useUserStore } from "../../stores/auth";
+import { useUserStore } from "../../stores/user";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useTournamentStore } from "../../stores/tournaments";
 const institutionStore = useInstitutionStore();

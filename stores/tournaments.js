@@ -24,8 +24,9 @@ export const useTournamentStore = defineStore("tournament", {
   actions: {
     async getTournaments() {
       this.clearStore();
-      const { $db } = useNuxtApp();
-      const ref = collection($db, "tournaments");
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const ref = collection($clientFirestore, "tournaments");
       const querySnapshot = await getDocs(ref);
       querySnapshot.forEach((doc) => {
         const tournament = {
@@ -45,8 +46,8 @@ export const useTournamentStore = defineStore("tournament", {
       this.filteredTournaments = [];
     },
     async createTournament(tournament) {
-      const { $db } = useNuxtApp();
-      const t = await addDoc(collection($db, "tournaments"), {
+      const { $clientFirestore } = useNuxtApp();
+      const t = await addDoc(collection($clientFirestore, "tournaments"), {
         levels: tournament.levels,
         name: tournament.name,
         num_rounds: tournament.numRounds,
@@ -64,8 +65,8 @@ export const useTournamentStore = defineStore("tournament", {
       this.filteredTournaments = [...this.tournaments];
     },
     async editTournament(tournament) {
-      const { $db } = useNuxtApp();
-      await setDoc(doc($db, "tournaments", tournament.id), {
+      const { $clientFirestore } = useNuxtApp();
+      await setDoc(doc($clientFirestore, "tournaments", tournament.id), {
         levels: tournament.levels,
         name: tournament.name,
         num_rounds: tournament.numRounds,

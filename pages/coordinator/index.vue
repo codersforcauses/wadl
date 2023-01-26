@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
-import { useUserStore } from "../../stores/auth";
+import { useUserStore } from "../../stores/user";
 const store = useInstitutionStore();
 const userStore = useUserStore();
 const headers = [

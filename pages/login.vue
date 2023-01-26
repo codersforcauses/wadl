@@ -2,17 +2,23 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
-import { useUserStore } from "../stores/auth";
+import { useUserStore } from "../stores/user";
 
 const userStore = useUserStore();
+if (userStore.auth) {
+  navigateTo("/");
+} else {
+  userStore.clearStore();
+}
+
 const { role } = storeToRefs(userStore);
 const form = ref({
   email: "",
   password: "",
 });
 
-const handleLogin = async () => {
-  await userStore.LoginUser(form.value);
+const handleLogin = () => {
+  userStore.loginUser(form.value);
 };
 
 // Wait for the role to be updated before redirecting
