@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-4xl py-5 text-center divide-y-4 font-montserrat">
+  <h1 class="text-4xl py-5 text-center font-montserrat">
     {{ titleText }}
   </h1>
   <hr v-if="hasLine" class="mx-8" />

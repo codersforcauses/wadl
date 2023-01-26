@@ -1,13 +1,29 @@
 <script setup>
 import { ref } from "vue";
-import { PencilIcon } from "@heroicons/vue/24/solid";
 import { useInstitutionStore } from "../../stores/institutions";
+
+const headers = [
+  {
+    key: "name",
+    title: "Institution",
+  },
+  {
+    key: "number",
+    title: "Phone Number",
+  },
+  {
+    key: "email",
+    title: "Email",
+  },
+];
 
 const defaultInputState = {
   id: null,
   name: null,
   code: null,
   abbreviation: null,
+  number: null,
+  email: null,
 };
 
 const modalVisibility = ref(false);
@@ -16,28 +32,42 @@ const formInput = ref({ ...defaultInputState });
 
 const store = useInstitutionStore();
 
+store.getInstitutions();
+
 const resetFormState = () => {
   formInput.value = { ...defaultInputState };
   editMode.value = false;
+  store.errorMessage = "";
 };
 
 const filterInstitutions = (searchTerm) => {
-  // institutions.value = data.filter((inst) =>
-  //   inst.name.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
-  console.log("Filtering institutions");
+  store.filteredInstitutions = store.institutions.filter((institutions) =>
+    institutions.name.toLowerCase().includes(searchTerm)
+  );
 };
 
-const updateInstitution = () => {
+const updateInstitution = async () => {
   // update store
-  store.editInstitution(formInput.value);
-  resetFormState();
+  await store.editInstitution(formInput.value);
+  if (store.errorMessage === "") {
+    modalVisibility.value = false;
+    resetFormState();
+  }
 };
 
-const createInstitution = () => {
+const createInstitution = async () => {
   // update store
-  store.createInstitution(formInput.value);
-  resetFormState();
+  await store.createInstitution(formInput.value);
+  if (store.errorMessage === "") {
+    modalVisibility.value = false;
+    resetFormState();
+  }
+};
+
+const handleEdit = (row) => {
+  modalVisibility.value = row.modalVisibility;
+  editMode.value = row.editMode;
+  formInput.value = row.data;
 };
 </script>
 
@@ -59,7 +89,6 @@ const createInstitution = () => {
         class="px-10"
         @submit.prevent="
           () => {
-            modalVisibility = false;
             updateInstitution();
           }
         "
@@ -67,6 +96,11 @@ const createInstitution = () => {
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+        <FormField v-model="formInput.number" label="Phone Number" type="tel" />
+        <FormField v-model="formInput.email" label="Email" type="email" />
+        <p v-if="store.errorMessage" class="text-danger-red">
+          {{ store.errorMessage }}
+        </p>
         <div class="flex justify-evenly items-center">
           <Button
             button-text="Update"
@@ -85,7 +119,6 @@ const createInstitution = () => {
         class="px-10"
         @submit.prevent="
           () => {
-            modalVisibility = false;
             createInstitution();
           }
         "
@@ -93,6 +126,11 @@ const createInstitution = () => {
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+        <FormField v-model="formInput.number" label="Phone Number" type="tel" />
+        <FormField v-model="formInput.email" label="Email" type="email" />
+        <p v-if="store.errorMessage" class="text-danger-red">
+          {{ store.errorMessage }}
+        </p>
         <div class="flex justify-evenly items-center">
           <Button
             button-text="Submit"
@@ -107,32 +145,14 @@ const createInstitution = () => {
 
   <Header title-text="Institutions" />
   <SearchBar @handle-filter="filterInstitutions" />
-  <div class="flex justify-center">
-    <ul class="bg-white rounded-lg w-11/12">
-      <li
-        class="text-xl heading-montserrat font-bold px-6 py-3 border-b border-gray-20 rounded-t-lg flex justify-between items-center"
-      >
-        Institutions
-      </li>
-      <li
-        v-for="institution in store.institutions"
-        :key="institution.id"
-        class="justify-between flex px-6 py-2 border-b border-gray-20 items-center"
-      >
-        <p>{{ institution.name }}</p>
-        <button
-          @click="
-            () => {
-              formInput = { ...institution };
-              editMode = true;
-              modalVisibility = true;
-            }
-          "
-        >
-          <PencilIcon class="h-4 w-4" />
-        </button>
-      </li>
-    </ul>
+
+  <!-- Institutions Table  View -->
+  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+    <Table
+      :headers="headers"
+      :data="store.filteredInstitutions"
+      @edit="handleEdit"
+    />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button

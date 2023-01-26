@@ -1,7 +1,9 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
+import { useUserStore } from "../../stores/user";
 const store = useInstitutionStore();
+const userStore = useUserStore();
 const headers = [
   {
     key: "name",
@@ -50,6 +52,15 @@ const defaultInputState = {
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
+
+onMounted(async () => {
+  console.log(store.teams);
+  if (store.teams.length === 0) {
+    console.log("INST", userStore.institution);
+    await store.getTeamsByID(userStore.institution);
+    console.table(store.teams);
+  }
+});
 
 const resetFormState = () => {
   form.value = { ...defaultInputState };
@@ -152,6 +163,15 @@ const updateTeam = () => {
   </Modal>
   <section>
     <Header title-text="Teams" />
+    <div v-if="userStore.institution" class="flex flex-row justify-end p-5">
+      <NuxtLink to="/coordinator/team-registration">
+        <Button
+          button-text="Team Registration"
+          button-color="bg-gold"
+          class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
+        />
+      </NuxtLink>
+    </div>
     <!-- <SearchBar /> -->
     <Table
       :headers="headers"
@@ -159,16 +179,5 @@ const updateTeam = () => {
       class="mt-5"
       @edit="handleEdit"
     />
-    <div class="fixed inset-x-0 bottom-0 w-full">
-      <div class="flex flex-row gap-4 m-5 justify-left">
-        <NuxtLink to="/coordinator/team-registration">
-          <Button
-            button-text="Team Registration"
-            button-color="bg-gold"
-            class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
-          />
-        </NuxtLink>
-      </div>
-    </div>
   </section>
 </template>

@@ -1,23 +1,31 @@
 <!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <!-- long logo -->
-  <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
+  <img class="mx-auto mt-16" src="../assets/logos/TransparentLongLogo.png" />
   <!-- competitions -->
   <Header title-text="Competitions" />
-  <main
-    class="mx-auto h-screen pt-5 place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6"
+  <div
+    v-if="store.getRunning.length > 0"
+    class="mx-auto flex justify-center flex-wrap"
   >
-    <!-- replace key with item.key when final data exists -->
-    <div v-for="item in tournaments" :key="item">
+    <div v-for="tournament in store.getRunning" :key="tournament.id">
       <NuxtLink to="/">
-        <LevelButton :text="item" />
+        <LevelButton :text="tournament.shortName" />
       </NuxtLink>
     </div>
-  </main>
+  </div>
+  <p v-else class="text-xl py-5 text-center font-light font-montserrat">
+    There are no running tournaments.
+  </p>
 </template>
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
+import { useTournamentStore } from "../stores/tournaments";
+import { onMounted } from "vue";
+const store = useTournamentStore();
 
-const tournaments = ["Junior", "Novice", "Senior", "SDC", "AIHSA", "RDC"]; // Dummy Data to be replaced
+onMounted(() => {
+  store.getTournaments();
+});
 </script>
