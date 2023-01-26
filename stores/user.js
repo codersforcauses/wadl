@@ -40,6 +40,7 @@ export const useUserStore = defineStore("user", {
       email: null,
       role: null,
       requesting: null,
+      institution: "",
       errorCode: "",
     };
   },
@@ -106,6 +107,7 @@ export const useUserStore = defineStore("user", {
           this.email = userInfo.email;
           this.role = userInfo.role;
           this.requesting = userInfo.requesting;
+          this.institution = userInfo.institution;
           this.errorCode = null;
         } catch (error) {
           this.errorCode = cleanUpError(err);

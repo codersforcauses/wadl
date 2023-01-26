@@ -12,6 +12,8 @@ const isCoordinator = userStore.role === "Team Coordinator";
 
 <template>
   <div>
-    <NuxtPage v-if="isCoordinator" />
+    <client-only>
+      <NuxtPage v-if="isCoordinator" />
+    </client-only>
   </div>
 </template>

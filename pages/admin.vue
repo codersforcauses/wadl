@@ -12,6 +12,8 @@ const isAdmin = userStore.role === "Admin";
 
 <template>
   <div>
-    <NuxtPage v-if="isAdmin" />
+    <client-only>
+      <NuxtPage v-if="isAdmin" />
+    </client-only>
   </div>
 </template>
