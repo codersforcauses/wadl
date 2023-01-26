@@ -7,13 +7,13 @@ import { storeToRefs } from "pinia";
 const userStore = useAdminStore();
 const { errorCode } = storeToRefs(userStore);
 const form = ref({
-  firstName: "New",
-  lastName: "Admin",
-  email: "hello@jamesvandeven.coma",
-  phoneNumber: "456",
-  password: "123456789",
-  confirmPassword: "123456789",
-  role: "Admin",
+  firstName: "",
+  lastName: "",
+  email: "",
+  phoneNumber: "",
+  password: "",
+  confirmPassword: "",
+  role: "",
 });
 
 // Call The User Store
