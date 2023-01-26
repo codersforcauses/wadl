@@ -109,7 +109,7 @@ export const useUserStore = defineStore("user", {
           this.requesting = userInfo.requesting;
           this.institution = userInfo.institution;
           this.errorCode = null;
-        } catch (error) {
+        } catch (err) {
           this.errorCode = cleanUpError(err);
         }
       }
@@ -127,7 +127,7 @@ export const useUserStore = defineStore("user", {
         this.role = null;
         this.errorCode = null;
         this.requesting = null;
-      } catch {
+      } catch (err) {
         this.errorCode = cleanUpError(err);
       }
     },

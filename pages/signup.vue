@@ -77,7 +77,7 @@
 
 <script setup>
 import { useUserStore } from "../stores/user";
-import { ref, onBeforeMount } from "vue";
+import { ref, navigateTo } from "vue";
 
 const userStore = useUserStore();
 

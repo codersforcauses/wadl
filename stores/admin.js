@@ -37,10 +37,11 @@ export const useAdminStore = defineStore("admin", {
         const { $clientAuth } = useNuxtApp();
         const adminToken = await $clientAuth.currentUser.getIdToken();
 
+        // @es-lint ignore
         $fetch("/api/create-admin", {
           method: "post",
           body: {
-            adminToken: adminToken,
+            adminToken,
             newUser: user,
           },
         });

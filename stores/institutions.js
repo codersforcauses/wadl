@@ -173,7 +173,7 @@ export const useInstitutionStore = defineStore("institution", {
     async updateProfile(id) {
       const { $clientFirestore, $clientAuth } = useNuxtApp();
       const userStore = useUserStore();
-      const ref = doc($clientFiresto$clientFirestore, "users", $clientAuth.currentUser.uid);
+      const ref = doc($clientFirestore, "users", $clientAuth.currentUser.uid);
       await updateDoc(ref, { institution: id.id });
       userStore.institution = id.id;
     },

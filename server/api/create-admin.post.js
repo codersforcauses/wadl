@@ -2,6 +2,7 @@ import { getApp, getApps, initializeApp } from "firebase-admin/app";
 import admin from "firebase-admin";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
+import { defineEventHandler, readBody, createError } from "#imports";
 
 export default defineEventHandler(async (event) => {
   const { adminToken, newUser } = await readBody(event);
