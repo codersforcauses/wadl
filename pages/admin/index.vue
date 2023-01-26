@@ -32,10 +32,10 @@ const user = useUserStore();
         :icon="BuildingLibraryIcon"
       />
       <AdminButton title="Contacts" link="admin/contacts" :icon="UsersIcon" />
-      <AdminButton title="Teams" link="/" :icon="UserGroupIcon" />
+      <AdminButton title="Teams" link="" :icon="UserGroupIcon" />
       <AdminButton title="Venues" link="admin/venues" :icon="MapPinIcon" />
-      <AdminButton title="Fixtures" link="/" :icon="TableCellsIcon" />
-      <AdminButton title="Results" link="/" :icon="ClipboardIcon" />
+      <AdminButton title="Fixtures" link="" :icon="TableCellsIcon" />
+      <AdminButton title="Results" link="" :icon="ClipboardIcon" />
       <AdminButton
         title="Sign-up Requests"
         link="admin/signup-requests"
