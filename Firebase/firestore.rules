@@ -7,7 +7,7 @@ service cloud.firestore {
        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
       }
       function allowSignup(){
-        return request.auth.token.email != null  
+        return request.auth.token.email != null
       }
       function isOwner(){
         return request.auth.uid == userId
@@ -21,9 +21,13 @@ service cloud.firestore {
       function isAdjudicatorCoordinator(){
         return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "Adjudicator Coordinator"
       }
+      function isNotUpdatingProtectedFields(resource){
+        return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'requesting'])
+      }
       allow create: if allowSignup();
+      allow read: if isOwner();
+      allow update: if isOwner() && isNotUpdatingProtectedFields(resource);
       allow create, read, update, delete: if isAdmin();
-      allow read, update: if isOwner() && (isAdjudicator() || isTeamCoordinator() || isAdjudicatorCoordinator());
     }
     match /venues/{venueId} {
     function isAdmin(){
@@ -71,12 +75,8 @@ service cloud.firestore {
       allow create, update, read: if isAdjudicator() || isTeamCoordinator() || isAdjudicatorCoordinator() || isAdmin();
       allow delete: if isAdmin();
     }
-    
-    match /teams/{teamId} {
-    function isAdmin(){
-        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
-      }
-    allow create, read, update, delete: if isAdmin();
+    match /teams/{teamId}{
+      allow read, write: if true;
     }
   }
 }

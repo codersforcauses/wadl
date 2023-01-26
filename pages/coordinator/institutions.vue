@@ -7,6 +7,7 @@
       @submit.prevent="handleInstitution"
     >
       <SearchSelect
+        v-if="institutionStore.institutions"
         v-model="form.name"
         placeholder="School Name"
         :items="institutionStore.institutions"
@@ -85,7 +86,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
-import { useUserStore } from "../../stores/auth";
+import { useUserStore } from "../../stores/user";
 
 const institutionStore = useInstitutionStore();
 const userStore = useUserStore();
@@ -130,7 +131,6 @@ const clearSchoolForm = () => {
 };
 
 onMounted(async () => {
-  console.log(userStore);
   const institutionId = userStore.institution;
   if (institutionId) {
     await institutionStore.getInstitutionByID(institutionId);

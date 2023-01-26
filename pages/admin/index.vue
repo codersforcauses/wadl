@@ -12,7 +12,7 @@ import {
   UserPlusIcon,
   UserCircleIcon,
 } from "@heroicons/vue/24/outline";
-import { useUserStore } from "../../stores/auth";
+import { useUserStore } from "../../stores/user";
 
 import { useTeamStore } from "../../stores/teams";
 

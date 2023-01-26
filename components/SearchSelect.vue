@@ -52,8 +52,7 @@ const props = defineProps({
 const emit = defineEmits(["info", "update:modelValue"]);
 
 const isOpen = ref(false);
-const filteredOptions = ref([]);
-
+const filteredOptions = ref(props.items);
 function filter(e) {
   const value = e.target.value;
   emit("update:modelValue", value);
