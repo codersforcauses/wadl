@@ -7,6 +7,7 @@
       @submit.prevent="handleInstitution"
     >
       <SearchSelect
+        v-if="institutionStore.institutions"
         v-model="form.name"
         placeholder="School Name"
         :items="institutionStore.institutions"
@@ -130,7 +131,6 @@ const clearSchoolForm = () => {
 };
 
 onMounted(async () => {
-  console.log(userStore);
   const institutionId = userStore.institution;
   if (institutionId) {
     await institutionStore.getInstitutionByID(institutionId);

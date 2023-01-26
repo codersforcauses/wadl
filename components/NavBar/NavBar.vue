@@ -22,16 +22,14 @@
         </div>
         <div v-if="role === 'Team Coordinator'">
           <div v-if="!visibility">
-            <Bars3Icon
-              class="w-10 h-10 ml-2 mr-6"
-              @click="visibility = !visibility"
-            />
+            <button @click="visibility = !visibility">
+              <Bars3Icon class="w-10 h-10 ml-2 mr-6" />
+            </button>
           </div>
           <div v-else>
-            <XMarkIcon
-              class="w-10 h-10 ml-2 mr-6"
-              @click="visibility = !visibility"
-            />
+            <button @click="visibility = !visibility">
+              <XMarkIcon class="w-10 h-10 ml-2 mr-6" />
+            </button>
           </div>
         </div>
         <div v-else>
@@ -62,71 +60,30 @@
     </div>
     <!-- Team Coordinator Drop down menu - This only could be its own component.-->
     <div
-      class="bg-gold px-2 z-60 absolute right-0 top-16"
+      class="bg-gold z-60 absolute right-0 top-16 rounded-bl-md shadow-md"
       :class="visibility ? 'flex' : 'hidden'"
     >
-      <ul class="flex flex-col items-center divide-y divide-zinc-600">
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
-            <NuxtLink
-              class="text-monsterrat"
-              to="/coordinator"
-              @click="visibility = false"
-              >Teams</NuxtLink
-            >
-          </li>
-        </div>
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
-            <NuxtLink
-              class="text-monsterrat"
-              to="/coordinator/draw"
-              @click="visibility = false"
-              >Draw</NuxtLink
-            >
-          </li>
-        </div>
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
-            <NuxtLink
-              class="text-monsterrat"
-              to="/coordinator/institutions"
-              @click="visibility = false"
-              >Institution</NuxtLink
-            >
-          </li>
-        </div>
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
-            <NuxtLink
-              class="text-monsterrat"
-              to="/coordinator/userinformation"
-              @click="visibility = false"
-              >User Information</NuxtLink
-            >
-          </li>
-        </div>
-        <div class="w-full text-center">
-          <li class="mx-4 my-1">
-            <NuxtLink
-              class="text-monsterrat"
-              to="/coordinator/changepassword"
-              @click="visibility = false"
-              >Change Password</NuxtLink
-            >
-          </li>
-        </div>
-        <div class="w-full text-center border-b border-zinc-600">
-          <li class="mx-4 my-1">
-            <NuxtLink
-              class="text-monsterrat"
-              to="/"
-              @click="(visibility = false), userStore.clearStore()"
-            >
-              Signout
-            </NuxtLink>
-          </li>
-        </div>
+      <ul class="flex flex-col items-center">
+        <HamburgerListItem val="Teams" dest="/coordinator" />
+        <HamburgerListItem
+          val="Team Registration"
+          dest="/coordinator/team-registration"
+        />
+        <HamburgerListItem val="Draw" dest="/coordinator/draw" />
+        <HamburgerListItem val="Institution" dest="/coordinator/institutions" />
+        <HamburgerListItem
+          val="User Information"
+          dest="/coordinator/userinformation"
+        />
+        <HamburgerListItem
+          val="Change Password"
+          dest="/coordinator/changepassword"
+        />
+        <HamburgerListItem
+          val="Signout"
+          dest="/"
+          @click="(visibility = false), userStore.clearStore()"
+        />
       </ul>
     </div>
   </nav>

@@ -71,6 +71,8 @@ service cloud.firestore {
       allow create, update, read: if isAdjudicator() || isTeamCoordinator() || isAdjudicatorCoordinator() || isAdmin();
       allow delete: if isAdmin();
     }
-    
+    match /teams/{teamId}{
+      allow read, write: if true;
+    }
   }
 }
