@@ -66,6 +66,7 @@
       <ul class="flex flex-col items-center">
         <HamburgerListItem val="Teams" dest="/coordinator" />
         <HamburgerListItem
+          v-if="userStore.institution"
           val="Team Registration"
           dest="/coordinator/team-registration"
         />
