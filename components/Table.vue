@@ -25,10 +25,13 @@
             :key="ind"
             class="font-montserrat p-2"
           >
+            <p v-if="object.key === 'division' && !row[object.key]">
+              Not Allocated
+            </p>
             <p
               v-if="
-                (object.key === 'tuesdayAllocation' ||
-                  object.key === 'wednesdayAllocation') &&
+                (object.key === 'allocatedTue' ||
+                  object.key === 'allocatedWed') &&
                 row[object.key]
               "
             >
@@ -36,8 +39,8 @@
             </p>
             <p
               v-else-if="
-                (object.key === 'tuesdayAllocation' ||
-                  object.key === 'wednesdayAllocation') &&
+                (object.key === 'allocatedTue' ||
+                  object.key === 'allocatedWed') &&
                 !row[object.key]
               "
             >
@@ -45,7 +48,7 @@
             </p>
             <p
               v-for="(ven, idx) in row[object.key]"
-              v-else-if="object.key === 'venuePreferences'"
+              v-else-if="object.key === 'venuePreference'"
               :key="idx"
               class="text-xs"
             >

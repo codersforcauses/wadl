@@ -33,8 +33,8 @@ export const useTournamentStore = defineStore("tournament", {
           id: doc.id,
           levels: doc.data().levels,
           name: doc.data().name,
-          numRounds: doc.data().num_rounds,
-          shortName: doc.data().short_name,
+          numRounds: doc.data().numRounds,
+          shortName: doc.data().shortName,
           status: doc.data().status,
         };
         this.tournaments.push(tournament);
@@ -50,8 +50,8 @@ export const useTournamentStore = defineStore("tournament", {
       const t = await addDoc(collection($clientFirestore, "tournaments"), {
         levels: tournament.levels,
         name: tournament.name,
-        num_rounds: tournament.numRounds,
-        short_name: tournament.shortName,
+        numRounds: tournament.numRounds,
+        shortName: tournament.shortName,
         status: tournament.status,
       });
 
@@ -69,8 +69,8 @@ export const useTournamentStore = defineStore("tournament", {
       await setDoc(doc($clientFirestore, "tournaments", tournament.id), {
         levels: tournament.levels,
         name: tournament.name,
-        num_rounds: tournament.numRounds,
-        short_name: tournament.shortName,
+        numRounds: tournament.numRounds,
+        shortName: tournament.shortName,
         status: tournament.status,
       });
 

@@ -6,7 +6,7 @@
   <Header title-text="Competitions" />
   <div
     v-if="store.getRunning.length > 0"
-    class="mx-auto flex justify-center flex-wrap"
+    class="mx-auto mt-4 flex justify-center flex-wrap"
   >
     <div v-for="tournament in store.getRunning" :key="tournament.id">
       <NuxtLink to="/">
@@ -14,7 +14,10 @@
       </NuxtLink>
     </div>
   </div>
-  <p v-else class="text-xl py-5 text-center font-light font-montserrat">
+  <p
+    v-else
+    class="text-xl py-5 text-center text-mid-grey font-montserrat font-light"
+  >
     There are no running tournaments.
   </p>
 </template>

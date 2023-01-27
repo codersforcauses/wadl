@@ -58,14 +58,14 @@ const exportTeams = async () => {
         :icon="BuildingLibraryIcon"
       />
       <AdminButton title="Contacts" link="admin/contacts" :icon="UsersIcon" />
-      <AdminButton title="Teams" link="/" :icon="UserGroupIcon" />
+      <AdminButton title="Teams" link="" :icon="UserGroupIcon" />
       <AdminButton title="Venues" link="admin/venues" :icon="MapPinIcon" />
-      <AdminButton title="Fixtures" link="/" :icon="TableCellsIcon" />
+      <AdminButton title="Fixtures" link="" :icon="TableCellsIcon" />
       <AdminButton
         title="Export Teams"
         :icon="ClipboardIcon"
-        v-on:click="exportTeams"
         class="cursor-pointer"
+        @click="exportTeams"
       />
       <AdminButton
         title="Sign-up Requests"
