@@ -46,7 +46,7 @@ const defaultInputState = {
   timeslot: null,
   venuePreference: [],
   allocatedTue: null,
-  allocatedTue: null,
+  allocatedWed: null,
   weekPreference: null,
 };
 
