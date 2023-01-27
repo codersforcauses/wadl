@@ -25,8 +25,8 @@ const venuePreferenceLabels = ref([
 const teamState = {
   levelPresent: false,
   numberOfTeams: 0,
-  tuesdayAllocation: 0,
-  wednesdayAllocation: 0,
+  allocatedTue: 0,
+  allocatedWed: 0,
   weekPreference: null,
 };
 const formInput = ref({
@@ -34,7 +34,7 @@ const formInput = ref({
   tournamentId: null,
   institutionId: null,
   hasVenuePreference: false,
-  venuePreferences: [],
+  venuePreference: [],
   notes: null,
   userTeam: null,
   teams: [
@@ -159,7 +159,7 @@ const getInfo = (data) => {
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
             <FormField
-              v-model="team.tuesdayAllocation"
+              v-model="team.allocatedTue"
               type="number"
               :label="team.teamLevel"
               :disabled="!team.levelPresent"
@@ -175,7 +175,7 @@ const getInfo = (data) => {
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
             <FormField
-              v-model="team.wednesdayAllocation"
+              v-model="team.allocatedWed"
               type="number"
               :label="team.teamLevel"
               :disabled="!team.levelPresent"
@@ -202,7 +202,7 @@ const getInfo = (data) => {
           <div class="flex flex-row space-x-3">
             <div v-for="(pref, idx) in venuePreferenceLabels" :key="idx">
               <FormField
-                v-model="formInput.venuePreferences[idx]"
+                v-model="formInput.venuePreference[idx]"
                 placeholder="Enter Preference"
                 :label="venuePreferenceLabels[idx]"
               />

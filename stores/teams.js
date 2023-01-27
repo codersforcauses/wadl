@@ -21,11 +21,12 @@ export const useTeamStore = defineStore("team", {
           level: doc.data().level,
           division: doc.data().division,
           timeslot: doc.data().timeslot,
-          venuePreferences: doc.data().ven_pref,
-          hasVenuePreference: !doc.data().ven_no_pref,
-          weekPreference: doc.data().week_pref,
-          tuesdayAllocation: doc.data().allocated_tue,
-          wednesdayAllocation: doc.data().allocated_wed,
+          hasVenuePreference: doc.data().hasVenuePreference,
+          venuePreference: doc.data().venuePreference,
+          weekPreference: doc.data().weekPreference,
+          allocatedTue: doc.data().allocatedTue,
+          allocatedWed: doc.data().allocatedWed,
+          notes: doc.data().notes,
         };
         this.teams.push(team);
       });

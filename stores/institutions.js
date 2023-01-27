@@ -33,7 +33,7 @@ export const useInstitutionStore = defineStore("institution", {
       const querySnapshot = await getDocs(ref);
       querySnapshot.forEach((doc) => {
         const data = {
-          id: doc.data().id,
+          id: doc.id,
           name: doc.data().name,
           number: doc.data().number,
           email: doc.data().email,
@@ -45,11 +45,13 @@ export const useInstitutionStore = defineStore("institution", {
       this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
+      console.log("****", id);
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "institutions", id);
       await getDoc(ref).then((doc) => {
+        console.log(doc.data());
         this.userInstitution = {
-          id: doc.data().id,
+          id: doc.id,
           name: doc.data().name,
           email: doc.data().email,
           number: doc.data().number,
@@ -186,8 +188,8 @@ export const useInstitutionStore = defineStore("institution", {
       this.errorMessage = "";
       if (team.teams[0].levelPresent) {
         const numTeam = parseInt(team.teams[0].numberOfTeams);
-        const tueAllocation = parseInt(team.teams[0].tuesdayAllocation);
-        const wedAllocation = parseInt(team.teams[0].wednesdayAllocation);
+        const tueAllocation = parseInt(team.teams[0].allocatedTue);
+        const wedAllocation = parseInt(team.teams[0].allocatedWed);
         if (tueAllocation < 0 || wedAllocation < 0) {
           this.errorMessage =
             "Please allocate a positive number of teams created for NOVICE";
@@ -245,8 +247,8 @@ export const useInstitutionStore = defineStore("institution", {
           const batch = writeBatch($clientFirestore);
           team.teams.forEach((level) => {
             const num = parseInt(level.numberOfTeams);
-            const tueAllocation = parseInt(level.tuesdayAllocation);
-            const wedAllocation = parseInt(level.wednesdayAllocation);
+            const tueAllocation = parseInt(level.allocatedTue);
+            const wedAllocation = parseInt(level.allocatedWed);
             const overlap = tueAllocation + wedAllocation - num;
             const tueOnly = tueAllocation - overlap;
             // wedonly is figured out in function
@@ -256,15 +258,15 @@ export const useInstitutionStore = defineStore("institution", {
                 const ref = doc(collection($clientFirestore, "teams"));
                 batch.set(ref, {
                   name: team.userTeam + " " + teamCounter,
-                  tournament_id: team.tournamentId,
-                  institution_id: team.institutionId,
+                  tournamentId: team.tournamentId,
+                  institutionId: team.institutionId,
                   level: level.teamLevel,
                   timeslot: level.timeslot,
-                  week_pref: level.weekPreference,
-                  allocated_tue: i < overlap + tueOnly,
-                  allocated_wed: i < overlap || i >= overlap + tueOnly,
-                  has_venue_preference: team.hasVenuePreference,
-                  ven_pref: team.venuePreferences,
+                  weekPreference: level.weekPreference,
+                  allocatedTue: i < overlap + tueOnly,
+                  allocatedWed: i < overlap || i >= overlap + tueOnly,
+                  hasVenuePreference: team.hasVenuePreference,
+                  venuePreference: team.venuePreference,
                   notes: team.notes,
                   division: null,
                 });
@@ -284,18 +286,18 @@ export const useInstitutionStore = defineStore("institution", {
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "teams", team.id);
       await updateDoc(ref, {
-        allocated_tue: team.tuesdayAllocation,
-        allocated_wed: team.wednesdayAllocation,
+        allocatedTue: team.allocatedTue,
+        allocatedWed: team.allocatedWed,
         division: team.division,
-        has_venue_preference: team.hasVenuePreference,
-        institution_id: team.institutionId,
+        hasVenuePreference: team.hasVenuePreference,
+        institutionId: team.institutionId,
         level: team.level,
         name: team.name,
         notes: team.notes,
         timeslot: team.timeslot,
-        tournament_id: team.tournamentId,
-        ven_pref: team.venuePreferences,
-        week_pref: team.weekPreference,
+        tournamentId: team.tournamentId,
+        venuePreference: team.venuePreference,
+        weekPreference: team.weekPreference,
       });
       this.teams.forEach((t) => {
         if (t.id === team.id) {
@@ -309,21 +311,21 @@ export const useInstitutionStore = defineStore("institution", {
       const { $clientFirestore } = useNuxtApp();
       try {
         const ref = collection($clientFirestore, "teams");
-        const q = query(ref, where("institution_id", "==", institutionId));
+        const q = query(ref, where("institutionId", "==", institutionId));
         const snapShot = await getDocs(q);
         snapShot.forEach((doc) => {
           const data = {
             id: doc.id,
             name: doc.data().name,
-            tournamentId: doc.data().tournament_id,
-            institutionId: doc.data().institution_id,
+            tournamentId: doc.data().tournamentId,
+            institutionId: doc.data().institutionId,
             level: doc.data().level,
             timeslot: doc.data().timeslot,
-            weekPreference: doc.data().week_pref,
-            tuesdayAllocation: doc.data().allocated_tue,
-            wednesdayAllocation: doc.data().allocated_wed,
-            hasVenuePreference: doc.data().has_venue_preference,
-            venuePreferences: doc.data().ven_pref,
+            weekPreference: doc.data().weekPreference,
+            allocatedTue: doc.data().allocatedTue,
+            allocatedWed: doc.data().allocatedWed,
+            hasVenuePreference: doc.data().hasVenuePreference,
+            venuePreferences: doc.data().venuePreference,
             notes: doc.data().notes,
             division: doc.data().division,
           };
