@@ -29,16 +29,11 @@ const filterUsers = (searchTerm) => {
       user.role?.toLowerCase().includes(searchTerm)
   );
 };
-const handleSave = () => {
-  console.log("save");
-};
-const handleDelete = () => {
-  console.log("delete");
+const handleDelete = (user) => {
+  console.log("delete", user);
 };
 // modal
 const modalVisibility = ref(false);
-// const isSuccess = ref(false);
-// const notificationMessage = ref("");
 </script>
 
 <template>
@@ -108,7 +103,10 @@ const modalVisibility = ref(false);
               button-color="bg-light-red"
               text-color="text-dark-red"
               size="small"
-              @click="modalVisibility = true"
+              @click="
+                //  TODO ADD FUNCTONALITY modalVisibility = true
+                adminStore.deleteUser(user)
+              "
             />
           </td>
         </tr>
@@ -124,12 +122,14 @@ const modalVisibility = ref(false);
     "
     @yes="
       () => {
-        handleSave();
+        // todo fix
+        handleDelete();
+        modalVisibility = false;
       }
     "
     @no="
       () => {
-        handleDelete();
+        modalVisibility = false;
       }
     "
   />

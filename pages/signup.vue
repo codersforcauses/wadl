@@ -73,6 +73,17 @@
       </div>
     </form>
   </section>
+  <Notification
+    :modal-visibility="notificationVisibility"
+    :is-success="isSuccess"
+    :body="notificationMessage"
+    @close="
+      () => {
+        notificationVisibility = false;
+        redirect();
+      }
+    "
+  />
 </template>
 
 <script setup>
@@ -110,6 +121,11 @@ const updateInput = () => {
   isRoleValid.value = true;
 };
 
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
 // Call The User Store
 const registerUser = async () => {
   if (form.value.password.length < 8) {
@@ -131,11 +147,14 @@ const registerUser = async () => {
   }
 
   await userStore.registerUser({ ...form.value });
-
   if (!userStore.errorCode) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = userStore.successCode;
     await userStore.clearStore();
-    navigateTo("/");
-    window.alert("Account created, please wait for admin approval.");
   }
+};
+const redirect = () => {
+  navigateTo("/");
 };
 </script>

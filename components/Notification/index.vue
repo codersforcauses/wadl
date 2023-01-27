@@ -40,7 +40,7 @@ import { CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid";
 import { vOnClickOutside } from "@vueuse/components";
 
 defineProps({
-  modalVisibility: { type: Boolean, default: true },
+  modalVisibility: { type: Boolean, default: false },
   header: { type: String, default: "" },
   body: { type: String, default: "New tournament successfully created" },
   isSuccess: { type: Boolean, default: false },

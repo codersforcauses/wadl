@@ -42,6 +42,7 @@ export const useUserStore = defineStore("user", {
       requesting: null,
       institution: "",
       errorCode: "",
+      successCode: "",
     };
   },
 
@@ -74,6 +75,8 @@ export const useUserStore = defineStore("user", {
           phoneNumber: user.phoneNumber,
           email: user.email,
         });
+        this.successCode =
+          "Please wait for approval from admin before logging in.";
       } catch (err) {
         this.errorCode = cleanUpError(err);
       }
@@ -127,6 +130,7 @@ export const useUserStore = defineStore("user", {
         this.role = null;
         this.errorCode = null;
         this.requesting = null;
+        this.successCode = null;
       } catch (err) {
         this.errorCode = cleanUpError(err);
       }

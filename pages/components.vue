@@ -57,7 +57,6 @@
       text-color="text-white"
       @click="
         isSuccess = true;
-
         notificationMessage = 'Successfully created new tournament.';
         notificationVisibility = !notificationVisibility;
       "
