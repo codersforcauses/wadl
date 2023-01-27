@@ -11,8 +11,9 @@ export const useTeamStore = defineStore("team", {
   getters: {},
   actions: {
     async getTeams() {
-      const { $db } = useNuxtApp();
-      const ref = collection($db, "teams");
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const ref = collection($clientFirestore, "teams");
       const querySnapshot = await getDocs(ref);
       querySnapshot.forEach((doc) => {
         const team = {
