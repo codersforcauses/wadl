@@ -29,6 +29,16 @@ const filterUsers = (searchTerm) => {
       user.role?.toLowerCase().includes(searchTerm)
   );
 };
+const handleSave = () => {
+  console.log("save");
+};
+const handleDelete = () => {
+  console.log("delete");
+};
+// modal
+const modalVisibility = ref(false);
+// const isSuccess = ref(false);
+// const notificationMessage = ref("");
 </script>
 
 <template>
@@ -98,11 +108,29 @@ const filterUsers = (searchTerm) => {
               button-color="bg-light-red"
               text-color="text-dark-red"
               size="small"
-              @click="adminStore.denyUser(user)"
+              @click="modalVisibility = true"
             />
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+    @yes="
+      () => {
+        handleSave();
+      }
+    "
+    @no="
+      () => {
+        handleDelete();
+      }
+    "
+  />
 </template>

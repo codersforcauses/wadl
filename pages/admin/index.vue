@@ -64,8 +64,8 @@ const exportTeams = async () => {
       <AdminButton
         title="Export Teams"
         :icon="ClipboardIcon"
-        v-on:click="exportTeams"
         class="cursor-pointer"
+        @click="exportTeams"
       />
       <AdminButton
         title="Sign-up Requests"
