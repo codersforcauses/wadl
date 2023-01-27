@@ -26,15 +26,15 @@ const headers = [
     title: "Week Pref.",
   },
   {
-    key: "tuesdayAllocation",
+    key: "allocatedTue",
     title: "Tue",
   },
   {
-    key: "wednesdayAllocation",
+    key: "allocatedWed",
     title: "Wed",
   },
   {
-    key: "venuePreferences",
+    key: "venuePreference",
     title: "Venue Pref.",
   },
 ];
@@ -44,9 +44,9 @@ const defaultInputState = {
   level: null,
   division: null,
   timeslot: null,
-  venuePreferences: [],
-  tuesdayAllocation: null,
-  wednesdayAllocation: null,
+  venuePreference: [],
+  allocatedTue: null,
+  allocatedWed: null,
   weekPreference: null,
 };
 
@@ -54,9 +54,7 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 
 onMounted(async () => {
-  console.log(store.teams);
   if (store.teams.length === 0) {
-    console.log("INST", userStore.institution);
     await store.getTeamsByID(userStore.institution);
     console.table(store.teams);
   }
@@ -99,19 +97,11 @@ const updateTeam = () => {
     >
       <div class="flex flex-row justify-evenly accent-gold pt-5 pb-2">
         <div>
-          <input
-            v-model="form.tuesdayAllocation"
-            type="checkbox"
-            class="w-5 h-5"
-          />
+          <input v-model="form.allocatedTue" type="checkbox" class="w-5 h-5" />
           <label class="ml-3 heading-montserrat">Tuesday Allocation</label>
         </div>
         <div>
-          <input
-            v-model="form.wednesdayAllocation"
-            type="checkbox"
-            class="w-5 h-5"
-          />
+          <input v-model="form.allocatedWed" type="checkbox" class="w-5 h-5" />
 
           <label class="ml-3 heading-montserrat">Wednesday Allocation</label>
         </div>
@@ -128,7 +118,7 @@ const updateTeam = () => {
           v-model="form.hasVenuePreference"
           type="checkbox"
           class="w-5 h-5"
-          @change="form.venuePreferences = []"
+          @change="form.venuePreference = []"
         />
 
         <label class="ml-3 heading-montserrat"
@@ -137,17 +127,17 @@ const updateTeam = () => {
       </div>
       <FormField
         v-if="form.hasVenuePreference"
-        v-model="form.venuePreferences[0]"
+        v-model="form.venuePreference[0]"
         label="1st Venue Preference"
       />
       <FormField
         v-if="form.hasVenuePreference"
-        v-model="form.venuePreferences[1]"
+        v-model="form.venuePreference[1]"
         label="2nd Venue Preference"
       />
       <FormField
         v-if="form.hasVenuePreference"
-        v-model="form.venuePreferences[2]"
+        v-model="form.venuePreference[2]"
         label="3rd Venue Preference"
       />
 

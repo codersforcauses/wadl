@@ -13,15 +13,11 @@
       <client-only>
         <div v-if="role === 'Admin'">
           <NuxtLink to="/admin">
-            <Button
-              button-text="Admin"
-              size="small"
-              class="shadow-none underline underline-offset-4"
-            />
+            <Button button-text="Admin" size="small" class="shadow-none" />
           </NuxtLink>
         </div>
         <div v-if="role === 'Team Coordinator'">
-          <div v-if="!visibility">
+          <div v-if="!visibility" class="flex items-center">
             <button @click="visibility = !visibility">
               <Bars3Icon class="w-10 h-10 ml-2 mr-6" />
             </button>
@@ -40,7 +36,8 @@
             <NuxtLink to="/login">
               <Button
                 button-text="Login"
-                button-color="bg-light-yellow"
+                button-color="bg-black"
+                text-color="text-white"
                 size="small"
               />
             </NuxtLink>
@@ -49,7 +46,8 @@
             <NuxtLink to="/">
               <Button
                 button-text="Signout"
-                button-color="bg-light-yellow"
+                button-color="bg-black"
+                text-color="text-white"
                 size="small"
                 @click="userStore.clearStore()"
               />
@@ -60,24 +58,41 @@
     </div>
     <!-- Team Coordinator Drop down menu - This only could be its own component.-->
     <div
-      class="bg-gold z-60 absolute right-0 top-16 rounded-bl-md shadow-md"
+      class="bg-gold z-60 absolute right-0 top-12 rounded-bl-md shadow-md"
       :class="visibility ? 'flex' : 'hidden'"
     >
       <ul class="flex flex-col items-center">
-        <HamburgerListItem val="Teams" dest="/coordinator" />
         <HamburgerListItem
+          val="Teams"
+          dest="/coordinator"
+          @click="visibility = false"
+        />
+        <HamburgerListItem
+          v-show="userStore.institution"
           val="Team Registration"
           dest="/coordinator/team-registration"
+          @click="visibility = false"
         />
-        <HamburgerListItem val="Draw" dest="/coordinator/draw" />
-        <HamburgerListItem val="Institution" dest="/coordinator/institutions" />
+
+        <HamburgerListItem
+          val="Draw"
+          dest="/coordinator/draw"
+          @click="visibility = false"
+        />
+        <HamburgerListItem
+          val="Institution"
+          dest="/coordinator/institutions"
+          @click="visibility = false"
+        />
         <HamburgerListItem
           val="User Information"
           dest="/coordinator/userinformation"
+          @click="visibility = false"
         />
         <HamburgerListItem
           val="Change Password"
           dest="/coordinator/changepassword"
+          @click="visibility = false"
         />
         <HamburgerListItem
           val="Signout"

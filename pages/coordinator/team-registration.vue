@@ -25,8 +25,8 @@ const venuePreferenceLabels = ref([
 const teamState = {
   levelPresent: false,
   numberOfTeams: 0,
-  tuesdayAllocation: 0,
-  wednesdayAllocation: 0,
+  allocatedTue: 0,
+  allocatedWed: 0,
   weekPreference: null,
 };
 const formInput = ref({
@@ -34,7 +34,7 @@ const formInput = ref({
   tournamentId: null,
   institutionId: null,
   hasVenuePreference: false,
-  venuePreferences: [],
+  venuePreference: [],
   notes: null,
   userTeam: null,
   teams: [
@@ -81,20 +81,19 @@ const saveTeamRegistration = async () => {
 //   };
 // };
 const getInfo = (data) => {
-  console.log("torni info", data);
   formInput.value.tournament = data.name;
   formInput.value.tournamentId = data.id;
 };
 </script>
 
 <template>
-  <p class="text-4xl heading-montserrat px-6 pt-5 py-3 text-center">
+  <p class="text-4xl heading-montserrat px-6 pt-8 text-center">
     Team Registration
   </p>
   <div v-if="tournaments" class="px-10">
     <p
       v-if="institutionStore.userInstitution"
-      class="text-2xl font-semibold heading-montserrat px-6 py-2 text-mid-grey text-center"
+      class="text-2xl heading-montserrat px-6 my-4 text-mid-grey text-center"
     >
       {{ institutionStore.userInstitution.name }}
     </p>
@@ -159,7 +158,7 @@ const getInfo = (data) => {
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
             <FormField
-              v-model="team.tuesdayAllocation"
+              v-model="team.allocatedTue"
               type="number"
               :label="team.teamLevel"
               :disabled="!team.levelPresent"
@@ -175,7 +174,7 @@ const getInfo = (data) => {
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
             <FormField
-              v-model="team.wednesdayAllocation"
+              v-model="team.allocatedWed"
               type="number"
               :label="team.teamLevel"
               :disabled="!team.levelPresent"
@@ -202,7 +201,7 @@ const getInfo = (data) => {
           <div class="flex flex-row space-x-3">
             <div v-for="(pref, idx) in venuePreferenceLabels" :key="idx">
               <FormField
-                v-model="formInput.venuePreferences[idx]"
+                v-model="formInput.venuePreference[idx]"
                 placeholder="Enter Preference"
                 :label="venuePreferenceLabels[idx]"
               />
