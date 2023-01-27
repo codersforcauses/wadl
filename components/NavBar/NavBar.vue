@@ -64,12 +64,13 @@
       :class="visibility ? 'flex' : 'hidden'"
     >
       <ul class="flex flex-col items-center">
-        <HamburgerListItem val="Teams" dest="/coordinator" />
         <HamburgerListItem
           v-if="userStore.institution"
           val="Team Registration"
           dest="/coordinator/team-registration"
         />
+        <HamburgerListItem val="Teams" dest="/coordinator" />
+
         <HamburgerListItem val="Draw" dest="/coordinator/draw" />
         <HamburgerListItem val="Institution" dest="/coordinator/institutions" />
         <HamburgerListItem
