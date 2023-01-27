@@ -45,11 +45,9 @@ export const useInstitutionStore = defineStore("institution", {
       this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
-      console.log("****", id);
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "institutions", id);
       await getDoc(ref).then((doc) => {
-        console.log(doc.data());
         this.userInstitution = {
           id: doc.id,
           name: doc.data().name,

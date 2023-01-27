@@ -81,7 +81,6 @@ const saveTeamRegistration = async () => {
 //   };
 // };
 const getInfo = (data) => {
-  console.log("torni info", data);
   formInput.value.tournament = data.name;
   formInput.value.tournamentId = data.id;
 };

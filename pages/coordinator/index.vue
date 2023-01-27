@@ -54,9 +54,7 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 
 onMounted(async () => {
-  console.log(store.teams);
   if (store.teams.length === 0) {
-    console.log("INST", userStore.institution);
     await store.getTeamsByID(userStore.institution);
     console.table(store.teams);
   }
