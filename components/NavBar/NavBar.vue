@@ -65,21 +65,36 @@
     >
       <ul class="flex flex-col items-center">
         <HamburgerListItem
-          v-if="userStore.institution"
+          val="Teams"
+          dest="/coordinator"
+          @click="visibility = false"
+        />
+        <HamburgerListItem
+          v-show="userStore.institution"
           val="Team Registration"
           dest="/coordinator/team-registration"
+          @click="visibility = false"
         />
-        <HamburgerListItem val="Teams" dest="/coordinator" />
 
-        <HamburgerListItem val="Draw" dest="/coordinator/draw" />
-        <HamburgerListItem val="Institution" dest="/coordinator/institutions" />
+        <HamburgerListItem
+          val="Draw"
+          dest="/coordinator/draw"
+          @click="visibility = false"
+        />
+        <HamburgerListItem
+          val="Institution"
+          dest="/coordinator/institutions"
+          @click="visibility = false"
+        />
         <HamburgerListItem
           val="User Information"
           dest="/coordinator/userinformation"
+          @click="visibility = false"
         />
         <HamburgerListItem
           val="Change Password"
           dest="/coordinator/changepassword"
+          @click="visibility = false"
         />
         <HamburgerListItem
           val="Signout"
