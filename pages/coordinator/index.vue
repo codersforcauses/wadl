@@ -26,11 +26,11 @@ const headers = [
     title: "Week Pref.",
   },
   {
-    key: "tuesdayAllocation",
+    key: "allocatedTue",
     title: "Tue",
   },
   {
-    key: "wednesdayAllocation",
+    key: "allocatedWed",
     title: "Wed",
   },
   {
@@ -46,7 +46,7 @@ const defaultInputState = {
   timeslot: null,
   venuePreference: [],
   allocatedTue: null,
-  allocatedWed: null,
+  allocatedTue: null,
   weekPreference: null,
 };
 

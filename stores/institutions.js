@@ -325,7 +325,7 @@ export const useInstitutionStore = defineStore("institution", {
             allocatedTue: doc.data().allocatedTue,
             allocatedWed: doc.data().allocatedWed,
             hasVenuePreference: doc.data().hasVenuePreference,
-            venuePreferences: doc.data().venuePreference,
+            venuePreference: doc.data().venuePreference,
             notes: doc.data().notes,
             division: doc.data().division,
           };
