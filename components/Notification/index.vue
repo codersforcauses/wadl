@@ -12,11 +12,14 @@
         "
         class="flex flex-col items-center p-10 justify-center bg-white rounded-2xl"
       >
-        <CheckCircleIcon v-if="isSuccess" class="h-20 w-20 text-green-500" />
-        <XCircleIcon v-else class="h-20 w-20 text-red-500" />
+        <CheckCircleIcon v-if="isSuccess" class="h-20 w-20 text-light-green" />
+        <XCircleIcon v-else class="h-20 w-20 text-danger-red" />
         <div
           class="m-2 0"
-          :class="{ 'text-green-500': isSuccess, 'text-red-500': !isSuccess }"
+          :class="{
+            'text-light-green': isSuccess,
+            'text-danger-red': !isSuccess,
+          }"
         >
           <Header
             :title-text="header || (isSuccess ? 'Success!' : 'Oh Snap!')"
@@ -25,7 +28,7 @@
         </div>
         <p class="m-2">{{ body }}</p>
         <Button
-          :button-color="isSuccess ? 'bg-green-500' : 'bg-red-500'"
+          :button-color="isSuccess ? 'bg-light-green' : 'bg-danger-red'"
           button-text="Okay"
           text-color="text-white m-5"
           @click="$emit('close')"
