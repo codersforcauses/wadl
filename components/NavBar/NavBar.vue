@@ -21,7 +21,7 @@
           </NuxtLink>
         </div>
         <div v-if="role === 'Team Coordinator'">
-          <div v-if="!visibility">
+          <div v-if="!visibility" class="flex items-center">
             <button @click="visibility = !visibility">
               <Bars3Icon class="w-10 h-10 ml-2 mr-6" />
             </button>
@@ -60,7 +60,7 @@
     </div>
     <!-- Team Coordinator Drop down menu - This only could be its own component.-->
     <div
-      class="bg-gold z-60 absolute right-0 top-16 rounded-bl-md shadow-md"
+      class="bg-gold z-60 absolute right-0 top-12 rounded-bl-md shadow-md"
       :class="visibility ? 'flex' : 'hidden'"
     >
       <ul class="flex flex-col items-center">
