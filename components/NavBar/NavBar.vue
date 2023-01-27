@@ -13,11 +13,7 @@
       <client-only>
         <div v-if="role === 'Admin'">
           <NuxtLink to="/admin">
-            <Button
-              button-text="Admin"
-              size="small"
-              class="shadow-none underline underline-offset-4"
-            />
+            <Button button-text="Admin" size="small" class="shadow-none" />
           </NuxtLink>
         </div>
         <div v-if="role === 'Team Coordinator'">
@@ -40,7 +36,8 @@
             <NuxtLink to="/login">
               <Button
                 button-text="Login"
-                button-color="bg-light-yellow"
+                button-color="bg-black"
+                text-color="text-white"
                 size="small"
               />
             </NuxtLink>
@@ -49,7 +46,8 @@
             <NuxtLink to="/">
               <Button
                 button-text="Signout"
-                button-color="bg-light-yellow"
+                button-color="bg-black"
+                text-color="text-white"
                 size="small"
                 @click="userStore.clearStore()"
               />
