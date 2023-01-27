@@ -88,13 +88,13 @@ const getInfo = (data) => {
 </script>
 
 <template>
-  <p class="text-4xl heading-montserrat px-6 pt-5 py-3 text-center">
+  <p class="text-4xl heading-montserrat px-6 pt-8 text-center">
     Team Registration
   </p>
   <div v-if="tournaments" class="px-10">
     <p
       v-if="institutionStore.userInstitution"
-      class="text-2xl font-semibold heading-montserrat px-6 py-2 text-mid-grey text-center"
+      class="text-2xl heading-montserrat px-6 my-4 text-mid-grey text-center"
     >
       {{ institutionStore.userInstitution.name }}
     </p>
