@@ -77,7 +77,7 @@ export const useAdminStore = defineStore("admin", {
       try {
         const { $clientFirestore } = useNuxtApp();
         updateDoc(doc($clientFirestore, "users", user.id), {
-          requesting: null,
+          requesting: false,
           role: user.role,
         }).then(() => {
           this.requestingUsers = this.requestingUsers.filter(

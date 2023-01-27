@@ -21,7 +21,6 @@ export const useInstitutionStore = defineStore("institution", {
       filteredInstitutions: [],
       userInstitution: null,
       errorMessage: "",
-      successMessage: "",
       teams: [],
     };
   },
@@ -180,7 +179,6 @@ export const useInstitutionStore = defineStore("institution", {
     async clearStore() {
       this.institutions = [];
     },
-    // TODO: figure out best way the do tues/wed allocation
     async registerTeam(team) {
       // novice
       this.errorMessage = "";
@@ -190,12 +188,12 @@ export const useInstitutionStore = defineStore("institution", {
         const wedAllocation = parseInt(team.teams[0].allocatedWed);
         if (tueAllocation < 0 || wedAllocation < 0) {
           this.errorMessage =
-            "Please allocate a positive number of teams created for NOVICE";
+            "Please allocate a positive number of teams for NOVICE";
         } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
           this.errorMessage = "Too many teams allocated to a single day.";
         } else if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
-            "Please allocate the same number of teams created for NOVICE";
+            "Please allocate the same number of teams for NOVICE";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please reduce the amount of allocations for NOVICE to match number of teams.";
@@ -208,12 +206,12 @@ export const useInstitutionStore = defineStore("institution", {
         const wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
         if (tueAllocation < 0 || wedAllocation < 0) {
           this.errorMessage =
-            "Please allocate a positive number of teams created for NOVICE";
+            "Please allocate a positive number of teams for NOVICE";
         } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
           this.errorMessage = "Too many teams allocated to a single day.";
         } else if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
-            "Please allocate the same number of teams created for JUNIOR";
+            "Please allocate the same number of teams for JUNIOR";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please reduce the amount of allocations for JUNIOR to match number of teams.";
@@ -226,12 +224,12 @@ export const useInstitutionStore = defineStore("institution", {
         const wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
         if (tueAllocation < 0 || wedAllocation < 0) {
           this.errorMessage =
-            "Please allocate a positive number of teams created for NOVICE";
+            "Please allocate a positive number of teams for NOVICE";
         } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
           this.errorMessage = "Too many teams allocated to a single day.";
         } else if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
-            "Please allocate the same number of teams created for SENIOR";
+            "Please allocate the same number of teams for SENIOR";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
           this.errorMessage =
             "Please reduce the amount of allocations for SENIOR to match number of teams.";
@@ -249,8 +247,6 @@ export const useInstitutionStore = defineStore("institution", {
             const wedAllocation = parseInt(level.allocatedWed);
             const overlap = tueAllocation + wedAllocation - num;
             const tueOnly = tueAllocation - overlap;
-            // wedonly is figured out in function
-
             if (num > 0) {
               for (let i = 0; i < num; i++) {
                 const ref = doc(collection($clientFirestore, "teams"));
@@ -273,7 +269,6 @@ export const useInstitutionStore = defineStore("institution", {
             }
           });
           await batch.commit();
-          this.successMessage = "Teams Saved!";
         } catch (error) {
           console.log(error);
         }
@@ -303,8 +298,6 @@ export const useInstitutionStore = defineStore("institution", {
         }
       });
     },
-
-    // THIS WORKS PLS DONT TOUCH
     async getTeamsByID(institutionId) {
       const { $clientFirestore } = useNuxtApp();
       try {

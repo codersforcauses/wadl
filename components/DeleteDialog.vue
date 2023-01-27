@@ -1,13 +1,13 @@
 <template>
   <Modal :modal-visibility="modalVisibility" @close="emit('close')">
-    <div class="w-96 h-48">
+    <div class="w-full h-48">
       <div class="font-montserrat text-2xl text-center font-bold pt-10">
         Are You Sure?
       </div>
       <hr class="mx-8" />
-      <div class="p-5">
+      <div class="p-5 flex justify-evenly">
         <Button
-          class="m-2 mt-5 font-semibold"
+          class="mx-5 mt-4 font-semibold"
           button-text="Yes"
           button-color="bg-light-green"
           text-color="text-white"
@@ -15,7 +15,7 @@
           @click="emit('yes')"
         />
         <Button
-          class="font-semibold"
+          class="mx-5 mt-4 font-semibold"
           button-text="No"
           button-color="bg-light-red"
           text-color="text-dark-red"

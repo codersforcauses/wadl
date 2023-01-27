@@ -2,7 +2,10 @@
 import { useAdminStore } from "../../stores/admin";
 import { onMounted, onUnmounted, ref } from "vue";
 
+const currentUser = ref(null);
 const searchTerm = ref("");
+const modalVisibility = ref(false);
+
 const handleFilter = (s) => {
   searchTerm.value = s;
 };
@@ -28,6 +31,10 @@ const filterUsers = (searchTerm) => {
       user.email?.toLowerCase().includes(searchTerm) ||
       user.role?.toLowerCase().includes(searchTerm)
   );
+};
+const handleDelete = (user) => {
+  currentUser.value = user;
+  modalVisibility.value = true;
 };
 </script>
 
@@ -98,11 +105,30 @@ const filterUsers = (searchTerm) => {
               button-color="bg-light-red"
               text-color="text-dark-red"
               size="small"
-              @click="adminStore.denyUser(user)"
+              @click="handleDelete(user)"
             />
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+    @yes="
+      () => {
+        adminStore.denyUser(currentUser);
+        modalVisibility = false;
+      }
+    "
+    @no="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  />
 </template>

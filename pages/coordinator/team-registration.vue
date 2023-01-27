@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import { useUserStore } from "../../stores/user";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useTournamentStore } from "../../stores/tournaments";
+import { navigateTo } from "#imports";
 const institutionStore = useInstitutionStore();
 const tournamentStore = useTournamentStore();
 const userStore = useUserStore();
@@ -58,12 +59,23 @@ const updateLevels = (chips) => {
     }
   });
 };
+
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
 const saveTeamRegistration = async () => {
   // TODO:
   // Perform validation
   // POST to backend
   formInput.value.userTeam = institutionStore.userInstitution.name;
   institutionStore.registerTeam(formInput.value);
+  if (!institutionStore.errorMessage) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = "Successfully Created Teams!";
+  }
   // resetForm();
 };
 // commenting it out for now because we might need it in the future
@@ -83,6 +95,10 @@ const saveTeamRegistration = async () => {
 const getInfo = (data) => {
   formInput.value.tournament = data.name;
   formInput.value.tournamentId = data.id;
+};
+
+const redirect = () => {
+  navigateTo("/coordinator");
 };
 </script>
 
@@ -217,9 +233,6 @@ const getInfo = (data) => {
         <p v-if="institutionStore.errorMessage" class="text-danger-red">
           {{ institutionStore.errorMessage }}
         </p>
-        <p v-if="institutionStore.successMessage" class="text-black">
-          {{ institutionStore.successMessage }}
-        </p>
         <div class="flex justify-evenly items-center mb-2">
           <Button
             class="my-3"
@@ -231,4 +244,15 @@ const getInfo = (data) => {
       </form>
     </div>
   </div>
+  <Notification
+    :modal-visibility="notificationVisibility"
+    :is-success="isSuccess"
+    :body="notificationMessage"
+    @close="
+      () => {
+        notificationVisibility = false;
+        redirect();
+      }
+    "
+  />
 </template>
