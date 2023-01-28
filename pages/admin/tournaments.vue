@@ -139,16 +139,9 @@ store.getTournaments();
 const getLevels = () => form.value.levels.map((l) => l.level);
 
 const updateSelectedLevels = (chips) => {
-  form.value.levels.forEach(function callback(l, index) {
-    if (!chips.includes(l.level)) {
-      form.value.levels.splice(index, 1);
-    }
-  });
-
+  form.value.levels = [];
   chips.forEach((level) => {
-    if (!getLevels().includes(level)) {
-      form.value.levels.push({ level });
-    }
+    form.value.levels.push({ level });
   });
 };
 
