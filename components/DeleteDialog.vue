@@ -1,6 +1,10 @@
 <template>
-  <Modal :modal-visibility="modalVisibility" @close="emit('close')">
-    <div class="w-50 h-48">
+  <Modal
+    :modal-visibility="modalVisibility"
+    size="md:1/3"
+    @close="emit('close')"
+  >
+    <div class="w-full h-48">
       <div class="font-montserrat text-2xl text-center font-bold pt-10">
         Are You Sure?
       </div>
