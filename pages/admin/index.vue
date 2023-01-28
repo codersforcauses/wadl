@@ -15,7 +15,10 @@ import {
 import { useUserStore } from "../../stores/user";
 
 import { useTeamStore } from "../../stores/teams";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Admin",
+});
 const user = useUserStore();
 
 const exportTeams = async () => {

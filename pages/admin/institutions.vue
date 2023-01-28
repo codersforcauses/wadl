@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Institutions",
+});
 const headers = [
   {
     key: "name",
