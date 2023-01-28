@@ -177,7 +177,7 @@ export const useInstitutionStore = defineStore("institution", {
         const numTeam = parseInt(team.teams[i].numberOfTeams);
         const tueAllocation = parseInt(team.teams[i].allocatedTue);
         const wedAllocation = parseInt(team.teams[i].allocatedWed);
-        if (numTeam <= 0) {
+        if (numTeam <= 0 && team.teams[i].levelPresent) {
           this.errorMessage =
             team.teams[i].teamLevel + " selected but no total teams selected.";
         } else if (numTeam > 50) {
