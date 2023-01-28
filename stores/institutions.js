@@ -50,7 +50,6 @@ export const useInstitutionStore = defineStore("institution", {
           name: doc.data().name,
           email: doc.data().email,
           number: doc.data().number,
-          code: doc.data().code,
           abbreviation: doc.data().abbreviation,
         };
       });
@@ -101,13 +100,11 @@ export const useInstitutionStore = defineStore("institution", {
       if (
         element.number !== institution.number ||
         element.email !== institution.email ||
-        element.code !== institution.code ||
         element.abbreviation !== institution.abbreviation
       ) {
         const ref = doc($clientFirestore, "institutions", institution.id);
         const data = {
           abbreviation: institution.abbreviation,
-          code: institution.code,
           email: institution.email,
           number: institution.number,
         };
@@ -138,7 +135,6 @@ export const useInstitutionStore = defineStore("institution", {
           id: ref.id,
           name: institution.name,
           email: institution.email,
-          code: institution.code,
           number: institution.number,
           abbreviation: institution.abbreviation,
         };
