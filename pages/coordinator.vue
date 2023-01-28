@@ -1,7 +1,6 @@
 <script setup>
 import { definePageMeta } from "#imports";
 import { useUserStore } from "../stores/user";
-
 definePageMeta({
   middleware: ["team"],
 });

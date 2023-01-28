@@ -3,14 +3,22 @@
   <SearchBar @handle-filter="handleFilter" />
   <Tabs :tabs="tabs" @handle-tab="handleTabClicked" />
   <div class="mx-8">
-    <Table :headers="headers" :data="contacts" :can-edit="false" />
+    <Table
+      :headers="headers"
+      :data="contacts"
+      :can-edit="false"
+      no-data-text="No users registered"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import data from "../../data/users.json";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Contacts",
+});
 const currentTab = ref("Adjudicator");
 const contacts = ref(
   data.filter((contact) => contact.role === currentTab.value)

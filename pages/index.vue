@@ -26,6 +26,10 @@
 import LevelButton from "../components/HomePage/LevelButton.vue";
 import { useTournamentStore } from "../stores/tournaments";
 import { onMounted } from "vue";
+import { useHead } from "#imports";
+useHead({
+  title: "WADL",
+});
 const store = useTournamentStore();
 
 onMounted(() => {

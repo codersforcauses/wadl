@@ -18,7 +18,6 @@ export const useInstitutionStore = defineStore("institution", {
   state: () => {
     return {
       institutions: [],
-      filteredInstitutions: [],
       userInstitution: null,
       errorMessage: "",
       teams: [],
@@ -41,7 +40,6 @@ export const useInstitutionStore = defineStore("institution", {
         };
         this.institutions.push(data);
       });
-      this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
       const { $clientFirestore } = useNuxtApp();
@@ -52,7 +50,6 @@ export const useInstitutionStore = defineStore("institution", {
           name: doc.data().name,
           email: doc.data().email,
           number: doc.data().number,
-          code: doc.data().code,
           abbreviation: doc.data().abbreviation,
         };
       });
@@ -90,13 +87,6 @@ export const useInstitutionStore = defineStore("institution", {
               return item.id === institution.id;
             });
             this.institutions[index] = institution;
-            const indexFiltered = this.filteredInstitutions.findIndex(function (
-              item,
-              i
-            ) {
-              return item.id === institution.id;
-            });
-            this.filteredInstitutions[indexFiltered] = institution;
           })
           .catch((error) => {
             console.log(error);
@@ -110,13 +100,11 @@ export const useInstitutionStore = defineStore("institution", {
       if (
         element.number !== institution.number ||
         element.email !== institution.email ||
-        element.code !== institution.code ||
         element.abbreviation !== institution.abbreviation
       ) {
         const ref = doc($clientFirestore, "institutions", institution.id);
         const data = {
           abbreviation: institution.abbreviation,
-          code: institution.code,
           email: institution.email,
           number: institution.number,
         };
@@ -147,7 +135,6 @@ export const useInstitutionStore = defineStore("institution", {
           id: ref.id,
           name: institution.name,
           email: institution.email,
-          code: institution.code,
           number: institution.number,
           abbreviation: institution.abbreviation,
         };
@@ -156,7 +143,6 @@ export const useInstitutionStore = defineStore("institution", {
             console.log(error);
           });
           this.institutions.push(data);
-          this.filteredInstitutions.push(data);
         } else {
           await setDoc(ref, data)
             .then(() => {
@@ -180,6 +166,7 @@ export const useInstitutionStore = defineStore("institution", {
       this.institutions = [];
     },
     async registerTeam(team) {
+      const userStore = useUserStore();
       // novice
       this.errorMessage = "";
       if (team.teams[0].levelPresent) {
@@ -238,7 +225,12 @@ export const useInstitutionStore = defineStore("institution", {
       if (!this.errorMessage) {
         this.errorMessage = "";
         const { $clientFirestore } = useNuxtApp();
-        let teamCounter = 1;
+        const query_ = query(
+          collection($clientFirestore, "teams"),
+          where("institutionId", "==", userStore.institution)
+        );
+        const snapshot = await getCountFromServer(query_);
+        let teamCounter = snapshot.data().count + 1;
         try {
           const batch = writeBatch($clientFirestore);
           team.teams.forEach((level) => {
