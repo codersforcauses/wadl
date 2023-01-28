@@ -165,7 +165,7 @@ export const useInstitutionStore = defineStore("institution", {
     async clearStore() {
       this.institutions = [];
     },
-    async registerTeam(team) {
+    async registerTeams(team) {
       const userStore = useUserStore();
       // novice
       this.errorMessage = "";
