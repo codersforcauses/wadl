@@ -18,7 +18,6 @@ export const useInstitutionStore = defineStore("institution", {
   state: () => {
     return {
       institutions: [],
-      filteredInstitutions: [],
       userInstitution: null,
       errorMessage: "",
       teams: [],
@@ -41,7 +40,6 @@ export const useInstitutionStore = defineStore("institution", {
         };
         this.institutions.push(data);
       });
-      this.filteredInstitutions = [...this.institutions];
     },
     async getInstitutionByID(id) {
       const { $clientFirestore } = useNuxtApp();
@@ -90,13 +88,6 @@ export const useInstitutionStore = defineStore("institution", {
               return item.id === institution.id;
             });
             this.institutions[index] = institution;
-            const indexFiltered = this.filteredInstitutions.findIndex(function (
-              item,
-              i
-            ) {
-              return item.id === institution.id;
-            });
-            this.filteredInstitutions[indexFiltered] = institution;
           })
           .catch((error) => {
             console.log(error);
@@ -156,7 +147,6 @@ export const useInstitutionStore = defineStore("institution", {
             console.log(error);
           });
           this.institutions.push(data);
-          this.filteredInstitutions.push(data);
         } else {
           await setDoc(ref, data)
             .then(() => {

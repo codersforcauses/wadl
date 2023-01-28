@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useHead } from "#imports";
 useHead({
@@ -43,11 +43,14 @@ const resetFormState = () => {
   store.errorMessage = "";
 };
 
-const filterInstitutions = (searchTerm) => {
-  store.filteredInstitutions = store.institutions.filter((institutions) =>
-    institutions.name.toLowerCase().includes(searchTerm)
+const searchTerm = ref(null);
+const filteredInstitutions = computed(() => {
+  const query = searchTerm.value;
+  const results = store.institutions.filter((institutions) =>
+    institutions.name.toLowerCase().includes(query)
   );
-};
+  return query !== null ? results : store.institutions;
+});
 
 const updateInstitution = async () => {
   // update store
@@ -147,15 +150,17 @@ const handleEdit = (row) => {
   </Modal>
 
   <Header title-text="Institutions" />
-  <SearchBar @handle-filter="filterInstitutions" />
+  <SearchBar
+    @handle-filter="
+      (searchString) => {
+        searchTerm = searchString;
+      }
+    "
+  />
 
   <!-- Institutions Table  View -->
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table
-      :headers="headers"
-      :data="store.filteredInstitutions"
-      @edit="handleEdit"
-    />
+    <Table :headers="headers" :data="filteredInstitutions" @edit="handleEdit" />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
