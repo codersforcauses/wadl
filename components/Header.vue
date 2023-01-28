@@ -20,6 +20,7 @@ defineProps({
   subtitleText: {
     type: String,
     default: "",
+  },
   hasLine: {
     type: Boolean,
     default: true,

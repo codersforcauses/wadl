@@ -2,9 +2,9 @@
 import { definePageMeta } from "#imports";
 import { useUserStore } from "../stores/user";
 
-definePageMeta({
-  middleware: ["admin"],
-});
+// definePageMeta({
+//   middleware: ["admin"],
+// });
 
 const userStore = useUserStore();
 const isAdmin = userStore.role === "Admin";
