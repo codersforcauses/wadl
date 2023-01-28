@@ -103,7 +103,8 @@
     <Button
       button-text="Add"
       button-color="bg-gold"
-      class="m-5 ml-8"
+      type="button"
+      size="medium"
       @click="modalVisibility = true"
     />
   </div>
