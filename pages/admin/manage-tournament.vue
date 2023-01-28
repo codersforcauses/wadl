@@ -188,10 +188,41 @@
         />
       </div>
     </div>
+    <div class="mx-32">
+      <table class="table-fixed overflow-scroll w-1/2 rounded-lg">
+        <thead class="">
+          <tr>
+            <th v-for="(object, index) in headers" :key="index" class="pt-5 pb-5 divide-y-4 font-montserrat font-semibold text-mid-grey text-left text-lg" >
+              {{ object.title }}
+            </th>
+            <th class="text-right p-2">
+              <button class="bg-amber-300 p-1 rounded-full">
+                <PlusIcon class="w-7 h-7" />
+              </button>
+            </th>
+            
+          </tr>
+        </thead>
+        <tbody class="bg-grey p-8">
+          <tr v-for="(row, index) in data" :key="index"
+            class="h-10 even:bg-white odd:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out font-montserrat overflow">
+          <td>{{ row.venue }}</td>
+          <td  class="text-right p-2 border-black">
+            <button class="border-solid border-black">
+              <XMarkIcon class="w-4 h-4" />
+            </button>
+          </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script setup>
+import data from "../../data/venues.json"
+import { XMarkIcon, PlusIcon } from "@heroicons/vue/24/solid"
 const noviceNum = 10;
 const juniorNum = 20;
 const seniorNum = 30;
@@ -201,4 +232,11 @@ const drawStatus = "INCOMPLETE";
 const currentRound = 0;
 const totalRound = "8";
 const results = "UNRELEASED";
+const headers = [
+  {
+    key: "name",
+    title: "Venues",
+  },
+ 
+];
 </script>
