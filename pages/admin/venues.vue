@@ -62,17 +62,17 @@ const headers = [
 
 <template>
   <Header title-text="Venues" />
-  <SearchBar @handle-filter="handleFilter" />
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="store.filteredVenues" @edit="handleEdit" />
-  </div>
-  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
+  <div class="flex items-center">
+    <SearchBar class="w-3/4" @handle-filter="handleFilter" />
     <Button
-      button-text="Add Venue"
+      button-text="Add"
       button-color="bg-gold"
       class="m-5 ml-8"
       @click="modalVisibility = true"
     />
+  </div>
+  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+    <Table :headers="headers" :data="store.filteredVenues" @edit="handleEdit" />
   </div>
 
   <Modal
