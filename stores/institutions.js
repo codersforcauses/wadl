@@ -170,6 +170,7 @@ export const useInstitutionStore = defineStore("institution", {
       this.institutions = [];
     },
     async registerTeam(team) {
+      const userStore = useUserStore();
       // novice
       this.errorMessage = "";
       if (team.teams[0].levelPresent) {
@@ -228,7 +229,12 @@ export const useInstitutionStore = defineStore("institution", {
       if (!this.errorMessage) {
         this.errorMessage = "";
         const { $clientFirestore } = useNuxtApp();
-        let teamCounter = 1;
+        const query_ = query(
+          collection($clientFirestore, "teams"),
+          where("institutionId", "==", userStore.institution)
+        );
+        const snapshot = await getCountFromServer(query_);
+        let teamCounter = snapshot.data().count + 1;
         try {
           const batch = writeBatch($clientFirestore);
           team.teams.forEach((level) => {
