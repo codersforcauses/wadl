@@ -105,7 +105,12 @@
     "
   />
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="filteredTournaments" @edit="handleEdit" />
+    <Table
+      :headers="headers"
+      :data="filteredTournaments"
+      @edit="handleEdit"
+      no-data-text="No tournaments registered"
+    />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
@@ -141,16 +146,9 @@ store.getTournaments();
 const getLevels = () => form.value.levels.map((l) => l.level);
 
 const updateSelectedLevels = (chips) => {
-  form.value.levels.forEach(function callback(l, index) {
-    if (!chips.includes(l.level)) {
-      form.value.levels.splice(index, 1);
-    }
-  });
-
+  form.value.levels = [];
   chips.forEach((level) => {
-    if (!getLevels().includes(level)) {
-      form.value.levels.push({ level });
-    }
+    form.value.levels.push({ level });
   });
 };
 

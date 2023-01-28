@@ -160,7 +160,12 @@ const handleEdit = (row) => {
 
   <!-- Institutions Table  View -->
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="filteredInstitutions" @edit="handleEdit" />
+    <Table
+      :headers="headers"
+      :data="filteredInstitutions"
+      @edit="handleEdit"
+      no-data-text="No institutions registered"
+    />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
