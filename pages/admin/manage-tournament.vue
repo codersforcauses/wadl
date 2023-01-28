@@ -104,7 +104,7 @@
           </div>
         </div>
       </div>
-      <div class="col-span-1 bg-slate-200 rounded">
+      <div class="col-span-1 bg-yellow-200 rounded">
         <div class="flex flex-col justify-center items-center">
           <h1
             class="text-4xl pt-10 text-center divide-y-4 font-montserrat font-semibold"
