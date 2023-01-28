@@ -3,7 +3,12 @@
   <SearchBar @handle-filter="handleFilter" />
   <Tabs :tabs="tabs" @handle-tab="handleTabClicked" />
   <div class="mx-8">
-    <Table :headers="headers" :data="contacts" :can-edit="false" />
+    <Table
+      :headers="headers"
+      :data="contacts"
+      :can-edit="false"
+      no-data-text="No users registered"
+    />
   </div>
 </template>
 
