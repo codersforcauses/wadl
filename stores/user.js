@@ -121,7 +121,6 @@ export const useUserStore = defineStore("user", {
       }
     },
     cleanUpError(error) {
-      console.log(error.code);
       switch (error.code) {
         case "auth/user-not-found":
           this.errorCode = "Account not found, try again with a new account";
