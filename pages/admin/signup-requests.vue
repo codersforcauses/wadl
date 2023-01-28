@@ -1,37 +1,49 @@
 <script setup>
 import { useAdminStore } from "../../stores/admin";
-import { onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
+import { useHead } from "#imports";
+useHead({
+  title: "Signup Requests",
+});
+const currentUser = ref(null);
+const searchTerm = ref("");
+const modalVisibility = ref(false);
+
+const handleFilter = (s) => {
+  searchTerm.value = s;
+};
 
 // pinia
 const adminStore = useAdminStore();
 
-const approveUser = async (id) => {
-  adminStore.acceptUser(id);
-};
-const rejectUser = async (id) => {
-  adminStore.denyUser(id);
-};
 onMounted(() => {
-  adminStore.getUsers();
+  adminStore.fetchUsers();
 });
+
 onUnmounted(() => {
   adminStore.clearStore();
 });
-// Filters people on first,last & email match
-const filterUser = (searchTerm) => {
-  adminStore.filteredUsers = adminStore.requestingUsers.filter(
+
+const filterUsers = (searchTerm) => {
+  if (searchTerm === "") return adminStore.requestingUsers;
+
+  return adminStore.requestingUsers.filter(
     (user) =>
-      user.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.role.toLowerCase().includes(searchTerm.toLowerCase())
+      user.firstName?.toLowerCase().includes(searchTerm) ||
+      user.lastName?.toLowerCase().includes(searchTerm) ||
+      user.email?.toLowerCase().includes(searchTerm) ||
+      user.role?.toLowerCase().includes(searchTerm)
   );
+};
+const handleDelete = (user) => {
+  currentUser.value = user;
+  modalVisibility.value = true;
 };
 </script>
 
 <template>
   <Header title-text="Sign Up Requests" />
-  <SearchBar @handle-filter="filterUser" />
+  <SearchBar @handle-filter="handleFilter" />
   <div class="flex justify-center">
     <table class="w-10/12 table-fixed">
       <thead>
@@ -61,7 +73,7 @@ const filterUser = (searchTerm) => {
       </thead>
       <tbody>
         <tr
-          v-for="user in adminStore.filteredUsers"
+          v-for="user in filterUsers(searchTerm)"
           :key="user.email"
           class="py-md bg-white border-b h-10"
         >
@@ -89,18 +101,37 @@ const filterUser = (searchTerm) => {
               button-color="bg-light-green"
               text-color="text-white"
               size="small"
-              @click="approveUser(user)"
+              @click="adminStore.acceptUser(user)"
             />
             <Button
               button-text="Reject"
               button-color="bg-light-red"
               text-color="text-dark-red"
               size="small"
-              @click="rejectUser(user)"
+              @click="handleDelete(user)"
             />
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+    @yes="
+      () => {
+        adminStore.denyUser(currentUser);
+        modalVisibility = false;
+      }
+    "
+    @no="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  />
 </template>

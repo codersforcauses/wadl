@@ -1,6 +1,25 @@
 <script setup>
-import { ref } from "vue";
-const currentTeam = ref("Perth Modern");
+import { ref, onMounted } from "vue";
+import { useUserStore } from "../../stores/user";
+import { useInstitutionStore } from "../../stores/institutions";
+import { useTournamentStore } from "../../stores/tournaments";
+import { navigateTo, useHead } from "#imports";
+useHead({
+  title: "Team Registration",
+});
+const institutionStore = useInstitutionStore();
+const tournamentStore = useTournamentStore();
+const userStore = useUserStore();
+const tournaments = ref(null);
+
+onMounted(async () => {
+  await tournamentStore.getTournaments();
+  await institutionStore.getInstitutionByID(userStore.institution);
+
+  tournaments.value = tournamentStore.getOpen;
+  formInput.value.institutionId = userStore.institution;
+});
+
 const venuePreferenceLabels = ref([
   "1st Preference",
   "2nd Preference",
@@ -10,19 +29,23 @@ const venuePreferenceLabels = ref([
 const teamState = {
   levelPresent: false,
   numberOfTeams: 0,
-  tuesdayAllocation: 0,
-  wednesdayAllocation: 0,
+  allocatedTue: 0,
+  allocatedWed: 0,
   weekPreference: null,
 };
 const formInput = ref({
   tournament: null,
+  tournamentId: null,
+  institutionId: null,
   hasVenuePreference: false,
-  venuePreferences: [],
+  venuePreference: [],
   notes: null,
+  userTeam: null,
   teams: [
-    { teamLevel: "Novice", ...teamState },
-    { teamLevel: "Junior", ...teamState },
-    { teamLevel: "Senior", ...teamState },
+    // TODO double check on the timeslot allocations
+    { teamLevel: "Novice", timeslot: "5.15pm", ...teamState },
+    { teamLevel: "Junior", timeslot: "6.15pm", ...teamState },
+    { teamLevel: "Senior", timeslot: "7.15pm", ...teamState },
   ],
 });
 const updateLevels = (chips) => {
@@ -31,16 +54,31 @@ const updateLevels = (chips) => {
     if (chips.includes(team.teamLevel)) {
       return { ...team, levelPresent: true };
     } else {
-      return { teamLevel: team.teamLevel, ...teamState };
+      return {
+        teamLevel: team.teamLevel,
+        ...teamState,
+        timeslot: team.timeslot,
+      };
     }
   });
 };
+
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
 const saveTeamRegistration = async () => {
   // TODO:
   // Perform validation
   // POST to backend
-  console.log(formInput.value);
-  console.log("Team Saved!");
+  formInput.value.userTeam = institutionStore.userInstitution.name;
+  institutionStore.registerTeam(formInput.value);
+  if (!institutionStore.errorMessage) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = "Successfully Created Teams!";
+  }
   // resetForm();
 };
 // commenting it out for now because we might need it in the future
@@ -57,22 +95,37 @@ const saveTeamRegistration = async () => {
 //     ],
 //   };
 // };
+const getInfo = (data) => {
+  formInput.value.tournament = data.name;
+  formInput.value.tournamentId = data.id;
+};
+
+const redirect = () => {
+  navigateTo("/coordinator");
+};
 </script>
 
 <template>
-  <p class="text-4xl heading-montserrat px-6 pt-5 py-3 text-center">
+  <p class="text-4xl heading-montserrat px-6 pt-8 text-center">
     Team Registration
   </p>
-  <div class="px-10">
+  <div v-if="tournaments" class="px-10">
     <p
-      class="text-2xl font-semibold heading-montserrat px-6 py-2 text-mid-grey text-center"
+      v-if="institutionStore.userInstitution"
+      class="text-2xl heading-montserrat px-6 my-4 text-mid-grey text-center"
     >
-      {{ currentTeam }}
+      {{ institutionStore.userInstitution.name }}
     </p>
     <hr class="pb-3" />
     <div class="flex justify-center">
       <form class="md:w-7/12" @submit.prevent="saveTeamRegistration()">
-        <FormField v-model="formInput.tournament" label="Tournament" />
+        <SearchSelect
+          v-model="formInput.tournament"
+          placeholder="Tournament"
+          label="Tournament"
+          :items="tournaments"
+          @info="getInfo"
+        />
         <label class="heading-montserrat">Level</label>
         <Multiselect
           :items="
@@ -110,7 +163,7 @@ const saveTeamRegistration = async () => {
             :key="team.teamLevel"
             v-model="team.weekPreference"
             :options="['Week 1', 'Week 2', 'Either']"
-            label="Novice"
+            :label="team.teamLevel"
             class="w-full"
             :disabled="!team.levelPresent"
           />
@@ -124,7 +177,7 @@ const saveTeamRegistration = async () => {
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
             <FormField
-              v-model="team.tuesdayAllocation"
+              v-model="team.allocatedTue"
               type="number"
               :label="team.teamLevel"
               :disabled="!team.levelPresent"
@@ -140,7 +193,7 @@ const saveTeamRegistration = async () => {
         <div class="flex flex-row space-x-3">
           <div v-for="team in formInput.teams" :key="team.teamLevel">
             <FormField
-              v-model="team.wednesdayAllocation"
+              v-model="team.allocatedWed"
               type="number"
               :label="team.teamLevel"
               :disabled="!team.levelPresent"
@@ -167,7 +220,7 @@ const saveTeamRegistration = async () => {
           <div class="flex flex-row space-x-3">
             <div v-for="(pref, idx) in venuePreferenceLabels" :key="idx">
               <FormField
-                v-model="formInput.venuePreferences[idx]"
+                v-model="formInput.venuePreference[idx]"
                 placeholder="Enter Preference"
                 :label="venuePreferenceLabels[idx]"
               />
@@ -180,7 +233,9 @@ const saveTeamRegistration = async () => {
           placeholder="Enter any notes"
           class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat heading-montserrat"
         ></textarea>
-
+        <p v-if="institutionStore.errorMessage" class="text-danger-red">
+          {{ institutionStore.errorMessage }}
+        </p>
         <div class="flex justify-evenly items-center mb-2">
           <Button
             class="my-3"
@@ -192,4 +247,15 @@ const saveTeamRegistration = async () => {
       </form>
     </div>
   </div>
+  <Notification
+    :modal-visibility="notificationVisibility"
+    :is-success="isSuccess"
+    :body="notificationMessage"
+    @close="
+      () => {
+        notificationVisibility = false;
+        redirect();
+      }
+    "
+  />
 </template>

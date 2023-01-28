@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="`px-4 py-1 ${width} ${buttonColor} ${textColor} rounded-md shadow-md font-medium`"
+    :class="`px-4 py-1 ${width} ${buttonColor} ${textColor} rounded-md font-medium`"
   >
     {{ buttonText }}
   </button>

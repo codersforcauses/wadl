@@ -3,7 +3,10 @@
 import { useAdminStore } from "../../stores/admin";
 import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Create Admin",
+});
 const userStore = useAdminStore();
 const { errorCode } = storeToRefs(userStore);
 const form = ref({
@@ -18,7 +21,7 @@ const form = ref({
 
 // Call The User Store
 const registerUser = () => {
-  userStore.addUser(form.value);
+  userStore.createAdmin(form.value);
 };
 
 watch(errorCode, (currentValue, oldValue) => {

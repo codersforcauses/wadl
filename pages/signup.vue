@@ -73,17 +73,33 @@
       </div>
     </form>
   </section>
+  <Notification
+    :modal-visibility="notificationVisibility"
+    :is-success="isSuccess"
+    :body="notificationMessage"
+    @close="
+      () => {
+        notificationVisibility = false;
+        redirect();
+      }
+    "
+  />
 </template>
 
 <script setup>
-import { useUserStore } from "../stores/auth";
-import { ref, onBeforeMount } from "vue";
-
+import { useUserStore } from "../stores/user";
+import { ref } from "vue";
+import { useHead, navigateTo } from "#imports";
+useHead({
+  title: "Signup",
+});
 const userStore = useUserStore();
 
-onBeforeMount(() => {
-  userStore.errorCode = null;
-});
+if (userStore.auth) {
+  navigateTo("/");
+} else {
+  userStore.clearStore();
+}
 
 const form = ref({
   firstName: "",
@@ -100,32 +116,47 @@ const isRoleValid = ref(true);
 const errorMessage = ref("");
 const errorMessage2 = ref("");
 
-const updateInput = (e) => {
+const updateInput = () => {
   errorMessage.value = "";
   errorMessage2.value = "";
   isValid.value = true;
   isRoleValid.value = true;
 };
 
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
 // Call The User Store
-const registerUser = (e) => {
-  console.log(form.value.role);
-  if (form.value.password.length > 8) {
-    if (form.value.password === form.value.confirmPassword) {
-      if (form.value.role) {
-        userStore.registerUser(form.value);
-      } else {
-        isRoleValid.value = false;
-        console.log(isRoleValid);
-        errorMessage2.value = "You have to choose a role";
-      }
-    } else {
-      isValid.value = false;
-      errorMessage.value = "The password does not match";
-    }
-  } else {
+const registerUser = async () => {
+  if (form.value.password.length < 8) {
     isValid.value = false;
     errorMessage.value = "The password has to be at least 8 characters";
+    return;
   }
+
+  if (form.value.password !== form.value.confirmPassword) {
+    isValid.value = false;
+    errorMessage.value = "The password does not match";
+    return;
+  }
+
+  if (!form.value.role) {
+    isRoleValid.value = false;
+    errorMessage2.value = "You have to choose a role";
+    return;
+  }
+
+  await userStore.registerUser({ ...form.value });
+  if (!userStore.errorCode) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = userStore.successCode;
+    await userStore.clearStore();
+  }
+};
+const redirect = () => {
+  navigateTo("/");
 };
 </script>

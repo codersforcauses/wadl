@@ -1,12 +1,19 @@
 <script setup>
 import { definePageMeta } from "#imports";
-// definePageMeta({
-//   middleware: ["admin"],
-// });
+import { useUserStore } from "../stores/user";
+
+definePageMeta({
+  middleware: ["admin"],
+});
+
+const userStore = useUserStore();
+const isAdmin = userStore.role === "Admin";
 </script>
 
 <template>
   <div>
-    <NuxtPage />
+    <client-only>
+      <NuxtPage v-if="isAdmin" />
+    </client-only>
   </div>
 </template>
