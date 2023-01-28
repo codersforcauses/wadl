@@ -119,7 +119,29 @@
       Information
     </p>
     <div class="grid grid-cols-8 gap-4 text-center">
-      <div class="col-span-3 bg-slate-200 rounded">
+      <div class="col-span-3">
+        <Frame
+          :title="status"
+          subtitle="STATUS"
+          :button-texts="['Open', 'Run', 'Complete']"
+          :button-colors="['bg-light-orange-gold', 'bg-light-green', 'bg-gold']"
+          button-size="small"
+          @button1-clicked="
+            () => {
+              console.log('Open Tournament');
+            }
+          "
+          @button2-clicked="
+            () => {
+              console.log('Run Tournament');
+            }
+          "
+          @button3-clicked="
+            () => {
+              console.log('Complete Tournament');
+            }
+          "
+        />
         <div class="flex flex-col justify-center items-center">
           <h1
             class="text-2xl text-center divide-y-4 font-montserrat font-semibold pt-6"
@@ -154,7 +176,7 @@
         <Frame
           :title="drawStatus"
           subtitle="DRAW STATUS"
-          button-text="Generate Draw"
+          :button-texts="['Generate Draw']"
           @button-clicked="
             () => {
               console.log('Generate Draw');
@@ -167,7 +189,7 @@
           :title="currentRound + '/' + totalRound"
           subtitle="CURRENT ROUND"
           button-size="medium"
-          button-text="Advance"
+          :button-texts="['Advance']"
           @button-clicked="
             () => {
               console.log('Advance');
@@ -179,7 +201,7 @@
         <Frame
           :title="results"
           subtitle="PREVIOUS ROUND"
-          button-text="Release Results"
+          :button-texts="['Release Results']"
           @button-clicked="
             () => {
               console.log('Advance');

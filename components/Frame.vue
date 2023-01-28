@@ -7,13 +7,31 @@
         {{ title }}
       </h1>
       <p>{{ subtitle }}</p>
-      <Button
-        :button-text="buttonText"
-        button-color="bg-gold"
-        :size="buttonSize"
-        class="m-6"
-        @click="emit('buttonClicked')"
-      />
+      <div class="flex justify-center items-center">
+        <Button
+          :button-text="buttonTexts[0]"
+          :button-color="buttonColors[0]"
+          :size="buttonSize"
+          class="my-6 mx-2"
+          @click="emit('button1Clicked')"
+        />
+        <Button
+          v-if="buttonTexts.length > 1"
+          :button-text="buttonTexts[1]"
+          :button-color="buttonColors[1]"
+          :size="buttonSize"
+          class="my-6 mx-2"
+          @click="emit('button2Clicked')"
+        />
+        <Button
+          v-if="buttonTexts.length > 2"
+          :button-text="buttonTexts[2]"
+          :button-color="buttonColors[2]"
+          :size="buttonSize"
+          class="my-6 mx-2"
+          @click="emit('button3Clicked')"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -28,9 +46,13 @@ defineProps({
     type: String,
     default: "",
   },
-  buttonText: {
-    type: String,
-    default: "",
+  buttonTexts: {
+    type: Array,
+    default: () => ["test", "test2", "test3"],
+  },
+  buttonColors: {
+    type: Array,
+    default: () => ["bg-gold", "bg-light-orange-gold", "bg-light-green"],
   },
   buttonSize: {
     type: String,
@@ -38,5 +60,9 @@ defineProps({
   },
 });
 
-const emit = defineEmits(["buttonClicked"]);
+const emit = defineEmits([
+  "button1Clicked",
+  "button2Clicked",
+  "button3Clicked",
+]);
 </script>

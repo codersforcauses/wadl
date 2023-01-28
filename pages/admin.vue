@@ -1,8 +1,8 @@
 <script setup>
 import { definePageMeta } from "#imports";
-definePageMeta({
-  middleware: ["admin"],
-});
+// definePageMeta({
+//   middleware: ["admin"],
+// });
 </script>
 
 <template>
