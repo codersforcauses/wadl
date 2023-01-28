@@ -3,7 +3,10 @@ import { ref, onMounted } from "vue";
 import { useUserStore } from "../../stores/user";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useTournamentStore } from "../../stores/tournaments";
-import { navigateTo } from "#imports";
+import { navigateTo, useHead } from "#imports";
+useHead({
+  title: "Team Registration",
+});
 const institutionStore = useInstitutionStore();
 const tournamentStore = useTournamentStore();
 const userStore = useUserStore();
