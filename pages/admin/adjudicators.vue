@@ -1,6 +1,15 @@
 <template>
   <Header title-text="Adjudicators" />
-  <SearchBar @handle-filter="handleFilter" />
+  <div class="flex items-center">
+    <SearchBar @handle-filter="handleFilter" />
+    <Button
+      button-text="Add"
+      button-color="bg-gold"
+      type="button"
+      size="medium"
+      @click="addAdjudicator"
+    />
+  </div>
   <div class="flex justify-center">
     <ul class="w-11/12 bg-white rounded-lg">
       <li
