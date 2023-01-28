@@ -60,7 +60,7 @@ const exportTeams = async () => {
         link="admin/institutions"
         :icon="BuildingLibraryIcon"
       />
-      <AdminButton title="Contacts" link="admin/contacts" :icon="UsersIcon" />
+      <AdminButton title="Contacts" link="" :icon="UsersIcon" />
       <AdminButton title="Teams" link="" :icon="UserGroupIcon" />
       <AdminButton title="Venues" link="" :icon="MapPinIcon" />
       <AdminButton title="Fixtures" link="" :icon="TableCellsIcon" />
