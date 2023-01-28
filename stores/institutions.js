@@ -250,7 +250,9 @@ export const useInstitutionStore = defineStore("institution", {
                   allocatedTue: i < overlap + tueOnly,
                   allocatedWed: i < overlap || i >= overlap + tueOnly,
                   hasVenuePreference: team.hasVenuePreference,
-                  venuePreference: team.venuePreference,
+                  venuePreference: team.hasVenuePreference
+                    ? team.venuePreference
+                    : null,
                   notes: team.notes,
                   division: null,
                 });
