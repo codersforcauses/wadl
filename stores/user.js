@@ -7,29 +7,6 @@ import {
 } from "firebase/auth";
 import { useNuxtApp } from "#imports";
 
-const cleanUpError = (error) => {
-  switch (error.code) {
-    case "auth/user-not-found":
-      return "Account not found, try again with a new account";
-    case "auth/email-already-in-use":
-      return "E-mail already in use";
-    case "auth/network-request-failed":
-      return "Network Failed, Please try again";
-    case "auth/internal-error":
-      if (error.message.indexOf("Requesting state is true") !== -1) {
-        return "Need approval from admin to gain access";
-      } else if (
-        error.message.indexOf(
-          "Account not found, please register an account"
-        ) !== -1
-      ) {
-        return "Account not found, please register an account";
-      }
-  }
-
-  return "Encountered an error";
-};
-
 export const useUserStore = defineStore("user", {
   state() {
     return {
@@ -78,16 +55,22 @@ export const useUserStore = defineStore("user", {
         this.successCode =
           "Please wait for approval from admin before logging in.";
       } catch (err) {
-        this.errorCode = cleanUpError(err);
+        this.cleanUpError(err);
       }
     },
 
     loginUser(user) {
       try {
         const { $clientAuth } = useNuxtApp();
-        signInWithEmailAndPassword($clientAuth, user.email, user.password);
+        signInWithEmailAndPassword(
+          $clientAuth,
+          user.email,
+          user.password
+        ).catch((error) => {
+          this.cleanUpError(error);
+        });
       } catch (err) {
-        this.errorCode = cleanUpError(err);
+        this.cleanUpError(err);
       }
     },
 
@@ -113,7 +96,7 @@ export const useUserStore = defineStore("user", {
           this.institution = userInfo.institution;
           this.errorCode = null;
         } catch (err) {
-          this.errorCode = cleanUpError(err);
+          this.cleanUpError(err);
         }
       }
     },
@@ -131,8 +114,28 @@ export const useUserStore = defineStore("user", {
         this.errorCode = null;
         this.requesting = null;
         this.successCode = null;
+        this.institution = null;
       } catch (err) {
-        this.errorCode = cleanUpError(err);
+        this.cleanUpError(err);
+      }
+    },
+    cleanUpError(error) {
+      switch (error.code) {
+        case "auth/user-not-found":
+          this.errorCode = "Account not found, try again with a new account";
+          break;
+        case "auth/email-already-in-use":
+          this.errorCode = "E-mail already in use";
+          break;
+        case "auth/network-request-failed":
+          this.errorCode = "Network Failed, Please try again";
+          break;
+        case "auth/wrong-password":
+          this.errorCode = "Incorrect Password or Email";
+          break;
+        default:
+          this.errorCode = "Encountered an error";
+          break;
       }
     },
   },

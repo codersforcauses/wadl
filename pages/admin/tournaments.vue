@@ -99,7 +99,14 @@
   <Header title-text="Tournaments" />
 
   <div class="flex items-center">
-    <SearchBar class="w-3/4" @handle-filter="handleFilter" />
+    <SearchBar
+      class="w-3/4"
+      @handle-filter="
+        (searchString) => {
+          searchTerm = searchString;
+        }
+      "
+    />
     <Button
       button-text="Add"
       button-color="bg-gold"
@@ -112,13 +119,14 @@
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
     <Table
       :headers="headers"
-      :data="store.filteredTournaments"
+      :data="filteredTournaments"
       @edit="handleEdit"
+      no-data-text="No tournaments registered"
     />
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useHead } from "#imports";
 useHead({
@@ -142,16 +150,9 @@ store.getTournaments();
 const getLevels = () => form.value.levels.map((l) => l.level);
 
 const updateSelectedLevels = (chips) => {
-  form.value.levels.forEach(function callback(l, index) {
-    if (!chips.includes(l.level)) {
-      form.value.levels.splice(index, 1);
-    }
-  });
-
+  form.value.levels = [];
   chips.forEach((level) => {
-    if (!getLevels().includes(level)) {
-      form.value.levels.push({ level });
-    }
+    form.value.levels.push({ level });
   });
 };
 
@@ -166,13 +167,16 @@ const handleEdit = (row) => {
   form.value = row.data;
 };
 
-const handleFilter = (searchTerm) => {
-  store.filteredTournaments = store.tournaments.filter(
+const searchTerm = ref(null);
+const filteredTournaments = computed(() => {
+  const query = searchTerm.value;
+  const results = store.tournaments.filter(
     (tournament) =>
-      tournament.name.toLowerCase().includes(searchTerm) ||
-      tournament.status.toLowerCase().includes(searchTerm)
+      tournament.name.toLowerCase().includes(query) ||
+      tournament.status.toLowerCase().includes(query)
   );
-};
+  return query !== null ? results : store.tournaments;
+});
 
 const updateTournament = () => {
   store.editTournament(form.value);

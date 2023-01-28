@@ -76,7 +76,12 @@ const headers = [
     />
   </div>
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="store.filteredVenues" @edit="handleEdit" />
+    <Table
+      :headers="headers"
+      :data="store.filteredVenues"
+      @edit="handleEdit"
+      no-data-text="No venues registered"
+    />
   </div>
 
   <Modal

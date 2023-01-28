@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useHead } from "#imports";
 useHead({
@@ -43,11 +43,14 @@ const resetFormState = () => {
   store.errorMessage = "";
 };
 
-const filterInstitutions = (searchTerm) => {
-  store.filteredInstitutions = store.institutions.filter((institutions) =>
-    institutions.name.toLowerCase().includes(searchTerm)
+const searchTerm = ref(null);
+const filteredInstitutions = computed(() => {
+  const query = searchTerm.value;
+  const results = store.institutions.filter((institutions) =>
+    institutions.name.toLowerCase().includes(query)
   );
-};
+  return query !== null ? results : store.institutions;
+});
 
 const updateInstitution = async () => {
   // update store
@@ -148,40 +151,29 @@ const handleEdit = (row) => {
 
   <Header title-text="Institutions" />
   <div class="flex items-center">
-    <SearchBar class="w-3/4" @handle-filter="filterInstitutions" />
-    <Button
+  <SearchBar
+  class="w-3/4"
+    @handle-filter="
+      (searchString) => {
+        searchTerm = searchString;
+      }
+    "
+  />
+  <Button
       button-text="Add"
       button-color="bg-gold"
       type="button"
       size="medium"
       @click="modalVisibility = true"
     />
-  </div>
-  <div class="flex justify-center">
-    <ul class="bg-white rounded-lg w-11/12">
-      <li
-        class="text-xl heading-montserrat font-bold px-6 py-3 border-b border-gray-20 rounded-t-lg flex justify-between items-center"
-      >
-        Institutions
-      </li>
-      <li
-        v-for="institution in store.institutions"
-        :key="institution.id"
-        class="justify-between flex px-6 py-2 border-b border-gray-20 items-center"
-      >
-        <p>{{ institution.name }}</p>
-        <button
-          @click="
-            () => {
-              formInput = { ...institution };
-              editMode = true;
-              modalVisibility = true;
-            }
-          "
-        >
-          <PencilIcon class="h-4 w-4" />
-        </button>
-      </li>
-    </ul>
+
+  <!-- Institutions Table  View -->
+  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+    <Table
+      :headers="headers"
+      :data="filteredInstitutions"
+      @edit="handleEdit"
+      no-data-text="No institutions registered"
+    />
   </div>
 </template>
