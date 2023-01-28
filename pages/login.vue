@@ -3,6 +3,10 @@
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user";
+import { useHead } from "#imports";
+useHead({
+  title: "Login",
+});
 
 const userStore = useUserStore();
 if (userStore.auth) {

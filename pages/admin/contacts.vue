@@ -15,7 +15,10 @@
 <script setup>
 import { ref } from "vue";
 import data from "../../data/users.json";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Contacts",
+});
 const currentTab = ref("Adjudicator");
 const contacts = ref(
   data.filter((contact) => contact.role === currentTab.value)

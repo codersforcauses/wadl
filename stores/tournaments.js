@@ -6,7 +6,6 @@ export const useTournamentStore = defineStore("tournament", {
   state: () => {
     return {
       tournaments: [],
-      filteredTournaments: [],
     };
   },
   getters: {
@@ -39,11 +38,9 @@ export const useTournamentStore = defineStore("tournament", {
         };
         this.tournaments.push(tournament);
       });
-      this.filteredTournaments = [...this.tournaments];
     },
     async clearStore() {
       this.tournaments = [];
-      this.filteredTournaments = [];
     },
     async createTournament(tournament) {
       const { $clientFirestore } = useNuxtApp();
@@ -61,8 +58,6 @@ export const useTournamentStore = defineStore("tournament", {
       this.tournaments.push({
         ...tournament,
       });
-
-      this.filteredTournaments = [...this.tournaments];
     },
     async editTournament(tournament) {
       const { $clientFirestore } = useNuxtApp();
@@ -79,8 +74,6 @@ export const useTournamentStore = defineStore("tournament", {
           Object.assign(t, tournament);
         }
       });
-
-      this.filteredTournaments = [...this.tournaments];
     },
   },
 });

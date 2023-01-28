@@ -2,6 +2,10 @@
 import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useUserStore } from "../../stores/user";
+import { useHead } from "#imports";
+useHead({
+  title: "Teams",
+});
 const store = useInstitutionStore();
 const userStore = useUserStore();
 const headers = [
