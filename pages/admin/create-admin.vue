@@ -18,7 +18,7 @@ const form = ref({
 
 // Call The User Store
 const registerUser = () => {
-  userStore.addUser(form.value);
+  userStore.createAdmin(form.value);
 };
 
 watch(errorCode, (currentValue, oldValue) => {

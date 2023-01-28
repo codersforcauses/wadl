@@ -3,17 +3,17 @@ import { definePageMeta } from "#imports";
 import { useUserStore } from "../stores/user";
 
 definePageMeta({
-  middleware: ["team"],
+  middleware: ["admin"],
 });
 
 const userStore = useUserStore();
-const isCoordinator = userStore.role === "Team Coordinator";
+const isAdmin = userStore.role === "Admin";
 </script>
 
 <template>
   <div>
     <client-only>
-      <NuxtPage v-if="isCoordinator" />
+      <NuxtPage v-if="isAdmin" />
     </client-only>
   </div>
 </template>
