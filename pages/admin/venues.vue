@@ -65,21 +65,22 @@ const headers = [
 
 <template>
   <Header title-text="Venues" />
-  <SearchBar @handle-filter="handleFilter" />
+  <div class="flex items-center justify-center w-full">
+    <SearchBar @handle-filter="handleFilter" />
+    <Button
+      button-text="Add"
+      button-color="bg-gold"
+      type="button"
+      size="medium"
+      @click="modalVisibility = true"
+    />
+  </div>
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
     <Table
       :headers="headers"
       :data="store.filteredVenues"
       @edit="handleEdit"
       no-data-text="No venues registered"
-    />
-  </div>
-  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
-    <Button
-      button-text="Add Venue"
-      button-color="bg-gold"
-      class="m-5 ml-8"
-      @click="modalVisibility = true"
     />
   </div>
 

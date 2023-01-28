@@ -97,27 +97,31 @@
   </Modal>
 
   <Header title-text="Tournaments" />
-  <SearchBar
-    @handle-filter="
-      (searchString) => {
-        searchTerm = searchString;
-      }
-    "
-  />
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+
+  <div class="flex items-center justify-center w-full">
+    <SearchBar
+      @handle-filter="
+        (searchString) => {
+          searchTerm = searchString;
+        }
+      "
+    />
+    <Button
+      button-text="Add"
+      button-color="bg-gold"
+      class="ml-2"
+      type="button"
+      size="medium"
+      @click="modalVisibility = true"
+    />
+  </div>
+
+  <div class="flex content-center justify-center px-2">
     <Table
       :headers="headers"
       :data="filteredTournaments"
       @edit="handleEdit"
       no-data-text="No tournaments registered"
-    />
-  </div>
-  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
-    <Button
-      button-text="Add Tournament"
-      button-color="bg-gold"
-      class="m-5 ml-8"
-      @click="modalVisibility = true"
     />
   </div>
 </template>

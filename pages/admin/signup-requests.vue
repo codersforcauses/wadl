@@ -43,7 +43,9 @@ const handleDelete = (user) => {
 
 <template>
   <Header title-text="Sign Up Requests" />
-  <SearchBar @handle-filter="handleFilter" />
+  <div class="flex items-center justify-center w-full">
+    <SearchBar @handle-filter="handleFilter" />
+  </div>
   <div class="flex justify-center">
     <table class="w-10/12 table-fixed">
       <thead>

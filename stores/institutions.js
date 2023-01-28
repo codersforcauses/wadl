@@ -165,62 +165,46 @@ export const useInstitutionStore = defineStore("institution", {
     async clearStore() {
       this.institutions = [];
     },
-    async registerTeam(team) {
+    async registerTeams(team) {
       const userStore = useUserStore();
       // novice
       this.errorMessage = "";
-      if (team.teams[0].levelPresent) {
-        const numTeam = parseInt(team.teams[0].numberOfTeams);
-        const tueAllocation = parseInt(team.teams[0].allocatedTue);
-        const wedAllocation = parseInt(team.teams[0].allocatedWed);
-        if (tueAllocation < 0 || wedAllocation < 0) {
-          this.errorMessage =
-            "Please allocate a positive number of teams for NOVICE";
-        } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
-          this.errorMessage = "Too many teams allocated to a single day.";
-        } else if (numTeam > tueAllocation + wedAllocation) {
-          this.errorMessage =
-            "Please allocate the same number of teams for NOVICE";
-        } else if (numTeam * 2 < tueAllocation + wedAllocation) {
-          this.errorMessage =
-            "Please reduce the amount of allocations for NOVICE to match number of teams.";
-        }
+      if (!team.tournamentId) {
+        this.errorMessage = "No tournament selected.";
+        return;
       }
-      // junior
-      if (team.teams[1].levelPresent) {
-        const numTeam = parseInt(team.teams[1].numberOfTeams);
-        const tueAllocation = parseInt(team.teams[1].tuesdayAllocation);
-        const wedAllocation = parseInt(team.teams[1].wednesdayAllocation);
-        if (tueAllocation < 0 || wedAllocation < 0) {
+      for (let i = 0; i < team.teams.length; i++) {
+        const numTeam = parseInt(team.teams[i].numberOfTeams);
+        const tueAllocation = parseInt(team.teams[i].allocatedTue);
+        const wedAllocation = parseInt(team.teams[i].allocatedWed);
+        if (numTeam <= 0 && team.teams[i].levelPresent) {
           this.errorMessage =
-            "Please allocate a positive number of teams for NOVICE";
+            team.teams[i].teamLevel + " selected but no total teams selected.";
+        } else if (numTeam > 50) {
+          this.errorMessage =
+            "Registering too many teams at once. Please enter a lower number of teams.";
+        } else if (tueAllocation < 0 || wedAllocation < 0) {
+          this.errorMessage =
+            "Please allocate a positive number of teams for " +
+            team.teams[i].teamLevel +
+            ".";
         } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
-          this.errorMessage = "Too many teams allocated to a single day.";
+          this.errorMessage =
+            "Too many teams allocated to a single day in " +
+            team.teams[i].teamLevel +
+            ".";
         } else if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
-            "Please allocate the same number of teams for JUNIOR";
+            "Not enough teams allocated to days in " +
+            team.teams[i].teamLevel +
+            ".";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
           this.errorMessage =
-            "Please reduce the amount of allocations for JUNIOR to match number of teams.";
+            "Too many teams allocated to days in  " +
+            team.teams[i].teamLevel +
+            ".";
         }
-      }
-      // senior
-      if (team.teams[2].levelPresent) {
-        const numTeam = parseInt(team.teams[2].numberOfTeams);
-        const tueAllocation = parseInt(team.teams[2].tuesdayAllocation);
-        const wedAllocation = parseInt(team.teams[2].wednesdayAllocation);
-        if (tueAllocation < 0 || wedAllocation < 0) {
-          this.errorMessage =
-            "Please allocate a positive number of teams for NOVICE";
-        } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
-          this.errorMessage = "Too many teams allocated to a single day.";
-        } else if (numTeam > tueAllocation + wedAllocation) {
-          this.errorMessage =
-            "Please allocate the same number of teams for SENIOR";
-        } else if (numTeam * 2 < tueAllocation + wedAllocation) {
-          this.errorMessage =
-            "Please reduce the amount of allocations for SENIOR to match number of teams.";
-        }
+        if (this.errorMessage !== "") break;
       }
       if (!this.errorMessage) {
         this.errorMessage = "";
@@ -252,7 +236,9 @@ export const useInstitutionStore = defineStore("institution", {
                   allocatedTue: i < overlap + tueOnly,
                   allocatedWed: i < overlap || i >= overlap + tueOnly,
                   hasVenuePreference: team.hasVenuePreference,
-                  venuePreference: team.venuePreference,
+                  venuePreference: team.hasVenuePreference
+                    ? team.venuePreference
+                    : null,
                   notes: team.notes,
                   division: null,
                 });
