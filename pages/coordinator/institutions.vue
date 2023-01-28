@@ -87,7 +87,10 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useUserStore } from "../../stores/user";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Institution",
+});
 const institutionStore = useInstitutionStore();
 const userStore = useUserStore();
 const existingInstitution = ref(false);

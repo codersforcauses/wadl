@@ -1,7 +1,10 @@
 <script setup>
 import { useAdminStore } from "../../stores/admin";
 import { onMounted, onUnmounted, ref } from "vue";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Signup Requests",
+});
 const currentUser = ref(null);
 const searchTerm = ref("");
 const modalVisibility = ref(false);

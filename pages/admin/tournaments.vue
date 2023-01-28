@@ -117,7 +117,10 @@
 <script setup>
 import { ref } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Tournaments",
+});
 const defaultInputState = {
   id: null,
   levels: [],
