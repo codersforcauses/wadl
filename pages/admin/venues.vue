@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import { useVenueStore } from "../../stores/venues";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Venues",
+});
 const defaultInputState = {
   id: null,
   name: null,
