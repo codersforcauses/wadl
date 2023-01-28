@@ -65,8 +65,8 @@ const headers = [
 
 <template>
   <Header title-text="Venues" />
-  <div class="flex items-center">
-    <SearchBar class="w-3/4" @handle-filter="handleFilter" />
+  <div class="flex items-center justify-center w-full">
+    <SearchBar @handle-filter="handleFilter" />
     <Button
       button-text="Add"
       button-color="bg-gold"

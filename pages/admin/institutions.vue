@@ -150,25 +150,26 @@ const handleEdit = (row) => {
   </Modal>
 
   <Header title-text="Institutions" />
-  <div class="flex items-center">
-  <SearchBar
-  class="w-3/4"
-    @handle-filter="
-      (searchString) => {
-        searchTerm = searchString;
-      }
-    "
-  />
-  <Button
+  <div class="flex items-center justify-center w-full">
+    <SearchBar
+      @handle-filter="
+        (searchString) => {
+          searchTerm = searchString;
+        }
+      "
+    />
+    <Button
       button-text="Add"
       button-color="bg-gold"
+      class="ml-2"
       type="button"
       size="medium"
       @click="modalVisibility = true"
     />
+  </div>
 
   <!-- Institutions Table  View -->
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+  <div class="flex content-center justify-center px-2">
     <Table
       :headers="headers"
       :data="filteredInstitutions"

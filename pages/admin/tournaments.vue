@@ -98,9 +98,8 @@
 
   <Header title-text="Tournaments" />
 
-  <div class="flex items-center">
+  <div class="flex items-center justify-center w-full">
     <SearchBar
-      class="w-3/4"
       @handle-filter="
         (searchString) => {
           searchTerm = searchString;
@@ -110,13 +109,14 @@
     <Button
       button-text="Add"
       button-color="bg-gold"
+      class="ml-2"
       type="button"
       size="medium"
       @click="modalVisibility = true"
     />
   </div>
 
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+  <div class="flex content-center justify-center px-2">
     <Table
       :headers="headers"
       :data="filteredTournaments"
