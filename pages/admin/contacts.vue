@@ -1,6 +1,8 @@
 <template>
   <Header title-text="Contacts" />
-  <SearchBar @handle-filter="handleFilter" />
+  <div class="flex items-center justify-center w-full">
+    <SearchBar @handle-filter="handleFilter" />
+  </div>
   <Tabs :tabs="tabs" @handle-tab="handleTabClicked" />
   <div class="mx-8">
     <Table

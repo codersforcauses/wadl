@@ -51,10 +51,9 @@ export const useUserStore = defineStore("user", {
           lastName: user.lastName,
           phoneNumber: user.phoneNumber,
           email: user.email,
-        }).then(() => {
-          this.successCode =
-            "Please wait for approval from admin before logging in.";
         });
+        this.successCode =
+          "Please wait for approval from admin before logging in.";
       } catch (err) {
         this.cleanUpError(err);
       }
