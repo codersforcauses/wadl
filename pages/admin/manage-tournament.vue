@@ -166,7 +166,7 @@
         <Frame
           :title="currentRound + '/' + totalRound"
           subtitle="CURRENT ROUND"
-          button-size="medium"
+          button-size="small"
           button-text="Advance"
           @button-clicked="
             () => {
