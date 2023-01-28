@@ -103,6 +103,7 @@
       :headers="headers"
       :data="store.filteredTournaments"
       @edit="handleEdit"
+      no-data-text="No tournaments registered"
     />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">

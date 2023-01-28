@@ -152,6 +152,7 @@ const handleEdit = (row) => {
       :headers="headers"
       :data="store.filteredInstitutions"
       @edit="handleEdit"
+      no-data-text="No institutions registered"
     />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
