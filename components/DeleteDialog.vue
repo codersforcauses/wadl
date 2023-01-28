@@ -1,11 +1,11 @@
 <template>
   <Modal :modal-visibility="modalVisibility" @close="emit('close')">
-    <div class="w-full h-48">
+    <div class="w-50 h-48">
       <div class="font-montserrat text-2xl text-center font-bold pt-10">
         Are You Sure?
       </div>
       <hr class="mx-8" />
-      <div class="p-5 flex justify-evenly">
+      <div class="p-5 flex justify-center">
         <Button
           class="mx-5 mt-4 font-semibold"
           button-text="Yes"
