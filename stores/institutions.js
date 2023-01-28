@@ -173,33 +173,41 @@ export const useInstitutionStore = defineStore("institution", {
       // novice
       this.errorMessage = "";
       if (!team.tournamentId) {
-        this.errorMessage = "No tournament selected."
+        this.errorMessage = "No tournament selected.";
         return;
       }
-      let totalTeams;
-      for(let i = 0; i < team.teams.length; i++) {
+      for (let i = 0; i < team.teams.length; i++) {
         const numTeam = parseInt(team.teams[i].numberOfTeams);
         const tueAllocation = parseInt(team.teams[i].allocatedTue);
         const wedAllocation = parseInt(team.teams[i].allocatedWed);
         if (numTeam <= 0) {
           this.errorMessage =
-          team.teams[i].teamLevel + " selected but no total teams selected.";
+            team.teams[i].teamLevel + " selected but no total teams selected.";
         } else if (numTeam > 50) {
           this.errorMessage =
             "Registering too many teams at once. Please enter a lower number of teams.";
         } else if (tueAllocation < 0 || wedAllocation < 0) {
           this.errorMessage =
-            "Please allocate a positive number of teams for " + team.teams[i].teamLevel + ".";
+            "Please allocate a positive number of teams for " +
+            team.teams[i].teamLevel +
+            ".";
         } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
-          this.errorMessage = "Too many teams allocated to a single day in " + team.teams[i].teamLevel + ".";
+          this.errorMessage =
+            "Too many teams allocated to a single day in " +
+            team.teams[i].teamLevel +
+            ".";
         } else if (numTeam > tueAllocation + wedAllocation) {
           this.errorMessage =
-            "Not enough teams allocated to days in " + team.teams[i].teamLevel + ".";
+            "Not enough teams allocated to days in " +
+            team.teams[i].teamLevel +
+            ".";
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
           this.errorMessage =
-            "Too many teams allocated to days in  " + team.teams[i].teamLevel + ".";
+            "Too many teams allocated to days in  " +
+            team.teams[i].teamLevel +
+            ".";
         }
-        if (this.errorMessage != "") break;
+        if (this.errorMessage !== "") break;
       }
       if (!this.errorMessage) {
         this.errorMessage = "";
