@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
 
 export const useVenueStore = defineStore("venue", {
   state: () => {
@@ -20,9 +20,13 @@ export const useVenueStore = defineStore("venue", {
       this.venues.push({ ...venue, id: newVenue.id });
     },
     async editVenue(venue) {
-      this.venues.forEach((ven) => {
-        if (ven.id === venue.id) {
-          Object.assign(ven, venue);
+      const { $clientFirestore } = useNuxtApp();
+      await setDoc(doc($clientFirestore, "venues", venue.id), {
+        ...venue,
+      });
+      this.venues.forEach((v) => {
+        if (v.id === venue.id) {
+          Object.assign(v, venue);
         }
       });
     },
