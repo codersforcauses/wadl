@@ -1,51 +1,23 @@
 import { defineStore } from "pinia";
+import { useNuxtApp } from "#imports";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
 export const useVenueStore = defineStore("venue", {
   state: () => {
     return {
-      venues: [
-        {
-          id: 1,
-          name: "South Street",
-          roomNo: "042",
-          capacity: 5,
-          days: ["Tuesday W1", "Tuesday W2", "Wednesday W1"],
-        },
-        {
-          id: 2,
-          name: "Adjacent Avenue",
-          roomNo: "142",
-          capacity: 10,
-          days: ["Any"],
-        },
-      ],
-
-      filteredVenues: [
-        {
-          id: 1,
-          name: "South Street",
-          roomNo: "042",
-          capacity: 5,
-          days: ["Tuesday W1", "Tuesday W2", "Wednesday W1"],
-        },
-        {
-          id: 2,
-          name: "Adjacent Avenue",
-          roomNo: "142",
-          capacity: 10,
-          days: ["Any"],
-        },
-      ],
+      venues: [],
+      filteredVenues: [],
     };
   },
   getters: {},
   actions: {
     async createVenue(venue) {
-      this.venues.push({
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const newVenue = await addDoc(collection($clientFirestore, "venues"), {
         ...venue,
-        id: this.venues.length + 1,
       });
-      this.filteredVenues = [...this.venues];
+      this.venues.push({ ...venue, id: newVenue.id });
     },
     async editVenue(venue) {
       this.venues.forEach((ven) => {
@@ -53,7 +25,16 @@ export const useVenueStore = defineStore("venue", {
           Object.assign(ven, venue);
         }
       });
-      this.filteredVenues = [...this.venues];
+    },
+    async getVenues() {
+      this.$reset();
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const ref = collection($clientFirestore, "venues");
+      const querySnapshot = await getDocs(ref);
+      querySnapshot.forEach((doc) => {
+        this.venues.push({ id: doc.id, ...doc.data() });
+      });
     },
   },
 });
