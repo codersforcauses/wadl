@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useVenueStore } from "../../stores/venues";
 import { useHead } from "#imports";
+
 useHead({
   title: "Venues",
 });
 const defaultInputState = {
-  id: null,
   name: null,
   roomNo: null,
   capacity: null,
@@ -16,7 +16,27 @@ const defaultInputState = {
 const formInput = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
+const filtering = ref(false);
+const loading = ref(true);
+const modalLoading = ref(false);
+
 const store = useVenueStore();
+
+onMounted(async () => {
+  await store.getVenues();
+  loading.value = false;
+});
+
+const handleFilter = (searchString) => {
+  if (searchString) {
+    filtering.value = true;
+    store.filteredVenues = store.venues.filter((v) => {
+      return v.name.toLowerCase().includes(searchString.toLowerCase());
+    });
+  } else {
+    filtering.value = false;
+  }
+};
 
 const updateSelectedDays = (chips) => {
   formInput.value.days = chips;
@@ -33,21 +53,19 @@ const handleEdit = (row) => {
   formInput.value = row.data;
 };
 
-const handleFilter = (searchTerm) => {
-  store.filteredVenues = store.venues.filter(
-    (venue) =>
-      venue.name.toLowerCase().includes(searchTerm) ||
-      venue.roomNo.toLowerCase().includes(searchTerm)
-  );
-};
-
-const updateVenue = () => {
-  store.editVenue(formInput.value);
+const updateVenue = async () => {
+  modalLoading.value = true;
+  await store.editVenue(formInput.value);
+  modalVisibility.value = false;
+  modalLoading.value = false;
   resetFormState();
 };
 
-const createVenue = () => {
-  store.createVenue(formInput.value);
+const createVenue = async () => {
+  modalLoading.value = true;
+  await store.createVenue(formInput.value);
+  modalVisibility.value = false;
+  modalLoading.value = false;
   resetFormState();
 };
 
@@ -76,11 +94,26 @@ const headers = [
     />
   </div>
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+    <div v-if="loading">
+      <svg
+        width="40"
+        height="40"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        class="fill-gold animate-spin"
+      >
+        <path
+          d="M10.72,19.9a8,8,0,0,1-6.5-9.79A7.77,7.77,0,0,1,10.4,4.16a8,8,0,0,1,9.49,6.52A1.54,1.54,0,0,0,21.38,12h.13a1.37,1.37,0,0,0,1.38-1.54,11,11,0,1,0-12.7,12.39A1.54,1.54,0,0,0,12,21.34h0A1.47,1.47,0,0,0,10.72,19.9Z"
+        ></path>
+      </svg>
+    </div>
     <Table
+      v-else
       :headers="headers"
-      :data="store.filteredVenues"
+      :data="filtering ? store.filteredVenues : store.venues"
       @edit="handleEdit"
       no-data-text="No venues registered"
+      :loading="loading"
     />
   </div>
 
@@ -96,15 +129,7 @@ const headers = [
   >
     <div v-if="editMode">
       <Header title-text="Edit Venue" />
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            modalVisibility = false;
-            updateVenue();
-          }
-        "
-      >
+      <form class="px-10" @submit.prevent="updateVenue">
         <FormField v-model="formInput.name" label="Venue Name" />
         <div class="grid grid-cols-2 gap-x-4">
           <div>
@@ -133,6 +158,7 @@ const headers = [
             button-color="bg-gold"
             type="Submit"
             class="m-5 ml-8"
+            :loading="modalLoading"
           />
         </div>
       </form>
@@ -141,15 +167,7 @@ const headers = [
       <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
         Add Venue
       </p>
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            modalVisibility = false;
-            createVenue();
-          }
-        "
-      >
+      <form class="px-10" @submit.prevent="createVenue">
         <FormField v-model="formInput.name" label="Venue Name" />
         <div class="grid grid-cols-2 gap-x-4">
           <div>
@@ -178,6 +196,7 @@ const headers = [
             button-color="bg-gold"
             type="Submit"
             class="m-5 ml-8"
+            :loading="modalLoading"
           />
         </div>
       </form>
