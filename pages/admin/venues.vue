@@ -101,9 +101,9 @@ const headers = [
       v-else
       :headers="headers"
       :data="filtering ? store.filteredVenues : store.venues"
-      @edit="handleEdit"
       no-data-text="No venues registered"
       :loading="loading"
+      @edit="handleEdit"
     />
   </div>
 
