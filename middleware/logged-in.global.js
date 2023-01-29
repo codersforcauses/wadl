@@ -1,5 +1,6 @@
 import { useUserStore } from "../stores/user";
 import { defineNuxtRouteMiddleware, navigateTo } from "#imports";
+import { useTournamentStore } from "../stores/tournaments";
 
 export default defineNuxtRouteMiddleware(async (to, _from) => {
   // NOTE: Nuxt 3.0.0 does not support server side access to client state
@@ -12,8 +13,14 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
       userStore.clearStore();
     }
 
-    const publicRoutes = ["/", "/signup", "/login"];
-    if (publicRoutes.includes(to.path)) return;
+    const torunamentStore = useTournamentStore();
+    const fixturesRoutes = torunamentStore.getRunning.map(
+      (tournament) => `/fixtures/${tournament.id}`
+    );
+    const otherPublicRoutes = ["/", "/signup", "/login"];
+
+    const allPublicRoutes = otherPublicRoutes.concat(fixturesRoutes);
+    if (allPublicRoutes.includes(to.path)) return;
 
     if (userStore.auth === null) {
       return navigateTo({ path: "/login" });
