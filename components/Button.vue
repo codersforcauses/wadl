@@ -1,6 +1,8 @@
 <template>
   <button
-    :class="`px-4 py-1 ${width} ${buttonColor} ${textColor} rounded-md font-medium flex justify-center`"
+    :class="`px-4 py-1 ${width} ${buttonColor} ${textColor} ${
+      loading ? 'cursor-not-allowed' : ''
+    } rounded-md font-medium flex justify-center`"
   >
     <div v-if="loading">
       <svg
