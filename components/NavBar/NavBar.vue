@@ -29,7 +29,7 @@
           </div>
         </div>
         <div v-else>
-          <div v-if="!auth" class="mr-2">
+          <div v-if="!auth" class="mr-2 flex">
             <NuxtLink to="/signup">
               <Button button-text="Signup" size="small" class="shadow-none" />
             </NuxtLink>
@@ -42,7 +42,7 @@
               />
             </NuxtLink>
           </div>
-          <div v-else class="mr-2">
+          <div v-else class="mr-2 flex">
             <NuxtLink to="/">
               <Button
                 button-text="Signout"
