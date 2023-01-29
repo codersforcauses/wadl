@@ -3,16 +3,26 @@
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user";
+import { useHead } from "#imports";
+useHead({
+  title: "Login",
+});
 
 const userStore = useUserStore();
+if (userStore.auth) {
+  navigateTo("/");
+} else {
+  userStore.clearStore();
+}
+
 const { role } = storeToRefs(userStore);
 const form = ref({
   email: "",
   password: "",
 });
 
-const handleLogin = async () => {
-  await userStore.LoginUser(form.value);
+const handleLogin = () => {
+  userStore.loginUser(form.value);
 };
 
 // Wait for the role to be updated before redirecting
@@ -22,7 +32,11 @@ watch(role, (currentValue, oldValue) => {
   } else if (currentValue === "Adjudicator") {
     navigateTo({ path: "/" });
   } else if (currentValue === "Team Coordinator") {
-    navigateTo({ path: "/" });
+    if (userStore.institution) {
+      navigateTo({ path: "/coordinator" });
+    } else {
+      navigateTo({ path: "/coordinator/institutions" });
+    }
   } else if (currentValue === "Admin") {
     navigateTo({ path: "/admin" });
   }
@@ -48,13 +62,18 @@ watch(role, (currentValue, oldValue) => {
         placeholder="Your Password"
         type="password"
       />
+      <p v-if="userStore.errorCode" class="text-danger-red">
+        {{ userStore.errorCode }}
+      </p>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <Button button-text="Submit" button-color="bg-gold " />
-        <NuxtLink
+
+        <!-- Add back in when functionality is available! :D
+          <NuxtLink
           to="/"
           class="underline underline-offset-4 text-xs hover:text-light-orange-gold"
           >Forgot my password
-        </NuxtLink>
+        </NuxtLink> -->
         <span class="text-xs">
           Don't have an account?
           <NuxtLink

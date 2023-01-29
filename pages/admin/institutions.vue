@@ -1,48 +1,181 @@
 <script setup>
-import { ref } from "vue";
-import { PencilIcon } from "@heroicons/vue/24/solid";
-import data from "../../data/institutions.json";
+import { ref, computed } from "vue";
+import { useInstitutionStore } from "../../stores/institutions";
+import { useHead } from "#imports";
+useHead({
+  title: "Institutions",
+});
+const headers = [
+  {
+    key: "name",
+    title: "Institution",
+  },
+  {
+    key: "number",
+    title: "Phone Number",
+  },
+  {
+    key: "email",
+    title: "Email",
+  },
+];
 
-const institutions = ref(data);
-
-const filterInstitutions = (searchTerm) => {
-  institutions.value = data.filter((inst) =>
-    inst.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+const defaultInputState = {
+  id: null,
+  name: null,
+  code: null,
+  abbreviation: null,
+  number: null,
+  email: null,
 };
 
-const addInstitution = () => {};
+const modalVisibility = ref(false);
+const editMode = ref(false);
+const formInput = ref({ ...defaultInputState });
+
+const store = useInstitutionStore();
+
+store.getInstitutions();
+
+const resetFormState = () => {
+  formInput.value = { ...defaultInputState };
+  editMode.value = false;
+  store.errorMessage = "";
+};
+
+const searchTerm = ref(null);
+const filteredInstitutions = computed(() => {
+  const query = searchTerm.value;
+  const results = store.institutions.filter((institutions) =>
+    institutions.name.toLowerCase().includes(query)
+  );
+  return query !== null ? results : store.institutions;
+});
+
+const updateInstitution = async () => {
+  // update store
+  await store.editInstitution(formInput.value);
+  if (store.errorMessage === "") {
+    modalVisibility.value = false;
+    resetFormState();
+  }
+};
+
+const createInstitution = async () => {
+  // update store
+  await store.createInstitution(formInput.value);
+  if (store.errorMessage === "") {
+    modalVisibility.value = false;
+    resetFormState();
+  }
+};
+
+const handleEdit = (row) => {
+  modalVisibility.value = row.modalVisibility;
+  editMode.value = row.editMode;
+  formInput.value = row.data;
+};
 </script>
 
 <template>
+  <Modal
+    :modal-visibility="modalVisibility"
+    size="w-7/12"
+    @close="
+      () => {
+        modalVisibility = false;
+        resetFormState();
+      }
+    "
+  >
+    <div v-if="editMode">
+      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+        Edit Institution
+      </p>
+      <form
+        class="px-10"
+        @submit.prevent="
+          () => {
+            updateInstitution();
+          }
+        "
+      >
+        <FormField v-model="formInput.name" label="Institution Name" />
+        <FormField v-model="formInput.code" label="Code" />
+        <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+        <FormField v-model="formInput.number" label="Phone Number" type="tel" />
+        <FormField v-model="formInput.email" label="Email" type="email" />
+        <p v-if="store.errorMessage" class="text-danger-red">
+          {{ store.errorMessage }}
+        </p>
+        <div class="flex justify-evenly items-center">
+          <Button
+            button-text="Update"
+            button-color="bg-gold"
+            type="Submit"
+            class="m-5 ml-8"
+          />
+        </div>
+      </form>
+    </div>
+    <div v-else>
+      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
+        Add Institution
+      </p>
+      <form
+        class="px-10"
+        @submit.prevent="
+          () => {
+            createInstitution();
+          }
+        "
+      >
+        <FormField v-model="formInput.name" label="Institution Name" />
+        <FormField v-model="formInput.code" label="Code" />
+        <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+        <FormField v-model="formInput.number" label="Phone Number" type="tel" />
+        <FormField v-model="formInput.email" label="Email" type="email" />
+        <p v-if="store.errorMessage" class="text-danger-red">
+          {{ store.errorMessage }}
+        </p>
+        <div class="flex justify-evenly items-center">
+          <Button
+            button-text="Submit"
+            button-color="bg-gold"
+            type="Submit"
+            class="m-5 ml-8"
+          />
+        </div>
+      </form>
+    </div>
+  </Modal>
+
   <Header title-text="Institutions" />
-  <SearchBar @handle-filter="filterInstitutions" />
-  <div class="flex justify-center">
-    <ul class="bg-white rounded-lg w-11/12">
-      <li
-        class="text-xl heading-montserrat font-bold px-6 py-3 border-b border-gray-20 rounded-t-lg flex justify-between items-center"
-      >
-        Institutions
-      </li>
-      <li
-        v-for="(inst, idx) in institutions"
-        :key="idx"
-        class="justify-between flex px-6 py-2 border-b border-gray-20 items-center"
-      >
-        <p>{{ inst.name }}</p>
-        <NuxtLink>
-          <button><PencilIcon class="h-4 w-4" /></button>
-        </NuxtLink>
-      </li>
-    </ul>
-  </div>
-  <div class="w-full bg-white fixed inset-x-0 bottom-0">
+  <div class="flex items-center justify-center w-full">
+    <SearchBar
+      @handle-filter="
+        (searchString) => {
+          searchTerm = searchString;
+        }
+      "
+    />
     <Button
-      button-text="Add Institutions"
+      button-text="Add"
       button-color="bg-gold"
+      class="ml-2"
       type="button"
-      class="m-5 ml-8"
-      @click="addInstitution"
+      size="medium"
+      @click="modalVisibility = true"
+    />
+  </div>
+
+  <!-- Institutions Table  View -->
+  <div class="flex content-center justify-center px-2">
+    <Table
+      :headers="headers"
+      :data="filteredInstitutions"
+      @edit="handleEdit"
+      no-data-text="No institutions registered"
     />
   </div>
 </template>

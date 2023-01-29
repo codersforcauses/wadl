@@ -1,23 +1,42 @@
 <!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <!-- long logo -->
-  <img class="mx-auto" src="../assets/logos/TransparentLongLogo.png" />
+  <img class="mx-auto mt-16" src="../assets/logos/TransparentLongLogo.png" />
   <!-- competitions -->
   <Header title-text="Competitions" />
-  <main
-    class="mx-auto h-screen pt-5 place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6"
+  <div
+    v-if="store.getRunning.length > 0"
+    class="mx-auto mt-4 flex justify-center flex-wrap"
   >
     <!-- replace key with item.id when final data exists -->
-    <div v-for="item in tournaments" :key="item">
-      <NuxtLink :to="`/fixtures/${item.name}`">
-        <LevelButton :text="item.name" />
+    <div v-for="tournament in store.getRunning" :key="tournament.id">
+      <NuxtLink :to="`/fixtures/${tournament.shortName}`">
+        <LevelButton :text="tournament.shortName" />
       </NuxtLink>
     </div>
-  </main>
+  </div>
+  <p
+    v-else
+    class="text-xl py-5 text-center text-mid-grey font-montserrat font-light"
+  >
+    There are no running tournaments.
+  </p>
 </template>
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
 import tournamentsData from "../data/tournaments.json";
+import { useTournamentStore } from "../stores/tournaments";
+import { onMounted } from "vue";
+import { useHead } from "#imports";
 const tournaments = ref(tournamentsData);
+
+useHead({
+  title: "WADL",
+});
+const store = useTournamentStore();
+
+onMounted(() => {
+  store.getTournaments();
+});
 </script>

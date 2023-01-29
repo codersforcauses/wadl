@@ -1,33 +1,51 @@
 <script setup>
-import { ref } from "vue";
-import data from "../../data/pretendpeople.json";
+import { useAdminStore } from "../../stores/admin";
+import { onMounted, onUnmounted, ref } from "vue";
+import { useHead } from "#imports";
+useHead({
+  title: "Signup Requests",
+});
+const currentUser = ref(null);
+const searchTerm = ref("");
+const modalVisibility = ref(false);
 
-// Reference to list of pretend people
-const people = ref(data);
+const handleFilter = (s) => {
+  searchTerm.value = s;
+};
 
-// Filters people on first,last & email match
-const filterPeople = (searchTerm) => {
-  people.value = data.filter(
-    (person) =>
-      person.first.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.last.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.role.toLowerCase().includes(searchTerm.toLowerCase())
+// pinia
+const adminStore = useAdminStore();
+
+onMounted(() => {
+  adminStore.fetchUsers();
+});
+
+onUnmounted(() => {
+  adminStore.clearStore();
+});
+
+const filterUsers = (searchTerm) => {
+  if (searchTerm === "") return adminStore.requestingUsers;
+
+  return adminStore.requestingUsers.filter(
+    (user) =>
+      user.firstName?.toLowerCase().includes(searchTerm) ||
+      user.lastName?.toLowerCase().includes(searchTerm) ||
+      user.email?.toLowerCase().includes(searchTerm) ||
+      user.role?.toLowerCase().includes(searchTerm)
   );
 };
-
-const approvePerson = (id) => {
-  console.log(`Approving applicant with email ${id}`);
-};
-
-const rejectPerson = (id) => {
-  console.log(`Rejecting applicant with email ${id}`);
+const handleDelete = (user) => {
+  currentUser.value = user;
+  modalVisibility.value = true;
 };
 </script>
 
 <template>
   <Header title-text="Sign Up Requests" />
-  <SearchBar @handle-filter="filterPeople" />
+  <div class="flex items-center justify-center w-full">
+    <SearchBar @handle-filter="handleFilter" />
+  </div>
   <div class="flex justify-center">
     <table class="w-10/12 table-fixed">
       <thead>
@@ -57,21 +75,21 @@ const rejectPerson = (id) => {
       </thead>
       <tbody>
         <tr
-          v-for="person in people"
-          :key="person.email"
+          v-for="user in filterUsers(searchTerm)"
+          :key="user.email"
           class="py-md bg-white border-b h-10"
         >
           <td>
-            <p>{{ person.first }}</p>
+            <p>{{ user.firstName }}</p>
           </td>
           <td>
-            <p>{{ person.last }}</p>
+            <p>{{ user.lastName }}</p>
           </td>
           <td>
-            <p>{{ person.email }}</p>
+            <p>{{ user.email }}</p>
           </td>
           <td>
-            <select id="role" v-model="person.role" name="role">
+            <select id="role" v-model="user.role" name="role">
               <option value="Adjudicator">Adjudicator</option>
               <option value="Adjudicator Coordinator">
                 Adjudicator Coordinator
@@ -85,18 +103,37 @@ const rejectPerson = (id) => {
               button-color="bg-light-green"
               text-color="text-white"
               size="small"
-              @click="approvePerson(person.id)"
+              @click="adminStore.acceptUser(user)"
             />
             <Button
               button-text="Reject"
               button-color="bg-light-red"
               text-color="text-dark-red"
               size="small"
-              @click="rejectPerson(person.id)"
+              @click="handleDelete(user)"
             />
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+    @yes="
+      () => {
+        adminStore.denyUser(currentUser);
+        modalVisibility = false;
+      }
+    "
+    @no="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  />
 </template>
