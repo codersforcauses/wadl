@@ -3,10 +3,12 @@ import { ref } from "vue";
 import tournamentsData from "../../data/tournaments.json";
 import teamsData from "../../data/teams.json";
 import venuesData from "../../data/venues.json";
+import { useTournamentStore } from "../../stores/tournaments";
 
 const tournaments = ref(tournamentsData);
 const teams = ref(teamsData);
 const venues = ref(venuesData);
+const tournamentsStore = useTournamentStore();
 const route = useRoute();
 
 const headers = [
@@ -45,16 +47,17 @@ const levelTabs = [
   { label: "Senior", active: false },
 ];
 
-const roundTabs = [
-  { label: "Round 1", active: false },
-  { label: "Round 2", active: false },
-  { label: "Round 3", active: false },
-  { label: "Round 4", active: false },
-  { label: "Round 5", active: false },
-  { label: "Round 6", active: false },
-  { label: "Round 7", active: false },
-  { label: "Round 8", active: false },
-];
+const roundTabs = [];
+tournamentsStore.getRunning.forEach((tournament) => {
+  if (tournament.id === route.params.tournamentId) {
+    console.log(tournament);
+    let round = 1;
+    while (round <= tournament.numRounds) {
+      roundTabs.push({ label: `Round ${round}`, active: false });
+      round++;
+    }
+  }
+});
 
 const handleFilter = (searchTerm) => {
   tableData.value = tableData.value.filter(
@@ -134,14 +137,14 @@ const roundClicked = (roundName) => {
 
 <template>
   <Tabs :tabs="levelTabs" font-size="text-xl" @handle-tab="levelClicked" />
-  <SearchBar @handle-filter="handleFilter" />
+  <div class="flex items-center justify-center w-full">
+    <SearchBar @handle-filter="handleFilter" />
+  </div>
   <Tabs :tabs="roundTabs" font-size="text-base" @handle-tab="roundClicked" />
-  <Table :headers="headers" :data="tableData" :can-edit="false" />
-
-  <h1
-    v-if="hasNotSelectedRoundTab"
-    class="font-montserrat text-lg text-center mt-10 font-bold"
-  >
-    Please select a round
-  </h1>
+  <Table
+    :headers="headers"
+    :data="tableData"
+    :can-edit="false"
+    no-data-text="Please select a round"
+  />
 </template>

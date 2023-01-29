@@ -13,8 +13,8 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
       userStore.clearStore();
     }
 
-    const torunamentStore = useTournamentStore();
-    const fixturesRoutes = torunamentStore.getRunning.map(
+    const tournamentStore = useTournamentStore();
+    const fixturesRoutes = tournamentStore.getRunning.map(
       (tournament) => `/fixtures/${tournament.id}`
     );
     const otherPublicRoutes = ["/", "/signup", "/login"];
