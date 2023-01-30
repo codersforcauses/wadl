@@ -77,21 +77,26 @@ export const useAdminStore = defineStore("admin", {
       try {
         const { $clientFirestore, $clientAuth } = useNuxtApp();
         const adminToken = await $clientAuth.currentUser.getIdToken();
-        $fetch("/api/send-email", {
+        const emailContent = {
+          subject: "Your account for WADL has been approved",
+          text: "This is the plaintext section of the email body.",
+        };
+        // updateDoc(doc($clientFirestore, "users", user.id), {
+        //   requesting: false,
+        //   role: user.role,
+        // }).then(async () => {
+        //   this.requestingUsers = this.requestingUsers.filter(
+        //     (u) => u.id !== user.id
+        //   );
+        await $fetch("/api/send-email", {
           method: "post",
           body: {
             adminToken,
-            newUser: user,
+            userInfo: user,
+            emailContent,
           },
+          // });
         });
-        //   updateDoc(doc($clientFirestore, "users", user.id), {
-        //     requesting: false,
-        //     role: user.role,
-        //   }).then(() => {
-        //     this.requestingUsers = this.requestingUsers.filter(
-        //       (u) => u.id !== user.id
-        //     );
-        //   });
       } catch (err) {
         this.errorCode = handleError(err);
       }

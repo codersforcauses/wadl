@@ -5,10 +5,10 @@ import { getFirestore } from "firebase-admin/firestore";
 import { defineEventHandler, readBody, createError } from "#imports";
 
 export default defineEventHandler(async (event) => {
-  const { adminToken, newUser } = await readBody(event);
-  console.log(adminToken, newUser.email);
+  const { adminToken, userInfo, emailContent } = await readBody(event);
+  console.log(adminToken, userInfo, emailContent);
 
-  if (!adminToken || !newUser) {
+  if (!adminToken || !userInfo) {
     throw createError({
       statusCode: 400,
     });
@@ -27,14 +27,20 @@ export default defineEventHandler(async (event) => {
   const firestore = getFirestore(app);
 
   try {
+    // const resetLink = await auth.generatePasswordResetLink(userInfo.email);
+    // const message = {
+    //   subject: emailContent.subject,
+    //   html: "<div><h1>HELLO WORLD</h1><img src='https://storage.googleapis.com/wadl-logos/ShortLogo.png' style='width:200px;height:52px;'></div>",
+    // };
     firestore
       .collection("mail")
       .add({
-        to: "tomvarian@icloud.com",
-        message: {
-          subject: "Hello from Firebase!",
-          text: "This is the plaintext section of the email body.",
-          html: "This is the <code>HTML</code> section of the email body.",
+        to: "benjamin9804@icloud.com",
+        template: {
+          name: "approve",
+          data: {
+            name: userInfo.firstName + " " + userInfo.lastName,
+          },
         },
       })
       .then(() => console.log("Queued email for delivery!"));
