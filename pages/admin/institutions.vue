@@ -174,8 +174,8 @@ const handleEdit = (row) => {
     <Table
       :headers="headers"
       :data="filteredInstitutions"
-      @edit="handleEdit"
       no-data-text="No institutions registered"
+      @edit="handleEdit"
     />
   </div>
 </template>
