@@ -152,44 +152,82 @@
         />
       </div>
     </div>
-    
-    <div class="w-1/2 max-h-96 overflow-scroll mt-5 rounded-lg shadow-lg">
-      <table class="w-full rounded-lg">
-        <thead class="absolute w-full top-0 left-0 right-0">
-          
-          <tr class="">
-            <th v-for="(object, index) in headers" :key="index" class="sticky top-0 bg-white pt-5 pb-5 divide-y-4 font-montserrat font-semibold text-mid-grey text-left text-lg" >
-              {{ object.title }}
-            </th>
-            <th class="sticky top-0 bg-white text-right p-2">
-              <button class="bg-amber-300 p-1 rounded-full">
-                <PlusIcon class="w-7 h-7" />
-              </button>
-            </th>
-            
-          </tr>
-        </thead>
-        <tbody class="bg-grey">
-          <tr v-for="(row, index) in data" :key="index"
-            class="h-10 even:bg-white odd:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out font-montserrat overflow">
-          <td>{{ row.venue }}</td>
-          <td class="text-right p-2 border-black">
-            <button class="border-solid border-black">
-              <XMarkIcon class="w-4 h-4" />
+    <div class="grid grid-cols-2 gap-4">
+      <div class="max-h-96 overflow-scroll mt-5 rounded-xl shadow-lg">
+        <div class="sticky top-0 grid grid-cols-2 items-center bg-white">
+          <div class="m-2 flex  pt-5 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg">
+            Venues
+          </div>
+          <div class="text-right m-2">
+            <button class="bg-amber-300 p-1 rounded-full text-black" @click="() => {
+                  print('Add Row Venue');
+                }">
+              <PlusIcon class="w-7 h-7" />
             </button>
-          </td>
-          </tr>
-
-        </tbody>
-      </table>
+          </div>
+        </div>
+        <table class="w-full">
+          <tbody>
+            <tr v-for="(row, index) in venue" :key="index"
+              class="even:bg-white odd:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out font-montserrat">
+              <td class="p-5" v-for="(object, ind) in headersVenues"
+                :key="ind">
+                {{row[object.key] }}
+              </td>
+              <td class="text-right p-2">
+                <button @click="() => {
+                  print('Delete Row');
+                }">
+                  <XMarkIcon class="w-4 h-4" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="max-h-96 overflow-scroll mt-5 rounded-xl shadow-lg">
+        <div class="sticky top-0 grid grid-cols-2 items-center bg-white">
+          <div class="m-2 flex pt-5 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg">
+            Round Dates
+          </div>
+          <div class="text-right m-2">
+            <button class="bg-amber-300 p-1 rounded-full text-black" @click="() => {
+                  print('Add Row Rounds');
+                }">
+              <PlusIcon class="w-7 h-7" />
+            </button>
+          </div>
+        </div>
+        <table class="w-full">
+          <tbody>
+            <tr v-for="(row, index) in rounds" :key="index"
+              class="even:bg-white odd:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out font-montserrat">
+              <td class="p-5" v-for="(object, ind) in headersRounds" 
+                :key="ind">
+                {{row[object.key] }}
+              </td>
+              <td class="text-right p-2">
+                <button @click="() => {
+                  print('Delete Row');
+                }">
+                  <XMarkIcon class="w-4 h-4" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     </div>
   
 </template>
 
 <script setup>
-import data from "../../data/venues.json"
+import venue from "../../data/venues.json"
+import rounds from "../../data/rounds.json"
 import { XMarkIcon, PlusIcon } from "@heroicons/vue/24/solid"
+
 const noviceNum = 10;
 const juniorNum = 20;
 const seniorNum = 30;
@@ -199,6 +237,32 @@ const drawStatus = "INCOMPLETE";
 const currentRound = 0;
 const totalRound = "8";
 const results = "UNRELEASED";
+
+const headersVenues = [
+  {
+    key: "venue",
+    title: "Venue",
+  },
+];
+
+const headersRounds = [
+  {
+    key: "round",
+    title: "Round",
+  },
+  {
+    key: "week",
+    title: "Week",
+  },
+  {
+    key: "day",
+    title: "Day",
+  },
+  {
+    key: "date",
+    title: "Date",
+  },
+];
 
 const print = (msg) => {
   console.log(msg);
