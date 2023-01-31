@@ -28,12 +28,12 @@ export default defineEventHandler(async (event) => {
 
   try {
     if (emailStructure.name === "passwordReset") {
-      const resetLink = await auth.generatePasswordResetLink(userInfo.email);
+      const resetLink = await auth.generatePasswordResetLink(
+        emailStructure.data.userEmail
+      );
       const template = {
         name: emailStructure.name,
         data: {
-          name: emailStructure.data.name,
-          role: emailStructure.data.role,
           link: resetLink,
         },
       };

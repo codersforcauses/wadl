@@ -100,7 +100,21 @@ export const useUserStore = defineStore("user", {
         }
       }
     },
-
+    async resetPassword(email) {
+      console.log(email);
+      const template = {
+        name: "resetPassword",
+        data: {
+          userEmail: email,
+        },
+      };
+      await $fetch("/api/send-email", {
+        method: "post",
+        body: {
+          emailStructure: template,
+        },
+      });
+    },
     async clearStore() {
       try {
         const { $clientAuth } = useNuxtApp();
