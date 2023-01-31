@@ -10,10 +10,6 @@
       :disabled="disabled"
       @input="updateInput"
     >
-      <!-- <option selected disabled hidden>Select Role</option>
-      <option>Adjudicator Coordinator</option>
-      <option>Adjudicator</option>
-      <option>Team Coordinator</option> -->
       <option v-for="(option, index) in options" :key="index">
         {{ option }}
       </option>
@@ -37,8 +33,8 @@ defineProps({
   options: {
     type: Array,
     default: () => [
-      "Adjudicator Coordinator",
-      "Adjudicator",
+      // "Adjudicator Coordinator",
+      // "Adjudicator",
       "Team Coordinator",
     ],
   },

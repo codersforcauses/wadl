@@ -5,106 +5,76 @@
       Registered Teams
     </p>
     <div class="grid grid-cols-7 gap-4 text-center">
-      <div class="col-span-2 bg-slate-200 rounded">
-        <div class="grid grid-cols-2 justify-center">
-          <div class="flex flex-col justify-center items-center">
-            <h1
-              class="text-4xl text-center divide-y-4 font-montserrat font-semibold"
-            >
-              {{ noviceNum }}
-            </h1>
-            <p>Novice</p>
-          </div>
-          <div class="flex flex-col justify-center items-center">
-            <Button
-              button-text="Teams"
-              button-color="bg-gold"
-              size="small"
-              class="my-2"
-            />
-            <Button
-              button-text="Divisions"
-              button-color="bg-light-orange-gold"
-              size="small"
-              class="my-2"
-            />
-            <Button
-              button-text="Draw"
-              button-color="bg-light-green"
-              text-color="text-white"
-              size="small"
-              class="my-2"
-            />
-          </div>
-        </div>
+      <div class="col-span-2">
+        <Frame
+          :title="noviceNum"
+          subtitle="NOVICE"
+          button-size="small"
+          :is-horizontal-buttons="false"
+          @button1-clicked="
+            () => {
+              print('Novice Teams');
+            }
+          "
+          @button2-clicked="
+            () => {
+              print('Novice Division');
+            }
+          "
+          @button3-clicked="
+            () => {
+              print('Novice Draw');
+            }
+          "
+        />
       </div>
-      <div class="col-span-2 bg-slate-200 rounded">
-        <div class="grid grid-cols-2 justify-center">
-          <div class="flex flex-col justify-center items-center">
-            <h1
-              class="text-4xl text-center divide-y-4 font-montserrat font-semibold"
-            >
-              {{ juniorNum }}
-            </h1>
-            <p>Junior</p>
-          </div>
-          <div class="flex flex-col justify-center items-center">
-            <Button
-              button-text="Teams"
-              button-color="bg-gold"
-              size="small"
-              class="my-2"
-            />
-            <Button
-              button-text="Divisions"
-              button-color="bg-light-orange-gold"
-              size="small"
-              class="my-2"
-            />
-            <Button
-              button-text="Draw"
-              button-color="bg-light-green"
-              text-color="text-white"
-              size="small"
-              class="my-2"
-            />
-          </div>
-        </div>
+      <div class="col-span-2">
+        <Frame
+          :title="juniorNum"
+          subtitle="JUNIOR"
+          button-size="small"
+          :is-horizontal-buttons="false"
+          @button1-clicked="
+            () => {
+              print('Junior Teams');
+            }
+          "
+          @button2-clicked="
+            () => {
+              print('Junior Division');
+            }
+          "
+          @button3-clicked="
+            () => {
+              print('Junior Draw');
+            }
+          "
+        />
       </div>
-      <div class="col-span-2 bg-slate-200 rounded">
-        <div class="grid grid-cols-2 justify-center">
-          <div class="flex flex-col justify-center items-center">
-            <h1
-              class="text-4xl text-center divide-y-4 font-montserrat font-semibold"
-            >
-              {{ seniorNum }}
-            </h1>
-            <p>Senior</p>
-          </div>
-          <div class="flex flex-col justify-center items-center">
-            <Button
-              button-text="Teams"
-              button-color="bg-gold"
-              size="small"
-              class="my-2"
-            />
-            <Button
-              button-text="Divisions"
-              button-color="bg-light-orange-gold"
-              size="small"
-              class="my-2"
-            />
-            <Button
-              button-text="Draw"
-              button-color="bg-light-green"
-              text-color="text-white"
-              size="small"
-              class="my-2"
-            />
-          </div>
-        </div>
+      <div class="col-span-2">
+        <Frame
+          :title="seniorNum"
+          subtitle="SENIOR"
+          button-size="small"
+          :is-horizontal-buttons="false"
+          @button1-clicked="
+            () => {
+              print('Senior Teams');
+            }
+          "
+          @button2-clicked="
+            () => {
+              print('Senior Division');
+            }
+          "
+          @button3-clicked="
+            () => {
+              print('Senior Draw');
+            }
+          "
+        />
       </div>
-      <div class="col-span-1 bg-slate-200 rounded">
+      <div class="col-span-1 bg-yellow-200 rounded py-6">
         <div class="flex flex-col justify-center items-center">
           <h1
             class="text-4xl pt-10 text-center divide-y-4 font-montserrat font-semibold"
@@ -119,45 +89,39 @@
       Information
     </p>
     <div class="grid grid-cols-8 gap-4 text-center">
-      <div class="col-span-3 bg-slate-200 rounded">
-        <div class="flex flex-col justify-center items-center">
-          <h1
-            class="text-2xl text-center divide-y-4 font-montserrat font-semibold pt-6"
-          >
-            {{ status }}
-          </h1>
-          <p>STATUS</p>
-          <div class="flex justify-center items-center">
-            <Button
-              button-text="Open"
-              button-color="bg-light-orange-gold"
-              size="small"
-              class="m-2"
-            />
-            <Button
-              button-text="Run"
-              button-color="bg-light-green"
-              text-color="text-white"
-              size="small"
-              class="m-2"
-            />
-            <Button
-              button-text="Complete"
-              button-color="bg-gold"
-              size="small"
-              class="m-2"
-            />
-          </div>
-        </div>
+      <div class="col-span-3">
+        <Frame
+          :title="status"
+          subtitle="STATUS"
+          :button-texts="['Open', 'Run', 'Complete']"
+          :button-colors="['bg-light-orange-gold', 'bg-light-green', 'bg-gold']"
+          :text-colors="['text-black', 'text-white', 'text-black']"
+          button-size="small"
+          @button1-clicked="
+            () => {
+              print('Open Tournament');
+            }
+          "
+          @button2-clicked="
+            () => {
+              print('Run Tournament');
+            }
+          "
+          @button3-clicked="
+            () => {
+              print('Complete Tournament');
+            }
+          "
+        />
       </div>
       <div class="col-span-2">
         <Frame
           :title="drawStatus"
           subtitle="DRAW STATUS"
-          button-text="Generate Draw"
-          @button-clicked="
+          :button-texts="['Generate Draw']"
+          @button1-clicked="
             () => {
-              console.log('Generate Draw');
+              print('Generate Draw');
             }
           "
         />
@@ -167,10 +131,10 @@
           :title="currentRound + '/' + totalRound"
           subtitle="CURRENT ROUND"
           button-size="medium"
-          button-text="Advance"
-          @button-clicked="
+          :button-texts="['Advance']"
+          @button1-clicked="
             () => {
-              console.log('Advance');
+              print('Advance');
             }
           "
         />
@@ -179,10 +143,10 @@
         <Frame
           :title="results"
           subtitle="PREVIOUS ROUND"
-          button-text="Release Results"
-          @button-clicked="
+          :button-texts="['Release Results']"
+          @button1-clicked="
             () => {
-              console.log('Advance');
+              print('Release Results');
             }
           "
         />
@@ -235,11 +199,7 @@ const currentRound = 0;
 const totalRound = "8";
 const results = "UNRELEASED";
 
-const headers = [
-  {
-    key: "name",
-    title: "Venues",
-  },
- 
-];
+const print = (msg) => {
+  console.log(msg);
+};
 </script>

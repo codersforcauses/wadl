@@ -33,11 +33,11 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels"
+          :selected-chips="getLevels()"
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.rounds"
+          v-model="form.numRounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -76,11 +76,11 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels"
+          :selected-chips="getLevels()"
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.rounds"
+          v-model="form.numRounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -97,13 +97,15 @@
   </Modal>
 
   <Header title-text="Tournaments" />
-  <SearchBar @handle-filter="handleFilter" />
+  <SearchBar
+    @handle-filter="
+      (searchString) => {
+        searchTerm = searchString;
+      }
+    "
+  />
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table
-      :headers="headers"
-      :data="store.filteredTournaments"
-      @edit="handleEdit"
-    />
+    <Table :headers="headers" :data="filteredTournaments" @edit="handleEdit" />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
@@ -115,24 +117,41 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Tournaments",
+});
 const defaultInputState = {
   id: null,
-  name: null,
-  shortName: null,
   levels: [],
-  rounds: null,
+  name: null,
+  numRounds: null,
+  shortName: null,
+  status: "Open",
 };
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
+store.getTournaments();
+
+const getLevels = () => form.value.levels.map((l) => l.level);
 
 const updateSelectedLevels = (chips) => {
-  form.value.levels = chips;
+  form.value.levels.forEach(function callback(l, index) {
+    if (!chips.includes(l.level)) {
+      form.value.levels.splice(index, 1);
+    }
+  });
+
+  chips.forEach((level) => {
+    if (!getLevels().includes(level)) {
+      form.value.levels.push({ level });
+    }
+  });
 };
 
 const resetFormState = () => {
@@ -146,13 +165,16 @@ const handleEdit = (row) => {
   form.value = row.data;
 };
 
-const handleFilter = (searchTerm) => {
-  store.filteredTournaments = store.tournaments.filter(
+const searchTerm = ref(null);
+const filteredTournaments = computed(() => {
+  const query = searchTerm.value;
+  const results = store.tournaments.filter(
     (tournament) =>
-      tournament.name.toLowerCase().includes(searchTerm) ||
-      tournament.status.toLowerCase().includes(searchTerm)
+      tournament.name.toLowerCase().includes(query) ||
+      tournament.status.toLowerCase().includes(query)
   );
-};
+  return query !== null ? results : store.tournaments;
+});
 
 const updateTournament = () => {
   store.editTournament(form.value);
