@@ -5,8 +5,8 @@ import { getFirestore } from "firebase-admin/firestore";
 import { defineEventHandler, readBody, createError } from "#imports";
 
 export default defineEventHandler(async (event) => {
-  const { adminToken, userInfo, emailContent } = await readBody(event);
-  console.log(adminToken, userInfo, emailContent);
+  const { adminToken, userInfo, emailStructure } = await readBody(event);
+  console.log(adminToken, userInfo, emailStructure);
 
   if (!adminToken || !userInfo) {
     throw createError({
@@ -27,23 +27,40 @@ export default defineEventHandler(async (event) => {
   const firestore = getFirestore(app);
 
   try {
-    // const resetLink = await auth.generatePasswordResetLink(userInfo.email);
-    // const message = {
-    //   subject: emailContent.subject,
-    //   html: "<div><h1>HELLO WORLD</h1><img src='https://storage.googleapis.com/wadl-logos/ShortLogo.png' style='width:200px;height:52px;'></div>",
-    // };
-    firestore
-      .collection("mail")
-      .add({
-        to: "benjamin9804@icloud.com",
-        template: {
-          name: "approve",
-          data: {
-            name: userInfo.firstName + " " + userInfo.lastName,
-          },
+    if (emailStructure.name === "passwordReset") {
+      const resetLink = await auth.generatePasswordResetLink(userInfo.email);
+      const template = {
+        name: emailStructure.name,
+        data: {
+          name: emailStructure.data.name,
+          role: emailStructure.data.role,
+          link: resetLink,
         },
-      })
-      .then(() => console.log("Queued email for delivery!"));
+      };
+      firestore
+        .collection("mail")
+        .add({
+          to: "benjamin9804@icloud.com",
+          template,
+        })
+        .then(() => console.log("Queued email for delivery!"));
+    }
+    if (emailStructure.name === "approve") {
+      const template = {
+        name: emailStructure.name,
+        data: {
+          name: emailStructure.data.name,
+          role: emailStructure.data.role,
+        },
+      };
+      firestore
+        .collection("mail")
+        .add({
+          to: "benjamin9804@icloud.com",
+          template,
+        })
+        .then(() => console.log("Queued email for delivery!"));
+    }
   } catch (err) {
     throw createError({
       statusCode: 400,
