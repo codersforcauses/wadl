@@ -152,16 +152,16 @@
         />
       </div>
     </div>
-    <div class="relative">
+    
     <div class="w-1/2 max-h-96 overflow-scroll mt-5 rounded-lg shadow-lg">
       <table class="w-full rounded-lg">
         <thead class="absolute w-full top-0 left-0 right-0">
           
           <tr class="">
-            <th v-for="(object, index) in headers" :key="index" class=" bg-white pt-5 pb-5 divide-y-4 font-montserrat font-semibold text-mid-grey text-left text-lg" >
+            <th v-for="(object, index) in headers" :key="index" class="sticky top-0 bg-white pt-5 pb-5 divide-y-4 font-montserrat font-semibold text-mid-grey text-left text-lg" >
               {{ object.title }}
             </th>
-            <th class=" bg-white text-right p-2">
+            <th class="sticky top-0 bg-white text-right p-2">
               <button class="bg-amber-300 p-1 rounded-full">
                 <PlusIcon class="w-7 h-7" />
               </button>
@@ -181,9 +181,10 @@
           </tr>
 
         </tbody>
-      </table></div>
+      </table>
     </div>
-  </div>
+    </div>
+  
 </template>
 
 <script setup>
