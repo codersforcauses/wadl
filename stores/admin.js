@@ -78,9 +78,9 @@ export const useAdminStore = defineStore("admin", {
         const { $clientFirestore, $clientAuth } = useNuxtApp();
         const adminToken = await $clientAuth.currentUser.getIdToken();
         const template = {
-          name: "approve",
+          name: "approveUser",
           data: {
-            name: user.firstName + " " + user.lastName,
+            name: user.firstName,
             role: user.role,
           },
         };
