@@ -3,25 +3,40 @@
   <!-- long logo -->
   <img
     data-test="longLogo"
-    class="mx-auto"
+    class="mx-auto mt-16"
     src="../assets/logos/TransparentLongLogo.png"
   />
   <!-- competitions -->
   <Header data-test="competitionsHeader" title-text="Competitions" />
-  <main
-    class="mx-auto h-screen pt-5 place-items-center justify-center grid grid-cols-3 grid-rows-6 gap-6"
+  <div
+    v-if="store.getRunning.length > 0"
+    class="mx-auto mt-4 flex justify-center flex-wrap"
   >
-    <!-- replace key with item.key when final data exists -->
-    <div v-for="item in tournaments" :key="item">
+    <div v-for="tournament in store.getRunning" :key="tournament.id">
       <NuxtLink data-test="levelButton" to="/">
-        <LevelButton :text="item" />
+        <LevelButton :text="tournament.shortName" />
       </NuxtLink>
     </div>
-  </main>
+  </div>
+  <p
+    v-else
+    class="text-xl py-5 text-center text-mid-grey font-montserrat font-light"
+  >
+    There are no running tournaments.
+  </p>
 </template>
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
+import { useTournamentStore } from "../stores/tournaments";
+import { onMounted } from "vue";
+import { useHead } from "#imports";
+useHead({
+  title: "WADL",
+});
+const store = useTournamentStore();
 
-const tournaments = ["Junior", "Novice", "Senior", "SDC", "AIHSA", "RDC"]; // Dummy Data to be replaced
+onMounted(() => {
+  store.getTournaments();
+});
 </script>

@@ -1,9 +1,12 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useVenueStore } from "../../stores/venues";
+import { useHead } from "#imports";
 
+useHead({
+  title: "Venues",
+});
 const defaultInputState = {
-  id: null,
   name: null,
   roomNo: null,
   capacity: null,
@@ -13,7 +16,27 @@ const defaultInputState = {
 const formInput = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
+const filtering = ref(false);
+const loading = ref(true);
+const modalLoading = ref(false);
+
 const store = useVenueStore();
+
+onMounted(async () => {
+  await store.getVenues();
+  loading.value = false;
+});
+
+const handleFilter = (searchString) => {
+  if (searchString) {
+    filtering.value = true;
+    store.filteredVenues = store.venues.filter((v) => {
+      return v.name.toLowerCase().includes(searchString.toLowerCase());
+    });
+  } else {
+    filtering.value = false;
+  }
+};
 
 const updateSelectedDays = (chips) => {
   formInput.value.days = chips;
@@ -30,21 +53,19 @@ const handleEdit = (row) => {
   formInput.value = row.data;
 };
 
-const handleFilter = (searchTerm) => {
-  store.filteredVenues = store.venues.filter(
-    (venue) =>
-      venue.name.toLowerCase().includes(searchTerm) ||
-      venue.roomNo.toLowerCase().includes(searchTerm)
-  );
-};
-
-const updateVenue = () => {
-  store.editVenue(formInput.value);
+const updateVenue = async () => {
+  modalLoading.value = true;
+  await store.editVenue(formInput.value);
+  modalVisibility.value = false;
+  modalLoading.value = false;
   resetFormState();
 };
 
-const createVenue = () => {
-  store.createVenue(formInput.value);
+const createVenue = async () => {
+  modalLoading.value = true;
+  await store.createVenue(formInput.value);
+  modalVisibility.value = false;
+  modalLoading.value = false;
   resetFormState();
 };
 
@@ -62,21 +83,33 @@ const headers = [
 
 <template>
   <Header title-text="Venues" />
-  <SearchBar @handle-filter="handleFilter" />
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="store.filteredVenues" @edit="handleEdit" />
-  </div>
-  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
+  <div class="flex items-center justify-center w-full">
+    <SearchBar @handle-filter="handleFilter" />
     <Button
-      button-text="Add Venue"
+      button-text="Add"
       button-color="bg-gold"
-      class="m-5 ml-8"
+      type="button"
+      size="medium"
       @click="modalVisibility = true"
+    />
+  </div>
+  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+    <div v-if="loading">
+      <Loading />
+    </div>
+    <Table
+      v-else
+      :headers="headers"
+      :data="filtering ? store.filteredVenues : store.venues"
+      no-data-text="No venues registered"
+      :loading="loading"
+      @edit="handleEdit"
     />
   </div>
 
   <Modal
     :modal-visibility="modalVisibility"
+    size="w-7/12"
     @close="
       () => {
         modalVisibility = false;
@@ -86,15 +119,7 @@ const headers = [
   >
     <div v-if="editMode">
       <Header title-text="Edit Venue" />
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            modalVisibility = false;
-            updateVenue();
-          }
-        "
-      >
+      <form class="px-10" @submit.prevent="updateVenue">
         <FormField v-model="formInput.name" label="Venue Name" />
         <div class="grid grid-cols-2 gap-x-4">
           <div>
@@ -123,6 +148,7 @@ const headers = [
             button-color="bg-gold"
             type="Submit"
             class="m-5 ml-8"
+            :loading="modalLoading"
           />
         </div>
       </form>
@@ -131,15 +157,7 @@ const headers = [
       <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
         Add Venue
       </p>
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            modalVisibility = false;
-            createVenue();
-          }
-        "
-      >
+      <form class="px-10" @submit.prevent="createVenue">
         <FormField v-model="formInput.name" label="Venue Name" />
         <div class="grid grid-cols-2 gap-x-4">
           <div>
@@ -168,6 +186,7 @@ const headers = [
             button-color="bg-gold"
             type="Submit"
             class="m-5 ml-8"
+            :loading="modalLoading"
           />
         </div>
       </form>

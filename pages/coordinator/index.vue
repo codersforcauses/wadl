@@ -1,7 +1,13 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
+import { useUserStore } from "../../stores/user";
+import { useHead } from "#imports";
+useHead({
+  title: "Teams",
+});
 const store = useInstitutionStore();
+const userStore = useUserStore();
 const headers = [
   {
     key: "name",
@@ -24,15 +30,15 @@ const headers = [
     title: "Week Pref.",
   },
   {
-    key: "tuesdayAllocation",
+    key: "allocatedTue",
     title: "Tue",
   },
   {
-    key: "wednesdayAllocation",
+    key: "allocatedWed",
     title: "Wed",
   },
   {
-    key: "venuePreferences",
+    key: "venuePreference",
     title: "Venue Pref.",
   },
 ];
@@ -42,14 +48,21 @@ const defaultInputState = {
   level: null,
   division: null,
   timeslot: null,
-  venuePreferences: [],
-  tuesdayAllocation: null,
-  wednesdayAllocation: null,
+  venuePreference: [],
+  allocatedTue: null,
+  allocatedWed: null,
   weekPreference: null,
 };
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
+
+onMounted(async () => {
+  if (store.teams.length === 0) {
+    await store.getTeamsByID(userStore.institution);
+    console.table(store.teams);
+  }
+});
 
 const resetFormState = () => {
   form.value = { ...defaultInputState };
@@ -69,6 +82,7 @@ const updateTeam = () => {
 <template>
   <Modal
     :modal-visibility="modalVisibility"
+    size="w-7/12"
     @close="
       () => {
         modalVisibility = false;
@@ -88,19 +102,11 @@ const updateTeam = () => {
     >
       <div class="flex flex-row justify-evenly accent-gold pt-5 pb-2">
         <div>
-          <input
-            v-model="form.tuesdayAllocation"
-            type="checkbox"
-            class="w-5 h-5"
-          />
+          <input v-model="form.allocatedTue" type="checkbox" class="w-5 h-5" />
           <label class="ml-3 heading-montserrat">Tuesday Allocation</label>
         </div>
         <div>
-          <input
-            v-model="form.wednesdayAllocation"
-            type="checkbox"
-            class="w-5 h-5"
-          />
+          <input v-model="form.allocatedWed" type="checkbox" class="w-5 h-5" />
 
           <label class="ml-3 heading-montserrat">Wednesday Allocation</label>
         </div>
@@ -117,7 +123,7 @@ const updateTeam = () => {
           v-model="form.hasVenuePreference"
           type="checkbox"
           class="w-5 h-5"
-          @change="form.venuePreferences = []"
+          @change="form.venuePreference = []"
         />
 
         <label class="ml-3 heading-montserrat"
@@ -126,17 +132,17 @@ const updateTeam = () => {
       </div>
       <FormField
         v-if="form.hasVenuePreference"
-        v-model="form.venuePreferences[0]"
+        v-model="form.venuePreference[0]"
         label="1st Venue Preference"
       />
       <FormField
         v-if="form.hasVenuePreference"
-        v-model="form.venuePreferences[1]"
+        v-model="form.venuePreference[1]"
         label="2nd Venue Preference"
       />
       <FormField
         v-if="form.hasVenuePreference"
-        v-model="form.venuePreferences[2]"
+        v-model="form.venuePreference[2]"
         label="3rd Venue Preference"
       />
 
@@ -152,6 +158,15 @@ const updateTeam = () => {
   </Modal>
   <section>
     <Header title-text="Teams" />
+    <div v-if="userStore.institution" class="flex flex-row justify-end p-5">
+      <NuxtLink to="/coordinator/team-registration">
+        <Button
+          button-text="Team Registration"
+          button-color="bg-gold"
+          class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
+        />
+      </NuxtLink>
+    </div>
     <!-- <SearchBar /> -->
     <Table
       :headers="headers"
@@ -159,16 +174,5 @@ const updateTeam = () => {
       class="mt-5"
       @edit="handleEdit"
     />
-    <div class="fixed inset-x-0 bottom-0 w-full">
-      <div class="flex flex-row gap-4 m-5 justify-left">
-        <NuxtLink to="/coordinator/team-registration">
-          <Button
-            button-text="Team Registration"
-            button-color="bg-gold"
-            class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
-          />
-        </NuxtLink>
-      </div>
-    </div>
   </section>
 </template>
