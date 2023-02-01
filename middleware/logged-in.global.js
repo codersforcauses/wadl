@@ -14,12 +14,15 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
     }
 
     const tournamentStore = useTournamentStore();
-    const fixturesRoutes = tournamentStore.getRunning.map(
-      (tournament) => `/fixtures/${tournament.id}`
-    );
-    const otherPublicRoutes = ["/", "/signup", "/login"];
 
-    const allPublicRoutes = otherPublicRoutes.concat(fixturesRoutes);
+    const allPublicRoutes = tournamentStore.getRunning.reduce(
+      (publicRoutes, tournament) => {
+        publicRoutes.push(`/fixtures/${tournament.id}`);
+        return publicRoutes;
+      },
+      ["/", "/signup", "/login"]
+    );
+
     if (allPublicRoutes.includes(to.path)) return;
 
     if (userStore.auth === null) {

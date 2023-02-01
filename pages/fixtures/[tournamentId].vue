@@ -1,15 +1,18 @@
 <script setup>
 import { ref } from "vue";
-import tournamentsData from "../../data/tournaments.json";
-import teamsData from "../../data/teams.json";
-import venuesData from "../../data/venues.json";
 import { useTournamentStore } from "../../stores/tournaments";
+import { useTeamStore } from "../../stores/teams";
+import { useVenueStore } from "../../stores/venues";
 
-const tournaments = ref(tournamentsData);
-const teams = ref(teamsData);
-const venues = ref(venuesData);
-const tournamentsStore = useTournamentStore();
+const tournamentStore = useTournamentStore();
+const teamStore = useTeamStore();
+const venueStore = useVenueStore();
 const route = useRoute();
+
+onMounted(() => {
+  teamStore.getTeams();
+  venueStore.getVenues();
+});
 
 const headers = [
   {
@@ -46,40 +49,29 @@ const levelTabs = [
   { label: "Junior", active: true },
   { label: "Senior", active: false },
 ];
-
-const roundTabs = [];
-tournamentsStore.getRunning.forEach((tournament) => {
+const roundTabs = tournamentStore.getRunning.reduce((arr, tournament) => {
   if (tournament.id === route.params.tournamentId) {
-    console.log(tournament);
     let round = 1;
     while (round <= tournament.numRounds) {
-      roundTabs.push({ label: `Round ${round}`, active: false });
+      arr.push({ label: `Round ${round}`, active: false });
       round++;
     }
   }
-});
-
-const handleFilter = (searchTerm) => {
-  tableData.value = tableData.value.filter(
-    (d) =>
-      d.div.toLowerCase().includes(searchTerm) ||
-      d.venue.toLowerCase().includes(searchTerm) ||
-      d.date.toLowerCase().includes(searchTerm) ||
-      d.time.toLowerCase().includes(searchTerm) ||
-      d.affirmative.toLowerCase().includes(searchTerm) ||
-      d.negative.toLowerCase().includes(searchTerm) ||
-      d.topic.toLowerCase().includes(searchTerm)
-  );
-};
+  return arr;
+}, []);
 
 const hasNotSelectedRoundTab = ref(true);
 const tableData = ref([]);
 const levelSelected = ref("Junior");
 const roundSelected = ref(undefined);
+const levelTabsKey = ref(0);
 
 const levelClicked = (tabName) => {
   levelSelected.value = tabName;
+  tableData.value = [];
+  levelTabsKey.value++;
   roundTabs.forEach((round) => (round.active = false));
+  roundSelected.value = undefined;
   hasNotSelectedRoundTab.value = true;
 };
 
@@ -87,15 +79,16 @@ const roundClicked = (roundName) => {
   tableData.value = [];
   hasNotSelectedRoundTab.value = false;
   roundSelected.value = parseInt(roundName.split("")[roundName.length - 1]);
-  const selectedTournament = tournaments.value.filter(
-    (tournament) => tournament.name === route.params.tournamentId
+
+  const selectedTournament = tournamentStore.getRunning.filter(
+    (tournament) => tournament.id === route.params.tournamentId
   );
 
   const levelFound = selectedTournament[0].levels.filter(
     (lev) => lev.level === levelSelected.value
   );
 
-  const formatAMPM = (date) => {
+  const formatTime = (date) => {
     let hours = date.getHours();
     let minutes = date.getMinutes();
     let ampm = hours >= 12 ? "pm" : "am";
@@ -113,25 +106,38 @@ const roundClicked = (roundName) => {
         .split(" ")
         .slice(0, 3)
         .join(" ");
-      const time = formatAMPM(new Date(matchup.datetime));
+      const time = formatTime(new Date(matchup.datetime));
       if (matchup.round === roundSelected.value) {
         const row = {
           div: div.division,
           venue: "",
           date,
           time,
-          affirmative: teams.value.find(
+          affirmative: teamStore.teams.find(
             (team) => team.id === matchup.affirmative_team
-          ).name,
-          negative: teams.value.find(
+          )?.name,
+          negative: teamStore.teams.find(
             (team) => team.id === matchup.negative_team
-          ).name,
+          )?.name,
           topic: matchup.topic,
         };
         tableData.value.push(row);
       }
     });
   });
+};
+
+const handleFilter = (searchTerm) => {
+  tableData.value = tableData.value.filter(
+    (data) =>
+      data?.div.toString().toLowerCase().includes(searchTerm) ||
+      data?.venue.toLowerCase().includes(searchTerm) ||
+      data?.date.toLowerCase().includes(searchTerm) ||
+      data?.time.toLowerCase().includes(searchTerm) ||
+      data?.affirmative.toLowerCase().includes(searchTerm) ||
+      data?.negative.toLowerCase().includes(searchTerm) ||
+      data?.topic.toLowerCase().includes(searchTerm)
+  );
 };
 </script>
 
@@ -140,7 +146,12 @@ const roundClicked = (roundName) => {
   <div class="flex items-center justify-center w-full">
     <SearchBar @handle-filter="handleFilter" />
   </div>
-  <Tabs :tabs="roundTabs" font-size="text-base" @handle-tab="roundClicked" />
+  <Tabs
+    :tabs="roundTabs"
+    font-size="text-base"
+    @handle-tab="roundClicked"
+    :key="levelTabsKey"
+  />
   <Table
     :headers="headers"
     :data="tableData"
