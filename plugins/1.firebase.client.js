@@ -32,7 +32,10 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     connectFunctionsEmulator(functions, "localhost", 5001);
   }
 
+  // AUTH FUNCTIONS
+
   const userStore = useUserStore();
+  
   onAuthStateChanged(auth, (user) => {
     if (user) {
       userStore.setUser(user);
@@ -41,10 +44,35 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     }
   });
 
+  nuxtApp.hooks.hook("app:mounted", () => {
+    auth.onIdTokenChanged(async (user) => {
+      if (user) {
+        console.log("getting token....")
+        const token = await user.getIdToken(true);
+        await setServerSession(token);
+        // firebaseUser.value = formatUser(user);
+      } else {
+        await setServerSession("");
+        // firebaseUser.value = null;
+      }
+    });
+  });
+
   return {
     provide: {
       clientFirestore: firestore,
       clientAuth: auth,
     },
   };
+
+  function setServerSession(token) {
+    return $fetch("/api/session", {
+      method: "POST",
+      body: {
+        token
+      }
+    });
+  };
 });
+
+
