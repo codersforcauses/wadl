@@ -74,12 +74,12 @@
     </form>
   </section>
   <Notification
-    :modal-visibility="notificationVisibility"
-    :is-success="isSuccess"
-    :body="notificationMessage"
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
     @close="
       () => {
-        notificationVisibility = false;
+        notification.dismiss();
         redirect();
       }
     "
@@ -90,15 +90,23 @@
 import { useUserStore } from "../stores/user";
 import { ref } from "vue";
 import { useHead, navigateTo } from "#imports";
+import useNotification from "../composables/useNotification";
 useHead({
   title: "Signup",
 });
+
+const notification = useNotification();
+
 const userStore = useUserStore();
 
 if (userStore.auth) {
   navigateTo("/");
 } else {
-  userStore.clearStore();
+  try {
+    await userStore.clearStore();
+  } catch (error) {
+    notification.notifyError(error);
+  }
 }
 
 const form = ref({
@@ -123,11 +131,6 @@ const updateInput = () => {
   isRoleValid.value = true;
 };
 
-// Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
-
 // Call The User Store
 const registerUser = async () => {
   if (form.value.password.length < 8) {
@@ -148,12 +151,20 @@ const registerUser = async () => {
     return;
   }
 
-  await userStore.registerUser({ ...form.value });
-  if (!userStore.errorCode) {
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = userStore.successCode;
+  try {
+    await userStore.registerUser({ ...form.value });
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+
+  notification.notifySuccess(
+    "Please wait for approval from admin before logging in."
+  );
+  try {
     await userStore.clearStore();
+  } catch (error) {
+    notification.notifyError(error);
   }
 };
 const redirect = () => {
