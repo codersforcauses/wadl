@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useUserStore } from "../stores/user";
 const form = ref({
   email: "",
@@ -31,4 +31,7 @@ const userStore = useUserStore();
 const resetPassword = () => {
   userStore.resetPassword(form.value);
 };
+onMounted(() => {
+  userStore.errorCode = null;
+});
 </script>

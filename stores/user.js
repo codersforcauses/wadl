@@ -113,6 +113,15 @@ export const useUserStore = defineStore("user", {
         body: {
           emailStructure: template,
         },
+      }).catch((error) => {
+        console.log(error.message);
+        if (
+          error.message.includes(
+            "There is no user record corresponding to the provided email."
+          )
+        ) {
+          this.errorCode = "There is no user that has this email assigned.";
+        }
       });
     },
     async clearStore() {

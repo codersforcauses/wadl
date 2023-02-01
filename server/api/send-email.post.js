@@ -5,14 +5,15 @@ import { getFirestore } from "firebase-admin/firestore";
 import { defineEventHandler, readBody, createError } from "#imports";
 
 export default defineEventHandler(async (event) => {
-  const { adminToken, userInfo, emailStructure } = await readBody(event);
-  console.log(adminToken, userInfo, emailStructure);
+  const { emailStructure } = await readBody(event);
+  console.log(emailStructure.data.userEmail.email);
 
-  if (!adminToken || !userInfo) {
-    throw createError({
-      statusCode: 400,
-    });
-  }
+  console.log("before");
+  // if (!adminToken || !userInfo) {
+  //   throw createError({
+  //     statusCode: 400,
+  //   });
+  // }
 
   const serviceAccountCredentials = admin.credential.cert(
     JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_CONFIG)
@@ -27,9 +28,9 @@ export default defineEventHandler(async (event) => {
   const firestore = getFirestore(app);
 
   try {
-    if (emailStructure.name === "passwordReset") {
+    if (emailStructure.name === "resetPassword") {
       const resetLink = await auth.generatePasswordResetLink(
-        emailStructure.data.userEmail
+        emailStructure.data.userEmail.email
       );
       const template = {
         name: emailStructure.name,
