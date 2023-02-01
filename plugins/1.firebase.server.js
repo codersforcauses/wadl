@@ -34,7 +34,6 @@ import {
 
     return {
       provide: {
-        // serverFirestoreApp: app,
         serverFirestore: firestore,
         serverAuth: auth,
       },
