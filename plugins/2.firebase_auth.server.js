@@ -22,6 +22,7 @@ import { useUserStore } from "../stores/user";
         const result = await $serverAuth.verifyIdToken(token.value);
         userStore.setUser(result);
         console.log("authed")
+        console.log(userStore.email)
       } catch {
       //   // Not authenticated or invalid token
       //   console.log("not authed?")

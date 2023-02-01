@@ -47,6 +47,7 @@ export const useUserStore = defineStore("user", {
     };
   },
 
+  // persist only on client for now.
   persist: {
     key: "pinia-store",
     debug: true,
@@ -95,15 +96,22 @@ export const useUserStore = defineStore("user", {
     async setUser(user) {
       if (user !== null) {
         try {
-          const { $clientFirestore } = useNuxtApp();
-          const docRef = doc($clientFirestore, "users", user.uid);
-
-          const userDoc = await getDoc(docRef);
-          if (!userDoc.exists()) {
-            throw new Error("Could not find user document");
+          let userDoc;
+          if (!process.client) {
+            const { $serverFirestore } = useNuxtApp();
+            userDoc = await $serverFirestore.collection("users").doc(user.uid).get();
+          } else { 
+            const { $clientFirestore } = useNuxtApp();
+            const docRef = doc($clientFirestore, "users", user.uid);
+            userDoc = await getDoc(docRef);
           }
 
+          if (!userDoc) {
+            throw new Error("Could not find user document");
+          }
+          
           const userInfo = userDoc.data();
+          console.log(userInfo)
           this.auth = user;
           this.firstName = userInfo.firstName;
           this.lastName = userInfo.lastName;
@@ -113,6 +121,11 @@ export const useUserStore = defineStore("user", {
           this.requesting = userInfo.requesting;
           this.institution = userInfo.institution;
           this.errorCode = null;
+          console.log("here!")
+          console.log("here!")
+          console.log(userStore.role)
+          console.log("here!")
+          console.log(userStore.email)
         } catch (err) {
           this.errorCode = cleanUpError(err);
         }
