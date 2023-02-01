@@ -36,7 +36,7 @@ const handleClick = (item) => {
         isOpen = false;
       }
     "
-    class="relative mb-2"
+    class="relative w-full"
   >
     <div :class="`rounded-md border border-light-grey p-1 ${color}`">
       <div class="cursor-pointer" @click="isOpen = !isOpen">

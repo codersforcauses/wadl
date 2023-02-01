@@ -89,7 +89,9 @@ const handleDelete = (user) => {
             <p>{{ user.email }}</p>
           </td>
           <td>
-            <Dropdown v-model="user.role" id="role" name="role" />
+            <div class="flex items-center mx-2">
+              <Dropdown v-model="user.role" id="role" name="role" />
+            </div>
           </td>
           <td class="flex flex-row justify-evenly">
             <Button
