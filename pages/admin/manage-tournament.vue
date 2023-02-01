@@ -152,27 +152,65 @@
         />
       </div>
     </div>
-    <div class="grid grid-cols-2 gap-4">
-      <div class="max-h-96 overflow-scroll mt-5 rounded-xl shadow-lg">
-        <div class="sticky top-0 grid grid-cols-2 items-center bg-white">
-          <div class="m-2 flex  pt-5 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg">
-            Venues
+    <!-- table -->
+    <!-- header -->
+    <div class="grid grid-cols-2 items-center bg-white">
+      <div class="m-2 flex  pt-5 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg">
+        Round Information
+      </div>
+      <div>
+        <button class="bg-amber-300 p-1 rounded-full text-black" @click="() => {
+                      print('Add New Info');
+                    }">
+          <PlusIcon class="w-7 h-7" />
+        </button>
+      </div>
+    </div>
+    <!-- 3 grid -->
+    <div class="grid grid-cols-3 gap-4">
+    <!-- col1 -->
+      <div class="max-h-96 overflow-scroll overflow-x-hidden rounded-xl shadow-lg bg-slate-200 items-center">
+        <div class="sticky top-0 grid grid-cols-3 bg-slate-200">
+          <!-- head -->
+          <div class="py-6">
+            <div class="flex flex-col  items-center">
+              <h1 class="text-center font-montserrat font-semibold text-3xl">
+                1
+              </h1>
+              <p class="font-montserrat">WEEK</p>
+            </div>
           </div>
-          <div class="text-right m-2">
-            <button class="bg-amber-300 p-1 rounded-full text-black" @click="() => {
-                  print('Add Row Venue');
-                }">
-              <PlusIcon class="w-7 h-7" />
-            </button>
+          <div class="py-6">
+            <div class="flex flex-col items-center">
+              <h1 class="text-center font-montserrat font-semibold text-3xl">
+                14/03
+              </h1>
+              <p class="font-montserrat">TUESDAY</p>
+            </div>
           </div>
+          <div class="py-6">
+            <div class="flex flex-col items-center">
+              <h1 class="text-center font-montserrat font-semibold text-3xl">
+                15/03
+              </h1>
+              <p class="font-montserrat">WEDNESDAY</p>
+            </div>
+          </div>  
+          <hr class="h-px mx-8 bg-mid-grey border-0 col-span-3">
+          <!-- subhead -->
+          <div class="ml-6 pt-5 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg">
+            VENUES
+          </div>
+        
         </div>
-        <table class="w-full">
+        <!-- table -->
+        <table class="w-11/12 m-auto">
           <tbody>
             <tr v-for="(row, index) in venue" :key="index"
-              class="even:bg-white odd:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out font-montserrat">
-              <td class="p-5" v-for="(object, ind) in headersVenues"
+              class="even:bg-slate-200 odd:bg-white hover:bg-light-yellow transition duration-150 ease-in-out font-montserrat">
+              <td class="p-2" v-for="(object, ind) in headersVenues"
                 :key="ind">
-                {{row[object.key] }}
+                {{ row[object.key] }}
               </td>
               <td class="text-right p-2">
                 <button @click="() => {
@@ -185,47 +223,15 @@
           </tbody>
         </table>
       </div>
+
       
-      <div class="max-h-96 overflow-scroll mt-5 rounded-xl shadow-lg">
-        <div class="sticky top-0 grid grid-cols-2 items-center bg-white">
-          <div class="m-2 flex pt-5 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg">
-            Round Dates
-          </div>
-          <div class="text-right m-2">
-            <button class="bg-amber-300 p-1 rounded-full text-black" @click="() => {
-                  print('Add Row Rounds');
-                }">
-              <PlusIcon class="w-7 h-7" />
-            </button>
-          </div>
-        </div>
-        <table class="w-full">
-          <tbody>
-            <tr v-for="(row, index) in rounds" :key="index"
-              class="even:bg-white odd:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out font-montserrat">
-              <td class="p-5" v-for="(object, ind) in headersRounds" 
-                :key="ind">
-                {{row[object.key] }}
-              </td>
-              <td class="text-right p-2">
-                <button @click="() => {
-                  print('Delete Row');
-                }">
-                  <XMarkIcon class="w-4 h-4" />
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
-    </div>
+  </div>
   
 </template>
 
 <script setup>
 import venue from "../../data/venues.json"
-import rounds from "../../data/rounds.json"
 import { XMarkIcon, PlusIcon } from "@heroicons/vue/24/solid"
 
 const noviceNum = 10;
@@ -242,25 +248,6 @@ const headersVenues = [
   {
     key: "venue",
     title: "Venue",
-  },
-];
-
-const headersRounds = [
-  {
-    key: "round",
-    title: "Round",
-  },
-  {
-    key: "week",
-    title: "Week",
-  },
-  {
-    key: "day",
-    title: "Day",
-  },
-  {
-    key: "date",
-    title: "Date",
   },
 ];
 
