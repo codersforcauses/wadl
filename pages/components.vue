@@ -116,6 +116,10 @@
     />
   </div>
 
+  <div class="mx-8">
+    <Dropdown v-model="option" />
+  </div>
+
   <!-- Notification Modal -->
   <Notification
     :modal-visibility="notificationVisibility"
@@ -136,6 +140,7 @@ import { useInstitutionStore } from "../stores/institutions";
 const store = useInstitutionStore();
 const institutions = ref(store.institutions);
 const modalVisibility = ref(false);
+const option = ref("");
 
 const tabs = [
   { label: "Novice", active: false },
@@ -157,6 +162,9 @@ const handleTabClicked = (tab) => {
 
 const updateSelectedLevels = (chips) => {
   console.log("Chips selected", chips);
+};
+const getSelected = (option) => {
+  console.log("Option selected", option);
 };
 
 const getInfo = (data) => {

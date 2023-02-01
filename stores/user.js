@@ -26,7 +26,7 @@ export const useUserStore = defineStore("user", {
     debug: true,
     persist: true,
     // eslint-disable-next-line no-undef
-    storage: persistedState.sessionStorage,
+    storage: persistedState.localStorage,
   },
 
   getters: {},
