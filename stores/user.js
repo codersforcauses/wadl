@@ -51,9 +51,9 @@ export const useUserStore = defineStore("user", {
       });
     },
 
-    loginUser(user) {
+    async loginUser(user) {
       const { $clientAuth } = useNuxtApp();
-      signInWithEmailAndPassword($clientAuth, user.email, user.password);
+      await signInWithEmailAndPassword($clientAuth, user.email, user.password);
     },
 
     async setUser(user) {
