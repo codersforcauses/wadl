@@ -48,7 +48,8 @@
         :color="!isValid ? 'border-red-500' : ''"
         @update="updateInput"
       />
-      <Select
+      <label class="heading-montserrat">Role</label>
+      <Dropdown
         v-model="form.role"
         :color="!isRoleValid ? 'border-red-500' : ''"
         @update="updateInput"
@@ -130,6 +131,7 @@ const notificationMessage = ref("");
 
 // Call The User Store
 const registerUser = async () => {
+  console.log(form.value);
   if (form.value.password.length < 8) {
     isValid.value = false;
     errorMessage.value = "The password has to be at least 8 characters";
