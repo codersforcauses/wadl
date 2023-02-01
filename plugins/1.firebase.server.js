@@ -23,10 +23,6 @@ import {
       mode: config.firebaseMode,
     };
 
-    if (firebaseConfig.mode == 'dev') {
-        process.env.FIREBASE_AUTH_EMULATOR_HOST="localhost:9099"
-    }
-
     const serviceAccountCredentials = admin.credential.cert(
         JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_CONFIG)
     );
@@ -35,16 +31,10 @@ import {
     const firestore = getFirestore(app);
     const auth = getAuth(app);
     const functions = getFunctions(app);
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user) {
-    //     userStore.setUser(user);
-    //   } else {
-    //     userStore.setUser(null);
-    //   }
-    // });
-  
+
     return {
       provide: {
+        // serverFirestoreApp: app,
         serverFirestore: firestore,
         serverAuth: auth,
       },
