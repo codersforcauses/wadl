@@ -53,9 +53,6 @@
         :color="!isRoleValid ? 'border-red-500' : ''"
         @update="updateInput"
       />
-      <p v-if="userStore.errorCode" class="text-danger-red">
-        {{ userStore.errorCode }}
-      </p>
       <p class="text-red-500">{{ errorMessage2 }}</p>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <div class="w-full flex justify-center">

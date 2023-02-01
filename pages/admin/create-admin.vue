@@ -4,6 +4,7 @@ import { useAdminStore } from "../../stores/admin";
 import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useHead } from "#imports";
+import { errorCodeToMessage } from "../../misc/firebaseHelpers";
 useHead({
   title: "Create Admin",
 });
@@ -19,9 +20,15 @@ const form = ref({
   role: "",
 });
 
+const errorMessage = ref(null);
+
 // Call The User Store
 const registerUser = () => {
-  userStore.createAdmin(form.value);
+  try {
+    userStore.createAdmin(form.value);
+  } catch (error) {
+    errorMessage.value = errorCodeToMessage(error.code);
+  }
 };
 
 watch(errorCode, (currentValue, oldValue) => {
@@ -67,8 +74,8 @@ watch(errorCode, (currentValue, oldValue) => {
         placeholder="Confirm Password"
         type="password"
       />
-      <p v-if="userStore.errorCode" class="text-danger-red">
-        {{ userStore.errorCode }}
+      <p v-if="errorMessage" class="text-danger-red">
+        {{ errorMessage }}
       </p>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <div class="w-full flex justify-center">
