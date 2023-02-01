@@ -111,6 +111,7 @@ export const useUserStore = defineStore("user", {
       await $fetch("/api/send-email", {
         method: "post",
         body: {
+          userInfo: email,
           emailStructure: template,
         },
       }).catch((error) => {

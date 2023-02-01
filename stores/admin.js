@@ -75,8 +75,7 @@ export const useAdminStore = defineStore("admin", {
 
     async acceptUser(user) {
       try {
-        const { $clientFirestore, $clientAuth } = useNuxtApp();
-        const adminToken = await $clientAuth.currentUser.getIdToken();
+        const { $clientFirestore } = useNuxtApp();
         const template = {
           name: "approveUser",
           data: {
@@ -94,7 +93,6 @@ export const useAdminStore = defineStore("admin", {
           await $fetch("/api/send-email", {
             method: "post",
             body: {
-              adminToken,
               userInfo: user,
               emailStructure: template,
             },
