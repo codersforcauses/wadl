@@ -10,7 +10,7 @@
             emit('close');
           }
         "
-        class="bg-white rounded-2xl md:w-7/12"
+        :class="`bg-white rounded-2xl ${size}`"
       >
         <header
           class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl"
@@ -29,6 +29,7 @@ import { vOnClickOutside } from "@vueuse/components";
 
 defineProps({
   modalVisibility: { type: Boolean, default: false },
+  size: { type: String, default: "w-7/12" },
 });
 const emit = defineEmits(["close"]);
 </script>

@@ -1,7 +1,10 @@
 <script setup>
 import { useAdminStore } from "../../stores/admin";
 import { onMounted, onUnmounted, ref } from "vue";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Signup Requests",
+});
 const currentUser = ref(null);
 const searchTerm = ref("");
 const modalVisibility = ref(false);
@@ -40,7 +43,9 @@ const handleDelete = (user) => {
 
 <template>
   <Header title-text="Sign Up Requests" />
-  <SearchBar @handle-filter="handleFilter" />
+  <div class="flex items-center justify-center w-full">
+    <SearchBar @handle-filter="handleFilter" />
+  </div>
   <div class="flex justify-center">
     <table class="w-10/12 table-fixed">
       <thead>

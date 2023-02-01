@@ -1,7 +1,10 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
-
+import { useHead } from "#imports";
+useHead({
+  title: "Institutions",
+});
 const headers = [
   {
     key: "name",
@@ -40,11 +43,14 @@ const resetFormState = () => {
   store.errorMessage = "";
 };
 
-const filterInstitutions = (searchTerm) => {
-  store.filteredInstitutions = store.institutions.filter((institutions) =>
-    institutions.name.toLowerCase().includes(searchTerm)
+const searchTerm = ref(null);
+const filteredInstitutions = computed(() => {
+  const query = searchTerm.value;
+  const results = store.institutions.filter((institutions) =>
+    institutions.name.toLowerCase().includes(query)
   );
-};
+  return query !== null ? results : store.institutions;
+});
 
 const updateInstitution = async () => {
   // update store
@@ -74,6 +80,7 @@ const handleEdit = (row) => {
 <template>
   <Modal
     :modal-visibility="modalVisibility"
+    size="w-7/12"
     @close="
       () => {
         modalVisibility = false;
@@ -144,23 +151,31 @@ const handleEdit = (row) => {
   </Modal>
 
   <Header title-text="Institutions" />
-  <SearchBar @handle-filter="filterInstitutions" />
-
-  <!-- Institutions Table  View -->
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table
-      :headers="headers"
-      :data="store.filteredInstitutions"
-      @edit="handleEdit"
+  <div class="flex items-center justify-center w-full">
+    <SearchBar
+      @handle-filter="
+        (searchString) => {
+          searchTerm = searchString;
+        }
+      "
+    />
+    <Button
+      button-text="Add"
+      button-color="bg-gold"
+      class="ml-2"
+      type="button"
+      size="medium"
+      @click="modalVisibility = true"
     />
   </div>
-  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
-    <Button
-      button-text="Add Institutions"
-      button-color="bg-gold"
-      type="button"
-      class="m-5 ml-8"
-      @click="modalVisibility = true"
+
+  <!-- Institutions Table  View -->
+  <div class="flex content-center justify-center px-2">
+    <Table
+      :headers="headers"
+      :data="filteredInstitutions"
+      @edit="handleEdit"
+      no-data-text="No institutions registered"
     />
   </div>
 </template>

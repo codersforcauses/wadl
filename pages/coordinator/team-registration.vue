@@ -3,7 +3,10 @@ import { ref, onMounted } from "vue";
 import { useUserStore } from "../../stores/user";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useTournamentStore } from "../../stores/tournaments";
-import { navigateTo } from "#imports";
+import { navigateTo, useHead } from "#imports";
+useHead({
+  title: "Team Registration",
+});
 const institutionStore = useInstitutionStore();
 const tournamentStore = useTournamentStore();
 const userStore = useUserStore();
@@ -70,7 +73,7 @@ const saveTeamRegistration = async () => {
   // Perform validation
   // POST to backend
   formInput.value.userTeam = institutionStore.userInstitution.name;
-  institutionStore.registerTeam(formInput.value);
+  institutionStore.registerTeams(formInput.value);
   if (!institutionStore.errorMessage) {
     isSuccess.value = true;
     notificationVisibility.value = true;

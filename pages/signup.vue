@@ -89,8 +89,10 @@
 <script setup>
 import { useUserStore } from "../stores/user";
 import { ref } from "vue";
-import { navigateTo } from "#imports";
-
+import { useHead, navigateTo } from "#imports";
+useHead({
+  title: "Signup",
+});
 const userStore = useUserStore();
 
 if (userStore.auth) {

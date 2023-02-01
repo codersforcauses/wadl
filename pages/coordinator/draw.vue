@@ -4,4 +4,9 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import { useHead } from "#imports";
+useHead({
+  title: "Draw",
+});
+</script>
