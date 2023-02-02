@@ -158,13 +158,14 @@ const redirect = () => {
           <hr class="h-px ml-2 flex-1" />
         </div>
         <div class="flex flex-row space-x-3">
-          <Select
+          <Dropdown
             v-for="team in formInput.teams"
             :key="team.teamLevel"
             v-model="team.weekPreference"
-            :options="['Week 1', 'Week 2', 'Either']"
+            placeholder="Select Week"
+            :items="['Week 1', 'Week 2', 'Either']"
+            selected="Either"
             :label="team.teamLevel"
-            class="w-full"
             :disabled="!team.levelPresent"
           />
         </div>

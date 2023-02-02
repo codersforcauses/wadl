@@ -5,7 +5,7 @@ import { vOnClickOutside } from "@vueuse/components";
 const props = defineProps({
   items: {
     type: Array,
-    default: () => ["Team Coordinator", "Adjudicator", "Head Adjudicator"],
+    default: () => ["Team Coordinator"], // Not MVP: "Adjudicator", "Head Adjudicator"],
   },
   placeholder: {
     type: String,
@@ -15,18 +15,28 @@ const props = defineProps({
     type: String,
     default: "Team Coordinator",
   },
+  label: {
+    type: String,
+    default: "",
+  },
   color: { type: String, default: "" },
   modelValue: { type: String, default: "" },
+  disabled: { type: Boolean, default: false },
 });
+
+console.log(props.modelValue);
 
 const isOpen = ref(false);
 const selected = ref(props.modelValue);
+console.log(selected.value);
 const emit = defineEmits(["change", "update:modelValue"]);
 
 const handleClick = (item) => {
-  selected.value = item;
-  isOpen.value = false;
-  emit("update:modelValue", item);
+  if (!props.disabled) {
+    selected.value = item;
+    isOpen.value = false;
+    emit("update:modelValue", item);
+  }
 };
 </script>
 <template>
@@ -38,27 +48,37 @@ const handleClick = (item) => {
     "
     class="relative w-full"
   >
-    <div :class="`rounded-md border border-light-grey p-1 ${color}`">
-      <div class="cursor-pointer" @click="isOpen = !isOpen">
+    <label class="heading-montserrat">{{ label }}</label>
+    <div
+      :class="`rounded-md border ${
+        props.disabled ? 'bg-stone-100' : ''
+      } border-light-grey p-1 ${color}`"
+    >
+      <div
+        :class="`${props.disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`"
+        @click="isOpen = !isOpen"
+      >
         <div class="flex items-center w-full">
           <span
-            v-if="selected.length == 0"
+            v-if="!selected || selected.length == 0"
             class="text-gray-400 font-montserrat pl-2"
           >
             {{ placeholder }}
           </span>
-          <span v-if="selected.length !== 0" class="font-montserrat pl-2">{{
-            selected
-          }}</span>
+          <span
+            v-if="selected && selected.length !== 0"
+            class="font-montserrat pl-2"
+            >{{ selected }}</span
+          >
 
-          <div class="flex items-center ml-auto">
+          <div class="flex items-center ml-auto" v-if="!props.disabled">
             <ChevronUpIcon v-if="isOpen" class="h-5 w-5" />
             <ChevronDownIcon v-else class="h-5 w-5" />
           </div>
         </div>
       </div>
     </div>
-    <Transition name="drop-down">
+    <Transition name="drop-down" v-if="!props.disabled">
       <div
         v-if="isOpen"
         class="absolute z-10 rounded-b-md bg-white shadow-md w-full transition"
@@ -67,7 +87,9 @@ const handleClick = (item) => {
           <li
             v-for="(item, index) in items"
             :key="index"
-            class="px-4 py-2 text-sm leading-5 cursor-pointer hover:bg-gray-50 focus:outline-none focus:bg-gray-50 accent-gold"
+            :class="`px-4 py-2 text-sm leading-5 ${
+              props.disabled ? 'cursor-not-allowed' : 'cursor-pointer'
+            } hover:bg-gray-50 focus:outline-none focus:bg-gray-50 accent-gold`"
             @click="handleClick(item)"
           >
             {{ item }}
