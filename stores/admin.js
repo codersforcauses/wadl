@@ -23,7 +23,7 @@ export const useAdminStore = defineStore("admin", {
       const adminToken = await $clientAuth.currentUser.getIdToken();
 
       // @es-lint ignore
-      $fetch("/api/create-admin", {
+      await $fetch("/api/create-admin", {
         method: "post",
         body: {
           adminToken,
