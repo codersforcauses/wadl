@@ -51,8 +51,8 @@
       <Dropdown
         v-model="form.role"
         :color="!isRoleValid ? 'border-red-500' : ''"
-        @update="updateInput"
         label="Role"
+        @update="updateInput"
       />
       <p v-if="userStore.errorCode" class="text-danger-red">
         {{ userStore.errorCode }}

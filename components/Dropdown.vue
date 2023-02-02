@@ -71,14 +71,14 @@ const handleClick = (item) => {
             >{{ selected }}</span
           >
 
-          <div class="flex items-center ml-auto" v-if="!props.disabled">
+          <div v-if="!props.disabled" class="flex items-center ml-auto">
             <ChevronUpIcon v-if="isOpen" class="h-5 w-5" />
             <ChevronDownIcon v-else class="h-5 w-5" />
           </div>
         </div>
       </div>
     </div>
-    <Transition name="drop-down" v-if="!props.disabled">
+    <Transition v-if="!props.disabled" name="drop-down">
       <div
         v-if="isOpen"
         class="absolute z-10 rounded-b-md bg-white shadow-md w-full transition"

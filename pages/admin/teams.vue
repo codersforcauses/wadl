@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { onMounted } from "vue";
 import { useTeamStore } from "../../stores/teams";
 import { useHead } from "#imports";
 
@@ -51,7 +51,7 @@ onMounted(() => {
       :headers="headers"
       :data="store.teams"
       class="mt-5"
-      :canEdit="false"
+      :can-edit="false"
     />
   </section>
 </template>
