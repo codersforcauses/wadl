@@ -1,15 +1,14 @@
 <!-- eslint-disable no-undef -->
 <script setup>
 import { useAdminStore } from "../../stores/admin";
-import { ref, watch } from "vue";
-import { storeToRefs } from "pinia";
+import { ref } from "vue";
 import { useHead } from "#imports";
 import { errorCodeToMessage } from "../../misc/firebaseHelpers";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Create Admin",
 });
 const userStore = useAdminStore();
-const { errorCode } = storeToRefs(userStore);
 const form = ref({
   firstName: "",
   lastName: "",
@@ -20,22 +19,27 @@ const form = ref({
   role: "",
 });
 
+const notification = useNotification();
 const errorMessage = ref(null);
 
-// Call The User Store
-const registerUser = () => {
-  try {
-    userStore.createAdmin(form.value);
-  } catch (error) {
-    errorMessage.value = errorCodeToMessage(error.code);
+const handleClose = () => {
+  if (notification.isSuccess) {
+    navigateTo({ path: "/admin" });
+  } else {
+    notification.dismiss();
   }
 };
 
-watch(errorCode, (currentValue, oldValue) => {
-  if (currentValue === "") {
-    navigateTo({ path: "/admin" });
+// Call The User Store
+const registerUser = async () => {
+  try {
+    await userStore.createAdmin(form.value);
+  } catch (error) {
+    errorMessage.value = errorCodeToMessage(error.code);
+    return;
   }
-});
+  notification.notifySuccess("Created a new admin successfully");
+};
 </script>
 <template>
   <section class="flex justify-center items-center h-[calc(100vh-72px)]">
@@ -84,4 +88,10 @@ watch(errorCode, (currentValue, oldValue) => {
       </div>
     </form>
   </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="handleClose()"
+  />
 </template>
