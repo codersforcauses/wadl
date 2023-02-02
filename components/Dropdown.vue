@@ -24,11 +24,8 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
 });
 
-console.log(props.modelValue);
-
 const isOpen = ref(false);
 const selected = ref(props.modelValue);
-console.log(selected.value);
 const emit = defineEmits(["change", "update:modelValue"]);
 
 const handleClick = (item) => {
