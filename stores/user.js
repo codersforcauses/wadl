@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -100,7 +100,17 @@ export const useUserStore = defineStore("user", {
         }
       }
     },
-
+    async updateUser(user) {
+      console.log(user);
+      // firstName: '1231', lastName: '23123', phoneNumber:
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "users", this.auth.uid);
+      await updateDoc(ref, {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+      });
+    },
     async clearStore() {
       try {
         const { $clientAuth } = useNuxtApp();
