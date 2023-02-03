@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  updatePassword,
 } from "firebase/auth";
 import { useNuxtApp } from "#imports";
 
@@ -101,8 +102,6 @@ export const useUserStore = defineStore("user", {
       }
     },
     async updateUser(user) {
-      console.log(user);
-      // firstName: '1231', lastName: '23123', phoneNumber:
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "users", this.auth.uid);
       await updateDoc(ref, {
@@ -110,6 +109,15 @@ export const useUserStore = defineStore("user", {
         lastName: user.lastName,
         phoneNumber: user.phoneNumber,
       });
+    },
+    async updateuserPassword(password) {
+      console.log(password);
+      const { $clientAuth } = useNuxtApp();
+      await updatePassword($clientAuth.currentUser, password.password).then(
+        () => {
+          console.log("updated");
+        }
+      );
     },
     async clearStore() {
       try {
