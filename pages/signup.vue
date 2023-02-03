@@ -75,12 +75,7 @@
     :modal-visibility="notification.isVisible"
     :is-success="notification.isSuccess"
     :body="notification.message"
-    @close="
-      () => {
-        notification.dismiss();
-        redirect();
-      }
-    "
+    @close="handleClose()"
   />
 </template>
 
@@ -166,7 +161,10 @@ const registerUser = async () => {
     notification.notifyError(error);
   }
 };
-const redirect = () => {
-  navigateTo("/");
+const handleClose = () => {
+  notification.dismiss();
+  if (notification.isSuccess) {
+    navigateTo("/");
+  }
 };
 </script>
