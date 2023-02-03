@@ -111,11 +111,10 @@ export const useUserStore = defineStore("user", {
       });
     },
     async updateuserPassword(password) {
-      console.log(password);
       const { $clientAuth } = useNuxtApp();
-      await updatePassword($clientAuth.currentUser, password.password).then(
-        () => {
-          console.log("updated");
+      await updatePassword($clientAuth.currentUser, password.password).catch(
+        (error) => {
+          console.log(error);
         }
       );
     },

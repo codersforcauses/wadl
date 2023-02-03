@@ -78,13 +78,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useHead } from "#imports";
 import { useUserStore } from "../../stores/user";
 useHead({
   title: "User Information",
 });
 const userStore = useUserStore();
+
 const infoForm = ref({
   firstName: "",
   lastName: "",
@@ -94,6 +95,21 @@ const passwordForm = ref({
   password: "",
   confirmPassword: "",
 });
+
+onMounted(async () => {
+  if (userStore.auth) {
+    console.log(userStore.auth);
+    infoForm.value.firstName = userStore.firstName;
+    infoForm.value.lastName = userStore.lastName;
+    infoForm.value.phoneNumber = userStore.phoneNumber;
+  }
+});
+
+onUnmounted(() => {
+  infoForm.value = null;
+  passwordForm.value = null;
+});
+
 const updateUser = () => {
   userStore.updateUser(infoForm.value);
 };
