@@ -110,6 +110,12 @@ const handleEdit = (row) => {
         </p>
         <div class="flex justify-evenly items-center">
           <Button
+            button-text="Delete"
+            button-color="bg-pink-100"
+            type="Submit"
+            class="m-5 ml-auto text-red-700"
+          />
+          <Button
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
