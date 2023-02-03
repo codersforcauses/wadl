@@ -22,10 +22,15 @@ const selectedChips = ref([...props.selectedChips]);
 const emit = defineEmits(["change"]);
 
 const toggleSelection = (item) => {
-  if (selectedChips.value.includes(item)) {
-    selectedChips.value = selectedChips.value.filter((i) => i !== item);
+  if (item === "Any") {
+    selectedChips.value = selectedChips.value.includes(item) ? [] : ["Any"];
   } else {
-    selectedChips.value.push(item);
+    selectedChips.value = selectedChips.value.filter((i) => i !== "Any");
+    if (selectedChips.value.includes(item)) {
+      selectedChips.value = selectedChips.value.filter((i) => i !== item);
+    } else {
+      selectedChips.value.push(item);
+    }
   }
   emit("change", selectedChips.value);
 };

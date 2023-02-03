@@ -48,10 +48,10 @@
         :color="!isValid ? 'border-red-500' : ''"
         @update="updateInput"
       />
-      <label class="heading-montserrat">Role</label>
       <Dropdown
         v-model="form.role"
         :color="!isRoleValid ? 'border-red-500' : ''"
+        label="Role"
         @update="updateInput"
       />
       <p v-if="userStore.errorCode" class="text-danger-red">
