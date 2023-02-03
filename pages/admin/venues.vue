@@ -82,21 +82,20 @@ const headers = [
 </script>
 
 <template>
-  <Header title-text="Venues" />
-  <div class="flex items-center justify-center w-full">
-    <SearchBar @handle-filter="handleFilter" />
-    <Button
-      button-text="Add"
-      button-color="bg-gold"
-      type="button"
-      size="medium"
-      @click="modalVisibility = true"
-    />
-  </div>
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <div v-if="loading">
-      <Loading />
+  <section class="flex flex-col items-center">
+    <Header title-text="Venues" />
+    <div class="flex items-center justify-center w-full">
+      <SearchBar @handle-filter="handleFilter" />
+      <Button
+        button-text="Add"
+        button-color="bg-gold"
+        type="button"
+        size="medium"
+        @click="modalVisibility = true"
+      />
     </div>
+
+    <Loading v-if="loading" />
     <Table
       v-else
       :headers="headers"
@@ -105,7 +104,7 @@ const headers = [
       :loading="loading"
       @edit="handleEdit"
     />
-  </div>
+  </section>
 
   <Modal
     :modal-visibility="modalVisibility"

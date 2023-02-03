@@ -158,20 +158,22 @@ const updateTeam = () => {
   </Modal>
   <section>
     <Header title-text="Teams" />
-    <div v-if="userStore.institution" class="flex flex-row justify-end p-5">
-      <NuxtLink to="/coordinator/team-registration">
-        <Button
-          button-text="Team Registration"
-          button-color="bg-gold"
-          class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
-        />
-      </NuxtLink>
-    </div>
+    <NuxtLink
+      v-if="userStore.institution"
+      class="flex flex-row justify-end p-5"
+      to="/coordinator/team-registration"
+    >
+      <Button
+        button-text="Team Registration"
+        button-color="bg-gold"
+        class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
+      />
+    </NuxtLink>
     <!-- <SearchBar /> -->
     <Table
       :headers="headers"
       :data="store.teams"
-      class="mt-5"
+      class="mt-5 mx-auto"
       @edit="handleEdit"
     />
   </section>

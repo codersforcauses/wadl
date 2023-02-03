@@ -50,7 +50,7 @@ onMounted(() => {
     <Table
       :headers="headers"
       :data="store.teams"
-      class="mt-5"
+      class="mt-5 mx-auto"
       :can-edit="false"
     />
   </section>
