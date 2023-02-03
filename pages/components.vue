@@ -163,9 +163,6 @@ const handleTabClicked = (tab) => {
 const updateSelectedLevels = (chips) => {
   console.log("Chips selected", chips);
 };
-const getSelected = (option) => {
-  console.log("Option selected", option);
-};
 
 const getInfo = (data) => {
   console.log("DATA:", data);

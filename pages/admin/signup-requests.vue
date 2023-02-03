@@ -97,7 +97,7 @@ const handleDelete = (user) => {
           </td>
           <td>
             <div class="flex items-center mx-2">
-              <Dropdown v-model="user.role" id="role" name="role" />
+              <Dropdown id="role" v-model="user.role" name="role" />
             </div>
           </td>
           <td class="flex flex-row justify-evenly">
