@@ -98,7 +98,6 @@ const passwordForm = ref({
 
 onMounted(async () => {
   if (userStore.auth) {
-    console.log(userStore.auth);
     infoForm.value.firstName = userStore.firstName;
     infoForm.value.lastName = userStore.lastName;
     infoForm.value.phoneNumber = userStore.phoneNumber;
