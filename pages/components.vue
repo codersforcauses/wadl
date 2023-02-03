@@ -73,6 +73,14 @@
     />
   </div>
 
+  <GetTeams
+    :modal-visiblity="getTeamsVisibility"
+    @close="
+      () => {
+        getTeamsVisibility = false;
+      }
+    "
+  />
   <DeleteDialog
     :modal-visibility="modalVisibility"
     @close="
@@ -98,6 +106,13 @@
     type="button"
     class="m-5 ml-8"
     @click="modalVisibility = true"
+  />
+  <Button
+    button-text="Get Teams"
+    button-color="bg-gold"
+    type="button"
+    class="m-5 ml-8"
+    @click="getTeamsVisibility = true"
   />
   <Tabs :tabs="tabs" font-size="text-xl" @handle-tab="handleTabClicked" />
   <!-- Multiselect -->
@@ -140,6 +155,7 @@ import { useInstitutionStore } from "../stores/institutions";
 const store = useInstitutionStore();
 const institutions = ref(store.institutions);
 const modalVisibility = ref(false);
+const getTeamsVisibility = ref(false);
 const option = ref("");
 
 const tabs = [
