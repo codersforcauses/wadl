@@ -69,6 +69,10 @@ const createVenue = async () => {
   resetFormState();
 };
 
+const deleteVenue = (id) => {
+  store.deleteVenue(id);
+};
+
 const headers = [
   {
     key: "name",
@@ -142,18 +146,19 @@ const headers = [
           placeholder="Select Days"
           @change="updateSelectedDays"
         />
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-evenly w-full my-5">
           <Button
             button-text="Delete"
             button-color="bg-pink-100"
             type="Submit"
-            class="m-5 ml-auto text-red-700"
+            class="text-red-700"
+            @click="deleteVenue(form.id)"
           />
           <Button
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
-            class="m-5 ml-8"
+            class=""
             :loading="modalLoading"
           />
         </div>

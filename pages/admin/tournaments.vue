@@ -42,18 +42,19 @@
           label="Rounds"
           placeholder="Total number of rounds"
         />
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-evenly w-full my-5">
           <Button
             button-text="Delete"
             button-color="bg-pink-100"
             type="Submit"
-            class="m-5 ml-auto text-red-700"
+            class="text-red-700"
+            @click="deleteTournament(form.id)"
           />
           <Button
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
-            class="m-5 ml-8"
+            class=""
           />
         </div>
       </form>
@@ -193,6 +194,10 @@ const updateTournament = () => {
 const createTournament = () => {
   store.createTournament(form.value);
   resetFormState();
+};
+
+const deleteTournament = (id) => {
+  store.deleteTournament(id);
 };
 
 const headers = [

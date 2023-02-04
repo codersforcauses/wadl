@@ -75,6 +75,10 @@ const handleEdit = (row) => {
   editMode.value = row.editMode;
   formInput.value = row.data;
 };
+
+const deleteInstitution = (id) => {
+  store.deleteInstitution(id);
+};
 </script>
 
 <template>
@@ -108,18 +112,19 @@ const handleEdit = (row) => {
         <p v-if="store.errorMessage" class="text-danger-red">
           {{ store.errorMessage }}
         </p>
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-evenly w-full my-5">
           <Button
             button-text="Delete"
             button-color="bg-pink-100"
             type="Submit"
-            class="m-5 ml-auto text-red-700"
+            class="text-red-700"
+            @click="deleteInstitution(form.id)"
           />
           <Button
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
-            class="m-5 ml-8"
+            class=""
           />
         </div>
       </form>
