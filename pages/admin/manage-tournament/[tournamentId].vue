@@ -1,5 +1,5 @@
 <template>
-  <Header title-text="Manage Tournament" subtitle-text="SDC 2015" />
+  <Header title-text="Manage Tournament" :subtitle-text="managedTournament.name" />
   <div class="mx-32">
     <p class="pt-2 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
       Registered Teams
@@ -240,6 +240,7 @@
           </div>
         </div>
       </div>
+      
     </div>
     <!-- header2 -->
     <div class="items-center bg-white flex">
@@ -335,8 +336,12 @@
 </template>
 
 <script setup>
-import venue from "../../data/venues.json";
+import venue from "../../../data/venues.json";
 import { XMarkIcon, PlusIcon, PencilIcon } from "@heroicons/vue/24/solid";
+import { useTournamentStore } from "../../../stores/tournaments"
+
+const route = useRoute()
+const tournamentStore = useTournamentStore();
 
 const noviceNum = 10;
 const juniorNum = 20;
@@ -358,4 +363,7 @@ const headersVenues = [
 const print = (msg) => {
   console.log(msg);
 };
+
+const managedTournament = tournamentStore.tournaments.find(tournament => tournament.id === route.params.tournamentId)
+console.log(managedTournament)
 </script>

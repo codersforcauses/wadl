@@ -105,7 +105,7 @@
     "
   />
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="filteredTournaments" @edit="handleEdit" />
+    <Table :headers="headers" :data="filteredTournaments" @edit="handleEdit" @getId="handleId"/>
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
@@ -131,6 +131,8 @@ const defaultInputState = {
   shortName: null,
   status: "Open",
 };
+
+const router = useRouter();
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
@@ -164,6 +166,10 @@ const handleEdit = (row) => {
   editMode.value = row.editMode;
   form.value = row.data;
 };
+
+const handleId = (id) => {
+  router.push({path:`/admin/manage-tournament/${id}`});
+}
 
 const searchTerm = ref(null);
 const filteredTournaments = computed(() => {
