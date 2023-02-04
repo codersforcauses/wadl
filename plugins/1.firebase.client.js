@@ -36,27 +36,24 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   const userStore = await useUserStore();
   
+
+  auth.onIdTokenChanged(async (user) => {
+    // on sign-in, sign-out, and token refresh.
+    if (user) {
+      const token = await user.getIdToken(true);
+      await setServerSession(token);
+    } else {
+      await setServerSession("");
+    }
+  });
+  
   onAuthStateChanged(auth, (user) => {
     if (user) {
       userStore.setUser(user);
     } else {
       userStore.setUser(null);
     }
-  });
-
-  nuxtApp.hooks.hook("app:mounted", () => {
-    auth.onIdTokenChanged(async (user) => {
-      if (user) {
-        console.log("getting token....")
-        const token = await user.getIdToken(true);
-        await setServerSession(token);
-        // firebaseUser.value = formatUser(user);
-      } else {
-        await setServerSession("");
-        // firebaseUser.value = null;
-      }
-    });
-  });
+  });  
 
   return {
     provide: {
