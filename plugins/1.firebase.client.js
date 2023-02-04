@@ -8,6 +8,7 @@ import { useUserStore } from "../stores/user";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
+import { getAnalytics } from "firebase/analytics";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig();
@@ -25,6 +26,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const firestore = getFirestore(app);
   const auth = getAuth(app);
   const functions = getFunctions(app);
+  const analytics = getAnalytics(app);
 
   if (config.firebaseMode === "dev") {
     connectFirestoreEmulator(firestore, "localhost", 8080);
@@ -45,6 +47,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     provide: {
       clientFirestore: firestore,
       clientAuth: auth,
+      clientAnalytics: analytics,
     },
   };
 });
