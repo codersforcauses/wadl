@@ -51,9 +51,11 @@ const headers = [
     title: "Email",
   },
   {
+    key: "role",
     title: "Role",
   },
   {
+    key: "approval",
     title: "Approval",
   },
 ];
@@ -73,18 +75,11 @@ const handleDelete = (user) => {
       :can-edit="false"
       no-data-text="No sign up requests registered"
     >
-      <template #column="{ header, row }">
-        <Dropdown
-          v-if="header == 'Role'"
-          id="role"
-          v-model="row.role"
-          name="role"
-        />
-
-        <td
-          v-else-if="header == 'Approval'"
-          class="flex flex-row justify-evenly"
-        >
+      <template #role="{ rowId }">
+        <Dropdown id="role" v-model="filteredUsers[rowId].role" name="role" />
+      </template>
+      <template #approval="{ row }">
+        <td class="flex flex-row justify-evenly">
           <Button
             button-text="Approve"
             button-color="bg-light-green"

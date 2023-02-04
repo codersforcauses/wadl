@@ -22,39 +22,17 @@
         class="h-10 odd:bg-white even:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out"
       >
         <td v-for="(object, ind) in headers" :key="ind" class="p-2">
-          <p v-if="object.key === 'division' && !row[object.key]">
-            Not Allocated
-          </p>
-          <p
-            v-if="
-              (object.key === 'allocatedTue' ||
-                object.key === 'allocatedWed') &&
-              row[object.key]
-            "
+          <slot
+            :name="object.key"
+            :header="object.title"
+            :value="row[object.key]"
+            :row="row"
+            :rowId="index"
           >
-            <CheckIcon class="w-6 h-6" />
-          </p>
-          <p
-            v-else-if="
-              (object.key === 'allocatedTue' ||
-                object.key === 'allocatedWed') &&
-              !row[object.key]
-            "
-          >
-            <XMarkIcon class="w-6 h-6" />
-          </p>
-          <p
-            v-for="(ven, idx) in row[object.key]"
-            v-else-if="object.key === 'venuePreference'"
-            :key="idx"
-            class="text-xs"
-          >
-            {{ idx + 1 }}. {{ ven }}
-          </p>
-          <p v-else>
-            {{ row[object.key] }}
-          </p>
-          <slot name="column" :header="object.title" :row="row"></slot>
+            <p>
+              {{ row[object.key] }}
+            </p>
+          </slot>
         </td>
         <td v-if="canEdit" class="text-right p-2">
           <button @click="handleEmit(row)">
@@ -70,7 +48,7 @@
 </template>
 
 <script setup>
-import { PencilIcon, CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
+import { PencilIcon } from "@heroicons/vue/24/solid";
 
 const emit = defineEmits(["edit"]);
 

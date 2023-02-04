@@ -175,6 +175,10 @@ const updateTeam = () => {
       :data="store.teams"
       class="mt-5 mx-auto"
       @edit="handleEdit"
-    />
+    >
+      <template #division="{ value }">
+        <p v-if="!value">Not Allocated</p>
+      </template>
+    </Table>
   </section>
 </template>
