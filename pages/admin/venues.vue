@@ -78,6 +78,10 @@ const headers = [
     key: "roomNo",
     title: "Room No.",
   },
+  {
+    key: "capacity",
+    title: "Capacity",
+  },
 ];
 </script>
 
