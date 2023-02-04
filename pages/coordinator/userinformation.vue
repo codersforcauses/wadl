@@ -44,6 +44,18 @@
         @submit.prevent="updatePassword"
       >
         <h1 class="text-2xl text-center pb-6">Change Password</h1>
+
+        <FormField
+          v-model="passwordForm.currentPassword"
+          label="Current Password"
+          placeholder="Current Password"
+          type="password"
+        />
+
+        <p v-if="userStore.passwordError" class="text-red-500">
+          {{ userStore.passwordError }}
+        </p>
+
         <FormField
           v-model="passwordForm.password"
           label="Password"
@@ -74,12 +86,23 @@
         </div>
       </form>
     </div>
+    <Notification
+      :modal-visibility="notificationVisibility"
+      :is-success="isSuccess"
+      :body="notificationMessage"
+      @close="
+        () => {
+          notificationVisibility = false;
+          redirect();
+        }
+      "
+    />
   </section>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
-import { useHead } from "#imports";
+import { useHead, navigateTo } from "#imports";
 import { useUserStore } from "../../stores/user";
 useHead({
   title: "User Information",
@@ -92,6 +115,7 @@ const infoForm = ref({
   phoneNumber: null,
 });
 const passwordForm = ref({
+  currentPassword: "",
   password: "",
   confirmPassword: "",
 });
@@ -107,6 +131,11 @@ onMounted(async () => {
 onUnmounted(() => {
   infoForm.value = null;
   passwordForm.value = null;
+  errorMessage.value = null;
+  errorMessage2.value = null;
+  userStore.errorCode = null;
+  userStore.passwordError = null;
+  userStore.successCode = null;
 });
 
 const updateUser = () => {
@@ -116,6 +145,11 @@ const updateUser = () => {
 const isValid = ref(true);
 const errorMessage = ref();
 const errorMessage2 = ref();
+const errorMessagePassword = ref();
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
 
 const updatePassword = async () => {
   if (passwordForm.value.password.length < 8) {
@@ -129,7 +163,24 @@ const updatePassword = async () => {
     errorMessage.value = "The password does not match";
     return;
   }
-  console.log(errorMessage);
+  if (passwordForm.value.currentPassword.length < 8) {
+    errorMessagePassword.value = "new password not greater than 8";
+  }
   await userStore.updateuserPassword(passwordForm.value);
+  if (
+    !userStore.errorCode ||
+    !userStore.passwordError ||
+    !errorMessage.value ||
+    !errorMessage2.value ||
+    !errorMessagePassword.value
+  ) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = userStore.successCode;
+  }
+};
+const redirect = () => {
+  userStore.clearStore();
+  navigateTo("/login");
 };
 </script>

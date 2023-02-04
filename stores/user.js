@@ -5,6 +5,8 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 } from "firebase/auth";
 import { useNuxtApp } from "#imports";
 
@@ -21,6 +23,7 @@ export const useUserStore = defineStore("user", {
       institution: "",
       errorCode: "",
       successCode: "",
+      passwordError: "",
     };
   },
 
@@ -112,11 +115,31 @@ export const useUserStore = defineStore("user", {
     },
     async updateuserPassword(password) {
       const { $clientAuth } = useNuxtApp();
-      await updatePassword($clientAuth.currentUser, password.password).catch(
-        (error) => {
-          console.log(error);
-        }
+      const cred = EmailAuthProvider.credential(
+        this.email,
+        password.currentPassword
       );
+      await reauthenticateWithCredential($clientAuth.currentUser, cred)
+        .then(async () => {
+          await updatePassword($clientAuth.currentUser, password.password)
+            .catch((error) => {
+              console.log(error);
+            })
+            .then(() => {
+              this.successCode =
+                "Success, Please re-login with the new password!";
+            });
+        })
+        .catch((error) => {
+          switch (error.code) {
+            case "auth/wrong-password":
+              this.passwordError = "Wrong Password";
+              break;
+            default:
+              this.errorCode = "Error occured please try again.";
+              break;
+          }
+        });
     },
     async clearStore() {
       try {
