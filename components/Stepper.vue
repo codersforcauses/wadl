@@ -3,7 +3,7 @@
     <div class="rounded-full w-6 h-6 bg-light-green">
       <div
         v-if="stage === 1"
-        class="flex text-2xl text-white place-content-center"
+        class="flex text-l text-white place-content-center"
       >
         1
       </div>
@@ -21,7 +21,7 @@
     >
       <div
         v-if="stage < 3"
-        class="flex text-2xl text-white place-content-center"
+        class="flex text-l text-white place-content-center"
       >
         2
       </div>
@@ -39,7 +39,7 @@
     >
       <div
         v-if="stage < 4"
-        class="flex text-2xl text-white place-content-center"
+        class="flex text-l text-white place-content-center"
       >
         3
       </div>
@@ -57,7 +57,7 @@
     >
       <div
         v-if="stage < 5"
-        class="flex text-2xl text-white place-content-center"
+        class="flex text-l text-white place-content-center"
       >
         4
       </div>
@@ -79,5 +79,5 @@ const props = defineProps({
   labelText4: { type: String, default: "Complete" },
 });
 
-const stage = ref(5);
+const stage = ref(1);
 </script>
