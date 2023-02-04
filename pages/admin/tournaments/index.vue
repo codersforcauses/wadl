@@ -98,22 +98,14 @@
   </Modal>
 
   <Header title-text="Tournaments" />
-  <SearchBar
-    @handle-filter="
-      (searchString) => {
-        searchTerm = searchString;
-      }
-    "
-  />
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table
-      :headers="headers"
-      :data="filteredTournaments"
-      @edit="handleEdit"
-      @get-id="handleId"
+  <div class="flex items-center justify-center w-full">
+    <SearchBar
+      @handle-filter="
+        (searchString) => {
+          searchTerm = searchString;
+        }
+      "
     />
-  </div>
-  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
       button-text="Add"
       button-color="bg-gold"
@@ -123,15 +115,15 @@
       @click="modalVisibility = true"
     />
   </div>
-
-  <div class="flex content-center justify-center px-2">
+  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
     <Table
       :headers="headers"
       :data="filteredTournaments"
-      no-data-text="No tournaments registered"
       @edit="handleEdit"
+      @get-id="handleId"
     />
   </div>
+
   <Notification
     :modal-visibility="notification.isVisible"
     :is-success="notification.isSuccess"
@@ -166,11 +158,15 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
-try {
-  await store.getTournaments();
-} catch (error) {
-  notification.notifyError(error);
-}
+
+// eslint-disable-next-line no-undef
+onMounted(async () => {
+  try {
+    await store.getTournaments();
+  } catch (error) {
+    notification.notifyError(error);
+  }
+});
 
 const getLevels = () => form.value.levels.map((l) => l.level);
 
