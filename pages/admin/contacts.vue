@@ -1,7 +1,13 @@
 <template>
   <Header title-text="Contacts" />
   <div class="flex items-center justify-center w-full">
-    <SearchBar @handle-filter="handleFilter" />
+    <SearchBar
+      @handle-filter="
+        (searchString) => {
+          searchTerm = searchString;
+        }
+      "
+    />
   </div>
   <Tabs :tabs="tabs" @handle-tab="handleTabClicked" />
   <div class="mx-8">
@@ -15,29 +21,42 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import data from "../../data/users.json";
+import { useAdminStore } from "../../stores/admin";
+import { onMounted, onUnmounted, ref } from "vue";
 import { useHead } from "#imports";
 useHead({
   title: "Contacts",
 });
+
+// pinia
+const adminStore = useAdminStore();
+
+onMounted(() => {
+  adminStore.fetchUsers();
+});
+
+onUnmounted(() => {
+  adminStore.clearStore();
+});
+
 const currentTab = ref("Adjudicator");
-const contacts = ref(
-  data.filter((contact) => contact.role === currentTab.value)
-);
+const searchTerm = ref(null);
+const contacts = computed(() => {
+  const tabContacts = adminStore.getApprovedUsers.filter(
+    (contact) => contact.role === currentTab.value
+  );
+
+  const query = searchTerm.value;
+  const results = tabContacts.filter(
+    (contact) =>
+      contact.firstName.toLowerCase().includes(query) ||
+      contact.lastName.toLowerCase().includes(query)
+  );
+  return query !== null ? results : tabContacts;
+});
 
 const handleTabClicked = (tab) => {
-  contacts.value = data.filter((contact) => contact.role === tab);
   currentTab.value = tab;
-};
-
-const handleFilter = (searchTerm) => {
-  contacts.value = data.filter(
-    (contact) =>
-      (contact.firstName.toLowerCase().includes(searchTerm) ||
-        contact.lastName.toLowerCase().includes(searchTerm)) &&
-      contact.role === currentTab.value
-  );
 };
 
 const headers = [
