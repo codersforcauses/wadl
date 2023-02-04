@@ -88,7 +88,7 @@ const handleDelete = (user) => {
         <Dropdown id="role" v-model="filteredUsers[rowId].role" name="role" />
       </template>
       <template #approval="{ row }">
-        <td class="flex flex-row justify-evenly">
+        <td class="flex flex-row gap-4">
           <Button
             button-text="Approve"
             button-color="bg-light-green"
