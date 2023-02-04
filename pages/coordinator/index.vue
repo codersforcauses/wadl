@@ -156,7 +156,9 @@ const updateTeam = () => {
       </div>
     </form>
   </Modal>
-  <section>
+  <section
+    class="flex flex-col items-center justify-center max-w-screen max-h-screen"
+  >
     <Header title-text="Teams" />
     <NuxtLink
       v-if="userStore.institution"

@@ -66,7 +66,9 @@ const handleDelete = (user) => {
 </script>
 
 <template>
-  <section class="flex flex-col items-center justify-center w-full">
+  <section
+    class="flex flex-col items-center justify-center max-w-screen max-h-screen"
+  >
     <Header title-text="Sign Up Requests" />
     <SearchBar @handle-filter="handleFilter" />
     <Table

@@ -82,7 +82,9 @@ const headers = [
 </script>
 
 <template>
-  <section class="flex flex-col items-center">
+  <section
+    class="flex flex-col items-center justify-center max-w-screen max-h-screen"
+  >
     <Header title-text="Venues" />
     <div class="flex items-center justify-center w-full">
       <SearchBar @handle-filter="handleFilter" />
