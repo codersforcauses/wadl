@@ -3,7 +3,7 @@
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user";
-import { useHead, useNuxtApp } from "#imports";
+import { useHead } from "#imports";
 useHead({
   title: "Login",
 });

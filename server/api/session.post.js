@@ -1,10 +1,9 @@
-import { set } from "vue-demi"
+import { defineEventHandler, readBody, setCookie } from "#imports";
 
 export default defineEventHandler(async (event) => {
-  
-  const body = await readBody(event)
-  setCookie(event, 'auth-token', body.token)
+  const body = await readBody(event);
+  setCookie(event, "auth-token", body.token);
   return {
-    api: 'works'
-  }
-})
+    api: "works",
+  };
+});

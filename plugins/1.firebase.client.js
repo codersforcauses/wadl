@@ -35,7 +35,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // AUTH FUNCTIONS
 
   const userStore = await useUserStore();
-  
 
   auth.onIdTokenChanged(async (user) => {
     // on sign-in, sign-out, and token refresh.
@@ -46,14 +45,14 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       await setServerSession("");
     }
   });
-  
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       userStore.setUser(user);
     } else {
       userStore.setUser(null);
     }
-  });  
+  });
 
   return {
     provide: {
@@ -66,10 +65,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     return $fetch("/api/session", {
       method: "POST",
       body: {
-        token
-      }
+        token,
+      },
     });
-  };
+  }
 });
-
-

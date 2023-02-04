@@ -82,8 +82,11 @@ export const useUserStore = defineStore("user", {
           let userDoc;
           if (!process.client) {
             const { $serverFirestore } = useNuxtApp();
-            userDoc = await $serverFirestore.collection("users").doc(user.uid).get();
-          } else { 
+            userDoc = await $serverFirestore
+              .collection("users")
+              .doc(user.uid)
+              .get();
+          } else {
             const { $clientFirestore } = useNuxtApp();
             const docRef = doc($clientFirestore, "users", user.uid);
             userDoc = await getDoc(docRef);
@@ -92,7 +95,7 @@ export const useUserStore = defineStore("user", {
           if (!userDoc) {
             throw new Error("Could not find user document");
           }
-          
+
           const userInfo = userDoc.data();
           this.auth = user;
           this.firstName = userInfo.firstName;

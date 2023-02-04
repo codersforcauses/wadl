@@ -11,5 +11,4 @@ export default defineNuxtRouteMiddleware(async (_to, _from) => {
       return navigateTo({ path: "/" });
     }
   }
-
 });
