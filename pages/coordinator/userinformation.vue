@@ -152,6 +152,16 @@ const isSuccess = ref(false);
 const notificationMessage = ref("");
 
 const updatePassword = async () => {
+  errorMessage.value = null;
+  errorMessage2.value = null;
+  userStore.errorCode = null;
+  userStore.passwordError = null;
+  userStore.successCode = null;
+
+  if (passwordForm.value.currentPassword.length < 8) {
+    errorMessagePassword.value = "new password not greater than 8";
+    // return;
+  }
   if (passwordForm.value.password.length < 8) {
     isValid.value = false;
     errorMessage.value = "The password has to be at least 8 characters";
@@ -163,20 +173,19 @@ const updatePassword = async () => {
     errorMessage.value = "The password does not match";
     return;
   }
-  if (passwordForm.value.currentPassword.length < 8) {
-    errorMessagePassword.value = "new password not greater than 8";
-  }
   await userStore.updateuserPassword(passwordForm.value);
   if (
-    !userStore.errorCode ||
-    !userStore.passwordError ||
-    !errorMessage.value ||
-    !errorMessage2.value ||
-    !errorMessagePassword.value
+    (!userStore.errorCode ||
+      !userStore.passwordError ||
+      !errorMessage.value ||
+      !errorMessage2.value ||
+      !errorMessagePassword.value) &&
+    userStore.successCode
   ) {
     isSuccess.value = true;
     notificationVisibility.value = true;
     notificationMessage.value = userStore.successCode;
+    console.log(userStore.successCode);
   }
 };
 const redirect = () => {

@@ -126,8 +126,7 @@ export const useUserStore = defineStore("user", {
               console.log(error);
             })
             .then(() => {
-              this.successCode =
-                "Success, Please re-login with the new password!";
+              this.successCode = "Please re-login with the new password!";
             });
         })
         .catch((error) => {
