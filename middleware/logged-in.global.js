@@ -2,15 +2,17 @@ import { useUserStore } from "../stores/user";
 import { defineNuxtRouteMiddleware, navigateTo } from "#imports";
 
 export default defineNuxtRouteMiddleware(async (to, _from) => {
-  const userStore = await useUserStore();
-  if (userStore.requesting) {
-    userStore.clearStore();
-  }
+  if (process.server) {
+    const userStore = await useUserStore();
+    if (userStore.requesting) {
+      userStore.clearStore();
+    }
 
-  const publicRoutes = ["/", "/signup", "/login"];
-  if (publicRoutes.includes(to.path)) return;
+    const publicRoutes = ["/", "/signup", "/login"];
+    if (publicRoutes.includes(to.path)) return;
 
-  if (userStore.auth === null) {
-    return navigateTo({ path: "/login" });
+    if (userStore.auth === null) {
+      return navigateTo({ path: "/login" });
+    }
   }
 });
