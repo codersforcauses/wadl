@@ -4,8 +4,8 @@
     <p class="pt-2 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
       Registered Teams
     </p>
-    <div class="grid grid-cols-7 gap-4 text-center">
-      <div class="col-span-2">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2">
+      <div class="">
         <Frame
           :title="noviceNum"
           subtitle="NOVICE"
@@ -28,7 +28,7 @@
           "
         />
       </div>
-      <div class="col-span-2">
+      <div class="">
         <Frame
           :title="juniorNum"
           subtitle="JUNIOR"
@@ -51,7 +51,7 @@
           "
         />
       </div>
-      <div class="col-span-2">
+      <div class="">
         <Frame
           :title="seniorNum"
           subtitle="SENIOR"
@@ -74,21 +74,21 @@
           "
         />
       </div>
-      <div class="col-span-1 bg-yellow-200 rounded py-6">
+      <div class="bg-yellow-200 rounded py-6">
         <div class="flex flex-col justify-center items-center">
           <h1
             class="text-4xl pt-10 text-center divide-y-4 font-montserrat font-semibold"
           >
-            91
+            {{ noviceNum + juniorNum + seniorNum }}
           </h1>
           <p>Total</p>
         </div>
       </div>
     </div>
-    <p class="pt-5 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
+    <!-- <p class="pt-5 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
       Information
-    </p>
-    <div class="grid grid-cols-8 gap-4 text-center">
+    </p> -->
+    <!-- <div class="grid grid-cols-8 gap-4 text-center">
       <div class="col-span-3">
         <Frame
           :title="status"
@@ -151,10 +151,10 @@
           "
         />
       </div>
-    </div>
+    </div> -->
     <!-- table -->
     <!-- header1 -->
-    <div class="items-center bg-white flex">
+    <!-- <div class="items-center bg-white flex">
       <div
         class="m-2 pt-5 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg"
       >
@@ -172,13 +172,13 @@
           <PlusIcon class="w-7 h-7" />
         </button>
       </div>
-    </div>
+    </div> -->
     <!-- 3grid -->
-    <div class="grid grid-cols-3 gap-4">
+    <!-- <div class="grid grid-cols-3 gap-4"> -->
       <!-- col1 -->
-      <div class="h-96 rounded-xl shadow-lg bg-slate-200 items-center">
+      <!-- <div class="h-96 rounded-xl shadow-lg bg-slate-200 items-center"> -->
         <!-- head -->
-        <div class="grid grid-cols-4 rounded-xl p-5">
+        <!-- <div class="grid grid-cols-4 rounded-xl p-5">
           <div class="m-auto">
             <div class="flex flex-col items-center"></div>
           </div>
@@ -197,9 +197,9 @@
             </button>
           </div>
           <hr class="h-px my-3 bg-mid-grey border-0 col-span-4" />
-        </div>
+        </div>-->
         <!-- week table -->
-        <div class="grid grid-cols-3 gap-4 px-10">
+        <!-- <div class="grid grid-cols-3 gap-4 px-10">
           <div>
             <div class="flex flex-col items-center">
               <h1 class="text-center font-montserrat font-semibold text-3xl">
@@ -241,9 +241,9 @@
         </div>
       </div>
       
-    </div>
+    </div> --> 
     <!-- header2 -->
-    <div class="items-center bg-white flex">
+    <!-- <div class="items-center bg-white flex">
       <div
         class="m-2 pt-5 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg"
       >
@@ -261,13 +261,13 @@
           <PlusIcon class="w-7 h-7" />
         </button>
       </div>
-    </div>
+    </div> -->
     <!-- 3 grid -->
-    <div class="grid grid-cols-3 gap-4">
+    <!-- <div class="grid grid-cols-3 gap-4"> -->
       <!-- col1 -->
-      <div class="h-96 rounded-xl shadow-lg bg-slate-200 items-center">
+      <!-- <div class="h-96 rounded-xl shadow-lg bg-slate-200 items-center"> -->
         <!-- head -->
-        <div class="grid grid-cols-4 rounded-xl p-5">
+        <!-- <div class="grid grid-cols-4 rounded-xl p-5">
           <div class="m-auto">
             <div class="flex flex-col items-center">
               <h1 class="text-center font-montserrat font-semibold text-3xl">
@@ -292,16 +292,16 @@
           </div>
 
           <hr class="h-px my-3 bg-mid-grey border-0 col-span-4" />
-        </div>
+        </div> -->
         <!-- subhead -->
-        <div class="max-h-56 overflow-scroll overflow-x-hidden">
+        <!-- <div class="max-h-56 overflow-scroll overflow-x-hidden">
           <div
             class="w-full sticky top-0 pl-6 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg bg-slate-200"
           >
             VENUES
-          </div>
+          </div> -->
           <!-- table -->
-          <table class="w-11/12 m-auto">
+          <!-- <table class="w-11/12 m-auto">
             <tbody>
               <tr
                 v-for="(row, index) in venue"
@@ -322,7 +322,7 @@
                         print('Delete Row');
                       }
                     "
-                  >
+                  > 
                     <XMarkIcon class="w-4 h-4" />
                   </button>
                 </td>
@@ -331,39 +331,44 @@
           </table>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup>
-import venue from "../../../data/venues.json";
-import { XMarkIcon, PlusIcon, PencilIcon } from "@heroicons/vue/24/solid";
+// import venue from "../../../data/venues.json";
+// import { XMarkIcon, PlusIcon, PencilIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "../../../stores/tournaments"
 
 const route = useRoute()
 const tournamentStore = useTournamentStore();
 
-const noviceNum = 10;
-const juniorNum = 20;
-const seniorNum = 30;
 
-const status = "CLOSED";
-const drawStatus = "INCOMPLETE";
-const currentRound = 0;
-const totalRound = "8";
-const results = "UNRELEASED";
 
-const headersVenues = [
-  {
-    key: "venue",
-    title: "Venue",
-  },
-];
+// const status = "CLOSED";
+// const drawStatus = "INCOMPLETE";
+// const currentRound = 0;
+// const totalRound = "8";
+// const results = "UNRELEASED";
+
+// const headersVenues = [
+//   {
+//     key: "venue",
+//     title: "Venue",
+//   },
+// ];
 
 const print = (msg) => {
   console.log(msg);
 };
 
-const managedTournament = tournamentStore.tournaments.find(tournament => tournament.id === route.params.tournamentId)
-console.log(managedTournament)
+const managedTournament = tournamentStore.getTournamentById(route.params.tournamentId)
+const getNumberOfTeams = (level) => {
+  return managedTournament.levels.find(lv => lv.level === level).teamIds.length
+};
+const noviceNum = getNumberOfTeams("Novice");
+const juniorNum = getNumberOfTeams("Junior");
+const seniorNum = getNumberOfTeams("Senior");
+
+
 </script>

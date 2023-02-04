@@ -19,6 +19,9 @@ export const useTournamentStore = defineStore("tournament", {
         (tournament) => tournament.status === "Open"
       );
     },
+    getTournamentById() {
+      return (tournamentId) => this.tournaments.find(tournament => tournament.id === tournamentId);
+    },
   },
   actions: {
     async getTournaments() {

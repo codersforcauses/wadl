@@ -118,7 +118,7 @@
 </template>
 <script setup>
 import { ref, computed } from "vue";
-import { useTournamentStore } from "../../stores/tournaments";
+import { useTournamentStore } from "../../../stores/tournaments";
 import { useHead } from "#imports";
 useHead({
   title: "Tournaments",
@@ -168,7 +168,7 @@ const handleEdit = (row) => {
 };
 
 const handleId = (id) => {
-  router.push({path:`/admin/manage-tournament/${id}`});
+  router.push({path:`/admin/tournaments/${id}`});
 }
 
 const searchTerm = ref(null);
