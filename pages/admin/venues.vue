@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import { useVenueStore } from "../../stores/venues";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 
 useHead({
   title: "Venues",
@@ -22,8 +23,14 @@ const modalLoading = ref(false);
 
 const store = useVenueStore();
 
+const notification = useNotification();
+
 onMounted(async () => {
-  await store.getVenues();
+  try {
+    await store.getVenues();
+  } catch (error) {
+    notification.notifyError(error);
+  }
   loading.value = false;
 });
 
@@ -55,17 +62,31 @@ const handleEdit = (row) => {
 
 const updateVenue = async () => {
   modalLoading.value = true;
-  await store.editVenue(formInput.value);
+  try {
+    await store.editVenue(formInput.value);
+  } catch (error) {
+    notification.notifyError(error);
+    modalLoading.value = false;
+    return;
+  }
   modalVisibility.value = false;
   modalLoading.value = false;
+  notification.notifySuccess("Updated venue successfully");
   resetFormState();
 };
 
 const createVenue = async () => {
   modalLoading.value = true;
-  await store.createVenue(formInput.value);
+  try {
+    await store.createVenue(formInput.value);
+  } catch (error) {
+    notification.notifyError(error);
+    modalLoading.value = false;
+    return;
+  }
   modalVisibility.value = false;
   modalLoading.value = false;
+  notification.notifySuccess("Created a new venue successfully");
   resetFormState();
 };
 
@@ -192,4 +213,10 @@ const headers = [
       </form>
     </div>
   </Modal>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>

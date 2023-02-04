@@ -2,6 +2,7 @@
 import { onMounted } from "vue";
 import { useTeamStore } from "../../stores/teams";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 
 useHead({
   title: "Teams",
@@ -37,9 +38,15 @@ const headers = [
   },
 ];
 
+const notification = useNotification();
+
 const store = useTeamStore();
-onMounted(() => {
-  store.getTeams();
+onMounted(async () => {
+  try {
+    await store.getTeams();
+  } catch (error) {
+    notification.notifyError(error);
+  }
 });
 </script>
 
@@ -54,4 +61,10 @@ onMounted(() => {
       :can-edit="false"
     />
   </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>
