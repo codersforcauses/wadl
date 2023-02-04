@@ -25,9 +25,9 @@ onUnmounted(() => {
 });
 
 const filterUsers = (searchTerm) => {
-  if (searchTerm === "") return adminStore.requestingUsers;
+  if (searchTerm === "") return adminStore.getRequestingUsers;
 
-  return adminStore.requestingUsers.filter(
+  return adminStore.getRequestingUsers.filter(
     (user) =>
       user.firstName?.toLowerCase().includes(searchTerm) ||
       user.lastName?.toLowerCase().includes(searchTerm) ||
