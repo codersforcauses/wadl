@@ -118,7 +118,7 @@ export const useInstitutionStore = defineStore("institution", {
       }
     },
     async createInstitution(institution) {
-      const userStore = useUserStore();
+      const userStore = await useUserStore();
       let matchingInstitution = false;
       this.institutions.forEach((element) => {
         if (element.name.toLowerCase() === institution.name.toLowerCase()) {
@@ -157,7 +157,7 @@ export const useInstitutionStore = defineStore("institution", {
     },
     async updateProfile(id) {
       const { $clientFirestore, $clientAuth } = useNuxtApp();
-      const userStore = useUserStore();
+      const userStore = await useUserStore();
       const ref = doc($clientFirestore, "users", $clientAuth.currentUser.uid);
       await updateDoc(ref, { institution: id.id });
       userStore.institution = id.id;
@@ -166,7 +166,7 @@ export const useInstitutionStore = defineStore("institution", {
       this.institutions = [];
     },
     async registerTeams(team) {
-      const userStore = useUserStore();
+      const userStore = await useUserStore();
       // novice
       this.errorMessage = "";
       if (!team.tournamentId) {

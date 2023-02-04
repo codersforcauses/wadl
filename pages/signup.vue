@@ -94,7 +94,7 @@ import { useHead, navigateTo } from "#imports";
 useHead({
   title: "Signup",
 });
-const userStore = useUserStore();
+const userStore = await useUserStore();
 
 if (userStore.auth) {
   navigateTo("/");

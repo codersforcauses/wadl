@@ -111,9 +111,14 @@ export const useUserStore = defineStore("user", {
 
     async clearStore() {
       try {
-        const { $clientAuth } = useNuxtApp();
-        await signOut($clientAuth);
+        if (process.client) {
+          // no login on server, only user vars are tracked
+          const { $clientAuth } = useNuxtApp();
+          await signOut($clientAuth);
+        }
+        console.log(1)
         this.auth = null;
+        console.log(2)
         this.firstName = null;
         this.lastName = null;
         this.email = null;

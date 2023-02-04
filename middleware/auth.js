@@ -4,7 +4,7 @@ import { useNuxtApp } from "#imports";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
   if (process.client) {
-    const userStore = useUserStore();
+    const userStore = await useUserStore();
     // const { $auth } = useNuxtApp();
     // let idtoken = await useFirebaseToken();
     console.log(from);

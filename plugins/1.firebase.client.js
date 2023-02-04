@@ -34,7 +34,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // AUTH FUNCTIONS
 
-  const userStore = useUserStore();
+  const userStore = await useUserStore();
   
   onAuthStateChanged(auth, (user) => {
     if (user) {

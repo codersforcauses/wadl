@@ -6,7 +6,7 @@ import { useUserStore } from "../stores/user";
   export default defineNuxtPlugin(async (nuxtApp) => {
     const { $serverFirestore, $serverAuth } = useNuxtApp();
 
-    const userStore = useUserStore();
+    const userStore = await useUserStore();
 
     const token = await useCookie(`auth-token`);
     if (token.value) {

@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware(async (_to, _from) => {
   // to run server side for better security.
 
   if (process.client) {
-    const userStore = useUserStore();
+    const userStore = await useUserStore();
     if (userStore.role !== "Team Coordinator") {
       return navigateTo({ path: "/" });
     }

@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
   // to run server side for better security.
 
   if (process.client) {
-    const userStore = useUserStore();
+    const userStore = await useUserStore();
     if (userStore.requesting) {
       userStore.clearStore();
     }

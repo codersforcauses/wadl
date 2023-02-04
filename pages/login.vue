@@ -3,12 +3,12 @@
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user";
-import { useHead } from "#imports";
+import { useHead, useNuxtApp } from "#imports";
 useHead({
   title: "Login",
 });
 
-const userStore = useUserStore();
+const userStore = await useUserStore();
 if (userStore.auth) {
   navigateTo("/");
 } else {

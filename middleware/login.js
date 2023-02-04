@@ -3,7 +3,7 @@ import { defineNuxtRouteMiddleware, navigateTo } from "#imports";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
   if (process.client) {
-    const authStore = useUserStore();
+    const authStore = await useUserStore();
 
     if (authStore.role === null) {
       return;
