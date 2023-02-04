@@ -8,24 +8,10 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-const handleError = (error) => {
-  switch (error.code) {
-    case "auth/email-already-in-use":
-      return "E-mail already in use";
-    case "auth/email-already-exists":
-      return "E-mail already exists";
-    case "auth/network-request-failed":
-      return "Network Failed, Please try again";
-  }
-
-  return "Error please try again";
-};
-
 export const useAdminStore = defineStore("admin", {
   state() {
     return {
       requestingUsers: [],
-      errorCode: null,
     };
   },
 
@@ -33,22 +19,17 @@ export const useAdminStore = defineStore("admin", {
 
   actions: {
     async createAdmin(user) {
-      try {
-        const { $clientAuth } = useNuxtApp();
-        const adminToken = await $clientAuth.currentUser.getIdToken();
+      const { $clientAuth } = useNuxtApp();
+      const adminToken = await $clientAuth.currentUser.getIdToken();
 
-        // @es-lint ignore
-        $fetch("/api/create-admin", {
-          method: "post",
-          body: {
-            adminToken,
-            newUser: user,
-          },
-        });
-      } catch (err) {
-        // BUG: Errors aren't propogating from the fetch
-        this.errorCode = handleError(err.data.statusMessage.code);
-      }
+      // @es-lint ignore
+      await $fetch("/api/create-admin", {
+        method: "post",
+        body: {
+          adminToken,
+          newUser: user,
+        },
+      });
     },
 
     async fetchUsers() {
@@ -74,35 +55,27 @@ export const useAdminStore = defineStore("admin", {
     },
 
     async acceptUser(user) {
-      try {
-        const { $clientFirestore } = useNuxtApp();
-        updateDoc(doc($clientFirestore, "users", user.id), {
-          requesting: false,
-          role: user.role,
-        }).then(() => {
-          this.requestingUsers = this.requestingUsers.filter(
-            (u) => u.id !== user.id
-          );
-        });
-      } catch (err) {
-        this.errorCode = handleError(err);
-      }
+      const { $clientFirestore } = useNuxtApp();
+      updateDoc(doc($clientFirestore, "users", user.id), {
+        requesting: false,
+        role: user.role,
+      }).then(() => {
+        this.requestingUsers = this.requestingUsers.filter(
+          (u) => u.id !== user.id
+        );
+      });
     },
 
     async denyUser(user) {
-      try {
-        const { $clientFirestore } = useNuxtApp();
-        deleteDoc(doc($clientFirestore, "users", user.id), {
-          requesting: null,
-          role: user.role,
-        }).then(() => {
-          this.requestingUsers = this.requestingUsers.filter(
-            (u) => u.id !== user.id
-          );
-        });
-      } catch (err) {
-        this.errorCode = handleError(err);
-      }
+      const { $clientFirestore } = useNuxtApp();
+      deleteDoc(doc($clientFirestore, "users", user.id), {
+        requesting: null,
+        role: user.role,
+      }).then(() => {
+        this.requestingUsers = this.requestingUsers.filter(
+          (u) => u.id !== user.id
+        );
+      });
     },
     async clearStore() {
       this.searchTerm = "";
