@@ -13,9 +13,10 @@ import { useUserStore } from "../stores/user";
       try {
         const result = await $serverAuth.verifyIdToken(token.value);
         await userStore.setUser(result);
+        // console.log("authenticated");
       } catch {
         // Not authenticated or invalid token
-        // console.log("not authenticated")
+        // console.log("not authenticated");
       }
     };
   });
