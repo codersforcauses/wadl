@@ -4,6 +4,7 @@ import { useInstitutionStore } from "../../stores/institutions";
 import { useUserStore } from "../../stores/user";
 import { useHead } from "#imports";
 import useNotification from "../../composables/useNotification";
+import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 useHead({
   title: "Teams",
 });
@@ -189,6 +190,23 @@ const updateTeam = async () => {
     >
       <template #division="{ value }">
         <p v-if="!value">Not Allocated</p>
+      </template>
+      <template #allocatedTue="{ value }">
+        <p>
+          <CheckIcon v-if="value" class="w-6 h-6" />
+          <XMarkIcon v-else class="w-6 h-6" />
+        </p>
+      </template>
+      <template #allocatedWed="{ value }">
+        <p>
+          <CheckIcon v-if="value" class="w-6 h-6" />
+          <XMarkIcon v-else class="w-6 h-6" />
+        </p>
+      </template>
+      <template #venuePreference="{ value }">
+        <p v-for="(ven, idx) in value" :key="idx" class="text-xs">
+          {{ idx + 1 }}. {{ ven }}
+        </p>
       </template>
     </Table>
   </section>
