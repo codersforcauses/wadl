@@ -1,5 +1,6 @@
 import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
 import admin from "firebase-admin";
+import { UserBuilder } from "firebase-functions/v1/auth";
 import { useUserStore } from "../stores/user";
   
   export default defineNuxtPlugin(async (nuxtApp) => {
@@ -7,20 +8,13 @@ import { useUserStore } from "../stores/user";
 
     const userStore = useUserStore();
 
-    // if (token) {
-    //   try {
-    //     const result = await auth.verifyIdToken(token);
-    //     userStore = userStore.setUser(result);
-    //   } catch {
-    //     // Not authenticated or invalid token
-    //   }
-    // };
     const token = await useCookie(`auth-token`)
-    // console.log("token = " + token.value)
+    
     if (token.value) {
       try {
         const result = await $serverAuth.verifyIdToken(token.value);
-        userStore.setUser(result);
+        console.log("setting User...");
+        await userStore.setUser(result);
         console.log("authed")
         console.log(userStore.email)
       } catch {

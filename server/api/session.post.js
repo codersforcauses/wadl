@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
 
     setCookie(event, 'auth-token', body.token)
     console.log("cookie is set.")
-    // console.log(body.token)
+    console.log("token = " + body.token[79] + body.token[80] + body.token[81])
     
     // console.log(token)
 
