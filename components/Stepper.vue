@@ -19,10 +19,7 @@
         stage < 2 ? 'bg-light-grey' : 'bg-light-green'
       }`"
     >
-      <div
-        v-if="stage < 3"
-        class="flex text-l text-white place-content-center"
-      >
+      <div v-if="stage < 3" class="flex text-l text-white place-content-center">
         2
       </div>
       <div v-else>
@@ -37,10 +34,7 @@
         stage < 3 ? 'bg-light-grey' : 'bg-light-green'
       }`"
     >
-      <div
-        v-if="stage < 4"
-        class="flex text-l text-white place-content-center"
-      >
+      <div v-if="stage < 4" class="flex text-l text-white place-content-center">
         3
       </div>
       <div v-else>
@@ -55,10 +49,7 @@
         stage < 4 ? 'bg-light-grey' : 'bg-light-green'
       }`"
     >
-      <div
-        v-if="stage < 5"
-        class="flex text-l text-white place-content-center"
-      >
+      <div v-if="stage < 5" class="flex text-l text-white place-content-center">
         4
       </div>
       <div v-else>
