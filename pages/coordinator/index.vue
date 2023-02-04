@@ -171,7 +171,7 @@ const updateTeam = async () => {
     <Header title-text="Teams" />
     <NuxtLink
       v-if="userStore.institution"
-      class="flex flex-row justify-end p-5"
+      class="flex flex-row w-full justify-end p-5"
       to="/coordinator/team-registration"
     >
       <Button
