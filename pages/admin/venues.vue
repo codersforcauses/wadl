@@ -152,7 +152,7 @@ const headers = [
             button-color="bg-pink-100"
             type="Submit"
             class="text-red-700"
-            @click="deleteVenue(form.id)"
+            @click="deleteVenue(formInput.id)"
           />
           <Button
             button-text="Update"

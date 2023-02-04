@@ -118,7 +118,7 @@ const deleteInstitution = (id) => {
             button-color="bg-pink-100"
             type="Submit"
             class="text-red-700"
-            @click="deleteInstitution(form.id)"
+            @click="deleteInstitution(formInput.id)"
           />
           <Button
             button-text="Update"
