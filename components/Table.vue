@@ -27,7 +27,7 @@
             :header="object.title"
             :value="row[object.key]"
             :row="row"
-            :rowId="index"
+            :row-id="index"
           >
             <p>
               {{ row[object.key] }}
