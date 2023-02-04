@@ -54,6 +54,7 @@
           <p v-else>
             {{ row[object.key] }}
           </p>
+          <slot name="column" :header="object.title" :row="row"></slot>
         </td>
         <td v-if="canEdit" class="text-right p-2">
           <button @click="handleEmit(row)">
