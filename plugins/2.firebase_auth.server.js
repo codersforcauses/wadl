@@ -8,22 +8,15 @@ import { useUserStore } from "../stores/user";
 
     const userStore = useUserStore();
 
-    const token = await useCookie(`auth-token`)
-    
+    const token = await useCookie(`auth-token`);
     if (token.value) {
       try {
         const result = await $serverAuth.verifyIdToken(token.value);
-        console.log("setting User...");
         await userStore.setUser(result);
-        console.log("authed")
-        console.log(userStore.email)
       } catch {
-      //   // Not authenticated or invalid token
-      //   console.log("not authed?")
+        // Not authenticated or invalid token
+        // console.log("not authenticated")
       }
-    };
-    // console.log(firestore)
-    return {
     };
   });
   

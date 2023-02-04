@@ -94,18 +94,15 @@ export const useUserStore = defineStore("user", {
           }
           
           const userInfo = userDoc.data();
-          console.log(userInfo)
           this.auth = user;
           this.firstName = userInfo.firstName;
           this.lastName = userInfo.lastName;
           this.phoneNumber = userInfo.phoneNumber;
           this.email = userInfo.email;
-          this.role = userInfo.requesting ? "" : userInfo.role; // role not tracked within web if requesting.
+          this.role = userInfo.requesting ? "" : userInfo.role; // role not tracked (if requesting)
           this.requesting = userInfo.requesting;
           this.institution = userInfo.institution;
           this.errorCode = null;
-          console.log("role = " + this.role)
-          console.log("email = " + this.email)
         } catch (err) {
           this.cleanUpError(err);
         }
