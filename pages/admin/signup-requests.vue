@@ -2,12 +2,15 @@
 import { useAdminStore } from "../../stores/admin";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Signup Requests",
 });
 const currentUser = ref(null);
 const searchTerm = ref("");
 const modalVisibility = ref(false);
+
+const notification = useNotification();
 
 const handleFilter = (s) => {
   searchTerm.value = s;
@@ -16,8 +19,12 @@ const handleFilter = (s) => {
 // pinia
 const adminStore = useAdminStore();
 
-onMounted(() => {
-  adminStore.fetchUsers();
+onMounted(async () => {
+  try {
+    await adminStore.fetchUsers();
+  } catch (error) {
+    notification.notifyError(error);
+  }
 });
 
 onUnmounted(() => {
@@ -87,7 +94,13 @@ const handleDelete = (user) => {
             button-color="bg-light-green"
             text-color="text-white"
             size="small"
-            @click="adminStore.acceptUser(row)"
+            @click="
+              try {
+                adminStore.acceptUser(row);
+              } catch (error) {
+                notification.notifyError(error);
+              }
+            "
           />
           <Button
             button-text="Reject"
@@ -110,7 +123,11 @@ const handleDelete = (user) => {
     "
     @yes="
       () => {
-        adminStore.denyUser(currentUser);
+        try {
+          adminStore.denyUser(currentUser);
+        } catch (error) {
+          notification.notifyError(error);
+        }
         modalVisibility = false;
       }
     "
@@ -119,5 +136,11 @@ const handleDelete = (user) => {
         modalVisibility = false;
       }
     "
+  />
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
   />
 </template>

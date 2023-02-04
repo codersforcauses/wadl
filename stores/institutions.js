@@ -19,7 +19,6 @@ export const useInstitutionStore = defineStore("institution", {
     return {
       institutions: [],
       userInstitution: null,
-      errorMessage: "",
       teams: [],
     };
   },
@@ -80,19 +79,14 @@ export const useInstitutionStore = defineStore("institution", {
 
       const snapshot = await getCountFromServer(sameName);
       if (snapshot.data().count === 0) {
-        await updateDoc(ref, institution)
-          .then(() => {
-            this.errorMessage = "";
-            const index = this.institutions.findIndex(function (item, i) {
-              return item.id === institution.id;
-            });
-            this.institutions[index] = institution;
-          })
-          .catch((error) => {
-            console.log(error);
+        await updateDoc(ref, institution).then(() => {
+          const index = this.institutions.findIndex(function (item, i) {
+            return item.id === institution.id;
           });
+          this.institutions[index] = institution;
+        });
       } else {
-        this.errorMessage = "institution with same name exists";
+        throw new Error("Institution with same name exists");
       }
     },
     async updateInstitution(element, institution) {
@@ -108,13 +102,9 @@ export const useInstitutionStore = defineStore("institution", {
           email: institution.email,
           number: institution.number,
         };
-        await updateDoc(ref, data)
-          .catch((error) => {
-            console.log(error);
-          })
-          .then(() => {
-            this.updateProfile(ref);
-          });
+        await updateDoc(ref, data).then(() => {
+          this.updateProfile(ref);
+        });
       }
     },
     async createInstitution(institution) {
@@ -126,9 +116,8 @@ export const useInstitutionStore = defineStore("institution", {
         }
       });
       if (matchingInstitution) {
-        this.errorMessage = "An Institution with the same name already exists";
+        throw new Error("An Institution with the same name already exists");
       } else {
-        this.errorMessage = "";
         const { $clientFirestore } = useNuxtApp();
         const ref = doc(collection($clientFirestore, "institutions"));
         const data = {
@@ -139,19 +128,13 @@ export const useInstitutionStore = defineStore("institution", {
           abbreviation: institution.abbreviation,
         };
         if (userStore.role !== "Team Coordinator") {
-          await setDoc(ref, data).catch((error) => {
-            console.log(error);
-          });
+          await setDoc(ref, data);
           this.institutions.push(data);
         } else {
-          await setDoc(ref, data)
-            .then(() => {
-              this.userInstitution = { ...data };
-              this.updateProfile(ref);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+          await setDoc(ref, data).then(() => {
+            this.userInstitution = { ...data };
+            this.updateProfile(ref);
+          });
         }
       }
     },
@@ -168,89 +151,85 @@ export const useInstitutionStore = defineStore("institution", {
     async registerTeams(team) {
       const userStore = useUserStore();
       // novice
-      this.errorMessage = "";
       if (!team.tournamentId) {
-        this.errorMessage = "No tournament selected.";
-        return;
+        throw new Error("No tournament selected.");
       }
       for (let i = 0; i < team.teams.length; i++) {
         const numTeam = parseInt(team.teams[i].numberOfTeams);
         const tueAllocation = parseInt(team.teams[i].allocatedTue);
         const wedAllocation = parseInt(team.teams[i].allocatedWed);
         if (numTeam <= 0 && team.teams[i].levelPresent) {
-          this.errorMessage =
-            team.teams[i].teamLevel + " selected but no total teams selected.";
+          throw new Error(
+            team.teams[i].teamLevel + " selected but no total teams selected."
+          );
         } else if (numTeam > 50) {
-          this.errorMessage =
-            "Registering too many teams at once. Please enter a lower number of teams.";
+          throw new Error(
+            "Registering too many teams at once. Please enter a lower number of teams."
+          );
         } else if (tueAllocation < 0 || wedAllocation < 0) {
-          this.errorMessage =
+          throw new Error(
             "Please allocate a positive number of teams for " +
-            team.teams[i].teamLevel +
-            ".";
+              team.teams[i].teamLevel +
+              "."
+          );
         } else if (tueAllocation > numTeam || wedAllocation > numTeam) {
-          this.errorMessage =
+          throw new Error(
             "Too many teams allocated to a single day in " +
-            team.teams[i].teamLevel +
-            ".";
+              team.teams[i].teamLevel +
+              "."
+          );
         } else if (numTeam > tueAllocation + wedAllocation) {
-          this.errorMessage =
+          throw new Error(
             "Not enough teams allocated to days in " +
-            team.teams[i].teamLevel +
-            ".";
+              team.teams[i].teamLevel +
+              "."
+          );
         } else if (numTeam * 2 < tueAllocation + wedAllocation) {
-          this.errorMessage =
+          throw new Error(
             "Too many teams allocated to days in  " +
-            team.teams[i].teamLevel +
-            ".";
-        }
-        if (this.errorMessage !== "") break;
-      }
-      if (!this.errorMessage) {
-        this.errorMessage = "";
-        const { $clientFirestore } = useNuxtApp();
-        const query_ = query(
-          collection($clientFirestore, "teams"),
-          where("institutionId", "==", userStore.institution)
-        );
-        const snapshot = await getCountFromServer(query_);
-        let teamCounter = snapshot.data().count + 1;
-        try {
-          const batch = writeBatch($clientFirestore);
-          team.teams.forEach((level) => {
-            const num = parseInt(level.numberOfTeams);
-            const tueAllocation = parseInt(level.allocatedTue);
-            const wedAllocation = parseInt(level.allocatedWed);
-            const overlap = tueAllocation + wedAllocation - num;
-            const tueOnly = tueAllocation - overlap;
-            if (num > 0) {
-              for (let i = 0; i < num; i++) {
-                const ref = doc(collection($clientFirestore, "teams"));
-                batch.set(ref, {
-                  name: team.userTeam + " " + teamCounter,
-                  tournamentId: team.tournamentId,
-                  institutionId: team.institutionId,
-                  level: level.teamLevel,
-                  timeslot: level.timeslot,
-                  weekPreference: level.weekPreference,
-                  allocatedTue: i < overlap + tueOnly,
-                  allocatedWed: i < overlap || i >= overlap + tueOnly,
-                  hasVenuePreference: team.hasVenuePreference,
-                  venuePreference: team.hasVenuePreference
-                    ? team.venuePreference
-                    : null,
-                  notes: team.notes,
-                  division: null,
-                });
-                teamCounter++;
-              }
-            }
-          });
-          await batch.commit();
-        } catch (error) {
-          console.log(error);
+              team.teams[i].teamLevel +
+              "."
+          );
         }
       }
+      const { $clientFirestore } = useNuxtApp();
+      const query_ = query(
+        collection($clientFirestore, "teams"),
+        where("institutionId", "==", userStore.institution)
+      );
+      const snapshot = await getCountFromServer(query_);
+      let teamCounter = snapshot.data().count + 1;
+      const batch = writeBatch($clientFirestore);
+      team.teams.forEach((level) => {
+        const num = parseInt(level.numberOfTeams);
+        const tueAllocation = parseInt(level.allocatedTue);
+        const wedAllocation = parseInt(level.allocatedWed);
+        const overlap = tueAllocation + wedAllocation - num;
+        const tueOnly = tueAllocation - overlap;
+        if (num > 0) {
+          for (let i = 0; i < num; i++) {
+            const ref = doc(collection($clientFirestore, "teams"));
+            batch.set(ref, {
+              name: team.userTeam + " " + teamCounter,
+              tournamentId: team.tournamentId,
+              institutionId: team.institutionId,
+              level: level.teamLevel,
+              timeslot: level.timeslot,
+              weekPreference: level.weekPreference,
+              allocatedTue: i < overlap + tueOnly,
+              allocatedWed: i < overlap || i >= overlap + tueOnly,
+              hasVenuePreference: team.hasVenuePreference,
+              venuePreference: team.hasVenuePreference
+                ? team.venuePreference
+                : null,
+              notes: team.notes,
+              division: null,
+            });
+            teamCounter++;
+          }
+        }
+      });
+      await batch.commit();
     },
 
     async editTeam(team) {
@@ -278,31 +257,27 @@ export const useInstitutionStore = defineStore("institution", {
     },
     async getTeamsByID(institutionId) {
       const { $clientFirestore } = useNuxtApp();
-      try {
-        const ref = collection($clientFirestore, "teams");
-        const q = query(ref, where("institutionId", "==", institutionId));
-        const snapShot = await getDocs(q);
-        snapShot.forEach((doc) => {
-          const data = {
-            id: doc.id,
-            name: doc.data().name,
-            tournamentId: doc.data().tournamentId,
-            institutionId: doc.data().institutionId,
-            level: doc.data().level,
-            timeslot: doc.data().timeslot,
-            weekPreference: doc.data().weekPreference,
-            allocatedTue: doc.data().allocatedTue,
-            allocatedWed: doc.data().allocatedWed,
-            hasVenuePreference: doc.data().hasVenuePreference,
-            venuePreference: doc.data().venuePreference,
-            notes: doc.data().notes,
-            division: doc.data().division,
-          };
-          this.teams.push(data);
-        });
-      } catch (e) {
-        console.log("NO TEAMS", e);
-      }
+      const ref = collection($clientFirestore, "teams");
+      const q = query(ref, where("institutionId", "==", institutionId));
+      const snapShot = await getDocs(q);
+      snapShot.forEach((doc) => {
+        const data = {
+          id: doc.id,
+          name: doc.data().name,
+          tournamentId: doc.data().tournamentId,
+          institutionId: doc.data().institutionId,
+          level: doc.data().level,
+          timeslot: doc.data().timeslot,
+          weekPreference: doc.data().weekPreference,
+          allocatedTue: doc.data().allocatedTue,
+          allocatedWed: doc.data().allocatedWed,
+          hasVenuePreference: doc.data().hasVenuePreference,
+          venuePreference: doc.data().venuePreference,
+          notes: doc.data().notes,
+          division: doc.data().division,
+        };
+        this.teams.push(data);
+      });
     },
   },
 });
