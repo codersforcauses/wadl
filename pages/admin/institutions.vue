@@ -2,9 +2,14 @@
 import { ref, computed } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Institutions",
 });
+
+const notification = useNotification();
+const errorMessage = ref(null);
+
 const headers = [
   {
     key: "name",
@@ -40,7 +45,7 @@ store.getInstitutions();
 const resetFormState = () => {
   formInput.value = { ...defaultInputState };
   editMode.value = false;
-  store.errorMessage = "";
+  errorMessage.value = null;
 };
 
 const searchTerm = ref(null);
@@ -53,21 +58,28 @@ const filteredInstitutions = computed(() => {
 });
 
 const updateInstitution = async () => {
-  // update store
-  await store.editInstitution(formInput.value);
-  if (store.errorMessage === "") {
-    modalVisibility.value = false;
-    resetFormState();
+  try {
+    await store.editInstitution(formInput.value);
+  } catch (error) {
+    errorMessage.value = error.message;
+    return;
   }
+  modalVisibility.value = false;
+  notification.notifySuccess("Updated institution successfully");
+  resetFormState();
 };
 
 const createInstitution = async () => {
   // update store
-  await store.createInstitution(formInput.value);
-  if (store.errorMessage === "") {
-    modalVisibility.value = false;
-    resetFormState();
+  try {
+    await store.createInstitution(formInput.value);
+  } catch (error) {
+    errorMessage.value = error.message;
+    return;
   }
+  modalVisibility.value = false;
+  notification.notifySuccess("Created institution successfully");
+  resetFormState();
 };
 
 const handleEdit = (row) => {
@@ -105,8 +117,8 @@ const handleEdit = (row) => {
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
         <FormField v-model="formInput.number" label="Phone Number" type="tel" />
         <FormField v-model="formInput.email" label="Email" type="email" />
-        <p v-if="store.errorMessage" class="text-danger-red">
-          {{ store.errorMessage }}
+        <p v-if="errorMessage" class="text-danger-red">
+          {{ errorMessage }}
         </p>
         <div class="flex justify-evenly items-center">
           <Button
@@ -135,8 +147,8 @@ const handleEdit = (row) => {
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
         <FormField v-model="formInput.number" label="Phone Number" type="tel" />
         <FormField v-model="formInput.email" label="Email" type="email" />
-        <p v-if="store.errorMessage" class="text-danger-red">
-          {{ store.errorMessage }}
+        <p v-if="errorMessage" class="text-danger-red">
+          {{ errorMessage }}
         </p>
         <div class="flex justify-evenly items-center">
           <Button
@@ -178,4 +190,10 @@ const handleEdit = (row) => {
       @edit="handleEdit"
     />
   </div>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>
