@@ -1,6 +1,6 @@
 <template>
   <div v-if="data.length > 0" class="block overflow-auto w-full md:w-11/12">
-    <table class="table-fixed w-full">
+    <table class="w-full">
       <thead>
         <tr class="border-b font-carterone text-left">
           <th
