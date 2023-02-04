@@ -114,13 +114,14 @@ const roundClicked = (roundName) => {
           date,
           time,
           affirmative: teamStore.teams.find(
-            (team) => team.id === matchup.affirmative_team
-          )?.name,
+            (team) => team.id === matchup.affirmativeTeam
+          ).name,
           negative: teamStore.teams.find(
-            (team) => team.id === matchup.negative_team
-          )?.name,
+            (team) => team.id === matchup.negativeTeam
+          ).name,
           topic: matchup.topic,
         };
+        console.log(row);
         tableData.value.push(row);
       }
     });
