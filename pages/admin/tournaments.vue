@@ -200,5 +200,9 @@ const headers = [
     key: "status",
     title: "Status",
   },
+  {
+    key: "numRounds",
+    title: "Rounds",
+  },
 ];
 </script>
