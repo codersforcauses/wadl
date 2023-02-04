@@ -4,6 +4,7 @@ import { useUserStore } from "../../stores/user";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useTournamentStore } from "../../stores/tournaments";
 import { navigateTo, useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Team Registration",
 });
@@ -13,8 +14,12 @@ const userStore = useUserStore();
 const tournaments = ref(null);
 
 onMounted(async () => {
-  await tournamentStore.getTournaments();
-  await institutionStore.getInstitutionByID(userStore.institution);
+  try {
+    await tournamentStore.getTournaments();
+    await institutionStore.getInstitutionByID(userStore.institution);
+  } catch (error) {
+    notification.notifyError(error);
+  }
 
   tournaments.value = tournamentStore.getOpen;
   formInput.value.institutionId = userStore.institution;
@@ -64,21 +69,21 @@ const updateLevels = (chips) => {
 };
 
 // Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
+const notification = useNotification();
+const errorMessage = ref(null);
 
 const saveTeamRegistration = async () => {
   // TODO:
   // Perform validation
   // POST to backend
   formInput.value.userTeam = institutionStore.userInstitution.name;
-  institutionStore.registerTeam(formInput.value);
-  if (!institutionStore.errorMessage) {
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = "Successfully Created Teams!";
+  try {
+    await institutionStore.registerTeams(formInput.value);
+  } catch (error) {
+    errorMessage.value = error.message;
+    return;
   }
+  notification.notifySuccess("Successfully Created Teams!");
   // resetForm();
 };
 // commenting it out for now because we might need it in the future
@@ -158,13 +163,14 @@ const redirect = () => {
           <hr class="h-px ml-2 flex-1" />
         </div>
         <div class="flex flex-row space-x-3">
-          <Select
+          <Dropdown
             v-for="team in formInput.teams"
             :key="team.teamLevel"
             v-model="team.weekPreference"
-            :options="['Week 1', 'Week 2', 'Either']"
+            placeholder="Select Week"
+            :items="['Week 1', 'Week 2', 'Either']"
+            selected="Either"
             :label="team.teamLevel"
-            class="w-full"
             :disabled="!team.levelPresent"
           />
         </div>
@@ -233,8 +239,8 @@ const redirect = () => {
           placeholder="Enter any notes"
           class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat heading-montserrat"
         ></textarea>
-        <p v-if="institutionStore.errorMessage" class="text-danger-red">
-          {{ institutionStore.errorMessage }}
+        <p v-if="errorMessage" class="text-danger-red">
+          {{ errorMessage }}
         </p>
         <div class="flex justify-evenly items-center mb-2">
           <Button
@@ -248,12 +254,12 @@ const redirect = () => {
     </div>
   </div>
   <Notification
-    :modal-visibility="notificationVisibility"
-    :is-success="isSuccess"
-    :body="notificationMessage"
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
     @close="
       () => {
-        notificationVisibility = false;
+        notification.dismiss();
         redirect();
       }
     "

@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useUserStore } from "../../stores/user";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Teams",
 });
@@ -43,6 +44,8 @@ const headers = [
   },
 ];
 
+const notification = useNotification();
+
 const defaultInputState = {
   id: null,
   level: null,
@@ -73,8 +76,14 @@ const handleEdit = (row) => {
   form.value = row.data;
 };
 
-const updateTeam = () => {
-  store.editTeam(form.value);
+const updateTeam = async () => {
+  try {
+    await store.editTeam(form.value);
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Updated team successfully");
   resetFormState();
 };
 </script>
@@ -82,6 +91,7 @@ const updateTeam = () => {
 <template>
   <Modal
     :modal-visibility="modalVisibility"
+    size="w-7/12"
     @close="
       () => {
         modalVisibility = false;
@@ -93,9 +103,9 @@ const updateTeam = () => {
     <form
       class="px-10"
       @submit.prevent="
-        () => {
+        async () => {
           modalVisibility = false;
-          updateTeam();
+          await updateTeam();
         }
       "
     >
@@ -174,4 +184,10 @@ const updateTeam = () => {
       @edit="handleEdit"
     />
   </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>

@@ -1,6 +1,7 @@
 <template>
   <Modal
     :modal-visibility="modalVisibility"
+    size="w-7/12"
     @close="
       () => {
         modalVisibility = false;
@@ -109,20 +110,41 @@
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
-      button-text="Add Tournament"
+      button-text="Add"
       button-color="bg-gold"
-      class="m-5 ml-8"
+      class="ml-2"
+      type="button"
+      size="medium"
       @click="modalVisibility = true"
     />
   </div>
+
+  <div class="flex content-center justify-center px-2">
+    <Table
+      :headers="headers"
+      :data="filteredTournaments"
+      no-data-text="No tournaments registered"
+      @edit="handleEdit"
+    />
+  </div>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>
 <script setup>
 import { ref, computed } from "vue";
 import { useTournamentStore } from "../../../stores/tournaments";
 import { useHead } from "#imports";
+import useNotification from "../../../composables/useNotification";
 useHead({
   title: "Tournaments",
 });
+
+const notification = useNotification();
+
 const defaultInputState = {
   id: null,
   levels: [],
@@ -138,21 +160,18 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
-store.getTournaments();
+try {
+  await store.getTournaments();
+} catch (error) {
+  notification.notifyError(error);
+}
 
 const getLevels = () => form.value.levels.map((l) => l.level);
 
 const updateSelectedLevels = (chips) => {
-  form.value.levels.forEach(function callback(l, index) {
-    if (!chips.includes(l.level)) {
-      form.value.levels.splice(index, 1);
-    }
-  });
-
+  form.value.levels = [];
   chips.forEach((level) => {
-    if (!getLevels().includes(level)) {
-      form.value.levels.push({ level });
-    }
+    form.value.levels.push({ level });
   });
 };
 
@@ -183,12 +202,24 @@ const filteredTournaments = computed(() => {
 });
 
 const updateTournament = () => {
-  store.editTournament(form.value);
+  try {
+    store.editTournament(form.value);
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Tournament updated successfully");
   resetFormState();
 };
 
 const createTournament = () => {
-  store.createTournament(form.value);
+  try {
+    store.createTournament(form.value);
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Tournament created successfully");
   resetFormState();
 };
 

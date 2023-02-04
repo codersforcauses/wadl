@@ -2,12 +2,15 @@
 import { useAdminStore } from "../../stores/admin";
 import { onMounted, onUnmounted, ref } from "vue";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Signup Requests",
 });
 const currentUser = ref(null);
 const searchTerm = ref("");
 const modalVisibility = ref(false);
+
+const notification = useNotification();
 
 const handleFilter = (s) => {
   searchTerm.value = s;
@@ -16,8 +19,12 @@ const handleFilter = (s) => {
 // pinia
 const adminStore = useAdminStore();
 
-onMounted(() => {
-  adminStore.fetchUsers();
+onMounted(async () => {
+  try {
+    await adminStore.fetchUsers();
+  } catch (error) {
+    notification.notifyError(error);
+  }
 });
 
 onUnmounted(() => {
@@ -43,7 +50,9 @@ const handleDelete = (user) => {
 
 <template>
   <Header title-text="Sign Up Requests" />
-  <SearchBar @handle-filter="handleFilter" />
+  <div class="flex items-center justify-center w-full">
+    <SearchBar @handle-filter="handleFilter" />
+  </div>
   <div class="flex justify-center">
     <table class="w-10/12 table-fixed">
       <thead>
@@ -87,13 +96,9 @@ const handleDelete = (user) => {
             <p>{{ user.email }}</p>
           </td>
           <td>
-            <select id="role" v-model="user.role" name="role">
-              <option value="Adjudicator">Adjudicator</option>
-              <option value="Adjudicator Coordinator">
-                Adjudicator Coordinator
-              </option>
-              <option value="Team Coordinator">Team Coordinator</option>
-            </select>
+            <div class="flex items-center mx-2">
+              <Dropdown id="role" v-model="user.role" name="role" />
+            </div>
           </td>
           <td class="flex flex-row justify-evenly">
             <Button
@@ -101,7 +106,13 @@ const handleDelete = (user) => {
               button-color="bg-light-green"
               text-color="text-white"
               size="small"
-              @click="adminStore.acceptUser(user)"
+              @click="
+                try {
+                  adminStore.acceptUser(user);
+                } catch (error) {
+                  notification.notifyError(error);
+                }
+              "
             />
             <Button
               button-text="Reject"
@@ -124,7 +135,11 @@ const handleDelete = (user) => {
     "
     @yes="
       () => {
-        adminStore.denyUser(currentUser);
+        try {
+          adminStore.denyUser(currentUser);
+        } catch (error) {
+          notification.notifyError(error);
+        }
         modalVisibility = false;
       }
     "
@@ -133,5 +148,11 @@ const handleDelete = (user) => {
         modalVisibility = false;
       }
     "
+  />
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
   />
 </template>

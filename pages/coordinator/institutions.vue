@@ -17,7 +17,7 @@
       </SearchSelect>
       <FormField
         v-model="form.number"
-        label="School Number"
+        label="School Phone Number"
         placeholder="School Number"
         type="number"
       >
@@ -31,15 +31,8 @@
       </FormField>
       <FormField
         v-model="form.abbreviation"
-        label="School Abbreviation"
+        label="School Name Abbreviation"
         placeholder="School Abbreviation"
-        type="text"
-      >
-      </FormField>
-      <FormField
-        v-model="form.code"
-        label="School Code"
-        placeholder="School Code"
         type="text"
       >
       </FormField>
@@ -61,11 +54,11 @@
         <p class="text-xl pb-5">{{ form.name }}</p>
         <label class="text-light-grey text-xs"> SCHOOL EMAIL </label>
         <p class="text-xl pb-5">{{ form.email }}</p>
-        <label class="text-light-grey text-xs"> SCHOOL NUMBER </label>
+        <label class="text-light-grey text-xs"> SCHOOL PHONE NUMBER </label>
         <p class="text-xl pb-5">{{ form.number }}</p>
-        <label class="text-light-grey text-xs"> SCHOOL CODE </label>
-        <p class="text-xl pb-5">{{ form.code }}</p>
-        <label class="text-light-grey text-xs"> SCHOOL ABBREVIATION </label>
+        <label class="text-light-grey text-xs">
+          SCHOOL NAME ABBREVIATION
+        </label>
         <p class="text-xl">{{ form.abbreviation }}</p>
 
         <div class="mt-8 flex justify-center">
@@ -81,6 +74,12 @@
       </div>
     </div>
   </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>
 
 <script setup>
@@ -88,6 +87,7 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useUserStore } from "../../stores/user";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Institution",
 });
@@ -95,19 +95,26 @@ const institutionStore = useInstitutionStore();
 const userStore = useUserStore();
 const existingInstitution = ref(false);
 
+const notification = useNotification();
+
 const form = ref({
   id: null,
   name: null,
   number: null,
   email: null,
   abbreviation: null,
-  code: null,
 });
 
 const handleInstitution = async () => {
-  await institutionStore.checkInstitution(form.value).then(async () => {
-    existingInstitution.value = true;
-  });
+  try {
+    await institutionStore.checkInstitution(form.value).then(async () => {
+      existingInstitution.value = true;
+    });
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Updated institution settings successfully");
 };
 
 const toggleEditMode = async () => {
@@ -129,7 +136,6 @@ const clearSchoolForm = () => {
     number: null,
     email: null,
     abbreviation: null,
-    code: null,
   };
 };
 
