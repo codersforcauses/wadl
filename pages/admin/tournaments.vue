@@ -121,8 +121,8 @@
     <Table
       :headers="headers"
       :data="filteredTournaments"
-      @edit="handleEdit"
       no-data-text="No tournaments registered"
+      @edit="handleEdit"
     />
   </div>
 </template>
