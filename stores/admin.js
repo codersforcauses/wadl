@@ -69,6 +69,7 @@ export const useAdminStore = defineStore("admin", {
           id: doc.id,
           firstName: user.firstName,
           lastName: user.lastName,
+          phoneNumber: user.phoneNumber,
           institutions: user.institutions,
           requesting: user.requesting,
           role: user.role,
