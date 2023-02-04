@@ -106,7 +106,12 @@
     "
   />
   <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table :headers="headers" :data="filteredTournaments" @edit="handleEdit" @getId="handleId"/>
+    <Table
+      :headers="headers"
+      :data="filteredTournaments"
+      @edit="handleEdit"
+      @get-id="handleId"
+    />
   </div>
   <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
@@ -154,6 +159,7 @@ const defaultInputState = {
   status: "Open",
 };
 
+// eslint-disable-next-line no-undef
 const router = useRouter();
 
 const form = ref({ ...defaultInputState });
@@ -187,8 +193,8 @@ const handleEdit = (row) => {
 };
 
 const handleId = (id) => {
-  router.push({path:`/admin/tournaments/${id}`});
-}
+  router.push({ path: `/admin/tournaments/${id}` });
+};
 
 const searchTerm = ref(null);
 const filteredTournaments = computed(() => {

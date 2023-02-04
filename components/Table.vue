@@ -15,13 +15,13 @@
           </tr>
         </thead>
 
-      <tbody>
-        <tr
-          v-for="(row, index) in data"
-          :key="index"
-          class="h-10 odd:bg-white even:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out"
-          @click="handleRowClick(row.id)"
-        >
+        <tbody>
+          <tr
+            v-for="(row, index) in data"
+            :key="index"
+            class="h-10 odd:bg-white even:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out"
+            @click="handleRowClick(row.id)"
+          >
             <td
               v-for="(object, ind) in headers"
               :key="ind"

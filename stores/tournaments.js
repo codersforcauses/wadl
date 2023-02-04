@@ -20,7 +20,8 @@ export const useTournamentStore = defineStore("tournament", {
       );
     },
     getTournamentById() {
-      return (tournamentId) => this.tournaments.find(tournament => tournament.id === tournamentId);
+      return (tournamentId) =>
+        this.tournaments.find((tournament) => tournament.id === tournamentId);
     },
   },
   actions: {

@@ -1,10 +1,15 @@
 <template>
-  <Header title-text="Manage Tournament" :subtitle-text="managedTournament.name" />
+  <Header
+    title-text="Manage Tournament"
+    :subtitle-text="managedTournament.name"
+  />
   <div class="mx-32">
     <p class="pt-2 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
       Registered Teams
     </p>
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2">
+    <div
+      class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2"
+    >
       <div class="">
         <Frame
           :title="noviceNum"
@@ -175,10 +180,10 @@
     </div> -->
     <!-- 3grid -->
     <!-- <div class="grid grid-cols-3 gap-4"> -->
-      <!-- col1 -->
-      <!-- <div class="h-96 rounded-xl shadow-lg bg-slate-200 items-center"> -->
-        <!-- head -->
-        <!-- <div class="grid grid-cols-4 rounded-xl p-5">
+    <!-- col1 -->
+    <!-- <div class="h-96 rounded-xl shadow-lg bg-slate-200 items-center"> -->
+    <!-- head -->
+    <!-- <div class="grid grid-cols-4 rounded-xl p-5">
           <div class="m-auto">
             <div class="flex flex-col items-center"></div>
           </div>
@@ -198,8 +203,8 @@
           </div>
           <hr class="h-px my-3 bg-mid-grey border-0 col-span-4" />
         </div>-->
-        <!-- week table -->
-        <!-- <div class="grid grid-cols-3 gap-4 px-10">
+    <!-- week table -->
+    <!-- <div class="grid grid-cols-3 gap-4 px-10">
           <div>
             <div class="flex flex-col items-center">
               <h1 class="text-center font-montserrat font-semibold text-3xl">
@@ -241,7 +246,7 @@
         </div>
       </div>
       
-    </div> --> 
+    </div> -->
     <!-- header2 -->
     <!-- <div class="items-center bg-white flex">
       <div
@@ -264,10 +269,10 @@
     </div> -->
     <!-- 3 grid -->
     <!-- <div class="grid grid-cols-3 gap-4"> -->
-      <!-- col1 -->
-      <!-- <div class="h-96 rounded-xl shadow-lg bg-slate-200 items-center"> -->
-        <!-- head -->
-        <!-- <div class="grid grid-cols-4 rounded-xl p-5">
+    <!-- col1 -->
+    <!-- <div class="h-96 rounded-xl shadow-lg bg-slate-200 items-center"> -->
+    <!-- head -->
+    <!-- <div class="grid grid-cols-4 rounded-xl p-5">
           <div class="m-auto">
             <div class="flex flex-col items-center">
               <h1 class="text-center font-montserrat font-semibold text-3xl">
@@ -293,15 +298,15 @@
 
           <hr class="h-px my-3 bg-mid-grey border-0 col-span-4" />
         </div> -->
-        <!-- subhead -->
-        <!-- <div class="max-h-56 overflow-scroll overflow-x-hidden">
+    <!-- subhead -->
+    <!-- <div class="max-h-56 overflow-scroll overflow-x-hidden">
           <div
             class="w-full sticky top-0 pl-6 pb-5 font-montserrat font-semibold text-mid-grey text-left text-lg bg-slate-200"
           >
             VENUES
           </div> -->
-          <!-- table -->
-          <!-- <table class="w-11/12 m-auto">
+    <!-- table -->
+    <!-- <table class="w-11/12 m-auto">
             <tbody>
               <tr
                 v-for="(row, index) in venue"
@@ -338,12 +343,11 @@
 <script setup>
 // import venue from "../../../data/venues.json";
 // import { XMarkIcon, PlusIcon, PencilIcon } from "@heroicons/vue/24/solid";
-import { useTournamentStore } from "../../../stores/tournaments"
+import { useTournamentStore } from "../../../stores/tournaments";
 
-const route = useRoute()
+// eslint-disable-next-line no-undef
+const route = useRoute();
 const tournamentStore = useTournamentStore();
-
-
 
 // const status = "CLOSED";
 // const drawStatus = "INCOMPLETE";
@@ -362,13 +366,14 @@ const print = (msg) => {
   console.log(msg);
 };
 
-const managedTournament = tournamentStore.getTournamentById(route.params.tournamentId)
+const managedTournament = tournamentStore.getTournamentById(
+  route.params.tournamentId
+);
 const getNumberOfTeams = (level) => {
-  return managedTournament.levels.find(lv => lv.level === level).teamIds.length
+  return managedTournament.levels.find((lv) => lv.level === level).teamIds
+    .length;
 };
 const noviceNum = getNumberOfTeams("Novice");
 const juniorNum = getNumberOfTeams("Junior");
 const seniorNum = getNumberOfTeams("Senior");
-
-
 </script>
