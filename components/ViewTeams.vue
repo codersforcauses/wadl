@@ -1,6 +1,6 @@
 <template>
   <Modal
-    :modal-visibility="getTeamsVisibility"
+    :modal-visibility="modalVisibility"
     size="md:1/3"
     @close="emit('close')"
   >
@@ -11,5 +11,7 @@
 <script setup>
 import { ref } from "vue";
 
-const getTeamsVisibility = ref(false);
+const modalVisibility = ref(false);
+
+const emit = defineEmits(["close"]);
 </script>
