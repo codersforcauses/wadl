@@ -9,7 +9,7 @@ useHead({
   title: "Teams",
 });
 const store = useInstitutionStore();
-const userStore = useUserStore();
+const userStore = await useUserStore();
 const headers = [
   {
     key: "name",
