@@ -19,7 +19,7 @@ import { useHead } from "#imports";
 useHead({
   title: "Admin",
 });
-const user = useUserStore();
+const user = await useUserStore();
 
 const exportTeams = async () => {
   const store = useTeamStore();

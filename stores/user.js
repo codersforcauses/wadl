@@ -17,10 +17,12 @@ export const useUserStore = defineStore("user", {
       email: null,
       role: null,
       requesting: null,
+      token: null,
       institution: "",
     };
   },
 
+  // persist only on client for now.
   persist: {
     key: "pinia-store",
     debug: true,
@@ -58,11 +60,20 @@ export const useUserStore = defineStore("user", {
 
     async setUser(user) {
       if (user !== null) {
-        const { $clientFirestore } = useNuxtApp();
-        const docRef = doc($clientFirestore, "users", user.uid);
+        let userDoc;
+        if (!process.client) {
+          const { $serverFirestore } = useNuxtApp();
+          userDoc = await $serverFirestore
+            .collection("users")
+            .doc(user.uid)
+            .get();
+        } else {
+          const { $clientFirestore } = useNuxtApp();
+          const docRef = doc($clientFirestore, "users", user.uid);
+          userDoc = await getDoc(docRef);
+        }
 
-        const userDoc = await getDoc(docRef);
-        if (!userDoc.exists()) {
+        if (!userDoc) {
           throw new Error("Could not find user document");
         }
 
@@ -72,15 +83,18 @@ export const useUserStore = defineStore("user", {
         this.lastName = userInfo.lastName;
         this.phoneNumber = userInfo.phoneNumber;
         this.email = userInfo.email;
-        this.role = userInfo.role;
+        this.role = userInfo.requesting ? "" : userInfo.role; // role not tracked if requesting
         this.requesting = userInfo.requesting;
         this.institution = userInfo.institution;
       }
     },
 
     async clearStore() {
-      const { $clientAuth } = useNuxtApp();
-      await signOut($clientAuth);
+      if (process.client) {
+        // no login on server
+        const { $clientAuth } = useNuxtApp();
+        await signOut($clientAuth);
+      }
       this.auth = null;
       this.firstName = null;
       this.lastName = null;

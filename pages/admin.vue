@@ -6,7 +6,7 @@ definePageMeta({
   middleware: ["admin"],
 });
 
-const userStore = useUserStore();
+const userStore = await useUserStore();
 const isAdmin = userStore.role === "Admin";
 </script>
 
