@@ -1,17 +1,15 @@
 <template>
-  <Header title-text="Contacts" />
-  <div class="flex items-center justify-center w-full">
+  <section class="flex flex-col items-center">
+    <Header title-text="Contacts" />
     <SearchBar @handle-filter="handleFilter" />
-  </div>
-  <Tabs :tabs="tabs" @handle-tab="handleTabClicked" />
-  <div class="mx-8">
+    <Tabs class="md:w-11/12" :tabs="tabs" @handle-tab="handleTabClicked" />
     <Table
       :headers="headers"
       :data="contacts"
       :can-edit="false"
       no-data-text="No users registered"
     />
-  </div>
+  </section>
 </template>
 
 <script setup>
