@@ -1,6 +1,7 @@
 <template>
   <Modal
     :modal-visibility="modalVisibility"
+    size="w-7/12"
     @close="
       () => {
         modalVisibility = false;
@@ -33,11 +34,11 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels"
+          :selected-chips="getLevels()"
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.rounds"
+          v-model="form.numRounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -76,11 +77,11 @@
         </div>
         <label class="heading-montserrat">Level</label>
         <Multiselect
-          :selected-chips="form.levels"
+          :selected-chips="getLevels()"
           @change="updateSelectedLevels"
         />
         <FormField
-          v-model="form.rounds"
+          v-model="form.numRounds"
           label="Rounds"
           placeholder="Total number of rounds"
         />
@@ -97,42 +98,77 @@
   </Modal>
 
   <Header title-text="Tournaments" />
-  <SearchBar @handle-filter="handleFilter" />
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
-    <Table
-      :headers="headers"
-      :data="store.filteredTournaments"
-      @edit="handleEdit"
+
+  <div class="flex items-center justify-center w-full">
+    <SearchBar
+      @handle-filter="
+        (searchString) => {
+          searchTerm = searchString;
+        }
+      "
     />
-  </div>
-  <div class="fixed inset-x-0 bottom-0 w-full bg-white">
     <Button
-      button-text="Add Tournament"
+      button-text="Add"
       button-color="bg-gold"
-      class="m-5 ml-8"
+      class="ml-2"
+      type="button"
+      size="medium"
       @click="modalVisibility = true"
     />
   </div>
+
+  <div class="flex content-center justify-center px-2">
+    <Table
+      :headers="headers"
+      :data="filteredTournaments"
+      no-data-text="No tournaments registered"
+      @edit="handleEdit"
+    />
+  </div>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
+import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
+useHead({
+  title: "Tournaments",
+});
+
+const notification = useNotification();
 
 const defaultInputState = {
   id: null,
-  name: null,
-  shortName: null,
   levels: [],
-  rounds: null,
+  name: null,
+  numRounds: null,
+  shortName: null,
+  status: "Open",
 };
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
+try {
+  await store.getTournaments();
+} catch (error) {
+  notification.notifyError(error);
+}
+
+const getLevels = () => form.value.levels.map((l) => l.level);
 
 const updateSelectedLevels = (chips) => {
-  form.value.levels = chips;
+  form.value.levels = [];
+  chips.forEach((level) => {
+    form.value.levels.push({ level });
+  });
 };
 
 const resetFormState = () => {
@@ -146,21 +182,36 @@ const handleEdit = (row) => {
   form.value = row.data;
 };
 
-const handleFilter = (searchTerm) => {
-  store.filteredTournaments = store.tournaments.filter(
+const searchTerm = ref(null);
+const filteredTournaments = computed(() => {
+  const query = searchTerm.value;
+  const results = store.tournaments.filter(
     (tournament) =>
-      tournament.name.toLowerCase().includes(searchTerm) ||
-      tournament.status.toLowerCase().includes(searchTerm)
+      tournament.name.toLowerCase().includes(query) ||
+      tournament.status.toLowerCase().includes(query)
   );
-};
+  return query !== null ? results : store.tournaments;
+});
 
 const updateTournament = () => {
-  store.editTournament(form.value);
+  try {
+    store.editTournament(form.value);
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Tournament updated successfully");
   resetFormState();
 };
 
 const createTournament = () => {
-  store.createTournament(form.value);
+  try {
+    store.createTournament(form.value);
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Tournament created successfully");
   resetFormState();
 };
 

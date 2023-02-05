@@ -48,14 +48,12 @@
         :color="!isValid ? 'border-red-500' : ''"
         @update="updateInput"
       />
-      <Roles
+      <Dropdown
         v-model="form.role"
         :color="!isRoleValid ? 'border-red-500' : ''"
+        label="Role"
         @update="updateInput"
       />
-      <p v-if="userStore.errorCode" class="text-danger-red">
-        {{ userStore.errorCode }}
-      </p>
       <p class="text-red-500">{{ errorMessage2 }}</p>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <div class="w-full flex justify-center">
@@ -73,17 +71,36 @@
       </div>
     </form>
   </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="handleClose()"
+  />
 </template>
 
 <script setup>
-import { useUserStore } from "../stores/auth";
-import { ref, onBeforeMount } from "vue";
+import { useUserStore } from "../stores/user";
+import { ref } from "vue";
+import { useHead, navigateTo } from "#imports";
+import useNotification from "../composables/useNotification";
+useHead({
+  title: "Signup",
+});
+
+const notification = useNotification();
 
 const userStore = useUserStore();
 
-onBeforeMount(() => {
-  userStore.errorCode = null;
-});
+if (userStore.auth) {
+  navigateTo("/");
+} else {
+  try {
+    await userStore.clearStore();
+  } catch (error) {
+    notification.notifyError(error);
+  }
+}
 
 const form = ref({
   firstName: "",
@@ -100,7 +117,7 @@ const isRoleValid = ref(true);
 const errorMessage = ref("");
 const errorMessage2 = ref("");
 
-const updateInput = (e) => {
+const updateInput = () => {
   errorMessage.value = "";
   errorMessage2.value = "";
   isValid.value = true;
@@ -108,24 +125,46 @@ const updateInput = (e) => {
 };
 
 // Call The User Store
-const registerUser = (e) => {
-  console.log(form.value.role);
-  if (form.value.password.length > 8) {
-    if (form.value.password === form.value.confirmPassword) {
-      if (form.value.role) {
-        userStore.registerUser(form.value);
-      } else {
-        isRoleValid.value = false;
-        console.log(isRoleValid);
-        errorMessage2.value = "You have to choose a role";
-      }
-    } else {
-      isValid.value = false;
-      errorMessage.value = "The password does not match";
-    }
-  } else {
+const registerUser = async () => {
+  console.log(form.value);
+  if (form.value.password.length < 8) {
     isValid.value = false;
     errorMessage.value = "The password has to be at least 8 characters";
+    return;
+  }
+
+  if (form.value.password !== form.value.confirmPassword) {
+    isValid.value = false;
+    errorMessage.value = "The password does not match";
+    return;
+  }
+
+  if (!form.value.role) {
+    isRoleValid.value = false;
+    errorMessage2.value = "You have to choose a role";
+    return;
+  }
+
+  try {
+    await userStore.registerUser({ ...form.value });
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+
+  notification.notifySuccess(
+    "Please wait for approval from admin before logging in."
+  );
+  try {
+    await userStore.clearStore();
+  } catch (error) {
+    notification.notifyError(error);
+  }
+};
+const handleClose = () => {
+  notification.dismiss();
+  if (notification.isSuccess) {
+    navigateTo("/");
   }
 };
 </script>

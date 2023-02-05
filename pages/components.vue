@@ -50,7 +50,55 @@
       @click="handleDelete"
     />
   </div>
+  <div class="flex flex-row gap-4 justify-center mt-8 mx-2">
+    <Button
+      button-text="Success Notification"
+      button-color="bg-light-green"
+      text-color="text-white"
+      @click="
+        isSuccess = true;
+        notificationMessage = 'Successfully created new tournament.';
+        notificationVisibility = !notificationVisibility;
+      "
+    />
+    <Button
+      button-text="Error Notification"
+      button-color="bg-light-red"
+      text-color="text-dark-red"
+      @click="
+        isSuccess = false;
+        notificationMessage = 'Failed to create tournament, please try again.';
+        notificationVisibility = !notificationVisibility;
+      "
+    />
+  </div>
 
+  <DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+    @yes="
+      () => {
+        handleSave();
+      }
+    "
+    @no="
+      () => {
+        handleDelete();
+      }
+    "
+  />
+
+  <Button
+    button-text="Dialog Test"
+    button-color="bg-gold"
+    type="button"
+    class="m-5 ml-8"
+    @click="modalVisibility = true"
+  />
   <Tabs :tabs="tabs" font-size="text-xl" @handle-tab="handleTabClicked" />
   <!-- Multiselect -->
   <label class="heading-montserrat">Level</label>
@@ -59,9 +107,41 @@
     :items="['Item 1', 'item 2', 'item 3']"
     @change="updateSelectedLevels"
   />
+
+  <div class="mx-8">
+    <SearchSelect
+      :items="institutions"
+      @info="getInfo"
+      @search-text="getName"
+    />
+  </div>
+
+  <div class="mx-8">
+    <Dropdown v-model="option" />
+  </div>
+
+  <!-- Notification Modal -->
+  <Notification
+    :modal-visibility="notificationVisibility"
+    :is-success="isSuccess"
+    :body="notificationMessage"
+    @close="
+      () => {
+        notificationVisibility = false;
+      }
+    "
+  />
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useInstitutionStore } from "../stores/institutions";
+
+const store = useInstitutionStore();
+const institutions = ref(store.institutions);
+const modalVisibility = ref(false);
+const option = ref("");
+
 const tabs = [
   { label: "Novice", active: false },
   { label: "Junior", active: true },
@@ -83,4 +163,16 @@ const handleTabClicked = (tab) => {
 const updateSelectedLevels = (chips) => {
   console.log("Chips selected", chips);
 };
+
+const getInfo = (data) => {
+  console.log("DATA:", data);
+};
+const getName = (name) => {
+  console.log("name:", name);
+};
+
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
 </script>

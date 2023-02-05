@@ -2,7 +2,7 @@
   <Transition name="modal">
     <div
       v-if="modalVisibility"
-      class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-slate-300 bg-opacity-60 transition"
+      class="flex justify-center items-center fixed top-0 z-50 left-0 w-full h-full bg-stone-300 bg-opacity-60 backdrop-blur transition"
     >
       <div
         v-on-click-outside="
@@ -10,7 +10,7 @@
             emit('close');
           }
         "
-        class="bg-white rounded-2xl"
+        :class="`bg-white rounded-2xl ${size}`"
       >
         <header
           class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl"
@@ -29,6 +29,7 @@ import { vOnClickOutside } from "@vueuse/components";
 
 defineProps({
   modalVisibility: { type: Boolean, default: false },
+  size: { type: String, default: "w-7/12" },
 });
 const emit = defineEmits(["close"]);
 </script>
