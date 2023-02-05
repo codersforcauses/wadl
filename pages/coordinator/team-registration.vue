@@ -10,7 +10,7 @@ useHead({
 });
 const institutionStore = useInstitutionStore();
 const tournamentStore = useTournamentStore();
-const userStore = useUserStore();
+const userStore = await useUserStore();
 const tournaments = ref(null);
 
 onMounted(async () => {

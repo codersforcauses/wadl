@@ -11,7 +11,7 @@ useHead({
 
 const errorMessage = ref(null);
 
-const userStore = useUserStore();
+const userStore = await useUserStore();
 if (userStore.auth) {
   navigateTo("/");
 } else {
@@ -69,9 +69,11 @@ watch(role, (currentValue, oldValue) => {
         placeholder="Your Password"
         type="password"
       />
-      <p v-if="errorMessage" class="text-danger-red">
-        {{ errorMessage }}
-      </p>
+      <client-only>
+        <p v-if="errorMessage" class="text-danger-red">
+          {{ errorMessage }}
+        </p>
+      </client-only>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <Button button-text="Submit" button-color="bg-gold " />
         <NuxtLink
