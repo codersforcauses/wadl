@@ -162,34 +162,34 @@ const handleEdit = (row) => {
     </div>
   </Modal>
 
-  <Header title-text="Institutions" />
-  <div class="flex items-center justify-center w-full">
-    <SearchBar
-      @handle-filter="
-        (searchString) => {
-          searchTerm = searchString;
-        }
-      "
-    />
-    <Button
-      button-text="Add"
-      button-color="bg-gold"
-      class="ml-2"
-      type="button"
-      size="medium"
-      @click="modalVisibility = true"
-    />
-  </div>
-
-  <!-- Institutions Table  View -->
-  <div class="flex content-center justify-center px-2">
+  <section
+    class="flex flex-col items-center justify-center max-w-screen max-h-screen"
+  >
+    <Header title-text="Institutions" />
+    <div class="flex items-center justify-center w-full">
+      <SearchBar
+        @handle-filter="
+          (searchString) => {
+            searchTerm = searchString;
+          }
+        "
+      />
+      <Button
+        button-text="Add"
+        button-color="bg-gold"
+        class="ml-2"
+        type="button"
+        size="medium"
+        @click="modalVisibility = true"
+      />
+    </div>
     <Table
       :headers="headers"
       :data="filteredInstitutions"
       no-data-text="No institutions registered"
       @edit="handleEdit"
     />
-  </div>
+  </section>
   <Notification
     :modal-visibility="notification.isVisible"
     :is-success="notification.isSuccess"
