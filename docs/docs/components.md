@@ -189,6 +189,8 @@ const option = ref("");
 
 **What is it?**
 
+Renders a table based on the header and data passed. A slot can be used for custom columns.
+
 Props:
 
 - `headers`
@@ -201,6 +203,64 @@ Emits:
 - `edit` Parameters: editMode, modalVisibility, data
 
 **How to use it?**
+
+```
+const headers = [
+  {
+    key: "name",
+    title: "Venue",
+  },
+  {
+    key: "roomNo",
+    title: "Room No.",
+  },
+  {
+    key: "capacity",
+    title: "Capacity",
+  },
+];
+```
+
+No custom columns required:
+
+```
+<Table
+  :headers="headers"
+  :data="filtering ? store.filteredVenues : store.venues"
+  no-data-text="No venues registered"
+  :loading="loading"
+  @edit="handleEdit"
+/>
+```
+
+Require custom columns:
+
+```
+<Table
+  :headers="headers"
+  :data="store.teams"
+  class="mt-5 mx-auto"
+  :can-edit="false"
+>
+  <template #allocatedTue="{ value }">
+    <p>
+      <CheckIcon v-if="value" class="w-6 h-6" />
+      <XMarkIcon v-else class="w-6 h-6" />
+    </p>
+  </template>
+  <template #allocatedWed="{ value }">
+    <p>
+      <CheckIcon v-if="value" class="w-6 h-6" />
+      <XMarkIcon v-else class="w-6 h-6" />
+    </p>
+  </template>
+  <template #venuePreference="{ value }">
+    <p v-for="(ven, idx) in value" :key="idx" class="text-xs">
+      {{ idx + 1 }}. {{ ven }}
+    </p>
+  </template>
+</Table>
+```
 
 ---
 
@@ -271,8 +331,33 @@ const handleTabClicked = (tab) => { };
 # Notifications
 
 **What is it?**
+A small popup that display information on a successful or unsuccessful request.
+
+Props:
+
+- `modalVisibility` Default **false**
+- `header`
+- `body` Default **New tournament successfully created**
+- `isSuccess` Default **false**
+
+Emits:
+
+- `close`
 
 **How to use it?**
+
+```
+const notification = useNotification();
+```
+
+```
+<Notification
+  :modal-visibility="notification.isVisible"
+  :is-success="notification.isSuccess"
+  :body="notification.message"
+  @close="notification.dismiss()"
+/>
+```
 
 ---
 
@@ -485,6 +570,7 @@ Props:
 # Navigation Bar and Home Button
 
 **What are they?**
+
 The home button displays the WADL logo on the navigation bar
 
 **How to use it?**
