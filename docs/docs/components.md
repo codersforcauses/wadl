@@ -1,6 +1,10 @@
+### Why use Components?
+
+Components improve web development by increasing efficiency and maintainability. They allow for separation of concerns, easier reuse and testing, and promote modular design. Using components results in a more organised, consistent and efficient codebase.
+
 ### Props and Emits
 
-Properties (`props`) are data that is passed from a parent component to a child component, while events (`emits`) are data that are passed from a child component to its parent.
+Properties (`props`) are data that is passed from the parent to a child component, while events (`emits`) are data that are passed from a child component to its parent.
 
 # Button
 
@@ -143,9 +147,58 @@ const getInfo = (item) => {
 
 ---
 
+# Dropdown
+
+**What is it?**
+Similiar to the default HTML select element, however styled to match the `MultiSelect` and `SearchSelect`
+
+Props:
+
+- `items` Default: **[ "Team Coordinator" ]**
+- `placeholder` Default: **Select Role**
+- `label` Default: **Team Coordinator**
+- `modelValue`
+- `color`
+- `disabled` Default: **false**
+
+Emits:
+
+- `change`
+- `update:modelValue` Parameter: The clicked item
+
+**How to use it?**
+
+```
+<Dropdown
+  v-model="option"
+  :items=["item1", "item 2"]
+  placeholder="Select Item"
+  color="bg-gold"
+  label="My Items"
+  :disabled="true"
+/>
+```
+
+```
+const option = ref("");
+```
+
+---
+
 # Table
 
 **What is it?**
+
+Props:
+
+- `headers`
+- `data`
+- `canEdit`
+- `noDataText` default: **No teams registered**
+
+Emits:
+
+- `edit` Parameters: editMode, modalVisibility, data
 
 **How to use it?**
 
@@ -221,6 +274,8 @@ const handleTabClicked = (tab) => { };
 
 **How to use it?**
 
+---
+
 # Form Field
 
 **What is it?**
@@ -277,14 +332,92 @@ Props:
 # Modal
 
 **What is it?**
+A modal is a small popup window that displays content on top of the main interface.
+
+Props:
+
+- `modalVisibility` Default: **false**
+- `size` Default: **w-7/12**
+
+Emits:
+
+- `close`
 
 **How to use it?**
+
+```
+<Modal
+    :modal-visibility="modalVisibility"
+    size="w-9/12"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  >
+  // Add anything you would like to display in the modal goes here
+  </Modal>
+```
+
+```
+const modalVisibility = ref(false);
+```
+
+---
 
 # Delete Dialog
 
 **What is it?**
+This Delete Dialog builds upon the modal component, it asks for confirmation before deleting an entry. Its purpose is to prevent accidental deletions.
+Emits:
+
+- `yes`
+- `no`
+- `close`
 
 **How to use it?**
+
+```
+<DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+    @yes="
+      () => {
+        handleSave();
+      }
+    "
+    @no="
+      () => {
+        handleDelete();
+      }
+    "
+  />
+```
+
+```
+const modalVisibility = ref(false);
+
+const handleSave = () => { };
+const handleDelete = () => { };
+```
+
+---
+
+# Loading
+
+**What is it?**
+
+An SVG that is a animated
+
+**How to use it?**
+
+```
+<Loading />
+```
 
 ---
 
@@ -292,22 +425,72 @@ Props:
 
 **What is it?**
 
+A button that includes an icon that are used on the admin dashboard for page navigation
+
+Props:
+
+- `title`
+- `link`
+- `icon`
+
 **How to use it?**
+
+```
+<AdminButton
+  title="Tournaments"
+  link="admin/tournaments"
+  :icon="TrophyIcon"
+/>
+```
+
+---
 
 # Admin Profile Information
 
 **What is it?**
 
+Displays the logged in users full name and role
+
+Props:
+
+- `username`
+- `role`
+
 **How to use it?**
+
+```
+<ProfileInfo :username="Coders For Causes" role="Admin" />
+```
+
+---
 
 # Home Page Level Button
 
-What is it?
+**What is it?**
 
-How to use it?
+A button that display the name of the tournament
+
+Props:
+
+- `text` Default: **tournament**
+
+**How to use it?**
+
+```
+<LevelButton :text="tournament.shortName" />
+```
+
+---
 
 # Navigation Bar and Home Button
 
-What are they?
+**What are they?**
+The home button displays the WADL logo on the navigation bar
 
-How to use them?
+**How to use it?**
+
+```
+<NavBar />
+```
+
+---
