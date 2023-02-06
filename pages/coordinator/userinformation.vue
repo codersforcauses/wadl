@@ -91,7 +91,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted, onUnmounted } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import { useHead, navigateTo } from "#imports";
 import { useUserStore } from "../../stores/user";
 import { errorCodeToMessage } from "../../misc/firebaseHelpers";
@@ -119,12 +119,6 @@ onMounted(async () => {
     infoForm.lastName = userStore.lastName;
     infoForm.phoneNumber = userStore.phoneNumber;
   }
-});
-
-onUnmounted(() => {
-  infoForm.value = null;
-  passwordForm.value = null;
-  errorMessage.value = null;
 });
 
 const updateUser = () => {
