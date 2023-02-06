@@ -22,9 +22,6 @@ export const useUserStore = defineStore("user", {
       requesting: null,
       token: null,
       institution: "",
-      errorCode: "",
-      successCode: "",
-      passwordError: "",
     };
   },
 
@@ -109,26 +106,11 @@ export const useUserStore = defineStore("user", {
         this.email,
         password.currentPassword
       );
-      await reauthenticateWithCredential($clientAuth.currentUser, cred)
-        .then(async () => {
-          await updatePassword($clientAuth.currentUser, password.password)
-            .catch((error) => {
-              console.log(error);
-            })
-            .then(() => {
-              this.successCode = "Please re-login with the new password!";
-            });
-        })
-        .catch((error) => {
-          switch (error.code) {
-            case "auth/wrong-password":
-              this.passwordError = "Wrong Password";
-              break;
-            default:
-              this.errorCode = "Error occured please try again.";
-              break;
-          }
-        });
+      await reauthenticateWithCredential($clientAuth.currentUser, cred).then(
+        async () => {
+          await updatePassword($clientAuth.currentUser, password.password);
+        }
+      );
     },
     async clearStore() {
       if (process.client) {
