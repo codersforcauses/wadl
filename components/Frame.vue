@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-lighter-grey rounded py-6 px-2">
+  <div class="bg-lighter-grey rounded-md py-6 px-2">
     <div
       :class="
         isHorizontalButtons

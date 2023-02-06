@@ -96,7 +96,6 @@ const handleRowClick = (id) => {
 };
 
 const handleEmit = (info) => {
-  console.log("hi");
   emit("edit", {
     editMode: true,
     modalVisibility: true,
