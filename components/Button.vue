@@ -27,7 +27,7 @@ import { computed } from "vue";
 
 const props = defineProps({
   buttonText: { type: String, default: "Button" },
-  buttonColor: { type: String, default: "primary" },
+  buttonColor: { type: String, default: "bg-gold" },
   size: { type: String, default: "large" },
   textColor: { type: String, default: "black" },
   loading: { type: Boolean, default: false },
