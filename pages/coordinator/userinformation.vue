@@ -79,14 +79,12 @@
       </form>
     </div>
     <Notification
-      :modal-visibility="notificationVisibility"
-      :is-success="isSuccess"
-      :body="notificationMessage"
+      :modal-visibility="notification.isVisible"
+      :is-success="notification.isSuccess"
+      :body="notification.message"
       @close="
-        () => {
-          notificationVisibility = false;
-          redirect();
-        }
+        notification.dismiss();
+        redirect();
       "
     />
   </section>
@@ -97,6 +95,7 @@ import { reactive, ref, onMounted, onUnmounted } from "vue";
 import { useHead, navigateTo } from "#imports";
 import { useUserStore } from "../../stores/user";
 import { errorCodeToMessage } from "../../misc/firebaseHelpers";
+import useNotification from "../../composables/useNotification";
 
 useHead({
   title: "User Information",
@@ -136,9 +135,7 @@ const isValid = ref(true);
 const errorMessage = ref();
 
 // Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
+const notification = useNotification();
 
 const updatePassword = async () => {
   if (passwordForm.password.length < 8) {
@@ -154,11 +151,9 @@ const updatePassword = async () => {
   }
   try {
     await userStore.updateuserPassword(passwordForm);
-    console.log("success");
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = userStore.successCode;
-    //   console.log(userStore.successCode);
+    notification.notifySuccess(
+      "Password successfully changed, please re-login."
+    );
   } catch (error) {
     errorMessage.value = errorCodeToMessage(error.code);
   }
