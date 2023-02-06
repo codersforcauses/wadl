@@ -61,7 +61,14 @@
               </p>
             </td>
             <td v-if="canEdit" class="text-right p-2">
-              <button @click.prevent="handleEmit(row)">
+              <button
+                @click.prevent="
+                  (e) => {
+                    handleEmit(row);
+                    e.stopPropagation();
+                  }
+                "
+              >
                 <PencilIcon class="w-4 h-4" />
               </button>
             </td>
@@ -88,13 +95,13 @@ const handleRowClick = (id) => {
   emit("getId", id);
 };
 
-const handleEmit = (info, e) => {
+const handleEmit = (info) => {
+  console.log("hi");
   emit("edit", {
     editMode: true,
     modalVisibility: true,
     data: { ...info },
   });
-  e.stopPropagation();
 };
 
 defineProps({
