@@ -8,6 +8,7 @@ import { useUserStore } from "../stores/user";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
+import { getAnalytics } from "firebase/analytics";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig();
@@ -25,6 +26,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const firestore = getFirestore(app);
   const auth = getAuth(app);
   const functions = getFunctions(app);
+  const analytics = getAnalytics(app);
 
   if (config.firebaseMode === "dev") {
     connectFirestoreEmulator(firestore, "localhost", 8080);
@@ -32,7 +34,20 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     connectFunctionsEmulator(functions, "localhost", 5001);
   }
 
-  const userStore = useUserStore();
+  // AUTH FUNCTIONS
+
+  const userStore = await useUserStore();
+
+  auth.onIdTokenChanged(async (user) => {
+    // on sign-in, sign-out, and token refresh.
+    if (user) {
+      const token = await user.getIdToken(true);
+      await setServerSession(token);
+    } else {
+      await setServerSession("");
+    }
+  });
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       userStore.setUser(user);
@@ -45,6 +60,16 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     provide: {
       clientFirestore: firestore,
       clientAuth: auth,
+      clientAnalytics: analytics,
     },
   };
+
+  function setServerSession(token) {
+    return $fetch("/api/session", {
+      method: "POST",
+      body: {
+        token,
+      },
+    });
+  }
 });

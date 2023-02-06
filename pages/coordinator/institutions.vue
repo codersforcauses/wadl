@@ -92,7 +92,7 @@ useHead({
   title: "Institution",
 });
 const institutionStore = useInstitutionStore();
-const userStore = useUserStore();
+const userStore = await useUserStore();
 const existingInstitution = ref(false);
 
 const notification = useNotification();
