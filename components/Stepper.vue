@@ -8,7 +8,7 @@
           }`"
         >
           <div
-            v-if="state === stateLength && index === stateLength - 1"
+            v-if="index + 1 === stateLength && stage === stateLength"
             class="flex text-l text-white place-content-center"
           >
             <CheckIcon class="text-white" />
@@ -23,6 +23,7 @@
             <div v-else>
               <CheckIcon class="text-white" />
             </div>
+            <div class="w-16 h-px ml-6 mr-6 bg-light-grey" />
           </div>
         </div>
         <div class="w-px h-16 ml-3 bg-light-grey" />
@@ -33,10 +34,12 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+// import { ref } from "vue";
 import { CheckIcon } from "@heroicons/vue/20/solid";
 
-const stage = ref(4);
+const stage = 4;
 const stateList = ["Open", "Closed", "Running", "Complete"];
 const stateLength = stateList.length;
+console.log("stage is: ", stage.value);
+console.log("stateLength is: ", stateLength);
 </script>
