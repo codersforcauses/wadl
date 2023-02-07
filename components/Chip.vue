@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
+import { PlusIcon } from "@heroicons/vue/24/solid";
 
 const props = defineProps({
   text: {
@@ -18,6 +19,10 @@ const props = defineProps({
   size: {
     type: String,
     default: "medium",
+  },
+  canRemove: {
+    type: Boolean,
+    default: true,
   },
 });
 defineEmits(["removeChip"]);
@@ -49,7 +54,11 @@ const chipSize = computed(() => {
       "
     >
       <div class="hover:bg-amber-500 transition rounded-lg flex flex-nowrap">
-        <XMarkIcon class="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+        <XMarkIcon
+          v-if="canRemove"
+          class="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5"
+        />
+        <PlusIcon v-else class="w-4 h-4" />
       </div>
     </button>
   </span>

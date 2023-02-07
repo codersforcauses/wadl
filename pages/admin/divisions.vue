@@ -38,8 +38,8 @@
       <DivisionPanel
         v-for="(division, idx) in tournamentDivisions"
         :key="idx"
-        :division="division"
-        :tournament-id="tournamentStore.tournaments[2].id"
+        :division="division.division"
+        :tournament-id="tournamentStore.tournaments[1].id"
         level="Senior"
       />
 
@@ -69,7 +69,7 @@ const tournamentStore = useTournamentStore();
 await tournamentStore.getTournaments();
 
 console.log(tournamentStore.tournaments);
-const exampleTournament = tournamentStore.tournaments[2].levels;
+const exampleTournament = tournamentStore.tournaments[1].levels;
 const tournamentDivisions = exampleTournament[0].divisions;
 console.log(exampleTournament);
 console.log(tournamentDivisions);
