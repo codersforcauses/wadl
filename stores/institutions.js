@@ -304,7 +304,7 @@ export const useInstitutionStore = defineStore("institution", {
         console.log("NO TEAMS", e);
       }
     },
-    async deleteInstitution(id) {
+    deleteInstitution(id) {
       const index = this.institutions.findIndex((t) => {
         return id === t.id;
       });
