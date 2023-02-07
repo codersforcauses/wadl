@@ -113,7 +113,7 @@
     button-color="bg-gold"
     type="button"
     class="m-5 ml-8"
-    @click="teamsVisibility = true"
+    @click="checkThing()"
   />
   <Tabs :tabs="tabs" font-size="text-xl" @handle-tab="handleTabClicked" />
   <!-- Multiselect -->
@@ -152,8 +152,10 @@
 <script setup>
 import { ref } from "vue";
 import { useInstitutionStore } from "../stores/institutions";
+import { useTeamStore } from "../stores/teams";
 
 const store = useInstitutionStore();
+const team = useTeamStore();
 const institutions = ref(store.institutions);
 const modalVisibility = ref(false);
 const teamsVisibility = ref(false);
@@ -186,6 +188,10 @@ const getInfo = (data) => {
 };
 const getName = (name) => {
   console.log("name:", name);
+};
+
+const checkThing = () => {
+  console.log(team.teams[0].name);
 };
 
 // Notification Modal
