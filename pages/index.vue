@@ -27,12 +27,15 @@ import LevelButton from "../components/HomePage/LevelButton.vue";
 import { useTournamentStore } from "../stores/tournaments";
 import { onMounted } from "vue";
 import { useHead } from "#imports";
+import useLog from "../composables/useLog";
 useHead({
   title: "WADL",
 });
+const log = useLog();
 const store = useTournamentStore();
 
 onMounted(() => {
   store.getTournaments();
+  log.event("load page");
 });
 </script>
