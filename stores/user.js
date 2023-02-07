@@ -1,9 +1,12 @@
 import { defineStore } from "pinia";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 } from "firebase/auth";
 import { useNuxtApp } from "#imports";
 
@@ -112,6 +115,27 @@ export const useUserStore = defineStore("user", {
           this.errorCode = "There is no user that has this email assigned.";
         }
       });
+    },
+    async updateUser(user) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "users", this.auth.uid);
+      await updateDoc(ref, {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+      });
+    },
+    async updateuserPassword(password) {
+      const { $clientAuth } = useNuxtApp();
+      const cred = EmailAuthProvider.credential(
+        this.email,
+        password.currentPassword
+      );
+      await reauthenticateWithCredential($clientAuth.currentUser, cred).then(
+        async () => {
+          await updatePassword($clientAuth.currentUser, password.password);
+        }
+      );
     },
     async clearStore() {
       if (process.client) {

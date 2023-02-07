@@ -9,23 +9,23 @@ edit_uri: edit/main/docs/docs/
 theme:
   name: material
   palette:
-  - media: "(prefers-color-scheme: light)" # below here is a palette for light mode
-    primary: yellow
-    scheme: default
-    toggle:
-      icon: material/toggle-switch-off-outline
-      name: Switch to dark mode
-  - media: "(prefers-color-scheme: dark)"  # below here is a palette for dark mode
-    primary: yellow
-    scheme: slate
-    toggle:
-      icon: material/toggle-switch
-      name: Switch to light mode
+    - media: "(prefers-color-scheme: light)" # below here is a palette for light mode
+      primary: yellow
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)" # below here is a palette for dark mode
+      primary: yellow
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
   logo: images/TextlessTransparentLogo.png
   favicon: images/TextlessTransparentLogo.png
   features: # Refer to https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/
-      - navigation.instant
+    - navigation.instant
   #   - navigation.tabs
 plugins:
   - search
@@ -33,17 +33,6 @@ plugins:
       version: 8.8.2
       arguments:
         theme: white # change this as you see fit - ["white", "dark"]
-      
-  # This is the PDF Generator of the documentation
-  # More information here  https://github.com/orzih/mkdocs-with-pdf
-  # note at this current moment, to use this feature, the following must be met
-  # - Relative Path only with images
-  # - Mermaid Markdown doesn't render at the moment in PDF
-  - with-pdf:
-      author: Dominic Cain
-      cover_title: WADL Project Documentation
-      cover_logo: ./docs/images/TextlessTransparentLogo.png
-      enabled_if_env: ENABLE_PDF_EXPORT # This prevents generation of pdf when using `mkdocs serve` because it takes a long time. This will however generate the PDF when the environment variable is setup OR in the github action
 
 # These are markdown extensions I have included that makes the documentation look nicer
 markdown_extensions:
@@ -77,9 +66,10 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:mermaid2.fence_mermaid
+          format:
+            !!python/name:mermaid2.fence_mermaid # This is the extra javascript included in the documentation
 
-# This is the extra javascript included in the documentation
+
 extra_javascript:
   - https://unpkg.com/mermaid@8.8.2/dist/mermaid.min.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
@@ -88,6 +78,7 @@ extra_javascript:
 # This is where you adjust the hierarchy if the documentation
 # You can erase this if you want. If you erase this, Mkdocs will alphabetically sort your documentation
 nav:
-- Home: index.md
-- Installation Guide: installation-guide.md
-- First Page: first-page.md
+  - Home: index.md
+  - Installation Guide: installation-guide.md
+  - Team Coordinator Guide: user-guide.md
+  - Components: components.md
