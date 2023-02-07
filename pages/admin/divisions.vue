@@ -33,26 +33,46 @@
       </div>
     </div>
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
       <DivisionPanel
-        v-for="(division, idx) in divisions"
+        v-for="(division, idx) in tournamentDivisions"
         :key="idx"
-        :division="idx + 1"
+        :division="division"
+        :tournament-id="tournamentStore.tournaments[2].id"
+        level="Senior"
       />
 
       <div
-        class="flex justify-center items-center bg-light-grey/10 mt-4 p-2 px-5 rounded-md h-64 border border-light-grey/20"
+        class="flex justify-center items-center bg-light-grey/10 mt-4 p-2 px-5 rounded-md h-64 border-2 border-light-grey/20"
         @click="addNewDivision"
       >
-        <PlusIcon class="w-14 h-14 text-light-grey/30" />
+        <PlusIcon class="w-12 h-12 text-light-grey/30" />
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
+/* TODO:
+  - Dynamic Routing (Waiting on #172)
+  - Dont hard code current tournament, level
+  - Handle first time allocating divisions
+  - Update firebase (divisions and teams document)
+  - Open Modal on plus click
+
+*/
 import { PlusIcon } from "@heroicons/vue/24/solid";
+import { useTournamentStore } from "../../stores/tournaments";
+
+const tournamentStore = useTournamentStore();
+await tournamentStore.getTournaments();
+
+console.log(tournamentStore.tournaments);
+const exampleTournament = tournamentStore.tournaments[2].levels;
+const tournamentDivisions = exampleTournament[0].divisions;
+console.log(exampleTournament);
+console.log(tournamentDivisions);
 
 const initialState = {
   division: 1,
@@ -63,13 +83,11 @@ const initialState = {
 const divisions = ref([initialState]);
 
 const addNewDivision = () => {
-  let currentDivision = divisions.value.length;
-
   const newState = {
-    division: currentDivision + 1,
+    division: tournamentDivisions.length + 1,
     venue: null,
     teams: null,
   };
-  divisions.value.push(newState);
+  tournamentDivisions.push(newState);
 };
 </script>
