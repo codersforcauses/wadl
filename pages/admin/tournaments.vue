@@ -97,42 +97,54 @@
     </div>
   </Modal>
 
-  <Header title-text="Tournaments" />
+  <section
+    class="flex flex-col items-center justify-center max-w-screen max-h-screen"
+  >
+    <Header title-text="Tournaments" />
 
-  <div class="flex items-center justify-center w-full">
-    <SearchBar
-      @handle-filter="
-        (searchString) => {
-          searchTerm = searchString;
-        }
-      "
-    />
-    <Button
-      button-text="Add"
-      button-color="bg-gold"
-      class="ml-2"
-      type="button"
-      size="medium"
-      @click="modalVisibility = true"
-    />
-  </div>
+    <div class="flex items-center justify-center w-full">
+      <SearchBar
+        @handle-filter="
+          (searchString) => {
+            searchTerm = searchString;
+          }
+        "
+      />
+      <Button
+        button-text="Add"
+        button-color="bg-gold"
+        class="ml-2"
+        type="button"
+        size="medium"
+        @click="modalVisibility = true"
+      />
+    </div>
 
-  <div class="flex content-center justify-center px-2">
     <Table
       :headers="headers"
       :data="filteredTournaments"
       no-data-text="No tournaments registered"
       @edit="handleEdit"
     />
-  </div>
+  </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>
 <script setup>
 import { ref, computed } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Tournaments",
 });
+
+const notification = useNotification();
+
 const defaultInputState = {
   id: null,
   levels: [],
@@ -146,7 +158,11 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
-store.getTournaments();
+try {
+  await store.getTournaments();
+} catch (error) {
+  notification.notifyError(error);
+}
 
 const getLevels = () => form.value.levels.map((l) => l.level);
 
@@ -180,12 +196,24 @@ const filteredTournaments = computed(() => {
 });
 
 const updateTournament = () => {
-  store.editTournament(form.value);
+  try {
+    store.editTournament(form.value);
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Tournament updated successfully");
   resetFormState();
 };
 
 const createTournament = () => {
-  store.createTournament(form.value);
+  try {
+    store.createTournament(form.value);
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Tournament created successfully");
   resetFormState();
 };
 
@@ -197,6 +225,10 @@ const headers = [
   {
     key: "status",
     title: "Status",
+  },
+  {
+    key: "numRounds",
+    title: "Rounds",
   },
 ];
 </script>

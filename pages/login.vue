@@ -4,11 +4,14 @@ import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user";
 import { useHead } from "#imports";
+import { errorCodeToMessage } from "../misc/firebaseHelpers";
 useHead({
   title: "Login",
 });
 
-const userStore = useUserStore();
+const errorMessage = ref(null);
+
+const userStore = await useUserStore();
 if (userStore.auth) {
   navigateTo("/");
 } else {
@@ -21,8 +24,12 @@ const form = ref({
   password: "",
 });
 
-const handleLogin = () => {
-  userStore.loginUser(form.value);
+const handleLogin = async () => {
+  try {
+    await userStore.loginUser(form.value);
+  } catch (error) {
+    errorMessage.value = errorCodeToMessage(error.code);
+  }
 };
 
 // Wait for the role to be updated before redirecting
@@ -62,9 +69,11 @@ watch(role, (currentValue, oldValue) => {
         placeholder="Your Password"
         type="password"
       />
-      <p v-if="userStore.errorCode" class="text-danger-red">
-        {{ userStore.errorCode }}
-      </p>
+      <client-only>
+        <p v-if="errorMessage" class="text-danger-red">
+          {{ errorMessage }}
+        </p>
+      </client-only>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <Button button-text="Submit" button-color="bg-gold " />
 

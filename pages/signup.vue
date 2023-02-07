@@ -54,9 +54,6 @@
         label="Role"
         @update="updateInput"
       />
-      <p v-if="userStore.errorCode" class="text-danger-red">
-        {{ userStore.errorCode }}
-      </p>
       <p class="text-red-500">{{ errorMessage2 }}</p>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <div class="w-full flex justify-center">
@@ -75,15 +72,10 @@
     </form>
   </section>
   <Notification
-    :modal-visibility="notificationVisibility"
-    :is-success="isSuccess"
-    :body="notificationMessage"
-    @close="
-      () => {
-        notificationVisibility = false;
-        redirect();
-      }
-    "
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="handleClose()"
   />
 </template>
 
@@ -91,15 +83,23 @@
 import { useUserStore } from "../stores/user";
 import { ref } from "vue";
 import { useHead, navigateTo } from "#imports";
+import useNotification from "../composables/useNotification";
 useHead({
   title: "Signup",
 });
-const userStore = useUserStore();
+
+const notification = useNotification();
+
+const userStore = await useUserStore();
 
 if (userStore.auth) {
   navigateTo("/");
 } else {
-  userStore.clearStore();
+  try {
+    await userStore.clearStore();
+  } catch (error) {
+    notification.notifyError(error);
+  }
 }
 
 const form = ref({
@@ -124,11 +124,6 @@ const updateInput = () => {
   isRoleValid.value = true;
 };
 
-// Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
-
 // Call The User Store
 const registerUser = async () => {
   console.log(form.value);
@@ -150,15 +145,26 @@ const registerUser = async () => {
     return;
   }
 
-  await userStore.registerUser({ ...form.value });
-  if (!userStore.errorCode) {
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = userStore.successCode;
+  try {
+    await userStore.registerUser({ ...form.value });
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+
+  notification.notifySuccess(
+    "Please wait for approval from admin before logging in."
+  );
+  try {
     await userStore.clearStore();
+  } catch (error) {
+    notification.notifyError(error);
   }
 };
-const redirect = () => {
-  navigateTo("/");
+const handleClose = () => {
+  notification.dismiss();
+  if (notification.isSuccess) {
+    navigateTo("/");
+  }
 };
 </script>

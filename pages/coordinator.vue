@@ -5,7 +5,7 @@ definePageMeta({
   middleware: ["team"],
 });
 
-const userStore = useUserStore();
+const userStore = await useUserStore();
 const isCoordinator = userStore.role === "Team Coordinator";
 </script>
 
