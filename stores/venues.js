@@ -40,7 +40,7 @@ export const useVenueStore = defineStore("venue", {
         this.venues.push({ id: doc.id, ...doc.data() });
       });
     },
-    async deleteVenue(id) {
+   deleteVenue(id) {
       const index = this.venues.findIndex((t) => {
         return id === t.id;
       });
