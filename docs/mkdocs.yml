@@ -69,6 +69,7 @@ markdown_extensions:
           format:
             !!python/name:mermaid2.fence_mermaid # This is the extra javascript included in the documentation
 
+
 extra_javascript:
   - https://unpkg.com/mermaid@8.8.2/dist/mermaid.min.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
@@ -79,4 +80,5 @@ extra_javascript:
 nav:
   - Home: index.md
   - Installation Guide: installation-guide.md
+  - Team Coordinator Guide: user-guide.md
   - Components: components.md
