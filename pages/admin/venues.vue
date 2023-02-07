@@ -158,7 +158,6 @@ const headers = [
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
-            class=""
             :loading="modalLoading"
           />
         </div>
