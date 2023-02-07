@@ -40,7 +40,6 @@ export const useTeamStore = defineStore("team", {
       // const { $db } = useNuxtApp();
     },
     async getTeamByTournamentDivision(tournamentId, level, division) {
-      console.log("%^%#$%^#", tournamentId, level, division);
       this.teams = [];
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;

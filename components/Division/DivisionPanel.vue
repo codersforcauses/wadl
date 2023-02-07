@@ -9,7 +9,13 @@
       </div>
       <PlusIcon class="w-6 h-6 bg-light-orange-gold rounded-full" />
     </div>
-    <Dropdown class="my-4" placeholder="Select Venue" />
+    <Dropdown
+      class="my-4"
+      v-modal="currentVenue"
+      :items="venues"
+      placeholder="Select Venue"
+      :isVenue="true"
+    />
     <div v-for="team in teamStore.divisions" :key="team.id">
       <Chip
         v-if="team.division == division"
@@ -23,6 +29,7 @@
 <script setup>
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
+import { useVenueStore } from "../../stores/venues";
 
 const props = defineProps({
   division: {
@@ -40,13 +47,64 @@ const props = defineProps({
 });
 
 /* TODO:
-  - Load venues into dropdown or multiselect (finding out this info from client). combine venue name and week, day available
   - Change chip color based on venue preference
+  - convert venues back into venueData object { name: "abc", day: "tue", week: 1}
+  - store division data when updated with venue and teams in store then it will update on submit
 
 
 */
+const venueData = [
+  {
+    week: 1,
+    day: "Tuesday",
+    venue: "0QF7MLBkUDAvuqxfU73n",
+  },
+  {
+    week: 1,
+    day: "Tuesday",
+    venue: "0kxcHd49GSKvLhRwsir7",
+  },
+  {
+    week: 1,
+    day: "Wednesday",
+    venue: "0kxcHd49GSKvLhRwsir7",
+  },
+  {
+    week: 1,
+    day: "Wednesday",
+    venue: "0QF7MLBkUDAvuqxfU73n",
+  },
+  { week: 2, day: "Wednesday", venue: "8fdv4qUT1hcbSPP95Omu" },
+  {
+    week: 2,
+    day: "Tuesday",
+    venue: "0kxcHd49GSKvLhRwsir7",
+  },
+  {
+    week: 2,
+    day: "Tuesday",
+    venue: "8fdv4qUT1hcbSPP95Omu",
+  },
+];
 
 const teamStore = useTeamStore();
+const venueStore = useVenueStore();
+const venues = ref([]);
+const currentVenue = ref("");
+
+const handleVenues = () => {
+  venueData.forEach((v) => {
+    Promise.resolve(
+      venueStore.getVenuesById(v.venue, v.week, v.day).then((val) => {
+        console.log(val);
+        const venueData = val.name + " " + val.week + " " + val.day;
+        venues.value.push(venueData);
+      })
+    );
+  });
+};
+
+handleVenues();
 
 await teamStore.getTeamByTournamentDivision(
   props.tournamentId,
