@@ -75,7 +75,7 @@ export const useTournamentStore = defineStore("tournament", {
         }
       });
     },
-    async deleteTournament(id) {
+    deleteTournament(id) {
       const index = this.tournaments.findIndex((t) => {
         return id === t.id;
       });
