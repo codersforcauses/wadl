@@ -3,14 +3,12 @@ import { defineNuxtRouteMiddleware, navigateTo } from "#imports";
 import { useTournamentStore } from "../stores/tournaments";
 
 export default defineNuxtRouteMiddleware(async (to, _from) => {
-  // NOTE: Nuxt 3.0.0 does not support server side access to client state
-  // If you are seeing this further down the line, refactor this funciton
-  // to run server side for better security.
-
+  // Running on client only to prevent routing conflicts -- admin
+  // route and log in route conflicting. Important routes are still protected.
   if (process.client) {
-    const userStore = useUserStore();
+    const userStore = await useUserStore();
     if (userStore.requesting) {
-      userStore.clearStore();
+      await userStore.clearStore();
     }
 
     const tournamentStore = useTournamentStore();

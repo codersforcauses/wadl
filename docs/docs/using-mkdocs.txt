@@ -1,0 +1,17 @@
+For full documentation visit:
+
+-   mkdocs.org (mkdocs.org) for the generic MkDocs
+-   PyMdown Extensions (https://facelessuser.github.io/pymdown-extensions/) for the different extensions that are installed
+-   MkDocs Material (https://squidfunk.github.io/mkdocs-material/) for the customisation of the web server documentation.
+
+
+Installation
+$ pip install -r requirements.txt     - for Documentation requirements
+
+
+Commands
+$ mkdocs build            - Build the documentation site.
+$ mkdocs serve            - Start the live-reloading docs server. Very helpful when you want to take a look at the docs before deploying.
+
+$ mkdocs -h               - Print help message and exit.
+$ mkdocs gh-deploy        - Deploy in github pages

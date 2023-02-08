@@ -1,14 +1,14 @@
 <!-- eslint-disable no-undef -->
 <script setup>
 import { useAdminStore } from "../../stores/admin";
-import { ref, watch } from "vue";
-import { storeToRefs } from "pinia";
+import { ref } from "vue";
 import { useHead } from "#imports";
+import { errorCodeToMessage } from "../../misc/firebaseHelpers";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Create Admin",
 });
 const userStore = useAdminStore();
-const { errorCode } = storeToRefs(userStore);
 const form = ref({
   firstName: "",
   lastName: "",
@@ -19,16 +19,27 @@ const form = ref({
   role: "",
 });
 
-// Call The User Store
-const registerUser = () => {
-  userStore.createAdmin(form.value);
+const notification = useNotification();
+const errorMessage = ref(null);
+
+const handleClose = () => {
+  if (notification.isSuccess) {
+    navigateTo({ path: "/admin" });
+  } else {
+    notification.dismiss();
+  }
 };
 
-watch(errorCode, (currentValue, oldValue) => {
-  if (currentValue === "") {
-    navigateTo({ path: "/admin" });
+// Call The User Store
+const registerUser = async () => {
+  try {
+    await userStore.createAdmin(form.value);
+  } catch (error) {
+    errorMessage.value = errorCodeToMessage(error.code);
+    return;
   }
-});
+  notification.notifySuccess("Created a new admin successfully");
+};
 </script>
 <template>
   <section class="flex justify-center items-center h-[calc(100vh-72px)]">
@@ -67,8 +78,8 @@ watch(errorCode, (currentValue, oldValue) => {
         placeholder="Confirm Password"
         type="password"
       />
-      <p v-if="userStore.errorCode" class="text-danger-red">
-        {{ userStore.errorCode }}
+      <p v-if="errorMessage" class="text-danger-red">
+        {{ errorMessage }}
       </p>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <div class="w-full flex justify-center">
@@ -77,4 +88,10 @@ watch(errorCode, (currentValue, oldValue) => {
       </div>
     </form>
   </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="handleClose()"
+  />
 </template>
