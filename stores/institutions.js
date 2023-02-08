@@ -126,6 +126,7 @@ export const useInstitutionStore = defineStore("institution", {
           name: institution.name,
           email: institution.email,
           number: institution.number,
+          code: institution.code,
           abbreviation: institution.abbreviation,
         };
         if (userStore.role !== "Team Coordinator") {
