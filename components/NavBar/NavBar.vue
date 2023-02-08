@@ -90,11 +90,6 @@
           @click="visibility = false"
         />
         <HamburgerListItem
-          val="Change Password"
-          dest="/coordinator/changepassword"
-          @click="visibility = false"
-        />
-        <HamburgerListItem
           val="Signout"
           dest="/"
           @click="(visibility = false), userStore.clearStore()"
@@ -111,7 +106,7 @@ import { storeToRefs } from "pinia";
 import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 import { ref } from "vue";
 
-const userStore = useUserStore();
+const userStore = await useUserStore();
 // Will be updated when user store changes
 const { auth, firstName, role } = storeToRefs(userStore);
 

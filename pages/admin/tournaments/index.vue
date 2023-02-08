@@ -97,33 +97,36 @@
     </div>
   </Modal>
 
-  <Header title-text="Tournaments" />
-  <div class="flex items-center justify-center w-full">
-    <SearchBar
-      @handle-filter="
-        (searchString) => {
-          searchTerm = searchString;
-        }
-      "
-    />
-    <Button
-      button-text="Add"
-      button-color="bg-gold"
-      class="ml-2"
-      type="button"
-      size="medium"
-      @click="modalVisibility = true"
-    />
-  </div>
-  <div class="flex content-center justify-center h-[calc(74vh-72px)] px-2">
+  <section
+    class="flex flex-col items-center justify-center max-w-screen max-h-screen"
+  >
+    <Header title-text="Tournaments" />
+
+    <div class="flex items-center justify-center w-full">
+      <SearchBar
+        @handle-filter="
+          (searchString) => {
+            searchTerm = searchString;
+          }
+        "
+      />
+      <Button
+        button-text="Add"
+        button-color="bg-gold"
+        class="ml-2"
+        type="button"
+        size="medium"
+        @click="modalVisibility = true"
+      />
+    </div>
+
     <Table
       :headers="headers"
       :data="filteredTournaments"
       @edit="handleEdit"
       @get-id="handleId"
     />
-  </div>
-
+  </section>
   <Notification
     :modal-visibility="notification.isVisible"
     :is-success="notification.isSuccess"
@@ -233,6 +236,10 @@ const headers = [
   {
     key: "status",
     title: "Status",
+  },
+  {
+    key: "numRounds",
+    title: "Rounds",
   },
 ];
 </script>

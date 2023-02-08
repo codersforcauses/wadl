@@ -19,7 +19,7 @@ import { useHead } from "#imports";
 useHead({
   title: "Admin",
 });
-const user = useUserStore();
+const user = await useUserStore();
 
 const exportTeams = async () => {
   const store = useTeamStore();
@@ -60,7 +60,7 @@ const exportTeams = async () => {
         link="admin/institutions"
         :icon="BuildingLibraryIcon"
       />
-      <AdminButton title="Contacts" link="" :icon="UsersIcon" />
+      <AdminButton title="Contacts" link="/admin/contacts" :icon="UsersIcon" />
       <AdminButton title="Teams" link="/admin/teams" :icon="UserGroupIcon" />
       <AdminButton title="Venues" link="/admin/venues" :icon="MapPinIcon" />
       <AdminButton title="Fixtures" link="" :icon="TableCellsIcon" />
