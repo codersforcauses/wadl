@@ -4,13 +4,16 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "dev:emu": "yarn firebase & (sleep 15 && yarn dev)",
+    "dev:emu:w": "yarn firebase:w & (sleep 15 && yarn dev)",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore --fix .",
     "firebase": "yarn emu:stop & cd Firebase && firebase emulators:start --import=dummyData",
+    "firebase:w": "yarn emu:stop:w & cd Firebase && firebase emulators:start --import=dummyData",
     "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill",
+    "emu:stop:w": "FOR /F \"tokens=5 delims= \" %P IN ('netstat -ano -p tcp ^| findstr \":9099 :5001 :8080 :8085 :9199\"') DO taskkill /F /PID %P",
     "dev:docker": "docker-compose up"
   },
   "devDependencies": {
