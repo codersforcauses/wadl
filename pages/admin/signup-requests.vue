@@ -33,7 +33,7 @@ onUnmounted(() => {
 
 const filteredUsers = computed(() => {
   const query = searchTerm.value;
-  if (query === "") return adminStore.requestingUsers;
+  if (query === "") return adminStore.getRequestingUsers;
 
   return adminStore.getRequestingUsers.filter(
     (user) =>
@@ -43,7 +43,6 @@ const filteredUsers = computed(() => {
       user.role?.toLowerCase().includes(query)
   );
 });
-
 const headers = [
   {
     key: "firstName",
