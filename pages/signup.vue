@@ -90,7 +90,7 @@ useHead({
 
 const notification = useNotification();
 
-const userStore = useUserStore();
+const userStore = await useUserStore();
 
 if (userStore.auth) {
   navigateTo("/");
