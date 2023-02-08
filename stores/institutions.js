@@ -25,6 +25,7 @@ export const useInstitutionStore = defineStore("institution", {
   getters: {},
   actions: {
     async getInstitutions() {
+      this.institutions = [];
       const { $clientFirestore } = useNuxtApp();
       const ref = collection($clientFirestore, "institutions");
       const querySnapshot = await getDocs(ref);
