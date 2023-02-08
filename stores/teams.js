@@ -32,6 +32,9 @@ export const useTeamStore = defineStore("team", {
         this.teams.push(team);
       });
     },
+    async getTeamsByLevel() {
+      const { $clientFirestore } = useNuxtApp();
+    },
     async editTeam(team) {
       // const { $db } = useNuxtApp();
     },

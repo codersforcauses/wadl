@@ -161,6 +161,8 @@ const modalVisibility = ref(false);
 const teamsVisibility = ref(false);
 const option = ref("");
 
+team.getTeams();
+
 const tabs = [
   { label: "Novice", active: false },
   { label: "Junior", active: true },
@@ -191,7 +193,7 @@ const getName = (name) => {
 };
 
 const checkThing = () => {
-  console.log(team.teams[0].name);
+  console.log(team.teams);
 };
 
 // Notification Modal
