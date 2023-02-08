@@ -9,9 +9,9 @@ const teamStore = useTeamStore();
 const venueStore = useVenueStore();
 const route = useRoute();
 
-onMounted(() => {
-  teamStore.getTeams();
-  venueStore.getVenues();
+onMounted(async () => {
+  await teamStore.getTeams();
+  await venueStore.getVenues();
 });
 
 const headers = [
@@ -60,24 +60,24 @@ const roundTabs = tournamentStore.getRunning.reduce((arr, tournament) => {
   return arr;
 }, []);
 
-const hasNotSelectedRoundTab = ref(true);
 const tableData = ref([]);
 const levelSelected = ref("Junior");
 const roundSelected = ref(undefined);
 const levelTabsKey = ref(0);
+const roundNameText = ref("");
 
-const levelClicked = (tabName) => {
+const handleLevel = (tabName) => {
   levelSelected.value = tabName;
-  tableData.value = [];
   levelTabsKey.value++;
+  tableData.value = [];
   roundTabs.forEach((round) => (round.active = false));
   roundSelected.value = undefined;
-  hasNotSelectedRoundTab.value = true;
+  roundNameText.value = "";
 };
 
-const roundClicked = (roundName) => {
+const handleRound = (roundName) => {
   tableData.value = [];
-  hasNotSelectedRoundTab.value = false;
+  roundNameText.value = roundName;
   roundSelected.value = parseInt(roundName.split("")[roundName.length - 1]);
 
   const selectedTournament = tournamentStore.getRunning.filter(
@@ -110,18 +110,18 @@ const roundClicked = (roundName) => {
       if (matchup.round === roundSelected.value) {
         const row = {
           div: div.division,
-          venue: "",
+          venue: venueStore.venues.find((venue) => venue.id === matchup.venueId)
+            .name,
           date,
           time,
           affirmative: teamStore.teams.find(
             (team) => team.id === matchup.affirmativeTeam
-          ).name,
+          )?.name,
           negative: teamStore.teams.find(
             (team) => team.id === matchup.negativeTeam
-          ).name,
+          )?.name,
           topic: matchup.topic,
         };
-        console.log(row);
         tableData.value.push(row);
       }
     });
@@ -129,34 +129,38 @@ const roundClicked = (roundName) => {
 };
 
 const handleFilter = (searchTerm) => {
-  tableData.value = tableData.value.filter(
-    (data) =>
-      data?.div.toString().toLowerCase().includes(searchTerm) ||
-      data?.venue.toLowerCase().includes(searchTerm) ||
-      data?.date.toLowerCase().includes(searchTerm) ||
-      data?.time.toLowerCase().includes(searchTerm) ||
-      data?.affirmative.toLowerCase().includes(searchTerm) ||
-      data?.negative.toLowerCase().includes(searchTerm) ||
-      data?.topic.toLowerCase().includes(searchTerm)
-  );
+  searchTerm
+    ? (tableData.value = tableData.value.filter(
+        (data) =>
+          data?.div?.toString().toLowerCase().includes(searchTerm) ||
+          data?.venue?.toLowerCase().includes(searchTerm) ||
+          data?.date?.toLowerCase().includes(searchTerm) ||
+          data?.time?.toLowerCase().includes(searchTerm) ||
+          data?.affirmative?.toLowerCase().includes(searchTerm) ||
+          data?.negative?.toLowerCase().includes(searchTerm) ||
+          data?.topic?.toLowerCase().includes(searchTerm)
+      ))
+    : handleRound(roundNameText.value);
 };
 </script>
 
 <template>
-  <Tabs :tabs="levelTabs" font-size="text-xl" @handle-tab="levelClicked" />
+  <Tabs :tabs="levelTabs" font-size="text-xl" @handle-tab="handleLevel" />
   <div class="flex items-center justify-center w-full">
     <SearchBar @handle-filter="handleFilter" />
   </div>
   <Tabs
     :tabs="roundTabs"
     font-size="text-base"
-    @handle-tab="roundClicked"
+    @handle-tab="handleRound"
     :key="levelTabsKey"
   />
-  <Table
-    :headers="headers"
-    :data="tableData"
-    :can-edit="false"
-    no-data-text="Please select a round"
-  />
+  <div class="flex justify-center w-full">
+    <Table
+      :headers="headers"
+      :data="tableData"
+      :can-edit="false"
+      no-data-text="Please select a round"
+    />
+  </div>
 </template>
