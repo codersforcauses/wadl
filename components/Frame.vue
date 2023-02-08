@@ -35,7 +35,7 @@
           :text-color="textColors[index]"
           :size="buttonSize"
           class="my-2 mx-2"
-          @click="emit(buttonClicked, buttonText, subtitle)"
+          @click="emit('buttonClicked', buttonText, subtitle)"
         />
       </div>
     </div>
@@ -74,5 +74,5 @@ defineProps({
   },
 });
 
-const emit = defineEmits(["buttonClicked"]);
+const emit = defineEmits("buttonClicked");
 </script>
