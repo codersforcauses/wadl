@@ -28,30 +28,14 @@
         "
       >
         <Button
-          :button-text="buttonTexts[0]"
-          :button-color="buttonColors[0]"
-          :text-color="textColors[0]"
+          v-for="(buttonText, index) in buttonTexts"
+          :key="buttonText"
+          :button-text="buttonTexts[index]"
+          :button-color="buttonColors[index]"
+          :text-color="textColors[index]"
           :size="buttonSize"
           class="my-2 mx-2"
-          @click="emit('button1Clicked')"
-        />
-        <Button
-          v-if="buttonTexts.length > 1"
-          :button-text="buttonTexts[1]"
-          :button-color="buttonColors[1]"
-          :text-color="textColors[1]"
-          :size="buttonSize"
-          class="my-2 mx-2"
-          @click="emit('button2Clicked')"
-        />
-        <Button
-          v-if="buttonTexts.length > 2"
-          :button-text="buttonTexts[2]"
-          :button-color="buttonColors[2]"
-          :text-color="textColors[2]"
-          :size="buttonSize"
-          class="my-2 mx-2"
-          @click="emit('button3Clicked')"
+          @click="emit(buttonClicked, buttonText, subtitle)"
         />
       </div>
     </div>
@@ -90,9 +74,5 @@ defineProps({
   },
 });
 
-const emit = defineEmits([
-  "button1Clicked",
-  "button2Clicked",
-  "button3Clicked",
-]);
+const emit = defineEmits(["buttonClicked"]);
 </script>

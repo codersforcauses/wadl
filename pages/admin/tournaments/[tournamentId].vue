@@ -16,21 +16,7 @@
           subtitle="NOVICE"
           button-size="small"
           :is-horizontal-buttons="false"
-          @button1-clicked="
-            () => {
-              print('Novice Teams');
-            }
-          "
-          @button2-clicked="
-            () => {
-              print('Novice Division');
-            }
-          "
-          @button3-clicked="
-            () => {
-              print('Novice Draw');
-            }
-          "
+          @button-clicked="print"
         />
       </div>
       <div class="">
@@ -39,21 +25,7 @@
           subtitle="JUNIOR"
           button-size="small"
           :is-horizontal-buttons="false"
-          @button1-clicked="
-            () => {
-              print('Junior Teams');
-            }
-          "
-          @button2-clicked="
-            () => {
-              print('Junior Division');
-            }
-          "
-          @button3-clicked="
-            () => {
-              print('Junior Draw');
-            }
-          "
+          @button-clicked="print"
         />
       </div>
       <div class="">
@@ -62,21 +34,7 @@
           subtitle="SENIOR"
           button-size="small"
           :is-horizontal-buttons="false"
-          @button1-clicked="
-            () => {
-              print('Senior Teams');
-            }
-          "
-          @button2-clicked="
-            () => {
-              print('Senior Division');
-            }
-          "
-          @button3-clicked="
-            () => {
-              print('Senior Draw');
-            }
-          "
+          @button-clicked="print"
         />
       </div>
       <div class="bg-yellow-200 rounded py-6">
@@ -362,9 +320,9 @@ const tournamentStore = useTournamentStore();
 //   },
 // ];
 
-const print = (msg) => {
-  console.log(msg);
-};
+function print(text, subtitle) {
+  console.log(text, subtitle);
+}
 
 const managedTournament = tournamentStore.getTournamentById(
   route.params.tournamentId
