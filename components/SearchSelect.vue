@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
 import { vOnClickOutside } from "@vueuse/components";
 
@@ -52,13 +52,19 @@ const props = defineProps({
 const emit = defineEmits(["info", "update:modelValue"]);
 
 const isOpen = ref(false);
-const filteredOptions = ref(props.items);
+const query = ref(null);
+const filteredOptions = computed(() => {
+  if (query.value === null) {
+    return props.items;
+  }
+  return props.items.filter((option) =>
+    option.name.toLowerCase().includes(query.value.toLowerCase())
+  );
+});
 function filter(e) {
   const value = e.target.value;
   emit("update:modelValue", value);
-  filteredOptions.value = props.items.filter((option) =>
-    option.name.toLowerCase().includes(value.toLowerCase())
-  );
+  query.value = value;
 }
 
 function selectOption(option) {
