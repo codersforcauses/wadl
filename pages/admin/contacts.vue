@@ -1,7 +1,13 @@
 <template>
   <section class="flex flex-col items-center">
     <Header title-text="Contacts" />
-    <SearchBar @handle-filter="handleFilter" />
+    <SearchBar
+      @handle-filter="
+        (searchString) => {
+          searchTerm = searchString;
+        }
+      "
+    />
     <Tabs class="md:w-11/12" :tabs="tabs" @handle-tab="handleTabClicked" />
     <Table
       :headers="headers"
@@ -42,7 +48,9 @@ const contacts = computed(() => {
   const results = tabContacts.filter(
     (contact) =>
       contact.firstName.toLowerCase().includes(query) ||
-      contact.lastName.toLowerCase().includes(query)
+      contact.lastName.toLowerCase().includes(query) ||
+      contact.phoneNumber.toLowerCase().includes(query) ||
+      contact.email.toLowerCase().includes(query)
   );
   return query !== null ? results : tabContacts;
 });
