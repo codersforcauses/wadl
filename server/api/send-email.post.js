@@ -42,8 +42,7 @@ export default defineEventHandler(async (event) => {
           template,
         })
         .then(() => console.log("Queued email for delivery!"));
-      event.res.send("success");
-      // return null;
+      return true;
     }
     if (emailStructure.name === "approveUser") {
       const template = {
@@ -60,8 +59,7 @@ export default defineEventHandler(async (event) => {
           template,
         })
         .then(() => console.log("Queued email for delivery!"));
-      // return null;
-      event.res.send("success");
+      return true;
     }
   } catch (err) {
     throw createError({
