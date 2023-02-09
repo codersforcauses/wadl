@@ -59,33 +59,27 @@ export const useAdminStore = defineStore("admin", {
     },
 
     async acceptUser(user) {
-      try {
-        const { $clientFirestore } = useNuxtApp();
-        const template = {
-          name: "approveUser",
-          data: {
-            name: user.firstName,
-            role: user.role,
-          },
-        };
-        updateDoc(doc($clientFirestore, "users", user.id), {
-          requesting: false,
+      const { $clientFirestore } = useNuxtApp();
+      const template = {
+        name: "approveUser",
+        data: {
+          name: user.firstName,
           role: user.role,
-        }).then(async () => {
-          this.requestingUsers = this.requestingUsers.filter(
-            (u) => u.id !== user.id
-          );
-          await $fetch("/api/send-email", {
-            method: "post",
-            body: {
-              userInfo: user,
-              emailStructure: template,
-            },
-          });
+        },
+      };
+      updateDoc(doc($clientFirestore, "users", user.id), {
+        requesting: false,
+        role: user.role,
+      }).then(async () => {
+        this.users = this.users.filter((u) => u.id !== user.id);
+        await $fetch("/api/send-email", {
+          method: "post",
+          body: {
+            userInfo: user,
+            emailStructure: template,
+          },
         });
-      } catch (err) {
-        this.errorCode = handleError(err);
-      }
+      });
     },
 
     async denyUser(user) {

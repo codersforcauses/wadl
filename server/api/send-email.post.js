@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
       firestore
         .collection("mail")
         .add({
-          to: "benjamin9804@icloud.com",
+          to: userInfo.email,
           template,
         })
         .then(() => console.log("Queued email for delivery!"));
@@ -54,7 +54,7 @@ export default defineEventHandler(async (event) => {
       firestore
         .collection("mail")
         .add({
-          to: "benjamin9804@icloud.com",
+          to: userInfo.email,
           template,
         })
         .then(() => console.log("Queued email for delivery!"));
