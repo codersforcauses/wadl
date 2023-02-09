@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
       await firestore
         .collection("mail")
         .add({
-          to: userInfo.email,
+          to: [userInfo.email],
           template,
         })
         .then(() => console.log("Queued email for delivery!"));
@@ -55,7 +55,7 @@ export default defineEventHandler(async (event) => {
       await firestore
         .collection("mail")
         .add({
-          to: userInfo.email,
+          to: [userInfo.email],
           template,
         })
         .then(() => console.log("Queued email for delivery!"));
