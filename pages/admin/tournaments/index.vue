@@ -123,8 +123,8 @@
     <Table
       :headers="headers"
       :data="filteredTournaments"
-      no-data-text="No tournaments registered"
       @edit="handleEdit"
+      @get-id="handleId"
     />
   </section>
   <Notification
@@ -136,9 +136,9 @@
 </template>
 <script setup>
 import { ref, computed } from "vue";
-import { useTournamentStore } from "../../stores/tournaments";
+import { useTournamentStore } from "../../../stores/tournaments";
 import { useHead } from "#imports";
-import useNotification from "../../composables/useNotification";
+import useNotification from "../../../composables/useNotification";
 useHead({
   title: "Tournaments",
 });
@@ -154,15 +154,22 @@ const defaultInputState = {
   status: "Open",
 };
 
+// eslint-disable-next-line no-undef
+const router = useRouter();
+
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
-try {
-  await store.getTournaments();
-} catch (error) {
-  notification.notifyError(error);
-}
+
+// eslint-disable-next-line no-undef
+onMounted(async () => {
+  try {
+    await store.getTournaments();
+  } catch (error) {
+    notification.notifyError(error);
+  }
+});
 
 const getLevels = () => form.value.levels.map((l) => l.level);
 
@@ -182,6 +189,10 @@ const handleEdit = (row) => {
   modalVisibility.value = row.modalVisibility;
   editMode.value = row.editMode;
   form.value = row.data;
+};
+
+const handleId = (id) => {
+  router.push({ path: `/admin/tournaments/${id}` });
 };
 
 const searchTerm = ref(null);

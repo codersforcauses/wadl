@@ -90,11 +90,6 @@
           @click="visibility = false"
         />
         <HamburgerListItem
-          val="Change Password"
-          dest="/coordinator/changepassword"
-          @click="visibility = false"
-        />
-        <HamburgerListItem
           val="Signout"
           dest="/"
           @click="(visibility = false), userStore.clearStore()"
