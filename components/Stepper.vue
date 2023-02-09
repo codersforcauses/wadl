@@ -23,10 +23,10 @@
             <div v-else>
               <CheckIcon class="text-white" />
             </div>
-            <div class="w-16 h-px ml-6 mr-6 bg-light-grey" />
+            <div class="w-16 h-px bg-light-grey" />
           </div>
         </div>
-        <div class="w-px h-16 ml-3 bg-light-grey" />
+        <div class="w-px h-16 bg-light-grey" />
         <div>{{ state }}</div>
       </div>
     </div>
@@ -40,6 +40,4 @@ import { CheckIcon } from "@heroicons/vue/20/solid";
 const stage = 4;
 const stateList = ["Open", "Closed", "Running", "Complete"];
 const stateLength = stateList.length;
-console.log("stage is: ", stage.value);
-console.log("stateLength is: ", stateLength);
 </script>
