@@ -6,7 +6,7 @@ import { defineEventHandler, readBody, createError } from "#imports";
 
 export default defineEventHandler(async (event) => {
   const { userInfo, emailStructure } = await readBody(event);
-  if (!userInfo) {
+  if (!userInfo || !emailStructure) {
     throw createError({
       statusCode: 400,
     });
@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
           link: resetLink,
         },
       };
-      firestore
+      await firestore
         .collection("mail")
         .add({
           to: userInfo.email,
@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
           role: emailStructure.data.role,
         },
       };
-      firestore
+      await firestore
         .collection("mail")
         .add({
           to: userInfo.email,
