@@ -293,7 +293,7 @@
 </template>
 
 <script setup>
-import { useTournamentStore } from "../../../stores/tournaments";
+import { useTournamentStore } from "../../../../stores/tournaments";
 
 // eslint-disable-next-line no-undef
 // eslint-disable-next-line no-undef
@@ -322,9 +322,7 @@ const handleTeamButtons = (button, level) => {
   console.log(button, level);
   if (button === "Division") {
     router.push({
-      // !!!!!! This works but I want it to look like the path thats commented out
-      path: `/admin/tournaments/division/${level}`,
-      //path: `/admin/tournaments/${route.params.tournamentId}/division/${level}`,
+      path: `/admin/tournaments/${route.params.tournamentId}/division/${level}`,
     });
   }
 };
