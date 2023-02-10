@@ -50,11 +50,18 @@
             class="text-red-700"
             @click="deleteTournament(form.id)"
           />
-          <Button
-            button-text="Update"
-            button-color="bg-gold"
-            type="Submit"
+          <Notification
+            :modal-visibility="notificationVisibility"
+            :is-success="isSuccess"
+            :body="notificationMessage"
+            @close="
+              () => {
+                notificationVisibility = false;
+                redirect();
+              }
+            "
           />
+          <Button button-text="Update" button-color="bg-gold" type="Submit" />
         </div>
       </form>
     </div>
@@ -195,8 +202,18 @@ const createTournament = () => {
   resetFormState();
 };
 
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
 const deleteTournament = (id) => {
   store.deleteTournament(id);
+  if (!store.errorMessage) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = "Tournament successfully deleted";
+  }
 };
 
 const headers = [

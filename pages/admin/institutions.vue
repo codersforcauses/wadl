@@ -76,8 +76,18 @@ const handleEdit = (row) => {
   formInput.value = row.data;
 };
 
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
 const deleteInstitution = (id) => {
   store.deleteInstitution(id);
+  if (!store.errorMessage) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = "Institution successfully deleted";
+  }
 };
 </script>
 
@@ -119,6 +129,17 @@ const deleteInstitution = (id) => {
             type="Submit"
             class="text-red-700"
             @click="deleteInstitution(formInput.id)"
+          />
+          <Notification
+            :modal-visibility="notificationVisibility"
+            :is-success="isSuccess"
+            :body="notificationMessage"
+            @close="
+              () => {
+                notificationVisibility = false;
+                redirect();
+              }
+            "
           />
           <Button
             button-text="Update"

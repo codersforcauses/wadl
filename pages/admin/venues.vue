@@ -69,8 +69,18 @@ const createVenue = async () => {
   resetFormState();
 };
 
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
 const deleteVenue = (id) => {
   store.deleteVenue(id);
+  if (!store.errorMessage) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = "Venue successfully deleted";
+  }
 };
 
 const headers = [
@@ -153,6 +163,17 @@ const headers = [
             type="Submit"
             class="text-red-700"
             @click="deleteVenue(formInput.id)"
+          />
+          <Notification
+            :modal-visibility="notificationVisibility"
+            :is-success="isSuccess"
+            :body="notificationMessage"
+            @close="
+              () => {
+                notificationVisibility = false;
+                redirect();
+              }
+            "
           />
           <Button
             button-text="Update"
