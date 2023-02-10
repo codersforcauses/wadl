@@ -13,7 +13,7 @@
       <div class="">
         <Frame
           :title="noviceNum"
-          subtitle="NOVICE"
+          subtitle="Novice"
           button-size="small"
           :is-horizontal-buttons="false"
           @button-clicked="print"
@@ -22,7 +22,7 @@
       <div class="">
         <Frame
           :title="juniorNum"
-          subtitle="JUNIOR"
+          subtitle="Junior"
           button-size="small"
           :is-horizontal-buttons="false"
           @button-clicked="print"
@@ -31,7 +31,7 @@
       <div class="">
         <Frame
           :title="seniorNum"
-          subtitle="SENIOR"
+          subtitle="Senior"
           button-size="small"
           :is-horizontal-buttons="false"
           @button-clicked="print"
@@ -44,7 +44,7 @@
           >
             {{ noviceNum + juniorNum + seniorNum }}
           </h1>
-          <p>Total</p>
+          <p class="text-mid-grey font-montserrat">TOTAL</p>
         </div>
       </div>
     </div>
