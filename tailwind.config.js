@@ -27,6 +27,7 @@ module.exports = {
         white: "#FFFFFF",
         gold: "#FFD700",
         "light-gold": "#FFEB87",
+        "lighter-grey": "#F2F2F2",
         "light-grey": "#A8A8A8",
         "mid-grey": "#8A8A8A",
         "dark-grey": "#474747",
