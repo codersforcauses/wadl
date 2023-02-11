@@ -59,7 +59,7 @@ export const useTeamStore = defineStore("team", {
       });
     },
     async getTeamByTournamentDivision(tournamentId, level, division) {
-      this.teams = [];
+      this.divisions = [];
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
       const ref = collection($clientFirestore, "teams");
