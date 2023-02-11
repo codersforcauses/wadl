@@ -93,78 +93,66 @@ const updateTeam = async () => {
   <Modal
     :modal-visibility="modalVisibility"
     size="w-7/12"
+    header="Edit Preferences"
+    button-text="Update"
     @close="
       () => {
         modalVisibility = false;
         resetFormState();
       }
     "
+    @submit.prevent="
+      async () => {
+        modalVisibility = false;
+        await updateTeam();
+      }
+    "
   >
-    <Header title-text="Edit Preferences" />
-    <form
-      class="px-10"
-      @submit.prevent="
-        async () => {
-          modalVisibility = false;
-          await updateTeam();
-        }
-      "
-    >
-      <div class="flex flex-row justify-evenly accent-gold pt-5 pb-2">
-        <div>
-          <input v-model="form.allocatedTue" type="checkbox" class="w-5 h-5" />
-          <label class="ml-3 heading-montserrat">Tuesday Allocation</label>
-        </div>
-        <div>
-          <input v-model="form.allocatedWed" type="checkbox" class="w-5 h-5" />
-
-          <label class="ml-3 heading-montserrat">Wednesday Allocation</label>
-        </div>
+    <div class="flex flex-row justify-evenly accent-gold pt-5 pb-2">
+      <div>
+        <input v-model="form.allocatedTue" type="checkbox" class="w-5 h-5" />
+        <label class="ml-3 heading-montserrat">Tuesday Allocation</label>
       </div>
-      <FormField v-model="form.timeslot" label="Timeslot" />
-      <Select
-        v-model="form.weekPreference"
-        :options="['Week 1', 'Week 2', 'Either']"
-        label="Week Preference"
-        class="w-full"
-      />
-      <div class="flex flex-row accent-gold py-2">
-        <input
-          v-model="form.hasVenuePreference"
-          type="checkbox"
-          class="w-5 h-5"
-          @change="form.venuePreference = []"
-        />
+      <div>
+        <input v-model="form.allocatedWed" type="checkbox" class="w-5 h-5" />
 
-        <label class="ml-3 heading-montserrat"
-          >Do you have venue preferences?</label
-        >
+        <label class="ml-3 heading-montserrat">Wednesday Allocation</label>
       </div>
-      <FormField
-        v-if="form.hasVenuePreference"
-        v-model="form.venuePreference[0]"
-        label="1st Venue Preference"
-      />
-      <FormField
-        v-if="form.hasVenuePreference"
-        v-model="form.venuePreference[1]"
-        label="2nd Venue Preference"
-      />
-      <FormField
-        v-if="form.hasVenuePreference"
-        v-model="form.venuePreference[2]"
-        label="3rd Venue Preference"
+    </div>
+    <FormField v-model="form.timeslot" label="Timeslot" />
+    <Select
+      v-model="form.weekPreference"
+      :options="['Week 1', 'Week 2', 'Either']"
+      label="Week Preference"
+      class="w-full"
+    />
+    <div class="flex flex-row accent-gold py-2">
+      <input
+        v-model="form.hasVenuePreference"
+        type="checkbox"
+        class="w-5 h-5"
+        @change="form.venuePreference = []"
       />
 
-      <div class="flex justify-evenly items-center">
-        <Button
-          button-text="Update"
-          button-color="bg-gold"
-          type="Submit"
-          class="m-5 ml-8"
-        />
-      </div>
-    </form>
+      <label class="ml-3 heading-montserrat">
+        Do you have venue preferences?
+      </label>
+    </div>
+    <FormField
+      v-if="form.hasVenuePreference"
+      v-model="form.venuePreference[0]"
+      label="1st Venue Preference"
+    />
+    <FormField
+      v-if="form.hasVenuePreference"
+      v-model="form.venuePreference[1]"
+      label="2nd Venue Preference"
+    />
+    <FormField
+      v-if="form.hasVenuePreference"
+      v-model="form.venuePreference[2]"
+      label="3rd Venue Preference"
+    />
   </Modal>
   <section
     class="flex flex-col items-center justify-center max-w-screen max-h-screen"

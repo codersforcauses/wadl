@@ -134,89 +134,77 @@ const headers = [
   </section>
 
   <Modal
+    v-if="editMode"
     :modal-visibility="modalVisibility"
     size="w-7/12"
+    header="Edit Venue"
+    button-text="Update"
     @close="
       () => {
         modalVisibility = false;
         resetFormState();
       }
     "
+    @submit.prevent="updateVenue"
   >
-    <div v-if="editMode">
-      <Header title-text="Edit Venue" />
-      <form class="px-10" @submit.prevent="updateVenue">
-        <FormField v-model="formInput.name" label="Venue Name" />
-        <div class="grid grid-cols-2 gap-x-4">
-          <div>
-            <FormField v-model="formInput.roomNo" label="Room Number" />
-          </div>
-          <div>
-            <FormField v-model="formInput.capacity" label="Team Capacity" />
-          </div>
-        </div>
-        <label class="heading-montserrat">Days</label>
-        <Multiselect
-          :selected-chips="formInput.days"
-          :items="[
-            'Tuesday W1',
-            'Tuesday W2',
-            'Wednesday W1',
-            'Wednesday W2',
-            'Any',
-          ]"
-          placeholder="Select Days"
-          @change="updateSelectedDays"
-        />
-        <div class="flex justify-evenly items-center">
-          <Button
-            button-text="Update"
-            button-color="bg-gold"
-            type="Submit"
-            class="m-5 ml-8"
-            :loading="modalLoading"
-          />
-        </div>
-      </form>
+    <FormField v-model="formInput.name" label="Venue Name" />
+    <div class="grid grid-cols-2 gap-x-4">
+      <div>
+        <FormField v-model="formInput.roomNo" label="Room Number" />
+      </div>
+      <div>
+        <FormField v-model="formInput.capacity" label="Team Capacity" />
+      </div>
     </div>
-    <div v-else>
-      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
-        Add Venue
-      </p>
-      <form class="px-10" @submit.prevent="createVenue">
-        <FormField v-model="formInput.name" label="Venue Name" />
-        <div class="grid grid-cols-2 gap-x-4">
-          <div>
-            <FormField v-model="formInput.roomNo" label="Room Number" />
-          </div>
-          <div>
-            <FormField v-model="formInput.capacity" label="Team Capacity" />
-          </div>
-        </div>
-        <label class="heading-montserrat">Days</label>
-        <Multiselect
-          :selected-chips="formInput.days"
-          :items="[
-            'Tuesday W1',
-            'Tuesday W2',
-            'Wednesday W1',
-            'Wednesday W2',
-            'Any',
-          ]"
-          placeholder="Select Days"
-          @change="updateSelectedDays"
-        />
-        <div class="flex justify-evenly items-center">
-          <Button
-            button-text="Submit"
-            button-color="bg-gold"
-            type="Submit"
-            class="m-5 ml-8"
-            :loading="modalLoading"
-          />
-        </div>
-      </form>
+    <label class="heading-montserrat">Days</label>
+    <Multiselect
+      :selected-chips="formInput.days"
+      :items="[
+        'Tuesday W1',
+        'Tuesday W2',
+        'Wednesday W1',
+        'Wednesday W2',
+        'Any',
+      ]"
+      placeholder="Select Days"
+      @change="updateSelectedDays"
+    />
+  </Modal>
+  <Modal
+    v-else
+    :modal-visibility="modalVisibility"
+    size="w-7/12"
+    header="Add Venue"
+    @close="
+      () => {
+        modalVisibility = false;
+        resetFormState();
+      }
+    "
+    @submit.prevent="createVenue"
+  >
+    <FormField v-model="formInput.name" label="Venue Name" />
+    <div class="grid grid-cols-2 gap-x-4">
+      <div>
+        <FormField v-model="formInput.roomNo" label="Room Number" />
+      </div>
+      <div>
+        <FormField v-model="formInput.capacity" label="Team Capacity" />
+      </div>
     </div>
+    <label class="heading-montserrat">Days</label>
+    <Multiselect
+      :selected-chips="formInput.days"
+      :items="[
+        'Tuesday W1',
+        'Tuesday W2',
+        'Wednesday W1',
+        'Wednesday W2',
+        'Any',
+      ]"
+      placeholder="Select Days"
+      @change="updateSelectedDays"
+    />
   </Modal>
   <Notification
     :modal-visibility="notification.isVisible"

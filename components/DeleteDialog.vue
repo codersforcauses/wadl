@@ -2,13 +2,10 @@
   <Modal
     :modal-visibility="modalVisibility"
     size="md:1/3"
+    header="Are You Sure?"
     @close="emit('close')"
   >
-    <div class="w-full h-48">
-      <div class="font-montserrat text-2xl text-center font-bold pt-10">
-        Are You Sure?
-      </div>
-      <hr class="mx-8" />
+    <template #submitButton>
       <div class="p-5 flex justify-evenly">
         <Button
           class="mx-5 mt-4 font-semibold"
@@ -27,7 +24,7 @@
           @click="emit('no')"
         />
       </div>
-    </div>
+    </template>
   </Modal>
 </template>
 

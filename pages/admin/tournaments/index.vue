@@ -1,100 +1,81 @@
 <template>
   <Modal
+    v-if="editMode"
     :modal-visibility="modalVisibility"
     size="w-7/12"
+    header="Edit Tournament"
+    button-text="Update"
     @close="
       () => {
         modalVisibility = false;
         resetFormState();
       }
     "
+    @submit.prevent="
+      () => {
+        modalVisibility = false;
+        updateTournament();
+      }
+    "
   >
-    <div v-if="editMode">
-      <Header title-text="Edit Tournament" />
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            modalVisibility = false;
-            updateTournament();
-          }
-        "
-      >
-        <div class="grid grid-cols-2 gap-x-4">
-          <div>
-            <FormField
-              v-model="form.name"
-              label="Tournament Name"
-              placeholder="Name"
-            />
-          </div>
-          <div class="mt-6">
-            <FormField v-model="form.shortName" placeholder="Short Name" />
-          </div>
-        </div>
-        <label class="heading-montserrat">Level</label>
-        <Multiselect
-          :selected-chips="getLevels()"
-          @change="updateSelectedLevels"
-        />
+    <div class="grid grid-cols-2 gap-x-4">
+      <div>
         <FormField
-          v-model="form.numRounds"
-          label="Rounds"
-          placeholder="Total number of rounds"
+          v-model="form.name"
+          label="Tournament Name"
+          placeholder="Name"
         />
-        <div class="flex justify-evenly items-center">
-          <Button
-            button-text="Update"
-            button-color="bg-gold"
-            type="Submit"
-            class="m-5 ml-8"
-          />
-        </div>
-      </form>
+      </div>
+      <div class="mt-6">
+        <FormField v-model="form.shortName" placeholder="Short Name" />
+      </div>
     </div>
-    <div v-else>
-      <Header title-text="Create Tournament" />
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            modalVisibility = false;
-            createTournament();
-          }
-        "
-      >
-        <div class="grid grid-cols-2 gap-x-4">
-          <div>
-            <FormField
-              v-model="form.name"
-              label="Tournament Name"
-              placeholder="Name"
-            />
-          </div>
-          <div class="mt-6">
-            <FormField v-model="form.shortName" placeholder="Short Name" />
-          </div>
-        </div>
-        <label class="heading-montserrat">Level</label>
-        <Multiselect
-          :selected-chips="getLevels()"
-          @change="updateSelectedLevels"
-        />
+    <label class="heading-montserrat">Level</label>
+    <Multiselect :selected-chips="getLevels()" @change="updateSelectedLevels" />
+    <FormField
+      v-model="form.numRounds"
+      label="Rounds"
+      placeholder="Total number of rounds"
+    />
+  </Modal>
+  <Modal
+    v-else
+    :modal-visibility="modalVisibility"
+    size="w-7/12"
+    header="Create Tournament"
+    button-text="Save"
+    @close="
+      () => {
+        modalVisibility = false;
+        resetFormState();
+      }
+    "
+    @submit.prevent="
+      () => {
+        modalVisibility = false;
+        createTournament();
+      }
+    "
+  >
+    <div class="grid grid-cols-2 gap-x-4">
+      <div>
         <FormField
-          v-model="form.numRounds"
-          label="Rounds"
-          placeholder="Total number of rounds"
+          v-model="form.name"
+          label="Tournament Name"
+          placeholder="Name"
         />
-        <div class="flex justify-evenly items-center">
-          <Button
-            button-text="Save"
-            button-color="bg-gold"
-            type="Submit"
-            class="m-5 ml-8"
-          />
-        </div>
-      </form>
+      </div>
+      <div class="mt-6">
+        <FormField v-model="form.shortName" placeholder="Short Name" />
+      </div>
     </div>
+    <label class="heading-montserrat">Level</label>
+    <Multiselect :selected-chips="getLevels()" @change="updateSelectedLevels" />
+    <FormField
+      v-model="form.numRounds"
+      label="Rounds"
+      placeholder="Total number of rounds"
+    />
   </Modal>
 
   <section

@@ -91,75 +91,57 @@ const handleEdit = (row) => {
 
 <template>
   <Modal
+    v-if="editMode"
     :modal-visibility="modalVisibility"
     size="w-7/12"
+    header="Edit institution"
+    button-text="Update"
     @close="
       () => {
         modalVisibility = false;
         resetFormState();
       }
     "
+    @submit.prevent="
+      () => {
+        updateInstitution();
+      }
+    "
   >
-    <div v-if="editMode">
-      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
-        Edit Institution
-      </p>
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            updateInstitution();
-          }
-        "
-      >
-        <FormField v-model="formInput.name" label="Institution Name" />
-        <FormField v-model="formInput.code" label="Code" />
-        <FormField v-model="formInput.abbreviation" label="Abbreviation" />
-        <FormField v-model="formInput.number" label="Phone Number" type="tel" />
-        <FormField v-model="formInput.email" label="Email" type="email" />
-        <p v-if="errorMessage" class="text-danger-red">
-          {{ errorMessage }}
-        </p>
-        <div class="flex justify-evenly items-center">
-          <Button
-            button-text="Update"
-            button-color="bg-gold"
-            type="Submit"
-            class="m-5 ml-8"
-          />
-        </div>
-      </form>
-    </div>
-    <div v-else>
-      <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
-        Add Institution
-      </p>
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            createInstitution();
-          }
-        "
-      >
-        <FormField v-model="formInput.name" label="Institution Name" />
-        <FormField v-model="formInput.code" label="Code" />
-        <FormField v-model="formInput.abbreviation" label="Abbreviation" />
-        <FormField v-model="formInput.number" label="Phone Number" type="tel" />
-        <FormField v-model="formInput.email" label="Email" type="email" />
-        <p v-if="errorMessage" class="text-danger-red">
-          {{ errorMessage }}
-        </p>
-        <div class="flex justify-evenly items-center">
-          <Button
-            button-text="Submit"
-            button-color="bg-gold"
-            type="Submit"
-            class="m-5 ml-8"
-          />
-        </div>
-      </form>
-    </div>
+    <FormField v-model="formInput.name" label="Institution Name" />
+    <FormField v-model="formInput.code" label="Code" />
+    <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+    <FormField v-model="formInput.number" label="Phone Number" type="tel" />
+    <FormField v-model="formInput.email" label="Email" type="email" />
+    <p v-if="errorMessage" class="text-danger-red">
+      {{ errorMessage }}
+    </p>
+  </Modal>
+  <Modal
+    v-else
+    :modal-visibility="modalVisibility"
+    size="w-7/12"
+    header="Add institution"
+    @close="
+      () => {
+        modalVisibility = false;
+        resetFormState();
+      }
+    "
+    @submit.prevent="
+      () => {
+        createInstitution();
+      }
+    "
+  >
+    <FormField v-model="formInput.name" label="Institution Name" />
+    <FormField v-model="formInput.code" label="Code" />
+    <FormField v-model="formInput.abbreviation" label="Abbreviation" />
+    <FormField v-model="formInput.number" label="Phone Number" type="tel" />
+    <FormField v-model="formInput.email" label="Email" type="email" />
+    <p v-if="errorMessage" class="text-danger-red">
+      {{ errorMessage }}
+    </p>
   </Modal>
 
   <section
