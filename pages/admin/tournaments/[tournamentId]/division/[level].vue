@@ -42,6 +42,7 @@
         :tournament-id="tournamentStore.tournaments[1].id"
         level="Senior"
         :venues="tournamentStore.tournaments[1].venues"
+        @edit="handleEdit"
       />
 
       <div
@@ -52,6 +53,34 @@
       </div>
     </div>
   </section>
+  <Modal
+    :modal-visibility="modalVisibility"
+    size="w-7/12"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  >
+    <div class="h-96">
+      <h1 class="text-4xl py-5 text-center font-montserrat">
+        Division {{ division }}
+      </h1>
+      <p
+        class="text-2xl pb-2 text-center divide-y-4 font-montserrat text-dark-grey"
+      >
+        Venue
+      </p>
+      <div v-for="team in teamStore.levels" :key="team.id">
+        <Chip
+          :text="team.name"
+          size="small"
+          :bg-color="venuePreferenceColor"
+          :canRemove="false"
+        />
+      </div>
+    </div>
+  </Modal>
 </template>
 
 <script setup>
@@ -109,4 +138,14 @@ onMounted(async () => {
     notification.notifyError(error);
   }
 });
+
+const modalVisibility = ref(false);
+const editMode = ref(false);
+const division = ref("");
+
+const handleEdit = (divisions) => {
+  modalVisibility.value = divisions.modalVisibility;
+  editMode.value = divisions.editMode;
+  division.value = divisions.data;
+};
 </script>

@@ -7,7 +7,9 @@
           (8 teams)
         </p>
       </div>
-      <PlusIcon class="w-6 h-6 bg-light-orange-gold rounded-full" />
+      <button @click.prevent="handleAdd(division)">
+        <PlusIcon class="w-6 h-6 bg-light-orange-gold rounded-full" />
+      </button>
     </div>
     <Dropdown
       class="my-4"
@@ -31,6 +33,16 @@ import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useVenueStore } from "../../stores/venues";
+
+const emit = defineEmits(["edit"]);
+
+const handleAdd = (division) => {
+  emit("edit", {
+    editMode: true,
+    modalVisibility: true,
+    data: division,
+  });
+};
 
 const props = defineProps({
   division: {
