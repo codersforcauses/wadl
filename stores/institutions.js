@@ -44,29 +44,28 @@ export const useInstitutionStore = defineStore("institution", {
     async getInstitutionByID(id) {
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "institutions", id);
-      await getDoc(ref).then((doc) => {
-        this.userInstitution = {
-          id: doc.id,
-          name: doc.data().name,
-          email: doc.data().email,
-          number: doc.data().number,
-          abbreviation: doc.data().abbreviation,
-        };
-      });
+      const institution = await getDoc(ref);
+      this.userInstitution = {
+        id: institution.id,
+        name: institution.data().name,
+        email: institution.data().email,
+        number: institution.data().number,
+        abbreviation: institution.data().abbreviation,
+      };
     },
     async checkInstitution(institution) {
       let newInstitution = true;
       this.institutions.forEach(async (element) => {
         if (element.name.toLowerCase() === institution.name.toLowerCase()) {
-          this.updateInstitution(element, institution);
+          await this.updateInstitution(element, institution);
           newInstitution = !newInstitution;
         }
       });
       if (newInstitution === true) {
-        this.createInstitution(institution);
+        await this.createInstitution(institution);
       } else {
         this.userInstitution = { ...institution };
-        this.updateProfile(institution);
+        await this.updateProfile(institution);
       }
     },
     async editInstitution(institution) {
@@ -79,16 +78,14 @@ export const useInstitutionStore = defineStore("institution", {
       );
 
       const snapshot = await getCountFromServer(sameName);
-      if (snapshot.data().count === 0) {
-        await updateDoc(ref, institution).then(() => {
-          const index = this.institutions.findIndex(function (item, i) {
-            return item.id === institution.id;
-          });
-          this.institutions[index] = institution;
-        });
-      } else {
+      if (snapshot.data().count > 0) {
         throw new Error("Institution with same name exists");
       }
+      await updateDoc(ref, institution);
+      const index = this.institutions.findIndex(function (item, i) {
+        return item.id === institution.id;
+      });
+      this.institutions[index] = institution;
     },
     async updateInstitution(element, institution) {
       const { $clientFirestore } = useNuxtApp();
@@ -103,9 +100,8 @@ export const useInstitutionStore = defineStore("institution", {
           email: institution.email,
           number: institution.number,
         };
-        await updateDoc(ref, data).then(() => {
-          this.updateProfile(ref);
-        });
+        await updateDoc(ref, data);
+        await this.updateProfile(ref);
       }
     },
     async createInstitution(institution) {
@@ -133,10 +129,9 @@ export const useInstitutionStore = defineStore("institution", {
           await setDoc(ref, data);
           this.institutions.push(data);
         } else {
-          await setDoc(ref, data).then(() => {
-            this.userInstitution = { ...data };
-            this.updateProfile(ref);
-          });
+          await setDoc(ref, data);
+          this.userInstitution = { ...data };
+          await this.updateProfile(ref);
         }
       }
     },

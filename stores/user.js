@@ -106,11 +106,8 @@ export const useUserStore = defineStore("user", {
         this.email,
         password.currentPassword
       );
-      await reauthenticateWithCredential($clientAuth.currentUser, cred).then(
-        async () => {
-          await updatePassword($clientAuth.currentUser, password.password);
-        }
-      );
+      await reauthenticateWithCredential($clientAuth.currentUser, cred);
+      await updatePassword($clientAuth.currentUser, password.password);
     },
     async clearStore() {
       if (process.client) {

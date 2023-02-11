@@ -60,22 +60,20 @@ export const useAdminStore = defineStore("admin", {
 
     async acceptUser(user) {
       const { $clientFirestore } = useNuxtApp();
-      updateDoc(doc($clientFirestore, "users", user.id), {
+      await updateDoc(doc($clientFirestore, "users", user.id), {
         requesting: false,
         role: user.role,
-      }).then(() => {
-        this.users = this.users.filter((u) => u.id !== user.id);
       });
+      this.users = this.users.filter((u) => u.id !== user.id);
     },
 
     async denyUser(user) {
       const { $clientFirestore } = useNuxtApp();
-      deleteDoc(doc($clientFirestore, "users", user.id), {
+      await deleteDoc(doc($clientFirestore, "users", user.id), {
         requesting: null,
         role: user.role,
-      }).then(() => {
-        this.users = this.users.filter((u) => u.id !== user.id);
       });
+      this.users = this.users.filter((u) => u.id !== user.id);
     },
     async clearStore() {
       this.searchTerm = "";
