@@ -49,7 +49,7 @@ export default defineEventHandler(async (event) => {
       await firestore
         .collection("mail")
         .add({
-          to: ["benjamin9804@icloud.com"],
+          to: [userInfo.email],
           message: {},
           template: {
             name: emailStructure.name,
