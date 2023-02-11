@@ -53,6 +53,9 @@ const props = defineProps({
 
 
 */
+
+// TODO Get from tournament structure under division - This currently doesnt display in the dropdown because they arent real ids
+// swap this for the actual data
 const venueData = [
   {
     week: 1,

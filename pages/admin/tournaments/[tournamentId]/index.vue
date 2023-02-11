@@ -15,7 +15,7 @@
         subtitle="Novice"
         button-size="small"
         :is-horizontal-buttons="false"
-        @button-clicked="handleTeamButtons"
+        @button-clicked="handleLevelButtons"
       />
       <Frame
         :title="juniorNum"
@@ -318,7 +318,7 @@ function print(text, subtitle) {
   console.log(text, subtitle);
 }
 
-const handleTeamButtons = (button, level) => {
+const handleLevelButtons = (button, level) => {
   console.log(button, level);
   if (button === "Division") {
     router.push({
@@ -331,11 +331,19 @@ const managedTournament = tournamentStore.getTournamentById(
   route.params.tournamentId
 );
 console.log(managedTournament.levels);
-const getNumberOfTeams = (level) => {
-  return managedTournament.levels.find((lv) => lv.level === level).teamIds
-    .length;
-};
-const noviceNum = getNumberOfTeams("Novice");
-const juniorNum = getNumberOfTeams("Junior");
-const seniorNum = getNumberOfTeams("Senior");
+
+// -------
+// TODO: QUERY TEAMS TABLE FOR LENGTH!!!
+// It might be best to store all teams with this tournament id in the store that way we can query the store via getter functions
+// It would save money on the number of reads :)
+// -------
+
+// const getNumberOfTeams = (level) => {
+//   console.log(level);
+//   return managedTournament.levels.find((lv) => lv.level === level).teamIds
+//     .length;
+// };
+// const noviceNum = getNumberOfTeams("Novice");
+// const juniorNum = getNumberOfTeams("Junior");
+// const seniorNum = getNumberOfTeams("Senior");
 </script>
