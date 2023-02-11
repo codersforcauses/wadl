@@ -3,11 +3,13 @@ import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useUserStore } from "../../stores/user";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
+import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 useHead({
   title: "Teams",
 });
 const store = useInstitutionStore();
-const userStore = useUserStore();
+const userStore = await useUserStore();
 const headers = [
   {
     key: "name",
@@ -43,6 +45,8 @@ const headers = [
   },
 ];
 
+const notification = useNotification();
+
 const defaultInputState = {
   id: null,
   level: null,
@@ -73,8 +77,14 @@ const handleEdit = (row) => {
   form.value = row.data;
 };
 
-const updateTeam = () => {
-  store.editTeam(form.value);
+const updateTeam = async () => {
+  try {
+    await store.editTeam(form.value);
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Updated team successfully");
   resetFormState();
 };
 </script>
@@ -94,9 +104,9 @@ const updateTeam = () => {
     <form
       class="px-10"
       @submit.prevent="
-        () => {
+        async () => {
           modalVisibility = false;
-          updateTeam();
+          await updateTeam();
         }
       "
     >
@@ -156,23 +166,54 @@ const updateTeam = () => {
       </div>
     </form>
   </Modal>
-  <section>
+  <section
+    class="flex flex-col items-center justify-center max-w-screen max-h-screen"
+  >
     <Header title-text="Teams" />
-    <div v-if="userStore.institution" class="flex flex-row justify-end p-5">
-      <NuxtLink to="/coordinator/team-registration">
-        <Button
-          button-text="Team Registration"
-          button-color="bg-gold"
-          class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
-        />
-      </NuxtLink>
-    </div>
+    <NuxtLink
+      v-if="userStore.institution"
+      class="flex flex-row w-full justify-end p-5"
+      to="/coordinator/team-registration"
+    >
+      <Button
+        button-text="Team Registration"
+        button-color="bg-gold"
+        class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
+      />
+    </NuxtLink>
     <!-- <SearchBar /> -->
     <Table
       :headers="headers"
       :data="store.teams"
-      class="mt-5"
+      class="mt-5 mx-auto"
       @edit="handleEdit"
-    />
+    >
+      <template #division="{ value }">
+        <p v-if="!value">Not Allocated</p>
+      </template>
+      <template #allocatedTue="{ value }">
+        <p>
+          <CheckIcon v-if="value" class="w-6 h-6" />
+          <XMarkIcon v-else class="w-6 h-6" />
+        </p>
+      </template>
+      <template #allocatedWed="{ value }">
+        <p>
+          <CheckIcon v-if="value" class="w-6 h-6" />
+          <XMarkIcon v-else class="w-6 h-6" />
+        </p>
+      </template>
+      <template #venuePreference="{ value }">
+        <p v-for="(ven, idx) in value" :key="idx" class="text-xs">
+          {{ idx + 1 }}. {{ ven }}
+        </p>
+      </template>
+    </Table>
   </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>
