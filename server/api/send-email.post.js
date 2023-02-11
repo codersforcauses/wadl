@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
       const resetLink = await auth.generatePasswordResetLink(
         emailStructure.data.userEmail.email
       );
-      const template = {
+      const data = {
         name: emailStructure.name,
         data: {
           link: resetLink,
@@ -39,13 +39,14 @@ export default defineEventHandler(async (event) => {
         .collection("mail")
         .add({
           to: [userInfo.email],
-          template,
+          data,
         })
         .then(() => console.log("Queued email for delivery!"));
-      return true;
+      event.res.status(200).send({ message: "Success" });
+      event.res.end();
     }
     if (emailStructure.name === "approveUser") {
-      const template = {
+      const data = {
         name: emailStructure.name,
         data: {
           name: emailStructure.data.name,
@@ -55,10 +56,12 @@ export default defineEventHandler(async (event) => {
       await firestore
         .collection("mail")
         .add({
-          to: [userInfo.email],
-          template,
+          to: ["benjamin9804@icloud.com"],
+          data,
         })
         .then(() => console.log("Queued email for delivery!"));
+      // event.res.status(200).send({ message: "Success" });
+      // event.res.end();
       return true;
     }
   } catch (err) {
