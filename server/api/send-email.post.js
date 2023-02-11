@@ -46,18 +46,17 @@ export default defineEventHandler(async (event) => {
       event.res.end();
     }
     if (emailStructure.name === "approveUser") {
-      const data = {
-        name: emailStructure.name,
-        data: {
-          name: emailStructure.data.name,
-          role: emailStructure.data.role,
-        },
-      };
       await firestore
         .collection("mail")
         .add({
           to: ["benjamin9804@icloud.com"],
-          data,
+          template: {
+            name: emailStructure.name,
+            data: {
+              name: emailStructure.data.name,
+              role: emailStructure.data.role,
+            },
+          },
         })
         .then(() => console.log("Queued email for delivery!"));
       // event.res.status(200).send({ message: "Success" });
