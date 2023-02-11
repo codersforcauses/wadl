@@ -29,21 +29,20 @@ export default defineEventHandler(async (event) => {
       const resetLink = await auth.generatePasswordResetLink(
         emailStructure.data.userEmail.email
       );
-      const data = {
-        name: emailStructure.name,
-        data: {
-          link: resetLink,
-        },
-      };
       await firestore
         .collection("mail")
         .add({
           to: [userInfo.email],
-          data,
+          message: {},
+          template: {
+            name: emailStructure.name,
+            data: {
+              link: resetLink,
+            },
+          },
         })
         .then(() => console.log("Queued email for delivery!"));
-      event.res.status(200).send({ message: "Success" });
-      event.res.end();
+      return true;
     }
     if (emailStructure.name === "approveUser") {
       await firestore
@@ -60,8 +59,6 @@ export default defineEventHandler(async (event) => {
           },
         })
         .then(() => console.log("Queued email for delivery!"));
-      // event.res.status(200).send({ message: "Success" });
-      // event.res.end();
       return true;
     }
   } catch (err) {
