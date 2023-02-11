@@ -11,26 +11,58 @@
         placeholder="Your Email"
         type="email"
       />
-      <p v-if="userStore.errorCode" class="text-danger-red">
-        {{ userStore.errorCode }}
-      </p>
+      <client-only>
+        <p v-if="errorMessage" class="text-danger-red">
+          {{ errorMessage }}
+        </p>
+      </client-only>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <Button button-text="Submit" button-color="bg-gold " />
       </div>
     </form>
   </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="handleClose()"
+  />
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
 import { useUserStore } from "../stores/user";
+import { errorCodeToMessage } from "../misc/firebaseHelpers";
+import useNotification from "../composables/useNotification";
+import { navigateTo } from "#imports";
+
 const form = ref({
   email: "",
 });
 const userStore = useUserStore();
-const resetPassword = () => {
-  userStore.resetPassword(form.value);
+const errorMessage = ref(null);
+const notification = useNotification();
+
+const resetPassword = async () => {
+  try {
+    await userStore.resetPassword(form.value);
+  } catch (error) {
+    errorMessage.value = errorCodeToMessage(error);
+    return;
+  }
+  notification.notifySuccess(
+    "Successfully sent email, please check your email."
+  );
 };
+
+const handleClose = () => {
+  if (notification.isSuccess) {
+    navigateTo({ path: "/admin" });
+  } else {
+    notification.dismiss();
+  }
+};
+
 onMounted(() => {
   userStore.errorCode = null;
 });

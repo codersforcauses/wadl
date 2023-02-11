@@ -92,7 +92,6 @@ export const useUserStore = defineStore("user", {
       }
     },
     async resetPassword(email) {
-      console.log(email);
       const template = {
         name: "resetPassword",
         data: {
@@ -105,15 +104,6 @@ export const useUserStore = defineStore("user", {
           userInfo: email,
           emailStructure: template,
         },
-      }).catch((error) => {
-        console.log(error.message);
-        if (
-          error.message.includes(
-            "There is no user record corresponding to the provided email."
-          )
-        ) {
-          this.errorCode = "There is no user that has this email assigned.";
-        }
       });
     },
     async updateUser(user) {
