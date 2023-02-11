@@ -50,6 +50,7 @@ export default defineEventHandler(async (event) => {
         .collection("mail")
         .add({
           to: ["benjamin9804@icloud.com"],
+          message: {},
           template: {
             name: emailStructure.name,
             data: {
