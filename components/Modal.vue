@@ -18,17 +18,18 @@
           <XMarkIcon class="h-6 w-6 cursor-pointer" @click="$emit('close')" />
         </nav>
         <Header :title-text="header" />
-        <form class="my-8 px-10">
-          <slot />
-          <slot name="submitButton">
+        <slot name="form">
+          <form class="my-8 px-10">
+            <slot />
+
             <Button
               :button-text="buttonText"
               button-color="bg-gold"
               type="Submit"
               class="my-5 mx-auto"
             />
-          </slot>
-        </form>
+          </form>
+        </slot>
       </section>
     </div>
   </Transition>

@@ -5,7 +5,7 @@
     header="Are You Sure?"
     @close="emit('close')"
   >
-    <template #submitButton>
+    <template #form>
       <div class="p-5 flex justify-evenly">
         <Button
           class="mx-5 mt-4 font-semibold"
