@@ -294,12 +294,14 @@
 
 <script setup>
 import { useTournamentStore } from "../../../../stores/tournaments";
+import { useTeamStore } from "../../../../stores/teams";
 
 // eslint-disable-next-line no-undef
 // eslint-disable-next-line no-undef
 const router = useRouter();
 const route = useRoute();
 const tournamentStore = useTournamentStore();
+const teamStore = useTeamStore();
 
 // const status = "CLOSED";
 // const drawStatus = "INCOMPLETE";
@@ -330,6 +332,8 @@ const handleLevelButtons = (button, level) => {
 const managedTournament = tournamentStore.getTournamentById(
   route.params.tournamentId
 );
+await teamStore.getTeamsbyTournament(route.params.tournamentId);
+
 console.log(managedTournament.levels);
 
 // -------
@@ -338,12 +342,15 @@ console.log(managedTournament.levels);
 // It would save money on the number of reads :)
 // -------
 
-// const getNumberOfTeams = (level) => {
-//   console.log(level);
-//   return managedTournament.levels.find((lv) => lv.level === level).teamIds
-//     .length;
-// };
-// const noviceNum = getNumberOfTeams("Novice");
-// const juniorNum = getNumberOfTeams("Junior");
-// const seniorNum = getNumberOfTeams("Senior");
+const getNumberOfTeams = (level) => {
+  console.log(level);
+  // return managedTournament.levels.find((lv) => lv.level === level).teamIds
+  //   .length;
+};
+const noviceNum = teamStore.getNumberTeams("Novice");
+console.log("NOIV", noviceNum);
+const juniorNum = teamStore.getNumberTeams("Junior");
+console.log("junior", juniorNum);
+const seniorNum = teamStore.getNumberTeams("Senior");
+console.log("senior", seniorNum);
 </script>
