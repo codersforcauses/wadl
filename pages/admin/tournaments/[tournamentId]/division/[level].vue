@@ -71,7 +71,11 @@
       >
         Venue
       </p>
-      <div v-for="team in teamStore.levels" :key="team.id">
+      <div
+        class="p-1 inline-block"
+        v-for="team in teamStore.levels"
+        :key="team.id"
+      >
         <Chip
           :text="team.name"
           size="small"
