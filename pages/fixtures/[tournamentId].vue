@@ -1,17 +1,14 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useTeamStore } from "../../stores/teams";
-import { useVenueStore } from "../../stores/venues";
 
 const tournamentStore = useTournamentStore();
 const teamStore = useTeamStore();
-const venueStore = useVenueStore();
 const route = useRoute();
 
 onMounted(async () => {
   await teamStore.getTeams();
-  await venueStore.getVenues();
 });
 
 const headers = [
@@ -43,6 +40,10 @@ const headers = [
     key: "topic",
     title: "Topic",
   },
+  {
+    key: "status",
+    title: "Status",
+  },
 ];
 const levelTabs = [
   { label: "Novice", active: false },
@@ -61,31 +62,31 @@ const roundTabs = tournamentStore.getRunning.reduce((arr, tournament) => {
 }, []);
 
 const tableData = ref([]);
-const levelSelected = ref("Junior");
-const roundSelected = ref(undefined);
-const levelTabsKey = ref(0);
-const roundNameText = ref("");
+const tableFilter = ref("");
+
+let levelSelected = "Junior";
+let roundSelected = undefined;
+let levelTabsKey = 0;
 
 const handleLevel = (tabName) => {
-  levelSelected.value = tabName;
-  levelTabsKey.value++;
+  levelSelected = tabName;
+  levelTabsKey++;
   tableData.value = [];
   roundTabs.forEach((round) => (round.active = false));
-  roundSelected.value = undefined;
-  roundNameText.value = "";
+  roundSelected = undefined;
+  tableFilter.value = "";
 };
 
 const handleRound = (roundName) => {
   tableData.value = [];
-  roundNameText.value = roundName;
-  roundSelected.value = parseInt(roundName.split("")[roundName.length - 1]);
+  roundSelected = parseInt(roundName.split("")[roundName.length - 1]);
 
-  const selectedTournament = tournamentStore.getRunning.filter(
+  const selectedTournament = tournamentStore.getRunning.find(
     (tournament) => tournament.id === route.params.tournamentId
   );
 
-  const levelFound = selectedTournament[0].levels.filter(
-    (lev) => lev.level === levelSelected.value
+  const levelFound = selectedTournament.levels.find(
+    (lev) => lev.level === levelSelected
   );
 
   const formatTime = (date) => {
@@ -99,19 +100,18 @@ const handleRound = (roundName) => {
     return strTime;
   };
 
-  levelFound[0].divisions.map((div) => {
+  levelFound.divisions.map((div) => {
     div.matchups.map((matchup) => {
-      const date = new Date(matchup.datetime)
-        .toDateString()
-        .split(" ")
-        .slice(0, 3)
-        .join(" ");
-      const time = formatTime(new Date(matchup.datetime));
-      if (matchup.round === roundSelected.value) {
+      if (matchup.round === roundSelected) {
+        const date = new Date(matchup.datetime)
+          .toDateString()
+          .split(" ")
+          .slice(0, 3)
+          .join(" ");
+        const time = formatTime(new Date(matchup.datetime));
         const row = {
           div: div.division,
-          venue: venueStore.venues.find((venue) => venue.id === matchup.venueId)
-            .name,
+          venue: div.venue.name,
           date,
           time,
           affirmative: teamStore.teams.find(
@@ -121,6 +121,7 @@ const handleRound = (roundName) => {
             (team) => team.id === matchup.negativeTeam
           )?.name,
           topic: matchup.topic,
+          status: matchup.status,
         };
         tableData.value.push(row);
       }
@@ -129,19 +130,24 @@ const handleRound = (roundName) => {
 };
 
 const handleFilter = (searchTerm) => {
-  searchTerm
-    ? (tableData.value = tableData.value.filter(
-        (data) =>
-          data?.div?.toString().toLowerCase().includes(searchTerm) ||
-          data?.venue?.toLowerCase().includes(searchTerm) ||
-          data?.date?.toLowerCase().includes(searchTerm) ||
-          data?.time?.toLowerCase().includes(searchTerm) ||
-          data?.affirmative?.toLowerCase().includes(searchTerm) ||
-          data?.negative?.toLowerCase().includes(searchTerm) ||
-          data?.topic?.toLowerCase().includes(searchTerm)
-      ))
-    : handleRound(roundNameText.value);
+  tableFilter.value = searchTerm;
 };
+
+const filteredTableData = computed(() => {
+  return tableFilter.value
+    ? tableData.value.filter(
+        (data) =>
+          data?.div?.toString().toLowerCase().includes(tableFilter.value) ||
+          data?.venue?.toLowerCase().includes(tableFilter.value) ||
+          data?.date?.toLowerCase().includes(tableFilter.value) ||
+          data?.time?.toLowerCase().includes(tableFilter.value) ||
+          data?.affirmative?.toLowerCase().includes(tableFilter.value) ||
+          data?.negative?.toLowerCase().includes(tableFilter.value) ||
+          data?.topic?.toLowerCase().includes(tableFilter.value) ||
+          data?.status?.toLowerCase().includes(tableFilter.value)
+      )
+    : tableData.value;
+});
 </script>
 
 <template>
@@ -158,7 +164,7 @@ const handleFilter = (searchTerm) => {
   <div class="flex justify-center w-full">
     <Table
       :headers="headers"
-      :data="tableData"
+      :data="filteredTableData"
       :can-edit="false"
       no-data-text="Please select a round"
     />
