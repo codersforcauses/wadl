@@ -334,19 +334,6 @@ const managedTournament = tournamentStore.getTournamentById(
 );
 await teamStore.getTeamsbyTournament(route.params.tournamentId);
 
-console.log(managedTournament.levels);
-
-// -------
-// TODO: QUERY TEAMS TABLE FOR LENGTH!!!
-// It might be best to store all teams with this tournament id in the store that way we can query the store via getter functions
-// It would save money on the number of reads :)
-// -------
-
-const getNumberOfTeams = (level) => {
-  console.log(level);
-  // return managedTournament.levels.find((lv) => lv.level === level).teamIds
-  //   .length;
-};
 const noviceNum = teamStore.getNumberTeams("Novice");
 console.log("NOIV", noviceNum);
 const juniorNum = teamStore.getNumberTeams("Junior");

@@ -12,7 +12,7 @@
     <Dropdown
       class="my-4"
       v-modal="currentVenue"
-      :items="venues"
+      :items="flattenVenueData"
       placeholder="Select Venue"
       :isVenue="true"
     />
@@ -29,6 +29,7 @@
 <script setup>
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
+import { useTournamentStore } from "../../stores/tournaments";
 import { useVenueStore } from "../../stores/venues";
 
 const props = defineProps({
@@ -44,70 +45,36 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  venues: {
+    type: Array,
+    default: () => [],
+  },
 });
+
+const venueStore = useVenueStore();
+const teamStore = useTeamStore();
+
+const flattenVenueData = ref([]);
+const currentVenue = ref("");
+
+props.venues.forEach(({ week, day, venueIds }) => {
+  return venueIds.map((v) =>
+    Promise.resolve(
+      venueStore.getVenuesById(v, week, day).then((val) => {
+        const venueData = val.name + " " + val.week + " " + val.day;
+        flattenVenueData.value.push(venueData);
+      })
+    )
+  );
+});
+
+console.log("flat VENuES", flattenVenueData);
 
 /* TODO:
   - Change chip color based on venue preference
   - convert venues back into venueData object { name: "abc", day: "tue", week: 1}
   - store division data when updated with venue and teams in store then it will update on submit
-
-
 */
-
-// TODO Get from tournament structure under division - This currently doesnt display in the dropdown because they arent real ids
-// swap this for the actual data
-const venueData = [
-  {
-    week: 1,
-    day: "Tuesday",
-    venue: "0QF7MLBkUDAvuqxfU73n",
-  },
-  {
-    week: 1,
-    day: "Tuesday",
-    venue: "0kxcHd49GSKvLhRwsir7",
-  },
-  {
-    week: 1,
-    day: "Wednesday",
-    venue: "0kxcHd49GSKvLhRwsir7",
-  },
-  {
-    week: 1,
-    day: "Wednesday",
-    venue: "0QF7MLBkUDAvuqxfU73n",
-  },
-  { week: 2, day: "Wednesday", venue: "8fdv4qUT1hcbSPP95Omu" },
-  {
-    week: 2,
-    day: "Tuesday",
-    venue: "0kxcHd49GSKvLhRwsir7",
-  },
-  {
-    week: 2,
-    day: "Tuesday",
-    venue: "8fdv4qUT1hcbSPP95Omu",
-  },
-];
-
-const teamStore = useTeamStore();
-const venueStore = useVenueStore();
-const venues = ref([]);
-const currentVenue = ref("");
-
-const handleVenues = () => {
-  venueData.forEach((v) => {
-    Promise.resolve(
-      venueStore.getVenuesById(v.venue, v.week, v.day).then((val) => {
-        console.log(val);
-        const venueData = val.name + " " + val.week + " " + val.day;
-        venues.value.push(venueData);
-      })
-    );
-  });
-};
-
-handleVenues();
 
 await teamStore.getTeamByTournamentDivision(
   props.tournamentId,

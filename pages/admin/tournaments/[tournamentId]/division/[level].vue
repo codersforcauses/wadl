@@ -41,6 +41,7 @@
         :division="division.division"
         :tournament-id="tournamentStore.tournaments[1].id"
         level="Senior"
+        :venues="tournamentStore.tournaments[1].venues"
       />
 
       <div

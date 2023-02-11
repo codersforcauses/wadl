@@ -39,6 +39,7 @@ export const useTournamentStore = defineStore("tournament", {
           numRounds: doc.data().numRounds,
           shortName: doc.data().shortName,
           status: doc.data().status,
+          venues: doc.data().venues,
         };
         this.tournaments.push(tournament);
       });
