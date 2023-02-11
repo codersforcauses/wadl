@@ -63,6 +63,9 @@
 */
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "~/stores/tournaments";
+import { useTeamStore } from "~/stores/teams";
+import { onMounted } from "vue";
+import useNotification from "../../../../../composables/useNotification";
 
 // eslint-disable-next-line no-undef
 const route = useRoute();
@@ -71,6 +74,7 @@ const tournamentStore = useTournamentStore();
 await tournamentStore.getTournaments();
 
 console.log("ROUTE PARAMS", route.params);
+console.log("ROUTE PARAMS LEVEL", route.params.level);
 
 // TODO Remove Hard so here so uses tournament Id, and level passed from route params
 console.log(tournamentStore.tournaments);
@@ -94,4 +98,14 @@ const addNewDivision = () => {
   };
   tournamentDivisions.push(newState);
 };
+
+const notification = useNotification();
+const teamStore = useTeamStore();
+onMounted(async () => {
+  try {
+    await teamStore.getTeamByLevels(route.params.level);
+  } catch (error) {
+    notification.notifyError(error);
+  }
+});
 </script>
