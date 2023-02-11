@@ -106,14 +106,14 @@ const form = ref({
 });
 
 const handleInstitution = async () => {
+  form.value.code = undefined;
   try {
-    await institutionStore.checkInstitution(form.value).then(async () => {
-      existingInstitution.value = true;
-    });
+    await institutionStore.checkInstitution(form.value);
   } catch (error) {
     notification.notifyError(error);
     return;
   }
+  existingInstitution.value = true;
   notification.notifySuccess("Updated institution settings successfully");
 };
 
