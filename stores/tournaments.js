@@ -6,6 +6,8 @@ export const useTournamentStore = defineStore("tournament", {
   state: () => {
     return {
       tournaments: [],
+      currentTournament: null,
+      divisions: [],
     };
   },
   getters: {
@@ -18,10 +20,6 @@ export const useTournamentStore = defineStore("tournament", {
       return this.tournaments.filter(
         (tournament) => tournament.status === "Open"
       );
-    },
-    getTournamentById() {
-      return (tournamentId) =>
-        this.tournaments.find((tournament) => tournament.id === tournamentId);
     },
   },
   actions: {
@@ -79,6 +77,19 @@ export const useTournamentStore = defineStore("tournament", {
           Object.assign(t, tournament);
         }
       });
+    },
+    getTournament(id) {
+      this.currentTournament = [];
+      this.currentTournament = this.tournaments.find((t) => t.id == id);
+    },
+    getTournamentDivisionsByLevel(level) {
+      console.log("CURRENT TOURNY", this.currentTournament);
+      const levels = this.currentTournament.levels.find(
+        (l) => l.level === level
+      );
+      this.divisions = levels.divisions;
+
+      console.log("DIVISIONSSS", this.divisions);
     },
   },
 });

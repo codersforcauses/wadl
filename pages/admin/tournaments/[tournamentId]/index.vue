@@ -1,7 +1,7 @@
 <template>
   <Header
     title-text="Manage Tournament"
-    :subtitle-text="managedTournament.name"
+    :subtitle-text="tournamentStore.currentTournament.name"
   />
   <div class="mx-32">
     <p class="pt-2 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
@@ -22,14 +22,14 @@
         subtitle="Junior"
         button-size="small"
         :is-horizontal-buttons="false"
-        @button-clicked="print"
+        @button-clicked="handleLevelButtons"
       />
       <Frame
         :title="seniorNum"
         subtitle="Senior"
         button-size="small"
         :is-horizontal-buttons="false"
-        @button-clicked="print"
+        @button-clicked="handleLevelButtons"
       />
       <div class="bg-yellow-200 rounded py-6">
         <div class="flex flex-col justify-center items-center">
@@ -297,9 +297,10 @@ import { useTournamentStore } from "../../../../stores/tournaments";
 import { useTeamStore } from "../../../../stores/teams";
 
 // eslint-disable-next-line no-undef
-// eslint-disable-next-line no-undef
 const router = useRouter();
+// eslint-disable-next-line no-undef
 const route = useRoute();
+
 const tournamentStore = useTournamentStore();
 const teamStore = useTeamStore();
 
@@ -316,10 +317,6 @@ const teamStore = useTeamStore();
 //   },
 // ];
 
-function print(text, subtitle) {
-  console.log(text, subtitle);
-}
-
 const handleLevelButtons = (button, level) => {
   console.log(button, level);
   if (button === "Division") {
@@ -329,15 +326,16 @@ const handleLevelButtons = (button, level) => {
   }
 };
 
-const managedTournament = tournamentStore.getTournamentById(
-  route.params.tournamentId
+tournamentStore.getTournament(route.params.tournamentId);
+
+console.log(
+  "MANAGE TOURNAMENT - Current Tournament",
+  tournamentStore.currentTournament
 );
+
 await teamStore.getTeamsbyTournament(route.params.tournamentId);
 
 const noviceNum = teamStore.getNumberTeams("Novice");
-console.log("NOIV", noviceNum);
 const juniorNum = teamStore.getNumberTeams("Junior");
-console.log("junior", juniorNum);
 const seniorNum = teamStore.getNumberTeams("Senior");
-console.log("senior", seniorNum);
 </script>

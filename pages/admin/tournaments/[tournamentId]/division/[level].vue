@@ -36,19 +36,19 @@
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
     >
       <DivisionPanel
-        v-for="(division, idx) in tournamentDivisions"
+        v-for="(division, idx) in tournamentStore.divisions"
         :key="idx"
         :division="division.division"
-        :tournament-id="tournamentStore.tournaments[1].id"
-        level="Senior"
-        :venues="tournamentStore.tournaments[1].venues"
+        :tournament-id="tournamentStore.currentTournament.id"
+        :level="currentLevel"
+        :venues="tournamentStore.currentTournament.venues"
       />
 
       <div
         class="flex justify-center items-center bg-light-grey/10 mt-4 p-2 px-5 rounded-md h-64 border-2 border-light-grey/20"
         @click="addNewDivision"
       >
-        <PlusIcon class="w-12 h-12 text-light-grey/30" />
+        <PlusIcon class="w-12 h-12 text-light-grey/30 cursor-pointer" />
       </div>
     </div>
   </section>
@@ -56,7 +56,6 @@
 
 <script setup>
 /* TODO:
-  - Dont hard code current tournament, level
   - Handle first time allocating divisions
   - Update firebase (divisions and teams document)
   - Open Modal on plus click
@@ -72,39 +71,35 @@ import useNotification from "../../../../../composables/useNotification";
 const route = useRoute();
 
 const tournamentStore = useTournamentStore();
-await tournamentStore.getTournaments();
+const notification = useNotification();
+const teamStore = useTeamStore();
 
-console.log("ROUTE PARAMS", route.params);
+console.log("ROUTE PARAMS TOURNY", route.params.tournamentId);
 console.log("ROUTE PARAMS LEVEL", route.params.level);
 
-// TODO Remove Hard so here so uses tournament Id, and level passed from route params
-console.log(tournamentStore.tournaments);
-const exampleTournament = tournamentStore.tournaments[1].levels;
-const tournamentDivisions = exampleTournament[0].divisions;
-console.log(exampleTournament);
-console.log(tournamentDivisions);
+const initialState = { division: 1, venue: null, teams: null };
 
-const initialState = {
-  division: 1,
-  venue: null,
-  teams: null,
-};
-const divisions = ref([initialState]);
+const currentLevel = ref(route.params.level);
+const divisions = ref([]);
 
 const addNewDivision = () => {
   const newState = {
-    division: tournamentDivisions.length + 1,
+    division: tournamentStore.divisions.length + 1,
     venue: null,
     teams: null,
   };
-  tournamentDivisions.push(newState);
+  tournamentStore.divisions.push(newState);
 };
 
-const notification = useNotification();
-const teamStore = useTeamStore();
 onMounted(async () => {
   try {
     await teamStore.getTeamByLevels(route.params.level);
+    tournamentStore.getTournamentDivisionsByLevel(currentLevel.value);
+    if (tournamentStore.divisions === undefined) {
+      tournamentStore.divisions = [];
+      tournamentStore.divisions.push({ division: 1, venue: null, teams: null });
+    }
+    console.log("YOO");
   } catch (error) {
     notification.notifyError(error);
   }

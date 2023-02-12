@@ -6,7 +6,7 @@ export const useTeamStore = defineStore("team", {
   state: () => {
     return {
       teams: [],
-      divisions: [],
+      divisions: new Map(),
       levels: [],
     };
   },
@@ -58,8 +58,10 @@ export const useTeamStore = defineStore("team", {
         this.teams.push(team);
       });
     },
+    // Todo: is another query to the backend needed when we can just filter by the teams array?
     async getTeamByTournamentDivision(tournamentId, level, division) {
-      this.divisions = [];
+      //this.divisions = new Map();
+      console.log(this.divisions);
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
       const ref = collection($clientFirestore, "teams");
@@ -86,20 +88,17 @@ export const useTeamStore = defineStore("team", {
           allocatedWed: doc.data().allocatedWed,
           notes: doc.data().notes,
         };
-        this.divisions.push(team);
+        this.divisions.set(team.id, team);
+        //this.divisions.push(team);
       });
-      console.log("***", this.divisions);
     },
+    // Todo: is another query to the backend needed when we can just filter by the teams array?
     async getTeamByLevels(level) {
       this.teams = [];
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
       const ref = collection($clientFirestore, "teams");
-      const q = query(
-        ref,
-        // where("tournamentId", "==", tournamentId),
-        where("level", "==", level)
-      );
+      const q = query(ref, where("level", "==", level));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         const team = {
@@ -119,7 +118,6 @@ export const useTeamStore = defineStore("team", {
         };
         this.levels.push(team);
       });
-      console.log("**", this.levels);
     },
     getNumberTeams(level) {
       return this.teams.filter((t) => t.level === level).length;

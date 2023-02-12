@@ -16,7 +16,7 @@
       placeholder="Select Venue"
       :isVenue="true"
     />
-    <div v-for="team in teamStore.divisions" :key="team.id">
+    <div v-for="team in teamStore.divisions.values()" :key="team.id">
       <Chip
         v-if="team.division == division"
         :text="team.name"
@@ -68,12 +68,11 @@ props.venues.forEach(({ week, day, venueIds }) => {
   );
 });
 
-console.log("flat VENuES", flattenVenueData);
-
 /* TODO:
   - Change chip color based on venue preference
   - convert venues back into venueData object { name: "abc", day: "tue", week: 1}
   - store division data when updated with venue and teams in store then it will update on submit
+  - update (8 teams) Number of teams currently in that division
 */
 
 await teamStore.getTeamByTournamentDivision(
