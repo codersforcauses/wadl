@@ -69,7 +69,7 @@
       <p
         class="text-2xl pb-2 text-center divide-y-4 font-montserrat text-dark-grey"
       >
-        Venue
+        {{ venue }}
       </p>
       <div
         class="p-1 inline-block"
@@ -141,10 +141,12 @@ onMounted(async () => {
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const division = ref("");
+const venue = ref("");
 
 const handleEdit = (divisions) => {
   modalVisibility.value = divisions.modalVisibility;
   editMode.value = divisions.editMode;
   division.value = divisions.data;
+  venue.value = divisions.venue;
 };
 </script>
