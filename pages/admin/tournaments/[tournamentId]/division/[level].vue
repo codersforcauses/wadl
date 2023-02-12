@@ -42,6 +42,7 @@
         :tournament-id="tournamentStore.currentTournament.id"
         :level="currentLevel"
         :venues="tournamentStore.currentTournament.venues"
+        @edit="handleEdit"
       />
 
       <div
