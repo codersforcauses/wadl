@@ -29,6 +29,7 @@
           text-color="text-white"
           size="medium"
           class="ml-5 my-2"
+          @click="updateDivisions"
         />
       </div>
     </div>
@@ -125,7 +126,6 @@ const addNewDivision = () => {
 };
 
 const allocateTeam = (name) => {
-  console.log("ITEM~!!!!", name);
   const team = Array.from(teamStore.unallocatedTeams.values()).find(
     (team) => team.name === name
   );
@@ -140,6 +140,11 @@ const allocateTeam = (name) => {
   }
   console.log("%$^#allocated$%^", teamStore.allocatedTeams);
   console.log("unallocated", teamStore.unallocatedTeams);
+};
+
+const updateDivisions = async () => {
+  console.log("SUBMITING");
+  await teamStore.updateTeamDivision();
 };
 
 onMounted(async () => {

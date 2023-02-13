@@ -1,6 +1,13 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  writeBatch,
+  doc,
+} from "firebase/firestore";
 
 export const useTeamStore = defineStore("team", {
   state: () => {
@@ -67,14 +74,21 @@ export const useTeamStore = defineStore("team", {
           this.unallocatedTeams.set(team.id, team);
         }
       });
-      console.log("ALLOCATED TEAMS", this.allocatedTeams);
-      console.log("unalloc teams", this.unallocatedTeams);
     },
     getTeamsByLevel(level) {
       return this.teams.filter((t) => t.level === level);
     },
     getNumberTeams(level) {
       return this.teams.filter((t) => t.level === level).length;
+    },
+    async updateTeamDivision() {
+      const { $clientFirestore } = useNuxtApp();
+      const batch = writeBatch($clientFirestore);
+      this.allocatedTeams.forEach((team) => {
+        const ref = doc(collection($clientFirestore, "teams"), team.id);
+        batch.set(ref, team);
+      });
+      await batch.commit();
     },
   },
 });
