@@ -39,7 +39,7 @@
       <DivisionPanel
         v-for="(division, idx) in tournamentStore.divisions"
         :key="idx"
-        :division="division.division"
+        :division="division"
         :tournament-id="tournamentStore.currentTournament.id"
         :level="currentLevel"
         :venues="tournamentStore.currentTournament.venues"

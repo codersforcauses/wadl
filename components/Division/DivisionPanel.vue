@@ -2,7 +2,7 @@
   <div class="bg-light-grey/10 mt-4 p-2 px-5 rounded-md h-64">
     <div class="flex justify-between">
       <div class="flex">
-        <p class="text-xl my-auto">Division {{ division }}</p>
+        <p class="text-xl my-auto">Division {{ divisionNumber }}</p>
         <p class="text-xs text-mid-grey font-montserrat flex items-center px-2">
           (8 teams)
         </p>
@@ -20,7 +20,7 @@
     />
     <div v-for="team in teamStore.allocatedTeams.values()" :key="team.id">
       <Chip
-        v-if="team.division == division"
+        v-if="team.division == divisionNumber"
         :text="team.name"
         size="small"
         :bg-color="venuePreferenceColor"
@@ -36,8 +36,8 @@ import { useVenueStore } from "../../stores/venues";
 
 const props = defineProps({
   division: {
-    type: Number,
-    default: 1,
+    type: Object,
+    default: () => {},
   },
   level: {
     type: String,
@@ -53,8 +53,10 @@ const props = defineProps({
   },
 });
 
+console.log("THE DIV", props.division);
 const venueStore = useVenueStore();
 const teamStore = useTeamStore();
+const divisionNumber = ref(props.division.division);
 
 const flattenVenueData = ref([]);
 const currentVenue = ref("");
@@ -76,7 +78,7 @@ const handleAdd = (division) => {
   emit("edit", {
     editMode: true,
     modalVisibility: true,
-    data: division,
+    data: division.division,
     venue: currentVenue,
   });
 };

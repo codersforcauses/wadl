@@ -52,6 +52,8 @@ export const useTeamStore = defineStore("team", {
       querySnapshot.forEach((doc) => {
         const team = {
           id: doc.id,
+          tournamentId: doc.data().tournamentId,
+          institutionId: doc.data().institutionId,
           name: doc.data().name,
           level: doc.data().level,
           division: doc.data().division,
@@ -85,6 +87,7 @@ export const useTeamStore = defineStore("team", {
       const { $clientFirestore } = useNuxtApp();
       const batch = writeBatch($clientFirestore);
       this.allocatedTeams.forEach((team) => {
+        console.log("TREREMMS", team);
         const ref = doc(collection($clientFirestore, "teams"), team.id);
         batch.set(ref, team);
       });
