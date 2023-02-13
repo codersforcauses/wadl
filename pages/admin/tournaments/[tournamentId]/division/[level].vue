@@ -17,7 +17,10 @@
       <div class="flex flex-row justify-center">
         <div class="flex justify-center flex-col">
           <p class="text-2xl mx-auto font-montserrat">
-            13<span class="text-xs">/20</span>
+            {{ teamStore.unallocatedTeams.size
+            }}<span class="text-xs"
+              >/{{ teamStore.getNumberTeams(route.params.level) }}</span
+            >
           </p>
           <p class="text-[9px] text-mid-grey font-montserrat">
             Remaining Teams
@@ -42,7 +45,6 @@
         :division="division"
         :tournament-id="tournamentStore.currentTournament.id"
         :level="currentLevel"
-        :venues="tournamentStore.currentTournament.venues"
         @edit="handleEdit"
       />
 
@@ -56,7 +58,7 @@
   </section>
   <Modal
     :modal-visibility="modalVisibility"
-    size="w-7/12"
+    size="w-9/12"
     @close="
       () => {
         modalVisibility = false;
@@ -64,26 +66,34 @@
     "
   >
     <div class="h-96">
-      <h1 class="text-4xl py-5 text-center font-montserrat">
+      <h1 class="text-3xl py-4 text-center font-montserrat">
         Division {{ division }}
       </h1>
       <p
-        class="text-2xl pb-2 text-center divide-y-4 font-montserrat text-dark-grey"
+        class="text-sm mb-2 text-center divide-y-4 font-montserrat text-mid-grey"
       >
         {{ venue }}
       </p>
-      <div
-        class="p-1 inline-block"
-        v-for="team in teamStore.unallocatedTeams.values()"
-        :key="team.id"
-      >
-        <Chip
-          :text="team.name"
-          size="small"
-          :bg-color="venuePreferenceColor"
-          :canRemove="false"
-          @remove-chip="allocateTeam"
-        />
+      <div class="flex justify-center items-center h-full">
+        <p
+          v-if="teamStore.unallocatedTeams.size == 0"
+          class="font-montserrat text-light-grey/60"
+        >
+          No teams to allocate
+        </p>
+        <div
+          class="p-1 inline-block"
+          v-for="team in teamStore.unallocatedTeams.values()"
+          :key="team.id"
+        >
+          <Chip
+            :text="team.name"
+            size="small"
+            :bg-color="venuePreferenceColor"
+            :canRemove="false"
+            @remove-chip="allocateTeam"
+          />
+        </div>
       </div>
     </div>
   </Modal>
@@ -92,13 +102,13 @@
 <script setup>
 /* TODO:
   - Handle first time allocating divisions
-  - Update firebase (divisions and teams document)
-  - Open Modal on plus click
+  - Update firebase (divisions document)
 
 */
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useTeamStore } from "~/stores/teams";
+import { useVenueStore } from "~/stores/venues";
 import { onMounted } from "vue";
 import useNotification from "../../../../../composables/useNotification";
 
@@ -108,6 +118,7 @@ const route = useRoute();
 const tournamentStore = useTournamentStore();
 const notification = useNotification();
 const teamStore = useTeamStore();
+const venueStore = useVenueStore();
 
 console.log("ROUTE PARAMS TOURNY", route.params.tournamentId);
 console.log("ROUTE PARAMS LEVEL", route.params.level);
@@ -115,6 +126,8 @@ console.log("ROUTE PARAMS LEVEL", route.params.level);
 const initialState = { division: 1, venue: null, teams: null };
 
 const currentLevel = ref(route.params.level);
+const flattenVenueData = ref([]);
+const isLoading = ref(true);
 
 const addNewDivision = () => {
   const newState = {
@@ -152,10 +165,21 @@ onMounted(async () => {
     teamStore.sortTeamDivisionAllocation(route.params.level);
 
     tournamentStore.getTournamentDivisionsByLevel(currentLevel.value);
+    console.log(tournamentStore.divisions);
     if (tournamentStore.divisions === undefined) {
+      console.log("PUSHING");
       tournamentStore.divisions = [];
       tournamentStore.divisions.push({ division: 1, venue: null, teams: null });
+      console.log(tournamentStore.divisions);
     }
+
+    tournamentStore.currentTournament.venues.forEach(
+      ({ week, day, venueIds }) => {
+        return venueIds.map((v) => venueStore.getVenuesById(v, week, day));
+      }
+    );
+    isLoading.value = false;
+    //console.log("HELLLOOO FLATTT", venueStore.tournamentVenues);
   } catch (error) {
     notification.notifyError(error);
   }
@@ -170,6 +194,8 @@ const handleEdit = (divisions) => {
   modalVisibility.value = divisions.modalVisibility;
   editMode.value = divisions.editMode;
   division.value = divisions.data;
-  venue.value = divisions.venue;
+  const divVenue = divisions.venue.value;
+  console.log("RWERWRTERTEERTERT", divisions.venue.value.name);
+  venue.value = divVenue.name + " " + divVenue.day + " W" + divVenue.week;
 };
 </script>

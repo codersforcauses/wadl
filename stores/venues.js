@@ -14,6 +14,7 @@ export const useVenueStore = defineStore("venue", {
     return {
       venues: [],
       filteredVenues: [],
+      tournamentVenues: [],
     };
   },
   getters: {},
@@ -57,7 +58,8 @@ export const useVenueStore = defineStore("venue", {
         week: week,
         day: day,
       };
-      return venue;
+      this.tournamentVenues.push(venue);
+      console.log("ADDING");
     },
   },
 });

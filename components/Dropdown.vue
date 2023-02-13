@@ -22,15 +22,24 @@ const props = defineProps({
   color: { type: String, default: "" },
   modelValue: { type: String, default: "" },
   disabled: { type: Boolean, default: false },
+  isVenue: { type: Boolean, default: false },
 });
 
 const isOpen = ref(false);
 const selected = ref(props.modelValue);
 const emit = defineEmits(["change", "update:modelValue"]);
 
+console.log("DROPDOWN SELECTED", props.selected);
+console.log("DROPDOWN VMODEL", props.modelValue);
+
 const handleClick = (item) => {
   if (!props.disabled) {
-    selected.value = item;
+    if (props.isVenue) {
+      selected.value = item.name + " " + item.day + " " + item.week;
+    } else {
+      selected.value = item;
+    }
+
     isOpen.value = false;
     emit("update:modelValue", item);
   }
@@ -89,7 +98,12 @@ const handleClick = (item) => {
             } hover:bg-gray-50 focus:outline-none focus:bg-gray-50 accent-gold`"
             @click="handleClick(item)"
           >
-            {{ item }}
+            <p v-if="isVenue">
+              {{ item.name }} {{ item.day }} W{{ item.week }}
+            </p>
+            <p v-else>
+              {{ item }}
+            </p>
           </li>
         </ul>
       </div>
