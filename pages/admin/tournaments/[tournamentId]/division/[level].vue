@@ -73,7 +73,7 @@
       </p>
       <div
         class="p-1 inline-block"
-        v-for="team in teamStore.levels"
+        v-for="team in teamStore.unallocatedTeams.values()"
         :key="team.id"
       >
         <Chip
@@ -113,7 +113,6 @@ console.log("ROUTE PARAMS LEVEL", route.params.level);
 const initialState = { division: 1, venue: null, teams: null };
 
 const currentLevel = ref(route.params.level);
-const divisions = ref([]);
 
 const addNewDivision = () => {
   const newState = {
@@ -126,13 +125,13 @@ const addNewDivision = () => {
 
 onMounted(async () => {
   try {
-    await teamStore.getTeamByLevels(route.params.level);
+    teamStore.sortTeamDivisionAllocation(route.params.level);
+
     tournamentStore.getTournamentDivisionsByLevel(currentLevel.value);
     if (tournamentStore.divisions === undefined) {
       tournamentStore.divisions = [];
       tournamentStore.divisions.push({ division: 1, venue: null, teams: null });
     }
-    console.log("YOO");
   } catch (error) {
     notification.notifyError(error);
   }

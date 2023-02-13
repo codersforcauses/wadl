@@ -83,13 +83,13 @@ export const useTournamentStore = defineStore("tournament", {
       this.currentTournament = this.tournaments.find((t) => t.id == id);
     },
     getTournamentDivisionsByLevel(level) {
-      console.log("CURRENT TOURNY", this.currentTournament);
+      console.log("CURRENT Tournament", this.currentTournament);
       const levels = this.currentTournament.levels.find(
         (l) => l.level === level
       );
       this.divisions = levels.divisions;
 
-      console.log("DIVISIONSSS", this.divisions);
+      console.log("Tournament Divisions by level", this.divisions);
     },
   },
 });

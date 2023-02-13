@@ -18,7 +18,7 @@
       placeholder="Select Venue"
       :isVenue="true"
     />
-    <div v-for="team in teamStore.divisions.values()" :key="team.id">
+    <div v-for="team in teamStore.allocatedTeams.values()" :key="team.id">
       <Chip
         v-if="team.division == division"
         :text="team.name"
@@ -87,12 +87,14 @@ props.venues.forEach(({ week, day, venueIds }) => {
   - update (8 teams) Number of teams currently in that division
 */
 
-await teamStore.getTeamByTournamentDivision(
-  props.tournamentId,
-  props.level,
-  props.division
-);
+// await teamStore.getTeamByTournamentDivision(
+//   props.tournamentId,
+//   props.level,
+//   props.division
+// );
+// console.log("**TEAM team*", teamStore.teams);
 
+// console.log("**TEAM DIV*", teamStore.divisions);
 // todo make sure perferences match current venue
 const venuePreferenceColor = computed((preference) => {
   switch (preference) {
