@@ -59,7 +59,8 @@ export const useVenueStore = defineStore("venue", {
         day: day,
       };
       this.tournamentVenues.push(venue);
-      console.log("ADDING");
+
+      console.log("ADDING", this.tournamentVenues);
     },
   },
 });

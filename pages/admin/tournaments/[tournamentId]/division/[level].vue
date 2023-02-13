@@ -3,10 +3,10 @@
   <section class="mx-6">
     <!-- Division Controls -->
     <div
-      class="flex justify-between w-full bg-light-grey/10 mt-4 p-2 px-5 rounded-md"
+      class="flex justify-between w-full p-2 px-5 mt-4 rounded-md bg-light-grey/10"
     >
       <div class="flex flex-row justify-center">
-        <Button button-text="Auto Allocate" size="medium" class="mr-2 my-2" />
+        <Button button-text="Auto Allocate" size="medium" class="my-2 mr-2" />
         <Button
           button-text="Allocate Bye"
           button-color="bg-light-orange-gold"
@@ -15,8 +15,8 @@
         />
       </div>
       <div class="flex flex-row justify-center">
-        <div class="flex justify-center flex-col">
-          <p class="text-2xl mx-auto font-montserrat">
+        <div class="flex flex-col justify-center">
+          <p class="mx-auto text-2xl font-montserrat">
             {{ teamStore.unallocatedTeams.size
             }}<span class="text-xs"
               >/{{ teamStore.getNumberTeams(route.params.level) }}</span
@@ -31,13 +31,13 @@
           button-color="bg-light-green"
           text-color="text-white"
           size="medium"
-          class="ml-5 my-2"
+          class="my-2 ml-5"
           @click="updateDivisions"
         />
       </div>
     </div>
     <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
       <DivisionPanel
         v-for="(division, idx) in tournamentStore.divisions"
@@ -49,10 +49,10 @@
       />
 
       <div
-        class="flex justify-center items-center bg-light-grey/10 mt-4 p-2 px-5 rounded-md h-64 border-2 border-light-grey/20"
+        class="flex items-center justify-center h-64 p-2 px-5 mt-4 border-2 rounded-md bg-light-grey/10 border-light-grey/20"
         @click="addNewDivision"
       >
-        <PlusIcon class="w-12 h-12 text-light-grey/30 cursor-pointer" />
+        <PlusIcon class="w-12 h-12 cursor-pointer text-light-grey/30" />
       </div>
     </div>
   </section>
@@ -66,32 +66,31 @@
     "
   >
     <div class="h-96">
-      <h1 class="text-3xl py-4 text-center font-montserrat">
+      <h1 class="py-4 text-3xl text-center font-montserrat">
         Division {{ division }}
       </h1>
       <p
-        class="text-sm mb-2 text-center divide-y-4 font-montserrat text-mid-grey"
+        class="mb-2 text-sm text-center divide-y-4 font-montserrat text-mid-grey"
       >
         {{ venue }}
       </p>
-      <div class="flex justify-center items-center h-full">
-        <p
-          v-if="teamStore.unallocatedTeams.size == 0"
-          class="font-montserrat text-light-grey/60"
-        >
-          No teams to allocate
-        </p>
-        <div
-          class="p-1 inline-block"
-          v-for="team in teamStore.unallocatedTeams.values()"
-          :key="team.id"
-        >
+      <p
+        v-if="teamStore.unallocatedTeams.size == 0"
+        class="w-full text-center font-montserrat text-light-grey/60"
+      >
+        No teams to allocate
+      </p>
+      <div class="container p-1 mx-auto">
+        <div class="flex flex-wrap justify-center">
           <Chip
+            v-for="team in teamStore.unallocatedTeams.values()"
+            :key="team.id"
             :text="team.name"
             size="small"
             :bg-color="venuePreferenceColor"
             :canRemove="false"
             @remove-chip="allocateTeam"
+            class="mx-2 my-2"
           />
         </div>
       </div>
@@ -101,15 +100,14 @@
 
 <script setup>
 /* TODO:
-  - Handle first time allocating divisions
   - Update firebase (divisions document)
-
 */
+
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useTeamStore } from "~/stores/teams";
 import { useVenueStore } from "~/stores/venues";
-import { onMounted } from "vue";
+import { onMounted, onBeforeMount } from "vue";
 import useNotification from "../../../../../composables/useNotification";
 
 // eslint-disable-next-line no-undef
@@ -165,7 +163,7 @@ onMounted(async () => {
     teamStore.sortTeamDivisionAllocation(route.params.level);
 
     tournamentStore.getTournamentDivisionsByLevel(currentLevel.value);
-    console.log(tournamentStore.divisions);
+    console.log("^^^^", tournamentStore);
     if (tournamentStore.divisions === undefined) {
       console.log("PUSHING");
       tournamentStore.divisions = [];
@@ -175,11 +173,11 @@ onMounted(async () => {
 
     tournamentStore.currentTournament.venues.forEach(
       ({ week, day, venueIds }) => {
-        return venueIds.map((v) => venueStore.getVenuesById(v, week, day));
+        venueIds.forEach((v) => venueStore.getVenuesById(v, week, day));
       }
     );
     isLoading.value = false;
-    //console.log("HELLLOOO FLATTT", venueStore.tournamentVenues);
+    console.log("HELLLOOO FLATTT", venueStore.tournamentVenues);
   } catch (error) {
     notification.notifyError(error);
   }
@@ -194,8 +192,8 @@ const handleEdit = (divisions) => {
   modalVisibility.value = divisions.modalVisibility;
   editMode.value = divisions.editMode;
   division.value = divisions.data;
-  const divVenue = divisions.venue.value;
-  console.log("RWERWRTERTEERTERT", divisions.venue.value.name);
+  const divVenue = divisions.venue;
+  console.log("RWERWRTERTEERTERT", divisions.venue.name);
   venue.value = divVenue.name + " " + divVenue.day + " W" + divVenue.week;
 };
 </script>

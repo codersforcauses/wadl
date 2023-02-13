@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-light-grey/10 mt-4 p-2 px-5 rounded-md h-64">
+  <div class="h-64 p-2 px-5 mt-4 rounded-md bg-light-grey/10">
     <div class="flex justify-between">
       <div class="flex">
-        <p class="text-xl my-auto">Division {{ divisionNumber }}</p>
-        <p class="text-xs text-mid-grey font-montserrat flex items-center px-2">
+        <p class="my-auto text-xl">Division {{ divisionNumber }}</p>
+        <p class="flex items-center px-2 text-xs text-mid-grey font-montserrat">
           (8 teams)
         </p>
       </div>
@@ -25,10 +25,10 @@
       class="my-4"
       v-model="currentVenue"
       :items="venueStore.tournamentVenues"
-      :selected="currentVenue"
       placeholder="Select Venue"
       :isVenue="true"
     />
+    <p v-else>Hello</p>
     <div v-for="team in teamStore.allocatedTeams.values()" :key="team.id">
       <Chip
         v-if="team.division == divisionNumber"
@@ -45,11 +45,12 @@ import { useTeamStore } from "../../stores/teams";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useVenueStore } from "../../stores/venues";
 import { reactive } from "vue";
+import { onMounted, onBeforeMount } from "vue";
 
 const props = defineProps({
   division: {
     type: Object,
-    default: () => {},
+    default: () => ({}),
   },
   level: {
     type: String,
@@ -66,27 +67,72 @@ const teamStore = useTeamStore();
 const tournamentStore = useTournamentStore();
 const divisionNumber = ref(props.division.division);
 
-const currentVenue = ref("");
+const currentVenue = ref(null);
 const isLoading = ref(true);
 
-onMounted(() => {
-  console.log("DIV venue", props.division.venue);
-  const divisionVenue = props.division.venue;
-  console.log("IS THERE VENUE DATA, PROBS NOT", venueStore.tournamentVenues);
-  if (divisionVenue) {
-    venueStore.tournamentVenues.forEach((venue) => {
-      if (
-        venue.name === divisionVenue.name &&
-        venue.week === divisionVenue.week &&
-        venue.day === divisionVenue.day
-      ) {
-        console.log("MATCH FOUND");
-        currentVenue.value = venue;
-      }
-    });
-  }
-  isLoading.value = false;
-});
+console.log("DIV venue", props.division);
+console.log("IS THERE VENUE DATA, PROBS NOT", venueStore.tournamentVenues);
+
+console.log("TEST", tournamentStore.divisions);
+const divisionVenue = props.division.venue;
+console.log({ divisionVenue });
+if (divisionVenue) {
+  const x = venueStore.tournamentVenues.find(
+    (venue) =>
+      venue.name === divisionVenue.name &&
+      venue.week === divisionVenue.week &&
+      venue.day === divisionVenue.day
+  );
+
+  console.log(x);
+}
+
+// const getCurrent = computed(() => {
+//   if (divisionVenue) {
+//     console.log("^^^^^^^^&^");
+//     const x = venueStore.tournamentVenues.find(
+//       (venue) =>
+//         venue.name === divisionVenue.name &&
+//         venue.week === divisionVenue.week &&
+//         venue.day === divisionVenue.day
+//     );
+
+//     console.log(x);
+//     return x;
+//   }
+// });
+
+console.log(isLoading.value);
+isLoading.value = false;
+console.log(isLoading.value);
+// onBeforeMount(() => {
+//   if (divisionVenue) {
+//     console.log("^^^^^^^^&^");
+//     currentVenue.value = venueStore.tournamentVenues.find(
+//       (venue) =>
+//         venue.name === divisionVenue.name &&
+//         venue.week === divisionVenue.week &&
+//         venue.day === divisionVenue.day
+//     );
+//   }
+//   console.log("DIV venue", props.division.venue);
+// console.log("IS THERE VENUE DATA, PROBS NOT", venueStore.tournamentVenues);
+// const divisionVenue = props.division.venue;
+// if (divisionVenue) {
+//   venueStore.tournamentVenues.forEach((venue) => {
+//     if (
+//       venue.name === divisionVenue.name &&
+//       venue.week === divisionVenue.week &&
+//       venue.day === divisionVenue.day
+//     ) {
+//       console.log("MATCH FOUND");
+//       currentVenue.value = venue;
+//     }
+//   });
+// }
+// isLoading.value = false;
+// console.log("Nick the rizz god");
+// });
 
 const emit = defineEmits(["edit"]);
 
@@ -95,13 +141,13 @@ const handleAdd = (division) => {
     editMode: true,
     modalVisibility: true,
     data: division.division,
-    venue: currentVenue,
+    venue: currentVenue.value,
   });
 };
 /* TODO:
   - Change chip color based on venue preference
   - store division data when updated with venue and teams in store then it will update on submit
-  - update (8 teams) Number of teams currently in that division
+  - update (8 teams) to number of teams currently in that division
   - Venue not displaying in dropdown  when it already exists for that division
 */
 
