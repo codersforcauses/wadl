@@ -13,7 +13,7 @@
     </div>
     <Dropdown
       class="my-4"
-      v-modal="currentVenue"
+      v-model="currentVenue"
       :items="flattenVenueData"
       placeholder="Select Venue"
       :isVenue="true"
@@ -33,16 +33,6 @@ import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useVenueStore } from "../../stores/venues";
-
-const emit = defineEmits(["edit"]);
-
-const handleAdd = (division) => {
-  emit("edit", {
-    editMode: true,
-    modalVisibility: true,
-    data: division,
-  });
-};
 
 const props = defineProps({
   division: {
@@ -80,6 +70,17 @@ props.venues.forEach(({ week, day, venueIds }) => {
   );
 });
 
+const emit = defineEmits(["edit"]);
+
+console.log("***", currentVenue);
+const handleAdd = (division) => {
+  emit("edit", {
+    editMode: true,
+    modalVisibility: true,
+    data: division,
+    venue: currentVenue,
+  });
+};
 /* TODO:
   - Change chip color based on venue preference
   - convert venues back into venueData object { name: "abc", day: "tue", week: 1}
