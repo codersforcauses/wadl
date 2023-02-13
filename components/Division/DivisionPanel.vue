@@ -72,7 +72,6 @@ props.venues.forEach(({ week, day, venueIds }) => {
 
 const emit = defineEmits(["edit"]);
 
-console.log("***", currentVenue);
 const handleAdd = (division) => {
   emit("edit", {
     editMode: true,
@@ -87,14 +86,6 @@ const handleAdd = (division) => {
   - store division data when updated with venue and teams in store then it will update on submit
   - update (8 teams) Number of teams currently in that division
 */
-
-// await teamStore.getTeamByTournamentDivision(
-//   props.tournamentId,
-//   props.level,
-//   props.division
-// );
-// console.log("**TEAM team*", teamStore.teams);
-
 // console.log("**TEAM DIV*", teamStore.divisions);
 // todo make sure perferences match current venue
 const venuePreferenceColor = computed((preference) => {

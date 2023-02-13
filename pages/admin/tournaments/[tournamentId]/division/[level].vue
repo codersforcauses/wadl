@@ -81,6 +81,7 @@
           size="small"
           :bg-color="venuePreferenceColor"
           :canRemove="false"
+          @remove-chip="allocateTeam"
         />
       </div>
     </div>
@@ -121,6 +122,24 @@ const addNewDivision = () => {
     teams: null,
   };
   tournamentStore.divisions.push(newState);
+};
+
+const allocateTeam = (name) => {
+  console.log("ITEM~!!!!", name);
+  const team = Array.from(teamStore.unallocatedTeams.values()).find(
+    (team) => team.name === name
+  );
+  if (team) {
+    teamStore.unallocatedTeams.delete(
+      Array.from(teamStore.unallocatedTeams.keys()).find(
+        (key) => teamStore.unallocatedTeams.get(key) === team
+      )
+    );
+    team.division = division.value;
+    teamStore.allocatedTeams.set(team.id, team);
+  }
+  console.log("%$^#allocated$%^", teamStore.allocatedTeams);
+  console.log("unallocated", teamStore.unallocatedTeams);
 };
 
 onMounted(async () => {
