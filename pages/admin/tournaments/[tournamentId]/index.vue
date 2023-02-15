@@ -328,11 +328,6 @@ const handleLevelButtons = (button, level) => {
 
 tournamentStore.getTournament(route.params.tournamentId);
 
-console.log(
-  "MANAGE TOURNAMENT - Current Tournament",
-  tournamentStore.currentTournament
-);
-
 await teamStore.getTeamsbyTournament(route.params.tournamentId);
 
 const noviceNum = teamStore.getNumberTeams("Novice");

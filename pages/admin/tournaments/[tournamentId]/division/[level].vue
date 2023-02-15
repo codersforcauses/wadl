@@ -113,9 +113,6 @@ const tournamentStore = useTournamentStore();
 const notification = useNotification();
 const teamStore = useTeamStore();
 
-console.log("ROUTE PARAMS TOURNY", route.params.tournamentId);
-console.log("ROUTE PARAMS LEVEL", route.params.level);
-
 const initialState = { division: 1, venue: null, teams: null };
 
 const currentLevel = ref(route.params.level);
@@ -145,7 +142,6 @@ const allocateTeam = (name) => {
 };
 
 const updateDivisions = async () => {
-  console.log("SUBMITING");
   await teamStore.updateTeamDivision();
   await tournamentStore.updateDivisionVenue(route.params.level);
 };
@@ -158,7 +154,6 @@ onMounted(async () => {
     if (tournamentStore.divisions === undefined) {
       tournamentStore.divisions = [];
       tournamentStore.divisions.push({ division: 1, venue: null, teams: null });
-      console.log(tournamentStore.divisions);
     }
   } catch (error) {
     notification.notifyError(error);

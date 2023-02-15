@@ -78,7 +78,6 @@ watch(currentVenue, (newValue, oldValue) => {
 
 const getTeamCount = () => {
   let numberOfTeams = 0;
-  console.log("HELLO");
   teamStore.allocatedTeams.forEach((team) => {
     if (team.division === divisionNumber.value) {
       numberOfTeams += 1;

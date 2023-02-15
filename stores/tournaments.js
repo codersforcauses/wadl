@@ -7,8 +7,6 @@ import {
   setDoc,
   doc,
   updateDoc,
-  arrayUnion,
-  getDoc,
 } from "firebase/firestore";
 
 export const useTournamentStore = defineStore("tournament", {

@@ -89,7 +89,6 @@ export const useTeamStore = defineStore("team", {
       const { $clientFirestore } = useNuxtApp();
       const batch = writeBatch($clientFirestore);
       this.allocatedTeams.forEach((team) => {
-        console.log("TREREMMS", team);
         const ref = doc(collection($clientFirestore, "teams"), team.id);
         batch.set(ref, team);
       });
