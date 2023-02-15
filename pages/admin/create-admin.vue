@@ -32,10 +32,14 @@ const handleClose = () => {
 
 // Call The User Store
 const registerUser = async () => {
+  if (form.value.password !== form.value.confirmPassword) {
+    errorMessage.value = "The password does not match";
+    return;
+  }
   try {
     await userStore.createAdmin(form.value);
   } catch (error) {
-    errorMessage.value = errorCodeToMessage(error.code);
+    errorMessage.value = errorCodeToMessage(error);
     return;
   }
   notification.notifySuccess("Created a new admin successfully");

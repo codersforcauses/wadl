@@ -10,7 +10,7 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
       await userStore.clearStore();
     }
 
-    const publicRoutes = ["/", "/signup", "/login"];
+    const publicRoutes = ["/", "/signup", "/login", "/resetpassword"];
     if (publicRoutes.includes(to.path)) return;
 
     if (userStore.auth === null) {

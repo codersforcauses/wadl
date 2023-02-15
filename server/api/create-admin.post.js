@@ -60,6 +60,7 @@ export default defineEventHandler(async (event) => {
         email: newUser.email,
       });
     });
+    return true;
   } catch (err) {
     throw createError({
       statusCode: 400,
