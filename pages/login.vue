@@ -76,13 +76,11 @@ watch(role, (currentValue, oldValue) => {
       </client-only>
       <div class="w-full flex flex-col gap-6 items-center mt-4">
         <Button button-text="Submit" button-color="bg-gold " />
-
-        <!-- Add back in when functionality is available! :D
-          <NuxtLink
-          to="/"
+        <NuxtLink
+          to="/resetpassword"
           class="underline underline-offset-4 text-xs hover:text-light-orange-gold"
           >Forgot my password
-        </NuxtLink> -->
+        </NuxtLink>
         <span class="text-xs">
           Don't have an account?
           <NuxtLink

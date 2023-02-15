@@ -126,7 +126,6 @@ const updateInput = () => {
 
 // Call The User Store
 const registerUser = async () => {
-  console.log(form.value);
   if (form.value.password.length < 8) {
     isValid.value = false;
     errorMessage.value = "The password has to be at least 8 characters";
