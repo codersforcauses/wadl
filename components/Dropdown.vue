@@ -63,7 +63,7 @@ const handleClick = (item) => {
           >
             {{ placeholder }}
           </span>
-          <span v-if="isVenue">
+          <span v-if="isVenue && selected && selected.length !== 0">
             {{ selected.name }} {{ selected.day }} W{{ selected.week }}
           </span>
           <span

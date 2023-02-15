@@ -88,7 +88,7 @@
             :key="team.id"
             :text="team.name"
             size="small"
-            :bg-color="venuePreferenceColor"
+            :bg-color="teamStore.getPreferenceColor(team, currentVenue)"
             :canRemove="false"
             @remove-chip="allocateTeam"
             class="mx-2 my-2"
@@ -102,6 +102,7 @@
 <script setup>
 /* TODO:
   - Update firebase (divisions document)
+  - Remove Allocation into unallocated
 */
 
 import { PlusIcon } from "@heroicons/vue/24/solid";
@@ -158,11 +159,9 @@ const updateDivisions = async () => {
 onMounted(async () => {
   try {
     teamStore.sortTeamDivisionAllocation(route.params.level);
-
     tournamentStore.getTournamentDivisionsByLevel(currentLevel.value);
-    console.log("^^^^", tournamentStore);
+
     if (tournamentStore.divisions === undefined) {
-      console.log("PUSHING");
       tournamentStore.divisions = [];
       tournamentStore.divisions.push({ division: 1, venue: null, teams: null });
       console.log(tournamentStore.divisions);
@@ -176,12 +175,19 @@ const modalVisibility = ref(false);
 const editMode = ref(false);
 const division = ref("");
 const venue = ref("");
+const currentVenue = ref(null);
 
 const handleEdit = (divisions) => {
   modalVisibility.value = divisions.modalVisibility;
   editMode.value = divisions.editMode;
   division.value = divisions.data;
-  const divVenue = divisions.venue;
-  venue.value = divVenue.name + " " + divVenue.day + " W" + divVenue.week;
+  currentVenue.value = divisions.venue;
+
+  venue.value =
+    currentVenue.value.name +
+    " " +
+    currentVenue.value.day +
+    " W" +
+    currentVenue.value.week;
 };
 </script>

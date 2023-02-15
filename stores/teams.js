@@ -93,5 +93,41 @@ export const useTeamStore = defineStore("team", {
       });
       await batch.commit();
     },
+    getPreferenceColor(team, venue) {
+      console.log("HELLLOOOOO");
+      // Venue Preferences
+      const isFirstPref = venue.name === team.venuePreference[0];
+      const isSecondPref = venue.name === team.venuePreference[1];
+      const isThirdPref = venue.name === team.venuePreference[2];
+
+      // Day Preferences
+      const hasTuesPref = venue.day === "Tuesday" && team.allocatedTue;
+      const hasWedPref = venue.day === "Wednesday" && team.allocatedWed;
+      const isDayPref = hasTuesPref || hasWedPref;
+
+      // Week Preferences
+      const isWeekPref =
+        team.weekPreference.includes(venue.week) ||
+        team.weekPreference === "Either";
+
+      // Team is happy with anything
+      // todo change to !team.hasVenuePreference (dummy data has wrong boolean value)
+      const noPref =
+        team.hasVenuePreference &&
+        team.weekPreference === "Either" &&
+        hasWedPref &&
+        hasTuesPref;
+
+      // todo change to !team.hasVenuePreference (dummy data has wrong boolean value)
+      if ((isFirstPref || team.hasVenuePreference) && isDayPref && isWeekPref) {
+        return "bg-light-green/20";
+      } else if (isDayPref) {
+        return "bg-light-orange-gold/40";
+      } else if (noPref) {
+        return "bg-white";
+      } else {
+        return "bg-danger-red/20";
+      }
+    },
   },
 });
