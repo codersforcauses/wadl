@@ -132,6 +132,7 @@
     "
   />
 
+  <div class="mt-20" />
   <Stepper />
 
   <div class="h-20"></div>
