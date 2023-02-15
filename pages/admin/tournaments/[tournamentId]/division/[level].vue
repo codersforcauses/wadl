@@ -107,8 +107,7 @@
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useTeamStore } from "~/stores/teams";
-import { useVenueStore } from "~/stores/venues";
-import { onMounted, onBeforeMount } from "vue";
+import { onMounted } from "vue";
 import useNotification from "../../../../../composables/useNotification";
 
 // eslint-disable-next-line no-undef
@@ -183,7 +182,6 @@ const handleEdit = (divisions) => {
   editMode.value = divisions.editMode;
   division.value = divisions.data;
   const divVenue = divisions.venue;
-  console.log("RWERWRTERTEERTERT", divisions.venue.name);
   venue.value = divVenue.name + " " + divVenue.day + " W" + divVenue.week;
 };
 </script>

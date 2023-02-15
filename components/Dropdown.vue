@@ -29,17 +29,9 @@ const isOpen = ref(false);
 const selected = ref(props.modelValue);
 const emit = defineEmits(["change", "update:modelValue"]);
 
-console.log("DROPDOWN SELECTED", props.selected);
-console.log("DROPDOWN VMODEL", props.modelValue);
-
 const handleClick = (item) => {
   if (!props.disabled) {
-    if (props.isVenue) {
-      selected.value = item.name + " " + item.day + " " + item.week;
-    } else {
-      selected.value = item;
-    }
-
+    selected.value = item;
     isOpen.value = false;
     emit("update:modelValue", item);
   }

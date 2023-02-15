@@ -64,11 +64,8 @@ const teamStore = useTeamStore();
 const divisionNumber = ref(props.division.division);
 
 const currentVenue = ref(null);
-const isLoading = ref(true);
 
 const divisionVenue = props.division.venue;
-
-console.log({ divisionVenue });
 
 if (divisionVenue) {
   const matchingVenue = props.venues.find(
@@ -77,8 +74,6 @@ if (divisionVenue) {
       venue.week === divisionVenue.week &&
       venue.day === divisionVenue.day
   );
-
-  console.log("Matching Venue", matchingVenue);
   currentVenue.value = matchingVenue;
 }
 
