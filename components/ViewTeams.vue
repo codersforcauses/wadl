@@ -1,7 +1,7 @@
 <template>
   <Modal
     :modal-visibility="modalVisibility"
-    size="md:1/3"
+    size="w-full h-full md:w-2/3 md:h-4/5"
     @close="emit('close')"
   >
     <div class="w-full h-48">
