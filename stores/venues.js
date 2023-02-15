@@ -48,19 +48,5 @@ export const useVenueStore = defineStore("venue", {
         this.venues.push({ id: doc.id, ...doc.data() });
       });
     },
-    async getVenuesById(id, week, day) {
-      const { $clientFirestore } = useNuxtApp();
-      if (!$clientFirestore) return;
-      const ref = doc($clientFirestore, "venues", id);
-      const venueDoc = await getDoc(ref);
-      const venue = {
-        name: venueDoc.data().name,
-        week: week,
-        day: day,
-      };
-      this.tournamentVenues.push(venue);
-
-      console.log("ADDING", this.tournamentVenues);
-    },
   },
 });

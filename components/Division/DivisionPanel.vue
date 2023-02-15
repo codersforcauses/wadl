@@ -21,14 +21,12 @@
       </button>
     </div>
     <Dropdown
-      v-if="!isLoading"
       class="my-4"
       v-model="currentVenue"
       :items="venueStore.tournamentVenues"
       placeholder="Select Venue"
       :isVenue="true"
     />
-    <p v-else>Hello</p>
     <div v-for="team in teamStore.allocatedTeams.values()" :key="team.id">
       <Chip
         v-if="team.division == divisionNumber"
@@ -42,8 +40,6 @@
 <script setup>
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
-import { useTournamentStore } from "../../stores/tournaments";
-import { useVenueStore } from "../../stores/venues";
 import { reactive } from "vue";
 import { onMounted, onBeforeMount } from "vue";
 
@@ -60,79 +56,33 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  venues: {
+    type: Array,
+    default: () => [],
+  },
 });
 
-const venueStore = useVenueStore();
 const teamStore = useTeamStore();
-const tournamentStore = useTournamentStore();
 const divisionNumber = ref(props.division.division);
 
 const currentVenue = ref(null);
 const isLoading = ref(true);
 
-console.log("DIV venue", props.division);
-console.log("IS THERE VENUE DATA, PROBS NOT", venueStore.tournamentVenues);
-
-console.log("TEST", tournamentStore.divisions);
 const divisionVenue = props.division.venue;
+
 console.log({ divisionVenue });
+
 if (divisionVenue) {
-  const x = venueStore.tournamentVenues.find(
+  const matchingVenue = props.venues.find(
     (venue) =>
       venue.name === divisionVenue.name &&
       venue.week === divisionVenue.week &&
       venue.day === divisionVenue.day
   );
 
-  console.log(x);
+  console.log("Matching Venue", matchingVenue);
+  currentVenue.value = matchingVenue;
 }
-
-// const getCurrent = computed(() => {
-//   if (divisionVenue) {
-//     console.log("^^^^^^^^&^");
-//     const x = venueStore.tournamentVenues.find(
-//       (venue) =>
-//         venue.name === divisionVenue.name &&
-//         venue.week === divisionVenue.week &&
-//         venue.day === divisionVenue.day
-//     );
-
-//     console.log(x);
-//     return x;
-//   }
-// });
-
-console.log(isLoading.value);
-isLoading.value = false;
-console.log(isLoading.value);
-// onBeforeMount(() => {
-//   if (divisionVenue) {
-//     console.log("^^^^^^^^&^");
-//     currentVenue.value = venueStore.tournamentVenues.find(
-//       (venue) =>
-//         venue.name === divisionVenue.name &&
-//         venue.week === divisionVenue.week &&
-//         venue.day === divisionVenue.day
-//     );
-//   }
-//   console.log("DIV venue", props.division.venue);
-// console.log("IS THERE VENUE DATA, PROBS NOT", venueStore.tournamentVenues);
-// const divisionVenue = props.division.venue;
-// if (divisionVenue) {
-//   venueStore.tournamentVenues.forEach((venue) => {
-//     if (
-//       venue.name === divisionVenue.name &&
-//       venue.week === divisionVenue.week &&
-//       venue.day === divisionVenue.day
-//     ) {
-//       console.log("MATCH FOUND");
-//       currentVenue.value = venue;
-//     }
-//   });
-// }
-// isLoading.value = false;
-// console.log("Nick the rizz god");
-// });
 
 const emit = defineEmits(["edit"]);
 

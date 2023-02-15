@@ -46,6 +46,7 @@
         :tournament-id="tournamentStore.currentTournament.id"
         :level="currentLevel"
         @edit="handleEdit"
+        :venues="tournamentStore.currentTournament.venues"
       />
 
       <div
@@ -116,7 +117,6 @@ const route = useRoute();
 const tournamentStore = useTournamentStore();
 const notification = useNotification();
 const teamStore = useTeamStore();
-const venueStore = useVenueStore();
 
 console.log("ROUTE PARAMS TOURNY", route.params.tournamentId);
 console.log("ROUTE PARAMS LEVEL", route.params.level);
@@ -124,8 +124,6 @@ console.log("ROUTE PARAMS LEVEL", route.params.level);
 const initialState = { division: 1, venue: null, teams: null };
 
 const currentLevel = ref(route.params.level);
-const flattenVenueData = ref([]);
-const isLoading = ref(true);
 
 const addNewDivision = () => {
   const newState = {
@@ -170,14 +168,6 @@ onMounted(async () => {
       tournamentStore.divisions.push({ division: 1, venue: null, teams: null });
       console.log(tournamentStore.divisions);
     }
-
-    tournamentStore.currentTournament.venues.forEach(
-      ({ week, day, venueIds }) => {
-        venueIds.forEach((v) => venueStore.getVenuesById(v, week, day));
-      }
-    );
-    isLoading.value = false;
-    console.log("HELLLOOO FLATTT", venueStore.tournamentVenues);
   } catch (error) {
     notification.notifyError(error);
   }
