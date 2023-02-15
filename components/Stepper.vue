@@ -23,7 +23,7 @@
             <div v-else>
               <CheckIcon class="text-white" />
             </div>
-            <div class="w-16 h-px bg-light-grey" />
+            <div class="relative w-16 h-px left-5 bg-light-grey" />
           </div>
         </div>
         <div class="w-px h-16 bg-light-grey" />
