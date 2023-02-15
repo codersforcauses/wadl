@@ -18,6 +18,7 @@
           v-for="(row, index) in data"
           :key="index"
           class="py-10 odd:bg-white even:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out"
+          @click="handleRowClick(row.id)"
         >
           <td v-for="(object, ind) in headers" :key="ind" class="p-2">
             <slot
@@ -33,7 +34,14 @@
             </slot>
           </td>
           <td v-if="canEdit" class="text-right p-2">
-            <button @click="handleEmit(row)">
+            <button
+              @click.prevent="
+                (e) => {
+                  handleEmit(row);
+                  e.stopPropagation();
+                }
+              "
+            >
               <PencilIcon class="w-4 h-4" />
             </button>
           </td>
@@ -49,7 +57,11 @@
 <script setup>
 import { PencilIcon } from "@heroicons/vue/24/solid";
 
-const emit = defineEmits(["edit"]);
+const emit = defineEmits(["edit", "getId"]);
+
+const handleRowClick = (id) => {
+  emit("getId", id);
+};
 
 const handleEmit = (info) => {
   emit("edit", {
