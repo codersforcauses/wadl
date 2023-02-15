@@ -44,21 +44,28 @@ const chipSize = computed(() => {
 <template>
   <span class="rounded-lg" :class="`${bgColor} ${textColor} ${chipSize}`">
     {{ text }}
-    <button
-      class="pb-1 pl-2 align-middle"
-      @click.prevent="
-        (e) => {
-          $emit('removeChip', text);
-          e.stopPropagation();
-        }
-      "
-    >
+    <button class="pb-1 pl-2 align-middle">
       <div class="hover:bg-amber-500 transition rounded-lg flex flex-nowrap">
         <XMarkIcon
           v-if="canRemove"
           class="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5"
+          @click.prevent="
+            (e) => {
+              $emit('removeChip', text);
+              e.stopPropagation();
+            }
+          "
         />
-        <PlusIcon v-else class="w-4 h-4" />
+        <PlusIcon
+          v-else
+          class="w-4 h-4"
+          @click.prevent="
+            (e) => {
+              $emit('addChip', text);
+              e.stopPropagation();
+            }
+          "
+        />
       </div>
     </button>
   </span>

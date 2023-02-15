@@ -88,9 +88,9 @@
             :key="team.id"
             :text="team.name"
             size="small"
-            :bg-color="teamStore.getPreferenceColor(team, currentVenue)"
+            :bg-color="venuePreferenceColor(team)"
             :canRemove="false"
-            @remove-chip="allocateTeam"
+            @add-chip="allocateTeam"
             class="mx-2 my-2"
           />
         </div>
@@ -147,8 +147,6 @@ const allocateTeam = (name) => {
     team.division = division.value;
     teamStore.allocatedTeams.set(team.id, team);
   }
-  console.log("%$^#allocated$%^", teamStore.allocatedTeams);
-  console.log("unallocated", teamStore.unallocatedTeams);
 };
 
 const updateDivisions = async () => {
@@ -189,5 +187,38 @@ const handleEdit = (divisions) => {
     currentVenue.value.day +
     " W" +
     currentVenue.value.week;
+};
+
+const venuePreferenceColor = (team) => {
+  // Venue Preferences
+  const isFirstPref = currentVenue.value.name === team.venuePreference[0];
+  const isSecondPref = currentVenue.value.name === team.venuePreference[1];
+  const isThirdPref = currentVenue.value.name === team.venuePreference[2];
+  // Day Preferences
+  const hasTuesPref = currentVenue.value.day === "Tuesday" && team.allocatedTue;
+  const hasWedPref =
+    currentVenue.value.day === "Wednesday" && team.allocatedWed;
+  const isDayPref = hasTuesPref || hasWedPref;
+  // Week Preferences
+  const isWeekPref =
+    team.weekPreference.includes(currentVenue.value.week) ||
+    team.weekPreference === "Either";
+  // Team is happy with anything
+  // todo change to !team.hasVenuePreference (dummy data has wrong boolean value)
+  const noPref =
+    team.hasVenuePreference &&
+    team.weekPreference === "Either" &&
+    hasWedPref &&
+    hasTuesPref;
+  // todo change to !team.hasVenuePreference (dummy data has wrong boolean value)
+  if ((isFirstPref || team.hasVenuePreference) && isDayPref && isWeekPref) {
+    return "bg-light-green/20";
+  } else if (isDayPref) {
+    return "bg-light-orange-gold/40";
+  } else if (noPref) {
+    return "bg-white";
+  } else {
+    return "bg-danger-red/20";
+  }
 };
 </script>
