@@ -1,7 +1,7 @@
 <template>
   <div v-if="data.length > 0" class="block overflow-auto w-full md:w-11/12">
     <table class="w-full">
-      <thead>
+      <thead v-if="renderHeaders">
         <tr class="border-b font-carterone text-left">
           <th
             v-for="(object, index) in headers"
@@ -75,6 +75,10 @@ defineProps({
   headers: {
     type: Object,
     default: () => {},
+  },
+  renderHeaders: {
+    type: Boolean,
+    default: true,
   },
   data: {
     type: Object,

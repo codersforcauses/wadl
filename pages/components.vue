@@ -75,6 +75,7 @@
 
   <ViewTeams
     :modal-visibility="teamsVisibility"
+    :teams="team.teams"
     @close="
       () => {
         teamsVisibility = false;

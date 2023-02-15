@@ -4,16 +4,30 @@
     size="w-full h-full md:w-2/3 md:h-4/5"
     @close="emit('close')"
   >
-    <div class="w-full h-48">
-      <Header title-text="Registered Teams" subtitle-text="JUNIOR" />
-    </div>
+    <Header title-text="Registered Teams" subtitle-text="JUNIOR" />
+    <Table
+      class="mx-12 h-3/4"
+      :headers="headers"
+      :render-headers="false"
+      :data="teams"
+      :can-edit="false"
+      no-data-text="No teams registered"
+    />
   </Modal>
 </template>
 
 <script setup>
 defineProps({
   modalVisibility: { type: Boolean, default: false },
+  teams: { type: Array, required: true },
 });
 
 const emit = defineEmits(["close"]);
+
+const headers = [
+  {
+    key: "name",
+    title: "Name",
+  },
+];
 </script>
