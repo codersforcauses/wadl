@@ -142,8 +142,16 @@ const allocateTeam = (name) => {
 };
 
 const updateDivisions = async () => {
-  await teamStore.updateTeamDivision();
-  await tournamentStore.updateDivisionVenue(route.params.level);
+  try {
+    await teamStore.updateTeamDivision();
+    await tournamentStore.updateDivisionVenue(route.params.level);
+  } catch {
+    notification.notifyError("Problem updating divisions and team divisions");
+    return;
+  }
+  notification.notifySuccess(
+    "Updated divisions and team divisions successfully"
+  );
 };
 
 onMounted(async () => {
