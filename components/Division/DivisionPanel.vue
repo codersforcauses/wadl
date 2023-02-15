@@ -23,7 +23,7 @@
     <Dropdown
       class="my-4"
       v-model="currentVenue"
-      :items="venueStore.tournamentVenues"
+      :items="venues"
       placeholder="Select Venue"
       :isVenue="true"
     />
@@ -40,8 +40,6 @@
 <script setup>
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
-import { reactive } from "vue";
-import { onMounted, onBeforeMount } from "vue";
 
 const props = defineProps({
   division: {
