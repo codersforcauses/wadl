@@ -100,11 +100,6 @@
 </template>
 
 <script setup>
-/* TODO:
-  - Update firebase (divisions document)
-  - Remove Allocation into unallocated
-*/
-
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useTeamStore } from "~/stores/teams";

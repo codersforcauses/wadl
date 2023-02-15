@@ -112,20 +112,11 @@ export const useTournamentStore = defineStore("tournament", {
         this.currentTournament.id
       );
 
-      const levelsSnapshot = await getDoc(tournamentRef);
-      const levelsData = levelsSnapshot.data().levels;
-      const index = levelsData.findIndex((l) => l.level === level);
+      const levels = this.currentTournament.levels;
+      const index = levels.findIndex((l) => l.level === level);
 
-      console.log(levelsData);
-      console.log(levelsData[index]);
-      // const updatedDivisions = [
-      //   ...levelsData[index].divisions,
-      //   ...this.divisions,
-      // ];
-      console.log(this.divisions);
-      await updateDoc(tournamentRef, {
-        [`levels.${index}.divisions`]: this.divisions,
-      });
+      this.currentTournament.levels[index].divisions = this.divisions;
+      await updateDoc(tournamentRef, this.currentTournament);
     },
   },
 });

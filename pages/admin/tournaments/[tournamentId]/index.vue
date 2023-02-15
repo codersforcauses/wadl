@@ -334,7 +334,6 @@ console.log(
 );
 
 await teamStore.getTeamsbyTournament(route.params.tournamentId);
-console.log(teamStore.teams);
 
 const noviceNum = teamStore.getNumberTeams("Novice");
 const juniorNum = teamStore.getNumberTeams("Junior");

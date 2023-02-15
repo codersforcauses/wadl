@@ -96,9 +96,7 @@ const handleAdd = (division) => {
     venue: currentVenue.value,
   });
 };
-/* TODO:
-  - store division data when updated with venue and teams in store then it will update on submit
-*/
+
 const unallocateTeam = (name) => {
   const team = Array.from(teamStore.allocatedTeams.values()).find(
     (team) => team.name === name
