@@ -10,7 +10,7 @@
             emit('close');
           }
         "
-        :class="`bg-white rounded-2xl ${size}`"
+        :class="`bg-white rounded-2xl border-b-8 border-b-gold rounded-b-lg ${size}`"
       >
         <nav
           class="flex justify-end items-center pt-2 pr-2 pb-2 bg-gold rounded-t-2xl"
