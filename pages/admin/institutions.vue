@@ -153,11 +153,7 @@ const deleteInstitution = (id) => {
               }
             "
           />
-          <Button
-            button-text="Update"
-            button-color="bg-gold"
-            type="Submit"
-          />
+          <Button button-text="Update" button-color="bg-gold" type="Submit" />
         </div>
       </form>
     </div>
