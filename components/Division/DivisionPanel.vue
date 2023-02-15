@@ -32,7 +32,7 @@
         v-if="team.division == divisionNumber"
         :text="team.name"
         size="small"
-        :bg-color="venuePreferenceColor"
+        :bg-color="venuePreferenceColor(team)"
       />
     </div>
   </div>
@@ -94,21 +94,41 @@ const handleAdd = (division) => {
   - Venue not displaying in dropdown  when it already exists for that division
 */
 
-// todo make sure perferences match current venue
-// green if name, venue, day is a 1st preference
-// yellow if day is a preference
-// red if no preference/ did not have this preference
-// white if has no preferences
-const venuePreferenceColor = computed((preference) => {
-  switch (preference) {
-    case "pref1":
-      return "bg-light-green/20";
-    case "pref2":
-      return "bg-light-orange-gold/40";
-    case "pref3":
-      return "bg-danger-red/20";
-    default:
-      return "bg-white";
+// Check if the team has preferences for this venue
+const venuePreferenceColor = (team) => {
+  // Venue Preferences
+  const isFirstPref = currentVenue.value.name === team.venuePreference[0];
+  const isSecondPref = currentVenue.value.name === team.venuePreference[1];
+  const isThirdPref = currentVenue.value.name === team.venuePreference[2];
+
+  // Day Preferences
+  const hasTuesPref = currentVenue.value.day === "Tuesday" && team.allocatedTue;
+  const hasWedPref =
+    currentVenue.value.day === "Wednesday" && team.allocatedWed;
+  const isDayPref = hasTuesPref || hasWedPref;
+
+  // Week Preferences
+  const isWeekPref =
+    team.weekPreference.includes(currentVenue.value.week) ||
+    team.weekPreference === "Either";
+
+  // Team is happy with anything
+  // todo change to !team.hasVenuePreference (dummy data has wrong boolean value)
+  const noPref =
+    team.hasVenuePreference &&
+    team.weekPreference === "Either" &&
+    hasWedPref &&
+    hasTuesPref;
+
+  // todo change to !team.hasVenuePreference (dummy data has wrong boolean value)
+  if ((isFirstPref || team.hasVenuePreference) && isDayPref && isWeekPref) {
+    return "bg-light-green/20";
+  } else if (isDayPref) {
+    return "bg-light-orange-gold/40";
+  } else if (noPref) {
+    return "bg-white";
+  } else {
+    return "bg-danger-red/20";
   }
-});
+};
 </script>
