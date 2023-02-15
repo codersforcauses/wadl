@@ -15,9 +15,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-const modalVisibility = ref(false);
+defineProps({
+  modalVisibility: { type: Boolean, default: false },
+});
 
 const emit = defineEmits(["close"]);
 </script>
