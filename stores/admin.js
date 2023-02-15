@@ -60,11 +60,25 @@ export const useAdminStore = defineStore("admin", {
 
     async acceptUser(user) {
       const { $clientFirestore } = useNuxtApp();
+      const template = {
+        name: "approveUser",
+        data: {
+          name: user.firstName,
+          role: user.role,
+        },
+      };
       await updateDoc(doc($clientFirestore, "users", user.id), {
         requesting: false,
         role: user.role,
       });
       this.users = this.users.filter((u) => u.id !== user.id);
+      await $fetch("/api/send-email", {
+        method: "post",
+        body: {
+          userInfo: user,
+          emailStructure: template,
+        },
+      });
     },
 
     async denyUser(user) {

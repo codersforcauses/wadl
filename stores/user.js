@@ -91,6 +91,21 @@ export const useUserStore = defineStore("user", {
         this.institution = userInfo.institution;
       }
     },
+    async resetPassword(email) {
+      const template = {
+        name: "resetPassword",
+        data: {
+          userEmail: email,
+        },
+      };
+      await $fetch("/api/send-email", {
+        method: "post",
+        body: {
+          userInfo: email,
+          emailStructure: template,
+        },
+      });
+    },
     async updateUser(user) {
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "users", this.auth.uid);
