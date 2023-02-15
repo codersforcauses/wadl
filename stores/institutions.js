@@ -55,12 +55,14 @@ export const useInstitutionStore = defineStore("institution", {
     },
     async checkInstitution(institution) {
       let newInstitution = true;
-      this.institutions.forEach(async (element) => {
-        if (element.name.toLowerCase() === institution.name.toLowerCase()) {
-          await this.updateInstitution(element, institution);
-          newInstitution = !newInstitution;
-        }
-      });
+      await Promise.all(
+        this.institutions.map(async (element) => {
+          if (element.name.toLowerCase() === institution.name.toLowerCase()) {
+            await this.updateInstitution(element, institution);
+            newInstitution = false;
+          }
+        })
+      );
       if (newInstitution === true) {
         await this.createInstitution(institution);
       } else {
