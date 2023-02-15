@@ -1,4 +1,6 @@
 <script setup>
+import ProfileInfo from "~/components/admin/ProfileInfo.vue";
+
 import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useUserStore } from "../../stores/user";
@@ -90,130 +92,49 @@ const updateTeam = async () => {
 </script>
 
 <template>
-  <Modal
-    :modal-visibility="modalVisibility"
-    size="w-7/12"
-    @close="
-      () => {
-        modalVisibility = false;
-        resetFormState();
-      }
-    "
-  >
-    <Header title-text="Edit Preferences" />
-    <form
-      class="px-10"
-      @submit.prevent="
-        async () => {
-          modalVisibility = false;
-          await updateTeam();
-        }
-      "
-    >
-      <div class="flex flex-row justify-evenly accent-gold pt-5 pb-2">
-        <div>
-          <input v-model="form.allocatedTue" type="checkbox" class="w-5 h-5" />
-          <label class="ml-3 heading-montserrat">Tuesday Allocation</label>
-        </div>
-        <div>
-          <input v-model="form.allocatedWed" type="checkbox" class="w-5 h-5" />
-
-          <label class="ml-3 heading-montserrat">Wednesday Allocation</label>
-        </div>
-      </div>
-      <FormField v-model="form.timeslot" label="Timeslot" />
-      <Select
-        v-model="form.weekPreference"
-        :options="['Week 1', 'Week 2', 'Either']"
-        label="Week Preference"
-        class="w-full"
-      />
-      <div class="flex flex-row accent-gold py-2">
-        <input
-          v-model="form.hasVenuePreference"
-          type="checkbox"
-          class="w-5 h-5"
-          @change="form.venuePreference = []"
-        />
-
-        <label class="ml-3 heading-montserrat"
-          >Do you have venue preferences?</label
-        >
-      </div>
-      <FormField
-        v-if="form.hasVenuePreference"
-        v-model="form.venuePreference[0]"
-        label="1st Venue Preference"
-      />
-      <FormField
-        v-if="form.hasVenuePreference"
-        v-model="form.venuePreference[1]"
-        label="2nd Venue Preference"
-      />
-      <FormField
-        v-if="form.hasVenuePreference"
-        v-model="form.venuePreference[2]"
-        label="3rd Venue Preference"
-      />
-
-      <div class="flex justify-evenly items-center">
+  <ProfileInfo username="Sarah Tan" role="Team Coordinator" />
+  <div class="w-full px-36">
+    <div class="grid grid-cols-2 justify-between bg-lighter-grey rounded-lg">
+      <div class="text-xl flex p-5">Your Competitions</div>
+      <NuxtLink
+        v-if="userStore.institution"
+        class="flex justify-end p-5"
+        to="/coordinator/team-registration"
+      >
         <Button
-          button-text="Update"
+          button-text="Team Registration"
           button-color="bg-gold"
-          type="Submit"
-          class="m-5 ml-8"
+          class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
         />
+      </NuxtLink>
+    </div>
+  </div>
+  <div class="w-full px-36 mt-6">
+    <div class="grid grid-cols-3 justify-between">
+      <div class="p-4 bg-lighter-grey rounded-lg">
+        <div class="grid grid-cols-1 gap-y-4">
+          <div class="text-xl flex place-content-center">SDC 2023</div>
+          <div class="grid grid-cols-2">
+            <div class="flex justify-center">
+              <Button
+                button-text="Teams"
+                button-color="bg-light-orange-gold"
+                class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg justify-center"
+                size="small"
+              />
+            </div>
+            <div class="flex justify-center">
+              <Button
+                button-text="Draw"
+                button-color="bg-light-green"
+                class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg justify-center"
+                size="small"
+                textColor="text-white"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
-  </Modal>
-  <section
-    class="flex flex-col items-center justify-center max-w-screen max-h-screen"
-  >
-    <Header title-text="Teams" />
-    <NuxtLink
-      v-if="userStore.institution"
-      class="flex flex-row w-full justify-end p-5"
-      to="/coordinator/team-registration"
-    >
-      <Button
-        button-text="Team Registration"
-        button-color="bg-gold"
-        class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
-      />
-    </NuxtLink>
-    <!-- <SearchBar /> -->
-    <Table
-      :headers="headers"
-      :data="store.teams"
-      class="mt-5 mx-auto"
-      @edit="handleEdit"
-    >
-      <template #division="{ value }">
-        <p v-if="!value">Not Allocated</p>
-      </template>
-      <template #allocatedTue="{ value }">
-        <p>
-          <CheckIcon v-if="value" class="w-6 h-6" />
-          <XMarkIcon v-else class="w-6 h-6" />
-        </p>
-      </template>
-      <template #allocatedWed="{ value }">
-        <p>
-          <CheckIcon v-if="value" class="w-6 h-6" />
-          <XMarkIcon v-else class="w-6 h-6" />
-        </p>
-      </template>
-      <template #venuePreference="{ value }">
-        <p v-for="(ven, idx) in value" :key="idx" class="text-xs">
-          {{ idx + 1 }}. {{ ven }}
-        </p>
-      </template>
-    </Table>
-  </section>
-  <Notification
-    :modal-visibility="notification.isVisible"
-    :is-success="notification.isSuccess"
-    :body="notification.message"
-    @close="notification.dismiss()"
-  />
+    </div>
+  </div>
 </template>
