@@ -152,6 +152,7 @@ const allocateTeam = (name) => {
 const updateDivisions = async () => {
   console.log("SUBMITING");
   await teamStore.updateTeamDivision();
+  await tournamentStore.updateDivisionVenue(route.params.level);
 };
 
 onMounted(async () => {

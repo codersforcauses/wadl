@@ -1,6 +1,15 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  setDoc,
+  doc,
+  updateDoc,
+  arrayUnion,
+  getDoc,
+} from "firebase/firestore";
 
 export const useTournamentStore = defineStore("tournament", {
   state: () => {
@@ -88,6 +97,35 @@ export const useTournamentStore = defineStore("tournament", {
       );
       this.divisions = levels.divisions;
     },
-    getCurrentDivisionVenue() {},
+    updateDivision(newVenue, division) {
+      const divisionIndex = this.divisions.findIndex(
+        (div) => div.division === division
+      );
+      this.divisions[divisionIndex].venue = { ...newVenue };
+    },
+    // BUG: Permission Problem
+    async updateDivisionVenue(level) {
+      const { $clientFirestore } = useNuxtApp();
+      const tournamentRef = doc(
+        $clientFirestore,
+        "tournaments",
+        this.currentTournament.id
+      );
+
+      const levelsSnapshot = await getDoc(tournamentRef);
+      const levelsData = levelsSnapshot.data().levels;
+      const index = levelsData.findIndex((l) => l.level === level);
+
+      console.log(levelsData);
+      console.log(levelsData[index]);
+      // const updatedDivisions = [
+      //   ...levelsData[index].divisions,
+      //   ...this.divisions,
+      // ];
+      console.log(this.divisions);
+      await updateDoc(tournamentRef, {
+        [`levels.${index}.divisions`]: this.divisions,
+      });
+    },
   },
 });

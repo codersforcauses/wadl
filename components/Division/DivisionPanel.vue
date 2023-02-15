@@ -1,5 +1,5 @@
 <template>
-  <div class="h-64 p-2 px-5 mt-4 rounded-md bg-light-grey/10">
+  <div class="min-h-64 p-2 px-5 mt-4 rounded-md bg-light-grey/10">
     <div class="flex justify-between">
       <div class="flex">
         <p class="my-auto text-xl">Division {{ divisionNumber }}</p>
@@ -41,6 +41,7 @@
 <script setup>
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
+import { useTournamentStore } from "../../stores/tournaments";
 
 const props = defineProps({
   division: {
@@ -62,11 +63,18 @@ const props = defineProps({
 });
 
 const teamStore = useTeamStore();
+const tournamentStore = useTournamentStore();
 const divisionNumber = ref(props.division.division);
 
 const currentVenue = ref(null);
 
 const divisionVenue = props.division.venue;
+
+watch(currentVenue, (newValue, oldValue) => {
+  if (oldValue) {
+    tournamentStore.updateDivision(newValue, divisionNumber.value);
+  }
+});
 
 if (divisionVenue) {
   const matchingVenue = props.venues.find(
@@ -104,11 +112,6 @@ const unallocateTeam = (name) => {
     team.division = null;
     teamStore.unallocatedTeams.set(team.id, team);
   }
-};
-
-const updateDivisions = async () => {
-  console.log("SUBMITING");
-  await teamStore.updateTeamDivision();
 };
 
 const venuePreferenceColor = (team) => {

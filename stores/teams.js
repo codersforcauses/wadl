@@ -69,6 +69,8 @@ export const useTeamStore = defineStore("team", {
       });
     },
     sortTeamDivisionAllocation(level) {
+      this.allocatedTeams = new Map();
+      this.unallocatedTeams = new Map();
       this.getTeamsByLevel(level).forEach((team) => {
         if (team.division) {
           this.allocatedTeams.set(team.id, team);
