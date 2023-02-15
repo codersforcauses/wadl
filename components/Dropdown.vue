@@ -22,6 +22,7 @@ const props = defineProps({
   color: { type: String, default: "" },
   modelValue: { type: String, default: "" },
   disabled: { type: Boolean, default: false },
+  isVenue: { type: Boolean, default: false },
 });
 
 const isOpen = ref(false);
@@ -62,8 +63,11 @@ const handleClick = (item) => {
           >
             {{ placeholder }}
           </span>
+          <span v-if="isVenue && selected && selected.length !== 0">
+            {{ selected.name }} {{ selected.day }} W{{ selected.week }}
+          </span>
           <span
-            v-if="selected && selected.length !== 0"
+            v-if="selected && selected.length !== 0 && !isVenue"
             class="font-montserrat pl-2"
             >{{ selected }}</span
           >
@@ -89,7 +93,12 @@ const handleClick = (item) => {
             } hover:bg-gray-50 focus:outline-none focus:bg-gray-50 accent-gold`"
             @click="handleClick(item)"
           >
-            {{ item }}
+            <p v-if="isVenue">
+              {{ item.name }} {{ item.day }} W{{ item.week }}
+            </p>
+            <p v-else>
+              {{ item }}
+            </p>
           </li>
         </ul>
       </div>

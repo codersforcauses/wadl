@@ -7,6 +7,7 @@ export const useVenueStore = defineStore("venue", {
     return {
       venues: [],
       filteredVenues: [],
+      tournamentVenues: [],
     };
   },
   getters: {},
