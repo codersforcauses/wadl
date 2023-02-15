@@ -1,13 +1,6 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  setDoc,
-  doc,
-  getDoc,
-} from "firebase/firestore";
+import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
 
 export const useVenueStore = defineStore("venue", {
   state: () => {

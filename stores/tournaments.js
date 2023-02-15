@@ -87,7 +87,7 @@ export const useTournamentStore = defineStore("tournament", {
     },
     getTournament(id) {
       this.currentTournament = [];
-      this.currentTournament = this.tournaments.find((t) => t.id == id);
+      this.currentTournament = this.tournaments.find((t) => t.id === id);
     },
     getTournamentDivisionsByLevel(level) {
       const levels = this.currentTournament.levels.find(

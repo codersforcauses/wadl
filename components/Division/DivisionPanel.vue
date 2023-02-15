@@ -21,11 +21,11 @@
       </button>
     </div>
     <Dropdown
-      class="my-4"
       v-model="currentVenue"
+      class="my-4"
       :items="venues"
       placeholder="Select Venue"
-      :isVenue="true"
+      :is-venue="true"
     />
     <div v-for="team in teamStore.allocatedTeams.values()" :key="team.id">
       <Chip
@@ -42,6 +42,7 @@
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
 import { useTournamentStore } from "../../stores/tournaments";
+import { ref, watch } from "vue";
 
 const props = defineProps({
   division: {
@@ -68,7 +69,7 @@ const divisionNumber = ref(props.division.division);
 
 const currentVenue = ref(null);
 
-const divisionVenue = props.division.venue;
+const divisionVenue = ref(props.division.venue);
 
 watch(currentVenue, (newValue, oldValue) => {
   if (oldValue) {
@@ -86,12 +87,12 @@ const getTeamCount = () => {
   return numberOfTeams;
 };
 
-if (divisionVenue) {
+if (divisionVenue.value) {
   const matchingVenue = props.venues.find(
     (venue) =>
-      venue.name === divisionVenue.name &&
-      venue.week === divisionVenue.week &&
-      venue.day === divisionVenue.day
+      venue.name === divisionVenue.value.name &&
+      venue.week === divisionVenue.value.week &&
+      venue.day === divisionVenue.value.day
   );
   currentVenue.value = matchingVenue;
 }
@@ -125,8 +126,8 @@ const unallocateTeam = (name) => {
 const venuePreferenceColor = (team) => {
   // Venue Preferences
   const isFirstPref = currentVenue.value.name === team.venuePreference[0];
-  const isSecondPref = currentVenue.value.name === team.venuePreference[1];
-  const isThirdPref = currentVenue.value.name === team.venuePreference[2];
+  // const isSecondPref = currentVenue.value.name === team.venuePreference[1];
+  // const isThirdPref = currentVenue.value.name === team.venuePreference[2];
   // Day Preferences
   const hasTuesPref = currentVenue.value.day === "Tuesday" && team.allocatedTue;
   const hasWedPref =

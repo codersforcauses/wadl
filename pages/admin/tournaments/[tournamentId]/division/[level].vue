@@ -40,13 +40,13 @@
       class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
     >
       <DivisionPanel
-        v-for="(division, idx) in tournamentStore.divisions"
+        v-for="(d, idx) in tournamentStore.divisions"
         :key="idx"
-        :division="division"
+        :division="d"
         :tournament-id="tournamentStore.currentTournament.id"
         :level="currentLevel"
-        @edit="handleEdit"
         :venues="tournamentStore.currentTournament.venues"
+        @edit="handleEdit"
       />
 
       <div
@@ -89,9 +89,9 @@
             :text="team.name"
             size="small"
             :bg-color="venuePreferenceColor(team)"
-            :canRemove="false"
-            @add-chip="allocateTeam"
+            :can-remove="false"
             class="mx-2 my-2"
+            @add-chip="allocateTeam"
           />
         </div>
       </div>
@@ -103,7 +103,7 @@
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useTeamStore } from "~/stores/teams";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import useNotification from "../../../../../composables/useNotification";
 
 // eslint-disable-next-line no-undef
@@ -153,7 +153,7 @@ onMounted(async () => {
 
     if (tournamentStore.divisions === undefined) {
       tournamentStore.divisions = [];
-      tournamentStore.divisions.push({ division: 1, venue: null, teams: null });
+      tournamentStore.divisions.push({ ...initialState });
     }
   } catch (error) {
     notification.notifyError(error);
@@ -183,8 +183,8 @@ const handleEdit = (divisions) => {
 const venuePreferenceColor = (team) => {
   // Venue Preferences
   const isFirstPref = currentVenue.value.name === team.venuePreference[0];
-  const isSecondPref = currentVenue.value.name === team.venuePreference[1];
-  const isThirdPref = currentVenue.value.name === team.venuePreference[2];
+  // const isSecondPref = currentVenue.value.name === team.venuePreference[1];
+  // const isThirdPref = currentVenue.value.name === team.venuePreference[2];
   // Day Preferences
   const hasTuesPref = currentVenue.value.day === "Tuesday" && team.allocatedTue;
   const hasWedPref =

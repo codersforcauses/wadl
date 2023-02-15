@@ -25,7 +25,7 @@ const props = defineProps({
     default: true,
   },
 });
-defineEmits(["removeChip"]);
+defineEmits(["removeChip", "addChip"]);
 // Computes the size based on the given prop and the device size
 const chipSize = computed(() => {
   switch (props.size) {
