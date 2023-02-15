@@ -1,5 +1,5 @@
 <template>
-  <Header title-text="Manage Division" />
+  <Header title-text="Manage Division" :subtitle-text="route.params.level" />
   <section class="mx-6">
     <!-- Division Controls -->
     <div

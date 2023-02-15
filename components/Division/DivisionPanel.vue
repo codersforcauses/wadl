@@ -4,7 +4,7 @@
       <div class="flex">
         <p class="my-auto text-xl">Division {{ divisionNumber }}</p>
         <p class="flex items-center px-2 text-xs text-mid-grey font-montserrat">
-          (8 teams)
+          ({{ getTeamCount() }} teams)
         </p>
       </div>
       <button
@@ -75,6 +75,17 @@ watch(currentVenue, (newValue, oldValue) => {
     tournamentStore.updateDivision(newValue, divisionNumber.value);
   }
 });
+
+const getTeamCount = () => {
+  let numberOfTeams = 0;
+  console.log("HELLO");
+  teamStore.allocatedTeams.forEach((team) => {
+    if (team.division === divisionNumber.value) {
+      numberOfTeams += 1;
+    }
+  });
+  return numberOfTeams;
+};
 
 if (divisionVenue) {
   const matchingVenue = props.venues.find(

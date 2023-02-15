@@ -4,7 +4,7 @@
   </h1>
   <h2
     v-if="subtitleText"
-    class="text-2xl pb-2 text-center divide-y-4 font-montserrat text-dark-grey"
+    class="text-2xl pb-2 text-center font-montserrat text-mid-grey"
   >
     {{ subtitleText }}
   </h2>
