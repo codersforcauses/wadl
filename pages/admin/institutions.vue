@@ -113,7 +113,7 @@ const handleEdit = (row) => {
         "
       >
         <FormField v-model="formInput.name" label="Institution Name" />
-        <FormField v-model="formInput.code" label="Code" />
+        <FormField v-model="formInput.code" label="Code" :required="false" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
         <FormField v-model="formInput.number" label="Phone Number" type="tel" />
         <FormField v-model="formInput.email" label="Email" type="email" />
