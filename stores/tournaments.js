@@ -118,5 +118,11 @@ export const useTournamentStore = defineStore("tournament", {
       this.currentTournament.levels[index].divisions = this.divisions;
       await updateDoc(tournamentRef, this.currentTournament);
     },
+    deleteTournament(id) {
+      const index = this.tournaments.findIndex((t) => {
+        return id === t.id;
+      });
+      this.tournaments.splice(index, 1);
+    },
   },
 });
