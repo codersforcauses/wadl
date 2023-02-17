@@ -79,6 +79,15 @@ const saveTeamRegistration = async () => {
   formInput.value.userTeam = institutionStore.userInstitution.name;
   try {
     await institutionStore.registerTeams(formInput.value);
+    console.log(
+      institutionStore.userInstitution.id,
+      formInput.value.tournamentId
+    );
+    //check institution tournament list, then update
+    //await institutionStore.updateInstitutionTournaments(
+    //institutionStore.userInstitution.id,
+    //formInput.tournamentId.value
+    //);
   } catch (error) {
     errorMessage.value = error.message;
     return;

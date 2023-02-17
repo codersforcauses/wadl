@@ -278,5 +278,15 @@ export const useInstitutionStore = defineStore("institution", {
         this.teams.push(data);
       });
     },
+    async updateInstitutionTournaments(institutionId, tournament) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "institutions", institutionId);
+      const data = {
+        tournaments: tournament,
+      };
+      await updateDoc(ref, data).then(() => {
+        this.updateProfile(ref);
+      });
+    },
   },
 });
