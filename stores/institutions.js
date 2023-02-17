@@ -231,7 +231,6 @@ export const useInstitutionStore = defineStore("institution", {
       });
       await batch.commit();
     },
-
     async editTeam(team) {
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "teams", team.id);

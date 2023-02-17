@@ -113,7 +113,7 @@ const updateTeam = async () => {
     <div class="grid grid-cols-3 justify-between">
       <div class="p-4 bg-lighter-grey rounded-lg">
         <div class="grid grid-cols-1 gap-y-4">
-          <div class="text-xl flex place-content-center">SDC 2023</div>
+          <div class="text-xl flex place-content-center p-4">SDC 2023</div>
           <div class="grid grid-cols-2">
             <div class="flex justify-center">
               <Button
