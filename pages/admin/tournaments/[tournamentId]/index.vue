@@ -42,12 +42,12 @@
         </div>
       </div>
     </div>
-    <!-- <p class="pt-5 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
+    <p class="pt-5 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
       Information
-    </p> -->
-    <!-- <div class="grid grid-cols-8 gap-4 text-center">
+    </p>
+    <div class="grid grid-cols-8 gap-4 text-center">
       <div class="col-span-3">
-        <Frame
+        <!-- <Frame
           :title="status"
           subtitle="STATUS"
           :button-texts="['Open', 'Run', 'Complete']"
@@ -68,10 +68,10 @@
             () => {
               print('Complete Tournament');
             }
-          "
-        />
+          " -->
+        <Stepper />
       </div>
-      <div class="col-span-2">
+      <!-- <div class="col-span-2">
         <Frame
           :title="drawStatus"
           subtitle="DRAW STATUS"
@@ -107,8 +107,8 @@
             }
           "
         />
-      </div>
-    </div> -->
+      </div> -->
+    </div>
     <!-- table -->
     <!-- header1 -->
     <!-- <div class="items-center bg-white flex">
