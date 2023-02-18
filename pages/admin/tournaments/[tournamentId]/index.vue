@@ -292,7 +292,7 @@
   </div>
   <ViewTeams
     :modal-visibility="teamsModalVisibility"
-    :teams="teamStore.teams"
+    :teams="teamsByLevel"
     @close="teamsModalVisibility = false"
   />
 </template>
@@ -300,7 +300,7 @@
 <script setup>
 import { useTournamentStore } from "../../../../stores/tournaments";
 import { useTeamStore } from "../../../../stores/teams";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 // eslint-disable-next-line no-undef
 const router = useRouter();
@@ -324,7 +324,7 @@ const teamStore = useTeamStore();
 // ];
 
 const teamsModalVisibility = ref(false);
-
+const teamsModalLevel = ref(null);
 const handleLevelButtons = (button, level) => {
   switch (button) {
     case "Division":
@@ -334,11 +334,17 @@ const handleLevelButtons = (button, level) => {
       break;
     case "Teams":
       teamsModalVisibility.value = true;
+      teamsModalLevel.value = level;
       break;
     default:
       throw new Error(`Unknown Frame button: ${button}`);
   }
 };
+const teamsByLevel = computed(() => {
+  return teamStore.teams.filter((team) => {
+    return team.level === teamsModalLevel.value;
+  });
+});
 
 tournamentStore.getTournament(route.params.tournamentId);
 
