@@ -143,6 +143,7 @@ export const useInstitutionStore = defineStore("institution", {
       const ref = doc($clientFirestore, "users", $clientAuth.currentUser.uid);
       await updateDoc(ref, { institution: id.id });
       userStore.institution = id.id;
+      await this.getTeamsByID(id.id);
     },
     async clearStore() {
       this.institutions = [];
@@ -255,6 +256,7 @@ export const useInstitutionStore = defineStore("institution", {
       });
     },
     async getTeamsByID(institutionId) {
+      this.teams = [];
       const { $clientFirestore } = useNuxtApp();
       const ref = collection($clientFirestore, "teams");
       const q = query(ref, where("institutionId", "==", institutionId));
