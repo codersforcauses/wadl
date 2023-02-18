@@ -7,10 +7,6 @@ const tournamentStore = useTournamentStore();
 const teamStore = useTeamStore();
 const route = useRoute();
 
-onMounted(async () => {
-  await teamStore.getTeams();
-});
-
 const headers = [
   {
     key: "div",
@@ -50,23 +46,29 @@ const levelTabs = [
   { label: "Junior", active: true },
   { label: "Senior", active: false },
 ];
-const roundTabs = tournamentStore.getRunning.reduce((arr, tournament) => {
-  if (tournament.id === route.params.tournamentId) {
-    let round = 1;
-    while (round <= tournament.numRounds) {
-      arr.push({ label: `Round ${round}`, active: false });
-      round++;
-    }
-  }
-  return arr;
-}, []);
+const roundTabs = [];
+const selectedTournament = tournamentStore.getRunning.find(
+  (tournament) => tournament.id === route.params.tournamentId
+);
+
+let levelSelected = "Junior";
+let roundSelected = selectedTournament?.currentRound;
+let levelTabsKey = 0;
 
 const tableData = ref([]);
 const tableFilter = ref("");
 
-let levelSelected = "Junior";
-let roundSelected = undefined;
-let levelTabsKey = 0;
+const createRoundTabs = () => {
+  let round = 1;
+  while (round <= selectedTournament?.numRounds) {
+    if (round === selectedTournament?.currentRound) {
+      roundTabs.push({ label: `Round ${round}`, active: true });
+    } else {
+      roundTabs.push({ label: `Round ${round}`, active: false });
+    }
+    round++;
+  }
+};
 
 const handleLevel = (tabName) => {
   levelSelected = tabName;
@@ -80,12 +82,11 @@ const handleLevel = (tabName) => {
 const handleRound = (roundName) => {
   tableData.value = [];
   roundSelected = parseInt(roundName.split("")[roundName.length - 1]);
+  getFixturesTableData();
+};
 
-  const selectedTournament = tournamentStore.getRunning.find(
-    (tournament) => tournament.id === route.params.tournamentId
-  );
-
-  const levelFound = selectedTournament.levels.find(
+const getFixturesTableData = () => {
+  const levelFound = selectedTournament?.levels.find(
     (lev) => lev.level === levelSelected
   );
 
@@ -100,7 +101,7 @@ const handleRound = (roundName) => {
     return strTime;
   };
 
-  levelFound.divisions.map((div) => {
+  levelFound?.divisions.map((div) => {
     div.matchups.map((matchup) => {
       if (matchup.round === roundSelected) {
         const date = new Date(matchup.datetime)
@@ -138,7 +139,7 @@ const filteredTableData = computed(() => {
   return tableFilter.value
     ? tableData.value.filter(
         (data) =>
-          data?.div?.toString().toLowerCase().includes(tableFilter.value) ||
+          data?.div?.toString().includes(tableFilter.value) ||
           data?.venue?.toLowerCase().includes(tableFilter.value) ||
           data?.date?.toLowerCase().includes(tableFilter.value) ||
           data?.time?.toLowerCase().includes(tableFilter.value) ||
@@ -149,6 +150,9 @@ const filteredTableData = computed(() => {
       )
     : tableData.value;
 });
+
+createRoundTabs();
+getFixturesTableData();
 </script>
 
 <template>
