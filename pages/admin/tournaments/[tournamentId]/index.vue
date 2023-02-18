@@ -58,7 +58,7 @@
               text-color="text-dark-red"
               size="medium"
               class="mr-[30px] transition duration-200 ease-in-out hover:bg-dark-red/50 hover:shadow-lg"
-              @click="stage--"
+              @click="changeStage(-1)"
             />
             <Button
               button-text="Next Stage"
@@ -66,7 +66,7 @@
               text-color="text-white"
               size="medium"
               class="transition duration-200 ease-in-out hover:bg-light-green/70 hover:shadow-lg"
-              @click="stage++"
+              @click="changeStage(1)"
             />
           </div>
         </div>
@@ -305,8 +305,6 @@ const route = useRoute();
 const tournamentStore = useTournamentStore();
 const teamStore = useTeamStore();
 
-const stage = ref(1);
-
 // const status = "CLOSED";
 // const drawStatus = "INCOMPLETE";
 // const currentRound = 0;
@@ -331,17 +329,36 @@ const handleLevelButtons = (button, level) => {
 
 tournamentStore.getTournament(route.params.tournamentId);
 
+const status = tournamentStore.currentTournament.status;
+
+const stageList = ["Open", "Closed", "Running", "Complete"];
+const stage = ref(1);
+for (let i = 0; i < stageList.length; i++) {
+  if (stageList[i] === status) {
+    stage.value = i + 1;
+  }
+}
+
 await teamStore.getTeamsbyTournament(route.params.tournamentId);
 
 const noviceNum = teamStore.getNumberTeams("Novice");
 const juniorNum = teamStore.getNumberTeams("Junior");
 const seniorNum = teamStore.getNumberTeams("Senior");
 
-// const changeStage = (value) => {
-//   if (value === -1) {
-//     stage--;
-//   } else {
-//     stage++;
-//   }
-// };
+const changeStage = (value) => {
+  if (value === -1 && stage.value > 1) {
+    stage.value--;
+  } else if (value === 1 && stage.value < 4) {
+    stage.value++;
+  } else {
+    return;
+  }
+  tournamentStore.currentTournament.status = stageList[stage.value - 1];
+  console.log(stage.value - 1);
+  console.log(stageList);
+  console.log(stageList[stage.value - 1]);
+  console.log(tournamentStore.currentTournament);
+
+  tournamentStore.editTournament(tournamentStore.currentTournament);
+};
 </script>
