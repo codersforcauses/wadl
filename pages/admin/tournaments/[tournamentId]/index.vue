@@ -11,21 +11,21 @@
       class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2"
     >
       <Frame
-        :title="noviceNum"
+        :title="noviceNum.toString()"
         subtitle="Novice"
         button-size="small"
         :is-horizontal-buttons="false"
         @button-clicked="handleLevelButtons"
       />
       <Frame
-        :title="juniorNum"
+        :title="juniorNum.toString()"
         subtitle="Junior"
         button-size="small"
         :is-horizontal-buttons="false"
         @button-clicked="handleLevelButtons"
       />
       <Frame
-        :title="seniorNum"
+        :title="seniorNum.toString()"
         subtitle="Senior"
         button-size="small"
         :is-horizontal-buttons="false"
