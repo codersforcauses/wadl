@@ -47,29 +47,26 @@
     </p>
     <div class="grid grid-cols-8 gap-4 text-center">
       <div class="col-span-3">
-        <!-- <Frame
-          :title="status"
-          subtitle="STATUS"
-          :button-texts="['Open', 'Run', 'Complete']"
-          :button-colors="['bg-light-orange-gold', 'bg-light-green', 'bg-gold']"
-          :text-colors="['text-black', 'text-white', 'text-black']"
-          button-size="small"
-          @button1-clicked="
-            () => {
-              print('Open Tournament');
-            }
-          "
-          @button2-clicked="
-            () => {
-              print('Run Tournament');
-            }
-          "
-          @button3-clicked="
-            () => {
-              print('Complete Tournament');
-            }
-          " -->
-        <Stepper />
+        <div class="bg-lighter-grey rounded-md py-6 px-2">
+          <Stepper :stage="stage" />
+          <div class="flex flex-row items-center justify-center mt-4">
+            <Button
+              button-text="Previous Stage"
+              button-color="bg-dark-red/20"
+              text-color="text-dark-red"
+              size="medium"
+              class="mr-[30px]"
+              @click="stage--"
+            />
+            <Button
+              button-text="Next Stage"
+              button-color="bg-light-green"
+              text-color="text-white"
+              size="medium"
+              @click="stage++"
+            />
+          </div>
+        </div>
       </div>
       <!-- <div class="col-span-2">
         <Frame
@@ -295,6 +292,7 @@
 <script setup>
 import { useTournamentStore } from "../../../../stores/tournaments";
 import { useTeamStore } from "../../../../stores/teams";
+import { ref } from "vue";
 
 // eslint-disable-next-line no-undef
 const router = useRouter();
@@ -303,6 +301,8 @@ const route = useRoute();
 
 const tournamentStore = useTournamentStore();
 const teamStore = useTeamStore();
+
+const stage = ref(1);
 
 // const status = "CLOSED";
 // const drawStatus = "INCOMPLETE";
@@ -333,4 +333,12 @@ await teamStore.getTeamsbyTournament(route.params.tournamentId);
 const noviceNum = teamStore.getNumberTeams("Novice");
 const juniorNum = teamStore.getNumberTeams("Junior");
 const seniorNum = teamStore.getNumberTeams("Senior");
+
+// const changeStage = (value) => {
+//   if (value === -1) {
+//     stage--;
+//   } else {
+//     stage++;
+//   }
+// };
 </script>
