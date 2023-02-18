@@ -45,5 +45,32 @@ yarn run preview
 ## Firebase Setup
 Refer to the README located in the src/Firebase folder
 
+## Using Docker
+Run
+
+```
+yarn dev:docker
+```
+
+Open another terminal and run to go into the container
+
+```
+docker exec -it wadl_firebase /bin/bash
+```
+
+Once inside the container, run (make sure you have an account with Firebase and is granted permission for the project before doing this) 
+
+```
+firebase login
+```
+and follow the link to authenticate your account
+
+Finally, run 
+
+```
+firebase emulators:start --import=dummyData
+```
+inside the container
+
 ## More info
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

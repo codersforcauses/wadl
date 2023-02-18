@@ -109,6 +109,9 @@ const handleRound = (roundName) => {
           .slice(0, 3)
           .join(" ");
         const time = formatTime(new Date(matchup.datetime));
+        const negativeTeam = teamStore.teams.find(
+          (team) => team.id === matchup.negativeTeam
+        )?.name;
         const row = {
           div: div.division,
           venue: div.venue.name,
@@ -116,10 +119,8 @@ const handleRound = (roundName) => {
           time,
           affirmative: teamStore.teams.find(
             (team) => team.id === matchup.affirmativeTeam
-          )?.name,
-          negative: teamStore.teams.find(
-            (team) => team.id === matchup.negativeTeam
-          )?.name,
+          ).name,
+          negative: negativeTeam ? negativeTeam : "Bye",
           topic: matchup.topic,
           status: matchup.status,
         };
