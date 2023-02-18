@@ -49,11 +49,8 @@
 </template>
 
 <script setup>
-// import { ref } from "vue";
 import { CheckIcon } from "@heroicons/vue/20/solid";
 
-// const stage = ref(3);
-// console.log(stage.value);
 const stateList = ["Open", "Closed", "Running", "Complete"];
 const stateLength = stateList.length;
 
