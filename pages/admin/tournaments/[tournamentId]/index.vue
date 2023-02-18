@@ -293,6 +293,7 @@
   <ViewTeams
     :modal-visibility="teamsModalVisibility"
     :teams="teamsByLevel"
+    :level="teamsModalLevel"
     @close="teamsModalVisibility = false"
   />
 </template>
