@@ -354,11 +354,6 @@ const changeStage = (value) => {
     return;
   }
   tournamentStore.currentTournament.status = stageList[stage.value - 1];
-  console.log(stage.value - 1);
-  console.log(stageList);
-  console.log(stageList[stage.value - 1]);
-  console.log(tournamentStore.currentTournament);
-
   tournamentStore.editTournament(tournamentStore.currentTournament);
 };
 </script>
