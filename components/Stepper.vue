@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="flex items-center w-1/3">
+    <div class="flex items-center w-1/4">
       <div
         v-for="(state, index) in stateList"
         :key="index"
-        class="ml-[60px] w-1/4"
+        class="ml-[45px] w-1/2"
       >
         <div
           :class="`rounded-full w-7 h-7 ${
