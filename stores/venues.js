@@ -7,6 +7,7 @@ export const useVenueStore = defineStore("venue", {
     return {
       venues: [],
       filteredVenues: [],
+      tournamentVenues: [],
     };
   },
   getters: {},
@@ -39,6 +40,12 @@ export const useVenueStore = defineStore("venue", {
       querySnapshot.forEach((doc) => {
         this.venues.push({ id: doc.id, ...doc.data() });
       });
+    },
+    deleteVenue(id) {
+      const index = this.venues.findIndex((t) => {
+        return id === t.id;
+      });
+      this.venues.splice(index, 1);
     },
   },
 });

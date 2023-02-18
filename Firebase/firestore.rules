@@ -46,7 +46,7 @@ service cloud.firestore {
     function isAdmin(){
         return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
       }
-      allow create, read, write, delete: if isAdmin();
+      allow create, read, write, update, delete: if isAdmin();
       allow read: if true;
     }
     match /tournaments/{tournamentId}/levels/{levelId}/divisions/{divisionId}/matchups/{matchupId} {

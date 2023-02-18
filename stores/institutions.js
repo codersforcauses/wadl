@@ -279,5 +279,11 @@ export const useInstitutionStore = defineStore("institution", {
         this.teams.push(data);
       });
     },
+    deleteInstitution(id) {
+      const index = this.institutions.findIndex((t) => {
+        return id === t.id;
+      });
+      this.institutions.splice(index, 1);
+    },
   },
 });
