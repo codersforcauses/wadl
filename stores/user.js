@@ -1,9 +1,12 @@
 import { defineStore } from "pinia";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 } from "firebase/auth";
 import { useNuxtApp } from "#imports";
 
@@ -17,12 +20,12 @@ export const useUserStore = defineStore("user", {
       email: null,
       role: null,
       requesting: null,
+      token: null,
       institution: "",
-      errorCode: "",
-      successCode: "",
     };
   },
 
+  // persist only on client for now.
   persist: {
     key: "pinia-store",
     debug: true,
@@ -36,107 +39,108 @@ export const useUserStore = defineStore("user", {
   actions: {
     // to view how the data and other stuff happens inside these functions please read the README in the Firebase folder
     async registerUser(user) {
-      try {
-        const { $clientFirestore, $clientAuth } = useNuxtApp();
-        const authUser = await createUserWithEmailAndPassword(
-          $clientAuth,
-          user.email,
-          user.password
-        );
+      const { $clientFirestore, $clientAuth } = useNuxtApp();
+      const authUser = await createUserWithEmailAndPassword(
+        $clientAuth,
+        user.email,
+        user.password
+      );
 
-        await setDoc(doc($clientFirestore, "users", authUser.user.uid), {
-          role: user.role,
-          requesting: true,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          phoneNumber: user.phoneNumber,
-          email: user.email,
-        });
-        this.successCode =
-          "Please wait for approval from admin before logging in.";
-      } catch (err) {
-        this.cleanUpError(err);
-      }
+      await setDoc(doc($clientFirestore, "users", authUser.user.uid), {
+        role: user.role,
+        requesting: true,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+        email: user.email,
+      });
     },
 
-    loginUser(user) {
-      try {
-        const { $clientAuth } = useNuxtApp();
-        signInWithEmailAndPassword(
-          $clientAuth,
-          user.email,
-          user.password
-        ).catch((error) => {
-          this.cleanUpError(error);
-        });
-      } catch (err) {
-        this.cleanUpError(err);
-      }
+    async loginUser(user) {
+      const { $clientAuth } = useNuxtApp();
+      await signInWithEmailAndPassword($clientAuth, user.email, user.password);
     },
 
     async setUser(user) {
       if (user !== null) {
-        try {
+        let userDoc;
+        if (!process.client) {
+          const { $serverFirestore } = useNuxtApp();
+          userDoc = await $serverFirestore
+            .collection("users")
+            .doc(user.uid)
+            .get();
+        } else {
           const { $clientFirestore } = useNuxtApp();
           const docRef = doc($clientFirestore, "users", user.uid);
-
-          const userDoc = await getDoc(docRef);
-          if (!userDoc.exists()) {
-            throw new Error("Could not find user document");
-          }
-
-          const userInfo = userDoc.data();
-          this.auth = user;
-          this.firstName = userInfo.firstName;
-          this.lastName = userInfo.lastName;
-          this.phoneNumber = userInfo.phoneNumber;
-          this.email = userInfo.email;
-          this.role = userInfo.role;
-          this.requesting = userInfo.requesting;
-          this.institution = userInfo.institution;
-          this.errorCode = null;
-        } catch (err) {
-          this.cleanUpError(err);
+          userDoc = await getDoc(docRef);
         }
+
+        if (!userDoc) {
+          throw new Error("Could not find user document");
+        }
+
+        const userInfo = userDoc.data();
+        this.auth = user;
+        this.firstName = userInfo.firstName;
+        this.lastName = userInfo.lastName;
+        this.phoneNumber = userInfo.phoneNumber;
+        this.email = userInfo.email;
+        this.role = userInfo.requesting ? "" : userInfo.role; // role not tracked if requesting
+        this.requesting = userInfo.requesting;
+        this.institution = userInfo.institution;
       }
     },
-
+    async resetPassword(email) {
+      const template = {
+        name: "resetPassword",
+        data: {
+          userEmail: email,
+        },
+      };
+      await $fetch("/api/send-email", {
+        method: "post",
+        body: {
+          userInfo: email,
+          emailStructure: template,
+        },
+      });
+    },
+    async updateUser(user) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "users", this.auth.uid);
+      await updateDoc(ref, {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+      });
+    },
+    async updateuserPassword(password) {
+      const { $clientAuth } = useNuxtApp();
+      const cred = EmailAuthProvider.credential(
+        this.email,
+        password.currentPassword
+      );
+      await reauthenticateWithCredential($clientAuth.currentUser, cred).then(
+        async () => {
+          await updatePassword($clientAuth.currentUser, password.password);
+        }
+      );
+    },
     async clearStore() {
-      try {
+      if (process.client) {
+        // no login on server
         const { $clientAuth } = useNuxtApp();
         await signOut($clientAuth);
-        this.auth = null;
-        this.firstName = null;
-        this.lastName = null;
-        this.email = null;
-        this.phoneNumber = null;
-        this.role = null;
-        this.errorCode = null;
-        this.requesting = null;
-        this.successCode = null;
-        this.institution = null;
-      } catch (err) {
-        this.cleanUpError(err);
       }
-    },
-    cleanUpError(error) {
-      switch (error.code) {
-        case "auth/user-not-found":
-          this.errorCode = "Account not found, try again with a new account";
-          break;
-        case "auth/email-already-in-use":
-          this.errorCode = "E-mail already in use";
-          break;
-        case "auth/network-request-failed":
-          this.errorCode = "Network Failed, Please try again";
-          break;
-        case "auth/wrong-password":
-          this.errorCode = "Incorrect Password or Email";
-          break;
-        default:
-          this.errorCode = "Encountered an error";
-          break;
-      }
+      this.auth = null;
+      this.firstName = null;
+      this.lastName = null;
+      this.email = null;
+      this.phoneNumber = null;
+      this.role = null;
+      this.requesting = null;
+      this.institution = null;
     },
   },
 });

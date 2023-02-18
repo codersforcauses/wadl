@@ -74,6 +74,12 @@
       </div>
     </div>
   </section>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
 </template>
 
 <script setup>
@@ -81,12 +87,15 @@ import { ref, onMounted, onUnmounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useUserStore } from "../../stores/user";
 import { useHead } from "#imports";
+import useNotification from "../../composables/useNotification";
 useHead({
   title: "Institution",
 });
 const institutionStore = useInstitutionStore();
-const userStore = useUserStore();
+const userStore = await useUserStore();
 const existingInstitution = ref(false);
+
+const notification = useNotification();
 
 const form = ref({
   id: null,
@@ -97,9 +106,15 @@ const form = ref({
 });
 
 const handleInstitution = async () => {
-  await institutionStore.checkInstitution(form.value).then(async () => {
-    existingInstitution.value = true;
-  });
+  try {
+    await institutionStore.checkInstitution(form.value).then(async () => {
+      existingInstitution.value = true;
+    });
+  } catch (error) {
+    notification.notifyError(error);
+    return;
+  }
+  notification.notifySuccess("Updated institution settings successfully");
 };
 
 const toggleEditMode = async () => {
