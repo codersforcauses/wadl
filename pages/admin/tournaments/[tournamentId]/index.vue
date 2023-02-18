@@ -11,21 +11,21 @@
       class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2"
     >
       <Frame
-        :title="noviceNum"
+        :title="noviceNum.toString()"
         subtitle="Novice"
         button-size="small"
         :is-horizontal-buttons="false"
         @button-clicked="handleLevelButtons"
       />
       <Frame
-        :title="juniorNum"
+        :title="juniorNum.toString()"
         subtitle="Junior"
         button-size="small"
         :is-horizontal-buttons="false"
         @button-clicked="handleLevelButtons"
       />
       <Frame
-        :title="seniorNum"
+        :title="seniorNum.toString()"
         subtitle="Senior"
         button-size="small"
         :is-horizontal-buttons="false"
@@ -290,11 +290,18 @@
       </div>
     </div> -->
   </div>
+  <ViewTeams
+    :modal-visibility="teamsModalVisibility"
+    :teams="teamsByLevel"
+    :level="teamsModalLevel"
+    @close="teamsModalVisibility = false"
+  />
 </template>
 
 <script setup>
 import { useTournamentStore } from "../../../../stores/tournaments";
 import { useTeamStore } from "../../../../stores/teams";
+import { ref, computed } from "vue";
 
 // eslint-disable-next-line no-undef
 const router = useRouter();
@@ -317,14 +324,28 @@ const teamStore = useTeamStore();
 //   },
 // ];
 
+const teamsModalVisibility = ref(false);
+const teamsModalLevel = ref(null);
 const handleLevelButtons = (button, level) => {
-  console.log(button, level);
-  if (button === "Division") {
-    router.push({
-      path: `/admin/tournaments/${route.params.tournamentId}/division/${level}`,
-    });
+  switch (button) {
+    case "Division":
+      router.push({
+        path: `/admin/tournaments/${route.params.tournamentId}/division/${level}`,
+      });
+      break;
+    case "Teams":
+      teamsModalVisibility.value = true;
+      teamsModalLevel.value = level;
+      break;
+    default:
+      throw new Error(`Unknown Frame button: ${button}`);
   }
 };
+const teamsByLevel = computed(() => {
+  return teamStore.teams.filter((team) => {
+    return team.level === teamsModalLevel.value;
+  });
+});
 
 tournamentStore.getTournament(route.params.tournamentId);
 

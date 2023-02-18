@@ -136,8 +136,9 @@
     <Table
       :headers="headers"
       :data="filteredTournaments"
+      clickable-rows
       @edit="handleEdit"
-      @get-id="handleId"
+      @click-row="handleId"
     />
   </section>
   <Notification
