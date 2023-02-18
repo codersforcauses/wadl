@@ -17,7 +17,9 @@
         <tr
           v-for="(row, index) in data"
           :key="index"
-          class="py-10 odd:bg-white even:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out"
+          :class="`py-10 odd:bg-white even:bg-light-grey/10 hover:bg-light-yellow transition duration-150 ease-in-out ${
+            clickableRows ? 'cursor-pointer' : ''
+          }`"
           @click="handleRowClick(row.id)"
         >
           <td v-for="(object, ind) in headers" :key="ind" class="p-2">
@@ -57,10 +59,12 @@
 <script setup>
 import { PencilIcon } from "@heroicons/vue/24/solid";
 
-const emit = defineEmits(["edit", "getId"]);
+const emit = defineEmits(["edit", "clickRow"]);
 
 const handleRowClick = (id) => {
-  emit("getId", id);
+  if (props.clickableRows) {
+    emit("clickRow", id);
+  }
 };
 
 const handleEmit = (info) => {
@@ -71,7 +75,7 @@ const handleEmit = (info) => {
   });
 };
 
-defineProps({
+const props = defineProps({
   headers: {
     type: Object,
     default: () => {},
@@ -83,6 +87,10 @@ defineProps({
   data: {
     type: Object,
     default: () => {},
+  },
+  clickableRows: {
+    type: Boolean,
+    default: false,
   },
   canEdit: {
     type: Boolean,
