@@ -3,6 +3,7 @@ import ProfileInfo from "~/components/admin/ProfileInfo.vue";
 
 import { ref, onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
+import { useTournamentStore } from "../../stores/tournaments";
 import { useUserStore } from "../../stores/user";
 import { useHead } from "#imports";
 import useNotification from "../../composables/useNotification";
@@ -11,41 +12,8 @@ useHead({
   title: "Teams",
 });
 const store = useInstitutionStore();
+const tournamentStore = useTournamentStore();
 const userStore = await useUserStore();
-const headers = [
-  {
-    key: "name",
-    title: "Team",
-  },
-  {
-    key: "level",
-    title: "Level",
-  },
-  {
-    key: "division",
-    title: "Division",
-  },
-  {
-    key: "timeslot",
-    title: "Timeslot",
-  },
-  {
-    key: "weekPreference",
-    title: "Week Pref.",
-  },
-  {
-    key: "allocatedTue",
-    title: "Tue",
-  },
-  {
-    key: "allocatedWed",
-    title: "Wed",
-  },
-  {
-    key: "venuePreference",
-    title: "Venue Pref.",
-  },
-];
 
 const notification = useNotification();
 
@@ -64,9 +32,11 @@ const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
 
 onMounted(async () => {
-  if (store.teams.length === 0) {
-    await store.getTeamsByID(userStore.institution);
-    console.table(store.teams);
+  try {
+    await tournamentStore.getTournaments();
+    await store.getInstitutionByID(userStore.institution);
+  } catch (error) {
+    notification.notifyError(error);
   }
 });
 
@@ -89,6 +59,13 @@ const updateTeam = async () => {
   notification.notifySuccess("Updated team successfully");
   resetFormState();
 };
+
+if (store.userInstitution !== null) {
+  var tournaments = [];
+  store.userInstitution.tournaments.forEach((id, index) => console.log(id));
+} else {
+  console.log("tournaments is null");
+}
 </script>
 
 <template>
@@ -110,10 +87,15 @@ const updateTeam = async () => {
     </div>
   </div>
   <div class="w-full px-36 mt-6">
-    <div class="grid grid-cols-3 justify-between">
-      <div class="p-4 bg-lighter-grey rounded-lg">
+    <div class="grid grid-cols-3 justify-between gap-4">
+      <div
+        v-for="tournament in store.userInstitution.tournaments"
+        class="p-4 bg-lighter-grey rounded-lg"
+      >
         <div class="grid grid-cols-1 gap-y-4">
-          <div class="text-xl flex place-content-center p-4">SDC 2023</div>
+          <div class="text-xl flex place-content-center p-4">
+            {{ tournament }}
+          </div>
           <div class="grid grid-cols-2">
             <div class="flex justify-center">
               <Button
