@@ -50,7 +50,11 @@ export const useInstitutionStore = defineStore("institution", {
           email: doc.data().email,
           number: doc.data().number,
           abbreviation: doc.data().abbreviation,
+          tournaments: null,
         };
+        if (doc.data().tournaments !== undefined) {
+          this.userInstitution.tournaments = doc.data().tournaments;
+        }
       });
     },
     async checkInstitution(institution) {
