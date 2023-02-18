@@ -76,5 +76,5 @@ defineProps({
   },
 });
 
-const emit = defineEmits("buttonClicked");
+const emit = defineEmits(["buttonClicked"]);
 </script>
