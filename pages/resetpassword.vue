@@ -32,7 +32,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useUserStore } from "../stores/user";
-import { errorCodeToMessage } from "../misc/firebaseHelpers";
+import { handleError } from "../misc/firebaseHelpers";
 import useNotification from "../composables/useNotification";
 import { navigateTo } from "#imports";
 
@@ -47,7 +47,7 @@ const resetPassword = async () => {
   try {
     await userStore.resetPassword(form.value);
   } catch (error) {
-    errorMessage.value = errorCodeToMessage(error);
+    errorMessage.value = handleError(error);
     return;
   }
   notification.notifySuccess(

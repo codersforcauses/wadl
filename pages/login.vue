@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user";
 import { useHead } from "#imports";
-import { errorCodeToMessage } from "../misc/firebaseHelpers";
+import { handleError } from "../misc/firebaseHelpers";
 useHead({
   title: "Login",
 });
@@ -28,7 +28,7 @@ const handleLogin = async () => {
   try {
     await userStore.loginUser(form.value);
   } catch (error) {
-    errorMessage.value = errorCodeToMessage(error.code);
+    errorMessage.value = handleError(error);
   }
 };
 
