@@ -290,11 +290,17 @@
       </div>
     </div> -->
   </div>
+  <ViewTeams
+    :modal-visibility="teamsModalVisibility"
+    :teams="teamStore.teams"
+    @close="teamsModalVisibility = false"
+  />
 </template>
 
 <script setup>
 import { useTournamentStore } from "../../../../stores/tournaments";
 import { useTeamStore } from "../../../../stores/teams";
+import { ref } from "vue";
 
 // eslint-disable-next-line no-undef
 const router = useRouter();
@@ -317,12 +323,20 @@ const teamStore = useTeamStore();
 //   },
 // ];
 
+const teamsModalVisibility = ref(false);
+
 const handleLevelButtons = (button, level) => {
-  console.log(button, level);
-  if (button === "Division") {
-    router.push({
-      path: `/admin/tournaments/${route.params.tournamentId}/division/${level}`,
-    });
+  switch (button) {
+    case "Division":
+      router.push({
+        path: `/admin/tournaments/${route.params.tournamentId}/division/${level}`,
+      });
+      break;
+    case "Teams":
+      teamsModalVisibility.value = true;
+      break;
+    default:
+      throw new Error(`Unknown Frame button: ${button}`);
   }
 };
 
