@@ -52,11 +52,12 @@ Run
 yarn dev:docker
 ```
 
-Open another terminal and run to go into the container
+Open another terminal and run 
 
 ```
 docker exec -it wadl_firebase /bin/bash
 ```
+to go into the container
 
 Once inside the container, run (make sure you have an account with Firebase and is granted permission for the project before doing this) 
 
