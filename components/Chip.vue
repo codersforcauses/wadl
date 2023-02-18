@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import { XMarkIcon } from "@heroicons/vue/20/solid";
+import { PlusIcon } from "@heroicons/vue/24/solid";
 
 const props = defineProps({
   text: {
@@ -19,8 +20,12 @@ const props = defineProps({
     type: String,
     default: "medium",
   },
+  canRemove: {
+    type: Boolean,
+    default: true,
+  },
 });
-defineEmits(["removeChip"]);
+defineEmits(["removeChip", "addChip"]);
 // Computes the size based on the given prop and the device size
 const chipSize = computed(() => {
   switch (props.size) {
@@ -39,17 +44,28 @@ const chipSize = computed(() => {
 <template>
   <span class="rounded-lg" :class="`${bgColor} ${textColor} ${chipSize}`">
     {{ text }}
-    <button
-      class="pb-1 pl-2 align-middle"
-      @click.prevent="
-        (e) => {
-          $emit('removeChip', text);
-          e.stopPropagation();
-        }
-      "
-    >
-      <div class="hover:bg-amber-500 transition rounded-lg">
-        <XMarkIcon class="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+    <button class="pb-1 pl-2 align-middle">
+      <div class="hover:bg-amber-500 transition rounded-lg flex flex-nowrap">
+        <XMarkIcon
+          v-if="canRemove"
+          class="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5"
+          @click.prevent="
+            (e) => {
+              $emit('removeChip', text);
+              e.stopPropagation();
+            }
+          "
+        />
+        <PlusIcon
+          v-else
+          class="w-4 h-4"
+          @click.prevent="
+            (e) => {
+              $emit('addChip', text);
+              e.stopPropagation();
+            }
+          "
+        />
       </div>
     </button>
   </span>

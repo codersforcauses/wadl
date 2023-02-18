@@ -18,9 +18,8 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
         publicRoutes.push(`/fixtures/${tournament.id}`);
         return publicRoutes;
       },
-      ["/", "/signup", "/login"]
+      ["/", "/signup", "/login", "/resetpassword"]
     );
-
     if (allPublicRoutes.includes(to.path)) return;
 
     if (userStore.auth === null) {
