@@ -106,7 +106,7 @@ const form = ref({
 });
 
 const handleInstitution = async () => {
-  form.value.code = undefined;
+  form.value.code = null;
   try {
     await institutionStore.checkInstitution(form.value);
   } catch (error) {
