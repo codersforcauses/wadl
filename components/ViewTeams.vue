@@ -9,7 +9,7 @@
       :subtitle-text="level ? level.toUpperCase() : null"
     />
     <Table
-      class="mx-12 h-3/4"
+      class="mx-12 h-1/2 md:mx-11 md:h-3/4 md:w-10/12 lg:w-11/12"
       :headers="headers"
       :render-headers="false"
       :data="teams"
