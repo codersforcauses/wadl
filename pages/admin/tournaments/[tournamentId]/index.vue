@@ -1,7 +1,7 @@
 <template>
   <Header
     title-text="Manage Tournament"
-    :subtitle-text="managedTournament.name"
+    :subtitle-text="tournamentStore.currentTournament.name"
   />
   <div class="mx-32">
     <p class="pt-2 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
@@ -10,33 +10,27 @@
     <div
       class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2"
     >
-      <div class="">
-        <Frame
-          :title="noviceNum"
-          subtitle="NOVICE"
-          button-size="small"
-          :is-horizontal-buttons="false"
-          @button-clicked="print"
-        />
-      </div>
-      <div class="">
-        <Frame
-          :title="juniorNum"
-          subtitle="JUNIOR"
-          button-size="small"
-          :is-horizontal-buttons="false"
-          @button-clicked="print"
-        />
-      </div>
-      <div class="">
-        <Frame
-          :title="seniorNum"
-          subtitle="SENIOR"
-          button-size="small"
-          :is-horizontal-buttons="false"
-          @button-clicked="print"
-        />
-      </div>
+      <Frame
+        :title="noviceNum.toString()"
+        subtitle="Novice"
+        button-size="small"
+        :is-horizontal-buttons="false"
+        @button-clicked="handleLevelButtons"
+      />
+      <Frame
+        :title="juniorNum.toString()"
+        subtitle="Junior"
+        button-size="small"
+        :is-horizontal-buttons="false"
+        @button-clicked="handleLevelButtons"
+      />
+      <Frame
+        :title="seniorNum.toString()"
+        subtitle="Senior"
+        button-size="small"
+        :is-horizontal-buttons="false"
+        @button-clicked="handleLevelButtons"
+      />
       <div class="bg-yellow-200 rounded py-6">
         <div class="flex flex-col justify-center items-center">
           <h1
@@ -44,40 +38,40 @@
           >
             {{ noviceNum + juniorNum + seniorNum }}
           </h1>
-          <p>Total</p>
+          <p class="text-mid-grey font-montserrat">TOTAL</p>
         </div>
       </div>
     </div>
-    <!-- <p class="pt-5 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
+    <p class="pt-5 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey">
       Information
-    </p> -->
-    <!-- <div class="grid grid-cols-8 gap-4 text-center">
-      <div class="col-span-3">
-        <Frame
-          :title="status"
-          subtitle="STATUS"
-          :button-texts="['Open', 'Run', 'Complete']"
-          :button-colors="['bg-light-orange-gold', 'bg-light-green', 'bg-gold']"
-          :text-colors="['text-black', 'text-white', 'text-black']"
-          button-size="small"
-          @button1-clicked="
-            () => {
-              print('Open Tournament');
-            }
-          "
-          @button2-clicked="
-            () => {
-              print('Run Tournament');
-            }
-          "
-          @button3-clicked="
-            () => {
-              print('Complete Tournament');
-            }
-          "
-        />
+    </p>
+    <div class="grid grid-cols-8 gap-4 text-center">
+      <div class="lg:col-span-3 md:col-span-5 col-span-8">
+        <div class="bg-lighter-grey rounded-md py-6 px-2">
+          <div class="flex items-center justify-center">
+            <Stepper :stage="stage" />
+          </div>
+          <div class="flex flex-row items-center justify-center mt-4">
+            <Button
+              button-text="Previous Stage"
+              button-color="bg-dark-red/20"
+              text-color="text-dark-red"
+              size="medium"
+              class="mr-[30px] transition duration-200 ease-in-out hover:bg-dark-red/50 hover:shadow-lg"
+              @click="changeStage(-1)"
+            />
+            <Button
+              button-text="Next Stage"
+              button-color="bg-light-green"
+              text-color="text-white"
+              size="medium"
+              class="transition duration-200 ease-in-out hover:bg-light-green/70 hover:shadow-lg"
+              @click="changeStage(1)"
+            />
+          </div>
+        </div>
       </div>
-      <div class="col-span-2">
+      <!-- <div class="col-span-2">
         <Frame
           :title="drawStatus"
           subtitle="DRAW STATUS"
@@ -113,8 +107,8 @@
             }
           "
         />
-      </div>
-    </div> -->
+      </div> -->
+    </div>
     <!-- table -->
     <!-- header1 -->
     <!-- <div class="items-center bg-white flex">
@@ -296,16 +290,26 @@
       </div>
     </div> -->
   </div>
+  <ViewTeams
+    :modal-visibility="teamsModalVisibility"
+    :teams="teamsByLevel"
+    :level="teamsModalLevel"
+    @close="teamsModalVisibility = false"
+  />
 </template>
 
 <script setup>
-// import venue from "../../../data/venues.json";
-// import { XMarkIcon, PlusIcon, PencilIcon } from "@heroicons/vue/24/solid";
-import { useTournamentStore } from "../../../stores/tournaments";
+import { useTournamentStore } from "../../../../stores/tournaments";
+import { useTeamStore } from "../../../../stores/teams";
+import { ref, computed } from "vue";
 
 // eslint-disable-next-line no-undef
+const router = useRouter();
+// eslint-disable-next-line no-undef
 const route = useRoute();
+
 const tournamentStore = useTournamentStore();
+const teamStore = useTeamStore();
 
 // const status = "CLOSED";
 // const drawStatus = "INCOMPLETE";
@@ -320,18 +324,56 @@ const tournamentStore = useTournamentStore();
 //   },
 // ];
 
-function print(text, subtitle) {
-  console.log(text, subtitle);
+const teamsModalVisibility = ref(false);
+const teamsModalLevel = ref(null);
+const handleLevelButtons = (button, level) => {
+  switch (button) {
+    case "Division":
+      router.push({
+        path: `/admin/tournaments/${route.params.tournamentId}/division/${level}`,
+      });
+      break;
+    case "Teams":
+      teamsModalVisibility.value = true;
+      teamsModalLevel.value = level;
+      break;
+    default:
+      throw new Error(`Unknown Frame button: ${button}`);
+  }
+};
+const teamsByLevel = computed(() => {
+  return teamStore.teams.filter((team) => {
+    return team.level === teamsModalLevel.value;
+  });
+});
+
+tournamentStore.getTournament(route.params.tournamentId);
+
+const status = tournamentStore.currentTournament.status;
+
+const stageList = ["Open", "Closed", "Running", "Complete"];
+const stage = ref(1);
+for (let i = 0; i < stageList.length; i++) {
+  if (stageList[i] === status) {
+    stage.value = i + 1;
+  }
 }
 
-const managedTournament = tournamentStore.getTournamentById(
-  route.params.tournamentId
-);
-const getNumberOfTeams = (level) => {
-  return managedTournament.levels.find((lv) => lv.level === level).teamIds
-    .length;
+await teamStore.getTeamsbyTournament(route.params.tournamentId);
+
+const noviceNum = teamStore.getNumberTeams("Novice");
+const juniorNum = teamStore.getNumberTeams("Junior");
+const seniorNum = teamStore.getNumberTeams("Senior");
+
+const changeStage = (value) => {
+  if (value === -1 && stage.value > 1) {
+    stage.value--;
+  } else if (value === 1 && stage.value < 4) {
+    stage.value++;
+  } else {
+    return;
+  }
+  tournamentStore.currentTournament.status = stageList[stage.value - 1];
+  tournamentStore.editTournament(tournamentStore.currentTournament);
 };
-const noviceNum = getNumberOfTeams("Novice");
-const juniorNum = getNumberOfTeams("Junior");
-const seniorNum = getNumberOfTeams("Senior");
 </script>

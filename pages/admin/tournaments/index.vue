@@ -42,13 +42,26 @@
           label="Rounds"
           placeholder="Total number of rounds"
         />
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-evenly w-full my-5">
           <Button
-            button-text="Update"
-            button-color="bg-gold"
+            button-text="Delete"
+            button-color="bg-pink-100"
             type="Submit"
-            class="m-5 ml-8"
+            class="text-red-700"
+            @click="deleteTournament(form.id)"
           />
+          <Notification
+            :modal-visibility="notificationVisibility"
+            :is-success="isSuccess"
+            :body="notificationMessage"
+            @close="
+              () => {
+                notificationVisibility = false;
+                redirect();
+              }
+            "
+          />
+          <Button button-text="Update" button-color="bg-gold" type="Submit" />
         </div>
       </form>
     </div>
@@ -123,8 +136,9 @@
     <Table
       :headers="headers"
       :data="filteredTournaments"
+      clickable-rows
       @edit="handleEdit"
-      @get-id="handleId"
+      @click-row="handleId"
     />
   </section>
   <Notification
@@ -226,6 +240,20 @@ const createTournament = () => {
   }
   notification.notifySuccess("Tournament created successfully");
   resetFormState();
+};
+
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
+const deleteTournament = (id) => {
+  store.deleteTournament(id);
+  if (!store.errorMessage) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = "Tournament successfully deleted";
+  }
 };
 
 const headers = [
