@@ -1,13 +1,12 @@
 <script setup>
 import ProfileInfo from "~/components/admin/ProfileInfo.vue";
 
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useUserStore } from "../../stores/user";
 import { useHead } from "#imports";
 import useNotification from "../../composables/useNotification";
-import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 useHead({
   title: "Teams",
 });
@@ -17,55 +16,20 @@ const userStore = await useUserStore();
 
 const notification = useNotification();
 
-const defaultInputState = {
-  id: null,
-  level: null,
-  division: null,
-  timeslot: null,
-  venuePreference: [],
-  allocatedTue: null,
-  allocatedWed: null,
-  weekPreference: null,
-};
-
-const form = ref({ ...defaultInputState });
-const modalVisibility = ref(false);
-
 onMounted(async () => {
   try {
     await tournamentStore.getTournaments();
     await store.getInstitutionByID(userStore.institution);
+    if (store.userInstitution.tournaments !== null) {
+      tournamentStore.filterTournaments(store.userInstitution.tournaments);
+    } else {
+      console.log("No tournaments registered");
+    }
   } catch (error) {
     notification.notifyError(error);
   }
+  console.log(tournamentStore.filteredTournaments);
 });
-
-const resetFormState = () => {
-  form.value = { ...defaultInputState };
-};
-
-const handleEdit = (row) => {
-  modalVisibility.value = row.modalVisibility;
-  form.value = row.data;
-};
-
-const updateTeam = async () => {
-  try {
-    await store.editTeam(form.value);
-  } catch (error) {
-    notification.notifyError(error);
-    return;
-  }
-  notification.notifySuccess("Updated team successfully");
-  resetFormState();
-};
-
-if (store.userInstitution !== null) {
-  var tournaments = [];
-  store.userInstitution.tournaments.forEach((id, index) => console.log(id));
-} else {
-  console.log("tournaments is null");
-}
 </script>
 
 <template>
@@ -87,23 +51,29 @@ if (store.userInstitution !== null) {
     </div>
   </div>
   <div class="w-full px-36 mt-6">
-    <div class="grid grid-cols-3 justify-between gap-4">
+    <div
+      v-if="tournamentStore.hasTournaments"
+      class="grid grid-cols-3 justify-between gap-4"
+    >
       <div
-        v-for="tournament in store.userInstitution.tournaments"
+        v-for="tournament in tournamentStore.filteredTournaments"
+        :key="tournament.id"
         class="p-4 bg-lighter-grey rounded-lg"
       >
         <div class="grid grid-cols-1 gap-y-4">
           <div class="text-xl flex place-content-center p-4">
-            {{ tournament }}
+            {{ tournament.name }}
           </div>
           <div class="grid grid-cols-2">
             <div class="flex justify-center">
-              <Button
-                button-text="Teams"
-                button-color="bg-light-orange-gold"
-                class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg justify-center"
-                size="small"
-              />
+              <NuxtLink :to="`/coordinator/teams/${tournament.id}`">
+                <Button
+                  button-text="Teams"
+                  button-color="bg-light-orange-gold"
+                  class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg justify-center"
+                  size="small"
+                />
+              </NuxtLink>
             </div>
             <div class="flex justify-center">
               <Button
@@ -118,5 +88,6 @@ if (store.userInstitution !== null) {
         </div>
       </div>
     </div>
+    <div v-else>No competitions registered</div>
   </div>
 </template>
