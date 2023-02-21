@@ -94,7 +94,7 @@
 import { reactive, ref, onMounted } from "vue";
 import { useHead, navigateTo } from "#imports";
 import { useUserStore } from "../../stores/user";
-import { errorCodeToMessage } from "../../misc/firebaseHelpers";
+import { handleError } from "../../misc/firebaseHelpers";
 import useNotification from "../../composables/useNotification";
 
 useHead({
@@ -149,7 +149,7 @@ const updatePassword = async () => {
       "Password successfully changed, please re-login."
     );
   } catch (error) {
-    errorMessage.value = errorCodeToMessage(error.code);
+    errorMessage.value = handleError(error);
   }
 };
 const redirect = () => {

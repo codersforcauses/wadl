@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { errorCodeToMessage } from "../misc/firebaseHelpers";
+import { handleError } from "../misc/firebaseHelpers";
 
 class NotificationModalHelper {
   #isVisible = ref(false);
@@ -26,13 +26,7 @@ class NotificationModalHelper {
   notifyError(error) {
     this.#isVisible.value = false;
 
-    // Check if it's a Firebase error
-    if (error.code) {
-      this.#message.value = errorCodeToMessage(error.code);
-    } else {
-      this.#message.value = error.message;
-    }
-
+    this.#message.value = handleError(error);
     this.#isSuccess.value = false;
     this.#isVisible.value = true;
   }
