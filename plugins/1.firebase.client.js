@@ -22,7 +22,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     mode: config.firebaseMode,
   };
 
-  const app = initializeApp(firebaseConfig, "client");
+  const app = initializeApp(firebaseConfig, "client", { cacheSizeBytes: 100 });
   const firestore = getFirestore(app);
   const auth = getAuth(app);
   const functions = getFunctions(app);

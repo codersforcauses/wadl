@@ -149,7 +149,7 @@
   />
 </template>
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "../../../stores/tournaments";
 import { useHead } from "#imports";
 import useNotification from "../../../composables/useNotification";
@@ -176,7 +176,6 @@ const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
 
-// eslint-disable-next-line no-undef
 onMounted(async () => {
   try {
     await store.getTournaments();
