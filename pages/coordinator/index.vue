@@ -53,7 +53,7 @@ onMounted(async () => {
   <div class="w-full px-36 mt-6">
     <div
       v-if="tournamentStore.hasTournaments"
-      class="grid grid-cols-3 justify-between gap-4"
+      class="grid grid-cols-1 md:grid-cols-3 justify-between gap-4"
     >
       <div
         v-for="tournament in tournamentStore.filteredTournaments"
