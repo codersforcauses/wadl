@@ -71,12 +71,21 @@ const createRoundTabs = () => {
 };
 
 const handleLevel = (tabName) => {
+  roundSelected = selectedTournament?.currentRound;
   levelSelected = tabName;
   levelTabsKey++;
   tableData.value = [];
-  roundTabs.forEach((round) => (round.active = false));
-  roundSelected = undefined;
+  roundTabs.forEach((round) => {
+    if (
+      parseInt(round.label.split("")[round.label.length - 1]) === roundSelected
+    ) {
+      round.active = true;
+    } else {
+      round.active = false;
+    }
+  });
   tableFilter.value = "";
+  getFixturesTableData();
 };
 
 const handleRound = (roundName) => {
