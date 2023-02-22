@@ -33,7 +33,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ProfileInfo username="Sarah Tan" role="Team Coordinator" />
+  <ProfileInfo :username="userStore.firstName" role="Team Coordinator" />
   <div class="w-full px-36">
     <div class="grid grid-cols-2 justify-between bg-lighter-grey rounded-lg">
       <div class="text-xl flex p-5">Your Competitions</div>
