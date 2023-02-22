@@ -102,9 +102,9 @@ const updateTeam = async () => {
   resetFormState();
 };
 
-const title = "Teams in ".concat(
-  tournamentStore.getTournamentById(route.params.tournamentId).name
-);
+const tournamentName = tournamentStore.getTournamentById(
+  route.params.tournamentId
+).name;
 </script>
 
 <template>
@@ -187,7 +187,7 @@ const title = "Teams in ".concat(
   <section
     class="flex flex-col items-center justify-center max-w-screen max-h-screen"
   >
-    <Header :title-text="title" />
+    <Header title-text="Manage Teams" :subtitleText="tournamentName" />
     <NuxtLink
       v-if="userStore.institution"
       class="flex flex-row w-full justify-end p-5"
