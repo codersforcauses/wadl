@@ -213,7 +213,7 @@ export const useInstitutionStore = defineStore("institution", {
         if (num > 0) {
           for (let i = 0; i < num; i++) {
             const ref = doc(collection($clientFirestore, "teams"));
-            batch.set(ref, {
+            const teamDetails = {
               name: team.userTeam + " " + teamCounter,
               tournamentId: team.tournamentId,
               institutionId: team.institutionId,
@@ -228,7 +228,9 @@ export const useInstitutionStore = defineStore("institution", {
                 : null,
               notes: team.notes,
               division: null,
-            });
+            };
+            batch.set(ref, teamDetails);
+            this.teams.push(teamDetails);
             teamCounter++;
           }
         }
