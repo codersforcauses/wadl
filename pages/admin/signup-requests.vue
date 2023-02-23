@@ -57,6 +57,10 @@ const headers = [
     title: "Email",
   },
   {
+    key: "school",
+    title: "School",
+  },
+  {
     key: "role",
     title: "Role",
   },
