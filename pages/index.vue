@@ -8,8 +8,9 @@
     v-if="store.getRunning.length > 0"
     class="mx-auto mt-4 flex justify-center flex-wrap"
   >
+    <!-- replace key with item.id when final data exists -->
     <div v-for="tournament in store.getRunning" :key="tournament.id">
-      <NuxtLink to="/">
+      <NuxtLink :to="`/fixtures/${tournament.id}`">
         <LevelButton :text="tournament.shortName" />
       </NuxtLink>
     </div>
@@ -24,15 +25,23 @@
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
+import tournamentsData from "../data/tournaments.json";
+import { useTeamStore } from "../stores/teams";
 import { useTournamentStore } from "../stores/tournaments";
 import { onMounted } from "vue";
 import { useHead } from "#imports";
+const tournaments = ref(tournamentsData);
+const teamStore = useTeamStore();
+
+
 useHead({
   title: "WADL",
 });
 const store = useTournamentStore();
 
-onMounted(() => {
-  store.getTournaments();
+onMounted(async() => {
+  await store.getTournaments();
+  await teamStore.getTeams();
+
 });
 </script>

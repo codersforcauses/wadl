@@ -39,6 +39,7 @@ export const useTournamentStore = defineStore("tournament", {
       querySnapshot.forEach((doc) => {
         const tournament = {
           id: doc.id,
+          currentRound: doc.data().currentRound,
           levels: doc.data().levels,
           name: doc.data().name,
           numRounds: doc.data().numRounds,
