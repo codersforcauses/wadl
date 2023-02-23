@@ -101,10 +101,11 @@ const updateTeam = async () => {
   notification.notifySuccess("Updated team successfully");
   resetFormState();
 };
+const index = tournamentStore.tournaments.findIndex((t) => {
+  return route.params.tournamentId === t.id;
+});
 
-const tournamentName = tournamentStore.getTournamentById(
-  route.params.tournamentId
-).name;
+const tournamentName = tournamentStore.tournaments[index].name;
 </script>
 
 <template>

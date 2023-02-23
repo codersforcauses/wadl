@@ -200,7 +200,8 @@ export const useInstitutionStore = defineStore("institution", {
       const { $clientFirestore } = useNuxtApp();
       const query_ = query(
         collection($clientFirestore, "teams"),
-        where("institutionId", "==", userStore.institution)
+        where("institutionId", "==", userStore.institution),
+        where("tournamentId", "==", team.tournamentId)
       );
       const snapshot = await getCountFromServer(query_);
       let teamCounter = snapshot.data().count + 1;

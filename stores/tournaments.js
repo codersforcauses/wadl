@@ -129,7 +129,10 @@ export const useTournamentStore = defineStore("tournament", {
     },
     async filterTournaments(tournaments) {
       tournaments.forEach((id) => {
-        this.filteredTournaments.push(this.getTournamentById(id));
+        const index = this.tournaments.findIndex((t) => {
+          return id === t.id;
+        });
+        this.filteredTournaments.push(this.tournaments[index]);
       });
       this.hasTournaments = true;
     },
