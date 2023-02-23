@@ -40,5 +40,11 @@ export const useVenueStore = defineStore("venue", {
         this.venues.push({ id: doc.id, ...doc.data() });
       });
     },
+    deleteVenue(id) {
+      const index = this.venues.findIndex((t) => {
+        return id === t.id;
+      });
+      this.venues.splice(index, 1);
+    },
   },
 });

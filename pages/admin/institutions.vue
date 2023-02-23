@@ -87,6 +87,20 @@ const handleEdit = (row) => {
   editMode.value = row.editMode;
   formInput.value = row.data;
 };
+
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
+const deleteInstitution = (id) => {
+  store.deleteInstitution(id);
+  if (!store.errorMessage) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = "Institution successfully deleted";
+  }
+};
 </script>
 
 <template>
@@ -120,13 +134,26 @@ const handleEdit = (row) => {
         <p v-if="errorMessage" class="text-danger-red">
           {{ errorMessage }}
         </p>
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-evenly w-full my-5">
           <Button
-            button-text="Update"
-            button-color="bg-gold"
+            button-text="Delete"
+            button-color="bg-pink-100"
             type="Submit"
-            class="m-5 ml-8"
+            class="text-red-700"
+            @click="deleteInstitution(formInput.id)"
           />
+          <Notification
+            :modal-visibility="notificationVisibility"
+            :is-success="isSuccess"
+            :body="notificationMessage"
+            @close="
+              () => {
+                notificationVisibility = false;
+                redirect();
+              }
+            "
+          />
+          <Button button-text="Update" button-color="bg-gold" type="Submit" />
         </div>
       </form>
     </div>

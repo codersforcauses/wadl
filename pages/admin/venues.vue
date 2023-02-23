@@ -90,6 +90,20 @@ const createVenue = async () => {
   resetFormState();
 };
 
+// Notification Modal
+const notificationVisibility = ref(false);
+const isSuccess = ref(false);
+const notificationMessage = ref("");
+
+const deleteVenue = (id) => {
+  store.deleteVenue(id);
+  if (!store.errorMessage) {
+    isSuccess.value = true;
+    notificationVisibility.value = true;
+    notificationMessage.value = "Venue successfully deleted";
+  }
+};
+
 const headers = [
   {
     key: "name",
@@ -168,12 +182,29 @@ const headers = [
           placeholder="Select Days"
           @change="updateSelectedDays"
         />
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-evenly w-full my-5">
+          <Button
+            button-text="Delete"
+            button-color="bg-pink-100"
+            type="Submit"
+            class="text-red-700"
+            @click="deleteVenue(formInput.id)"
+          />
+          <Notification
+            :modal-visibility="notificationVisibility"
+            :is-success="isSuccess"
+            :body="notificationMessage"
+            @close="
+              () => {
+                notificationVisibility = false;
+                redirect();
+              }
+            "
+          />
           <Button
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
-            class="m-5 ml-8"
             :loading="modalLoading"
           />
         </div>
