@@ -63,7 +63,7 @@ Clicking on `Previous Stage` or `Next Stage` will change the status.
 
 ---
 
-### Features Coming Soon
+## Features Coming Soon
 
 - Generate Fixtures
 - Advance the current round
