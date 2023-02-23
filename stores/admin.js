@@ -67,29 +67,27 @@ export const useAdminStore = defineStore("admin", {
           role: user.role,
         },
       };
-      updateDoc(doc($clientFirestore, "users", user.id), {
+      await updateDoc(doc($clientFirestore, "users", user.id), {
         requesting: false,
         role: user.role,
-      }).then(async () => {
-        this.users = this.users.filter((u) => u.id !== user.id);
-        await $fetch("/api/send-email", {
-          method: "post",
-          body: {
-            userInfo: user,
-            emailStructure: template,
-          },
-        });
+      });
+      this.users = this.users.filter((u) => u.id !== user.id);
+      await $fetch("/api/send-email", {
+        method: "post",
+        body: {
+          userInfo: user,
+          emailStructure: template,
+        },
       });
     },
 
     async denyUser(user) {
       const { $clientFirestore } = useNuxtApp();
-      deleteDoc(doc($clientFirestore, "users", user.id), {
+      await deleteDoc(doc($clientFirestore, "users", user.id), {
         requesting: null,
         role: user.role,
-      }).then(() => {
-        this.users = this.users.filter((u) => u.id !== user.id);
       });
+      this.users = this.users.filter((u) => u.id !== user.id);
     },
     async clearStore() {
       this.searchTerm = "";

@@ -1,6 +1,7 @@
 <script setup>
 import AdminButton from "~/components/admin/AdminButton.vue";
 import ProfileInfo from "~/components/admin/ProfileInfo.vue";
+import { ref } from "vue";
 import {
   TrophyIcon,
   BuildingLibraryIcon,
@@ -20,6 +21,7 @@ useHead({
   title: "Admin",
 });
 const user = await useUserStore();
+const modalVisibility = ref(false);
 
 const exportTeams = async () => {
   const store = useTeamStore();
@@ -68,7 +70,7 @@ const exportTeams = async () => {
         title="Export Teams"
         :icon="ClipboardIcon"
         class="cursor-pointer"
-        @click="exportTeams"
+        @click="modalVisibility = true"
       />
       <AdminButton
         title="Sign-up Requests"
@@ -82,4 +84,24 @@ const exportTeams = async () => {
       />
     </div>
   </div>
+
+  <DeleteDialog
+    :modal-visibility="modalVisibility"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+    @yes="
+      () => {
+        exportTeams();
+        modalVisibility = false;
+      }
+    "
+    @no="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  />
 </template>

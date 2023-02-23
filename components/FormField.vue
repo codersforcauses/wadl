@@ -3,7 +3,7 @@
   <input
     :type="type"
     :placeholder="placeholder"
-    required
+    :required="required"
     :class="`
       p-1
       pl-2.5
@@ -30,6 +30,7 @@ const props = defineProps({
   type: { type: String, default: "text" },
   disabled: { type: Boolean, default: false },
   color: { type: String, default: "" },
+  required: { type: Boolean, default: true },
 });
 const emit = defineEmits(["update:modelValue", "update"]);
 

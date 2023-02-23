@@ -1,6 +1,13 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  setDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
 export const useTournamentStore = defineStore("tournament", {
   state: () => {
@@ -8,6 +15,8 @@ export const useTournamentStore = defineStore("tournament", {
       tournaments: [],
       filteredTournaments: [],
       hasTournaments: false,
+      currentTournament: null,
+      divisions: [],
     };
   },
   getters: {
@@ -21,10 +30,6 @@ export const useTournamentStore = defineStore("tournament", {
         (tournament) => tournament.status === "Open"
       );
     },
-    getTournamentById() {
-      return (tournamentId) =>
-        this.tournaments.find((tournament) => tournament.id === tournamentId);
-    },
   },
   actions: {
     async getTournaments() {
@@ -36,11 +41,13 @@ export const useTournamentStore = defineStore("tournament", {
       querySnapshot.forEach((doc) => {
         const tournament = {
           id: doc.id,
+          currentRound: doc.data().currentRound,
           levels: doc.data().levels,
           name: doc.data().name,
           numRounds: doc.data().numRounds,
           shortName: doc.data().shortName,
           status: doc.data().status,
+          venues: doc.data().venues,
         };
         this.tournaments.push(tournament);
       });
@@ -82,6 +89,37 @@ export const useTournamentStore = defineStore("tournament", {
           Object.assign(t, tournament);
         }
       });
+    },
+    getTournament(id) {
+      this.currentTournament = [];
+      this.currentTournament = this.tournaments.find((t) => t.id === id);
+    },
+    getTournamentDivisionsByLevel(level) {
+      const levels = this.currentTournament.levels.find(
+        (l) => l.level === level
+      );
+      this.divisions = levels.divisions;
+    },
+    updateDivision(newVenue, division) {
+      const divisionIndex = this.divisions.findIndex(
+        (div) => div.division === division
+      );
+      this.divisions[divisionIndex].venue = { ...newVenue };
+    },
+    // BUG: Permission Problem
+    async updateDivisionVenue(level) {
+      const { $clientFirestore } = useNuxtApp();
+      const tournamentRef = doc(
+        $clientFirestore,
+        "tournaments",
+        this.currentTournament.id
+      );
+
+      const levels = this.currentTournament.levels;
+      const index = levels.findIndex((l) => l.level === level);
+
+      this.currentTournament.levels[index].divisions = this.divisions;
+      await updateDoc(tournamentRef, this.currentTournament);
     },
     deleteTournament(id) {
       const index = this.tournaments.findIndex((t) => {

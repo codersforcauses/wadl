@@ -18,7 +18,9 @@
         >
           {{ title }}
         </h1>
-        <p>{{ subtitle }}</p>
+        <p class="text-mid-grey font-montserrat">
+          {{ subtitle.toUpperCase() }}
+        </p>
       </div>
       <div
         :class="
@@ -74,5 +76,5 @@ defineProps({
   },
 });
 
-const emit = defineEmits("buttonClicked");
+const emit = defineEmits(["buttonClicked"]);
 </script>

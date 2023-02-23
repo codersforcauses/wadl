@@ -11,7 +11,7 @@
     "lint:fix": "eslint --ignore-path .gitignore --fix .",
     "firebase": "yarn emu:stop & cd Firebase && firebase emulators:start --import=dummyData",
     "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill",
-    "dev:docker": "docker-compose up"
+    "dev:docker": "docker-compose up -d && yarn dev"
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
