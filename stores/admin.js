@@ -54,6 +54,7 @@ export const useAdminStore = defineStore("admin", {
           institutions: user.institutions,
           requesting: user.requesting,
           role: user.role,
+          school: user.school,
         };
       });
     },

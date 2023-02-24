@@ -22,6 +22,7 @@ export const useUserStore = defineStore("user", {
       requesting: null,
       token: null,
       institution: "",
+      school: null,
     };
   },
 
@@ -53,6 +54,7 @@ export const useUserStore = defineStore("user", {
         lastName: user.lastName,
         phoneNumber: user.phoneNumber,
         email: user.email,
+        school: user.school,
       });
     },
 
@@ -89,6 +91,7 @@ export const useUserStore = defineStore("user", {
         this.role = userInfo.requesting ? "" : userInfo.role; // role not tracked if requesting
         this.requesting = userInfo.requesting;
         this.institution = userInfo.institution;
+        this.school = userInfo.school;
       }
     },
     async resetPassword(email) {
