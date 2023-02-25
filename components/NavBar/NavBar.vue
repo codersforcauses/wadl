@@ -63,7 +63,7 @@
     >
       <ul class="flex flex-col items-center">
         <HamburgerListItem
-          val="Teams"
+          val="Tournaments"
           dest="/coordinator"
           @click="visibility = false"
         />

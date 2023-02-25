@@ -1,219 +1,93 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import ProfileInfo from "~/components/admin/ProfileInfo.vue";
+
+import { onMounted } from "vue";
 import { useInstitutionStore } from "../../stores/institutions";
+import { useTournamentStore } from "../../stores/tournaments";
 import { useUserStore } from "../../stores/user";
 import { useHead } from "#imports";
 import useNotification from "../../composables/useNotification";
-import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 useHead({
   title: "Teams",
 });
 const store = useInstitutionStore();
+const tournamentStore = useTournamentStore();
 const userStore = await useUserStore();
-const headers = [
-  {
-    key: "name",
-    title: "Team",
-  },
-  {
-    key: "level",
-    title: "Level",
-  },
-  {
-    key: "division",
-    title: "Division",
-  },
-  {
-    key: "timeslot",
-    title: "Timeslot",
-  },
-  {
-    key: "weekPreference",
-    title: "Week Pref.",
-  },
-  {
-    key: "allocatedTue",
-    title: "Tue",
-  },
-  {
-    key: "allocatedWed",
-    title: "Wed",
-  },
-  {
-    key: "venuePreference",
-    title: "Venue Pref.",
-  },
-];
 
 const notification = useNotification();
 
-const defaultInputState = {
-  id: null,
-  level: null,
-  division: null,
-  timeslot: null,
-  venuePreference: [],
-  allocatedTue: null,
-  allocatedWed: null,
-  weekPreference: null,
-};
-
-const form = ref({ ...defaultInputState });
-const modalVisibility = ref(false);
-
 onMounted(async () => {
-  if (store.teams.length === 0) {
-    await store.getTeamsByID(userStore.institution);
-    console.table(store.teams);
-  }
-});
-
-const resetFormState = () => {
-  form.value = { ...defaultInputState };
-};
-
-const handleEdit = (row) => {
-  modalVisibility.value = row.modalVisibility;
-  form.value = row.data;
-};
-
-const updateTeam = async () => {
   try {
-    await store.editTeam(form.value);
+    await tournamentStore.getTournaments();
+    await store.getInstitutionByID(userStore.institution);
+    if (store.userInstitution.tournaments !== null) {
+      tournamentStore.filterTournaments(store.userInstitution.tournaments);
+    } else {
+      console.log("No tournaments registered");
+    }
   } catch (error) {
     notification.notifyError(error);
-    return;
   }
-  notification.notifySuccess("Updated team successfully");
-  resetFormState();
-};
+  console.log(tournamentStore.filteredTournaments);
+});
 </script>
 
 <template>
-  <Modal
-    :modal-visibility="modalVisibility"
-    size="w-7/12"
-    @close="
-      () => {
-        modalVisibility = false;
-        resetFormState();
-      }
-    "
-  >
-    <Header title-text="Edit Preferences" />
-    <form
-      class="px-10"
-      @submit.prevent="
-        async () => {
-          modalVisibility = false;
-          await updateTeam();
-        }
-      "
-    >
-      <div class="flex flex-row justify-evenly accent-gold pt-5 pb-2">
-        <div>
-          <input v-model="form.allocatedTue" type="checkbox" class="w-5 h-5" />
-          <label class="ml-3 heading-montserrat">Tuesday Allocation</label>
-        </div>
-        <div>
-          <input v-model="form.allocatedWed" type="checkbox" class="w-5 h-5" />
-
-          <label class="ml-3 heading-montserrat">Wednesday Allocation</label>
-        </div>
-      </div>
-      <FormField v-model="form.timeslot" label="Timeslot" />
-      <Select
-        v-model="form.weekPreference"
-        :options="['Week 1', 'Week 2', 'Either']"
-        label="Week Preference"
-        class="w-full"
-      />
-      <div class="flex flex-row accent-gold py-2">
-        <input
-          v-model="form.hasVenuePreference"
-          type="checkbox"
-          class="w-5 h-5"
-          @change="form.venuePreference = []"
-        />
-
-        <label class="ml-3 heading-montserrat"
-          >Do you have venue preferences?</label
-        >
-      </div>
-      <FormField
-        v-if="form.hasVenuePreference"
-        v-model="form.venuePreference[0]"
-        label="1st Venue Preference"
-      />
-      <FormField
-        v-if="form.hasVenuePreference"
-        v-model="form.venuePreference[1]"
-        label="2nd Venue Preference"
-      />
-      <FormField
-        v-if="form.hasVenuePreference"
-        v-model="form.venuePreference[2]"
-        label="3rd Venue Preference"
-      />
-
-      <div class="flex justify-evenly items-center">
+  <ProfileInfo :username="userStore.firstName" role="Team Coordinator" />
+  <div class="w-full px-36">
+    <div class="grid grid-cols-2 justify-between bg-lighter-grey rounded-lg">
+      <div class="text-xl flex p-5">Your Competitions</div>
+      <NuxtLink
+        v-if="userStore.institution"
+        class="flex justify-end p-5"
+        to="/coordinator/team-registration"
+      >
         <Button
-          button-text="Update"
+          button-text="Team Registration"
           button-color="bg-gold"
-          type="Submit"
-          class="m-5 ml-8"
+          class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
         />
+      </NuxtLink>
+    </div>
+  </div>
+  <div class="w-full px-36 mt-6">
+    <div
+      v-if="tournamentStore.hasTournaments"
+      class="grid grid-cols-1 md:grid-cols-3 justify-between gap-4"
+    >
+      <div
+        v-for="tournament in tournamentStore.filteredTournaments"
+        :key="tournament.id"
+        class="p-4 bg-lighter-grey rounded-lg"
+      >
+        <div class="grid grid-cols-1 gap-y-4">
+          <div class="text-xl flex place-content-center p-4">
+            {{ tournament.name }}
+          </div>
+          <div class="grid grid-cols-2">
+            <div class="flex justify-center">
+              <NuxtLink :to="`/coordinator/teams/${tournament.id}`">
+                <Button
+                  button-text="Teams"
+                  button-color="bg-light-orange-gold"
+                  class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg justify-center"
+                  size="small"
+                />
+              </NuxtLink>
+            </div>
+            <div class="flex justify-center">
+              <Button
+                button-text="Draw"
+                button-color="bg-light-green"
+                class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg justify-center"
+                size="small"
+                textColor="text-white"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
-  </Modal>
-  <section
-    class="flex flex-col items-center justify-center max-w-screen max-h-screen"
-  >
-    <Header title-text="Teams" />
-    <NuxtLink
-      v-if="userStore.institution"
-      class="flex flex-row w-full justify-end p-5"
-      to="/coordinator/team-registration"
-    >
-      <Button
-        button-text="Team Registration"
-        button-color="bg-gold"
-        class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg"
-      />
-    </NuxtLink>
-    <!-- <SearchBar /> -->
-    <Table
-      :headers="headers"
-      :data="store.teams"
-      class="mt-5 mx-auto"
-      @edit="handleEdit"
-    >
-      <template #division="{ value }">
-        <p v-if="!value">Not Allocated</p>
-      </template>
-      <template #allocatedTue="{ value }">
-        <p>
-          <CheckIcon v-if="value" class="w-6 h-6" />
-          <XMarkIcon v-else class="w-6 h-6" />
-        </p>
-      </template>
-      <template #allocatedWed="{ value }">
-        <p>
-          <CheckIcon v-if="value" class="w-6 h-6" />
-          <XMarkIcon v-else class="w-6 h-6" />
-        </p>
-      </template>
-      <template #venuePreference="{ value }">
-        <p v-for="(ven, idx) in value" :key="idx" class="text-xs">
-          {{ idx + 1 }}. {{ ven }}
-        </p>
-      </template>
-    </Table>
-  </section>
-  <Notification
-    :modal-visibility="notification.isVisible"
-    :is-success="notification.isSuccess"
-    :body="notification.message"
-    @close="notification.dismiss()"
-  />
+    </div>
+    <div v-else>No competitions registered</div>
+  </div>
 </template>
