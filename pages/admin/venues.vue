@@ -20,6 +20,8 @@ const editMode = ref(false);
 const filtering = ref(false);
 const loading = ref(true);
 const modalLoading = ref(false);
+const deleteVisibility = ref(false);
+const venueDelete = ref(null);
 
 const store = useVenueStore();
 
@@ -90,10 +92,10 @@ const createVenue = async () => {
   resetFormState();
 };
 
-// Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
+const handleDelete = (venue) => {
+  deleteVisibility.value = true;
+  venueDelete.value = venue;
+};
 
 const deleteVenue = (id) => {
   try {
@@ -190,18 +192,7 @@ const headers = [
             button-color="bg-pink-100"
             type="Submit"
             class="text-red-700"
-            @click="deleteVenue(formInput.id)"
-          />
-          <Notification
-            :modal-visibility="notificationVisibility"
-            :is-success="isSuccess"
-            :body="notificationMessage"
-            @close="
-              () => {
-                notificationVisibility = false;
-                redirect();
-              }
-            "
+            @click="handleDelete(formInput)"
           />
           <Button
             button-text="Update"
@@ -257,5 +248,18 @@ const headers = [
     :is-success="notification.isSuccess"
     :body="notification.message"
     @close="notification.dismiss()"
+  />
+  <DeleteDialog
+    :modal-visibility="deleteVisibility"
+    @close="deleteVisibility = false"
+    @yes="
+      deleteVenue(venueDelete.id);
+      deleteVisibility = false;
+    "
+    @no="
+      () => {
+        deleteVisibility = false;
+      }
+    "
   />
 </template>

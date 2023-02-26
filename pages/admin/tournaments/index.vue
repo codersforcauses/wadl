@@ -40,24 +40,17 @@
             button-color="bg-pink-100"
             type="Submit"
             class="text-red-700"
-            @click="deleteTournament(form.id)"
-          />
-          <Notification
-            :modal-visibility="notificationVisibility"
-            :is-success="isSuccess"
-            :body="notificationMessage"
-            @close="
-              () => {
-                notificationVisibility = false;
-                redirect();
-              }
-            "
+            @click="handleDelete(form)"
           />
           <Button
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
-            @click="updateTournament()"
+            @click="
+              () => {
+                updateTournament();
+              }
+            "
           />
         </div>
       </form>
@@ -144,6 +137,19 @@
     :body="notification.message"
     @close="notification.dismiss()"
   />
+  <DeleteDialog
+    :modal-visibility="deleteVisibility"
+    @close="deleteVisibility = false"
+    @yes="
+      deleteTournament(tournamentDelete.id);
+      deleteVisibility = false;
+    "
+    @no="
+      () => {
+        deleteVisibility = false;
+      }
+    "
+  />
 </template>
 <script setup>
 import { ref, computed, onMounted } from "vue";
@@ -169,6 +175,8 @@ const router = useRouter();
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
+const deleteVisibility = ref(false);
+const tournamentDelete = ref(null);
 const editMode = ref(false);
 const store = useTournamentStore();
 
@@ -237,11 +245,6 @@ const createTournament = () => {
   resetFormState();
 };
 
-// Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
-
 const deleteTournament = (id) => {
   try {
     store.deleteTournament(id);
@@ -251,6 +254,11 @@ const deleteTournament = (id) => {
   }
   modalVisibility.value = false;
   notification.notifySuccess("Successfully deleted tournament.");
+};
+
+const handleDelete = (tourni) => {
+  deleteVisibility.value = true;
+  tournamentDelete.value = tourni;
 };
 
 const headers = [

@@ -37,6 +37,8 @@ const defaultInputState = {
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const formInput = ref({ ...defaultInputState });
+const deleteVisibility = ref(false);
+const institutionDelete = ref(null);
 
 const store = useInstitutionStore();
 
@@ -88,10 +90,10 @@ const handleEdit = (row) => {
   formInput.value = row.data;
 };
 
-// Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
+const handleDelete = (institution) => {
+  deleteVisibility.value = true;
+  institutionDelete.value = institution;
+};
 
 const deleteInstitution = (id) => {
   try {
@@ -135,18 +137,7 @@ const deleteInstitution = (id) => {
             button-color="bg-pink-100"
             type="Submit"
             class="text-red-700"
-            @click="deleteInstitution(formInput.id)"
-          />
-          <Notification
-            :modal-visibility="notificationVisibility"
-            :is-success="isSuccess"
-            :body="notificationMessage"
-            @close="
-              () => {
-                notificationVisibility = false;
-                redirect();
-              }
-            "
+            @click="handleDelete(formInput)"
           />
           <Button
             button-text="Update"
@@ -222,5 +213,18 @@ const deleteInstitution = (id) => {
     :is-success="notification.isSuccess"
     :body="notification.message"
     @close="notification.dismiss()"
+  />
+  <DeleteDialog
+    :modal-visibility="deleteVisibility"
+    @close="deleteVisibility = false"
+    @yes="
+      deleteInstitution(institutionDelete.id);
+      deleteVisibility = false;
+    "
+    @no="
+      () => {
+        deleteVisibility = false;
+      }
+    "
   />
 </template>
