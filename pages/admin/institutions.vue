@@ -37,6 +37,8 @@ const defaultInputState = {
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const formInput = ref({ ...defaultInputState });
+const deleteVisibility = ref(false);
+const institutionDelete = ref(null);
 
 const store = useInstitutionStore();
 
@@ -88,18 +90,20 @@ const handleEdit = (row) => {
   formInput.value = row.data;
 };
 
-// Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
+const handleDelete = (institution) => {
+  deleteVisibility.value = true;
+  institutionDelete.value = institution;
+};
 
 const deleteInstitution = (id) => {
-  store.deleteInstitution(id);
-  if (!store.errorMessage) {
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = "Institution successfully deleted";
+  try {
+    store.deleteInstitution(id);
+  } catch (error) {
+    notification.notifyError("Error occurred, please try again.");
+    return;
   }
+  modalVisibility.value = false;
+  notification.notifySuccess("Successfully deleted institution.");
 };
 </script>
 
@@ -118,14 +122,7 @@ const deleteInstitution = (id) => {
       <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
         Edit Institution
       </p>
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            updateInstitution();
-          }
-        "
-      >
+      <form class="px-10" @submit.prevent="">
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" :required="false" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
@@ -140,20 +137,14 @@ const deleteInstitution = (id) => {
             button-color="bg-pink-100"
             type="Submit"
             class="text-red-700"
-            @click="deleteInstitution(formInput.id)"
+            @click="handleDelete(formInput)"
           />
-          <Notification
-            :modal-visibility="notificationVisibility"
-            :is-success="isSuccess"
-            :body="notificationMessage"
-            @close="
-              () => {
-                notificationVisibility = false;
-                redirect();
-              }
-            "
+          <Button
+            button-text="Update"
+            button-color="bg-gold"
+            type="Submit"
+            @click="updateInstitution(formInput.id)"
           />
-          <Button button-text="Update" button-color="bg-gold" type="Submit" />
         </div>
       </form>
     </div>
@@ -222,5 +213,18 @@ const deleteInstitution = (id) => {
     :is-success="notification.isSuccess"
     :body="notification.message"
     @close="notification.dismiss()"
+  />
+  <DeleteDialog
+    :modal-visibility="deleteVisibility"
+    @close="deleteVisibility = false"
+    @yes="
+      deleteInstitution(institutionDelete.id);
+      deleteVisibility = false;
+    "
+    @no="
+      () => {
+        deleteVisibility = false;
+      }
+    "
   />
 </template>

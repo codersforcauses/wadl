@@ -11,6 +11,7 @@ import {
   setDoc,
   getDoc,
   writeBatch,
+  deleteDoc,
 } from "firebase/firestore";
 import { useUserStore } from "./user";
 
@@ -287,7 +288,10 @@ export const useInstitutionStore = defineStore("institution", {
         this.teams.push(data);
       });
     },
-    deleteInstitution(id) {
+    async deleteInstitution(id) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "institutions", id);
+      await deleteDoc(ref);
       const index = this.institutions.findIndex((t) => {
         return id === t.id;
       });

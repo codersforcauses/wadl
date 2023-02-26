@@ -11,15 +11,7 @@
   >
     <div v-if="editMode">
       <Header title-text="Edit Tournament" />
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            modalVisibility = false;
-            updateTournament();
-          }
-        "
-      >
+      <form class="px-10" @submit.prevent="">
         <div class="grid grid-cols-2 gap-x-4">
           <div>
             <FormField
@@ -48,20 +40,18 @@
             button-color="bg-pink-100"
             type="Submit"
             class="text-red-700"
-            @click="deleteTournament(form.id)"
+            @click="handleDelete(form)"
           />
-          <Notification
-            :modal-visibility="notificationVisibility"
-            :is-success="isSuccess"
-            :body="notificationMessage"
-            @close="
+          <Button
+            button-text="Update"
+            button-color="bg-gold"
+            type="Submit"
+            @click="
               () => {
-                notificationVisibility = false;
-                redirect();
+                updateTournament();
               }
             "
           />
-          <Button button-text="Update" button-color="bg-gold" type="Submit" />
         </div>
       </form>
     </div>
@@ -147,11 +137,24 @@
     :body="notification.message"
     @close="notification.dismiss()"
   />
+  <DeleteDialog
+    :modal-visibility="deleteVisibility"
+    @close="deleteVisibility = false"
+    @yes="
+      deleteTournament(tournamentDelete.id);
+      deleteVisibility = false;
+    "
+    @no="
+      () => {
+        deleteVisibility = false;
+      }
+    "
+  />
 </template>
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "../../../stores/tournaments";
-import { useHead } from "#imports";
+import { useHead, useRouter } from "#imports";
 import useNotification from "../../../composables/useNotification";
 useHead({
   title: "Tournaments",
@@ -168,15 +171,15 @@ const defaultInputState = {
   status: "Open",
 };
 
-// eslint-disable-next-line no-undef
 const router = useRouter();
 
 const form = ref({ ...defaultInputState });
 const modalVisibility = ref(false);
+const deleteVisibility = ref(false);
+const tournamentDelete = ref(null);
 const editMode = ref(false);
 const store = useTournamentStore();
 
-// eslint-disable-next-line no-undef
 onMounted(async () => {
   try {
     await store.getTournaments();
@@ -242,18 +245,20 @@ const createTournament = () => {
   resetFormState();
 };
 
-// Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
-
 const deleteTournament = (id) => {
-  store.deleteTournament(id);
-  if (!store.errorMessage) {
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = "Tournament successfully deleted";
+  try {
+    store.deleteTournament(id);
+  } catch (error) {
+    notification.notifyError("Error occurred, please try again.");
+    return;
   }
+  modalVisibility.value = false;
+  notification.notifySuccess("Successfully deleted tournament.");
+};
+
+const handleDelete = (tourni) => {
+  deleteVisibility.value = true;
+  tournamentDelete.value = tourni;
 };
 
 const headers = [

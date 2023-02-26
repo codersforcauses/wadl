@@ -20,6 +20,8 @@ const editMode = ref(false);
 const filtering = ref(false);
 const loading = ref(true);
 const modalLoading = ref(false);
+const deleteVisibility = ref(false);
+const venueDelete = ref(null);
 
 const store = useVenueStore();
 
@@ -90,18 +92,20 @@ const createVenue = async () => {
   resetFormState();
 };
 
-// Notification Modal
-const notificationVisibility = ref(false);
-const isSuccess = ref(false);
-const notificationMessage = ref("");
+const handleDelete = (venue) => {
+  deleteVisibility.value = true;
+  venueDelete.value = venue;
+};
 
 const deleteVenue = (id) => {
-  store.deleteVenue(id);
-  if (!store.errorMessage) {
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = "Venue successfully deleted";
+  try {
+    store.deleteVenue(id);
+  } catch (error) {
+    notification.notifyError("Error occurred, please try again.");
+    return;
   }
+  modalVisibility.value = false;
+  notification.notifySuccess("Successfully deleted venue.");
 };
 
 const headers = [
@@ -159,7 +163,7 @@ const headers = [
   >
     <div v-if="editMode">
       <Header title-text="Edit Venue" />
-      <form class="px-10" @submit.prevent="updateVenue">
+      <form class="px-10" @submit.prevent="">
         <FormField v-model="formInput.name" label="Venue Name" />
         <div class="grid grid-cols-2 gap-x-4">
           <div>
@@ -188,24 +192,14 @@ const headers = [
             button-color="bg-pink-100"
             type="Submit"
             class="text-red-700"
-            @click="deleteVenue(formInput.id)"
-          />
-          <Notification
-            :modal-visibility="notificationVisibility"
-            :is-success="isSuccess"
-            :body="notificationMessage"
-            @close="
-              () => {
-                notificationVisibility = false;
-                redirect();
-              }
-            "
+            @click="handleDelete(formInput)"
           />
           <Button
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
             :loading="modalLoading"
+            @click="updateVenue"
           />
         </div>
       </form>
@@ -254,5 +248,18 @@ const headers = [
     :is-success="notification.isSuccess"
     :body="notification.message"
     @close="notification.dismiss()"
+  />
+  <DeleteDialog
+    :modal-visibility="deleteVisibility"
+    @close="deleteVisibility = false"
+    @yes="
+      deleteVenue(venueDelete.id);
+      deleteVisibility = false;
+    "
+    @no="
+      () => {
+        deleteVisibility = false;
+      }
+    "
   />
 </template>
