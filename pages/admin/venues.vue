@@ -96,12 +96,14 @@ const isSuccess = ref(false);
 const notificationMessage = ref("");
 
 const deleteVenue = (id) => {
-  store.deleteVenue(id);
-  if (!store.errorMessage) {
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = "Venue successfully deleted";
+  try {
+    store.deleteVenue(id);
+  } catch (error) {
+    console.log(error);
+    return;
   }
+  modalVisibility.value = false;
+  notification.notifySuccess("Successfully deleted venue.");
 };
 
 const headers = [
@@ -159,7 +161,7 @@ const headers = [
   >
     <div v-if="editMode">
       <Header title-text="Edit Venue" />
-      <form class="px-10" @submit.prevent="updateVenue">
+      <form class="px-10" @submit.prevent="">
         <FormField v-model="formInput.name" label="Venue Name" />
         <div class="grid grid-cols-2 gap-x-4">
           <div>
@@ -206,6 +208,7 @@ const headers = [
             button-color="bg-gold"
             type="Submit"
             :loading="modalLoading"
+            @click="updateVenue"
           />
         </div>
       </form>

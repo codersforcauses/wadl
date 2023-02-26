@@ -7,6 +7,7 @@ import {
   setDoc,
   doc,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 export const useTournamentStore = defineStore("tournament", {
@@ -121,7 +122,10 @@ export const useTournamentStore = defineStore("tournament", {
       this.currentTournament.levels[index].divisions = this.divisions;
       await updateDoc(tournamentRef, this.currentTournament);
     },
-    deleteTournament(id) {
+    async deleteTournament(id) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "tournaments", id);
+      await deleteDoc(ref);
       const index = this.tournaments.findIndex((t) => {
         return id === t.id;
       });

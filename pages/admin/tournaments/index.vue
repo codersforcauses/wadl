@@ -11,15 +11,7 @@
   >
     <div v-if="editMode">
       <Header title-text="Edit Tournament" />
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            modalVisibility = false;
-            updateTournament();
-          }
-        "
-      >
+      <form class="px-10" @submit.prevent="">
         <div class="grid grid-cols-2 gap-x-4">
           <div>
             <FormField
@@ -61,7 +53,12 @@
               }
             "
           />
-          <Button button-text="Update" button-color="bg-gold" type="Submit" />
+          <Button
+            button-text="Update"
+            button-color="bg-gold"
+            type="Submit"
+            @click="updateTournament()"
+          />
         </div>
       </form>
     </div>
@@ -149,9 +146,9 @@
   />
 </template>
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "../../../stores/tournaments";
-import { useHead } from "#imports";
+import { useHead, useRouter } from "#imports";
 import useNotification from "../../../composables/useNotification";
 useHead({
   title: "Tournaments",
@@ -168,7 +165,6 @@ const defaultInputState = {
   status: "Open",
 };
 
-// eslint-disable-next-line no-undef
 const router = useRouter();
 
 const form = ref({ ...defaultInputState });
@@ -176,7 +172,6 @@ const modalVisibility = ref(false);
 const editMode = ref(false);
 const store = useTournamentStore();
 
-// eslint-disable-next-line no-undef
 onMounted(async () => {
   try {
     await store.getTournaments();
@@ -248,12 +243,14 @@ const isSuccess = ref(false);
 const notificationMessage = ref("");
 
 const deleteTournament = (id) => {
-  store.deleteTournament(id);
-  if (!store.errorMessage) {
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = "Tournament successfully deleted";
+  try {
+    store.deleteTournament(id);
+  } catch (error) {
+    console.log(error);
+    return;
   }
+  modalVisibility.value = false;
+  notification.notifySuccess("Successfully deleted tournament.");
 };
 
 const headers = [

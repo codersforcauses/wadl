@@ -1,6 +1,13 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, getDocs, addDoc, setDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  setDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 
 export const useVenueStore = defineStore("venue", {
   state: () => {
@@ -41,7 +48,10 @@ export const useVenueStore = defineStore("venue", {
         this.venues.push({ id: doc.id, ...doc.data() });
       });
     },
-    deleteVenue(id) {
+    async deleteVenue(id) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "venues", id);
+      await deleteDoc(ref);
       const index = this.venues.findIndex((t) => {
         return id === t.id;
       });

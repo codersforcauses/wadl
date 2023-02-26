@@ -94,12 +94,14 @@ const isSuccess = ref(false);
 const notificationMessage = ref("");
 
 const deleteInstitution = (id) => {
-  store.deleteInstitution(id);
-  if (!store.errorMessage) {
-    isSuccess.value = true;
-    notificationVisibility.value = true;
-    notificationMessage.value = "Institution successfully deleted";
+  try {
+    store.deleteInstitution(id);
+  } catch (error) {
+    console.log(error);
+    return;
   }
+  modalVisibility.value = false;
+  notification.notifySuccess("Successfully deleted institution.");
 };
 </script>
 
@@ -118,14 +120,7 @@ const deleteInstitution = (id) => {
       <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
         Edit Institution
       </p>
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            updateInstitution();
-          }
-        "
-      >
+      <form class="px-10" @submit.prevent="">
         <FormField v-model="formInput.name" label="Institution Name" />
         <FormField v-model="formInput.code" label="Code" :required="false" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
@@ -153,7 +148,12 @@ const deleteInstitution = (id) => {
               }
             "
           />
-          <Button button-text="Update" button-color="bg-gold" type="Submit" />
+          <Button
+            button-text="Update"
+            button-color="bg-gold"
+            type="Submit"
+            @click="updateInstitution(formInput.id)"
+          />
         </div>
       </form>
     </div>
