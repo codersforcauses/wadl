@@ -99,7 +99,7 @@ const deleteVenue = (id) => {
   try {
     store.deleteVenue(id);
   } catch (error) {
-    console.log(error);
+    notification.notifyError("Error occurred, please try again.");
     return;
   }
   modalVisibility.value = false;

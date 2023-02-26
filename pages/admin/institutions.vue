@@ -97,7 +97,7 @@ const deleteInstitution = (id) => {
   try {
     store.deleteInstitution(id);
   } catch (error) {
-    console.log(error);
+    notification.notifyError("Error occurred, please try again.");
     return;
   }
   modalVisibility.value = false;
