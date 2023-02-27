@@ -339,7 +339,7 @@
           size="medium"
           class="my-2 mx-2"
           @click="
-            () => {
+            (e) => {
               modalVenueVisibility = false;
               edited.venueInfo = true;
               e.stopPropagation();
