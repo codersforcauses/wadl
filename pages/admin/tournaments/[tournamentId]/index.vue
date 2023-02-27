@@ -13,7 +13,7 @@
   <!-- Content -->
   <div v-else>
     <div class="mx-32">
-      <div v-if="!changesMade">
+      <div v-if="!editted.changesMade">
         <Button
           button-text="No Changes Made"
           button-color="bg-gray-200"
@@ -58,6 +58,8 @@
       >
         Registered Teams
       </p>
+      <p v-if="editted.registeredTeams" class="text-gray-400 min-w-max"> Changes are not final until "Apply Changes" button at top is pushed </p>
+      
       <div
         class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2"
       >
@@ -101,6 +103,8 @@
       >
         Information
       </p>
+      <p v-if="editted.venueInfo.information" class="text-gray-400 min-w-max"> Changes are not final until "Apply Changes" button at top is pushed </p>
+        
       <div class="grid grid-cols-8 gap-4 text-center">
         <div class="lg:col-span-3 md:col-span-5 col-span-8">
           <div class="bg-lighter-grey rounded-md py-6 px-2">
@@ -180,6 +184,7 @@
             </div>
           </button>
         </div>
+        <p v-if="editted.venueInfo" class="text-gray-400 min-w-max"> Changes are not final until "Apply Changes" button at top is pushed </p>
         <AdminTournamentExpandBtn
           :showPlus="!venueInfoVisible"
           :expandFunc="
@@ -195,7 +200,7 @@
         v-if="managedTournament.venues && venueInfoVisible"
         class="flex flex-row flex-wrap"
       >
-        <adminTournamentDayVenues
+        <AdminTournamentDayVenues
           v-for="(day, index) in dayVenues"
           :key="index"
           :day="day.day"
@@ -208,7 +213,7 @@
             }
           "
           :handleDelete="
-            (venueName) => handleDelete(venueName, day.week, day.day)
+            (venueName) => deleteVenue(venueName, day.week, day.day)
           "
         />
       </div>
@@ -231,6 +236,8 @@
               </div>
             </button>
           </div>
+          <p v-if="editted.roundDates" class="text-gray-400 min-w-max"> Changes are not final until "Apply Changes" button at top is pushed </p>
+      
           <AdminTournamentExpandBtn
             :showPlus="!roundDatesVisible"
             :expandFunc="
@@ -281,7 +288,7 @@
     <div v-else>
       <Header title-text="Edit Venue Information" />
     </div>
-    <form class="px-10">
+    <form @submit.prevent="" class="px-10">
       <label class="heading-montserrat">Week</label>
       <Multiselect :items="[1, 2]" placeholder="Select round week" />
       <label class="heading-montserrat">Day</label>
@@ -291,6 +298,43 @@
       />
       <label class="heading-montserrat">Venues</label>
       <Multiselect :items="['a', 'b', 'c']" placeholder="Select round venue" />
+      
+    <div v-if="false">
+        <Button
+          button-text="Input required fields"
+          button-color="bg-gray-200"
+          text-color="text-gray-500"
+          size="xlarge"
+          class="my-2 mx-2"
+          @click="() => { }"
+        />
+      </div>
+      <div v-else class="flex flex-row">
+        <!-- apply -->
+        <Button
+          :button-text="editMode ? 'Edit Round' : 'Create Round'"
+          button-color="bg-light-green"
+          text-color="text-white"
+          size="medium"
+          class="my-2 mx-2"
+          @click="
+            () => {}
+          "
+        />
+        <!-- revert -->
+        <Button
+          button-text="Reset"
+          button-color="bg-gray-300"
+          text-color="text-gray-800"
+          size="medium"
+          class="my-2 mx-2"
+          @click="
+            (e) => { 
+              e.stopPropagation();
+            }
+          "
+        />
+      </div>
     </form>
   </Modal>
   <Modal
@@ -376,6 +420,14 @@ const teamsModalVisibility = ref(false);
 const teamsModalLevel = ref(null);
 const editMode = ref(false);
 
+const editted = ref({
+  registeredTeams: false,
+  information: false,
+  venueInfo: false,
+  roundDates: false,
+})
+const venueInfoChanged = ref(true);
+
 onMounted(async () => {
   try {
     await venueStore.getVenues();
@@ -433,8 +485,6 @@ console.log(managedTournament)
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
 
-
-const changesMade = ref(false);
 const dayVenues = ref([]);
 
 const status = managedTournament.status;
@@ -452,8 +502,9 @@ for (let i = 0; i < stageList.length; i++) {
 }
 
 /** functions */
-const handleDelete = async (name, week, day) => {
-  changesMade.value = true;
+const deleteVenue = async (name, week, day) => {
+  editted.value.changesMade = true;
+  editted.value.venueInfo = true;
   managedTournament.venues = managedTournament.venues.filter((venue) => {
     return !(venue.name === name && venue.week === week && venue.day === day);
   });
@@ -510,13 +561,25 @@ const setDayVenues = () => {
 };
 
 const applyChanges = () => {
-  changesMade.value = false;
+  editted.value = {
+    changesMade: false,
+    registeredTeams: false,
+    information: false,
+    venueInfo: false,
+    roundDates: false,
+  }
   tournamentStore.editTournament(managedTournament);
   setDayVenues();
 };
 
 const revertChanges = async () => {
-  changesMade.value = false;
+  editted.value = {
+    changesMade: false,
+    registeredTeams: false,
+    information: false,
+    venueInfo: false,
+    roundDates: false,
+  }
   tournamentStore.getTournament(route.params.tournamentId)
   managedTournament = Object.assign(
     {},
@@ -543,4 +606,8 @@ const changeStage = (value) => {
   tournamentStore.currentTournament.status = stageList[stage.value - 1];
   tournamentStore.editTournament(tournamentStore.currentTournament);
 };
+
+const print = (val) => {
+  console.log(val);
+}
 </script>
