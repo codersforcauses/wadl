@@ -58,8 +58,10 @@
       >
         Registered Teams
       </p>
-      <p v-if="editted.registeredTeams" class="text-gray-400 min-w-max"> Changes are not final until "Apply Changes" button at top is pushed </p>
-      
+      <p v-if="editted.registeredTeams" class="text-gray-400 min-w-max">
+        Changes are not final until "Apply Changes" button at top is pushed
+      </p>
+
       <div
         class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2"
       >
@@ -103,8 +105,10 @@
       >
         Information
       </p>
-      <p v-if="editted.venueInfo.information" class="text-gray-400 min-w-max"> Changes are not final until "Apply Changes" button at top is pushed </p>
-        
+      <p v-if="editted.venueInfo.information" class="text-gray-400 min-w-max">
+        Changes are not final until "Apply Changes" button at top is pushed
+      </p>
+
       <div class="grid grid-cols-8 gap-4 text-center">
         <div class="lg:col-span-3 md:col-span-5 col-span-8">
           <div class="bg-lighter-grey rounded-md py-6 px-2">
@@ -184,7 +188,9 @@
             </div>
           </button>
         </div>
-        <p v-if="editted.venueInfo" class="text-gray-400 min-w-max"> Changes are not final until "Apply Changes" button at top is pushed </p>
+        <p v-if="editted.venueInfo" class="text-gray-400 min-w-max">
+          Changes are not final until "Apply Changes" button at top is pushed
+        </p>
         <AdminTournamentExpandBtn
           :showPlus="!venueInfoVisible"
           :expandFunc="
@@ -236,8 +242,10 @@
               </div>
             </button>
           </div>
-          <p v-if="editted.roundDates" class="text-gray-400 min-w-max"> Changes are not final until "Apply Changes" button at top is pushed </p>
-      
+          <p v-if="editted.roundDates" class="text-gray-400 min-w-max">
+            Changes are not final until "Apply Changes" button at top is pushed
+          </p>
+
           <AdminTournamentExpandBtn
             :showPlus="!roundDatesVisible"
             :expandFunc="
@@ -290,23 +298,32 @@
     </div>
     <form @submit.prevent="" class="px-10">
       <label class="heading-montserrat">Week</label>
-      <Multiselect :items="[1, 2]" placeholder="Select round week" />
+      <Multiselect
+        :items="[1, 2]"
+        placeholder="Select round week"
+        :selected="[venueForm.week]"
+      />
       <label class="heading-montserrat">Day</label>
       <Multiselect
         :items="['Tuesday', 'Wednesday']"
         placeholder="Select round day"
+        :selected="[venueForm.day]"
       />
       <label class="heading-montserrat">Venues</label>
-      <Multiselect :items="['a', 'b', 'c']" placeholder="Select round venue" />
-      
-    <div v-if="true">
+      <Multiselect
+        :items="['a', 'b', 'c']"
+        placeholder="Select round venue"
+        :selected="[venueForm.venue]"
+      />
+
+      <div v-if="true">
         <Button
           button-text="Input required fields"
           button-color="bg-gray-200"
           text-color="text-gray-500"
           size="xlarge"
           class="my-2 mx-2"
-          @click="() => { }"
+          @click="() => {}"
         />
       </div>
       <div v-else class="flex flex-row">
@@ -317,9 +334,7 @@
           text-color="text-white"
           size="medium"
           class="my-2 mx-2"
-          @click="
-            () => {}
-          "
+          @click="() => {}"
         />
         <!-- revert -->
         <Button
@@ -329,7 +344,7 @@
           size="medium"
           class="my-2 mx-2"
           @click="
-            (e) => { 
+            (e) => {
               e.stopPropagation();
             }
           "
@@ -369,17 +384,18 @@
           <FormField label="Wednesday Week 2" placeholder="DD/MM" />
         </div>
       </div>
-          <div v-if="true">
+      <div v-if="true">
         <Button
           button-text="Input required fields"
           button-color="bg-gray-200"
           text-color="text-gray-500"
           size="xlarge"
           class="my-2 mx-2"
-          @click="(e) => { 
-
-            e.stopPropagation();
-          }"
+          @click="
+            (e) => {
+              e.stopPropagation();
+            }
+          "
         />
       </div>
       <div v-else class="flex flex-row">
@@ -392,7 +408,6 @@
           class="my-2 mx-2"
           @click="
             (e) => {
-
               e.stopPropagation();
             }
           "
@@ -405,13 +420,12 @@
           size="medium"
           class="my-2 mx-2"
           @click="
-            (e) => { 
+            (e) => {
               e.stopPropagation();
             }
           "
         />
       </div>
-
     </form>
   </Modal>
   <ViewTeams
@@ -434,9 +448,9 @@ import { useRouter } from "#imports";
 
 const router = useRouter();
 const defaultVenueInput = {
-  week: null,
-  day: null,
-  venue: [],
+  week: 1,
+  day: "Tuesday",
+  venue: ["Place"],
 };
 const defaultRoundInput = {
   round: null,
@@ -464,7 +478,7 @@ const editted = ref({
   information: false,
   venueInfo: false,
   roundDates: false,
-})
+});
 const venueInfoChanged = ref(true);
 
 onMounted(async () => {
@@ -604,7 +618,7 @@ const applyChanges = () => {
     information: false,
     venueInfo: false,
     roundDates: false,
-  }
+  };
   tournamentStore.editTournament(managedTournament);
   setDayVenues();
 };
@@ -616,12 +630,9 @@ const revertChanges = async () => {
     information: false,
     venueInfo: false,
     roundDates: false,
-  }
-  tournamentStore.getTournament(route.params.tournamentId)
-  managedTournament = Object.assign(
-    {},
-    tournamentStore.currentTournament
-  );
+  };
+  tournamentStore.getTournament(route.params.tournamentId);
+  managedTournament = Object.assign({}, tournamentStore.currentTournament);
   setDayVenues();
 };
 /** end Functions */
@@ -646,5 +657,5 @@ const changeStage = (value) => {
 
 const print = (val) => {
   console.log(val);
-}
+};
 </script>
