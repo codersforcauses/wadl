@@ -5,7 +5,6 @@
     class=""
   />
 
-
   <!-- Loading -->
   <div v-if="loading" class="h-full flex justify-center align-middle">
     <Loading />
@@ -61,28 +60,28 @@
       </p>
       <div
         class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2"
-      >      
-      <Frame
-        :title="noviceNum.toString()"
-        subtitle="Novice"
-        button-size="small"
-        :is-horizontal-buttons="false"
-        @button-clicked="handleLevelButtons"
-      />
-      <Frame
-        :title="juniorNum.toString()"
-        subtitle="Junior"
-        button-size="small"
-        :is-horizontal-buttons="false"
-        @button-clicked="handleLevelButtons"
-      />
-      <Frame
-        :title="seniorNum.toString()"
-        subtitle="Senior"
-        button-size="small"
-        :is-horizontal-buttons="false"
-        @button-clicked="handleLevelButtons"
-      />
+      >
+        <Frame
+          :title="noviceNum.toString()"
+          subtitle="Novice"
+          button-size="small"
+          :is-horizontal-buttons="false"
+          @button-clicked="handleLevelButtons"
+        />
+        <Frame
+          :title="juniorNum.toString()"
+          subtitle="Junior"
+          button-size="small"
+          :is-horizontal-buttons="false"
+          @button-clicked="handleLevelButtons"
+        />
+        <Frame
+          :title="seniorNum.toString()"
+          subtitle="Senior"
+          button-size="small"
+          :is-horizontal-buttons="false"
+          @button-clicked="handleLevelButtons"
+        />
         <div class="bg-yellow-200 rounded py-6">
           <div class="flex flex-col justify-center items-center">
             <h1
@@ -90,7 +89,7 @@
             >
               {{ noviceNum + juniorNum + seniorNum }}
             </h1>
-          <p class="text-mid-grey font-montserrat">TOTAL</p>
+            <p class="text-mid-grey font-montserrat">TOTAL</p>
           </div>
         </div>
       </div>
@@ -98,37 +97,37 @@
 
       <!-- Information -->
       <p
-  class="pt-5 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey"
->
-      Information
-    </p>
-    <div class="grid grid-cols-8 gap-4 text-center">
-      <div class="lg:col-span-3 md:col-span-5 col-span-8">
-        <div class="bg-lighter-grey rounded-md py-6 px-2">
-          <div class="flex items-center justify-center">
-            <Stepper :stage="stage" />
-          </div>
-          <div class="flex flex-row items-center justify-center mt-4">
-            <Button
-              button-text="Previous Stage"
-              button-color="bg-dark-red/20"
-              text-color="text-dark-red"
-              size="medium"
-              class="mr-[30px] transition duration-200 ease-in-out hover:bg-dark-red/50 hover:shadow-lg"
-              @click="changeStage(-1)"
-            />
-            <Button
-              button-text="Next Stage"
-              button-color="bg-light-green"
-              text-color="text-white"
-              size="medium"
-              class="transition duration-200 ease-in-out hover:bg-light-green/70 hover:shadow-lg"
-              @click="changeStage(1)"
-            />
+        class="pt-5 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey"
+      >
+        Information
+      </p>
+      <div class="grid grid-cols-8 gap-4 text-center">
+        <div class="lg:col-span-3 md:col-span-5 col-span-8">
+          <div class="bg-lighter-grey rounded-md py-6 px-2">
+            <div class="flex items-center justify-center">
+              <Stepper :stage="stage" />
+            </div>
+            <div class="flex flex-row items-center justify-center mt-4">
+              <Button
+                button-text="Previous Stage"
+                button-color="bg-dark-red/20"
+                text-color="text-dark-red"
+                size="medium"
+                class="mr-[30px] transition duration-200 ease-in-out hover:bg-dark-red/50 hover:shadow-lg"
+                @click="changeStage(-1)"
+              />
+              <Button
+                button-text="Next Stage"
+                button-color="bg-light-green"
+                text-color="text-white"
+                size="medium"
+                class="transition duration-200 ease-in-out hover:bg-light-green/70 hover:shadow-lg"
+                @click="changeStage(1)"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <!-- <div class="col-span-2">
+        <!-- <div class="col-span-2">
         <Frame
           :title="drawStatus"
           subtitle="DRAW STATUS"
@@ -165,7 +164,7 @@
           "
         />
       </div> -->
-    </div>
+      </div>
       <!-- End Information -->
 
       <!-- Venue Information -->
@@ -326,14 +325,15 @@
           <FormField label="Wednesday Week 2" placeholder="DD/MM" />
         </div>
       </div>
-    </Modal>
+    </form>
+  </Modal>
   <ViewTeams
     :modal-visibility="teamsModalVisibility"
     :teams="teamsByLevel"
     :level="teamsModalLevel"
     @close="teamsModalVisibility = false"
   />
-    <!-- End Modal -->
+  <!-- End Modal -->
 </template>
 
 <script setup>
@@ -343,7 +343,7 @@ import { useVenueStore } from "../../../../stores/venues";
 import { useTeamStore } from "../../../../stores/teams";
 import { useRoute } from "#imports";
 import { ref, computed, onMounted } from "vue";
-import { useRouter } from "#imports"
+import { useRouter } from "#imports";
 
 const router = useRouter();
 const defaultRoundInput = {
@@ -450,10 +450,10 @@ const handleDelete = async (name, week, day) => {
   changesMade.value = true;
   managedTournament.venues = managedTournament.venues.filter((venue) => {
     return !(venue.name === name && venue.week === week && venue.day === day);
-  })
+  });
   dayVenues = [];
   managedTournament.venues.map(combineVenues);
-}
+};
 
 await teamStore.getTeamsbyTournament(route.params.tournamentId);
 
