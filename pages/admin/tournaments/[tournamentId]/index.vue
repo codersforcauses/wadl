@@ -232,6 +232,7 @@
                 day: day.day,
                 venues: day.venues,
                 editMode: true,
+                index: index,
               };
 
               modalVenueVisibility = true;
@@ -495,6 +496,7 @@ const defaultVenueInput = {
   day: null,
   venues: [],
   editMode: false,
+  index: -1,
 };
 const defaultRoundInput = {
   round: null,
@@ -503,6 +505,7 @@ const defaultRoundInput = {
   weekTwoTues: null,
   weekTwoWed: null,
   editMode: false,
+  index: -1,
 };
 
 const route = useRoute();
