@@ -226,12 +226,12 @@
           :venues="day.venues"
           :handleEdit="
             () => {
-              venueForm.editMode = true;
               resetVenueFormState();
               venueForm = {
-                week:day.week,
-                day:day.day,
-                venues:['day.venues', 'a'],
+                week: day.week,
+                day: day.day,
+                venues: day.venues,
+                editMode: true,
               };
 
               modalVenueVisibility = true;
@@ -317,7 +317,7 @@
     size="w-7/12"
     @close="
       () => {
-        if(venueForm.editMode) {
+        if (venueForm.editMode) {
           resetVenueFormState();
         }
         venueForm.editMode = false;
@@ -350,6 +350,7 @@
         placeholder="Select round venues"
         @change="(newSelected) => (venueForm.venues = newSelected)"
         v-model="venueForm.venues"
+        :selectedChips="venueForm.editMode ? venueForm.venues : []"
       />
       <div class="flex flex-row">
         <!-- apply -->
@@ -388,7 +389,7 @@
     size="w-7/12"
     @close="
       () => {
-        if(roundForm.editMode) {
+        if (roundForm.editMode) {
           resetRoundFormState();
         }
         roundForm.editMode = false;
