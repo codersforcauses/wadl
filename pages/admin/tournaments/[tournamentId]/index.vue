@@ -727,14 +727,6 @@ const setDayVenues = () => {
   }
 };
 
-const venueEdited = () => {
-  edited.value.venueInfo = true;
-};
-
-const roundEdited = () => {
-  edited.value.roundDates = true;
-};
-
 const applyChanges = () => {
   edited.value = {
     changesMade: false,
