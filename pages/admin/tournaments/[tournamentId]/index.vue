@@ -377,23 +377,23 @@
     <div v-else>
       <Header title-text="Edit Round Dates" />
     </div>
-    <form class="px-10">
-      <FormField label="Round" placeholder="Enter the round" />
+    <form class="px-10" @submit.prevent="">
+      <FormField label="Round" placeholder="Enter the round" v-model="roundForm.round" />
       <div class="grid grid-cols-2 gap-x-4">
         <div>
-          <FormField label="Tuesday Week 1" placeholder="DD/MM" />
+          <FormField label="Tuesday Week 1" placeholder="DD/MM" v-model="roundForm.tueWeek1" />
         </div>
         <div>
-          <FormField label="Wednesday Week 1" placeholder="DD/MM" />
+          <FormField label="Wednesday Week 1" placeholder="DD/MM" v-model="roundForm.wedWeek1" />
         </div>
         <div>
-          <FormField label="Tuesday Week 2" placeholder="DD/MM" />
+          <FormField label="Tuesday Week 2" placeholder="DD/MM" v-model="roundForm.tueWeek2" />
         </div>
         <div>
-          <FormField label="Wednesday Week 2" placeholder="DD/MM" />
+          <FormField label="Wednesday Week 2" placeholder="DD/MM" v-model="roundForm.wedWeek2" />
         </div>
       </div>
-      <div class="flex flex-row">
+      <div class="flex flex-row" @submit.prevent="">
         <!-- apply -->
         <Button
           :button-text="editMode ? 'Edit Round' : 'Create Round'"
@@ -403,8 +403,6 @@
           class="my-2 mx-2"
           @click="
             (e) => {
-              modalRoundVisibility = false;
-              edited.roundDates = true;
               addRound();
               e.stopPropagation();
             }
@@ -494,13 +492,28 @@ const defaultInputState = {
   form: "",
   num: 9,
 };
+const addRound = () => {
+  modalRoundVisibility.value = false;
+  edited.value.roundInfo = true;
+  edited.value.changesMade = true;
+
+  console.log(currTournClone.roundDates)
+  currTournClone.roundDates.push({
+    round: roundForm.value.round,
+    weekOneTues: roundForm.value.tueWeek1,
+    weekOneWed: roundForm.value.wedWeek1,
+    weekTwoTues: roundForm.value.tueWeek2,
+    weekTwoWed: roundForm.value.wedWeek2,
+  })
+
+  resetRoundFormState();
+  setDayVenues();
+}
 
 const addVenue = () => {
   modalVenueVisibility.value = false;
   edited.value.venueInfo = true;
   edited.value.changesMade = true;
-  console.log(currTournClone.venues)
-  console.log(tournamentStore.currentTournament)
 
   for (let i = 0; i < venueForm.value.venues.length; i++) {
     currTournClone.venues.push({
@@ -509,9 +522,6 @@ const addVenue = () => {
       week: parseInt(venueForm.value.week),
     });
   }
-
-  console.log(currTournClone.venues)
-  console.log(tournamentStore.currentTournament)
   resetVenueFormState();
   setDayVenues();
 };
