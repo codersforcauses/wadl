@@ -40,8 +40,8 @@
         <!-- revert -->
         <Button
           button-text="Revert Changes"
-          button-color="bg-gray-300"
-          text-color="text-gray-800"
+          button-color="bg-dark-red/20"
+          text-color="text-dark-red"
           size="medium"
           class="my-2 mx-2"
           @click="
@@ -299,7 +299,7 @@
       <label class="heading-montserrat">Venues</label>
       <Multiselect :items="['a', 'b', 'c']" placeholder="Select round venue" />
       
-    <div v-if="false">
+    <div v-if="true">
         <Button
           button-text="Input required fields"
           button-color="bg-gray-200"
@@ -324,8 +324,8 @@
         <!-- revert -->
         <Button
           button-text="Reset"
-          button-color="bg-gray-300"
-          text-color="text-gray-800"
+          button-color="bg-dark-red/20"
+          text-color="text-dark-red"
           size="medium"
           class="my-2 mx-2"
           @click="
@@ -369,6 +369,49 @@
           <FormField label="Wednesday Week 2" placeholder="DD/MM" />
         </div>
       </div>
+          <div v-if="true">
+        <Button
+          button-text="Input required fields"
+          button-color="bg-gray-200"
+          text-color="text-gray-500"
+          size="xlarge"
+          class="my-2 mx-2"
+          @click="(e) => { 
+
+            e.stopPropagation();
+          }"
+        />
+      </div>
+      <div v-else class="flex flex-row">
+        <!-- apply -->
+        <Button
+          :button-text="editMode ? 'Edit Round' : 'Create Round'"
+          button-color="bg-light-green"
+          text-color="text-white"
+          size="medium"
+          class="my-2 mx-2"
+          @click="
+            (e) => {
+
+              e.stopPropagation();
+            }
+          "
+        />
+        <!-- revert -->
+        <Button
+          button-text="Reset"
+          button-color="bg-dark-red/20"
+          text-color="text-dark-red"
+          size="medium"
+          class="my-2 mx-2"
+          @click="
+            (e) => { 
+              e.stopPropagation();
+            }
+          "
+        />
+      </div>
+
     </form>
   </Modal>
   <ViewTeams
