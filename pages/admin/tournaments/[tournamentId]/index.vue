@@ -311,7 +311,7 @@
       <label class="heading-montserrat">Venues</label>
       <Multiselect
         v-model="venueForm.venues"
-        :items="tournamentStore.currentTournament.venues.map((v) => v.name)"
+        :items="venueStore.venues.map((v) => v.name)"
         placeholder="Select round venues"
         :selected-chips="venueForm.editMode ? venueForm.venues : []"
         @change="(newSelected) => (venueForm.venues = newSelected)"
