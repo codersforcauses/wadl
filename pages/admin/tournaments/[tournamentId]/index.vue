@@ -496,10 +496,8 @@ const defaultInputState = {
   num: 9,
 };
 
-const input = ref(null);
-
 const addVenue = () => {
-  for (let i = 0; i < venueForm.venues.length; i++) {
+  for (let i = 0; i < venueForm.value.venues.length; i++) {
     currTournClone.venues.push({
       day: venueForm.value.day,
       name: venueForm.value.venues[i].name,
@@ -545,8 +543,6 @@ await tournamentStore.getTournament(route.params.tournamentId);
 
 // clone tournament -- simplifies revertChanges.
 let currTournClone = { ...tournamentStore.currentTournament };
-
-console.log(currTournClone);
 
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
