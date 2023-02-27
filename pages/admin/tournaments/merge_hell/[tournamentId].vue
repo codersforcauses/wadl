@@ -457,8 +457,8 @@ const handleDelete = async (name, week, day) => {
   managedTournament.venues = managedTournament.venues.filter((venue) => {
     return !(venue.name === name && venue.week === week && venue.day === day);
   });
-  dayVenues = [];
   managedTournament.venues.map(combineVenues);
+  setDayVenues();
 };
 
 await teamStore.getTeamsbyTournament(route.params.tournamentId);
@@ -503,8 +503,10 @@ const setDayVenues = () => {
       venues: [],
     },
   ];
-  managedTournament.venues.map(combineVenues);
-  console.log(dayVenues.value);
+  console.log(managedTournament)
+  if (managedTournament.venues) {
+    managedTournament.venues.map(combineVenues);
+  }
 };
 
 const applyChanges = () => {

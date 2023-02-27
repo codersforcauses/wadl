@@ -46,6 +46,7 @@ export const useTournamentStore = defineStore("tournament", {
           levels: doc.data().levels,
           name: doc.data().name,
           numRounds: doc.data().numRounds,
+          roundDates: doc.data().roundDates,
           shortName: doc.data().shortName,
           status: doc.data().status,
           venues: doc.data().venues,
@@ -78,11 +79,14 @@ export const useTournamentStore = defineStore("tournament", {
     async editTournament(tournament) {
       const { $clientFirestore } = useNuxtApp();
       await setDoc(doc($clientFirestore, "tournaments", tournament.id), {
+        currentRound: tournament.currentRound,
         levels: tournament.levels,
         name: tournament.name,
         numRounds: tournament.numRounds,
         shortName: tournament.shortName,
         status: tournament.status,
+        venues: tournament.venues,
+        roundDates: tournament.roundDates,
       });
 
       this.tournaments.forEach((t) => {
