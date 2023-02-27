@@ -13,9 +13,9 @@
   <!-- Content -->
   <div v-else>
     <div class="mx-32 pt-5">
-      <!--//?: can include "changes list" which just broadly lists what elements have been editted. -->
+      <!--//?: can include "changes list" which just broadly lists what elements have been edited. -->
       <div class="justify-end flex">
-        <div v-if="!editted.changesMade" class="justify-end flex">
+        <div v-if="!edited.changesMade" class="justify-end flex">
           <Button
             button-text="No Changes Made"
             button-color="bg-gray-200"
@@ -61,7 +61,7 @@
           Registered Teams
         </p>
         <p
-          v-if="editted.registeredTeams"
+          v-if="edited.registeredTeams"
           class="text-dark-red/60 font-medium min-w-max"
         >
           Changes are not final until "Apply Changes" button at top is pushed
@@ -111,7 +111,7 @@
           Information
         </p>
         <p
-          v-if="editted.information"
+          v-if="edited.information"
           class="text-dark-red/60 font-medium min-w-max"
         >
           Changes are not final until "Apply Changes" button at top is pushed
@@ -198,7 +198,7 @@
           </button>
         </div>
         <p
-          v-if="editted.venueInfo"
+          v-if="edited.venueInfo"
           class="text-dark-red/60 font-medium min-w-max"
         >
           Changes are not final until "Apply Changes" button at top is pushed
@@ -255,7 +255,7 @@
             </button>
           </div>
           <p
-            v-if="editted.roundDates"
+            v-if="edited.roundDates"
             class="text-dark-red/60 font-medium min-w-max"
           >
             Changes are not final until "Apply Changes" button at top is pushed
@@ -479,7 +479,7 @@ const teamsModalVisibility = ref(false);
 const teamsModalLevel = ref(null);
 const editMode = ref(false);
 
-const editted = ref({
+const edited = ref({
   registeredTeams: false,
   information: false,
   venueInfo: false,
@@ -560,8 +560,8 @@ for (let i = 0; i < stageList.length; i++) {
 
 /** functions */
 const deleteVenue = async (name, week, day) => {
-  editted.value.changesMade = true;
-  editted.value.venueInfo = true;
+  edited.value.changesMade = true;
+  edited.value.venueInfo = true;
   currTournClone.venues = currTournClone.venues.filter((venue) => {
     return !(venue.name === name && venue.week === week && venue.day === day);
   });
@@ -618,7 +618,7 @@ const setDayVenues = () => {
 };
 
 const applyChanges = () => {
-  editted.value = {
+  edited.value = {
     changesMade: false,
     registeredTeams: false,
     information: false,
@@ -630,7 +630,7 @@ const applyChanges = () => {
 };
 
 const revertChanges = async () => {
-  editted.value = {
+  edited.value = {
     changesMade: false,
     registeredTeams: false,
     information: false,
@@ -671,8 +671,8 @@ const changeStage = (value) => {
 
   // note : multiple vals affect changes made
   // TODO: make changes made more reactive based upon variables themselves rather than functions.
-  editted.value.changesMade = true;
-  editted.value.information = !origVal;
+  edited.value.changesMade = true;
+  edited.value.information = !origVal;
 
   currTournClone.status = stageList[stage.value - 1];
 };
