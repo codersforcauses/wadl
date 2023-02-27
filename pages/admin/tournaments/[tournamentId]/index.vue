@@ -346,21 +346,17 @@ import { ref, computed, onMounted } from "vue";
 import { useRouter } from "#imports";
 
 const router = useRouter();
-const defaultRoundInput = {
-  id: null,
-  levels: [],
-  name: null,
-  numRounds: null,
-  shortName: null,
-  status: "Open",
-};
 const defaultVenueInput = {
-  id: null,
-  levels: [],
-  name: null,
-  numRounds: null,
-  shortName: null,
-  status: "Open",
+  week: null,
+  day: null,
+  venue: [],
+};
+const defaultRoundInput = {
+  round: null,
+  tueWeek1: null,
+  wedWeek1: null,
+  tueWeek2: null,
+  wedWeek2: null,
 };
 
 const route = useRoute();
@@ -421,18 +417,14 @@ const resetFormState = () => {
 await tournamentStore.getTournaments();
 
 // clone tournament -- allows revertchanges to work easier.
-await tournamentStore.getTournament(route.params.tournamentId)
+await tournamentStore.getTournament(route.params.tournamentId);
 
-let managedTournament = Object.assign(
-  {},
-  tournamentStore.currentTournament
-);
+let managedTournament = Object.assign({}, tournamentStore.currentTournament);
 
-console.log(managedTournament)
+console.log(managedTournament);
 
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
-
 
 const changesMade = ref(false);
 const dayVenues = ref([]);
@@ -503,7 +495,7 @@ const setDayVenues = () => {
       venues: [],
     },
   ];
-  console.log(managedTournament)
+  console.log(managedTournament);
   if (managedTournament.venues) {
     managedTournament.venues.map(combineVenues);
   }
@@ -517,11 +509,8 @@ const applyChanges = () => {
 
 const revertChanges = async () => {
   changesMade.value = false;
-  tournamentStore.getTournament(route.params.tournamentId)
-  managedTournament = Object.assign(
-    {},
-    tournamentStore.currentTournament
-  );
+  tournamentStore.getTournament(route.params.tournamentId);
+  managedTournament = Object.assign({}, tournamentStore.currentTournament);
   setDayVenues();
 };
 /** end Functions */
