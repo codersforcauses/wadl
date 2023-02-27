@@ -448,9 +448,9 @@ import { useRouter } from "#imports";
 
 const router = useRouter();
 const defaultVenueInput = {
-  week: "1",
-  day: "Tuesday",
-  venues: ["Place"],
+  week: null,
+  day: null,
+  venues: [],
 };
 const defaultRoundInput = {
   round: null,
