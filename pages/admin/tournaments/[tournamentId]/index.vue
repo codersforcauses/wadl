@@ -227,6 +227,13 @@
           :handleEdit="
             () => {
               venueForm.editMode = true;
+              resetVenueFormState();
+              venueForm = {
+                week:day.week,
+                day:day.day,
+                venues:['day.venues', 'a'],
+              };
+
               modalVenueVisibility = true;
             }
           "
