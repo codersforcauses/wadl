@@ -486,8 +486,6 @@ const tournamentStore = await useTournamentStore();
 const venueStore = await useVenueStore();
 const teamStore = await useTeamStore();
 const loading = ref(true);
-const venueForm = { ...defaultVenueInput };
-const roundForm = { ...defaultRoundInput };
 const modalRoundVisibility = ref(false);
 const modalVenueVisibility = ref(false);
 const teamsModalVisibility = ref(false);
@@ -502,8 +500,8 @@ const edited = ref({
   roundDates: false,
 });
 
-const venueForm = ref(Object.assign({}, defaultVenueInput))
-const roundForm = ref(Object.assign({}, defaultRoundInput))
+const venueForm = ref({...defaultVenueInput})
+const roundForm = ref({...defaultRoundInput})
 
 onMounted(async () => {
   try {
@@ -554,7 +552,7 @@ await tournamentStore.getTournaments();
 await tournamentStore.getTournament(route.params.tournamentId);
 
 // clone tournament -- simplifies revertChanges.
-let currTournClone = Object.assign({}, tournamentStore.currentTournament);
+let currTournClone = {...tournamentStore.currentTournament};
 
 console.log(currTournClone);
 
@@ -673,7 +671,7 @@ const revertChanges = async () => {
     }
   }
 
-  currTournClone = Object.assign({}, tournamentStore.currentTournament);
+  currTournClone = {...tournamentStore.currentTournament};
 
   setDayVenues();
 };
