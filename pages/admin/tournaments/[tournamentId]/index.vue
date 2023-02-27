@@ -511,6 +511,10 @@ const addRound = () => {
 }
 
 const addVenue = () => {
+  if (!venueForm.value.week || !venueForm.value.day || venueForm.value.venues.length == 0) {
+    return;
+  }
+  
   modalVenueVisibility.value = false;
   edited.value.venueInfo = true;
   edited.value.changesMade = true;
