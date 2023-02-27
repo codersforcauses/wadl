@@ -226,7 +226,7 @@
           :venues="day.venues"
           :handleEdit="
             () => {
-              editMode = true;
+              venueInfo.editMode = true;
               resetVenueFormState();
               venueForm = {
                 week:day.week,
@@ -290,7 +290,6 @@
           :dates="dates"
           :handleEdit="
             () => {
-              editMode = true;
               resetRoundFormState();
               roundForm = {
                 round: dates.round,
@@ -298,6 +297,8 @@
                 weekOneWed: dates.weekOneWed,
                 weekTwoTues: dates.weekTwoTues,
                 weekTwoWed: dates.weekTwoWed,
+                editMode: true,
+                index: index,
               };
 
               modalRoundVisibility = true;
@@ -316,11 +317,15 @@
     size="w-7/12"
     @close="
       () => {
+        if(venueInfo.editMode) {
+          resetVenueFormState();
+        }
+        venueInfo.editMode = false;
         modalVenueVisibility = false;
       }
     "
   >
-    <div v-if="!editMode">
+    <div v-if="!venueInfo.editMode">
       <Header title-text="Venue Information" />
     </div>
     <div v-else>
@@ -349,7 +354,7 @@
       <div class="flex flex-row">
         <!-- apply -->
         <Button
-          :button-text="editMode ? 'Edit Venue' : 'Create Venue'"
+          :button-text="venueInfo.editMode ? 'Edit Venue' : 'Create Venue'"
           button-color="bg-light-green"
           text-color="text-white"
           size="medium"
@@ -383,11 +388,15 @@
     size="w-7/12"
     @close="
       () => {
+        if(roundDates.editMode) {
+          resetRoundFormState();
+        }
+        roundDates.editMode = false;
         modalRoundVisibility = false;
       }
     "
   >
-    <div v-if="!editMode">
+    <div v-if="!roundDates.editMode">
       <Header title-text="Round Dates" />
     </div>
     <div v-else>
@@ -432,7 +441,7 @@
       <div class="flex flex-row" @submit.prevent="">
         <!-- apply -->
         <Button
-          :button-text="editMode ? 'Edit Round' : 'Create Round'"
+          :button-text="roundDates.editMode ? 'Edit Round' : 'Create Round'"
           button-color="bg-light-green"
           text-color="text-white"
           size="medium"
@@ -484,6 +493,7 @@ const defaultVenueInput = {
   week: null,
   day: null,
   venues: [],
+  editMode: false,
 };
 const defaultRoundInput = {
   round: null,
@@ -491,6 +501,7 @@ const defaultRoundInput = {
   weekOneWed: null,
   weekTwoTues: null,
   weekTwoWed: null,
+  editMode: false,
 };
 
 const route = useRoute();
@@ -504,7 +515,6 @@ const modalRoundVisibility = ref(false);
 const modalVenueVisibility = ref(false);
 const teamsModalVisibility = ref(false);
 const teamsModalLevel = ref(null);
-const editMode = ref(false);
 
 const edited = ref({
   changesMade: false,
