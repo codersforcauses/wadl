@@ -465,7 +465,7 @@ import { useRouter } from "#imports";
 
 const router = useRouter();
 const defaultVenueInput = {
-  week: 1,
+  week: "1",
   day: "Tuesday",
   venues: ["Place"],
 };
