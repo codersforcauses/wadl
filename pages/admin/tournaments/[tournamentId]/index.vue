@@ -14,14 +14,14 @@
   <div v-else>
     <div class="mx-32 pt-5">
       <!--//?: can include "changes list" which just broadly lists what elements have been edited. -->
-      <div class="justify-end flex">
+      <div class="justify-end flex rounded-md bg-gray-100 w-full h-full">
         <div v-if="!edited.changesMade" class="justify-end flex">
           <Button
             button-text="No Changes Made"
-            button-color="bg-gray-200"
+            button-color="bg-gray-300"
             text-color="text-gray-500"
             size="Large"
-            class="my-2 mx-2"
+            class="m-4"
             @click="() => {}"
           />
         </div>
@@ -32,7 +32,7 @@
             button-color="bg-light-green"
             text-color="text-white"
             size="medium"
-            class="my-2 mx-2"
+            class="m-4"
             @click="
               () => {
                 applyChanges();
@@ -45,7 +45,7 @@
             button-color="bg-dark-red/20"
             text-color="text-dark-red"
             size="medium"
-            class="my-2 mx-2"
+            class="m-4"
             @click="
               () => {
                 revertChanges();
