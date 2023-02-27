@@ -285,13 +285,13 @@
             () => {
               editMode = true;
               resetRoundFormState();
-              roundFrom = {
+              roundForm = {
                 round: dates.round,
-                weekOneTues: dates.weekOneTues,
-                weekOneWed: dates.weekOneWed,
-                weekTwoTues: dates.weekTwoTues,
-                weekTwoWed: dates.weekTwoWed,
-              }
+                weekOneTues: dates.tueWeek1,
+                weekOneWed: dates.wedWeek1,
+                weekTwoTues: dates.tueWeek2,
+                weekTwoWed: dates.wedWeek2,
+              };
 
               modalRoundVisibility = true;
             }
@@ -397,28 +397,28 @@
           <FormField
             label="Tuesday Week 1"
             placeholder="DD/MM"
-            v-model="roundForm.tueWeek1"
+            v-model="roundForm.weekOneTues"
           />
         </div>
         <div>
           <FormField
             label="Wednesday Week 1"
             placeholder="DD/MM"
-            v-model="roundForm.wedWeek1"
+            v-model="roundForm.weekOneWed"
           />
         </div>
         <div>
           <FormField
             label="Tuesday Week 2"
             placeholder="DD/MM"
-            v-model="roundForm.tueWeek2"
+            v-model="roundForm.weekTwoTues"
           />
         </div>
         <div>
           <FormField
             label="Wednesday Week 2"
             placeholder="DD/MM"
-            v-model="roundForm.wedWeek2"
+            v-model="roundForm.weekTwoWed"
           />
         </div>
       </div>
