@@ -490,10 +490,10 @@ const defaultVenueInput = {
 };
 const defaultRoundInput = {
   round: null,
-  tueWeek1: null,
-  wedWeek1: null,
-  tueWeek2: null,
-  wedWeek2: null,
+  weekOneTues: null,
+  weekOneWed: null,
+  weekTwoTues: null,
+  weekTwoWed: null,
   editMode: false,
 };
 
@@ -559,10 +559,10 @@ const addVenue = () => {
 const addRound = () => {
   if (
     !roundForm.value.round ||
-    !roundForm.value.tueWeek1 ||
-    !roundForm.value.wedWeek1 ||
-    !roundForm.value.tueWeek2 ||
-    !roundForm.value.wedWeek2
+    !roundForm.value.weekOneTues ||
+    !roundForm.value.weekOneWed ||
+    !roundForm.value.weekTwoTues ||
+    !roundForm.value.weekTwoWed
   ) {
     return;
   }
@@ -574,10 +574,10 @@ const addRound = () => {
   console.log(currTournClone.roundDates);
   currTournClone.roundDates.push({
     round: roundForm.value.round,
-    weekOneTues: roundForm.value.tueWeek1,
-    weekOneWed: roundForm.value.wedWeek1,
-    weekTwoTues: roundForm.value.tueWeek2,
-    weekTwoWed: roundForm.value.wedWeek2,
+    weekOneTues: roundForm.value.weekOneTues,
+    weekOneWed: roundForm.value.weekOneWed,
+    weekTwoTues: roundForm.value.weekTwoTues,
+    weekTwoWed: roundForm.value.weekTwoWed,
   });
 
   resetRoundFormState();
