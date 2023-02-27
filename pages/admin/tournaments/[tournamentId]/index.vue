@@ -228,7 +228,7 @@
             () => {
               resetVenueFormState();
               venueForm = {
-                week: day.week,
+                week: day.week.toString(),
                 day: day.day,
                 venues: day.venues,
                 editMode: true,
