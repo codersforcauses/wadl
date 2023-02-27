@@ -491,7 +491,7 @@ const teamsModalLevel = ref(null);
 const editMode = ref(false);
 
 const edited = ref({
-  changesMade: true,
+  changesMade: false,
   registeredTeams: false,
   information: false,
   venueInfo: false,
