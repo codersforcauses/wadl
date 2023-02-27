@@ -557,15 +557,30 @@ const addVenue = () => {
   edited.value.changesMade = true;
 
   for (let i = 0; i < venueForm.value.venues.length; i++) {
-    currTournClone.venues.push({
-      day: venueForm.value.day,
-      name: venueForm.value.venues[i],
+    const pushVenue = {
       week: parseInt(venueForm.value.week),
-    });
+      name: venueForm.value.venues[i],
+      day: venueForm.value.day,
+    }
+
+    if (venueInVenues(pushVenue)) {
+      continue;
+    }
+
+    currTournClone.venues.push(pushVenue);
   }
   resetVenueFormState();
   setDayVenues();
 };
+
+const venueInVenues = (venue) => {
+  for (let i = 0; i < currTournClone.venues.length; i++) {
+    if (JSON.stringify(venue) === JSON.stringify(currTournClone.venues[i])) {
+      return true;
+    }
+  }
+  return false;
+}
 
 const addRound = () => {
   if (
