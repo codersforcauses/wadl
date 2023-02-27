@@ -388,15 +388,15 @@
     size="w-7/12"
     @close="
       () => {
-        if(roundDates.editMode) {
+        if(roundForm.editMode) {
           resetRoundFormState();
         }
-        roundDates.editMode = false;
+        roundForm.editMode = false;
         modalRoundVisibility = false;
       }
     "
   >
-    <div v-if="!roundDates.editMode">
+    <div v-if="!roundForm.editMode">
       <Header title-text="Round Dates" />
     </div>
     <div v-else>
@@ -441,7 +441,7 @@
       <div class="flex flex-row" @submit.prevent="">
         <!-- apply -->
         <Button
-          :button-text="roundDates.editMode ? 'Edit Round' : 'Create Round'"
+          :button-text="roundForm.editMode ? 'Edit Round' : 'Create Round'"
           button-color="bg-light-green"
           text-color="text-white"
           size="medium"
