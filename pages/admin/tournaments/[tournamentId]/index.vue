@@ -301,7 +301,7 @@
     @close="
       () => {
         modalVenueVisibility = false;
-        resetFormState();
+        resetVenueFormState();
       }
     "
   >
@@ -366,6 +366,7 @@
           class="my-2 mx-2"
           @click="
             (e) => {
+              resetVenueFormState();
               e.stopPropagation();
             }
           "
@@ -379,7 +380,7 @@
     @close="
       () => {
         modalRoundVisibility = false;
-        resetFormState();
+        resetRoundFormState();
       }
     "
   >
@@ -390,19 +391,39 @@
       <Header title-text="Edit Round Dates" />
     </div>
     <form class="px-10">
-      <FormField label="Round" placeholder="Enter the round" />
+      <FormField
+        label="Round"
+        placeholder="Enter the round"
+        @update="roundEdited"
+      />
       <div class="grid grid-cols-2 gap-x-4">
         <div>
-          <FormField label="Tuesday Week 1" placeholder="DD/MM" />
+          <FormField
+            label="Tuesday Week 1"
+            placeholder="DD/MM"
+            @update="roundEdited"
+          />
         </div>
         <div>
-          <FormField label="Wednesday Week 1" placeholder="DD/MM" />
+          <FormField
+            label="Wednesday Week 1"
+            placeholder="DD/MM"
+            @update="roundEdited"
+          />
         </div>
         <div>
-          <FormField label="Tuesday Week 2" placeholder="DD/MM" />
+          <FormField
+            label="Tuesday Week 2"
+            placeholder="DD/MM"
+            @update="roundEdited"
+          />
         </div>
         <div>
-          <FormField label="Wednesday Week 2" placeholder="DD/MM" />
+          <FormField
+            label="Wednesday Week 2"
+            placeholder="DD/MM"
+            @update="roundEdited"
+          />
         </div>
       </div>
       <div v-if="!edited.roundDates">
@@ -442,6 +463,7 @@
           class="my-2 mx-2"
           @click="
             (e) => {
+              resetRoundFormState();
               e.stopPropagation();
             }
           "
@@ -486,6 +508,8 @@ const tournamentStore = await useTournamentStore();
 const venueStore = await useVenueStore();
 const teamStore = await useTeamStore();
 const loading = ref(true);
+const venueForm = ref({ ...defaultVenueInput });
+const roundForm = ref({ ...defaultRoundInput });
 const modalRoundVisibility = ref(false);
 const modalVenueVisibility = ref(false);
 const teamsModalVisibility = ref(false);
@@ -499,9 +523,6 @@ const edited = ref({
   venueInfo: false,
   roundDates: false,
 });
-
-const venueForm = ref({...defaultVenueInput})
-const roundForm = ref({...defaultRoundInput})
 
 onMounted(async () => {
   try {
@@ -541,7 +562,13 @@ const teamsByLevel = computed(() => {
   });
 });
 
-const resetFormState = () => {
+const resetVenueFormState = () => {
+  venueForm.value = { ...defaultVenueInput };
+  roundForm.value = { ...defaultRoundInput };
+  editMode.value = false;
+};
+
+const resetRoundFormState = () => {
   venueForm.value = { ...defaultVenueInput };
   roundForm.value = { ...defaultRoundInput };
   editMode.value = false;
@@ -663,7 +690,8 @@ const revertChanges = async () => {
     venueInfo: false,
     roundDates: false,
   };
-  resetFormState();
+  resetVenueFormState();
+  resetRoundFormState();
 
   for (let i = 0; i < stageList.length; i++) {
     if (stageList[i] === status) {
