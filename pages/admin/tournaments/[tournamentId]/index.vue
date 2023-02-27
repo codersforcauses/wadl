@@ -325,9 +325,9 @@
       />
       <label class="heading-montserrat">Venues</label>
       <Multiselect
-        :items="tournamentStore.currentTournament.venues.map(v => v.name)"
+        :items="tournamentStore.currentTournament.venues.map((v) => v.name)"
         placeholder="Select round venues"
-        @change="(newSelected) => venueForm.venues = newSelected"
+        @change="(newSelected) => (venueForm.venues = newSelected)"
         v-model="venueForm.venues"
       />
       <div class="flex flex-row">
@@ -378,19 +378,39 @@
       <Header title-text="Edit Round Dates" />
     </div>
     <form class="px-10" @submit.prevent="">
-      <FormField label="Round" placeholder="Enter the round" v-model="roundForm.round" />
+      <FormField
+        label="Round"
+        placeholder="Enter the round"
+        v-model="roundForm.round"
+      />
       <div class="grid grid-cols-2 gap-x-4">
         <div>
-          <FormField label="Tuesday Week 1" placeholder="DD/MM" v-model="roundForm.tueWeek1" />
+          <FormField
+            label="Tuesday Week 1"
+            placeholder="DD/MM"
+            v-model="roundForm.tueWeek1"
+          />
         </div>
         <div>
-          <FormField label="Wednesday Week 1" placeholder="DD/MM" v-model="roundForm.wedWeek1" />
+          <FormField
+            label="Wednesday Week 1"
+            placeholder="DD/MM"
+            v-model="roundForm.wedWeek1"
+          />
         </div>
         <div>
-          <FormField label="Tuesday Week 2" placeholder="DD/MM" v-model="roundForm.tueWeek2" />
+          <FormField
+            label="Tuesday Week 2"
+            placeholder="DD/MM"
+            v-model="roundForm.tueWeek2"
+          />
         </div>
         <div>
-          <FormField label="Wednesday Week 2" placeholder="DD/MM" v-model="roundForm.wedWeek2" />
+          <FormField
+            label="Wednesday Week 2"
+            placeholder="DD/MM"
+            v-model="roundForm.wedWeek2"
+          />
         </div>
       </div>
       <div class="flex flex-row" @submit.prevent="">
@@ -492,41 +512,56 @@ const defaultInputState = {
   form: "",
   num: 9,
 };
-const addRound = () => {
-  modalRoundVisibility.value = false;
-  edited.value.roundInfo = true;
-  edited.value.changesMade = true;
-
-  console.log(currTournClone.roundDates)
-  currTournClone.roundDates.push({
-    round: roundForm.value.round,
-    weekOneTues: roundForm.value.tueWeek1,
-    weekOneWed: roundForm.value.wedWeek1,
-    weekTwoTues: roundForm.value.tueWeek2,
-    weekTwoWed: roundForm.value.wedWeek2,
-  })
-
-  resetRoundFormState();
-  setDayVenues();
-}
 
 const addVenue = () => {
-  if (!venueForm.value.week || !venueForm.value.day || venueForm.value.venues.length == 0) {
+  if (
+    !venueForm.value.week ||
+    !venueForm.value.day ||
+    venueForm.value.venues.length == 0
+  ) {
     return;
   }
-  
+
   modalVenueVisibility.value = false;
   edited.value.venueInfo = true;
   edited.value.changesMade = true;
 
   for (let i = 0; i < venueForm.value.venues.length; i++) {
     currTournClone.venues.push({
-      day:  venueForm.value.day,
+      day: venueForm.value.day,
       name: venueForm.value.venues[i],
       week: parseInt(venueForm.value.week),
     });
   }
   resetVenueFormState();
+  setDayVenues();
+};
+
+const addRound = () => {
+  if (
+    !roundForm.value.round ||
+    !roundForm.value.tueWeek1 ||
+    !roundForm.value.wedWeek1 ||
+    !roundForm.value.tueWeek2 ||
+    !roundForm.value.wedWeek2
+  ) {
+    return;
+  }
+
+  modalRoundVisibility.value = false;
+  edited.value.roundDates = true;
+  edited.value.changesMade = true;
+
+  console.log(currTournClone.roundDates);
+  currTournClone.roundDates.push({
+    round: roundForm.value.round,
+    weekOneTues: roundForm.value.tueWeek1,
+    weekOneWed: roundForm.value.wedWeek1,
+    weekTwoTues: roundForm.value.tueWeek2,
+    weekTwoWed: roundForm.value.wedWeek2,
+  });
+
+  resetRoundFormState();
   setDayVenues();
 };
 
@@ -564,7 +599,9 @@ await tournamentStore.getTournaments();
 await tournamentStore.getTournament(route.params.tournamentId);
 
 // clone tournament -- simplifies revertChanges.
-let currTournClone = JSON.parse(JSON.stringify(tournamentStore.currentTournament));
+let currTournClone = JSON.parse(
+  JSON.stringify(tournamentStore.currentTournament)
+);
 
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
@@ -683,7 +720,9 @@ const revertChanges = async () => {
   }
 
   // creates deep clone of tournstore. deep copies nested objects too (issue with = ...obj)
-  currTournClone = JSON.parse(JSON.stringify(tournamentStore.currentTournament))
+  currTournClone = JSON.parse(
+    JSON.stringify(tournamentStore.currentTournament)
+  );
 
   setDayVenues();
 };
