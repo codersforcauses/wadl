@@ -421,18 +421,18 @@ const resetFormState = () => {
 await tournamentStore.getTournaments();
 
 // clone tournament -- allows revertchanges to work easier.
+await tournamentStore.getTournament(route.params.tournamentId)
+
 let managedTournament = Object.assign(
   {},
-  tournamentStore.getTournamentById(route.params.tournamentId)
+  tournamentStore.currentTournament
 );
+
+console.log(managedTournament)
 
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
-for (let i = 0; i < stageList.length; i++) {
-  if (stageList[i] === status) {
-    stage.value = i + 1;
-  }
-}
+
 
 const changesMade = ref(false);
 const dayVenues = ref([]);
@@ -444,6 +444,12 @@ const totalRound = "8";
 const results = "UNRELEASED";
 const roundDatesVisible = ref(true);
 const venueInfoVisible = ref(true);
+
+for (let i = 0; i < stageList.length; i++) {
+  if (stageList[i] === status) {
+    stage.value = i + 1;
+  }
+}
 
 /** functions */
 const handleDelete = async (name, week, day) => {
@@ -509,9 +515,10 @@ const applyChanges = () => {
 
 const revertChanges = async () => {
   changesMade.value = false;
+  tournamentStore.getTournament(route.params.tournamentId)
   managedTournament = Object.assign(
     {},
-    tournamentStore.getTournamentById(route.params.tournamentId)
+    tournamentStore.currentTournament
   );
   setDayVenues();
 };
