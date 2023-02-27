@@ -284,6 +284,15 @@
           :handleEdit="
             () => {
               editMode = true;
+              resetRoundFormState();
+              roundFrom = {
+                round: dates.round,
+                weekOneTues: dates.weekOneTues,
+                weekOneWed: dates.weekOneWed,
+                weekTwoTues: dates.weekTwoTues,
+                weekTwoWed: dates.weekTwoWed,
+              }
+
               modalRoundVisibility = true;
             }
           "

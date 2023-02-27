@@ -34,7 +34,7 @@ defineProps({
 
           <div class="w-1/4 py-2 flex flex-col justify-center text-center items-center">
             <button>
-              <PencilIcon class="w-6 h-6" @click="handleEdit" />
+              <PencilIcon class="w-6 h-6" @click="() => handleEdit()" />
             </button>
           </div>
       </div>
