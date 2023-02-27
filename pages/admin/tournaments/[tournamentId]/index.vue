@@ -1,7 +1,7 @@
 <template>
   <Header
     title-text="Manage Tournament"
-    :subtitle-text="managedTournament.name"
+    :subtitle-text="currTournClone.name"
     class=""
   />
 
@@ -12,55 +12,61 @@
 
   <!-- Content -->
   <div v-else>
-    <div class="mx-32">
-      <div v-if="!editted.changesMade">
-        <Button
-          button-text="No Changes Made"
-          button-color="bg-gray-200"
-          text-color="text-gray-500"
-          size="Large"
-          class="my-2 mx-2"
-          @click="() => {}"
-        />
-      </div>
-      <div v-else class="flex flex-row">
-        <!-- apply -->
-        <Button
-          button-text="Apply Changes"
-          button-color="bg-light-green"
-          text-color="text-white"
-          size="medium"
-          class="my-2 mx-2"
-          @click="
-            () => {
-              applyChanges();
-            }
-          "
-        />
-        <!-- revert -->
-        <Button
-          button-text="Revert Changes"
-          button-color="bg-dark-red/20"
-          text-color="text-dark-red"
-          size="medium"
-          class="my-2 mx-2"
-          @click="
-            () => {
-              revertChanges();
-            }
-          "
-        />
+    <div class="mx-32 pt-5">
+      <!--//?: can include "changes list" which just broadly lists what elements have been edited. -->
+      <div class="justify-end flex rounded-md bg-gray-100 w-full h-full">
+        <div v-if="!edited.changesMade" class="justify-end flex">
+          <Button
+            button-text="No Changes Made"
+            button-color="bg-gray-300"
+            text-color="text-gray-500"
+            size="Large"
+            class="m-4"
+            @click="() => {}"
+          />
+        </div>
+        <div v-else class="flex flex-row">
+          <!-- apply -->
+          <Button
+            button-text="Apply Changes"
+            button-color="bg-light-green"
+            text-color="text-white"
+            size="medium"
+            class="m-4"
+            @click="
+              () => {
+                applyChanges();
+              }
+            "
+          />
+          <!-- revert -->
+          <Button
+            button-text="Revert Changes"
+            button-color="bg-dark-red/20"
+            text-color="text-dark-red"
+            size="medium"
+            class="m-4"
+            @click="
+              () => {
+                revertChanges();
+              }
+            "
+          />
+        </div>
       </div>
 
       <!-- Registered Teams -->
-      <p
-        class="pt-2 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey"
-      >
-        Registered Teams
-      </p>
-      <p v-if="editted.registeredTeams" class="text-gray-400 min-w-max">
-        Changes are not final until "Apply Changes" button at top is pushed
-      </p>
+      <div class="flex flex-row items-center text-center gap-4 h-7 mt-5 mb-1">
+        <p class="font-montserrat font-semibold text-mid-grey min-w-max">
+          Registered Teams
+        </p>
+        <p
+          v-if="edited.registeredTeams"
+          class="text-dark-red/60 font-medium min-w-max"
+        >
+          Changes are not final until "Apply Changes" button at top is pushed
+        </p>
+      </div>
 
       <div
         class="grid grid-cols-1 lg:grid-cols-4 gap-8 text-center sm:grid-cols-2"
@@ -100,14 +106,17 @@
       <!-- End Registered Teams-->
 
       <!-- Information -->
-      <p
-        class="pt-5 pb-1 divide-y-4 font-montserrat font-semibold text-mid-grey"
-      >
-        Information
-      </p>
-      <p v-if="editted.venueInfo.information" class="text-gray-400 min-w-max">
-        Changes are not final until "Apply Changes" button at top is pushed
-      </p>
+      <div class="flex flex-row items-center text-center gap-4 h-7 mt-5 mb-1">
+        <p class="font-montserrat font-semibold text-mid-grey min-w-max">
+          Information
+        </p>
+        <p
+          v-if="edited.information"
+          class="text-dark-red/60 font-medium min-w-max"
+        >
+          Changes are not final until "Apply Changes" button at top is pushed
+        </p>
+      </div>
 
       <div class="grid grid-cols-8 gap-4 text-center">
         <div class="lg:col-span-3 md:col-span-5 col-span-8">
@@ -188,7 +197,10 @@
             </div>
           </button>
         </div>
-        <p v-if="editted.venueInfo" class="text-gray-400 min-w-max">
+        <p
+          v-if="edited.venueInfo"
+          class="text-dark-red/60 font-medium min-w-max"
+        >
           Changes are not final until "Apply Changes" button at top is pushed
         </p>
         <AdminTournamentExpandBtn
@@ -203,7 +215,7 @@
       <!-- End Header -->
 
       <div
-        v-if="managedTournament.venues && venueInfoVisible"
+        v-if="currTournClone.venues && venueInfoVisible"
         class="flex flex-row flex-wrap"
       >
         <AdminTournamentDayVenues
@@ -242,7 +254,10 @@
               </div>
             </button>
           </div>
-          <p v-if="editted.roundDates" class="text-gray-400 min-w-max">
+          <p
+            v-if="edited.roundDates"
+            class="text-dark-red/60 font-medium min-w-max"
+          >
             Changes are not final until "Apply Changes" button at top is pushed
           </p>
 
@@ -259,11 +274,11 @@
       <!-- End Header -->
 
       <div
-        v-if="managedTournament.roundDates && roundDatesVisible"
+        v-if="currTournClone.roundDates && roundDatesVisible"
         class="flex flex-row flex-wrap"
       >
         <adminTournamentDateRounds
-          v-for="(dates, index) in managedTournament.roundDates"
+          v-for="(dates, index) in currTournClone.roundDates"
           :key="index"
           :dates="dates"
           :handleEdit="
@@ -473,13 +488,13 @@ const teamsModalVisibility = ref(false);
 const teamsModalLevel = ref(null);
 const editMode = ref(false);
 
-const editted = ref({
+const edited = ref({
+  changesMade: true,
   registeredTeams: false,
   information: false,
   venueInfo: false,
   roundDates: false,
 });
-const venueInfoChanged = ref(true);
 
 onMounted(async () => {
   try {
@@ -525,12 +540,12 @@ const resetFormState = () => {
 
 await tournamentStore.getTournaments();
 
-// clone tournament -- allows revertchanges to work easier.
 await tournamentStore.getTournament(route.params.tournamentId);
 
-let managedTournament = Object.assign({}, tournamentStore.currentTournament);
+// clone tournament -- simplifies revertChanges.
+let currTournClone = Object.assign({}, tournamentStore.currentTournament);
 
-console.log(managedTournament);
+console.log(currTournClone);
 
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
@@ -538,9 +553,9 @@ const stage = ref(1);
 const changesMade = ref(false);
 const dayVenues = ref([]);
 
-const status = managedTournament.status;
+const status = currTournClone.status;
 const drawStatus = "INCOMPLETE";
-const currentRound = managedTournament.currentRound;
+const currentRound = currTournClone.currentRound;
 const totalRound = "8";
 const results = "UNRELEASED";
 const roundDatesVisible = ref(true);
@@ -554,12 +569,12 @@ for (let i = 0; i < stageList.length; i++) {
 
 /** functions */
 const deleteVenue = async (name, week, day) => {
-  editted.value.changesMade = true;
-  editted.value.venueInfo = true;
-  managedTournament.venues = managedTournament.venues.filter((venue) => {
+  edited.value.changesMade = true;
+  edited.value.venueInfo = true;
+  currTournClone.venues = currTournClone.venues.filter((venue) => {
     return !(venue.name === name && venue.week === week && venue.day === day);
   });
-  managedTournament.venues.map(combineVenues);
+  currTournClone.venues.map(combineVenues);
   setDayVenues();
 };
 
@@ -605,34 +620,42 @@ const setDayVenues = () => {
       venues: [],
     },
   ];
-  console.log(managedTournament);
-  if (managedTournament.venues) {
-    managedTournament.venues.map(combineVenues);
+
+  if (currTournClone.venues) {
+    currTournClone.venues.map(combineVenues);
   }
 };
 
 const applyChanges = () => {
-  editted.value = {
+  edited.value = {
     changesMade: false,
     registeredTeams: false,
     information: false,
     venueInfo: false,
     roundDates: false,
   };
-  tournamentStore.editTournament(managedTournament);
+  tournamentStore.editTournament(currTournClone);
   setDayVenues();
 };
 
 const revertChanges = async () => {
-  editted.value = {
+  edited.value = {
     changesMade: false,
     registeredTeams: false,
     information: false,
     venueInfo: false,
     roundDates: false,
   };
-  tournamentStore.getTournament(route.params.tournamentId);
-  managedTournament = Object.assign({}, tournamentStore.currentTournament);
+  resetFormState();
+
+  for (let i = 0; i < stageList.length; i++) {
+    if (stageList[i] === status) {
+      stage.value = i + 1;
+    }
+  }
+
+  currTournClone = Object.assign({}, tournamentStore.currentTournament);
+
   setDayVenues();
 };
 /** end Functions */
@@ -651,8 +674,16 @@ const changeStage = (value) => {
   } else {
     return;
   }
-  tournamentStore.currentTournament.status = stageList[stage.value - 1];
-  tournamentStore.editTournament(tournamentStore.currentTournament);
+
+  let origVal =
+    stageList[stage.value - 1] === tournamentStore.currentTournament.status;
+
+  // note : multiple vals affect changes made
+  // TODO: make changes made more reactive based upon variables themselves rather than functions.
+  edited.value.changesMade = true;
+  edited.value.information = !origVal;
+
+  currTournClone.status = stageList[stage.value - 1];
 };
 
 const print = (val) => {
