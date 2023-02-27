@@ -546,8 +546,6 @@ await tournamentStore.getTournament(route.params.tournamentId);
 // clone tournament -- simplifies revertChanges.
 let currTournClone = { ...tournamentStore.currentTournament };
 
-console.log(currTournClone);
-
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
 
