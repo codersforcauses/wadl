@@ -339,7 +339,7 @@
           size="medium"
           class="my-2 mx-2"
           @click="
-            () => {
+            (e) => {
               modalVenueVisibility = false;
               edited.venueInfo = true;
               e.stopPropagation();
@@ -497,7 +497,7 @@ const defaultInputState = {
 };
 
 const addVenue = () => {
-  for (let i = 0; i < venueForm.venues.length; i++) {
+  for (let i = 0; i < venueForm.value.venues.length; i++) {
     currTournClone.venues.push({
       day: venueForm.value.day,
       name: venueForm.value.venues[i].name,
