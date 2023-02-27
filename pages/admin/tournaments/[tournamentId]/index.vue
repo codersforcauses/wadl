@@ -480,12 +480,12 @@ const teamsModalLevel = ref(null);
 const editMode = ref(false);
 
 const edited = ref({
+  changesMade: true,
   registeredTeams: false,
   information: false,
   venueInfo: false,
   roundDates: false,
 });
-const venueInfoChanged = ref(true);
 
 onMounted(async () => {
   try {
