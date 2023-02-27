@@ -76,6 +76,8 @@ export const useTournamentStore = defineStore("tournament", {
         ...tournament,
       });
     },
+    
+    //?: use updateDoc rather than setDoc
     async editTournament(tournament) {
       const { $clientFirestore } = useNuxtApp();
       await setDoc(doc($clientFirestore, "tournaments", tournament.id), {
