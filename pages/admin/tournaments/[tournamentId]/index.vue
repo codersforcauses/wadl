@@ -317,6 +317,7 @@
         :items="[1, 2]"
         placeholder="Select round week"
         selected="1"
+        v-model="venueForm.week"
         @change="venueEdited"
       />
       <Dropdown
@@ -324,6 +325,7 @@
         :items="['Tuesday', 'Wednesday']"
         placeholder="Select round day"
         selected="Tuesday"
+        v-model="venueForm.day"
         @change="venueEdited"
       />
       <label class="heading-montserrat">Venues</label>
@@ -331,6 +333,7 @@
         :items="['a', 'b', 'c']"
         placeholder="Select round venues"
         :selected="venueForm.venues"
+        v-model="venueForm.venue"
         @change="venueEdited"
       />
 
@@ -521,6 +524,9 @@ const edited = ref({
   roundDates: false,
 });
 
+const venueForm = ref(Object.assign({}, defaultVenueInput));
+const roundForm = ref(Object.assign({}, defaultRoundInput));
+
 onMounted(async () => {
   try {
     await venueStore.getVenues();
@@ -529,6 +535,14 @@ onMounted(async () => {
   }
   loading.value = false;
 });
+
+const defaultInputState = {
+  id: "",
+  form: "",
+  num: 9,
+};
+
+const input = ref(null);
 
 const handleLevelButtons = (button, level) => {
   switch (button) {
