@@ -188,7 +188,7 @@ const tournamentName = tournamentStore.tournaments[index].name;
   <section
     class="flex flex-col items-center justify-center max-w-screen max-h-screen"
   >
-    <Header title-text="Manage Teams" :subtitleText="tournamentName" />
+    <Header title-text="Manage Teams" :subtitle-text="tournamentName" />
     <NuxtLink
       v-if="userStore.institution"
       class="flex flex-row w-full justify-end p-5"

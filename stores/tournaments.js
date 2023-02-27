@@ -76,8 +76,8 @@ export const useTournamentStore = defineStore("tournament", {
         ...tournament,
       });
     },
-    
-    //?: use updateDoc rather than setDoc
+
+    // ?: use updateDoc rather than setDoc
     async editTournament(tournament) {
       const { $clientFirestore } = useNuxtApp();
       await setDoc(doc($clientFirestore, "tournaments", tournament.id), {
@@ -101,10 +101,10 @@ export const useTournamentStore = defineStore("tournament", {
       this.currentTournament = [];
       this.currentTournament = this.tournaments.find((t) => t.id === id);
       if (!this.currentTournament.roundDates) {
-        this.currentTournament.roundDates = []
+        this.currentTournament.roundDates = [];
       }
       if (!this.currentTournament.venues) {
-        this.currentTournament.venues = []
+        this.currentTournament.venues = [];
       }
     },
     getTournamentDivisionsByLevel(level) {

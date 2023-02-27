@@ -12,7 +12,7 @@ defineProps({
   },
   venues: {
     type: Array,
-    default: [],
+    default: () => [],
   },
   handleEdit: {
     type: Function,
@@ -21,7 +21,7 @@ defineProps({
   handleDelete: {
     type: Function,
     default: () => {},
-  }
+  },
 });
 </script>
 
@@ -44,9 +44,10 @@ defineProps({
               {{ day }}
             </h1>
           </div>
-          
-          <div class="w-1/4 py-2 flex flex-col justify-center text-center items-center">
 
+          <div
+            class="w-1/4 py-2 flex flex-col justify-center text-center items-center"
+          >
             <button>
               <PencilIcon class="w-6 h-6" @click="handleEdit" />
             </button>
@@ -58,15 +59,22 @@ defineProps({
 
       <!-- content -->
       <div class="flex flex-col min-h-[200px]">
-        <div v-for="(venue, index) in venues" :key="venue" class="grid grid-cols-4 items-center">
-          <p class="px-2 py-3 col-span-3 items-center align-middle justify-center">{{ venue }}</p>
+        <div
+          v-for="venue in venues"
+          :key="venue"
+          class="grid grid-cols-4 items-center"
+        >
+          <p
+            class="px-2 py-3 col-span-3 items-center align-middle justify-center"
+          >
+            {{ venue }}
+          </p>
           <button class="flex justify-end items-center pr-5">
             <XMarkIcon class="w-5 h-5" @click="handleDelete(venue)" />
           </button>
         </div>
-       </div>
-       <!-- end content-->
-      
+      </div>
+      <!-- end content-->
     </div>
   </div>
 </template>

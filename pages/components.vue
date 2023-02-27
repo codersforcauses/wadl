@@ -198,10 +198,6 @@ const getName = (name) => {
   console.log("name:", name);
 };
 
-const checkThing = () => {
-  console.log(team.teams);
-};
-
 // Notification Modal
 const notificationVisibility = ref(false);
 const isSuccess = ref(false);

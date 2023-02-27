@@ -1,5 +1,5 @@
 <script setup>
-import { PlusIcon, MinusIcon, ChevronDownIcon, ChevronLeftIcon } from "@heroicons/vue/24/solid";
+import { ChevronDownIcon, ChevronLeftIcon } from "@heroicons/vue/24/solid";
 defineProps({
   showPlus: {
     type: Boolean,
@@ -10,13 +10,10 @@ defineProps({
     default: () => {},
   },
 });
-
 </script>
 
 <template>
-  <div
-    class="w-full flex pr-5 justify-end  p-1 text-black"
-  >
+  <div class="w-full flex pr-5 justify-end p-1 text-black">
     <button>
       <div v-if="showPlus" @click="expandFunc()">
         <ChevronLeftIcon class="w-7 h-7" />

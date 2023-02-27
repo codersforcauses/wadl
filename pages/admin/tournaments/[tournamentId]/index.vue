@@ -144,43 +144,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-span-2">
-        <Frame
-          :title="drawStatus"
-          subtitle="DRAW STATUS"
-          :button-texts="['Generate Draw']"
-          @button1-clicked="
-            () => {
-              print('Generate Draw');
-            }
-          "
-        />
-      </div>
-      <div class="col-span-1">
-        <Frame
-          :title="currentRound + '/' + totalRound"
-          subtitle="CURRENT ROUND"
-          button-size="medium"
-          :button-texts="['Advance']"
-          @button1-clicked="
-            () => {
-              print('Advance');
-            }
-          "
-        />
-      </div>
-      <div class="col-span-2 bg-slate-200 rounded">
-        <Frame
-          :title="results"
-          subtitle="PREVIOUS ROUND"
-          :button-texts="['Release Results']"
-          @button1-clicked="
-            () => {
-              print('Release Results');
-            }
-          "
-        />
-      </div> -->
       </div>
       <!-- End Information -->
 
@@ -204,8 +167,8 @@
           Changes are not final until "Apply Changes" button at top is pushed
         </p>
         <AdminTournamentExpandBtn
-          :showPlus="!venueInfoVisible"
-          :expandFunc="
+          :show-plus="!venueInfoVisible"
+          :expand-func="
             () => {
               venueInfoVisible = !venueInfoVisible;
             }
@@ -224,7 +187,7 @@
           :day="day.day"
           :week="day.week"
           :venues="day.venues"
-          :handleEdit="
+          :handle-edit="
             () => {
               resetVenueFormState();
               venueForm = {
@@ -238,7 +201,7 @@
               modalVenueVisibility = true;
             }
           "
-          :handleDelete="
+          :handle-delete="
             (venueName) => deleteVenue(venueName, day.week, day.day)
           "
         />
@@ -270,8 +233,8 @@
           </p>
 
           <AdminTournamentExpandBtn
-            :showPlus="!roundDatesVisible"
-            :expandFunc="
+            :show-plus="!roundDatesVisible"
+            :expand-func="
               () => {
                 roundDatesVisible = !roundDatesVisible;
               }
@@ -289,7 +252,7 @@
           v-for="(dates, index) in currTournClone.roundDates"
           :key="index"
           :dates="dates"
-          :handleEdit="
+          :handle-edit="
             () => {
               resetRoundFormState();
               roundForm = {
@@ -332,26 +295,26 @@
     <div v-else>
       <Header title-text="Edit Venue Information" />
     </div>
-    <form @submit.prevent="" class="px-10">
+    <form class="px-10" @submit.prevent="">
       <Dropdown
+        v-model="venueForm.week"
         label="Week"
         :items="['1', '2']"
         placeholder="Select round week"
-        v-model="venueForm.week"
       />
       <Dropdown
+        v-model="venueForm.day"
         label="Day"
         :items="['Tuesday', 'Wednesday']"
         placeholder="Select round day"
-        v-model="venueForm.day"
       />
       <label class="heading-montserrat">Venues</label>
       <Multiselect
+        v-model="venueForm.venues"
         :items="tournamentStore.currentTournament.venues.map((v) => v.name)"
         placeholder="Select round venues"
+        :selected-chips="venueForm.editMode ? venueForm.venues : []"
         @change="(newSelected) => (venueForm.venues = newSelected)"
-        v-model="venueForm.venues"
-        :selectedChips="venueForm.editMode ? venueForm.venues : []"
       />
       <div class="flex flex-row">
         <!-- apply -->
@@ -406,37 +369,37 @@
     </div>
     <form class="px-10" @submit.prevent="">
       <FormField
+        v-model="roundForm.round"
         label="Round"
         placeholder="Enter the round"
-        v-model="roundForm.round"
       />
       <div class="grid grid-cols-2 gap-x-4">
         <div>
           <FormField
+            v-model="roundForm.weekOneTues"
             label="Tuesday Week 1"
             placeholder="DD/MM"
-            v-model="roundForm.weekOneTues"
           />
         </div>
         <div>
           <FormField
+            v-model="roundForm.weekOneWed"
             label="Wednesday Week 1"
             placeholder="DD/MM"
-            v-model="roundForm.weekOneWed"
           />
         </div>
         <div>
           <FormField
+            v-model="roundForm.weekTwoTues"
             label="Tuesday Week 2"
             placeholder="DD/MM"
-            v-model="roundForm.weekTwoTues"
           />
         </div>
         <div>
           <FormField
+            v-model="roundForm.weekTwoWed"
             label="Wednesday Week 2"
             placeholder="DD/MM"
-            v-model="roundForm.weekTwoWed"
           />
         </div>
       </div>
@@ -486,9 +449,8 @@ import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "../../../../stores/tournaments";
 import { useVenueStore } from "../../../../stores/venues";
 import { useTeamStore } from "../../../../stores/teams";
-import { useRoute } from "#imports";
+import { useRoute, useRouter } from "#imports";
 import { ref, computed, onMounted } from "vue";
-import { useRouter } from "#imports";
 
 const router = useRouter();
 const defaultVenueInput = {
@@ -537,17 +499,11 @@ onMounted(async () => {
   loading.value = false;
 });
 
-const defaultInputState = {
-  id: "",
-  form: "",
-  num: 9,
-};
-
 const addVenue = () => {
   if (
     !venueForm.value.week ||
     !venueForm.value.day ||
-    venueForm.value.venues.length == 0
+    venueForm.value.venues.length === 0
   ) {
     return;
   }
@@ -561,7 +517,7 @@ const addVenue = () => {
       week: parseInt(venueForm.value.week),
       name: venueForm.value.venues[i],
       day: venueForm.value.day,
-    }
+    };
 
     if (venueInVenues(pushVenue)) {
       continue;
@@ -580,7 +536,7 @@ const venueInVenues = (venue) => {
     }
   }
   return false;
-}
+};
 
 const addRound = () => {
   if (
@@ -597,26 +553,26 @@ const addRound = () => {
   edited.value.roundDates = true;
   edited.value.changesMade = true;
 
-  let roundExists = false
+  let roundExists = false;
   let index = 0;
-  for(let i = 0; i < currTournClone.roundDates.length; i++) {
-    console.log(roundForm.value.round)
-    console.log(currTournClone.roundDates[i].round)
+  for (let i = 0; i < currTournClone.roundDates.length; i++) {
+    console.log(roundForm.value.round);
+    console.log(currTournClone.roundDates[i].round);
     if (roundForm.value.round === currTournClone.roundDates[i].round) {
       roundExists = true;
       index = i;
       break;
     }
   }
-  
+
   if (roundExists) {
-    currTournClone.roundDates[index] = { 
+    currTournClone.roundDates[index] = {
       round: roundForm.value.round,
       weekOneTues: roundForm.value.weekOneTues,
       weekOneWed: roundForm.value.weekOneWed,
       weekTwoTues: roundForm.value.weekTwoTues,
-      weekTwoWed: roundForm.value.weekTwoWed, 
-    }
+      weekTwoWed: roundForm.value.weekTwoWed,
+    };
   } else {
     currTournClone.roundDates.push({
       round: roundForm.value.round,
@@ -672,14 +628,9 @@ let currTournClone = JSON.parse(
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
 
-const changesMade = ref(false);
 const dayVenues = ref([]);
 
 const status = currTournClone.status;
-const drawStatus = "INCOMPLETE";
-const currentRound = currTournClone.currentRound;
-const totalRound = "8";
-const results = "UNRELEASED";
 const roundDatesVisible = ref(true);
 const venueInfoVisible = ref(true);
 
@@ -703,11 +654,11 @@ const deleteVenue = async (name, week, day) => {
 await teamStore.getTeamsbyTournament(route.params.tournamentId);
 
 const combineVenues = (venue) => {
-  let findDayIndex = dayVenues.value.findIndex(
-    (day) => day.day == venue.day && day.week == venue.week
+  const findDayIndex = dayVenues.value.findIndex(
+    (day) => day.day === venue.day && day.week === venue.week
   );
 
-  if (findDayIndex == -1) {
+  if (findDayIndex === -1) {
     // day was not found
     dayVenues.value.push({
       day: venue.day,
@@ -746,14 +697,6 @@ const setDayVenues = () => {
   if (currTournClone.venues) {
     currTournClone.venues.map(combineVenues);
   }
-};
-
-const venueEdited = () => {
-  edited.value.venueInfo = true;
-};
-
-const roundEdited = () => {
-  edited.value.roundDates = true;
 };
 
 const applyChanges = () => {
@@ -809,7 +752,7 @@ const changeStage = (value) => {
     return;
   }
 
-  let origVal =
+  const origVal =
     stageList[stage.value - 1] === tournamentStore.currentTournament.status;
 
   // note : multiple vals affect changes made
@@ -818,9 +761,5 @@ const changeStage = (value) => {
   edited.value.information = !origVal;
 
   currTournClone.status = stageList[stage.value - 1];
-};
-
-const print = (val) => {
-  console.log(val);
 };
 </script>
