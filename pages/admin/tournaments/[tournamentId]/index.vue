@@ -508,8 +508,8 @@ const tournamentStore = await useTournamentStore();
 const venueStore = await useVenueStore();
 const teamStore = await useTeamStore();
 const loading = ref(true);
-const venueForm = { ...defaultVenueInput };
-const roundForm = { ...defaultRoundInput };
+const venueForm = ref({ ...defaultVenueInput });
+const roundForm = ref({ ...defaultRoundInput });
 const modalRoundVisibility = ref(false);
 const modalVenueVisibility = ref(false);
 const teamsModalVisibility = ref(false);
@@ -523,9 +523,6 @@ const edited = ref({
   venueInfo: false,
   roundDates: false,
 });
-
-const venueForm = ref(Object.assign({}, defaultVenueInput));
-const roundForm = ref(Object.assign({}, defaultRoundInput));
 
 onMounted(async () => {
   try {
