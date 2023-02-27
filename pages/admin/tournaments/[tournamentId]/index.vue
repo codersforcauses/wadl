@@ -312,26 +312,29 @@
       <Header title-text="Edit Venue Information" />
     </div>
     <form @submit.prevent="" class="px-10">
-      <label class="heading-montserrat">Week</label>
-      <Multiselect
+      <Dropdown
+        label="Week"
         :items="[1, 2]"
         placeholder="Select round week"
-        :selected="[venueForm.week]"
+        selected="1"
+        @change="venueEdited"
       />
-      <label class="heading-montserrat">Day</label>
-      <Multiselect
+      <Dropdown
+        label="Day"
         :items="['Tuesday', 'Wednesday']"
         placeholder="Select round day"
-        :selected="[venueForm.day]"
+        selected="Tuesday"
+        @change="venueEdited"
       />
       <label class="heading-montserrat">Venues</label>
       <Multiselect
         :items="['a', 'b', 'c']"
-        placeholder="Select round venue"
-        :selected="[venueForm.venue]"
+        placeholder="Select round venues"
+        :selected="venueForm.venues"
+        @change="venueEdited"
       />
 
-      <div v-if="true">
+      <div v-if="!edited.venueInfo">
         <Button
           button-text="Input required fields"
           button-color="bg-gray-200"
@@ -399,7 +402,7 @@
           <FormField label="Wednesday Week 2" placeholder="DD/MM" />
         </div>
       </div>
-      <div v-if="true">
+      <div v-if="!edited.roundDates">
         <Button
           button-text="Input required fields"
           button-color="bg-gray-200"
@@ -465,7 +468,7 @@ const router = useRouter();
 const defaultVenueInput = {
   week: 1,
   day: "Tuesday",
-  venue: ["Place"],
+  venues: ["Place"],
 };
 const defaultRoundInput = {
   round: null,
@@ -480,8 +483,8 @@ const tournamentStore = await useTournamentStore();
 const venueStore = await useVenueStore();
 const teamStore = await useTeamStore();
 const loading = ref(true);
-const roundForm = { ...defaultRoundInput };
 const venueForm = { ...defaultVenueInput };
+const roundForm = { ...defaultRoundInput };
 const modalRoundVisibility = ref(false);
 const modalVenueVisibility = ref(false);
 const teamsModalVisibility = ref(false);
@@ -533,8 +536,8 @@ const teamsByLevel = computed(() => {
 });
 
 const resetFormState = () => {
-  roundForm.value = { ...defaultRoundInput };
   venueForm.value = { ...defaultVenueInput };
+  roundForm.value = { ...defaultRoundInput };
   editMode.value = false;
 };
 
@@ -624,6 +627,14 @@ const setDayVenues = () => {
   if (currTournClone.venues) {
     currTournClone.venues.map(combineVenues);
   }
+};
+
+const venueEdited = () => {
+  edited.value.venueInfo = true;
+};
+
+const roundEdited = () => {
+  edited.value.roundDates = true;
 };
 
 const applyChanges = () => {
