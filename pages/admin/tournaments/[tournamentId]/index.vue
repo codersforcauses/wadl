@@ -325,7 +325,7 @@
       />
       <label class="heading-montserrat">Venues</label>
       <Multiselect
-        :items="['asadf', 'basdf', 'cfda']"
+        :items="tournamentStore.currentTournament.venues.map(v => v.name)"
         placeholder="Select round venues"
         @change="(newSelected) => venueForm.venues = newSelected"
         v-model="venueForm.venues"
