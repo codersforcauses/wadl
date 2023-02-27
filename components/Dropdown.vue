@@ -29,6 +29,10 @@ const isOpen = ref(false);
 const selected = ref(props.modelValue);
 const emit = defineEmits(["change", "update:modelValue"]);
 
+watch(() => props.modelValue, (newVal) => {
+   selected.value = newVal;
+});
+
 const handleClick = (item) => {
   if (!props.disabled) {
     selected.value = item;
