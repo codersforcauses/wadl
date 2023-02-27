@@ -15,11 +15,19 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  modelValue: {
+    type: Array,
+    default: () => [],
+  },
 });
 
 const isOpen = ref(false);
 const selectedChips = ref([...props.selectedChips]);
 const emit = defineEmits(["change"]);
+
+watch(() => props.modelValue, (newVal) => {
+  selectedChips.value = newVal;
+});
 
 const toggleSelection = (item) => {
   if (item === "Any") {

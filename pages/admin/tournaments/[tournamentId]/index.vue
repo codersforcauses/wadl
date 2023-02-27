@@ -327,8 +327,8 @@
       <Multiselect
         :items="['a', 'b', 'c']"
         placeholder="Select round venues"
-        :selected="venueForm.venues"
-        v-model="venueForm.venue"
+        @change="(newSelected) => venueForm.venues = newSelected"
+        v-model="venueForm.venues"
       />
       <div class="flex flex-row">
         <!-- apply -->
