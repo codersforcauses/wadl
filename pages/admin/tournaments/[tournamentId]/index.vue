@@ -313,7 +313,7 @@
     <form @submit.prevent="" class="px-10">
       <Dropdown
         label="Week"
-        :items="[1, 2]"
+        :items="['1', '2']"
         placeholder="Select round week"
         v-model="venueForm.week"
       />
@@ -330,18 +330,7 @@
         :selected="venueForm.venues"
         v-model="venueForm.venue"
       />
-
-      <div v-if="!edited.venueInfo">
-        <Button
-          button-text="Input required fields"
-          button-color="bg-gray-200"
-          text-color="text-gray-500"
-          size="xlarge"
-          class="my-2 mx-2"
-          @click="() => {}"
-        />
-      </div>
-      <div v-else class="flex flex-row">
+      <div class="flex flex-row">
         <!-- apply -->
         <Button
           :button-text="editMode ? 'Edit Venue' : 'Create Venue'"
@@ -405,21 +394,7 @@
           <FormField label="Wednesday Week 2" placeholder="DD/MM" />
         </div>
       </div>
-      <div v-if="!edited.roundDates">
-        <Button
-          button-text="Input required fields"
-          button-color="bg-gray-200"
-          text-color="text-gray-500"
-          size="xlarge"
-          class="my-2 mx-2"
-          @click="
-            (e) => {
-              e.stopPropagation();
-            }
-          "
-        />
-      </div>
-      <div v-else class="flex flex-row">
+      <div class="flex flex-row">
         <!-- apply -->
         <Button
           :button-text="editMode ? 'Edit Round' : 'Create Round'"
@@ -431,6 +406,7 @@
             (e) => {
               modalRoundVisibility = false;
               edited.roundDates = true;
+              addVenue(VenueForm);
               e.stopPropagation();
             }
           "
@@ -472,9 +448,9 @@ import { useRouter } from "#imports";
 
 const router = useRouter();
 const defaultVenueInput = {
-  week: null,
-  day: null,
-  venues: [],
+  week: 1,
+  day: "Tuesday",
+  venues: ["Place"],
 };
 const defaultRoundInput = {
   round: null,
@@ -521,6 +497,18 @@ const defaultInputState = {
 };
 
 const input = ref(null);
+
+const addVenue = () => {
+  for (let i = 0; i < venueForm.venues.length; i++) {
+    currTournClone.venues.push({
+      day: venueForm.value.day,
+      name: venueForm.value.venues[i].name,
+      week: venueForm.value.week,
+    });
+  }
+  resetVenueFormState();
+  setDayVenues();
+};
 
 const handleLevelButtons = (button, level) => {
   switch (button) {
