@@ -287,10 +287,10 @@
               resetRoundFormState();
               roundForm = {
                 round: dates.round,
-                weekOneTues: dates.tueWeek1,
-                weekOneWed: dates.wedWeek1,
-                weekTwoTues: dates.tueWeek2,
-                weekTwoWed: dates.wedWeek2,
+                weekOneTues: dates.weekOneTues,
+                weekOneWed: dates.weekOneWed,
+                weekTwoTues: dates.weekTwoTues,
+                weekTwoWed: dates.weekTwoWed,
               };
 
               modalRoundVisibility = true;
