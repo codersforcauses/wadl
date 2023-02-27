@@ -301,7 +301,6 @@
     @close="
       () => {
         modalVenueVisibility = false;
-        resetVenueFormState();
       }
     "
   >
@@ -317,14 +316,12 @@
         :items="[1, 2]"
         placeholder="Select round week"
         v-model="venueForm.week"
-        @change="venueEdited"
       />
       <Dropdown
         label="Day"
         :items="['Tuesday', 'Wednesday']"
         placeholder="Select round day"
         v-model="venueForm.day"
-        @change="venueEdited"
       />
       <label class="heading-montserrat">Venues</label>
       <Multiselect
@@ -332,7 +329,6 @@
         placeholder="Select round venues"
         :selected="venueForm.venues"
         v-model="venueForm.venue"
-        @change="venueEdited"
       />
 
       <div v-if="!edited.venueInfo">
@@ -348,16 +344,22 @@
       <div v-else class="flex flex-row">
         <!-- apply -->
         <Button
-          :button-text="editMode ? 'Edit Round' : 'Create Round'"
+          :button-text="editMode ? 'Edit Venue' : 'Create Venue'"
           button-color="bg-light-green"
           text-color="text-white"
           size="medium"
           class="my-2 mx-2"
-          @click="() => {}"
+          @click="
+            () => {
+              modalVenueVisibility = false;
+              edited.venueInfo = true;
+              e.stopPropagation();
+            }
+          "
         />
         <!-- revert -->
         <Button
-          button-text="Reset"
+          button-text="Clear"
           button-color="bg-dark-red/20"
           text-color="text-dark-red"
           size="medium"
@@ -378,7 +380,6 @@
     @close="
       () => {
         modalRoundVisibility = false;
-        resetRoundFormState();
       }
     "
   >
@@ -389,39 +390,19 @@
       <Header title-text="Edit Round Dates" />
     </div>
     <form class="px-10">
-      <FormField
-        label="Round"
-        placeholder="Enter the round"
-        @update="roundEdited"
-      />
+      <FormField label="Round" placeholder="Enter the round" />
       <div class="grid grid-cols-2 gap-x-4">
         <div>
-          <FormField
-            label="Tuesday Week 1"
-            placeholder="DD/MM"
-            @update="roundEdited"
-          />
+          <FormField label="Tuesday Week 1" placeholder="DD/MM" />
         </div>
         <div>
-          <FormField
-            label="Wednesday Week 1"
-            placeholder="DD/MM"
-            @update="roundEdited"
-          />
+          <FormField label="Wednesday Week 1" placeholder="DD/MM" />
         </div>
         <div>
-          <FormField
-            label="Tuesday Week 2"
-            placeholder="DD/MM"
-            @update="roundEdited"
-          />
+          <FormField label="Tuesday Week 2" placeholder="DD/MM" />
         </div>
         <div>
-          <FormField
-            label="Wednesday Week 2"
-            placeholder="DD/MM"
-            @update="roundEdited"
-          />
+          <FormField label="Wednesday Week 2" placeholder="DD/MM" />
         </div>
       </div>
       <div v-if="!edited.roundDates">
@@ -448,13 +429,15 @@
           class="my-2 mx-2"
           @click="
             (e) => {
+              modalRoundVisibility = false;
+              edited.roundDates = true;
               e.stopPropagation();
             }
           "
         />
         <!-- revert -->
         <Button
-          button-text="Reset"
+          button-text="Clear"
           button-color="bg-dark-red/20"
           text-color="text-dark-red"
           size="medium"
@@ -562,14 +545,10 @@ const teamsByLevel = computed(() => {
 
 const resetVenueFormState = () => {
   venueForm.value = { ...defaultVenueInput };
-  roundForm.value = { ...defaultRoundInput };
-  editMode.value = false;
 };
 
 const resetRoundFormState = () => {
-  venueForm.value = { ...defaultVenueInput };
   roundForm.value = { ...defaultRoundInput };
-  editMode.value = false;
 };
 
 await tournamentStore.getTournaments();
