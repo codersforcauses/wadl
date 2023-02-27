@@ -314,7 +314,7 @@
     <form @submit.prevent="" class="px-10">
       <Dropdown
         label="Week"
-        :items="[1, 2]"
+        :items="['1', '2']"
         placeholder="Select round week"
         selected="1"
         v-model="venueForm.week"
@@ -336,18 +336,7 @@
         v-model="venueForm.venue"
         @change="venueEdited"
       />
-
-      <div v-if="!edited.venueInfo">
-        <Button
-          button-text="Input required fields"
-          button-color="bg-gray-200"
-          text-color="text-gray-500"
-          size="xlarge"
-          class="my-2 mx-2"
-          @click="() => {}"
-        />
-      </div>
-      <div v-else class="flex flex-row">
+      <div class="flex flex-row">
         <!-- apply -->
         <Button
           :button-text="editMode ? 'Edit Round' : 'Create Round'"
@@ -426,21 +415,7 @@
           />
         </div>
       </div>
-      <div v-if="!edited.roundDates">
-        <Button
-          button-text="Input required fields"
-          button-color="bg-gray-200"
-          text-color="text-gray-500"
-          size="xlarge"
-          class="my-2 mx-2"
-          @click="
-            (e) => {
-              e.stopPropagation();
-            }
-          "
-        />
-      </div>
-      <div v-else class="flex flex-row">
+      <div class="flex flex-row">
         <!-- apply -->
         <Button
           :button-text="editMode ? 'Edit Round' : 'Create Round'"
@@ -450,6 +425,7 @@
           class="my-2 mx-2"
           @click="
             (e) => {
+              addVenue(VenueForm);
               e.stopPropagation();
             }
           "
@@ -491,7 +467,7 @@ import { useRouter } from "#imports";
 
 const router = useRouter();
 const defaultVenueInput = {
-  week: 1,
+  week: "1",
   day: "Tuesday",
   venues: ["Place"],
 };
@@ -541,6 +517,18 @@ const defaultInputState = {
 
 const input = ref(null);
 
+const addVenue = () => {
+  for(let i = 0; i < venueForm.venues.length; i++) {
+    currTournClone.venues.push({
+      day: venueForm.value.day,
+      name: venueForm.value.venues[i].name,
+      week: venueForm.value.week,
+    });
+  }
+  resetVenueFormState();
+  setDayVenues();
+};
+
 const handleLevelButtons = (button, level) => {
   switch (button) {
     case "Division":
@@ -579,9 +567,7 @@ await tournamentStore.getTournaments();
 await tournamentStore.getTournament(route.params.tournamentId);
 
 // clone tournament -- simplifies revertChanges.
-let currTournClone = {...tournamentStore.currentTournament};
-
-console.log(currTournClone);
+let currTournClone = { ...tournamentStore.currentTournament };
 
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
@@ -699,7 +685,7 @@ const revertChanges = async () => {
     }
   }
 
-  currTournClone = {...tournamentStore.currentTournament};
+  currTournClone = { ...tournamentStore.currentTournament };
 
   setDayVenues();
 };
