@@ -325,7 +325,7 @@
       />
       <label class="heading-montserrat">Venues</label>
       <Multiselect
-        :items="['a', 'b', 'c']"
+        :items="['asadf', 'basdf', 'cfda']"
         placeholder="Select round venues"
         @change="(newSelected) => venueForm.venues = newSelected"
         v-model="venueForm.venues"
@@ -340,8 +340,7 @@
           class="my-2 mx-2"
           @click="
             (e) => {
-              modalVenueVisibility = false;
-              edited.venueInfo = true;
+              addVenue();
               e.stopPropagation();
             }
           "
@@ -406,7 +405,7 @@
             (e) => {
               modalRoundVisibility = false;
               edited.roundDates = true;
-              addVenue(VenueForm);
+              addRound();
               e.stopPropagation();
             }
           "
@@ -497,13 +496,22 @@ const defaultInputState = {
 };
 
 const addVenue = () => {
+  modalVenueVisibility.value = false;
+  edited.value.venueInfo = true;
+  edited.value.changesMade = true;
+  console.log(currTournClone.venues)
+  console.log(tournamentStore.currentTournament)
+
   for (let i = 0; i < venueForm.value.venues.length; i++) {
     currTournClone.venues.push({
-      day: venueForm.value.day,
-      name: venueForm.value.venues[i].name,
-      week: venueForm.value.week,
+      day:  venueForm.value.day,
+      name: venueForm.value.venues[i],
+      week: parseInt(venueForm.value.week),
     });
   }
+
+  console.log(currTournClone.venues)
+  console.log(tournamentStore.currentTournament)
   resetVenueFormState();
   setDayVenues();
 };
@@ -542,7 +550,7 @@ await tournamentStore.getTournaments();
 await tournamentStore.getTournament(route.params.tournamentId);
 
 // clone tournament -- simplifies revertChanges.
-let currTournClone = { ...tournamentStore.currentTournament };
+let currTournClone = JSON.parse(JSON.stringify(tournamentStore.currentTournament));
 
 const stageList = ["Open", "Closed", "Running", "Complete"];
 const stage = ref(1);
@@ -660,7 +668,8 @@ const revertChanges = async () => {
     }
   }
 
-  currTournClone = { ...tournamentStore.currentTournament };
+  // creates deep clone of tournstore. deep copies nested objects too (issue with = ...obj)
+  currTournClone = JSON.parse(JSON.stringify(tournamentStore.currentTournament))
 
   setDayVenues();
 };
