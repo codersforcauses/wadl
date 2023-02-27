@@ -316,7 +316,6 @@
         label="Week"
         :items="[1, 2]"
         placeholder="Select round week"
-        selected="1"
         v-model="venueForm.week"
         @change="venueEdited"
       />
@@ -324,7 +323,6 @@
         label="Day"
         :items="['Tuesday', 'Wednesday']"
         placeholder="Select round day"
-        selected="Tuesday"
         v-model="venueForm.day"
         @change="venueEdited"
       />
@@ -491,9 +489,9 @@ import { useRouter } from "#imports";
 
 const router = useRouter();
 const defaultVenueInput = {
-  week: 1,
-  day: "Tuesday",
-  venues: ["Place"],
+  week: null,
+  day: null,
+  venues: [],
 };
 const defaultRoundInput = {
   round: null,
@@ -579,7 +577,7 @@ await tournamentStore.getTournaments();
 await tournamentStore.getTournament(route.params.tournamentId);
 
 // clone tournament -- simplifies revertChanges.
-let currTournClone = {...tournamentStore.currentTournament};
+let currTournClone = { ...tournamentStore.currentTournament };
 
 console.log(currTournClone);
 
@@ -699,7 +697,7 @@ const revertChanges = async () => {
     }
   }
 
-  currTournClone = {...tournamentStore.currentTournament};
+  currTournClone = { ...tournamentStore.currentTournament };
 
   setDayVenues();
 };
