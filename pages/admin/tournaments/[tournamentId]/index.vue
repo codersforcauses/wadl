@@ -597,14 +597,35 @@ const addRound = () => {
   edited.value.roundDates = true;
   edited.value.changesMade = true;
 
-  console.log(currTournClone.roundDates);
-  currTournClone.roundDates.push({
-    round: roundForm.value.round,
-    weekOneTues: roundForm.value.weekOneTues,
-    weekOneWed: roundForm.value.weekOneWed,
-    weekTwoTues: roundForm.value.weekTwoTues,
-    weekTwoWed: roundForm.value.weekTwoWed,
-  });
+  let roundExists = false
+  let index = 0;
+  for(let i = 0; i < currTournClone.roundDates.length; i++) {
+    console.log(roundForm.value.round)
+    console.log(currTournClone.roundDates[i].round)
+    if (roundForm.value.round === currTournClone.roundDates[i].round) {
+      roundExists = true;
+      index = i;
+      break;
+    }
+  }
+  
+  if (roundExists) {
+    currTournClone.roundDates[index] = { 
+      round: roundForm.value.round,
+      weekOneTues: roundForm.value.weekOneTues,
+      weekOneWed: roundForm.value.weekOneWed,
+      weekTwoTues: roundForm.value.weekTwoTues,
+      weekTwoWed: roundForm.value.weekTwoWed, 
+    }
+  } else {
+    currTournClone.roundDates.push({
+      round: roundForm.value.round,
+      weekOneTues: roundForm.value.weekOneTues,
+      weekOneWed: roundForm.value.weekOneWed,
+      weekTwoTues: roundForm.value.weekTwoTues,
+      weekTwoWed: roundForm.value.weekTwoWed,
+    });
+  }
 
   resetRoundFormState();
   setDayVenues();
