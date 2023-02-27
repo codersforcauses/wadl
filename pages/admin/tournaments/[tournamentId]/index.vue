@@ -226,7 +226,7 @@
           :venues="day.venues"
           :handleEdit="
             () => {
-              venueInfo.editMode = true;
+              venueForm.editMode = true;
               modalVenueVisibility = true;
             }
           "
@@ -310,15 +310,15 @@
     size="w-7/12"
     @close="
       () => {
-        if(venueInfo.editMode) {
+        if(venueForm.editMode) {
           resetVenueFormState();
         }
-        venueInfo.editMode = false;
+        venueForm.editMode = false;
         modalVenueVisibility = false;
       }
     "
   >
-    <div v-if="!venueInfo.editMode">
+    <div v-if="!venueForm.editMode">
       <Header title-text="Venue Information" />
     </div>
     <div v-else>
@@ -347,7 +347,7 @@
       <div class="flex flex-row">
         <!-- apply -->
         <Button
-          :button-text="venueInfo.editMode ? 'Edit Venue' : 'Create Venue'"
+          :button-text="venueForm.editMode ? 'Edit Venue' : 'Create Venue'"
           button-color="bg-light-green"
           text-color="text-white"
           size="medium"
