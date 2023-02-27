@@ -496,8 +496,6 @@ const defaultInputState = {
   num: 9,
 };
 
-const input = ref(null);
-
 const addVenue = () => {
   for (let i = 0; i < venueForm.venues.length; i++) {
     currTournClone.venues.push({
