@@ -10,6 +10,7 @@ const route = useRoute();
 
 onMounted(async () => {
   await teamStore.getTeams();
+  await getFixturesTableData();
 });
 
 const headers = [
