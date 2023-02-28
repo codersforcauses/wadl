@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useTeamStore } from "../../stores/teams";
+import { useRoute } from "#imports";
 
 const tournamentStore = useTournamentStore();
 const teamStore = useTeamStore();
@@ -102,11 +103,11 @@ const getFixturesTableData = () => {
   const formatTime = (date) => {
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    let ampm = hours >= 12 ? "pm" : "am";
+    const ampm = hours >= 12 ? "pm" : "am";
     hours = hours % 12;
-    hours = hours ? hours : 12;
+    hours = hours || 12;
     minutes = minutes.toString().padStart(2, "0");
-    let strTime = hours + ":" + minutes + " " + ampm;
+    const strTime = hours + ":" + minutes + " " + ampm;
     return strTime;
   };
 
@@ -130,7 +131,7 @@ const getFixturesTableData = () => {
           affirmative: teamStore.teams.find(
             (team) => team.id === matchup.affirmativeTeam
           ).name,
-          negative: negativeTeam ? negativeTeam : "Bye",
+          negative: negativeTeam || "Bye",
           topic: matchup.topic,
           status: matchup.status,
         };
@@ -170,10 +171,10 @@ getFixturesTableData();
     <SearchBar @handle-filter="handleFilter" />
   </div>
   <Tabs
+    :key="levelTabsKey"
     :tabs="roundTabs"
     font-size="text-base"
     @handle-tab="handleRound"
-    :key="levelTabsKey"
   />
   <div class="flex justify-center w-full">
     <Table

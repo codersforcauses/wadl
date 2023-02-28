@@ -41,6 +41,8 @@ const width = computed(() => {
       return "w-40";
     case "large":
       return "w-48";
+    case "xlarge":
+      return "w-52";
     default:
       return "w-44";
   }

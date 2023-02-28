@@ -1,7 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
 import { vOnClickOutside } from "@vueuse/components";
+
 const props = defineProps({
   items: {
     type: Array,
@@ -28,6 +29,13 @@ const props = defineProps({
 const isOpen = ref(false);
 const selected = ref(props.modelValue);
 const emit = defineEmits(["change", "update:modelValue"]);
+
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    selected.value = newVal;
+  }
+);
 
 const handleClick = (item) => {
   if (!props.disabled) {

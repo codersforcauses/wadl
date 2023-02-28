@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/vue/20/solid";
 import { vOnClickOutside } from "@vueuse/components";
 const props = defineProps({
@@ -15,11 +15,22 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+  modelValue: {
+    type: Array,
+    default: () => [],
+  },
 });
 
 const isOpen = ref(false);
 const selectedChips = ref([...props.selectedChips]);
 const emit = defineEmits(["change"]);
+
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    selectedChips.value = newVal;
+  }
+);
 
 const toggleSelection = (item) => {
   if (item === "Any") {

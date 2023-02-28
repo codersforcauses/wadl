@@ -81,7 +81,7 @@ onMounted(async () => {
                 button-color="bg-light-green"
                 class="transition duration-200 ease-in-out hover:bg-light-gold hover:shadow-lg justify-center"
                 size="small"
-                textColor="text-white"
+                text-color="text-white"
               />
             </div>
           </div>
