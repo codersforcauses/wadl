@@ -73,9 +73,6 @@ const notification = useNotification();
 const errorMessage = ref(null);
 
 const saveTeamRegistration = async () => {
-  // TODO:
-  // Perform validation
-  // POST to backend
   formInput.value.userTeam = institutionStore.userInstitution.name;
   try {
     await institutionStore.registerTeams(formInput.value);

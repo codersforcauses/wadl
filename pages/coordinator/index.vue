@@ -28,7 +28,6 @@ onMounted(async () => {
   } catch (error) {
     notification.notifyError(error);
   }
-  console.log(tournamentStore.filteredTournaments);
 });
 </script>
 

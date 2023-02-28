@@ -556,8 +556,6 @@ const addRound = () => {
   let roundExists = false;
   let index = 0;
   for (let i = 0; i < currTournClone.roundDates.length; i++) {
-    console.log(roundForm.value.round);
-    console.log(currTournClone.roundDates[i].round);
     if (roundForm.value.round === currTournClone.roundDates[i].round) {
       roundExists = true;
       index = i;

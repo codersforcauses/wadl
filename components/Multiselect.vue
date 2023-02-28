@@ -89,7 +89,7 @@ const removeChip = (item) => {
         v-if="isOpen"
         class="absolute z-10 rounded-b-md bg-white shadow-md w-full transition"
       >
-        <ul class="divide-y divide-gray-200">
+        <ul class="divide-y divide-gray-200 overflow-y-scroll max-h-64">
           <li
             v-for="(item, index) in items"
             :key="index"

@@ -69,7 +69,6 @@ const modalVisibility = ref(false);
 onMounted(async () => {
   if (store.teams.length === 0) {
     await store.getTeamsByID(userStore.institution);
-    console.table(store.teams);
   }
   await tournamentStore.getTournaments();
 });
@@ -141,9 +140,9 @@ const tournamentName = tournamentStore.tournaments[index].name;
         </div>
       </div>
       <FormField v-model="form.timeslot" label="Timeslot" />
-      <Select
+      <Dropdown
         v-model="form.weekPreference"
-        :options="['Week 1', 'Week 2', 'Either']"
+        :items="['Week 1', 'Week 2', 'Either']"
         label="Week Preference"
         class="w-full"
       />
