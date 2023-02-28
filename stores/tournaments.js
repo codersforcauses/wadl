@@ -7,14 +7,15 @@ import {
   setDoc,
   doc,
   updateDoc,
-  onSnapshot,
-  enableIndexedDbPersistence,
+  deleteDoc,
 } from "firebase/firestore";
 
 export const useTournamentStore = defineStore("tournament", {
   state: () => {
     return {
       tournaments: [],
+      filteredTournaments: [],
+      hasTournaments: false,
       currentTournament: null,
       divisions: [],
     };
@@ -48,6 +49,7 @@ export const useTournamentStore = defineStore("tournament", {
           levels: doc.data().levels,
           name: doc.data().name,
           numRounds: doc.data().numRounds,
+          roundDates: doc.data().roundDates,
           shortName: doc.data().shortName,
           status: doc.data().status,
           venues: doc.data().venues,
@@ -59,6 +61,8 @@ export const useTournamentStore = defineStore("tournament", {
     },
     async clearStore() {
       this.tournaments = [];
+      this.filteredTournaments = [];
+      this.hasTournaments = false;
     },
     async createTournament(tournament) {
       const { $clientFirestore } = useNuxtApp();
@@ -78,14 +82,19 @@ export const useTournamentStore = defineStore("tournament", {
         ...tournament,
       });
     },
+
+    // ?: use updateDoc rather than setDoc
     async editTournament(tournament) {
       const { $clientFirestore } = useNuxtApp();
       await setDoc(doc($clientFirestore, "tournaments", tournament.id), {
+        currentRound: tournament.currentRound,
         levels: tournament.levels,
         name: tournament.name,
         numRounds: tournament.numRounds,
         shortName: tournament.shortName,
         status: tournament.status,
+        venues: tournament.venues,
+        roundDates: tournament.roundDates,
       });
 
       this.tournaments.forEach((t) => {
@@ -97,6 +106,12 @@ export const useTournamentStore = defineStore("tournament", {
     getTournament(id) {
       this.currentTournament = [];
       this.currentTournament = this.tournaments.find((t) => t.id === id);
+      if (!this.currentTournament.roundDates) {
+        this.currentTournament.roundDates = [];
+      }
+      if (!this.currentTournament.venues) {
+        this.currentTournament.venues = [];
+      }
     },
     getTournamentDivisionsByLevel(level) {
       const levels = this.currentTournament.levels.find(
@@ -125,11 +140,23 @@ export const useTournamentStore = defineStore("tournament", {
       this.currentTournament.levels[index].divisions = this.divisions;
       await updateDoc(tournamentRef, this.currentTournament);
     },
-    deleteTournament(id) {
+    async deleteTournament(id) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "tournaments", id);
+      await deleteDoc(ref);
       const index = this.tournaments.findIndex((t) => {
         return id === t.id;
       });
       this.tournaments.splice(index, 1);
+    },
+    async filterTournaments(tournaments) {
+      tournaments.forEach((id) => {
+        const index = this.tournaments.findIndex((t) => {
+          return id === t.id;
+        });
+        this.filteredTournaments.push(this.tournaments[index]);
+      });
+      this.hasTournaments = true;
     },
   },
 });

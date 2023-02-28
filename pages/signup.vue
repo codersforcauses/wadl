@@ -29,6 +29,13 @@
         type="number"
         placeholder="Your Phone Number"
       />
+      <FormField
+        v-model="form.school"
+        label="School Name"
+        placeholder="Your School"
+        :color="!isValid ? 'border-red-500' : ''"
+        @update="updateInput"
+      />
 
       <FormField
         v-model="form.password"
@@ -110,6 +117,7 @@ const form = ref({
   password: "",
   confirmPassword: "",
   role: "",
+  school: "",
 });
 
 const isValid = ref(true);

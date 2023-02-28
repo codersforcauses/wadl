@@ -11,6 +11,7 @@ import {
   setDoc,
   getDoc,
   writeBatch,
+  deleteDoc,
 } from "firebase/firestore";
 import { useUserStore } from "./user";
 
@@ -44,14 +45,19 @@ export const useInstitutionStore = defineStore("institution", {
     async getInstitutionByID(id) {
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "institutions", id);
-      const institution = await getDoc(ref);
-      this.userInstitution = {
-        id: institution.id,
-        name: institution.data().name,
-        email: institution.data().email,
-        number: institution.data().number,
-        abbreviation: institution.data().abbreviation,
-      };
+      await getDoc(ref).then((doc) => {
+        this.userInstitution = {
+          id: doc.id,
+          name: doc.data().name,
+          email: doc.data().email,
+          number: doc.data().number,
+          abbreviation: doc.data().abbreviation,
+          tournaments: null,
+        };
+        if (doc.data().tournaments !== undefined) {
+          this.userInstitution.tournaments = doc.data().tournaments;
+        }
+      });
     },
     async checkInstitution(institution) {
       let newInstitution = true;
@@ -195,7 +201,8 @@ export const useInstitutionStore = defineStore("institution", {
       const { $clientFirestore } = useNuxtApp();
       const query_ = query(
         collection($clientFirestore, "teams"),
-        where("institutionId", "==", userStore.institution)
+        where("institutionId", "==", userStore.institution),
+        where("tournamentId", "==", team.tournamentId)
       );
       const snapshot = await getCountFromServer(query_);
       let teamCounter = snapshot.data().count + 1;
@@ -209,7 +216,7 @@ export const useInstitutionStore = defineStore("institution", {
         if (num > 0) {
           for (let i = 0; i < num; i++) {
             const ref = doc(collection($clientFirestore, "teams"));
-            batch.set(ref, {
+            const teamDetails = {
               name: team.userTeam + " " + teamCounter,
               tournamentId: team.tournamentId,
               institutionId: team.institutionId,
@@ -224,14 +231,15 @@ export const useInstitutionStore = defineStore("institution", {
                 : null,
               notes: team.notes,
               division: null,
-            });
+            };
+            batch.set(ref, teamDetails);
+            this.teams.push(teamDetails);
             teamCounter++;
           }
         }
       });
       await batch.commit();
     },
-
     async editTeam(team) {
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "teams", team.id);
@@ -280,11 +288,24 @@ export const useInstitutionStore = defineStore("institution", {
         this.teams.push(data);
       });
     },
-    deleteInstitution(id) {
+    async deleteInstitution(id) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "institutions", id);
+      await deleteDoc(ref);
       const index = this.institutions.findIndex((t) => {
         return id === t.id;
       });
       this.institutions.splice(index, 1);
+    },
+    async updateInstitutionTournaments(institutionId, tournament) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "institutions", institutionId);
+      const data = {
+        tournaments: tournament,
+      };
+      await updateDoc(ref, data).then(() => {
+        this.updateProfile(ref);
+      });
     },
   },
 });
