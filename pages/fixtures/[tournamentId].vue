@@ -167,7 +167,6 @@ const filteredTableData = computed(() => {
 });
 
 createRoundTabs();
-getFixturesTableData();
 </script>
 
 <template>
