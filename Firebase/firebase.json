@@ -46,7 +46,6 @@
     "rules": "storage.rules"
   },
   "extensions": {
-    "firestore-send-email": "firebase/firestore-send-email@0.1.21",
-    "firestore-bundle-builder": "firebase/firestore-bundle-builder@0.1.3"
+    "firestore-send-email": "firebase/firestore-send-email@0.1.21"
   }
 }
