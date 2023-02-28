@@ -61,7 +61,6 @@ export const useTournamentStore = defineStore("tournament", {
     },
     async createTournament(tournament) {
       const { $clientFirestore } = useNuxtApp();
-      console.log(tournament);
       const t = await addDoc(collection($clientFirestore, "tournaments"), {
         levels: tournament.levels,
         name: tournament.name,
