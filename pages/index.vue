@@ -25,11 +25,9 @@
 
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
-import { useTeamStore } from "../stores/teams";
 import { useTournamentStore } from "../stores/tournaments";
 import { onMounted } from "vue";
 import { useHead } from "#imports";
-const teamStore = useTeamStore();
 
 useHead({
   title: "WADL",
@@ -38,6 +36,5 @@ const store = useTournamentStore();
 
 onMounted(async () => {
   await store.getTournaments();
-  await teamStore.getTeams();
 });
 </script>

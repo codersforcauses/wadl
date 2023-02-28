@@ -37,11 +37,8 @@ export const useTournamentStore = defineStore("tournament", {
       this.clearStore();
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
-      // enableIndexedDbPersistence($clientFirestore);
       const ref = collection($clientFirestore, "tournaments");
-      const querySnapshot = await getDocs(ref, {
-        includeMetadataChanges: true,
-      });
+      const querySnapshot = await getDocs(ref);
       querySnapshot.forEach((doc) => {
         const tournament = {
           id: doc.id,
@@ -54,8 +51,6 @@ export const useTournamentStore = defineStore("tournament", {
           status: doc.data().status,
           venues: doc.data().venues,
         };
-        const source = doc.metadata.fromCache ? "local cache" : "server";
-        console.log("Data came from " + source);
         this.tournaments.push(tournament);
       });
     },

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useTeamStore } from "../../stores/teams";
 import { useRoute } from "#imports";
@@ -7,6 +7,10 @@ import { useRoute } from "#imports";
 const tournamentStore = useTournamentStore();
 const teamStore = useTeamStore();
 const route = useRoute();
+
+onMounted(async () => {
+  await teamStore.getTeams();
+});
 
 const headers = [
   {
