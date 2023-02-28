@@ -5,16 +5,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="installation-guide/" rel="next"/>
-<link href="images/TextlessTransparentLogo.png" rel="icon"/>
+<link href="../installation-guide/" rel="prev"/>
+<link href="../user-guide/" rel="next"/>
+<link href="../images/TextlessTransparentLogo.png" rel="icon"/>
 <meta content="mkdocs-1.4.2, mkdocs-material-9.0.15" name="generator"/>
-<title>WADL Project Documentation</title>
-<link href="assets/stylesheets/main.113286f1.min.css" rel="stylesheet"/>
-<link href="assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
+<title>Tournament Setup - WADL Project Documentation</title>
+<link href="../assets/stylesheets/main.113286f1.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.a0c5b2b5.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="" data-md-color-primary="yellow" data-md-color-scheme="default" dir="ltr">
 <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
@@ -22,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#tech-stack">
+<a class="md-skip" href="#create-tournament">
           Skip to content
         </a>
 </div>
@@ -30,8 +31,8 @@
 </div>
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="WADL Project Documentation" class="md-header__button md-logo" data-md-component="logo" href="." title="WADL Project Documentation">
-<img alt="logo" src="images/TextlessTransparentLogo.png"/>
+<a aria-label="WADL Project Documentation" class="md-header__button md-logo" data-md-component="logo" href=".." title="WADL Project Documentation">
+<img alt="logo" src="../images/TextlessTransparentLogo.png"/>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
@@ -46,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Home
+              Tournament Setup
             
           </span>
 </div>
@@ -112,8 +113,8 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="WADL Project Documentation" class="md-nav__button md-logo" data-md-component="logo" href="." title="WADL Project Documentation">
-<img alt="logo" src="images/TextlessTransparentLogo.png"/>
+<a aria-label="WADL Project Documentation" class="md-nav__button md-logo" data-md-component="logo" href=".." title="WADL Project Documentation">
+<img alt="logo" src="../images/TextlessTransparentLogo.png"/>
 </a>
     WADL Project Documentation
   </label>
@@ -128,14 +129,24 @@
 </a>
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../installation-guide/">
+        Installation Guide
+      </a>
+</li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-          Home
+          Tournament Setup
           <span class="md-nav__icon md-icon"></span>
 </label>
-<a class="md-nav__link md-nav__link--active" href=".">
-        Home
+<a class="md-nav__link md-nav__link--active" href="./">
+        Tournament Setup
       </a>
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -144,44 +155,69 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#tech-stack">
-    Tech Stack
+<a class="md-nav__link" href="#create-tournament">
+    Create Tournament
   </a>
-<nav aria-label="Tech Stack" class="md-nav">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#setup-venues">
+    Setup Venues
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#manage-tournament">
+    Manage Tournament
+  </a>
+<nav aria-label="Manage Tournament" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#backend">
-    Backend
+<a class="md-nav__link" href="#viewing-registered-teams">
+    Viewing Registered Teams
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#frontend">
-    Frontend
+<a class="md-nav__link" href="#managing-level-divisions">
+    Managing Level Divisions
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#view-level-draw">
+    View Level Draw
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adding-venues">
+    Adding Venues
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adding-round-dates">
+    Adding Round Dates
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tournament-status">
+    Tournament Status
   </a>
 </li>
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#features-coming-soon">
+    Features Coming Soon
+  </a>
+</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="installation-guide/">
-        Installation Guide
-      </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="tournament-setup/">
-        Tournament Setup
-      </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="user-guide/">
+<a class="md-nav__link" href="../user-guide/">
         Team Coordinator Guide
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="components/">
+<a class="md-nav__link" href="../components/">
         Components
       </a>
 </li>
@@ -200,23 +236,58 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#tech-stack">
-    Tech Stack
-  </a>
-<nav aria-label="Tech Stack" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#backend">
-    Backend
+<a class="md-nav__link" href="#create-tournament">
+    Create Tournament
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#frontend">
-    Frontend
+<a class="md-nav__link" href="#setup-venues">
+    Setup Venues
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#manage-tournament">
+    Manage Tournament
+  </a>
+<nav aria-label="Manage Tournament" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#viewing-registered-teams">
+    Viewing Registered Teams
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#managing-level-divisions">
+    Managing Level Divisions
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#view-level-draw">
+    View Level Draw
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adding-venues">
+    Adding Venues
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adding-round-dates">
+    Adding Round Dates
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tournament-status">
+    Tournament Status
   </a>
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#features-coming-soon">
+    Features Coming Soon
+  </a>
 </li>
 </ul>
 </nav>
@@ -225,13 +296,56 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Home</h1>
-<h2 id="tech-stack">Tech Stack<a class="headerlink" href="#tech-stack" title="Permanent link">¶</a></h2>
-<h4 id="backend">Backend<a class="headerlink" href="#backend" title="Permanent link">¶</a></h4>
-<p><img alt="Firebase" src="images/firebaselogo.png"/></p>
-<h4 id="frontend">Frontend<a class="headerlink" href="#frontend" title="Permanent link">¶</a></h4>
-<p>Nuxt 3, Vue 3
-<img alt="Nuxt" src="images/nuxtlogo.png"/></p>
+<h1>Tournament Setup</h1>
+<h2 id="create-tournament">Create Tournament<a class="headerlink" href="#create-tournament" title="Permanent link">¶</a></h2>
+<p>To create a new tournament, go to the admin dashboard and find the tournaments section. You'll need to create a new tournament before opening registrations, where you can input the following details:</p>
+<ul>
+<li>Tournament Name</li>
+<li>Tournament Short Name</li>
+<li>Levels (Novice, Junior, Senior)</li>
+<li>Number of Non-preliminary Rounds</li>
+</ul>
+<p>When a tournament is created it will automatically set registrations to opened.</p>
+<hr/>
+<h2 id="setup-venues">Setup Venues<a class="headerlink" href="#setup-venues" title="Permanent link">¶</a></h2>
+<p>Venues must be added on <code>admin/venues</code> so that they can be added to the <code>manage tournament</code> page</p>
+<hr/>
+<h2 id="manage-tournament">Manage Tournament<a class="headerlink" href="#manage-tournament" title="Permanent link">¶</a></h2>
+<p>To access a list of tournaments, go to the admin dashboard and navigate to the tournaments. Click on the tournament row you're interested in to view its management dashboard. Here, you can set up your round dates, venues, and divisions, as well as view all the relevant details related to the tournament.</p>
+<h4 id="viewing-registered-teams">Viewing Registered Teams<a class="headerlink" href="#viewing-registered-teams" title="Permanent link">¶</a></h4>
+<p>You will be able to view all registered teams for the a level by clicking <code>teams</code></p>
+<h4 id="managing-level-divisions">Managing Level Divisions<a class="headerlink" href="#managing-level-divisions" title="Permanent link">¶</a></h4>
+<p>You will be navigated to a <code>Manage Divisions</code> page where you can add new divisions to a level and assign the teams based on venue preferences. This could be done after adding venues to the tournament</p>
+<h4 id="view-level-draw">View Level Draw<a class="headerlink" href="#view-level-draw" title="Permanent link">¶</a></h4>
+<p><code>Coming soon</code> - A page that displays a list of debates after fixtures have been generated.</p>
+<hr/>
+<h3 id="adding-venues">Adding Venues<a class="headerlink" href="#adding-venues" title="Permanent link">¶</a></h3>
+<p>Adding venues to your tournament is crucial in order to properly assign teams to divisions based on their venue preferences. To add venues, simply click the plus icon and choose the week and day for which you want to add a venue. You can select multiple venues for that specific time slot. Keep in mind that if the week and/or day is different, you will have to create a new venue.</p>
+<hr/>
+<h3 id="adding-round-dates">Adding Round Dates<a class="headerlink" href="#adding-round-dates" title="Permanent link">¶</a></h3>
+<p>To add dates for a round, simply click on the plus icon and type the specific round you wish to add dates for. Each round should be added separately, and you can specify the following dates for each round:</p>
+<ul>
+<li>Tuesday Week 1</li>
+<li>Tuesday Week 2</li>
+<li>Wednesday Week 1</li>
+<li>Wednesday Week 2</li>
+</ul>
+<hr/>
+<h3 id="tournament-status">Tournament Status<a class="headerlink" href="#tournament-status" title="Permanent link">¶</a></h3>
+<p>Clicking on <code>Previous Stage</code> or <code>Next Stage</code> will change the status.</p>
+<ul>
+<li><code>Open</code> - Registration is opened and teams can register</li>
+<li><code>Closed</code> - Registration is closed and teams cannot be registered</li>
+<li><code>Running</code> - Fixtures have been generated and is ready for the public to view</li>
+<li><code>Complete</code> - Tournament has been completed and no longer displays to the public</li>
+</ul>
+<hr/>
+<h2 id="features-coming-soon">Features Coming Soon<a class="headerlink" href="#features-coming-soon" title="Permanent link">¶</a></h2>
+<ul>
+<li>Generate Fixtures</li>
+<li>Advance the current round</li>
+<li>Release Results for the current round</li>
+</ul>
 </article>
 </div>
 </div>
@@ -254,8 +368,8 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant"], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
-<script src="assets/javascripts/bundle.2a6f1dda.min.js"></script>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+<script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
 <script src="https://unpkg.com/mermaid@8.8.2/dist/mermaid.min.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
