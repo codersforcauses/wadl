@@ -70,7 +70,7 @@ let levelTabsKey = 0;
 const selectedLevel = ref(juniorFixtures);
 const tableData = ref([]);
 const tableFilter = ref("");
-const selectedRound = ref(selectedTournament?.currentRound);
+let selectedRound = selectedTournament?.currentRound;
 
 const createRoundTabs = () => {
   let round = 1;
@@ -85,14 +85,13 @@ const createRoundTabs = () => {
 };
 
 const handleLevel = (tabName) => {
-  selectedRound.value = selectedTournament?.currentRound;
+  selectedRound = selectedTournament?.currentRound;
   levelSelected = tabName;
   levelTabsKey++;
   tableData.value = [];
   roundTabs.forEach((round) => {
     if (
-      parseInt(round.label.split("")[round.label.length - 1]) ===
-      selectedRound.value
+      parseInt(round.label.split("")[round.label.length - 1]) === selectedRound
     ) {
       round.active = true;
     } else {
@@ -115,7 +114,7 @@ const handleLevel = (tabName) => {
 
 const handleRound = (roundName) => {
   tableData.value = [];
-  selectedRound.value = parseInt(roundName.split("")[roundName.length - 1]);
+  selectedRound = parseInt(roundName.split("")[roundName.length - 1]);
   getFixturesTableData();
 };
 
@@ -164,7 +163,7 @@ const getFixturesTableData = () => {
 
   // Used only for JSON fixtures
   selectedLevel.value.map((matchup) => {
-    if (matchup.round === selectedRound.value) {
+    if (matchup.round === selectedRound) {
       tableData.value.push(matchup);
     }
   });
