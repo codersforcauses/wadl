@@ -79,8 +79,9 @@ const headers = [
 ];
 
 const tabs = [
-  { label: "Team Coordinator", active: false },
-  { label: "Adjudicator", active: true },
+  { label: "Team Coordinator", active: true },
+  { label: "Adjudicator", active: false },
   { label: "Adjudicator Coordinator", active: false },
+  { label: "Admin", active: false },
 ];
 </script>
