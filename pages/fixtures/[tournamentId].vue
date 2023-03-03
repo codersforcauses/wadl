@@ -20,7 +20,6 @@ onMounted(async () => {
     (tournament) => tournament.id === route.params.tournamentId
   );
   selectedRound = parseInt(selectedTournament?.currentRound);
-  console.log(selectedRound, selectedTournament);
   createRoundTabs();
   await getFixturesTableData();
 });
@@ -77,7 +76,6 @@ const tableData = ref([]);
 const tableFilter = ref("");
 
 const createRoundTabs = () => {
-  console.log(selectedTournament);
   let round = 1;
   while (round <= parseInt(selectedTournament?.numRounds)) {
     if (round === parseInt(selectedTournament?.currentRound)) {
