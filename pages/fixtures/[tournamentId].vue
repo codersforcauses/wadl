@@ -3,25 +3,28 @@ import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
 import { useTeamStore } from "../../stores/teams";
 import { useRoute } from "#imports";
-
+import juniorFixtures from "../../data/juniorDraw.json";
+import noviceFixtures from "../../data/noviceDraw.json";
+import seniorFixtures from "../../data/seniorDraw.json";
 const tournamentStore = useTournamentStore();
-const teamStore = useTeamStore();
+//const teamStore = useTeamStore();
 const route = useRoute();
 
 onMounted(async () => {
-  await teamStore.getTeams();
+  //await teamStore.getTeams();
   await getFixturesTableData();
 });
 
 const headers = [
   {
-    key: "div",
-    title: "Div",
+    key: "division",
+    title: "Division",
   },
   {
-    key: "venue",
-    title: "Venue",
+    key: "round",
+    title: "Round",
   },
+
   {
     key: "date",
     title: "Date",
@@ -31,21 +34,25 @@ const headers = [
     title: "Time",
   },
   {
-    key: "affirmative",
+    key: "affirmativeTeam",
     title: "Affirmative",
   },
   {
-    key: "negative",
+    key: "negativeTeam",
     title: "Negative",
+  },
+  {
+    key: "venue",
+    title: "Venue",
   },
   {
     key: "topic",
     title: "Topic",
   },
-  {
-    key: "status",
-    title: "Status",
-  },
+  // {
+  //   key: "status",
+  //   title: "Status",
+  // },
 ];
 const levelTabs = [
   { label: "Novice", active: false },
@@ -58,11 +65,12 @@ const selectedTournament = tournamentStore.getRunning.find(
 );
 
 let levelSelected = "Junior";
-let roundSelected = selectedTournament?.currentRound;
 let levelTabsKey = 0;
 
+const selectedLevel = ref(juniorFixtures);
 const tableData = ref([]);
 const tableFilter = ref("");
+const selectedRound = ref(selectedTournament?.currentRound);
 
 const createRoundTabs = () => {
   let round = 1;
@@ -77,72 +85,88 @@ const createRoundTabs = () => {
 };
 
 const handleLevel = (tabName) => {
-  roundSelected = selectedTournament?.currentRound;
+  selectedRound.value = selectedTournament?.currentRound;
   levelSelected = tabName;
   levelTabsKey++;
   tableData.value = [];
   roundTabs.forEach((round) => {
     if (
-      parseInt(round.label.split("")[round.label.length - 1]) === roundSelected
+      parseInt(round.label.split("")[round.label.length - 1]) ===
+      selectedRound.value
     ) {
       round.active = true;
     } else {
       round.active = false;
     }
   });
+
+  // Only used for JSON fixtures
+  if (levelSelected === "Junior") {
+    selectedLevel.value = juniorFixtures;
+  } else if (levelSelected === "Novice") {
+    selectedLevel.value = noviceFixtures;
+  } else {
+    selectedLevel.value = seniorFixtures;
+  }
+
   tableFilter.value = "";
   getFixturesTableData();
 };
 
 const handleRound = (roundName) => {
   tableData.value = [];
-  roundSelected = parseInt(roundName.split("")[roundName.length - 1]);
+  selectedRound.value = parseInt(roundName.split("")[roundName.length - 1]);
   getFixturesTableData();
 };
 
 const getFixturesTableData = () => {
-  const levelFound = selectedTournament?.levels.find(
-    (lev) => lev.level === levelSelected
-  );
+  // const levelFound = selectedTournament?.levels.find(
+  //   (lev) => lev.level === levelSelected
+  // );
+  // const formatTime = (date) => {
+  //   let hours = date.getHours();
+  //   let minutes = date.getMinutes();
+  //   const ampm = hours >= 12 ? "pm" : "am";
+  //   hours = hours % 12;
+  //   hours = hours || 12;
+  //   minutes = minutes.toString().padStart(2, "0");
+  //   const strTime = hours + ":" + minutes + " " + ampm;
+  //   return strTime;
+  // };
+  // levelFound?.divisions.map((div) => {
+  //   div.matchups.map((matchup) => {
+  //     if (matchup.round === roundSelected) {
+  //       const date = new Date(matchup.datetime)
+  //         .toDateString()
+  //         .split(" ")
+  //         .slice(0, 3)
+  //         .join(" ");
+  //       const time = formatTime(new Date(matchup.datetime));
+  //       const negativeTeam = teamStore.teams.find(
+  //         (team) => team.id === matchup.negativeTeam
+  //       )?.name;
+  //       const row = {
+  //         div: div.division,
+  //         venue: div.venue.name,
+  //         date,
+  //         time,
+  //         affirmative: teamStore.teams.find(
+  //           (team) => team.id === matchup.affirmativeTeam
+  //         ).name,
+  //         negative: negativeTeam || "Bye",
+  //         topic: matchup.topic,
+  //         status: matchup.status,
+  //       };
+  //       tableData.value.push(row);
+  //     }
+  //   });
+  // });
 
-  const formatTime = (date) => {
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    const ampm = hours >= 12 ? "pm" : "am";
-    hours = hours % 12;
-    hours = hours || 12;
-    minutes = minutes.toString().padStart(2, "0");
-    const strTime = hours + ":" + minutes + " " + ampm;
-    return strTime;
-  };
-
-  levelFound?.divisions.map((div) => {
-    div.matchups.map((matchup) => {
-      if (matchup.round === roundSelected) {
-        const date = new Date(matchup.datetime)
-          .toDateString()
-          .split(" ")
-          .slice(0, 3)
-          .join(" ");
-        const time = formatTime(new Date(matchup.datetime));
-        const negativeTeam = teamStore.teams.find(
-          (team) => team.id === matchup.negativeTeam
-        )?.name;
-        const row = {
-          div: div.division,
-          venue: div.venue.name,
-          date,
-          time,
-          affirmative: teamStore.teams.find(
-            (team) => team.id === matchup.affirmativeTeam
-          ).name,
-          negative: negativeTeam || "Bye",
-          topic: matchup.topic,
-          status: matchup.status,
-        };
-        tableData.value.push(row);
-      }
-    });
+  // Used only for JSON fixtures
+  selectedLevel.value.map((matchup) => {
+    if (matchup.round === selectedRound.value) {
+      tableData.value.push(matchup);
+    }
   });
 };
 
