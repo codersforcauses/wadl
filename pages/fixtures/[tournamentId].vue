@@ -10,9 +10,16 @@ const tournamentStore = useTournamentStore();
 //const teamStore = useTeamStore();
 const route = useRoute();
 const isLoading = ref(true);
+let selectedTournament = null;
+let selectedRound = null;
 
 onMounted(async () => {
   //await teamStore.getTeams();
+  selectedTournament = tournamentStore.getRunning.find(
+    (tournament) => tournament.id === route.params.tournamentId
+  );
+  selectedRound = selectedTournament?.currentRound;
+  createRoundTabs();
   await getFixturesTableData();
 });
 
@@ -21,11 +28,6 @@ const headers = [
     key: "division",
     title: "Division",
   },
-  {
-    key: "round",
-    title: "Round",
-  },
-
   {
     key: "date",
     title: "Date",
@@ -61,9 +63,9 @@ const levelTabs = [
   { label: "Senior", active: false },
 ];
 const roundTabs = [];
-const selectedTournament = tournamentStore.getRunning.find(
-  (tournament) => tournament.id === route.params.tournamentId
-);
+// const selectedTournament = tournamentStore.getRunning.find(
+//   (tournament) => tournament.id === route.params.tournamentId
+// );
 
 let levelSelected = "Junior";
 let levelTabsKey = 0;
@@ -71,8 +73,7 @@ let levelTabsKey = 0;
 const selectedLevel = ref(juniorFixtures);
 const tableData = ref([]);
 const tableFilter = ref("");
-let selectedRound = selectedTournament?.currentRound;
-console.log("round", selectedRound);
+
 const createRoundTabs = () => {
   let round = 1;
   while (round <= selectedTournament?.numRounds) {
@@ -179,19 +180,17 @@ const filteredTableData = computed(() => {
   return tableFilter.value
     ? tableData.value.filter(
         (data) =>
-          data?.div?.toString().includes(tableFilter.value) ||
+          data?.division?.toString().includes(tableFilter.value) ||
           data?.venue?.toLowerCase().includes(tableFilter.value) ||
           data?.date?.toLowerCase().includes(tableFilter.value) ||
           data?.time?.toLowerCase().includes(tableFilter.value) ||
-          data?.affirmative?.toLowerCase().includes(tableFilter.value) ||
-          data?.negative?.toLowerCase().includes(tableFilter.value) ||
+          data?.affirmativeTeam?.toLowerCase().includes(tableFilter.value) ||
+          data?.negativeTeam?.toLowerCase().includes(tableFilter.value) ||
           data?.topic?.toLowerCase().includes(tableFilter.value) ||
           data?.status?.toLowerCase().includes(tableFilter.value)
       )
     : tableData.value;
 });
-
-createRoundTabs();
 </script>
 
 <template>
@@ -200,12 +199,13 @@ createRoundTabs();
     <SearchBar @handle-filter="handleFilter" />
   </div>
   <Tabs
+    v-if="!isLoading"
     :key="levelTabsKey"
     :tabs="roundTabs"
     font-size="text-base"
     @handle-tab="handleRound"
   />
-  <div class="flex justify-center w-full" v-if="!isLoading">
+  <div v-if="!isLoading" class="flex justify-center w-full">
     <Table
       :headers="headers"
       :data="filteredTableData"
