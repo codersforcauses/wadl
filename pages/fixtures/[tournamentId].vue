@@ -9,6 +9,7 @@ import seniorFixtures from "../../data/seniorDraw.json";
 const tournamentStore = useTournamentStore();
 //const teamStore = useTeamStore();
 const route = useRoute();
+const isLoading = ref(true);
 
 onMounted(async () => {
   //await teamStore.getTeams();
@@ -71,7 +72,7 @@ const selectedLevel = ref(juniorFixtures);
 const tableData = ref([]);
 const tableFilter = ref("");
 let selectedRound = selectedTournament?.currentRound;
-
+console.log("round", selectedRound);
 const createRoundTabs = () => {
   let round = 1;
   while (round <= selectedTournament?.numRounds) {
@@ -167,6 +168,7 @@ const getFixturesTableData = () => {
       tableData.value.push(matchup);
     }
   });
+  isLoading.value = false;
 };
 
 const handleFilter = (searchTerm) => {
@@ -203,7 +205,7 @@ createRoundTabs();
     font-size="text-base"
     @handle-tab="handleRound"
   />
-  <div class="flex justify-center w-full">
+  <div class="flex justify-center w-full" v-if="!isLoading">
     <Table
       :headers="headers"
       :data="filteredTableData"
