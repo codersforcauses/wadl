@@ -10,6 +10,7 @@ const tournamentStore = useTournamentStore();
 //const teamStore = useTeamStore();
 const route = useRoute();
 const isLoading = ref(true);
+
 let selectedTournament = null;
 let selectedRound = null;
 
@@ -18,7 +19,8 @@ onMounted(async () => {
   selectedTournament = tournamentStore.getRunning.find(
     (tournament) => tournament.id === route.params.tournamentId
   );
-  selectedRound = selectedTournament?.currentRound;
+  selectedRound = parseInt(selectedTournament?.currentRound);
+  console.log(selectedRound, selectedTournament);
   createRoundTabs();
   await getFixturesTableData();
 });
@@ -75,9 +77,10 @@ const tableData = ref([]);
 const tableFilter = ref("");
 
 const createRoundTabs = () => {
+  console.log(selectedTournament);
   let round = 1;
-  while (round <= selectedTournament?.numRounds) {
-    if (round === selectedTournament?.currentRound) {
+  while (round <= parseInt(selectedTournament?.numRounds)) {
+    if (round === parseInt(selectedTournament?.currentRound)) {
       roundTabs.push({ label: `Round ${round}`, active: true });
     } else {
       roundTabs.push({ label: `Round ${round}`, active: false });
@@ -87,7 +90,7 @@ const createRoundTabs = () => {
 };
 
 const handleLevel = (tabName) => {
-  selectedRound = selectedTournament?.currentRound;
+  selectedRound = parseInt(selectedTournament?.currentRound);
   levelSelected = tabName;
   levelTabsKey++;
   tableData.value = [];
