@@ -12,6 +12,7 @@
           button-color="bg-light-orange-gold"
           size="medium"
           class="my-2"
+          @click="allocateBye"
         />
       </div>
       <div class="flex flex-row justify-center">
@@ -153,6 +154,8 @@ const updateDivisions = async () => {
     "Updated divisions and team divisions successfully"
   );
 };
+
+const allocateBye = () => {};
 
 onMounted(async () => {
   try {
