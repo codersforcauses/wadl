@@ -118,33 +118,65 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-8 gap-4 text-center">
-        <div class="lg:col-span-3 md:col-span-5 col-span-8">
-          <div class="bg-lighter-grey rounded-md py-6 px-2">
-            <div class="flex items-center justify-center">
-              <Stepper :stage="stage" />
-            </div>
-            <div class="flex flex-row items-center justify-center mt-4">
-              <Button
-                button-text="Previous Stage"
-                button-color="bg-dark-red/20"
-                text-color="text-dark-red"
-                size="medium"
-                class="mr-[30px] transition duration-200 ease-in-out hover:bg-dark-red/50 hover:shadow-lg"
-                @click="changeStage(-1)"
-              />
-              <Button
-                button-text="Next Stage"
-                button-color="bg-light-green"
-                text-color="text-white"
-                size="medium"
-                class="transition duration-200 ease-in-out hover:bg-light-green/70 hover:shadow-lg"
-                @click="changeStage(1)"
-              />
-            </div>
+      <div class="flex flex-row flex-wrap gap-4 text-center items-center">
+        <div class="bg-lighter-grey rounded-md py-6 px-2">
+          <div class="flex items-center justify-center">
+            <Stepper :stage="stage" />
+          </div>
+          <div class="flex flex-row items-center justify-center mt-4">
+            <Button
+              button-text="Previous Stage"
+              button-color="bg-dark-red/20"
+              text-color="text-dark-red"
+              size="medium"
+              class="mr-[30px] transition duration-200 ease-in-out hover:bg-dark-red/50 hover:shadow-lg"
+              @click="changeStage(-1)"
+            />
+            <Button
+              button-text="Next Stage"
+              button-color="bg-light-green"
+              text-color="text-white"
+              size="medium"
+              class="transition duration-200 ease-in-out hover:bg-light-green/70 hover:shadow-lg"
+              @click="changeStage(1)"
+            />
           </div>
         </div>
+        <!-- <div class="flex-1 h-full">
+          <Frame
+            :title="drawStatus"
+            subtitle="DRAW STATUS"
+            :button-texts="['Generate Draw']"
+            @button-clicked="
+              () => {
+                print('Generate Draw');
+              }
+            "
+          />
+        </div> -->
+        <div class="flex-initial">
+          <Frame
+            :title="currentRound + '/' + totalRound"
+            subtitle="CURRENT ROUND"
+            button-size="medium"
+            :button-texts="['Advance']"
+            @button-clicked="incrementRound()"
+          />
+        </div>
+        <!-- <div class="flex-1">
+          <Frame
+            :title="results"
+            subtitle="PREVIOUS ROUND"
+            :button-texts="['Release Results']"
+            @button1-clicked="
+              () => {
+                print('Release Results');
+              }
+            "
+          />
+        </div> -->
       </div>
+
       <!-- End Information -->
 
       <!-- Venue Information -->
@@ -481,6 +513,8 @@ const modalRoundVisibility = ref(false);
 const modalVenueVisibility = ref(false);
 const teamsModalVisibility = ref(false);
 const teamsModalLevel = ref(null);
+const currentRound = ref(null);
+const totalRound = ref(null);
 
 const edited = ref({
   changesMade: false,
@@ -493,11 +527,19 @@ const edited = ref({
 onMounted(async () => {
   try {
     await venueStore.getVenues();
+    currentRound.value = tournamentStore.currentTournament.currentRound;
+    totalRound.value = tournamentStore.currentTournament.numRounds;
   } catch (error) {
     console.log(error);
   }
   loading.value = false;
 });
+
+const incrementRound = () => {
+  currentRound.value += 1;
+  currTournClone.currentRound = currentRound.value;
+  edited.value.changesMade = true;
+};
 
 const addVenue = () => {
   if (
@@ -705,6 +747,7 @@ const applyChanges = () => {
     venueInfo: false,
     roundDates: false,
   };
+  console.log(currTournClone);
   tournamentStore.editTournament(currTournClone);
   setDayVenues();
 };
