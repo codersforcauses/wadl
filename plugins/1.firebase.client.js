@@ -48,11 +48,14 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     }
   });
 
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
+      // const token = await user.getIdToken();
       userStore.setUser(user);
+      // await setServerSession(token);
     } else {
-      userStore.setUser(null);
+      // no longer logged in. (User null)
+      userStore.clearStore();
     }
   });
 
