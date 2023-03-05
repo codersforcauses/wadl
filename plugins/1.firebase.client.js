@@ -49,12 +49,11 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   });
 
   onAuthStateChanged(auth, async (user) => {
+    // on sign in and out.
     if (user) {
-      // const token = await user.getIdToken();
       userStore.setUser(user);
-      // await setServerSession(token);
     } else {
-      // no longer logged in. (User null)
+      // no longer logged in
       userStore.clearStore();
     }
   });
