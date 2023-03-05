@@ -13,7 +13,11 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   if (token.value) {
     try {
       const result = await $serverAuth.verifyIdToken(token.value);
-      await userStore.setUser(result);
+      if (result) {
+        await userStore.setUser(result);
+      } else {
+        await userStore.clearStore();
+      }
     } catch {
       // Not authenticated or invalid token
     }
