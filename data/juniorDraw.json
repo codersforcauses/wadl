@@ -6,17 +6,17 @@
     "negativeTeam": "Perth Mod 1",
     "date": "March 14",
     "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "Bob Hawke"
   },
   {
     "division": 1,
     "round": 1,
     "affirmativeTeam": "Bob Hawke 3",
-    "negativeTeam": "Iona 2",
+    "negativeTeam": "Perth Mod 2",
     "date": "March 14",
     "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "Bob Hawke"
   },
   {
@@ -26,7 +26,7 @@
     "negativeTeam": "Iona 1",
     "date": "March 14",
     "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "Bob Hawke"
   },
   {
@@ -36,17 +36,17 @@
     "negativeTeam": "Iona 1",
     "date": "March 28",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Bob Hawke"
   },
   {
     "division": 1,
     "round": 2,
-    "affirmativeTeam": "Iona 2",
+    "affirmativeTeam": "Perth Mod 2",
     "negativeTeam": "Santa Maria 1",
     "date": "March 28",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Bob Hawke"
   },
   {
@@ -56,7 +56,7 @@
     "negativeTeam": "Bob Hawke 3",
     "date": "March 28",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Bob Hawke"
   },
   {
@@ -83,7 +83,7 @@
     "division": 1,
     "round": 3,
     "affirmativeTeam": "Iona 1",
-    "negativeTeam": "Iona 2",
+    "negativeTeam": "Perth Mod 2",
     "date": "May 2",
     "time": "6:15",
     "topic": "impromptu",
@@ -93,7 +93,7 @@
     "division": 1,
     "round": 4,
     "affirmativeTeam": "Perth Mod 1",
-    "negativeTeam": "Iona 2",
+    "negativeTeam": "Perth Mod 2",
     "date": "May 30",
     "time": "6:15",
     "topic": "impromptu",
@@ -142,7 +142,7 @@
   {
     "division": 1,
     "round": 5,
-    "affirmativeTeam": "Iona 2",
+    "affirmativeTeam": "Perth Mod 2",
     "negativeTeam": "Bob Hawke 1",
     "date": "June 13",
     "time": "6:15",
@@ -163,7 +163,7 @@
     "division": 1,
     "round": 6,
     "affirmativeTeam": "Bob Hawke 3",
-    "negativeTeam": "Iona 2",
+    "negativeTeam": "Perth Mod 2",
     "date": "August 1",
     "time": "6:15",
     "topic": "impromptu",
@@ -183,10 +183,10 @@
     "division": 2,
     "round": 1,
     "affirmativeTeam": "Bob Hawke 2",
-    "negativeTeam": "Perth Mod 2",
+    "negativeTeam": "Iona 2",
     "date": "March 14",
-    "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "time": "7:15",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "Bob Hawke"
   },
   {
@@ -195,8 +195,8 @@
     "affirmativeTeam": "Mercedes 1",
     "negativeTeam": "Iona 3",
     "date": "March 14",
-    "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "time": "7:15",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "Bob Hawke"
   },
   {
@@ -205,18 +205,18 @@
     "affirmativeTeam": "Santa Maria 2",
     "negativeTeam": "Santa Maria 3",
     "date": "March 14",
-    "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "time": "7:15",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "Bob Hawke"
   },
   {
     "division": 2,
     "round": 2,
-    "affirmativeTeam": "Perth Mod 2",
+    "affirmativeTeam": "Iona 2",
     "negativeTeam": "Santa Maria 3",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "tbd",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Bob Hawke"
   },
   {
@@ -225,8 +225,8 @@
     "affirmativeTeam": "Iona 3",
     "negativeTeam": "Santa Maria 2",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "tbd",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Bob Hawke"
   },
   {
@@ -235,17 +235,17 @@
     "affirmativeTeam": "Bob Hawke 2",
     "negativeTeam": "Mercedes 1",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "tbd",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Bob Hawke"
   },
   {
     "division": 2,
     "round": 3,
     "affirmativeTeam": "Mercedes 1",
-    "negativeTeam": "Perth Mod 2",
+    "negativeTeam": "Iona 2",
     "date": "May 2",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -255,7 +255,7 @@
     "affirmativeTeam": "Santa Maria 2",
     "negativeTeam": "Bob Hawke 2",
     "date": "May 2",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -265,17 +265,17 @@
     "affirmativeTeam": "Santa Maria 3",
     "negativeTeam": "Iona 3",
     "date": "May 2",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
   {
     "division": 2,
     "round": 4,
-    "affirmativeTeam": "Perth Mod 2",
+    "affirmativeTeam": "Iona 2",
     "negativeTeam": "Iona 3",
     "date": "May 30",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -285,7 +285,7 @@
     "affirmativeTeam": "Bob Hawke 2",
     "negativeTeam": "Santa Maria 3",
     "date": "May 30",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -295,7 +295,7 @@
     "affirmativeTeam": "Mercedes 1",
     "negativeTeam": "Santa Maria 2",
     "date": "May 30",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -303,9 +303,9 @@
     "division": 2,
     "round": 5,
     "affirmativeTeam": "Santa Maria 2",
-    "negativeTeam": "Perth Mod 2",
+    "negativeTeam": "Iona 2",
     "date": "June 13",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -315,7 +315,7 @@
     "affirmativeTeam": "Santa Maria 3",
     "negativeTeam": "Mercedes 1",
     "date": "June 13",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -325,17 +325,17 @@
     "affirmativeTeam": "Iona 3",
     "negativeTeam": "Bob Hawke 2",
     "date": "June 13",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
   {
     "division": 2,
     "round": 6,
-    "affirmativeTeam": "Perth Mod 2",
+    "affirmativeTeam": "Iona 2",
     "negativeTeam": "Bob Hawke 2",
     "date": "August 1",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -345,7 +345,7 @@
     "affirmativeTeam": "Mercedes 1",
     "negativeTeam": "Iona 3",
     "date": "August 1",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -355,7 +355,7 @@
     "affirmativeTeam": "Santa Maria 2",
     "negativeTeam": "Santa Maria 3",
     "date": "August 1",
-    "time": "6:15",
+    "time": "7:15",
     "topic": "impromptu",
     "venue": "Bob Hawke"
   },
@@ -363,70 +363,50 @@
     "division": 3,
     "round": 1,
     "affirmativeTeam": "CCGS 1",
-    "negativeTeam": "Bye",
+    "negativeTeam": "PLC 2",
     "date": "March 14",
     "time": "7:15",
-    "topic": "This house prefers conditional welfare",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "CCGS"
   },
   {
     "division": 3,
     "round": 1,
     "affirmativeTeam": "CCGS 3",
-    "negativeTeam": "PLC 2",
+    "negativeTeam": "MLC 4",
     "date": "March 14",
     "time": "7:15",
-    "topic": "This house prefers conditional welfare",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "CCGS"
   },
   {
     "division": 3,
     "round": 1,
     "affirmativeTeam": "CCGS 5",
-    "negativeTeam": "MLC 6",
-    "date": "March 14",
-    "time": "7:15",
-    "topic": "This house prefers conditional welfare",
-    "venue": "CCGS"
-  },
-  {
-    "division": 3,
-    "round": 1,
-    "affirmativeTeam": "MLC 2",
-    "negativeTeam": "MLC 4",
-    "date": "March 14",
-    "time": "7:15",
-    "topic": "This house prefers conditional welfare",
-    "venue": "CCGS"
-  },
-  {
-    "division": 3,
-    "round": 2,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "MLC 4",
-    "date": "March 28",
-    "time": "7:15",
-    "topic": "tbd",
-    "venue": "CCGS"
-  },
-  {
-    "division": 3,
-    "round": 2,
-    "affirmativeTeam": "MLC 6",
     "negativeTeam": "MLC 2",
-    "date": "March 28",
+    "date": "March 14",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "CCGS"
   },
   {
     "division": 3,
     "round": 2,
     "affirmativeTeam": "PLC 2",
+    "negativeTeam": "MLC 2",
+    "date": "March 28",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
+    "venue": "CCGS"
+  },
+  {
+    "division": 3,
+    "round": 2,
+    "affirmativeTeam": "MLC 4",
     "negativeTeam": "CCGS 5",
     "date": "March 28",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "CCGS"
   },
   {
@@ -436,14 +416,14 @@
     "negativeTeam": "CCGS 3",
     "date": "March 28",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "CCGS"
   },
   {
     "division": 3,
     "round": 3,
     "affirmativeTeam": "CCGS 3",
-    "negativeTeam": "Bye",
+    "negativeTeam": "PLC 2",
     "date": "May 2",
     "time": "7:15",
     "topic": "impromptu",
@@ -463,28 +443,8 @@
     "division": 3,
     "round": 3,
     "affirmativeTeam": "MLC 2",
-    "negativeTeam": "PLC 2",
+    "negativeTeam": "MLC 4",
     "date": "May 2",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "CCGS"
-  },
-  {
-    "division": 3,
-    "round": 3,
-    "affirmativeTeam": "MLC 4",
-    "negativeTeam": "MLC 6",
-    "date": "May 2",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "CCGS"
-  },
-  {
-    "division": 3,
-    "round": 4,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "MLC 6",
-    "date": "May 30",
     "time": "7:15",
     "topic": "impromptu",
     "venue": "CCGS"
@@ -523,7 +483,7 @@
     "division": 3,
     "round": 5,
     "affirmativeTeam": "CCGS 5",
-    "negativeTeam": "Bye",
+    "negativeTeam": "PLC 2",
     "date": "June 13",
     "time": "7:15",
     "topic": "impromptu",
@@ -551,29 +511,9 @@
   },
   {
     "division": 3,
-    "round": 5,
-    "affirmativeTeam": "MLC 6",
-    "negativeTeam": "PLC 2",
-    "date": "June 13",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "CCGS"
-  },
-  {
-    "division": 3,
     "round": 6,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "PLC 2",
-    "date": "August 1",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "CCGS"
-  },
-  {
-    "division": 3,
-    "round": 6,
-    "affirmativeTeam": "CCGS 1",
-    "negativeTeam": "MLC 6",
+    "affirmativeTeam": "PLC 2",
+    "negativeTeam": "CCGS 1",
     "date": "August 1",
     "time": "7:15",
     "topic": "impromptu",
@@ -606,7 +546,7 @@
     "negativeTeam": "Bye",
     "date": "March 14",
     "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "CCGS"
   },
   {
@@ -616,7 +556,7 @@
     "negativeTeam": "Scotch 1",
     "date": "March 14",
     "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "CCGS"
   },
   {
@@ -626,7 +566,7 @@
     "negativeTeam": "PLC 1",
     "date": "March 14",
     "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "CCGS"
   },
   {
@@ -636,7 +576,7 @@
     "negativeTeam": "MLC 5",
     "date": "March 14",
     "time": "6:15",
-    "topic": "This house prefers conditional welfare",
+    "topic": "This house prefers conditional welfare. INFO SLIDE: Conditional welfare involves placing obligations on those who receive welfare to meet certain requirements (e.g. behavioural standards, job searching, etc.) before payments are made to them.",
     "venue": "CCGS"
   },
   {
@@ -646,7 +586,7 @@
     "negativeTeam": "MLC 5",
     "date": "March 28",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "CCGS"
   },
   {
@@ -656,7 +596,7 @@
     "negativeTeam": "MLC 3",
     "date": "March 28",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "CCGS"
   },
   {
@@ -666,7 +606,7 @@
     "negativeTeam": "MLC 1",
     "date": "March 28",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "CCGS"
   },
   {
@@ -676,7 +616,7 @@
     "negativeTeam": "CCGS 4",
     "date": "March 28",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "CCGS"
   },
   {
@@ -843,50 +783,30 @@
     "division": 5,
     "round": 1,
     "affirmativeTeam": "Bob Hawke 4",
-    "negativeTeam": "Bye",
+    "negativeTeam": "PLC 4",
     "date": "March 15",
     "time": "7:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
     "venue": "Hale"
   },
   {
     "division": 5,
     "round": 1,
     "affirmativeTeam": "Hale 1",
-    "negativeTeam": "Bob Hawke 6",
+    "negativeTeam": "St Hilda's 1",
     "date": "March 15",
     "time": "7:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
     "venue": "Hale"
   },
   {
     "division": 5,
     "round": 1,
     "affirmativeTeam": "Hale 3",
-    "negativeTeam": "PLC 4",
+    "negativeTeam": "St Mary's 1",
     "date": "March 15",
     "time": "7:15",
-    "topic": "This house would deprivatise childcare",
-    "venue": "Hale"
-  },
-  {
-    "division": 5,
-    "round": 1,
-    "affirmativeTeam": "St Mary's 1",
-    "negativeTeam": "St Hilda's 1",
-    "date": "March 15",
-    "time": "7:15",
-    "topic": "This house would deprivatise childcare",
-    "venue": "Hale"
-  },
-  {
-    "division": 5,
-    "round": 2,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "St Hilda's 1",
-    "date": "March 29",
-    "time": "7:15",
-    "topic": "tbd",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
     "venue": "Hale"
   },
   {
@@ -896,17 +816,17 @@
     "negativeTeam": "St Mary's 1",
     "date": "March 29",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Hale"
   },
   {
     "division": 5,
     "round": 2,
-    "affirmativeTeam": "Bob Hawke 6",
+    "affirmativeTeam": "St Hilda's 1",
     "negativeTeam": "Hale 3",
     "date": "March 29",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Hale"
   },
   {
@@ -916,14 +836,14 @@
     "negativeTeam": "Hale 1",
     "date": "March 29",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Hale"
   },
   {
     "division": 5,
     "round": 3,
     "affirmativeTeam": "Hale 1",
-    "negativeTeam": "Bye",
+    "negativeTeam": "PLC 4",
     "date": "May 3",
     "time": "7:15",
     "topic": "impromptu",
@@ -943,17 +863,7 @@
     "division": 5,
     "round": 3,
     "affirmativeTeam": "St Mary's 1",
-    "negativeTeam": "Bob Hawke 6",
-    "date": "May 3",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "Hale"
-  },
-  {
-    "division": 5,
-    "round": 3,
-    "affirmativeTeam": "St Hilda's 1",
-    "negativeTeam": "PLC 4",
+    "negativeTeam": "St Hilda's 1",
     "date": "May 3",
     "time": "7:15",
     "topic": "impromptu",
@@ -962,17 +872,7 @@
   {
     "division": 5,
     "round": 4,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "PLC 4",
-    "date": "May 31",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "Hale"
-  },
-  {
-    "division": 5,
-    "round": 4,
-    "affirmativeTeam": "Bob Hawke 6",
+    "affirmativeTeam": "PLC 4",
     "negativeTeam": "St Hilda's 1",
     "date": "May 31",
     "time": "7:15",
@@ -1003,7 +903,7 @@
     "division": 5,
     "round": 5,
     "affirmativeTeam": "Hale 3",
-    "negativeTeam": "Bye",
+    "negativeTeam": "PLC 4",
     "date": "June 14",
     "time": "7:15",
     "topic": "impromptu",
@@ -1031,29 +931,9 @@
   },
   {
     "division": 5,
-    "round": 5,
+    "round": 6,
     "affirmativeTeam": "PLC 4",
-    "negativeTeam": "Bob Hawke 6",
-    "date": "June 14",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "Hale"
-  },
-  {
-    "division": 5,
-    "round": 6,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "Bob Hawke 6",
-    "date": "August 2",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "Hale"
-  },
-  {
-    "division": 5,
-    "round": 6,
-    "affirmativeTeam": "Bob Hawke 4",
-    "negativeTeam": "PLC 4",
+    "negativeTeam": "Bob Hawke 4",
     "date": "August 2",
     "time": "7:15",
     "topic": "impromptu",
@@ -1083,30 +963,50 @@
     "division": 6,
     "round": 1,
     "affirmativeTeam": "Bob Hawke 5",
-    "negativeTeam": "PLC 5",
+    "negativeTeam": "Bye",
     "date": "March 15",
     "time": "6:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
     "venue": "Hale"
   },
   {
     "division": 6,
     "round": 1,
     "affirmativeTeam": "Hale 2",
-    "negativeTeam": "PLC 3",
+    "negativeTeam": "Bob Hawke 6",
     "date": "March 15",
     "time": "6:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
     "venue": "Hale"
   },
   {
     "division": 6,
     "round": 1,
     "affirmativeTeam": "Hale 4",
-    "negativeTeam": "St Mary's 2",
+    "negativeTeam": "PLC 5",
     "date": "March 15",
     "time": "6:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
+    "venue": "Hale"
+  },
+  {
+    "division": 6,
+    "round": 1,
+    "affirmativeTeam": "St Mary's 2",
+    "negativeTeam": "PLC 3",
+    "date": "March 15",
+    "time": "6:15",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
+    "venue": "Hale"
+  },
+  {
+    "division": 6,
+    "round": 2,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "PLC 3",
+    "date": "March 29",
+    "time": "6:15",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Hale"
   },
   {
@@ -1116,17 +1016,17 @@
     "negativeTeam": "St Mary's 2",
     "date": "March 29",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Hale"
   },
   {
     "division": 6,
     "round": 2,
-    "affirmativeTeam": "PLC 3",
+    "affirmativeTeam": "Bob Hawke 6",
     "negativeTeam": "Hale 4",
     "date": "March 29",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Hale"
   },
   {
@@ -1136,14 +1036,14 @@
     "negativeTeam": "Hale 2",
     "date": "March 29",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "Hale"
   },
   {
     "division": 6,
     "round": 3,
     "affirmativeTeam": "Hale 2",
-    "negativeTeam": "PLC 5",
+    "negativeTeam": "Bye",
     "date": "May 3",
     "time": "6:15",
     "topic": "impromptu",
@@ -1163,7 +1063,17 @@
     "division": 6,
     "round": 3,
     "affirmativeTeam": "St Mary's 2",
-    "negativeTeam": "PLC 3",
+    "negativeTeam": "Bob Hawke 6",
+    "date": "May 3",
+    "time": "6:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 6,
+    "round": 3,
+    "affirmativeTeam": "PLC 3",
+    "negativeTeam": "PLC 5",
     "date": "May 3",
     "time": "6:15",
     "topic": "impromptu",
@@ -1172,7 +1082,17 @@
   {
     "division": 6,
     "round": 4,
-    "affirmativeTeam": "PLC 5",
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "PLC 5",
+    "date": "May 31",
+    "time": "6:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 6,
+    "round": 4,
+    "affirmativeTeam": "Bob Hawke 6",
     "negativeTeam": "PLC 3",
     "date": "May 31",
     "time": "6:15",
@@ -1203,7 +1123,7 @@
     "division": 6,
     "round": 5,
     "affirmativeTeam": "Hale 4",
-    "negativeTeam": "PLC 5",
+    "negativeTeam": "Bye",
     "date": "June 14",
     "time": "6:15",
     "topic": "impromptu",
@@ -1231,9 +1151,29 @@
   },
   {
     "division": 6,
-    "round": 6,
+    "round": 5,
     "affirmativeTeam": "PLC 5",
-    "negativeTeam": "Bob Hawke 5",
+    "negativeTeam": "Bob Hawke 6",
+    "date": "June 14",
+    "time": "6:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 6,
+    "round": 6,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "Bob Hawke 6",
+    "date": "August 2",
+    "time": "6:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 6,
+    "round": 6,
+    "affirmativeTeam": "Bob Hawke 5",
+    "negativeTeam": "PLC 5",
     "date": "August 2",
     "time": "6:15",
     "topic": "impromptu",
@@ -1263,30 +1203,50 @@
     "division": 7,
     "round": 1,
     "affirmativeTeam": "PC 1",
-    "negativeTeam": "Perth Mod 5",
+    "negativeTeam": "Perth Mod 3",
     "date": "March 15",
     "time": "6:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
     "venue": "PC"
   },
   {
     "division": 7,
     "round": 1,
     "affirmativeTeam": "St George 1",
-    "negativeTeam": "Joseph Banks 2",
+    "negativeTeam": "Perth Mod 4",
     "date": "March 15",
     "time": "6:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
     "venue": "PC"
   },
   {
     "division": 7,
     "round": 1,
     "affirmativeTeam": "Guildford 3",
-    "negativeTeam": "Wesley 1",
+    "negativeTeam": "Perth Mod 5",
     "date": "March 15",
     "time": "6:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
+    "venue": "PC"
+  },
+  {
+    "division": 7,
+    "round": 1,
+    "affirmativeTeam": "Wesley 1",
+    "negativeTeam": "Joseph Banks 2",
+    "date": "March 15",
+    "time": "6:15",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
+    "venue": "PC"
+  },
+  {
+    "division": 7,
+    "round": 2,
+    "affirmativeTeam": "Perth Mod 3",
+    "negativeTeam": "Joseph Banks 2",
+    "date": "March 29",
+    "time": "6:15",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "PC"
   },
   {
@@ -1296,17 +1256,17 @@
     "negativeTeam": "Wesley 1",
     "date": "March 29",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "PC"
   },
   {
     "division": 7,
     "round": 2,
-    "affirmativeTeam": "Joseph Banks 2",
+    "affirmativeTeam": "Perth Mod 4",
     "negativeTeam": "Guildford 3",
     "date": "March 29",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "PC"
   },
   {
@@ -1316,14 +1276,14 @@
     "negativeTeam": "St George 1",
     "date": "March 29",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "PC"
   },
   {
     "division": 7,
     "round": 3,
     "affirmativeTeam": "St George 1",
-    "negativeTeam": "Perth Mod 5",
+    "negativeTeam": "Perth Mod 3",
     "date": "May 3",
     "time": "6:15",
     "topic": "impromptu",
@@ -1343,7 +1303,17 @@
     "division": 7,
     "round": 3,
     "affirmativeTeam": "Wesley 1",
-    "negativeTeam": "Joseph Banks 2",
+    "negativeTeam": "Perth Mod 4",
+    "date": "May 3",
+    "time": "6:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 7,
+    "round": 3,
+    "affirmativeTeam": "Joseph Banks 2",
+    "negativeTeam": "Perth Mod 5",
     "date": "May 3",
     "time": "6:15",
     "topic": "impromptu",
@@ -1352,7 +1322,17 @@
   {
     "division": 7,
     "round": 4,
-    "affirmativeTeam": "Perth Mod 5",
+    "affirmativeTeam": "Perth Mod 3",
+    "negativeTeam": "Perth Mod 5",
+    "date": "May 31",
+    "time": "6:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 7,
+    "round": 4,
+    "affirmativeTeam": "Perth Mod 4",
     "negativeTeam": "Joseph Banks 2",
     "date": "May 31",
     "time": "6:15",
@@ -1383,7 +1363,7 @@
     "division": 7,
     "round": 5,
     "affirmativeTeam": "Guildford 3",
-    "negativeTeam": "Perth Mod 5",
+    "negativeTeam": "Perth Mod 3",
     "date": "June 14",
     "time": "6:15",
     "topic": "impromptu",
@@ -1411,9 +1391,29 @@
   },
   {
     "division": 7,
-    "round": 6,
+    "round": 5,
     "affirmativeTeam": "Perth Mod 5",
-    "negativeTeam": "PC 1",
+    "negativeTeam": "Perth Mod 4",
+    "date": "June 14",
+    "time": "6:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 7,
+    "round": 6,
+    "affirmativeTeam": "Perth Mod 3",
+    "negativeTeam": "Perth Mod 4",
+    "date": "August 2",
+    "time": "6:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 7,
+    "round": 6,
+    "affirmativeTeam": "PC 1",
+    "negativeTeam": "Perth Mod 5",
     "date": "August 2",
     "time": "6:15",
     "topic": "impromptu",
@@ -1443,30 +1443,50 @@
     "division": 8,
     "round": 1,
     "affirmativeTeam": "PC 2",
-    "negativeTeam": "Perth Mod 6",
+    "negativeTeam": "Guildford 2",
     "date": "March 15",
     "time": "7:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
     "venue": "PC"
   },
   {
     "division": 8,
     "round": 1,
     "affirmativeTeam": "Guildford 1",
-    "negativeTeam": "Perth Mod 3",
+    "negativeTeam": "Scotch 2",
     "date": "March 15",
     "time": "7:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
     "venue": "PC"
   },
   {
     "division": 8,
     "round": 1,
-    "affirmativeTeam": "Guildford 4",
-    "negativeTeam": "Wesley 2",
+    "affirmativeTeam": "Joseph Banks 1",
+    "negativeTeam": "Perth Mod 6",
     "date": "March 15",
     "time": "7:15",
-    "topic": "This house would deprivatise childcare",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
+    "venue": "PC"
+  },
+  {
+    "division": 8,
+    "round": 1,
+    "affirmativeTeam": "Wesley 2",
+    "negativeTeam": "PC 3",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would deprivatise childcare. INFO SLIDE: In Australia, most childcare centres and institutions are privately owned (i.e. they are not owned or operated by the government)",
+    "venue": "PC"
+  },
+  {
+    "division": 8,
+    "round": 2,
+    "affirmativeTeam": "Guildford 2",
+    "negativeTeam": "PC 3",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "PC"
   },
   {
@@ -1476,17 +1496,17 @@
     "negativeTeam": "Wesley 2",
     "date": "March 29",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "PC"
   },
   {
     "division": 8,
     "round": 2,
-    "affirmativeTeam": "Perth Mod 3",
-    "negativeTeam": "Guildford 4",
+    "affirmativeTeam": "Scotch 2",
+    "negativeTeam": "Joseph Banks 1",
     "date": "March 29",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "PC"
   },
   {
@@ -1496,14 +1516,14 @@
     "negativeTeam": "Guildford 1",
     "date": "March 29",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house would legalise private military companies in Australia",
     "venue": "PC"
   },
   {
     "division": 8,
     "round": 3,
     "affirmativeTeam": "Guildford 1",
-    "negativeTeam": "Perth Mod 6",
+    "negativeTeam": "Guildford 2",
     "date": "May 3",
     "time": "7:15",
     "topic": "impromptu",
@@ -1512,7 +1532,7 @@
   {
     "division": 8,
     "round": 3,
-    "affirmativeTeam": "Guildford 4",
+    "affirmativeTeam": "Joseph Banks 1",
     "negativeTeam": "PC 2",
     "date": "May 3",
     "time": "7:15",
@@ -1523,7 +1543,17 @@
     "division": 8,
     "round": 3,
     "affirmativeTeam": "Wesley 2",
-    "negativeTeam": "Perth Mod 3",
+    "negativeTeam": "Scotch 2",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 8,
+    "round": 3,
+    "affirmativeTeam": "PC 3",
+    "negativeTeam": "Perth Mod 6",
     "date": "May 3",
     "time": "7:15",
     "topic": "impromptu",
@@ -1532,8 +1562,18 @@
   {
     "division": 8,
     "round": 4,
-    "affirmativeTeam": "Perth Mod 6",
-    "negativeTeam": "Perth Mod 3",
+    "affirmativeTeam": "Guildford 2",
+    "negativeTeam": "Perth Mod 6",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 8,
+    "round": 4,
+    "affirmativeTeam": "Scotch 2",
+    "negativeTeam": "PC 3",
     "date": "May 31",
     "time": "7:15",
     "topic": "impromptu",
@@ -1553,7 +1593,7 @@
     "division": 8,
     "round": 4,
     "affirmativeTeam": "Guildford 1",
-    "negativeTeam": "Guildford 4",
+    "negativeTeam": "Joseph Banks 1",
     "date": "May 31",
     "time": "7:15",
     "topic": "impromptu",
@@ -1562,8 +1602,8 @@
   {
     "division": 8,
     "round": 5,
-    "affirmativeTeam": "Guildford 4",
-    "negativeTeam": "Perth Mod 6",
+    "affirmativeTeam": "Joseph Banks 1",
+    "negativeTeam": "Guildford 2",
     "date": "June 14",
     "time": "7:15",
     "topic": "impromptu",
@@ -1582,7 +1622,7 @@
   {
     "division": 8,
     "round": 5,
-    "affirmativeTeam": "Perth Mod 3",
+    "affirmativeTeam": "PC 3",
     "negativeTeam": "PC 2",
     "date": "June 14",
     "time": "7:15",
@@ -1591,9 +1631,29 @@
   },
   {
     "division": 8,
-    "round": 6,
+    "round": 5,
     "affirmativeTeam": "Perth Mod 6",
-    "negativeTeam": "PC 2",
+    "negativeTeam": "Scotch 2",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 8,
+    "round": 6,
+    "affirmativeTeam": "Guildford 2",
+    "negativeTeam": "Scotch 2",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 8,
+    "round": 6,
+    "affirmativeTeam": "PC 2",
+    "negativeTeam": "Perth Mod 6",
     "date": "August 2",
     "time": "7:15",
     "topic": "impromptu",
@@ -1603,7 +1663,7 @@
     "division": 8,
     "round": 6,
     "affirmativeTeam": "Guildford 1",
-    "negativeTeam": "Perth Mod 3",
+    "negativeTeam": "PC 3",
     "date": "August 2",
     "time": "7:15",
     "topic": "impromptu",
@@ -1612,7 +1672,7 @@
   {
     "division": 8,
     "round": 6,
-    "affirmativeTeam": "Guildford 4",
+    "affirmativeTeam": "Joseph Banks 1",
     "negativeTeam": "Wesley 2",
     "date": "August 2",
     "time": "7:15",
@@ -1622,245 +1682,65 @@
   {
     "division": 9,
     "round": 1,
-    "affirmativeTeam": "PC 3",
-    "negativeTeam": "Perth Mod 7",
-    "date": "March 15",
-    "time": "7:15",
-    "topic": "This house would deprivatise childcare",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 1,
-    "affirmativeTeam": "Guildford 2",
-    "negativeTeam": "Perth Mod 4",
-    "date": "March 15",
-    "time": "7:15",
-    "topic": "This house would deprivatise childcare",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 1,
-    "affirmativeTeam": "Scotch 2",
-    "negativeTeam": "Joseph Banks 1",
-    "date": "March 15",
-    "time": "7:15",
-    "topic": "This house would deprivatise childcare",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 2,
-    "affirmativeTeam": "Perth Mod 7",
-    "negativeTeam": "Joseph Banks 1",
-    "date": "March 29",
-    "time": "7:15",
-    "topic": "tbd",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 2,
-    "affirmativeTeam": "Perth Mod 4",
-    "negativeTeam": "Scotch 2",
-    "date": "March 29",
-    "time": "7:15",
-    "topic": "tbd",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 2,
-    "affirmativeTeam": "PC 3",
-    "negativeTeam": "Guildford 2",
-    "date": "March 29",
-    "time": "7:15",
-    "topic": "tbd",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 3,
-    "affirmativeTeam": "Guildford 2",
-    "negativeTeam": "Perth Mod 7",
-    "date": "May 3",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 3,
-    "affirmativeTeam": "Scotch 2",
-    "negativeTeam": "PC 3",
-    "date": "May 3",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 3,
-    "affirmativeTeam": "Joseph Banks 1",
-    "negativeTeam": "Perth Mod 4",
-    "date": "May 3",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 4,
-    "affirmativeTeam": "Perth Mod 7",
-    "negativeTeam": "Perth Mod 4",
-    "date": "May 31",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 4,
-    "affirmativeTeam": "PC 3",
-    "negativeTeam": "Joseph Banks 1",
-    "date": "May 31",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 4,
-    "affirmativeTeam": "Guildford 2",
-    "negativeTeam": "Scotch 2",
-    "date": "May 31",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 5,
-    "affirmativeTeam": "Scotch 2",
-    "negativeTeam": "Perth Mod 7",
-    "date": "June 14",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 5,
-    "affirmativeTeam": "Joseph Banks 1",
-    "negativeTeam": "Guildford 2",
-    "date": "June 14",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 5,
-    "affirmativeTeam": "Perth Mod 4",
-    "negativeTeam": "PC 3",
-    "date": "June 14",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 6,
-    "affirmativeTeam": "Perth Mod 7",
-    "negativeTeam": "PC 3",
-    "date": "August 2",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 6,
-    "affirmativeTeam": "Guildford 2",
-    "negativeTeam": "Perth Mod 4",
-    "date": "August 2",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 9,
-    "round": 6,
-    "affirmativeTeam": "Scotch 2",
-    "negativeTeam": "Joseph Banks 1",
-    "date": "August 2",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "PC"
-  },
-  {
-    "division": 10,
-    "round": 1,
     "affirmativeTeam": "Hale 5",
     "negativeTeam": "Penrhos 1",
     "date": "March 21",
     "time": "6:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 1,
     "affirmativeTeam": "Perth Mod 8",
     "negativeTeam": "Shenton 6",
     "date": "March 21",
     "time": "6:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 1,
     "affirmativeTeam": "Perth Mod 11",
     "negativeTeam": "Shenton 3",
     "date": "March 21",
     "time": "6:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 2,
     "affirmativeTeam": "Penrhos 1",
     "negativeTeam": "Shenton 3",
     "date": "April 4",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 2,
     "affirmativeTeam": "Shenton 6",
     "negativeTeam": "Perth Mod 11",
     "date": "April 4",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 2,
     "affirmativeTeam": "Hale 5",
     "negativeTeam": "Perth Mod 8",
     "date": "April 4",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 3,
     "affirmativeTeam": "Perth Mod 8",
     "negativeTeam": "Penrhos 1",
@@ -1870,7 +1750,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 3,
     "affirmativeTeam": "Perth Mod 11",
     "negativeTeam": "Hale 5",
@@ -1880,7 +1760,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 3,
     "affirmativeTeam": "Shenton 3",
     "negativeTeam": "Shenton 6",
@@ -1890,7 +1770,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 4,
     "affirmativeTeam": "Penrhos 1",
     "negativeTeam": "Shenton 6",
@@ -1900,7 +1780,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 4,
     "affirmativeTeam": "Hale 5",
     "negativeTeam": "Shenton 3",
@@ -1910,7 +1790,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 4,
     "affirmativeTeam": "Perth Mod 8",
     "negativeTeam": "Perth Mod 11",
@@ -1920,7 +1800,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 5,
     "affirmativeTeam": "Perth Mod 11",
     "negativeTeam": "Penrhos 1",
@@ -1930,7 +1810,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 5,
     "affirmativeTeam": "Shenton 3",
     "negativeTeam": "Perth Mod 8",
@@ -1940,7 +1820,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 5,
     "affirmativeTeam": "Shenton 6",
     "negativeTeam": "Hale 5",
@@ -1950,7 +1830,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 6,
     "affirmativeTeam": "Penrhos 1",
     "negativeTeam": "Hale 5",
@@ -1960,7 +1840,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 6,
     "affirmativeTeam": "Perth Mod 8",
     "negativeTeam": "Shenton 6",
@@ -1970,7 +1850,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 10,
+    "division": 9,
     "round": 6,
     "affirmativeTeam": "Perth Mod 11",
     "negativeTeam": "Shenton 3",
@@ -1980,67 +1860,67 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 1,
     "affirmativeTeam": "John XXIII 1",
     "negativeTeam": "Penrhos 2",
     "date": "March 21",
     "time": "6:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 1,
     "affirmativeTeam": "John XXIII 2",
     "negativeTeam": "Shenton 7",
     "date": "March 21",
     "time": "6:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 1,
     "affirmativeTeam": "Shenton 1",
     "negativeTeam": "Shenton 4",
     "date": "March 21",
     "time": "6:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 2,
     "affirmativeTeam": "Penrhos 2",
     "negativeTeam": "Shenton 4",
     "date": "April 4",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 2,
     "affirmativeTeam": "Shenton 7",
     "negativeTeam": "Shenton 1",
     "date": "April 4",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 2,
     "affirmativeTeam": "John XXIII 1",
     "negativeTeam": "John XXIII 2",
     "date": "April 4",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 3,
     "affirmativeTeam": "John XXIII 2",
     "negativeTeam": "Penrhos 2",
@@ -2050,7 +1930,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 3,
     "affirmativeTeam": "Shenton 1",
     "negativeTeam": "John XXIII 1",
@@ -2060,7 +1940,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 3,
     "affirmativeTeam": "Shenton 4",
     "negativeTeam": "Shenton 7",
@@ -2070,7 +1950,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 4,
     "affirmativeTeam": "Penrhos 2",
     "negativeTeam": "Shenton 7",
@@ -2080,7 +1960,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 4,
     "affirmativeTeam": "John XXIII 1",
     "negativeTeam": "Shenton 4",
@@ -2090,7 +1970,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 4,
     "affirmativeTeam": "John XXIII 2",
     "negativeTeam": "Shenton 1",
@@ -2100,7 +1980,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 5,
     "affirmativeTeam": "Shenton 1",
     "negativeTeam": "Penrhos 2",
@@ -2110,7 +1990,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 5,
     "affirmativeTeam": "Shenton 4",
     "negativeTeam": "John XXIII 2",
@@ -2120,7 +2000,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 5,
     "affirmativeTeam": "Shenton 7",
     "negativeTeam": "John XXIII 1",
@@ -2130,7 +2010,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 6,
     "affirmativeTeam": "Penrhos 2",
     "negativeTeam": "John XXIII 1",
@@ -2140,7 +2020,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 6,
     "affirmativeTeam": "John XXIII 2",
     "negativeTeam": "Shenton 7",
@@ -2150,7 +2030,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 11,
+    "division": 10,
     "round": 6,
     "affirmativeTeam": "Shenton 1",
     "negativeTeam": "Shenton 4",
@@ -2160,87 +2040,87 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 1,
     "affirmativeTeam": "Perth Mod 9",
     "negativeTeam": "Bye",
     "date": "March 21",
     "time": "7:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 1,
     "affirmativeTeam": "Perth Mod 10",
     "negativeTeam": "Perth Mod 12",
     "date": "March 21",
     "time": "7:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 1,
     "affirmativeTeam": "Shenton 2",
-    "negativeTeam": "Penrhos 3",
+    "negativeTeam": "John XXIII 3",
     "date": "March 21",
     "time": "7:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 1,
     "affirmativeTeam": "Shenton 5",
     "negativeTeam": "Scotch 3",
     "date": "March 21",
     "time": "7:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 2,
     "affirmativeTeam": "Bye",
     "negativeTeam": "Scotch 3",
     "date": "April 4",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 2,
-    "affirmativeTeam": "Penrhos 3",
+    "affirmativeTeam": "John XXIII 3",
     "negativeTeam": "Shenton 5",
     "date": "April 4",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 2,
     "affirmativeTeam": "Perth Mod 12",
     "negativeTeam": "Shenton 2",
     "date": "April 4",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 2,
     "affirmativeTeam": "Perth Mod 9",
     "negativeTeam": "Perth Mod 10",
     "date": "April 4",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 3,
     "affirmativeTeam": "Perth Mod 10",
     "negativeTeam": "Bye",
@@ -2250,7 +2130,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 3,
     "affirmativeTeam": "Shenton 2",
     "negativeTeam": "Perth Mod 9",
@@ -2260,7 +2140,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 3,
     "affirmativeTeam": "Shenton 5",
     "negativeTeam": "Perth Mod 12",
@@ -2270,27 +2150,27 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 3,
     "affirmativeTeam": "Scotch 3",
-    "negativeTeam": "Penrhos 3",
+    "negativeTeam": "John XXIII 3",
     "date": "May 9",
     "time": "7:15",
     "topic": "impromptu",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 4,
     "affirmativeTeam": "Bye",
-    "negativeTeam": "Penrhos 3",
+    "negativeTeam": "John XXIII 3",
     "date": "June 6",
     "time": "7:15",
     "topic": "impromptu",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 4,
     "affirmativeTeam": "Perth Mod 12",
     "negativeTeam": "Scotch 3",
@@ -2300,7 +2180,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 4,
     "affirmativeTeam": "Perth Mod 9",
     "negativeTeam": "Shenton 5",
@@ -2310,7 +2190,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 4,
     "affirmativeTeam": "Perth Mod 10",
     "negativeTeam": "Shenton 2",
@@ -2320,7 +2200,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 5,
     "affirmativeTeam": "Shenton 2",
     "negativeTeam": "Bye",
@@ -2330,7 +2210,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 5,
     "affirmativeTeam": "Shenton 5",
     "negativeTeam": "Perth Mod 10",
@@ -2340,7 +2220,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 5,
     "affirmativeTeam": "Scotch 3",
     "negativeTeam": "Perth Mod 9",
@@ -2350,9 +2230,9 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 5,
-    "affirmativeTeam": "Penrhos 3",
+    "affirmativeTeam": "John XXIII 3",
     "negativeTeam": "Perth Mod 12",
     "date": "June 20",
     "time": "7:15",
@@ -2360,7 +2240,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 6,
     "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 12",
@@ -2370,17 +2250,17 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 6,
     "affirmativeTeam": "Perth Mod 9",
-    "negativeTeam": "Penrhos 3",
+    "negativeTeam": "John XXIII 3",
     "date": "August 8",
     "time": "7:15",
     "topic": "impromptu",
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 6,
     "affirmativeTeam": "Perth Mod 10",
     "negativeTeam": "Scotch 3",
@@ -2390,7 +2270,7 @@
     "venue": "Shenton"
   },
   {
-    "division": 12,
+    "division": 11,
     "round": 6,
     "affirmativeTeam": "Shenton 2",
     "negativeTeam": "Shenton 5",
@@ -2400,107 +2280,107 @@
     "venue": "Shenton"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 1,
     "affirmativeTeam": "Duncraig 1",
     "negativeTeam": "Sacred Heart 3",
     "date": "March 21",
     "time": "7:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 1,
     "affirmativeTeam": "Duncraig 2",
     "negativeTeam": "Sacred Heart 2",
     "date": "March 21",
     "time": "7:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 1,
     "affirmativeTeam": "LJBC 1",
     "negativeTeam": "Sacred Heart 1",
     "date": "March 21",
     "time": "7:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 1,
     "affirmativeTeam": "SSSD 1",
     "negativeTeam": "SSSC 1",
     "date": "March 21",
     "time": "7:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 1,
     "affirmativeTeam": "SSSD 2",
     "negativeTeam": "SSSD 3",
     "date": "March 21",
     "time": "7:15",
-    "topic": "This house regrets the rise of slacktivism",
+    "topic": "This house regrets the rise of slacktivism. INFO SLIDE: 'Slacktivism' is a portmanteau of 'slack' and 'activism', and refers to activism undertaken with little-to-no effort on the part of the activist (e.g. some social media or online activism)",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 2,
     "affirmativeTeam": "Sacred Heart 3",
     "negativeTeam": "SSSD 3",
     "date": "April 4",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 2,
     "affirmativeTeam": "SSSC 1",
     "negativeTeam": "SSSD 2",
     "date": "April 4",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 2,
     "affirmativeTeam": "Sacred Heart 1",
     "negativeTeam": "SSSD 1",
     "date": "April 4",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 2,
     "affirmativeTeam": "Sacred Heart 2",
     "negativeTeam": "LJBC 1",
     "date": "April 4",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 2,
     "affirmativeTeam": "Duncraig 1",
     "negativeTeam": "Duncraig 2",
     "date": "April 4",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 3,
     "affirmativeTeam": "Duncraig 2",
     "negativeTeam": "Sacred Heart 3",
@@ -2510,7 +2390,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 3,
     "affirmativeTeam": "LJBC 1",
     "negativeTeam": "Duncraig 1",
@@ -2520,7 +2400,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 3,
     "affirmativeTeam": "SSSD 1",
     "negativeTeam": "Sacred Heart 2",
@@ -2530,7 +2410,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 3,
     "affirmativeTeam": "SSSD 2",
     "negativeTeam": "Sacred Heart 1",
@@ -2540,7 +2420,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 3,
     "affirmativeTeam": "SSSD 3",
     "negativeTeam": "SSSC 1",
@@ -2550,7 +2430,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 4,
     "affirmativeTeam": "Sacred Heart 3",
     "negativeTeam": "SSSC 1",
@@ -2560,7 +2440,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 4,
     "affirmativeTeam": "Sacred Heart 1",
     "negativeTeam": "SSSD 3",
@@ -2570,7 +2450,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 4,
     "affirmativeTeam": "Sacred Heart 2",
     "negativeTeam": "SSSD 2",
@@ -2580,7 +2460,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 4,
     "affirmativeTeam": "Duncraig 1",
     "negativeTeam": "SSSD 1",
@@ -2590,7 +2470,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 4,
     "affirmativeTeam": "Duncraig 2",
     "negativeTeam": "LJBC 1",
@@ -2600,7 +2480,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 5,
     "affirmativeTeam": "LJBC 1",
     "negativeTeam": "Sacred Heart 3",
@@ -2610,7 +2490,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 5,
     "affirmativeTeam": "SSSD 1",
     "negativeTeam": "Duncraig 2",
@@ -2620,7 +2500,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 5,
     "affirmativeTeam": "SSSD 2",
     "negativeTeam": "Duncraig 1",
@@ -2630,7 +2510,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 5,
     "affirmativeTeam": "SSSD 3",
     "negativeTeam": "Sacred Heart 2",
@@ -2640,7 +2520,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 5,
     "affirmativeTeam": "SSSC 1",
     "negativeTeam": "Sacred Heart 1",
@@ -2650,7 +2530,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 6,
     "affirmativeTeam": "Sacred Heart 3",
     "negativeTeam": "Sacred Heart 1",
@@ -2660,7 +2540,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 6,
     "affirmativeTeam": "Sacred Heart 2",
     "negativeTeam": "SSSC 1",
@@ -2670,7 +2550,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 6,
     "affirmativeTeam": "Duncraig 1",
     "negativeTeam": "SSSD 3",
@@ -2680,7 +2560,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 6,
     "affirmativeTeam": "Duncraig 2",
     "negativeTeam": "SSSD 2",
@@ -2690,7 +2570,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 13,
+    "division": 12,
     "round": 6,
     "affirmativeTeam": "LJBC 1",
     "negativeTeam": "SSSD 1",
@@ -2700,7 +2580,7 @@
     "venue": "SSSD"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 1,
     "affirmativeTeam": "Harrisdale 1",
     "negativeTeam": "All Saints' 2",
@@ -2710,7 +2590,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 1,
     "affirmativeTeam": "Kelmscott 2",
     "negativeTeam": "SCBC 3",
@@ -2720,7 +2600,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 1,
     "affirmativeTeam": "Aquinas 2",
     "negativeTeam": "SCBC 1",
@@ -2730,57 +2610,57 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 1,
     "affirmativeTeam": "Perth Mod 14",
-    "negativeTeam": "Perth Mod 16",
+    "negativeTeam": "Perth Mod 7",
     "date": "March 22",
     "time": "6:15",
     "topic": "This house regrets the trend towards 'relatable' politicians",
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 2,
     "affirmativeTeam": "All Saints' 2",
-    "negativeTeam": "Perth Mod 16",
+    "negativeTeam": "Perth Mod 7",
     "date": "April 5",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 2,
     "affirmativeTeam": "SCBC 1",
     "negativeTeam": "Perth Mod 14",
     "date": "April 5",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 2,
     "affirmativeTeam": "SCBC 3",
     "negativeTeam": "Aquinas 2",
     "date": "April 5",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 2,
     "affirmativeTeam": "Harrisdale 1",
     "negativeTeam": "Kelmscott 2",
     "date": "April 5",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 3,
     "affirmativeTeam": "Kelmscott 2",
     "negativeTeam": "All Saints' 2",
@@ -2790,7 +2670,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 3,
     "affirmativeTeam": "Aquinas 2",
     "negativeTeam": "Harrisdale 1",
@@ -2800,7 +2680,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 3,
     "affirmativeTeam": "Perth Mod 14",
     "negativeTeam": "SCBC 3",
@@ -2810,9 +2690,9 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 3,
-    "affirmativeTeam": "Perth Mod 16",
+    "affirmativeTeam": "Perth Mod 7",
     "negativeTeam": "SCBC 1",
     "date": "May 10",
     "time": "6:15",
@@ -2820,7 +2700,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 4,
     "affirmativeTeam": "All Saints' 2",
     "negativeTeam": "SCBC 1",
@@ -2830,17 +2710,17 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 4,
     "affirmativeTeam": "SCBC 3",
-    "negativeTeam": "Perth Mod 16",
+    "negativeTeam": "Perth Mod 7",
     "date": "June 7",
     "time": "6:15",
     "topic": "impromptu",
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 4,
     "affirmativeTeam": "Harrisdale 1",
     "negativeTeam": "Perth Mod 14",
@@ -2850,7 +2730,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 4,
     "affirmativeTeam": "Kelmscott 2",
     "negativeTeam": "Aquinas 2",
@@ -2860,7 +2740,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 5,
     "affirmativeTeam": "Aquinas 2",
     "negativeTeam": "All Saints' 2",
@@ -2870,7 +2750,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 5,
     "affirmativeTeam": "Perth Mod 14",
     "negativeTeam": "Kelmscott 2",
@@ -2880,9 +2760,9 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 5,
-    "affirmativeTeam": "Perth Mod 16",
+    "affirmativeTeam": "Perth Mod 7",
     "negativeTeam": "Harrisdale 1",
     "date": "June 21",
     "time": "6:15",
@@ -2890,7 +2770,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 5,
     "affirmativeTeam": "SCBC 1",
     "negativeTeam": "SCBC 3",
@@ -2900,7 +2780,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 6,
     "affirmativeTeam": "All Saints' 2",
     "negativeTeam": "SCBC 3",
@@ -2910,7 +2790,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 6,
     "affirmativeTeam": "Harrisdale 1",
     "negativeTeam": "SCBC 1",
@@ -2920,17 +2800,17 @@
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 6,
     "affirmativeTeam": "Kelmscott 2",
-    "negativeTeam": "Perth Mod 16",
+    "negativeTeam": "Perth Mod 7",
     "date": "August 9",
     "time": "6:15",
     "topic": "impromptu",
     "venue": "All Saints'"
   },
   {
-    "division": 14,
+    "division": 13,
     "round": 6,
     "affirmativeTeam": "Aquinas 2",
     "negativeTeam": "Perth Mod 14",
@@ -2940,7 +2820,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 1,
     "affirmativeTeam": "Kelmscott 1",
     "negativeTeam": "Bye",
@@ -2950,7 +2830,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 1,
     "affirmativeTeam": "Aquinas 1",
     "negativeTeam": "All Saints' 1",
@@ -2960,7 +2840,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 1,
     "affirmativeTeam": "Perth Mod 13",
     "negativeTeam": "SCBC 2",
@@ -2970,7 +2850,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 1,
     "affirmativeTeam": "Perth Mod 15",
     "negativeTeam": "Santa Maria 4",
@@ -2980,47 +2860,47 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 2,
     "affirmativeTeam": "Bye",
     "negativeTeam": "Santa Maria 4",
     "date": "April 5",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 2,
     "affirmativeTeam": "SCBC 2",
     "negativeTeam": "Perth Mod 15",
     "date": "April 5",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 2,
     "affirmativeTeam": "All Saints' 1",
     "negativeTeam": "Perth Mod 13",
     "date": "April 5",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 2,
     "affirmativeTeam": "Kelmscott 1",
     "negativeTeam": "Aquinas 1",
     "date": "April 5",
     "time": "6:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 3,
     "affirmativeTeam": "Aquinas 1",
     "negativeTeam": "Bye",
@@ -3030,7 +2910,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 3,
     "affirmativeTeam": "Perth Mod 13",
     "negativeTeam": "Kelmscott 1",
@@ -3040,7 +2920,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 3,
     "affirmativeTeam": "Perth Mod 15",
     "negativeTeam": "All Saints' 1",
@@ -3050,7 +2930,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 3,
     "affirmativeTeam": "Santa Maria 4",
     "negativeTeam": "SCBC 2",
@@ -3060,7 +2940,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 4,
     "affirmativeTeam": "Bye",
     "negativeTeam": "SCBC 2",
@@ -3070,7 +2950,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 4,
     "affirmativeTeam": "All Saints' 1",
     "negativeTeam": "Santa Maria 4",
@@ -3080,7 +2960,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 4,
     "affirmativeTeam": "Kelmscott 1",
     "negativeTeam": "Perth Mod 15",
@@ -3090,7 +2970,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 4,
     "affirmativeTeam": "Aquinas 1",
     "negativeTeam": "Perth Mod 13",
@@ -3100,7 +2980,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 5,
     "affirmativeTeam": "Perth Mod 13",
     "negativeTeam": "Bye",
@@ -3110,7 +2990,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 5,
     "affirmativeTeam": "Perth Mod 15",
     "negativeTeam": "Aquinas 1",
@@ -3120,7 +3000,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 5,
     "affirmativeTeam": "Santa Maria 4",
     "negativeTeam": "Kelmscott 1",
@@ -3130,7 +3010,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 5,
     "affirmativeTeam": "SCBC 2",
     "negativeTeam": "All Saints' 1",
@@ -3140,7 +3020,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 6,
     "affirmativeTeam": "Bye",
     "negativeTeam": "All Saints' 1",
@@ -3150,7 +3030,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 6,
     "affirmativeTeam": "Kelmscott 1",
     "negativeTeam": "SCBC 2",
@@ -3160,7 +3040,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 6,
     "affirmativeTeam": "Aquinas 1",
     "negativeTeam": "Santa Maria 4",
@@ -3170,7 +3050,7 @@
     "venue": "All Saints'"
   },
   {
-    "division": 15,
+    "division": 14,
     "round": 6,
     "affirmativeTeam": "Perth Mod 13",
     "negativeTeam": "Perth Mod 15",
@@ -3180,9 +3060,19 @@
     "venue": "All Saints'"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 1,
     "affirmativeTeam": "Mount Lawley 1",
+    "negativeTeam": "Bye",
+    "date": "March 22",
+    "time": "7:15",
+    "topic": "This house regrets the trend towards 'relatable' politicians",
+    "venue": "Mount Lawley"
+  },
+  {
+    "division": 15,
+    "round": 1,
+    "affirmativeTeam": "Mount Lawley 2",
     "negativeTeam": "SVACS 1",
     "date": "March 22",
     "time": "7:15",
@@ -3190,9 +3080,9 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 1,
-    "affirmativeTeam": "Mount Lawley 2",
+    "affirmativeTeam": "Carmel 1",
     "negativeTeam": "John Septimus 1",
     "date": "March 22",
     "time": "7:15",
@@ -3200,9 +3090,9 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 1,
-    "affirmativeTeam": "Carmel 1",
+    "affirmativeTeam": "Helena 1",
     "negativeTeam": "Trinity 1",
     "date": "March 22",
     "time": "7:15",
@@ -3210,67 +3100,57 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
-    "round": 1,
-    "affirmativeTeam": "Carmel 2",
-    "negativeTeam": "Helena 1",
-    "date": "March 22",
-    "time": "7:15",
-    "topic": "This house regrets the trend towards 'relatable' politicians",
-    "venue": "Mount Lawley"
-  },
-  {
-    "division": 16,
+    "division": 15,
     "round": 2,
-    "affirmativeTeam": "SVACS 1",
-    "negativeTeam": "Helena 1",
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "Trinity 1",
     "date": "April 5",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
-    "round": 2,
-    "affirmativeTeam": "Trinity 1",
-    "negativeTeam": "Carmel 2",
-    "date": "April 5",
-    "time": "7:15",
-    "topic": "tbd",
-    "venue": "Mount Lawley"
-  },
-  {
-    "division": 16,
+    "division": 15,
     "round": 2,
     "affirmativeTeam": "John Septimus 1",
+    "negativeTeam": "Helena 1",
+    "date": "April 5",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
+    "venue": "Mount Lawley"
+  },
+  {
+    "division": 15,
+    "round": 2,
+    "affirmativeTeam": "SVACS 1",
     "negativeTeam": "Carmel 1",
     "date": "April 5",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 2,
     "affirmativeTeam": "Mount Lawley 1",
     "negativeTeam": "Mount Lawley 2",
     "date": "April 5",
     "time": "7:15",
-    "topic": "tbd",
+    "topic": "PROVISIONAL: This house, as the military, would refuse to participate in urban warfare",
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 3,
     "affirmativeTeam": "Mount Lawley 2",
-    "negativeTeam": "SVACS 1",
+    "negativeTeam": "Bye",
     "date": "May 10",
     "time": "7:15",
     "topic": "impromptu",
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 3,
     "affirmativeTeam": "Carmel 1",
     "negativeTeam": "Mount Lawley 1",
@@ -3280,9 +3160,19 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 3,
-    "affirmativeTeam": "Carmel 2",
+    "affirmativeTeam": "Helena 1",
+    "negativeTeam": "SVACS 1",
+    "date": "May 10",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Mount Lawley"
+  },
+  {
+    "division": 15,
+    "round": 3,
+    "affirmativeTeam": "Trinity 1",
     "negativeTeam": "John Septimus 1",
     "date": "May 10",
     "time": "7:15",
@@ -3290,17 +3180,17 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
-    "round": 3,
-    "affirmativeTeam": "Helena 1",
-    "negativeTeam": "Trinity 1",
-    "date": "May 10",
+    "division": 15,
+    "round": 4,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "John Septimus 1",
+    "date": "June 7",
     "time": "7:15",
     "topic": "impromptu",
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 4,
     "affirmativeTeam": "SVACS 1",
     "negativeTeam": "Trinity 1",
@@ -3310,9 +3200,9 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 4,
-    "affirmativeTeam": "John Septimus 1",
+    "affirmativeTeam": "Mount Lawley 1",
     "negativeTeam": "Helena 1",
     "date": "June 7",
     "time": "7:15",
@@ -3320,17 +3210,7 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
-    "round": 4,
-    "affirmativeTeam": "Mount Lawley 1",
-    "negativeTeam": "Carmel 2",
-    "date": "June 7",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "Mount Lawley"
-  },
-  {
-    "division": 16,
+    "division": 15,
     "round": 4,
     "affirmativeTeam": "Mount Lawley 2",
     "negativeTeam": "Carmel 1",
@@ -3340,19 +3220,19 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 5,
     "affirmativeTeam": "Carmel 1",
-    "negativeTeam": "SVACS 1",
+    "negativeTeam": "Bye",
     "date": "June 21",
     "time": "7:15",
     "topic": "impromptu",
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 5,
-    "affirmativeTeam": "Carmel 2",
+    "affirmativeTeam": "Helena 1",
     "negativeTeam": "Mount Lawley 2",
     "date": "June 21",
     "time": "7:15",
@@ -3360,9 +3240,9 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 5,
-    "affirmativeTeam": "Helena 1",
+    "affirmativeTeam": "Trinity 1",
     "negativeTeam": "Mount Lawley 1",
     "date": "June 21",
     "time": "7:15",
@@ -3370,19 +3250,29 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 5,
-    "affirmativeTeam": "Trinity 1",
-    "negativeTeam": "John Septimus 1",
+    "affirmativeTeam": "John Septimus 1",
+    "negativeTeam": "SVACS 1",
     "date": "June 21",
     "time": "7:15",
     "topic": "impromptu",
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 6,
-    "affirmativeTeam": "SVACS 1",
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "SVACS 1",
+    "date": "August 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Mount Lawley"
+  },
+  {
+    "division": 15,
+    "round": 6,
+    "affirmativeTeam": "Mount Lawley 1",
     "negativeTeam": "John Septimus 1",
     "date": "August 9",
     "time": "7:15",
@@ -3390,9 +3280,9 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
+    "division": 15,
     "round": 6,
-    "affirmativeTeam": "Mount Lawley 1",
+    "affirmativeTeam": "Mount Lawley 2",
     "negativeTeam": "Trinity 1",
     "date": "August 9",
     "time": "7:15",
@@ -3400,20 +3290,10 @@
     "venue": "Mount Lawley"
   },
   {
-    "division": 16,
-    "round": 6,
-    "affirmativeTeam": "Mount Lawley 2",
-    "negativeTeam": "Helena 1",
-    "date": "August 9",
-    "time": "7:15",
-    "topic": "impromptu",
-    "venue": "Mount Lawley"
-  },
-  {
-    "division": 16,
+    "division": 15,
     "round": 6,
     "affirmativeTeam": "Carmel 1",
-    "negativeTeam": "Carmel 2",
+    "negativeTeam": "Helena 1",
     "date": "August 9",
     "time": "7:15",
     "topic": "impromptu",
