@@ -94,6 +94,14 @@
             class="mx-2 my-2"
             @add-chip="allocateTeam"
           />
+          <Chip
+            v-if="division.hasBye"
+            text="Bye"
+            size="small"
+            bg-color="bg-light-grey"
+            :can-remove="true"
+            class="mx-2 my-2"
+          />
         </div>
       </div>
     </div>
@@ -154,8 +162,6 @@ const updateDivisions = async () => {
     "Updated divisions and team divisions successfully"
   );
 };
-
-const allocateBye = () => {};
 
 onMounted(async () => {
   try {
@@ -221,6 +227,16 @@ const venuePreferenceColor = (team) => {
     return "bg-white";
   } else {
     return "bg-danger-red/20";
+  }
+};
+
+const allocateBye = () => {
+  // console.log(tournamentStore.divisions.length);
+  for (let i = 0; i < tournamentStore.divisions.length; i += 1) {
+    // console.log(tournamentStore.divisions[i].teamCount);
+    if (tournamentStore.divisions[i].teamCount % 2 === 1) {
+      tournamentStore.divisions[i].hasBye = true;
+    }
   }
 };
 </script>

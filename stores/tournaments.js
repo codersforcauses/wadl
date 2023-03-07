@@ -89,6 +89,7 @@ export const useTournamentStore = defineStore("tournament", {
         status: tournament.status,
         venues: tournament.venues,
         roundDates: tournament.roundDates,
+        teamCount: tournament.teamCount,
       });
 
       this.tournaments.forEach((t) => {

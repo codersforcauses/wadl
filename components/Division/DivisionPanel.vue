@@ -4,7 +4,7 @@
       <div class="flex">
         <p class="my-auto text-xl">Division {{ divisionNumber }}</p>
         <p class="flex items-center px-2 text-xs text-mid-grey font-montserrat">
-          ({{ getTeamCount() }} teams)
+          ({{ getTeamCount }} teams)
         </p>
       </div>
       <button
@@ -42,7 +42,7 @@
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
 import { useTournamentStore } from "../../stores/tournaments";
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 
 const props = defineProps({
   division: {
