@@ -77,15 +77,15 @@ watch(currentVenue, (newValue, oldValue) => {
   }
 });
 
-const getTeamCount = () => {
-  let numberOfTeams = 0;
+const getTeamCount = computed(() => {
+  props.division.teamCount = 0;
   teamStore.allocatedTeams.forEach((team) => {
     if (team.division === divisionNumber.value) {
-      numberOfTeams += 1;
+      props.division.teamCount += 1;
     }
   });
-  return numberOfTeams;
-};
+  return props.division.teamCount;
+});
 
 if (divisionVenue.value) {
   const matchingVenue = props.venues.find(
