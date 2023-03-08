@@ -43,7 +43,11 @@
       bg-color="bg-white"
       :can-remove="true"
       class="my-2"
-      @remove-chip="removeBye(props.division)"
+      @remove-chip="
+        () => {
+          props.division.hasBye = false;
+        }
+      "
     />
   </div>
 </template>
@@ -131,10 +135,6 @@ const unallocateTeam = (name) => {
     team.division = null;
     teamStore.unallocatedTeams.set(team.id, team);
   }
-};
-
-const removeBye = (name) => {
-  name.hasBye = false;
 };
 
 const venuePreferenceColor = (team) => {
