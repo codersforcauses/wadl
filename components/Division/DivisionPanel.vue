@@ -36,6 +36,14 @@
         @remove-chip="unallocateTeam"
       />
     </div>
+    <Chip
+      v-if="props.division.hasBye"
+      text="Bye"
+      size="small"
+      bg-color="bg-white"
+      :can-remove="true"
+      class="my-2"
+    />
   </div>
 </template>
 <script setup>

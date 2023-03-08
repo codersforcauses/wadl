@@ -94,14 +94,6 @@
             class="mx-2 my-2"
             @add-chip="allocateTeam"
           />
-          <Chip
-            v-if="division.hasBye"
-            text="Bye"
-            size="small"
-            bg-color="bg-light-grey"
-            :can-remove="true"
-            class="mx-2 my-2"
-          />
         </div>
       </div>
     </div>
