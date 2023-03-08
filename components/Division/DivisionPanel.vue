@@ -43,6 +43,7 @@
       bg-color="bg-white"
       :can-remove="true"
       class="my-2"
+      @remove-chip="removeBye(props.division)"
     />
   </div>
 </template>
@@ -120,6 +121,7 @@ const unallocateTeam = (name) => {
   const team = Array.from(teamStore.allocatedTeams.values()).find(
     (team) => team.name === name
   );
+  console.log(team);
   if (team) {
     teamStore.allocatedTeams.delete(
       Array.from(teamStore.allocatedTeams.keys()).find(
@@ -129,6 +131,10 @@ const unallocateTeam = (name) => {
     team.division = null;
     teamStore.unallocatedTeams.set(team.id, team);
   }
+};
+
+const removeBye = (name) => {
+  name.hasBye = false;
 };
 
 const venuePreferenceColor = (team) => {
