@@ -7,7 +7,7 @@ import juniorFixtures from "../../data/juniorDraw.json";
 import noviceFixtures from "../../data/noviceDraw.json";
 import seniorFixtures from "../../data/seniorDraw.json";
 const tournamentStore = useTournamentStore();
-//const teamStore = useTeamStore();
+// const teamStore = useTeamStore();
 const route = useRoute();
 const isLoading = ref(true);
 
@@ -15,7 +15,7 @@ let selectedTournament = null;
 let selectedRound = null;
 
 onMounted(async () => {
-  //await teamStore.getTeams();
+  // await teamStore.getTeams();
   selectedTournament = tournamentStore.getRunning.find(
     (tournament) => tournament.id === route.params.tournamentId
   );
