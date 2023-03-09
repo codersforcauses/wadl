@@ -1,0 +1,1322 @@
+[
+  {
+    "division": 1,
+    "round": 1,
+    "affirmativeTeam": "Mercedes 1",
+    "negativeTeam": "Bye",
+    "date": "March 14",
+    "time": "7:15",
+    "topic": "This house would ban strikes by essential workforces",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 1,
+    "affirmativeTeam": "Santa Maria 1",
+    "negativeTeam": "Iona 1",
+    "date": "March 14",
+    "time": "7:15",
+    "topic": "This house would ban strikes by essential workforces",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 1,
+    "affirmativeTeam": "Santa Maria 2",
+    "negativeTeam": "PLC 1",
+    "date": "March 14",
+    "time": "7:15",
+    "topic": "This house would ban strikes by essential workforces",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 2,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "PLC 1",
+    "date": "March 28",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 2,
+    "affirmativeTeam": "Iona 1",
+    "negativeTeam": "Santa Maria 2",
+    "date": "March 28",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 2,
+    "affirmativeTeam": "Mercedes 1",
+    "negativeTeam": "Santa Maria 1",
+    "date": "March 28",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 3,
+    "affirmativeTeam": "Santa Maria 1",
+    "negativeTeam": "Bye",
+    "date": "May 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 3,
+    "affirmativeTeam": "Santa Maria 2",
+    "negativeTeam": "Mercedes 1",
+    "date": "May 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 3,
+    "affirmativeTeam": "PLC 1",
+    "negativeTeam": "Iona 1",
+    "date": "May 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 4,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "Iona 1",
+    "date": "May 30",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 4,
+    "affirmativeTeam": "Mercedes 1",
+    "negativeTeam": "PLC 1",
+    "date": "May 30",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 4,
+    "affirmativeTeam": "Santa Maria 1",
+    "negativeTeam": "Santa Maria 2",
+    "date": "May 30",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 5,
+    "affirmativeTeam": "Santa Maria 2",
+    "negativeTeam": "Bye",
+    "date": "June 13",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 5,
+    "affirmativeTeam": "PLC 1",
+    "negativeTeam": "Santa Maria 1",
+    "date": "June 13",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 5,
+    "affirmativeTeam": "Iona 1",
+    "negativeTeam": "Mercedes 1",
+    "date": "June 13",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 6,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "Mercedes 1",
+    "date": "August 1",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 6,
+    "affirmativeTeam": "Santa Maria 1",
+    "negativeTeam": "Iona 1",
+    "date": "August 1",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 1,
+    "round": 6,
+    "affirmativeTeam": "Santa Maria 2",
+    "negativeTeam": "PLC 1",
+    "date": "August 1",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Bob Hawke"
+  },
+  {
+    "division": 2,
+    "round": 1,
+    "affirmativeTeam": "Hale 1",
+    "negativeTeam": "SSSD 1",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 1,
+    "affirmativeTeam": "Hale 2",
+    "negativeTeam": "St Mary's 2",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 1,
+    "affirmativeTeam": "Hale 3",
+    "negativeTeam": "St Mary's 1",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 1,
+    "affirmativeTeam": "Hale 4",
+    "negativeTeam": "Hale 5",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 2,
+    "affirmativeTeam": "SSSD 1",
+    "negativeTeam": "Hale 5",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 2,
+    "affirmativeTeam": "St Mary's 1",
+    "negativeTeam": "Hale 4",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 2,
+    "affirmativeTeam": "St Mary's 2",
+    "negativeTeam": "Hale 3",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 2,
+    "affirmativeTeam": "Hale 1",
+    "negativeTeam": "Hale 2",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 3,
+    "affirmativeTeam": "Hale 2",
+    "negativeTeam": "SSSD 1",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 3,
+    "affirmativeTeam": "Hale 3",
+    "negativeTeam": "Hale 1",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 3,
+    "affirmativeTeam": "Hale 4",
+    "negativeTeam": "St Mary's 2",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 3,
+    "affirmativeTeam": "Hale 5",
+    "negativeTeam": "St Mary's 1",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 4,
+    "affirmativeTeam": "SSSD 1",
+    "negativeTeam": "St Mary's 1",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 4,
+    "affirmativeTeam": "St Mary's 2",
+    "negativeTeam": "Hale 5",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 4,
+    "affirmativeTeam": "Hale 1",
+    "negativeTeam": "Hale 4",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 4,
+    "affirmativeTeam": "Hale 2",
+    "negativeTeam": "Hale 3",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 5,
+    "affirmativeTeam": "Hale 3",
+    "negativeTeam": "SSSD 1",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 5,
+    "affirmativeTeam": "Hale 4",
+    "negativeTeam": "Hale 2",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 5,
+    "affirmativeTeam": "Hale 5",
+    "negativeTeam": "Hale 1",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 5,
+    "affirmativeTeam": "St Mary's 1",
+    "negativeTeam": "St Mary's 2",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 6,
+    "affirmativeTeam": "SSSD 1",
+    "negativeTeam": "St Mary's 2",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 6,
+    "affirmativeTeam": "Hale 1",
+    "negativeTeam": "St Mary's 1",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 6,
+    "affirmativeTeam": "Hale 2",
+    "negativeTeam": "Hale 5",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 2,
+    "round": 6,
+    "affirmativeTeam": "Hale 3",
+    "negativeTeam": "Hale 4",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Hale"
+  },
+  {
+    "division": 3,
+    "round": 1,
+    "affirmativeTeam": "PC 1",
+    "negativeTeam": "Bye",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 1,
+    "affirmativeTeam": "PC 2",
+    "negativeTeam": "Joseph Banks 1",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 1,
+    "affirmativeTeam": "PC 3",
+    "negativeTeam": "Wesley 1",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 1,
+    "affirmativeTeam": "Mount Lawley 1",
+    "negativeTeam": "Guildford 2",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 1,
+    "affirmativeTeam": "Mount Lawley 2",
+    "negativeTeam": "Guildford 1",
+    "date": "March 15",
+    "time": "7:15",
+    "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 2,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "Guildford 1",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 2,
+    "affirmativeTeam": "Guildford 2",
+    "negativeTeam": "Mount Lawley 2",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 2,
+    "affirmativeTeam": "Wesley 1",
+    "negativeTeam": "Mount Lawley 1",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 2,
+    "affirmativeTeam": "Joseph Banks 1",
+    "negativeTeam": "PC 3",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 2,
+    "affirmativeTeam": "PC 1",
+    "negativeTeam": "PC 2",
+    "date": "March 29",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house believes that the use of landmines can never be justified",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 3,
+    "affirmativeTeam": "PC 2",
+    "negativeTeam": "Bye",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 3,
+    "affirmativeTeam": "PC 3",
+    "negativeTeam": "PC 1",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 3,
+    "affirmativeTeam": "Mount Lawley 1",
+    "negativeTeam": "Joseph Banks 1",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 3,
+    "affirmativeTeam": "Mount Lawley 2",
+    "negativeTeam": "Wesley 1",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 3,
+    "affirmativeTeam": "Guildford 1",
+    "negativeTeam": "Guildford 2",
+    "date": "May 3",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 4,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "Guildford 2",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 4,
+    "affirmativeTeam": "Wesley 1",
+    "negativeTeam": "Guildford 1",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 4,
+    "affirmativeTeam": "Joseph Banks 1",
+    "negativeTeam": "Mount Lawley 2",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 4,
+    "affirmativeTeam": "PC 1",
+    "negativeTeam": "Mount Lawley 1",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 4,
+    "affirmativeTeam": "PC 2",
+    "negativeTeam": "PC 3",
+    "date": "May 31",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 5,
+    "affirmativeTeam": "PC 3",
+    "negativeTeam": "Bye",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 5,
+    "affirmativeTeam": "Mount Lawley 1",
+    "negativeTeam": "PC 2",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 5,
+    "affirmativeTeam": "Mount Lawley 2",
+    "negativeTeam": "PC 1",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 5,
+    "affirmativeTeam": "Guildford 1",
+    "negativeTeam": "Joseph Banks 1",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 5,
+    "affirmativeTeam": "Guildford 2",
+    "negativeTeam": "Wesley 1",
+    "date": "June 14",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 6,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "Wesley 1",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 6,
+    "affirmativeTeam": "Joseph Banks 1",
+    "negativeTeam": "Guildford 2",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 6,
+    "affirmativeTeam": "PC 1",
+    "negativeTeam": "Guildford 1",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 6,
+    "affirmativeTeam": "PC 2",
+    "negativeTeam": "Mount Lawley 2",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 3,
+    "round": 6,
+    "affirmativeTeam": "PC 3",
+    "negativeTeam": "Mount Lawley 1",
+    "date": "August 2",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "PC"
+  },
+  {
+    "division": 4,
+    "round": 1,
+    "affirmativeTeam": "Perth Mod 1",
+    "negativeTeam": "Bye",
+    "date": "March 21",
+    "time": "7:15",
+    "topic": "This house would significantly tax vacant property ",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 1,
+    "affirmativeTeam": "Perth Mod 2",
+    "negativeTeam": "John XXIII 1",
+    "date": "March 21",
+    "time": "7:15",
+    "topic": "This house would significantly tax vacant property ",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 1,
+    "affirmativeTeam": "Shenton 1",
+    "negativeTeam": "Scotch 1",
+    "date": "March 21",
+    "time": "7:15",
+    "topic": "This house would significantly tax vacant property ",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 1,
+    "affirmativeTeam": "CCGS 1",
+    "negativeTeam": "CCGS 2",
+    "date": "March 21",
+    "time": "7:15",
+    "topic": "This house would significantly tax vacant property ",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 2,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "CCGS 2",
+    "date": "April 4",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 2,
+    "affirmativeTeam": "Scotch 1",
+    "negativeTeam": "CCGS 1",
+    "date": "April 4",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 2,
+    "affirmativeTeam": "John XXIII 1",
+    "negativeTeam": "Shenton 1",
+    "date": "April 4",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 2,
+    "affirmativeTeam": "Perth Mod 1",
+    "negativeTeam": "Perth Mod 2",
+    "date": "April 4",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 3,
+    "affirmativeTeam": "Perth Mod 2",
+    "negativeTeam": "Bye",
+    "date": "May 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 3,
+    "affirmativeTeam": "Shenton 1",
+    "negativeTeam": "Perth Mod 1",
+    "date": "May 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 3,
+    "affirmativeTeam": "CCGS 1",
+    "negativeTeam": "John XXIII 1",
+    "date": "May 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 3,
+    "affirmativeTeam": "CCGS 2",
+    "negativeTeam": "Scotch 1",
+    "date": "May 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 4,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "Scotch 1",
+    "date": "June 6",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 4,
+    "affirmativeTeam": "John XXIII 1",
+    "negativeTeam": "CCGS 2",
+    "date": "June 6",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 4,
+    "affirmativeTeam": "Perth Mod 1",
+    "negativeTeam": "CCGS 1",
+    "date": "June 6",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 4,
+    "affirmativeTeam": "Perth Mod 2",
+    "negativeTeam": "Shenton 1",
+    "date": "June 6",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 5,
+    "affirmativeTeam": "Shenton 1",
+    "negativeTeam": "Bye",
+    "date": "June 20",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 5,
+    "affirmativeTeam": "CCGS 1",
+    "negativeTeam": "Perth Mod 2",
+    "date": "June 20",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 5,
+    "affirmativeTeam": "CCGS 2",
+    "negativeTeam": "Perth Mod 1",
+    "date": "June 20",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 5,
+    "affirmativeTeam": "Scotch 1",
+    "negativeTeam": "John XXIII 1",
+    "date": "June 20",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 6,
+    "affirmativeTeam": "Bye",
+    "negativeTeam": "John XXIII 1",
+    "date": "August 8",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 6,
+    "affirmativeTeam": "Perth Mod 1",
+    "negativeTeam": "Scotch 1",
+    "date": "August 8",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 6,
+    "affirmativeTeam": "Perth Mod 2",
+    "negativeTeam": "CCGS 2",
+    "date": "August 8",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 4,
+    "round": 6,
+    "affirmativeTeam": "Shenton 1",
+    "negativeTeam": "CCGS 1",
+    "date": "August 8",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 1,
+    "affirmativeTeam": "Perth Mod 3",
+    "negativeTeam": "Scotch 2",
+    "date": "March 21",
+    "time": "7:15",
+    "topic": "This house would significantly tax vacant property ",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 1,
+    "affirmativeTeam": "Perth Mod 4",
+    "negativeTeam": "CCGS 4",
+    "date": "March 21",
+    "time": "7:15",
+    "topic": "This house would significantly tax vacant property ",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 1,
+    "affirmativeTeam": "Shenton 2",
+    "negativeTeam": "CCGS 3",
+    "date": "March 21",
+    "time": "7:15",
+    "topic": "This house would significantly tax vacant property ",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 2,
+    "affirmativeTeam": "Scotch 2",
+    "negativeTeam": "CCGS 3",
+    "date": "April 4",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 2,
+    "affirmativeTeam": "CCGS 4",
+    "negativeTeam": "Shenton 2",
+    "date": "April 4",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 2,
+    "affirmativeTeam": "Perth Mod 3",
+    "negativeTeam": "Perth Mod 4",
+    "date": "April 4",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 3,
+    "affirmativeTeam": "Perth Mod 4",
+    "negativeTeam": "Scotch 2",
+    "date": "May 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 3,
+    "affirmativeTeam": "Shenton 2",
+    "negativeTeam": "Perth Mod 3",
+    "date": "May 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 3,
+    "affirmativeTeam": "CCGS 3",
+    "negativeTeam": "CCGS 4",
+    "date": "May 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 4,
+    "affirmativeTeam": "Scotch 2",
+    "negativeTeam": "CCGS 4",
+    "date": "June 6",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 4,
+    "affirmativeTeam": "Perth Mod 3",
+    "negativeTeam": "CCGS 3",
+    "date": "June 6",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 4,
+    "affirmativeTeam": "Perth Mod 4",
+    "negativeTeam": "Shenton 2",
+    "date": "June 6",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 5,
+    "affirmativeTeam": "Shenton 2",
+    "negativeTeam": "Scotch 2",
+    "date": "June 20",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 5,
+    "affirmativeTeam": "CCGS 3",
+    "negativeTeam": "Perth Mod 4",
+    "date": "June 20",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 5,
+    "affirmativeTeam": "CCGS 4",
+    "negativeTeam": "Perth Mod 3",
+    "date": "June 20",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 6,
+    "affirmativeTeam": "Scotch 2",
+    "negativeTeam": "Perth Mod 3",
+    "date": "August 8",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 6,
+    "affirmativeTeam": "Perth Mod 4",
+    "negativeTeam": "CCGS 4",
+    "date": "August 8",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 5,
+    "round": 6,
+    "affirmativeTeam": "Shenton 2",
+    "negativeTeam": "CCGS 3",
+    "date": "August 8",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "Shenton"
+  },
+  {
+    "division": 6,
+    "round": 1,
+    "affirmativeTeam": "Aquinas 1",
+    "negativeTeam": "All Saints' 1",
+    "date": "March 22",
+    "time": "7:15",
+    "topic": "This house would break up Big Tech. INFO SLIDE: Big Tech refers to the largest and most dominant information technology companies, most notably Amazon, Alphabet, Apple, Meta, and Microsoft.",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 1,
+    "affirmativeTeam": "Aquinas 2",
+    "negativeTeam": "Santa Maria 3",
+    "date": "March 22",
+    "time": "7:15",
+    "topic": "This house would break up Big Tech. INFO SLIDE: Big Tech refers to the largest and most dominant information technology companies, most notably Amazon, Alphabet, Apple, Meta, and Microsoft.",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 1,
+    "affirmativeTeam": "Aquinas 3",
+    "negativeTeam": "Aquinas 4",
+    "date": "March 22",
+    "time": "7:15",
+    "topic": "This house would break up Big Tech. INFO SLIDE: Big Tech refers to the largest and most dominant information technology companies, most notably Amazon, Alphabet, Apple, Meta, and Microsoft.",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 2,
+    "affirmativeTeam": "All Saints' 1",
+    "negativeTeam": "Aquinas 4",
+    "date": "April 5",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 2,
+    "affirmativeTeam": "Santa Maria 3",
+    "negativeTeam": "Aquinas 3",
+    "date": "April 5",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 2,
+    "affirmativeTeam": "Aquinas 1",
+    "negativeTeam": "Aquinas 2",
+    "date": "April 5",
+    "time": "7:15",
+    "topic": "PROVISIONAL: This house would adopt an attitude of absolute neutrality in international diplomacy",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 3,
+    "affirmativeTeam": "Aquinas 2",
+    "negativeTeam": "All Saints' 1",
+    "date": "May 10",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 3,
+    "affirmativeTeam": "Aquinas 3",
+    "negativeTeam": "Aquinas 1",
+    "date": "May 10",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 3,
+    "affirmativeTeam": "Aquinas 4",
+    "negativeTeam": "Santa Maria 3",
+    "date": "May 10",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 4,
+    "affirmativeTeam": "All Saints' 1",
+    "negativeTeam": "Santa Maria 3",
+    "date": "June 7",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 4,
+    "affirmativeTeam": "Aquinas 1",
+    "negativeTeam": "Aquinas 4",
+    "date": "June 7",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 4,
+    "affirmativeTeam": "Aquinas 2",
+    "negativeTeam": "Aquinas 3",
+    "date": "June 7",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 5,
+    "affirmativeTeam": "Aquinas 3",
+    "negativeTeam": "All Saints' 1",
+    "date": "June 21",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 5,
+    "affirmativeTeam": "Aquinas 4",
+    "negativeTeam": "Aquinas 2",
+    "date": "June 21",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 5,
+    "affirmativeTeam": "Santa Maria 3",
+    "negativeTeam": "Aquinas 1",
+    "date": "June 21",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 6,
+    "affirmativeTeam": "All Saints' 1",
+    "negativeTeam": "Aquinas 1",
+    "date": "August 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 6,
+    "affirmativeTeam": "Aquinas 2",
+    "negativeTeam": "Santa Maria 3",
+    "date": "August 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  },
+  {
+    "division": 6,
+    "round": 6,
+    "affirmativeTeam": "Aquinas 3",
+    "negativeTeam": "Aquinas 4",
+    "date": "August 9",
+    "time": "7:15",
+    "topic": "impromptu",
+    "venue": "All Saints'"
+  }
+]
