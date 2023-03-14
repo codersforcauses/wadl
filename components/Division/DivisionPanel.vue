@@ -125,7 +125,6 @@ const unallocateTeam = (name) => {
   const team = Array.from(teamStore.allocatedTeams.values()).find(
     (team) => team.name === name
   );
-  console.log(team);
   if (team) {
     teamStore.allocatedTeams.delete(
       Array.from(teamStore.allocatedTeams.keys()).find(

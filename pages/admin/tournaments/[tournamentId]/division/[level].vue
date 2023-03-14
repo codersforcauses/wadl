@@ -223,9 +223,7 @@ const venuePreferenceColor = (team) => {
 };
 
 const allocateBye = () => {
-  // console.log(tournamentStore.divisions.length);
   for (let i = 0; i < tournamentStore.divisions.length; i += 1) {
-    // console.log(tournamentStore.divisions[i].teamCount);
     if (tournamentStore.divisions[i].teamCount % 2 === 1) {
       tournamentStore.divisions[i].hasBye = true;
     }

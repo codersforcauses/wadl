@@ -18,5 +18,5 @@
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
 
 const emit = defineEmits(["handleFilter"]);
-const searchString = "";
+let searchString = "";
 </script>
