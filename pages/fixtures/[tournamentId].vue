@@ -1,13 +1,13 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
-import { useTeamStore } from "../../stores/teams";
+// import { useTeamStore } from "../../stores/teams";
 import { useRoute } from "#imports";
 import juniorFixtures from "../../data/juniorDraw.json";
 import noviceFixtures from "../../data/noviceDraw.json";
 import seniorFixtures from "../../data/seniorDraw.json";
 const tournamentStore = useTournamentStore();
-//const teamStore = useTeamStore();
+// const teamStore = useTeamStore();
 const route = useRoute();
 const isLoading = ref(true);
 
@@ -15,7 +15,7 @@ let selectedTournament = null;
 let selectedRound = null;
 
 onMounted(async () => {
-  //await teamStore.getTeams();
+  // await teamStore.getTeams();
   selectedTournament = tournamentStore.getRunning.find(
     (tournament) => tournament.id === route.params.tournamentId
   );
@@ -165,7 +165,7 @@ const getFixturesTableData = () => {
   // });
 
   // Used only for JSON fixtures
-  selectedLevel.value.map((matchup) => {
+  selectedLevel.value.forEach((matchup) => {
     if (matchup.round === selectedRound) {
       tableData.value.push(matchup);
     }
