@@ -1,5 +1,8 @@
 <template>
-  <div v-if="data.length > 0" class="block overflow-auto w-full md:w-11/12">
+  <div
+    v-if="data.length > 0"
+    class="block overflow-auto w-full md:w-11/12 max-w-7xl"
+  >
     <table class="w-full">
       <thead v-if="renderHeaders">
         <tr class="border-b font-montserrat text-left">
