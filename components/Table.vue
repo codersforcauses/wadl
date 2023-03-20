@@ -30,9 +30,20 @@
               :row="row"
               :row-id="index"
             >
-              <p>
-                {{ row[object.key] }}
+              <p v-if="object.title === 'Topic'">
+                <Button
+                  button-text="View Topic"
+                  size="medium"
+                  button-color="bg-light-orange-gold"
+                  @click.prevent="
+                    (e) => {
+                      handleEmit(row);
+                      e.stopPropagation();
+                    }
+                  "
+                />
               </p>
+              <p v-else>{{ row[object.key] }}</p>
             </slot>
           </td>
           <td v-if="canEdit" class="text-right p-2">
