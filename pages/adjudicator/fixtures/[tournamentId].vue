@@ -6,6 +6,7 @@ import { useRoute } from "#imports";
 import juniorFixtures from "../../../data/juniorDraw.json";
 import noviceFixtures from "../../../data/noviceDraw.json";
 import seniorFixtures from "../../../data/seniorDraw.json";
+import { TableCellsIcon } from "@heroicons/vue/24/outline";
 const tournamentStore = useTournamentStore();
 // const teamStore = useTeamStore();
 const route = useRoute();
