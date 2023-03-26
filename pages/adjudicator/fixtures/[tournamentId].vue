@@ -57,6 +57,10 @@ const headers = [
   //   key: "status",
   //   title: "Status",
   // },
+  {
+    key: "scoreboard",
+    title: "Scoreboard",
+  },
 ];
 const levelTabs = [
   { label: "Novice", active: false },
@@ -113,6 +117,8 @@ const handleLevel = (tabName) => {
 
   tableFilter.value = "";
   getFixturesTableData();
+  console.log("hi");
+  console.log(tableData.value);
 };
 
 const handleRound = (roundName) => {
