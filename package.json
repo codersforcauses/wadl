@@ -10,6 +10,7 @@
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore --fix .",
     "firebase": "yarn emu:stop & cd Firebase && firebase emulators:start --import=dummyData",
+    "firebase:exp": "yarn emu:stop & cd Firebase && firebase emulators:start --import=dummyData --export-on-exit",
     "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill",
     "dev:docker": "docker-compose up -d && yarn dev"
   },
