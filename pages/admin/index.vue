@@ -17,12 +17,17 @@ import {
 import { useUserStore } from "../../stores/user";
 import { useTeamStore } from "../../stores/teams";
 import { useHead } from "#imports";
+import { useTournamentStore } from "../../stores/tournaments";
 useHead({
   title: "Admin",
 });
 
+const tournamentStore = await useTournamentStore();
+console.log(tournamentStore)
 onMounted(() => {
   console.log(juniorDraw);
+  // console.log(tournamentStore.getTournaments())
+  // console.log(tournamentStore.tournaments)
   //   console.log(Object.keys(seniorDraw).length);
   //   for (let i = 0; i < Object.keys(seniorDraw).length; i++) {
   //     seniorDraw[i].id = i;
