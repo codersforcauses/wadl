@@ -1,7 +1,8 @@
 <script setup>
 import AdminButton from "~/components/admin/AdminButton.vue";
 import ProfileInfo from "~/components/admin/ProfileInfo.vue";
-import { ref } from "vue";
+import juniorDraw from "~/data/juniorDraw.json";
+import { ref, onMounted } from "vue";
 import {
   TrophyIcon,
   BuildingLibraryIcon,
@@ -14,11 +15,26 @@ import {
   UserCircleIcon,
 } from "@heroicons/vue/24/outline";
 import { useUserStore } from "../../stores/user";
-
 import { useTeamStore } from "../../stores/teams";
 import { useHead } from "#imports";
 useHead({
   title: "Admin",
+});
+
+onMounted(() => {
+  console.log(juniorDraw);
+  //   console.log(Object.keys(seniorDraw).length);
+  //   for (let i = 0; i < Object.keys(seniorDraw).length; i++) {
+  //     seniorDraw[i].id = i;
+  //     // console.log(i, seniorDraw[i]);
+  //   }
+  //   console.log(seniorDraw);
+  //   // const blob = new Blob([JSON.stringify(seniorDraw)], { type: "text/plain" });
+  //   // const url = window.URL.createObjectURL(blob);
+  //   // const anchor = document.createElement("a");
+  //   // anchor.setAttribute("href", url);
+  //   // anchor.setAttribute("download", "seniorDraw.json");
+  //   // anchor.click();
 });
 const user = await useUserStore();
 const modalVisibility = ref(false);
