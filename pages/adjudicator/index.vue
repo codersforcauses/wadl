@@ -1,6 +1,7 @@
 <!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <!-- competitions -->
+  <ProfileInfo :username="user.firstName" role="Adjudicator" />
   <Header title-text="Competitions" />
   <div
     v-if="store.getRunning.length > 0"
@@ -26,6 +27,10 @@ import LevelButton from "../../components/HomePage/LevelButton.vue";
 import { useTournamentStore } from "../../stores/tournaments";
 import { onMounted } from "vue";
 import { useHead } from "#imports";
+import ProfileInfo from "../../components/admin/ProfileInfo.vue";
+import { useUserStore } from "../../stores/user";
+
+const user = await useUserStore();
 
 useHead({
   title: "WADL",
