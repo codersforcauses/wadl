@@ -73,7 +73,7 @@
     "division": 1,
     "round": 3,
     "affirmativeTeam": "Santa Maria 1",
-    "negativeTeam": "Bob Hawke 1",
+    "negativeTeam": "Mercedes 1",
     "date": "May 2",
     "time": "06:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
@@ -102,7 +102,7 @@
   {
     "division": 1,
     "round": 4,
-    "affirmativeTeam": "Bob Hawke 1",
+    "affirmativeTeam": "Mercedes 1",
     "negativeTeam": "Iona 1",
     "date": "May 30",
     "time": "06:15",
@@ -143,7 +143,7 @@
     "division": 1,
     "round": 5,
     "affirmativeTeam": "Perth Mod 2",
-    "negativeTeam": "Bob Hawke 1",
+    "negativeTeam": "Mercedes 1",
     "date": "June 13",
     "time": "06:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
@@ -153,7 +153,7 @@
     "division": 1,
     "round": 6,
     "affirmativeTeam": "Perth Mod 1",
-    "negativeTeam": "Bob Hawke 1",
+    "negativeTeam": "Mercedes 1",
     "date": "August 1",
     "time": "06:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
@@ -242,7 +242,7 @@
   {
     "division": 2,
     "round": 3,
-    "affirmativeTeam": "Mercedes 1",
+    "affirmativeTeam": "Bob Hawke 1",
     "negativeTeam": "Iona 2",
     "date": "May 2",
     "time": "07:15",
@@ -292,7 +292,7 @@
   {
     "division": 2,
     "round": 4,
-    "affirmativeTeam": "Mercedes 1",
+    "affirmativeTeam": "Bob Hawke 1",
     "negativeTeam": "Santa Maria 2",
     "date": "May 30",
     "time": "07:15",
@@ -313,7 +313,7 @@
     "division": 2,
     "round": 5,
     "affirmativeTeam": "Santa Maria 3",
-    "negativeTeam": "Mercedes 1",
+    "negativeTeam": "Bob Hawke 1",
     "date": "June 13",
     "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
@@ -342,7 +342,7 @@
   {
     "division": 2,
     "round": 6,
-    "affirmativeTeam": "Mercedes 1",
+    "affirmativeTeam": "Bob Hawke 1",
     "negativeTeam": "Iona 3",
     "date": "August 1",
     "time": "07:15",
@@ -1185,7 +1185,7 @@
     "affirmativeTeam": "Perth Mod 3",
     "negativeTeam": "Joseph Banks 2",
     "date": "March 29",
-    "time": "06:15",
+    "time": "07:15",
     "topic": "This house would choose to use Private Military and Security Companies in armed conflict.",
     "venue": "PC"
   },
@@ -1235,7 +1235,7 @@
     "affirmativeTeam": "Guildford 3",
     "negativeTeam": "PC 1",
     "date": "May 3",
-    "time": "06:15",
+    "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
     "venue": "PC"
   },
@@ -1285,7 +1285,7 @@
     "affirmativeTeam": "PC 1",
     "negativeTeam": "Wesley 1",
     "date": "May 31",
-    "time": "06:15",
+    "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
     "venue": "PC"
   },
@@ -1335,7 +1335,7 @@
     "affirmativeTeam": "Perth Mod 5",
     "negativeTeam": "Perth Mod 4",
     "date": "June 14",
-    "time": "06:15",
+    "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
     "venue": "PC"
   },
@@ -1365,7 +1365,7 @@
     "affirmativeTeam": "St George 1",
     "negativeTeam": "Joseph Banks 2",
     "date": "August 2",
-    "time": "06:15",
+    "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
     "venue": "PC"
   },
@@ -1705,7 +1705,7 @@
     "affirmativeTeam": "Shenton 3",
     "negativeTeam": "Shenton 6",
     "date": "May 9",
-    "time": "06:15",
+    "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
     "venue": "Shenton"
   },
@@ -1725,7 +1725,7 @@
     "affirmativeTeam": "Hale 5",
     "negativeTeam": "Shenton 3",
     "date": "June 6",
-    "time": "06:15",
+    "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
     "venue": "Shenton"
   },
@@ -1755,7 +1755,7 @@
     "affirmativeTeam": "Shenton 3",
     "negativeTeam": "Perth Mod 8",
     "date": "June 20",
-    "time": "06:15",
+    "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
     "venue": "Shenton"
   },
@@ -1785,7 +1785,7 @@
     "affirmativeTeam": "Perth Mod 8",
     "negativeTeam": "Shenton 6",
     "date": "August 8",
-    "time": "06:15",
+    "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
     "venue": "Shenton"
   },
