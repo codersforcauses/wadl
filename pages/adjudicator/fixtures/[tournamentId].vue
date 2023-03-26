@@ -1,11 +1,11 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { useTournamentStore } from "../../stores/tournaments";
+import { useTournamentStore } from "../../../stores/tournaments";
 // import { useTeamStore } from "../../stores/teams";
 import { useRoute } from "#imports";
-import juniorFixtures from "../../data/juniorDraw.json";
-import noviceFixtures from "../../data/noviceDraw.json";
-import seniorFixtures from "../../data/seniorDraw.json";
+import juniorFixtures from "../../../data/juniorDraw.json";
+import noviceFixtures from "../../../data/noviceDraw.json";
+import seniorFixtures from "../../../data/seniorDraw.json";
 const tournamentStore = useTournamentStore();
 // const teamStore = useTeamStore();
 const route = useRoute();

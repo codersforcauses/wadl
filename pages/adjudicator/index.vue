@@ -9,7 +9,7 @@
   >
     <!-- replace key with item.id when final data exists -->
     <div v-for="tournament in store.getRunning" :key="tournament.id">
-      <NuxtLink :to="`../fixtures/${tournament.id}`">
+      <NuxtLink :to="`/adjudicator/fixtures/${tournament.id}`">
         <LevelButton :text="tournament.shortName" />
       </NuxtLink>
     </div>
