@@ -35,6 +35,10 @@ useHead({
 const store = useTournamentStore();
 
 onMounted(async () => {
-  await store.getTournaments();
+  try {
+    await store.getTournaments();
+  } catch (error) {
+    console.error(error);
+  }
 });
 </script>

@@ -28,7 +28,7 @@ export const useUserStore = defineStore("user", {
 
   // persist only on client for now.
   persist: {
-    key: "pinia-store",
+    key: "pinia-user",
     debug: true,
     persist: true,
     // eslint-disable-next-line no-undef

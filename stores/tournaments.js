@@ -20,6 +20,14 @@ export const useTournamentStore = defineStore("tournament", {
       divisions: [],
     };
   },
+  // persist only on client for now.
+  persist: {
+    key: "pinia-tournament",
+    debug: true,
+    persist: true,
+    // eslint-disable-next-line no-undef
+    storage: persistedState.localStorage,
+  },
   getters: {
     getRunning() {
       return this.tournaments.filter(
@@ -34,25 +42,29 @@ export const useTournamentStore = defineStore("tournament", {
   },
   actions: {
     async getTournaments() {
-      this.clearStore();
-      const { $clientFirestore } = useNuxtApp();
-      if (!$clientFirestore) return;
-      const ref = collection($clientFirestore, "tournaments");
-      const querySnapshot = await getDocs(ref);
-      querySnapshot.forEach((doc) => {
-        const tournament = {
-          id: doc.id,
-          currentRound: doc.data().currentRound,
-          levels: doc.data().levels,
-          name: doc.data().name,
-          numRounds: doc.data().numRounds,
-          roundDates: doc.data().roundDates,
-          shortName: doc.data().shortName,
-          status: doc.data().status,
-          venues: doc.data().venues,
-        };
-        this.tournaments.push(tournament);
-      });
+      if (!localStorage.getItem("pinia-tournament")) {
+        this.clearStore();
+        const { $clientFirestore } = useNuxtApp();
+        if (!$clientFirestore) return;
+        const ref = collection($clientFirestore, "tournaments");
+        const querySnapshot = await getDocs(ref);
+        querySnapshot.forEach((doc) => {
+          const tournament = {
+            id: doc.id,
+            currentRound: doc.data().currentRound,
+            levels: doc.data().levels,
+            name: doc.data().name,
+            numRounds: doc.data().numRounds,
+            roundDates: doc.data().roundDates,
+            shortName: doc.data().shortName,
+            status: doc.data().status,
+            venues: doc.data().venues,
+          };
+          this.tournaments.push(tournament);
+        });
+      } else {
+        console.log(this.tournaments);
+      }
     },
     async clearStore() {
       this.tournaments = [];
