@@ -82,7 +82,7 @@
   {
     "division": 1,
     "round": 3,
-    "affirmativeTeam": "Bob Hawke 4",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 3",
     "date": "May 2",
     "time": "05:15",
@@ -103,7 +103,7 @@
     "division": 1,
     "round": 4,
     "affirmativeTeam": "Bob Hawke 1",
-    "negativeTeam": "Bob Hawke 4",
+    "negativeTeam": "Bye",
     "date": "May 30",
     "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
@@ -132,7 +132,7 @@
   {
     "division": 1,
     "round": 5,
-    "affirmativeTeam": "Bob Hawke 4",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 6",
     "date": "June 13",
     "time": "05:15",
@@ -173,7 +173,7 @@
     "division": 1,
     "round": 6,
     "affirmativeTeam": "Iona 1",
-    "negativeTeam": "Bob Hawke 4",
+    "negativeTeam": "Bye",
     "date": "August 1",
     "time": "05:15",
     "topic": "This house regrets new year's resolutions",
@@ -862,16 +862,6 @@
   {
     "division": 5,
     "round": 3,
-    "affirmativeTeam": "MLC 1",
-    "negativeTeam": "Bye",
-    "date": "May 2",
-    "time": "05:15",
-    "topic": "This house regrets ChatGPT",
-    "venue": "CCGS"
-  },
-  {
-    "division": 5,
-    "round": 3,
     "affirmativeTeam": "MLC 5",
     "negativeTeam": "CCGS 2",
     "date": "May 2",
@@ -882,7 +872,7 @@
   {
     "division": 5,
     "round": 3,
-    "affirmativeTeam": "PLC 4",
+    "affirmativeTeam": "MLC 1",
     "negativeTeam": "St Hilda's 8",
     "date": "May 2",
     "time": "05:15",
@@ -902,16 +892,6 @@
   {
     "division": 5,
     "round": 4,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "St Hilda's 4",
-    "date": "May 30",
-    "time": "05:15",
-    "topic": "This house would mandate children beginning primary education at 2 years old",
-    "venue": "CCGS"
-  },
-  {
-    "division": 5,
-    "round": 4,
     "affirmativeTeam": "St Hilda's 8",
     "negativeTeam": "PLC 8",
     "date": "May 30",
@@ -923,7 +903,7 @@
     "division": 5,
     "round": 4,
     "affirmativeTeam": "CCGS 2",
-    "negativeTeam": "PLC 4",
+    "negativeTeam": "St Hilda's 4",
     "date": "May 30",
     "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
@@ -943,16 +923,6 @@
     "division": 5,
     "round": 5,
     "affirmativeTeam": "MLC 5",
-    "negativeTeam": "Bye",
-    "date": "June 13",
-    "time": "05:15",
-    "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
-    "venue": "CCGS"
-  },
-  {
-    "division": 5,
-    "round": 5,
-    "affirmativeTeam": "PLC 4",
     "negativeTeam": "MLC 1",
     "date": "June 13",
     "time": "05:15",
@@ -982,16 +952,6 @@
   {
     "division": 5,
     "round": 6,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "St Hilda's 8",
-    "date": "August 1",
-    "time": "05:15",
-    "topic": "This house regrets new year's resolutions",
-    "venue": "CCGS"
-  },
-  {
-    "division": 5,
-    "round": 6,
     "affirmativeTeam": "CCGS 2",
     "negativeTeam": "St Hilda's 4",
     "date": "August 1",
@@ -1013,7 +973,7 @@
     "division": 5,
     "round": 6,
     "affirmativeTeam": "MLC 5",
-    "negativeTeam": "PLC 4",
+    "negativeTeam": "St Hilda's 8",
     "date": "August 1",
     "time": "05:15",
     "topic": "This house regrets new year's resolutions",
@@ -5529,4 +5489,4 @@
     "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "Mount Lawley"
   }
-]
+ ]
