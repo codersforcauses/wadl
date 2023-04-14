@@ -48,6 +48,9 @@
               </p>
               <p v-else>{{ row[object.key] }}</p>
             </slot>
+            <p v-if="scoreBoard && ind == 7" class="flex justify-center">
+              <TableCellsIcon class="w-[28px] h-[28px]" />
+            </p>
           </td>
           <td v-if="canEdit" class="text-right p-2">
             <button
@@ -61,9 +64,9 @@
               <PencilIcon class="w-4 h-4" />
             </button>
           </td>
-          <td v-if="scoreBoard" class="place-content-center items-center">
+          <!-- <td v-if="scoreBoard" class="place-content-center items-center">
             <TableCellsIcon class="w-5 h-5" />
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>
