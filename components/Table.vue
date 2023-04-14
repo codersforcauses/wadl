@@ -47,6 +47,9 @@
               <PencilIcon class="w-4 h-4" />
             </button>
           </td>
+          <td v-if="scoreBoard" class="place-content-center items-center">
+            <TableCellsIcon class="w-5 h-5" />
+          </td>
         </tr>
       </tbody>
     </table>
@@ -58,6 +61,7 @@
 
 <script setup>
 import { PencilIcon } from "@heroicons/vue/24/solid";
+import { TableCellsIcon } from "@heroicons/vue/24/outline";
 
 const emit = defineEmits(["edit", "clickRow"]);
 
@@ -99,6 +103,10 @@ const props = defineProps({
   noDataText: {
     type: String,
     default: "No data available",
+  },
+  scoreBoard: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>
