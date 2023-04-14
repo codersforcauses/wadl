@@ -5,7 +5,7 @@
     "affirmativeTeam": "Bob Hawke 1",
     "negativeTeam": "Iona 3",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "Bob Hawke"
   },
@@ -15,7 +15,7 @@
     "affirmativeTeam": "Perth Mod 6",
     "negativeTeam": "Perth Mod 3",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "Bob Hawke"
   },
@@ -25,7 +25,7 @@
     "affirmativeTeam": "Iona 1",
     "negativeTeam": "Bob Hawke 4",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "Bob Hawke"
   },
@@ -35,8 +35,8 @@
     "affirmativeTeam": "Iona 3",
     "negativeTeam": "Bob Hawke 4",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "Bob Hawke"
   },
   {
@@ -45,8 +45,8 @@
     "affirmativeTeam": "Perth Mod 3",
     "negativeTeam": "Iona 1",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "Bob Hawke"
   },
   {
@@ -55,8 +55,8 @@
     "affirmativeTeam": "Bob Hawke 1",
     "negativeTeam": "Perth Mod 6",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "Bob Hawke"
   },
   {
@@ -65,7 +65,7 @@
     "affirmativeTeam": "Perth Mod 6",
     "negativeTeam": "Iona 3",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "Bob Hawke"
   },
@@ -75,17 +75,17 @@
     "affirmativeTeam": "Iona 1",
     "negativeTeam": "Bob Hawke 1",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "Bob Hawke"
   },
   {
     "division": 1,
     "round": 3,
-    "affirmativeTeam": "Bob Hawke 4",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 3",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "Bob Hawke"
   },
@@ -95,7 +95,7 @@
     "affirmativeTeam": "Iona 3",
     "negativeTeam": "Perth Mod 3",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "Bob Hawke"
   },
@@ -103,9 +103,9 @@
     "division": 1,
     "round": 4,
     "affirmativeTeam": "Bob Hawke 1",
-    "negativeTeam": "Bob Hawke 4",
+    "negativeTeam": "Bye",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "Bob Hawke"
   },
@@ -115,7 +115,7 @@
     "affirmativeTeam": "Perth Mod 6",
     "negativeTeam": "Iona 1",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "Bob Hawke"
   },
@@ -125,17 +125,17 @@
     "affirmativeTeam": "Iona 1",
     "negativeTeam": "Iona 3",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "Bob Hawke"
   },
   {
     "division": 1,
     "round": 5,
-    "affirmativeTeam": "Bob Hawke 4",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 6",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "Bob Hawke"
   },
@@ -145,7 +145,7 @@
     "affirmativeTeam": "Perth Mod 3",
     "negativeTeam": "Bob Hawke 1",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "Bob Hawke"
   },
@@ -155,7 +155,7 @@
     "affirmativeTeam": "Iona 3",
     "negativeTeam": "Bob Hawke 1",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "Bob Hawke"
   },
@@ -165,7 +165,7 @@
     "affirmativeTeam": "Perth Mod 6",
     "negativeTeam": "Perth Mod 3",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "Bob Hawke"
   },
@@ -173,9 +173,9 @@
     "division": 1,
     "round": 6,
     "affirmativeTeam": "Iona 1",
-    "negativeTeam": "Bob Hawke 4",
+    "negativeTeam": "Bye",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "Bob Hawke"
   },
@@ -185,7 +185,7 @@
     "affirmativeTeam": "Bob Hawke 2",
     "negativeTeam": "Iona 4",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "Bob Hawke"
   },
@@ -195,7 +195,7 @@
     "affirmativeTeam": "Perth Mod 1",
     "negativeTeam": "Perth Mod 4",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "Bob Hawke"
   },
@@ -205,7 +205,7 @@
     "affirmativeTeam": "Iona 2",
     "negativeTeam": "Bob Hawke 5",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "Bob Hawke"
   },
@@ -215,8 +215,8 @@
     "affirmativeTeam": "Iona 4",
     "negativeTeam": "Bob Hawke 5",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "Bob Hawke"
   },
   {
@@ -225,8 +225,8 @@
     "affirmativeTeam": "Perth Mod 4",
     "negativeTeam": "Iona 2",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "Bob Hawke"
   },
   {
@@ -235,8 +235,8 @@
     "affirmativeTeam": "Bob Hawke 2",
     "negativeTeam": "Perth Mod 1",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "Bob Hawke"
   },
   {
@@ -245,7 +245,7 @@
     "affirmativeTeam": "Perth Mod 1",
     "negativeTeam": "Iona 4",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "Bob Hawke"
   },
@@ -255,7 +255,7 @@
     "affirmativeTeam": "Iona 2",
     "negativeTeam": "Bob Hawke 2",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "Bob Hawke"
   },
@@ -265,7 +265,7 @@
     "affirmativeTeam": "Bob Hawke 5",
     "negativeTeam": "Perth Mod 4",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "Bob Hawke"
   },
@@ -275,7 +275,7 @@
     "affirmativeTeam": "Iona 4",
     "negativeTeam": "Perth Mod 4",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "Bob Hawke"
   },
@@ -285,7 +285,7 @@
     "affirmativeTeam": "Bob Hawke 2",
     "negativeTeam": "Bob Hawke 5",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "Bob Hawke"
   },
@@ -295,7 +295,7 @@
     "affirmativeTeam": "Perth Mod 1",
     "negativeTeam": "Iona 2",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "Bob Hawke"
   },
@@ -305,7 +305,7 @@
     "affirmativeTeam": "Iona 2",
     "negativeTeam": "Iona 4",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "Bob Hawke"
   },
@@ -315,7 +315,7 @@
     "affirmativeTeam": "Bob Hawke 5",
     "negativeTeam": "Perth Mod 1",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "Bob Hawke"
   },
@@ -325,7 +325,7 @@
     "affirmativeTeam": "Perth Mod 4",
     "negativeTeam": "Bob Hawke 2",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "Bob Hawke"
   },
@@ -335,7 +335,7 @@
     "affirmativeTeam": "Iona 4",
     "negativeTeam": "Bob Hawke 2",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "Bob Hawke"
   },
@@ -345,7 +345,7 @@
     "affirmativeTeam": "Perth Mod 1",
     "negativeTeam": "Perth Mod 4",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "Bob Hawke"
   },
@@ -355,7 +355,7 @@
     "affirmativeTeam": "Iona 2",
     "negativeTeam": "Bob Hawke 5",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "Bob Hawke"
   },
@@ -365,7 +365,7 @@
     "affirmativeTeam": "Bob Hawke 3",
     "negativeTeam": "Iona 5",
     "date": "March 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "Bob Hawke"
   },
@@ -375,7 +375,7 @@
     "affirmativeTeam": "Perth Mod 2",
     "negativeTeam": "Perth Mod 5",
     "date": "March 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "Bob Hawke"
   },
@@ -385,7 +385,7 @@
     "affirmativeTeam": "St George 1",
     "negativeTeam": "Mercedes 1",
     "date": "March 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "Bob Hawke"
   },
@@ -395,8 +395,8 @@
     "affirmativeTeam": "Iona 5",
     "negativeTeam": "Mercedes 1",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "06:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "Bob Hawke"
   },
   {
@@ -405,8 +405,8 @@
     "affirmativeTeam": "Perth Mod 5",
     "negativeTeam": "St George 1",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "06:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "Bob Hawke"
   },
   {
@@ -415,8 +415,8 @@
     "affirmativeTeam": "Bob Hawke 3",
     "negativeTeam": "Perth Mod 2",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "06:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "Bob Hawke"
   },
   {
@@ -425,7 +425,7 @@
     "affirmativeTeam": "Perth Mod 2",
     "negativeTeam": "Iona 5",
     "date": "May 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets ChatGPT",
     "venue": "Bob Hawke"
   },
@@ -435,7 +435,7 @@
     "affirmativeTeam": "St George 1",
     "negativeTeam": "Bob Hawke 3",
     "date": "May 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets ChatGPT",
     "venue": "Bob Hawke"
   },
@@ -445,7 +445,7 @@
     "affirmativeTeam": "Mercedes 1",
     "negativeTeam": "Perth Mod 5",
     "date": "May 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets ChatGPT",
     "venue": "Bob Hawke"
   },
@@ -455,7 +455,7 @@
     "affirmativeTeam": "Iona 5",
     "negativeTeam": "Perth Mod 5",
     "date": "May 30",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "Bob Hawke"
   },
@@ -465,7 +465,7 @@
     "affirmativeTeam": "Bob Hawke 3",
     "negativeTeam": "Mercedes 1",
     "date": "May 30",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "Bob Hawke"
   },
@@ -475,7 +475,7 @@
     "affirmativeTeam": "Perth Mod 2",
     "negativeTeam": "St George 1",
     "date": "May 30",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "Bob Hawke"
   },
@@ -485,7 +485,7 @@
     "affirmativeTeam": "St George 1",
     "negativeTeam": "Iona 5",
     "date": "June 13",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "Bob Hawke"
   },
@@ -495,7 +495,7 @@
     "affirmativeTeam": "Mercedes 1",
     "negativeTeam": "Perth Mod 2",
     "date": "June 13",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "Bob Hawke"
   },
@@ -505,7 +505,7 @@
     "affirmativeTeam": "Perth Mod 5",
     "negativeTeam": "Bob Hawke 3",
     "date": "June 13",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "Bob Hawke"
   },
@@ -515,7 +515,7 @@
     "affirmativeTeam": "Iona 5",
     "negativeTeam": "Bob Hawke 3",
     "date": "August 1",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "Bob Hawke"
   },
@@ -525,7 +525,7 @@
     "affirmativeTeam": "Perth Mod 2",
     "negativeTeam": "Perth Mod 5",
     "date": "August 1",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "Bob Hawke"
   },
@@ -535,7 +535,7 @@
     "affirmativeTeam": "St George 1",
     "negativeTeam": "Mercedes 1",
     "date": "August 1",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "Bob Hawke"
   },
@@ -545,7 +545,7 @@
     "affirmativeTeam": "CCGS 1",
     "negativeTeam": "St Hilda's 7",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -555,7 +555,7 @@
     "affirmativeTeam": "CCGS 5",
     "negativeTeam": "St Hilda's 3",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -565,7 +565,7 @@
     "affirmativeTeam": "MLC 4",
     "negativeTeam": "PLC 7",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -575,7 +575,7 @@
     "affirmativeTeam": "MLC 8",
     "negativeTeam": "PLC 3",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -585,8 +585,8 @@
     "affirmativeTeam": "St Hilda's 7",
     "negativeTeam": "PLC 3",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -595,8 +595,8 @@
     "affirmativeTeam": "PLC 7",
     "negativeTeam": "MLC 8",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -605,8 +605,8 @@
     "affirmativeTeam": "St Hilda's 3",
     "negativeTeam": "MLC 4",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -615,8 +615,8 @@
     "affirmativeTeam": "CCGS 1",
     "negativeTeam": "CCGS 5",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -625,7 +625,7 @@
     "affirmativeTeam": "CCGS 5",
     "negativeTeam": "St Hilda's 7",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -635,7 +635,7 @@
     "affirmativeTeam": "MLC 4",
     "negativeTeam": "CCGS 1",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -645,7 +645,7 @@
     "affirmativeTeam": "MLC 8",
     "negativeTeam": "St Hilda's 3",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -655,7 +655,7 @@
     "affirmativeTeam": "PLC 3",
     "negativeTeam": "PLC 7",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -665,7 +665,7 @@
     "affirmativeTeam": "St Hilda's 7",
     "negativeTeam": "PLC 7",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -675,7 +675,7 @@
     "affirmativeTeam": "St Hilda's 3",
     "negativeTeam": "PLC 3",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -685,7 +685,7 @@
     "affirmativeTeam": "CCGS 1",
     "negativeTeam": "MLC 8",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -695,7 +695,7 @@
     "affirmativeTeam": "CCGS 5",
     "negativeTeam": "MLC 4",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -705,7 +705,7 @@
     "affirmativeTeam": "MLC 4",
     "negativeTeam": "St Hilda's 7",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -715,7 +715,7 @@
     "affirmativeTeam": "MLC 8",
     "negativeTeam": "CCGS 5",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -725,7 +725,7 @@
     "affirmativeTeam": "PLC 3",
     "negativeTeam": "CCGS 1",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -735,7 +735,7 @@
     "affirmativeTeam": "PLC 7",
     "negativeTeam": "St Hilda's 3",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -745,7 +745,7 @@
     "affirmativeTeam": "St Hilda's 7",
     "negativeTeam": "St Hilda's 3",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -755,7 +755,7 @@
     "affirmativeTeam": "CCGS 1",
     "negativeTeam": "PLC 7",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -765,7 +765,7 @@
     "affirmativeTeam": "CCGS 5",
     "negativeTeam": "PLC 3",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -775,7 +775,7 @@
     "affirmativeTeam": "MLC 4",
     "negativeTeam": "MLC 8",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -785,7 +785,7 @@
     "affirmativeTeam": "CCGS 2",
     "negativeTeam": "Bye",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -795,7 +795,7 @@
     "affirmativeTeam": "MLC 1",
     "negativeTeam": "St Hilda's 8",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -805,7 +805,7 @@
     "affirmativeTeam": "MLC 5",
     "negativeTeam": "St Hilda's 4",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -815,7 +815,7 @@
     "affirmativeTeam": "PLC 4",
     "negativeTeam": "PLC 8",
     "date": "March 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -825,8 +825,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "PLC 8",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -835,8 +835,8 @@
     "affirmativeTeam": "St Hilda's 4",
     "negativeTeam": "PLC 4",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -845,8 +845,8 @@
     "affirmativeTeam": "St Hilda's 8",
     "negativeTeam": "MLC 5",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -855,18 +855,8 @@
     "affirmativeTeam": "CCGS 2",
     "negativeTeam": "MLC 1",
     "date": "March 28",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
-    "venue": "CCGS"
-  },
-  {
-    "division": 5,
-    "round": 3,
-    "affirmativeTeam": "MLC 1",
-    "negativeTeam": "Bye",
-    "date": "May 2",
-    "time": "5:15",
-    "topic": "This house regrets ChatGPT",
+    "time": "05:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -875,17 +865,17 @@
     "affirmativeTeam": "MLC 5",
     "negativeTeam": "CCGS 2",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
   {
     "division": 5,
     "round": 3,
-    "affirmativeTeam": "PLC 4",
+    "affirmativeTeam": "MLC 1",
     "negativeTeam": "St Hilda's 8",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -895,18 +885,8 @@
     "affirmativeTeam": "PLC 8",
     "negativeTeam": "St Hilda's 4",
     "date": "May 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets ChatGPT",
-    "venue": "CCGS"
-  },
-  {
-    "division": 5,
-    "round": 4,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "St Hilda's 4",
-    "date": "May 30",
-    "time": "5:15",
-    "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
   {
@@ -915,7 +895,7 @@
     "affirmativeTeam": "St Hilda's 8",
     "negativeTeam": "PLC 8",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -923,9 +903,9 @@
     "division": 5,
     "round": 4,
     "affirmativeTeam": "CCGS 2",
-    "negativeTeam": "PLC 4",
+    "negativeTeam": "St Hilda's 4",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -935,7 +915,7 @@
     "affirmativeTeam": "MLC 1",
     "negativeTeam": "MLC 5",
     "date": "May 30",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -943,19 +923,9 @@
     "division": 5,
     "round": 5,
     "affirmativeTeam": "MLC 5",
-    "negativeTeam": "Bye",
-    "date": "June 13",
-    "time": "5:15",
-    "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
-    "venue": "CCGS"
-  },
-  {
-    "division": 5,
-    "round": 5,
-    "affirmativeTeam": "PLC 4",
     "negativeTeam": "MLC 1",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -965,7 +935,7 @@
     "affirmativeTeam": "PLC 8",
     "negativeTeam": "CCGS 2",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -975,18 +945,8 @@
     "affirmativeTeam": "St Hilda's 4",
     "negativeTeam": "St Hilda's 8",
     "date": "June 13",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
-    "venue": "CCGS"
-  },
-  {
-    "division": 5,
-    "round": 6,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "St Hilda's 8",
-    "date": "August 1",
-    "time": "5:15",
-    "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
   {
@@ -995,7 +955,7 @@
     "affirmativeTeam": "CCGS 2",
     "negativeTeam": "St Hilda's 4",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1005,7 +965,7 @@
     "affirmativeTeam": "MLC 1",
     "negativeTeam": "PLC 8",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1013,9 +973,9 @@
     "division": 5,
     "round": 6,
     "affirmativeTeam": "MLC 5",
-    "negativeTeam": "PLC 4",
+    "negativeTeam": "St Hilda's 8",
     "date": "August 1",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1025,7 +985,7 @@
     "affirmativeTeam": "CCGS 3",
     "negativeTeam": "MLC 7",
     "date": "March 14",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -1035,7 +995,7 @@
     "affirmativeTeam": "MLC 2",
     "negativeTeam": "St Hilda's 5",
     "date": "March 14",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -1045,7 +1005,7 @@
     "affirmativeTeam": "MLC 6",
     "negativeTeam": "St Hilda's 1",
     "date": "March 14",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -1055,7 +1015,7 @@
     "affirmativeTeam": "PLC 1",
     "negativeTeam": "PLC 5",
     "date": "March 14",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -1065,8 +1025,8 @@
     "affirmativeTeam": "MLC 7",
     "negativeTeam": "PLC 5",
     "date": "March 28",
-    "time": "7:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "07:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -1075,8 +1035,8 @@
     "affirmativeTeam": "St Hilda's 1",
     "negativeTeam": "PLC 1",
     "date": "March 28",
-    "time": "7:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "07:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -1085,8 +1045,8 @@
     "affirmativeTeam": "St Hilda's 5",
     "negativeTeam": "MLC 6",
     "date": "March 28",
-    "time": "7:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "07:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -1095,8 +1055,8 @@
     "affirmativeTeam": "CCGS 3",
     "negativeTeam": "MLC 2",
     "date": "March 28",
-    "time": "7:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "07:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -1105,7 +1065,7 @@
     "affirmativeTeam": "MLC 2",
     "negativeTeam": "MLC 7",
     "date": "May 2",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -1115,7 +1075,7 @@
     "affirmativeTeam": "MLC 6",
     "negativeTeam": "CCGS 3",
     "date": "May 2",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -1125,7 +1085,7 @@
     "affirmativeTeam": "PLC 1",
     "negativeTeam": "St Hilda's 5",
     "date": "May 2",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -1135,7 +1095,7 @@
     "affirmativeTeam": "PLC 5",
     "negativeTeam": "St Hilda's 1",
     "date": "May 2",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -1145,7 +1105,7 @@
     "affirmativeTeam": "MLC 7",
     "negativeTeam": "St Hilda's 1",
     "date": "May 30",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -1155,7 +1115,7 @@
     "affirmativeTeam": "St Hilda's 5",
     "negativeTeam": "PLC 5",
     "date": "May 30",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -1165,7 +1125,7 @@
     "affirmativeTeam": "CCGS 3",
     "negativeTeam": "PLC 1",
     "date": "May 30",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -1175,7 +1135,7 @@
     "affirmativeTeam": "MLC 2",
     "negativeTeam": "MLC 6",
     "date": "May 30",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -1185,7 +1145,7 @@
     "affirmativeTeam": "MLC 6",
     "negativeTeam": "MLC 7",
     "date": "June 13",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -1195,7 +1155,7 @@
     "affirmativeTeam": "PLC 1",
     "negativeTeam": "MLC 2",
     "date": "June 13",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -1205,7 +1165,7 @@
     "affirmativeTeam": "PLC 5",
     "negativeTeam": "CCGS 3",
     "date": "June 13",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -1215,7 +1175,7 @@
     "affirmativeTeam": "St Hilda's 1",
     "negativeTeam": "St Hilda's 5",
     "date": "June 13",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -1225,7 +1185,7 @@
     "affirmativeTeam": "MLC 7",
     "negativeTeam": "St Hilda's 5",
     "date": "August 1",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1235,7 +1195,7 @@
     "affirmativeTeam": "CCGS 3",
     "negativeTeam": "St Hilda's 1",
     "date": "August 1",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1245,7 +1205,7 @@
     "affirmativeTeam": "MLC 2",
     "negativeTeam": "PLC 5",
     "date": "August 1",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1255,7 +1215,7 @@
     "affirmativeTeam": "MLC 6",
     "negativeTeam": "PLC 1",
     "date": "August 1",
-    "time": "7:15",
+    "time": "07:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1265,7 +1225,7 @@
     "affirmativeTeam": "CCGS 4",
     "negativeTeam": "Scotch 1",
     "date": "March 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -1275,7 +1235,7 @@
     "affirmativeTeam": "MLC 3",
     "negativeTeam": "St Hilda's 6",
     "date": "March 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -1285,7 +1245,7 @@
     "affirmativeTeam": "MLC 9",
     "negativeTeam": "St Hilda's 2",
     "date": "March 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -1295,7 +1255,7 @@
     "affirmativeTeam": "PLC 2",
     "negativeTeam": "PLC 6",
     "date": "March 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would place entry fees on all natural spaces (e.g. national parks, beaches)",
     "venue": "CCGS"
   },
@@ -1305,8 +1265,8 @@
     "affirmativeTeam": "Scotch 1",
     "negativeTeam": "PLC 6",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "06:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -1315,8 +1275,8 @@
     "affirmativeTeam": "St Hilda's 2",
     "negativeTeam": "PLC 2",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "06:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -1325,8 +1285,8 @@
     "affirmativeTeam": "St Hilda's 6",
     "negativeTeam": "MLC 9",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "06:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -1335,8 +1295,8 @@
     "affirmativeTeam": "CCGS 4",
     "negativeTeam": "MLC 3",
     "date": "March 28",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that anti-war campaigns should place more emphasis on the environmental impacts of war",
+    "time": "06:15",
+    "topic": "This house believes peace campaigns should place more emphasis on the environmental impacts of war.",
     "venue": "CCGS"
   },
   {
@@ -1345,7 +1305,7 @@
     "affirmativeTeam": "MLC 3",
     "negativeTeam": "Scotch 1",
     "date": "May 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -1355,7 +1315,7 @@
     "affirmativeTeam": "MLC 9",
     "negativeTeam": "CCGS 4",
     "date": "May 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -1365,7 +1325,7 @@
     "affirmativeTeam": "PLC 2",
     "negativeTeam": "St Hilda's 6",
     "date": "May 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -1375,7 +1335,7 @@
     "affirmativeTeam": "PLC 6",
     "negativeTeam": "St Hilda's 2",
     "date": "May 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets ChatGPT",
     "venue": "CCGS"
   },
@@ -1385,7 +1345,7 @@
     "affirmativeTeam": "Scotch 1",
     "negativeTeam": "St Hilda's 2",
     "date": "May 30",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -1395,7 +1355,7 @@
     "affirmativeTeam": "St Hilda's 6",
     "negativeTeam": "PLC 6",
     "date": "May 30",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -1405,7 +1365,7 @@
     "affirmativeTeam": "CCGS 4",
     "negativeTeam": "PLC 2",
     "date": "May 30",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -1415,7 +1375,7 @@
     "affirmativeTeam": "MLC 3",
     "negativeTeam": "MLC 9",
     "date": "May 30",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate children beginning primary education at 2 years old",
     "venue": "CCGS"
   },
@@ -1425,7 +1385,7 @@
     "affirmativeTeam": "MLC 9",
     "negativeTeam": "Scotch 1",
     "date": "June 13",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -1435,7 +1395,7 @@
     "affirmativeTeam": "PLC 2",
     "negativeTeam": "MLC 3",
     "date": "June 13",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -1445,7 +1405,7 @@
     "affirmativeTeam": "PLC 6",
     "negativeTeam": "CCGS 4",
     "date": "June 13",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -1455,7 +1415,7 @@
     "affirmativeTeam": "St Hilda's 2",
     "negativeTeam": "St Hilda's 6",
     "date": "June 13",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a parent, would prioritise their child's passions over their future prospects (e.g. pursuing realistic careers)",
     "venue": "CCGS"
   },
@@ -1465,7 +1425,7 @@
     "affirmativeTeam": "Scotch 1",
     "negativeTeam": "St Hilda's 6",
     "date": "August 1",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1475,7 +1435,7 @@
     "affirmativeTeam": "CCGS 4",
     "negativeTeam": "St Hilda's 2",
     "date": "August 1",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1485,7 +1445,7 @@
     "affirmativeTeam": "MLC 3",
     "negativeTeam": "PLC 6",
     "date": "August 1",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1495,7 +1455,7 @@
     "affirmativeTeam": "MLC 9",
     "negativeTeam": "PLC 2",
     "date": "August 1",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets new year's resolutions",
     "venue": "CCGS"
   },
@@ -1505,7 +1465,7 @@
     "affirmativeTeam": "Bob Hawke 6",
     "negativeTeam": "Bye",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1515,7 +1475,7 @@
     "affirmativeTeam": "Bob Hawke 9",
     "negativeTeam": "PLC 11",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1525,7 +1485,7 @@
     "affirmativeTeam": "Hale 2",
     "negativeTeam": "St Mary's 1",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1535,7 +1495,7 @@
     "affirmativeTeam": "St Mary's 7",
     "negativeTeam": "St Mary's 4",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1545,8 +1505,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "St Mary's 4",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1555,8 +1515,8 @@
     "affirmativeTeam": "St Mary's 1",
     "negativeTeam": "St Mary's 7",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1565,8 +1525,8 @@
     "affirmativeTeam": "PLC 11",
     "negativeTeam": "Hale 2",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1575,8 +1535,8 @@
     "affirmativeTeam": "Bob Hawke 6",
     "negativeTeam": "Bob Hawke 9",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1585,7 +1545,7 @@
     "affirmativeTeam": "Bob Hawke 9",
     "negativeTeam": "Bye",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -1595,7 +1555,7 @@
     "affirmativeTeam": "Hale 2",
     "negativeTeam": "Bob Hawke 6",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -1605,7 +1565,7 @@
     "affirmativeTeam": "St Mary's 7",
     "negativeTeam": "PLC 11",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -1615,7 +1575,7 @@
     "affirmativeTeam": "St Mary's 4",
     "negativeTeam": "St Mary's 1",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -1625,7 +1585,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "St Mary's 1",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -1635,7 +1595,7 @@
     "affirmativeTeam": "PLC 11",
     "negativeTeam": "St Mary's 4",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -1645,7 +1605,7 @@
     "affirmativeTeam": "Bob Hawke 6",
     "negativeTeam": "St Mary's 7",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -1655,7 +1615,7 @@
     "affirmativeTeam": "Bob Hawke 9",
     "negativeTeam": "Hale 2",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -1665,7 +1625,7 @@
     "affirmativeTeam": "Hale 2",
     "negativeTeam": "Bye",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -1675,7 +1635,7 @@
     "affirmativeTeam": "St Mary's 7",
     "negativeTeam": "Bob Hawke 9",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -1685,7 +1645,7 @@
     "affirmativeTeam": "St Mary's 4",
     "negativeTeam": "Bob Hawke 6",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -1695,7 +1655,7 @@
     "affirmativeTeam": "St Mary's 1",
     "negativeTeam": "PLC 11",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -1705,7 +1665,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "PLC 11",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -1715,7 +1675,7 @@
     "affirmativeTeam": "Bob Hawke 6",
     "negativeTeam": "St Mary's 1",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -1725,7 +1685,7 @@
     "affirmativeTeam": "Bob Hawke 9",
     "negativeTeam": "St Mary's 4",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -1735,7 +1695,7 @@
     "affirmativeTeam": "Hale 2",
     "negativeTeam": "St Mary's 7",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -1745,7 +1705,7 @@
     "affirmativeTeam": "Bob Hawke 7",
     "negativeTeam": "PLC 9",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1755,7 +1715,7 @@
     "affirmativeTeam": "Bob Hawke 10",
     "negativeTeam": "St Mary's 3",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1765,7 +1725,7 @@
     "affirmativeTeam": "Hale 3",
     "negativeTeam": "St Mary's 2",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1775,8 +1735,8 @@
     "affirmativeTeam": "PLC 9",
     "negativeTeam": "St Mary's 2",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1785,8 +1745,8 @@
     "affirmativeTeam": "St Mary's 3",
     "negativeTeam": "Hale 3",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1795,8 +1755,8 @@
     "affirmativeTeam": "Bob Hawke 7",
     "negativeTeam": "Bob Hawke 10",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1805,7 +1765,7 @@
     "affirmativeTeam": "Bob Hawke 10",
     "negativeTeam": "PLC 9",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -1815,7 +1775,7 @@
     "affirmativeTeam": "Hale 3",
     "negativeTeam": "Bob Hawke 7",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -1825,7 +1785,7 @@
     "affirmativeTeam": "St Mary's 2",
     "negativeTeam": "St Mary's 3",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -1835,7 +1795,7 @@
     "affirmativeTeam": "PLC 9",
     "negativeTeam": "St Mary's 3",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -1845,7 +1805,7 @@
     "affirmativeTeam": "Bob Hawke 7",
     "negativeTeam": "St Mary's 2",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -1855,7 +1815,7 @@
     "affirmativeTeam": "Bob Hawke 10",
     "negativeTeam": "Hale 3",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -1865,7 +1825,7 @@
     "affirmativeTeam": "Hale 3",
     "negativeTeam": "PLC 9",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -1875,7 +1835,7 @@
     "affirmativeTeam": "St Mary's 2",
     "negativeTeam": "Bob Hawke 10",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -1885,7 +1845,7 @@
     "affirmativeTeam": "St Mary's 3",
     "negativeTeam": "Bob Hawke 7",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -1895,7 +1855,7 @@
     "affirmativeTeam": "PLC 9",
     "negativeTeam": "Bob Hawke 7",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -1905,7 +1865,7 @@
     "affirmativeTeam": "Bob Hawke 10",
     "negativeTeam": "St Mary's 3",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -1915,7 +1875,7 @@
     "affirmativeTeam": "Hale 3",
     "negativeTeam": "St Mary's 2",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -1925,7 +1885,7 @@
     "affirmativeTeam": "Bob Hawke 8",
     "negativeTeam": "PLC 10",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1935,7 +1895,7 @@
     "affirmativeTeam": "Hale 1",
     "negativeTeam": "Hale 4",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1945,7 +1905,7 @@
     "affirmativeTeam": "St Mary's 6",
     "negativeTeam": "St Mary's 5",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "Hale"
   },
@@ -1955,8 +1915,8 @@
     "affirmativeTeam": "PLC 10",
     "negativeTeam": "St Mary's 5",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1965,8 +1925,8 @@
     "affirmativeTeam": "Hale 4",
     "negativeTeam": "St Mary's 6",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1975,8 +1935,8 @@
     "affirmativeTeam": "Bob Hawke 8",
     "negativeTeam": "Hale 1",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "Hale"
   },
   {
@@ -1985,7 +1945,7 @@
     "affirmativeTeam": "Hale 1",
     "negativeTeam": "PLC 10",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -1995,7 +1955,7 @@
     "affirmativeTeam": "St Mary's 6",
     "negativeTeam": "Bob Hawke 8",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -2005,7 +1965,7 @@
     "affirmativeTeam": "St Mary's 5",
     "negativeTeam": "Hale 4",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "Hale"
   },
@@ -2015,7 +1975,7 @@
     "affirmativeTeam": "PLC 10",
     "negativeTeam": "Hale 4",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -2025,7 +1985,7 @@
     "affirmativeTeam": "Bob Hawke 8",
     "negativeTeam": "St Mary's 5",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -2035,7 +1995,7 @@
     "affirmativeTeam": "Hale 1",
     "negativeTeam": "St Mary's 6",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "Hale"
   },
@@ -2045,7 +2005,7 @@
     "affirmativeTeam": "St Mary's 6",
     "negativeTeam": "PLC 10",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -2055,7 +2015,7 @@
     "affirmativeTeam": "St Mary's 5",
     "negativeTeam": "Hale 1",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -2065,7 +2025,7 @@
     "affirmativeTeam": "Hale 4",
     "negativeTeam": "Bob Hawke 8",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "Hale"
   },
@@ -2075,7 +2035,7 @@
     "affirmativeTeam": "PLC 10",
     "negativeTeam": "Bob Hawke 8",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -2085,7 +2045,7 @@
     "affirmativeTeam": "Hale 1",
     "negativeTeam": "Hale 4",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -2095,7 +2055,7 @@
     "affirmativeTeam": "St Mary's 6",
     "negativeTeam": "St Mary's 5",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "Hale"
   },
@@ -2105,7 +2065,7 @@
     "affirmativeTeam": "PC 5",
     "negativeTeam": "Perth Mod 8",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2115,7 +2075,7 @@
     "affirmativeTeam": "Mount Lawley 3",
     "negativeTeam": "Perth Mod 25",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2125,7 +2085,7 @@
     "affirmativeTeam": "Mount Lawley 2",
     "negativeTeam": "PC 1",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2135,8 +2095,8 @@
     "affirmativeTeam": "Perth Mod 8",
     "negativeTeam": "PC 1",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2145,8 +2105,8 @@
     "affirmativeTeam": "Perth Mod 25",
     "negativeTeam": "Mount Lawley 2",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2155,8 +2115,8 @@
     "affirmativeTeam": "PC 5",
     "negativeTeam": "Mount Lawley 3",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2165,7 +2125,7 @@
     "affirmativeTeam": "Mount Lawley 3",
     "negativeTeam": "Perth Mod 8",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2175,7 +2135,7 @@
     "affirmativeTeam": "Mount Lawley 2",
     "negativeTeam": "PC 5",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2185,7 +2145,7 @@
     "affirmativeTeam": "PC 1",
     "negativeTeam": "Perth Mod 25",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2195,7 +2155,7 @@
     "affirmativeTeam": "Perth Mod 8",
     "negativeTeam": "Perth Mod 25",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2205,7 +2165,7 @@
     "affirmativeTeam": "PC 5",
     "negativeTeam": "PC 1",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2215,7 +2175,7 @@
     "affirmativeTeam": "Mount Lawley 3",
     "negativeTeam": "Mount Lawley 2",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2225,7 +2185,7 @@
     "affirmativeTeam": "Mount Lawley 2",
     "negativeTeam": "Perth Mod 8",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2235,7 +2195,7 @@
     "affirmativeTeam": "PC 1",
     "negativeTeam": "Mount Lawley 3",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2245,7 +2205,7 @@
     "affirmativeTeam": "Perth Mod 25",
     "negativeTeam": "PC 5",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2255,7 +2215,7 @@
     "affirmativeTeam": "Perth Mod 8",
     "negativeTeam": "PC 5",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2265,7 +2225,7 @@
     "affirmativeTeam": "Mount Lawley 3",
     "negativeTeam": "Perth Mod 25",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2275,7 +2235,7 @@
     "affirmativeTeam": "Mount Lawley 2",
     "negativeTeam": "PC 1",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2285,7 +2245,7 @@
     "affirmativeTeam": "PC 2",
     "negativeTeam": "Bye",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2295,7 +2255,7 @@
     "affirmativeTeam": "PC 6",
     "negativeTeam": "Perth Mod 9",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2305,7 +2265,7 @@
     "affirmativeTeam": "Mount Lawley 4",
     "negativeTeam": "Perth Mod 7",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2315,7 +2275,7 @@
     "affirmativeTeam": "Mount Lawley 1",
     "negativeTeam": "Mount Lawley 5",
     "date": "March 15",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2325,8 +2285,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Mount Lawley 5",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2335,8 +2295,8 @@
     "affirmativeTeam": "Perth Mod 7",
     "negativeTeam": "Mount Lawley 1",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2345,8 +2305,8 @@
     "affirmativeTeam": "Perth Mod 9",
     "negativeTeam": "Mount Lawley 4",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2355,8 +2315,8 @@
     "affirmativeTeam": "PC 2",
     "negativeTeam": "PC 6",
     "date": "March 29",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "05:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2365,7 +2325,7 @@
     "affirmativeTeam": "PC 6",
     "negativeTeam": "Bye",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2375,7 +2335,7 @@
     "affirmativeTeam": "Mount Lawley 4",
     "negativeTeam": "PC 2",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2385,7 +2345,7 @@
     "affirmativeTeam": "Mount Lawley 1",
     "negativeTeam": "Perth Mod 9",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2395,7 +2355,7 @@
     "affirmativeTeam": "Mount Lawley 5",
     "negativeTeam": "Perth Mod 7",
     "date": "May 3",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2405,7 +2365,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 7",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2415,7 +2375,7 @@
     "affirmativeTeam": "Perth Mod 9",
     "negativeTeam": "Mount Lawley 5",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2425,7 +2385,7 @@
     "affirmativeTeam": "PC 2",
     "negativeTeam": "Mount Lawley 1",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2435,7 +2395,7 @@
     "affirmativeTeam": "PC 6",
     "negativeTeam": "Mount Lawley 4",
     "date": "May 31",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2445,7 +2405,7 @@
     "affirmativeTeam": "Mount Lawley 4",
     "negativeTeam": "Bye",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2455,7 +2415,7 @@
     "affirmativeTeam": "Mount Lawley 1",
     "negativeTeam": "PC 6",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2465,7 +2425,7 @@
     "affirmativeTeam": "Mount Lawley 5",
     "negativeTeam": "PC 2",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2475,7 +2435,7 @@
     "affirmativeTeam": "Perth Mod 7",
     "negativeTeam": "Perth Mod 9",
     "date": "June 14",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2485,7 +2445,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 9",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2495,7 +2455,7 @@
     "affirmativeTeam": "PC 2",
     "negativeTeam": "Perth Mod 7",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2505,7 +2465,7 @@
     "affirmativeTeam": "PC 6",
     "negativeTeam": "Mount Lawley 5",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2515,7 +2475,7 @@
     "affirmativeTeam": "Mount Lawley 4",
     "negativeTeam": "Mount Lawley 1",
     "date": "August 2",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2525,7 +2485,7 @@
     "affirmativeTeam": "PC 3",
     "negativeTeam": "Bye",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2535,7 +2495,7 @@
     "affirmativeTeam": "Guildford 1",
     "negativeTeam": "Wesley 3",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2545,7 +2505,7 @@
     "affirmativeTeam": "Guildford 3",
     "negativeTeam": "Wesley 1",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2555,7 +2515,7 @@
     "affirmativeTeam": "Guildford 4",
     "negativeTeam": "Guildford 6",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2565,8 +2525,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Guildford 6",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2575,8 +2535,8 @@
     "affirmativeTeam": "Wesley 1",
     "negativeTeam": "Guildford 4",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2585,8 +2545,8 @@
     "affirmativeTeam": "Wesley 3",
     "negativeTeam": "Guildford 3",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2595,8 +2555,8 @@
     "affirmativeTeam": "PC 3",
     "negativeTeam": "Guildford 1",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2605,7 +2565,7 @@
     "affirmativeTeam": "Guildford 1",
     "negativeTeam": "Bye",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2615,7 +2575,7 @@
     "affirmativeTeam": "Guildford 3",
     "negativeTeam": "PC 3",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2625,7 +2585,7 @@
     "affirmativeTeam": "Guildford 4",
     "negativeTeam": "Wesley 3",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2635,7 +2595,7 @@
     "affirmativeTeam": "Guildford 6",
     "negativeTeam": "Wesley 1",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2645,7 +2605,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Wesley 1",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2655,7 +2615,7 @@
     "affirmativeTeam": "Wesley 3",
     "negativeTeam": "Guildford 6",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2665,7 +2625,7 @@
     "affirmativeTeam": "PC 3",
     "negativeTeam": "Guildford 4",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2675,7 +2635,7 @@
     "affirmativeTeam": "Guildford 1",
     "negativeTeam": "Guildford 3",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2685,7 +2645,7 @@
     "affirmativeTeam": "Guildford 3",
     "negativeTeam": "Bye",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2695,7 +2655,7 @@
     "affirmativeTeam": "Guildford 4",
     "negativeTeam": "Guildford 1",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2705,7 +2665,7 @@
     "affirmativeTeam": "Guildford 6",
     "negativeTeam": "PC 3",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2715,7 +2675,7 @@
     "affirmativeTeam": "Wesley 1",
     "negativeTeam": "Wesley 3",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2725,7 +2685,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Wesley 3",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2735,7 +2695,7 @@
     "affirmativeTeam": "PC 3",
     "negativeTeam": "Wesley 1",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2745,7 +2705,7 @@
     "affirmativeTeam": "Guildford 1",
     "negativeTeam": "Guildford 6",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2755,7 +2715,7 @@
     "affirmativeTeam": "Guildford 3",
     "negativeTeam": "Guildford 4",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2765,7 +2725,7 @@
     "affirmativeTeam": "Joseph Banks 1",
     "negativeTeam": "Bye",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2775,7 +2735,7 @@
     "affirmativeTeam": "Guildford 2",
     "negativeTeam": "Perth Mod 10",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2785,7 +2745,7 @@
     "affirmativeTeam": "Scotch 2",
     "negativeTeam": "Wesley 2",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2795,7 +2755,7 @@
     "affirmativeTeam": "Guildford 5",
     "negativeTeam": "Guildford 7",
     "date": "March 15",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate general elections for changes in country leaders (e.g. Scott Morrison, Rishi Sunak)",
     "venue": "PC"
   },
@@ -2805,8 +2765,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Guildford 7",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2815,8 +2775,8 @@
     "affirmativeTeam": "Wesley 2",
     "negativeTeam": "Guildford 5",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2825,8 +2785,8 @@
     "affirmativeTeam": "Perth Mod 10",
     "negativeTeam": "Scotch 2",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2835,8 +2795,8 @@
     "affirmativeTeam": "Joseph Banks 1",
     "negativeTeam": "Guildford 2",
     "date": "March 29",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would prioritise sending humanitarian aid to nations over applying diplomatic pressure. INFO SLIDE: Sending humanitarian aid may be difficult where nations have adverse diplomatic relationships. Humanitarian actors may have to choose between setting up trade barriers with problematic regimes or providing food.",
+    "time": "06:15",
+    "topic": "This house believes that humanitarian actors should prioritise relief to like-minded communities rather than delivering it neutrally and impartially.",
     "venue": "PC"
   },
   {
@@ -2845,7 +2805,7 @@
     "affirmativeTeam": "Guildford 2",
     "negativeTeam": "Bye",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2855,7 +2815,7 @@
     "affirmativeTeam": "Scotch 2",
     "negativeTeam": "Joseph Banks 1",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2865,7 +2825,7 @@
     "affirmativeTeam": "Guildford 5",
     "negativeTeam": "Perth Mod 10",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2875,7 +2835,7 @@
     "affirmativeTeam": "Guildford 7",
     "negativeTeam": "Wesley 2",
     "date": "May 3",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house supports the development of nuclear energy",
     "venue": "PC"
   },
@@ -2885,7 +2845,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Wesley 2",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2895,7 +2855,7 @@
     "affirmativeTeam": "Perth Mod 10",
     "negativeTeam": "Guildford 7",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2905,7 +2865,7 @@
     "affirmativeTeam": "Joseph Banks 1",
     "negativeTeam": "Guildford 5",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2915,7 +2875,7 @@
     "affirmativeTeam": "Guildford 2",
     "negativeTeam": "Scotch 2",
     "date": "May 31",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would mandate students learning a second language in primary and secondary education",
     "venue": "PC"
   },
@@ -2925,7 +2885,7 @@
     "affirmativeTeam": "Scotch 2",
     "negativeTeam": "Bye",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2935,7 +2895,7 @@
     "affirmativeTeam": "Guildford 5",
     "negativeTeam": "Guildford 2",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2945,7 +2905,7 @@
     "affirmativeTeam": "Guildford 7",
     "negativeTeam": "Joseph Banks 1",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2955,7 +2915,7 @@
     "affirmativeTeam": "Wesley 2",
     "negativeTeam": "Perth Mod 10",
     "date": "June 14",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that working in customer service jobs is a character-building experience",
     "venue": "PC"
   },
@@ -2965,7 +2925,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 10",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2975,7 +2935,7 @@
     "affirmativeTeam": "Joseph Banks 1",
     "negativeTeam": "Wesley 2",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2985,7 +2945,7 @@
     "affirmativeTeam": "Guildford 2",
     "negativeTeam": "Guildford 7",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -2995,7 +2955,7 @@
     "affirmativeTeam": "Scotch 2",
     "negativeTeam": "Guildford 5",
     "date": "August 2",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as a streaming service, would remove controversial TV shows (e.g. Music, Insatiable)",
     "venue": "PC"
   },
@@ -3005,7 +2965,7 @@
     "affirmativeTeam": "Hale 5",
     "negativeTeam": "Bye",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3015,7 +2975,7 @@
     "affirmativeTeam": "John XXIII 4",
     "negativeTeam": "Shenton 15",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3025,7 +2985,7 @@
     "affirmativeTeam": "Perth Mod 14",
     "negativeTeam": "Shenton 10",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3035,7 +2995,7 @@
     "affirmativeTeam": "Perth Mod 19",
     "negativeTeam": "Shenton 5",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3045,8 +3005,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 5",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3055,8 +3015,8 @@
     "affirmativeTeam": "Shenton 10",
     "negativeTeam": "Perth Mod 19",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3065,8 +3025,8 @@
     "affirmativeTeam": "Shenton 15",
     "negativeTeam": "Perth Mod 14",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3075,8 +3035,8 @@
     "affirmativeTeam": "Hale 5",
     "negativeTeam": "John XXIII 4",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3085,7 +3045,7 @@
     "affirmativeTeam": "John XXIII 4",
     "negativeTeam": "Bye",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3095,7 +3055,7 @@
     "affirmativeTeam": "Perth Mod 14",
     "negativeTeam": "Hale 5",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3105,7 +3065,7 @@
     "affirmativeTeam": "Perth Mod 19",
     "negativeTeam": "Shenton 15",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3115,7 +3075,7 @@
     "affirmativeTeam": "Shenton 5",
     "negativeTeam": "Shenton 10",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3125,7 +3085,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 10",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3135,7 +3095,7 @@
     "affirmativeTeam": "Shenton 15",
     "negativeTeam": "Shenton 5",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3145,7 +3105,7 @@
     "affirmativeTeam": "Hale 5",
     "negativeTeam": "Perth Mod 19",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3155,7 +3115,7 @@
     "affirmativeTeam": "John XXIII 4",
     "negativeTeam": "Perth Mod 14",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3165,7 +3125,7 @@
     "affirmativeTeam": "Perth Mod 14",
     "negativeTeam": "Bye",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3175,7 +3135,7 @@
     "affirmativeTeam": "Perth Mod 19",
     "negativeTeam": "John XXIII 4",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3185,7 +3145,7 @@
     "affirmativeTeam": "Shenton 5",
     "negativeTeam": "Hale 5",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3195,7 +3155,7 @@
     "affirmativeTeam": "Shenton 10",
     "negativeTeam": "Shenton 15",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3205,7 +3165,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 15",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3215,7 +3175,7 @@
     "affirmativeTeam": "Hale 5",
     "negativeTeam": "Shenton 10",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3225,7 +3185,7 @@
     "affirmativeTeam": "John XXIII 4",
     "negativeTeam": "Shenton 5",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3235,7 +3195,7 @@
     "affirmativeTeam": "Perth Mod 14",
     "negativeTeam": "Perth Mod 19",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3245,7 +3205,7 @@
     "affirmativeTeam": "Hale 6",
     "negativeTeam": "Bye",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3255,7 +3215,7 @@
     "affirmativeTeam": "Kelmscott 1",
     "negativeTeam": "Perth Mod 18",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3265,7 +3225,7 @@
     "affirmativeTeam": "Perth Mod 15",
     "negativeTeam": "Shenton 11",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3275,7 +3235,7 @@
     "affirmativeTeam": "Shenton 1",
     "negativeTeam": "Shenton 6",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3285,8 +3245,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 6",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3295,8 +3255,8 @@
     "affirmativeTeam": "Shenton 11",
     "negativeTeam": "Shenton 1",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3305,8 +3265,8 @@
     "affirmativeTeam": "Perth Mod 18",
     "negativeTeam": "Perth Mod 15",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3315,8 +3275,8 @@
     "affirmativeTeam": "Hale 6",
     "negativeTeam": "Kelmscott 1",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3325,7 +3285,7 @@
     "affirmativeTeam": "Kelmscott 1",
     "negativeTeam": "Bye",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3335,7 +3295,7 @@
     "affirmativeTeam": "Perth Mod 15",
     "negativeTeam": "Hale 6",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3345,7 +3305,7 @@
     "affirmativeTeam": "Shenton 1",
     "negativeTeam": "Perth Mod 18",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3355,7 +3315,7 @@
     "affirmativeTeam": "Shenton 6",
     "negativeTeam": "Shenton 11",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3365,7 +3325,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 11",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3375,7 +3335,7 @@
     "affirmativeTeam": "Perth Mod 18",
     "negativeTeam": "Shenton 6",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3385,7 +3345,7 @@
     "affirmativeTeam": "Hale 6",
     "negativeTeam": "Shenton 1",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3395,7 +3355,7 @@
     "affirmativeTeam": "Kelmscott 1",
     "negativeTeam": "Perth Mod 15",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3405,7 +3365,7 @@
     "affirmativeTeam": "Perth Mod 15",
     "negativeTeam": "Bye",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3415,7 +3375,7 @@
     "affirmativeTeam": "Shenton 1",
     "negativeTeam": "Kelmscott 1",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3425,7 +3385,7 @@
     "affirmativeTeam": "Shenton 6",
     "negativeTeam": "Hale 6",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3435,7 +3395,7 @@
     "affirmativeTeam": "Shenton 11",
     "negativeTeam": "Perth Mod 18",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3445,7 +3405,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 18",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3455,7 +3415,7 @@
     "affirmativeTeam": "Hale 6",
     "negativeTeam": "Shenton 11",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3465,7 +3425,7 @@
     "affirmativeTeam": "Kelmscott 1",
     "negativeTeam": "Shenton 6",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3475,7 +3435,7 @@
     "affirmativeTeam": "Perth Mod 15",
     "negativeTeam": "Shenton 1",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3485,7 +3445,7 @@
     "affirmativeTeam": "John XXIII 1",
     "negativeTeam": "Bye",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3495,7 +3455,7 @@
     "affirmativeTeam": "Perth Mod 11",
     "negativeTeam": "Perth Mod 17",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3505,7 +3465,7 @@
     "affirmativeTeam": "Perth Mod 16",
     "negativeTeam": "Shenton 12",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3515,7 +3475,7 @@
     "affirmativeTeam": "Shenton 2",
     "negativeTeam": "Shenton 7",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3525,8 +3485,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 7",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3535,8 +3495,8 @@
     "affirmativeTeam": "Shenton 12",
     "negativeTeam": "Shenton 2",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3545,8 +3505,8 @@
     "affirmativeTeam": "Perth Mod 17",
     "negativeTeam": "Perth Mod 16",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3555,8 +3515,8 @@
     "affirmativeTeam": "John XXIII 1",
     "negativeTeam": "Perth Mod 11",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3565,7 +3525,7 @@
     "affirmativeTeam": "Perth Mod 11",
     "negativeTeam": "Bye",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3575,7 +3535,7 @@
     "affirmativeTeam": "Perth Mod 16",
     "negativeTeam": "John XXIII 1",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3585,7 +3545,7 @@
     "affirmativeTeam": "Shenton 2",
     "negativeTeam": "Perth Mod 17",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3595,7 +3555,7 @@
     "affirmativeTeam": "Shenton 7",
     "negativeTeam": "Shenton 12",
     "date": "May 9",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3605,7 +3565,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 12",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3615,7 +3575,7 @@
     "affirmativeTeam": "Perth Mod 17",
     "negativeTeam": "Shenton 7",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3625,7 +3585,7 @@
     "affirmativeTeam": "John XXIII 1",
     "negativeTeam": "Shenton 2",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3635,7 +3595,7 @@
     "affirmativeTeam": "Perth Mod 11",
     "negativeTeam": "Perth Mod 16",
     "date": "June 6",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3645,7 +3605,7 @@
     "affirmativeTeam": "Perth Mod 16",
     "negativeTeam": "Bye",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3655,7 +3615,7 @@
     "affirmativeTeam": "Shenton 2",
     "negativeTeam": "Perth Mod 11",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3665,7 +3625,7 @@
     "affirmativeTeam": "Shenton 7",
     "negativeTeam": "John XXIII 1",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3675,7 +3635,7 @@
     "affirmativeTeam": "Shenton 12",
     "negativeTeam": "Perth Mod 17",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3685,7 +3645,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 17",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3695,7 +3655,7 @@
     "affirmativeTeam": "John XXIII 1",
     "negativeTeam": "Shenton 12",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3705,7 +3665,7 @@
     "affirmativeTeam": "Perth Mod 11",
     "negativeTeam": "Shenton 7",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3715,7 +3675,7 @@
     "affirmativeTeam": "Perth Mod 16",
     "negativeTeam": "Shenton 2",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3725,7 +3685,7 @@
     "affirmativeTeam": "John XXIII 2",
     "negativeTeam": "Bye",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3735,7 +3695,7 @@
     "affirmativeTeam": "Perth Mod 12",
     "negativeTeam": "Scotch 5",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3745,7 +3705,7 @@
     "affirmativeTeam": "Scotch 3",
     "negativeTeam": "Shenton 13",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3755,7 +3715,7 @@
     "affirmativeTeam": "Shenton 3",
     "negativeTeam": "Shenton 8",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3765,8 +3725,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 8",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3775,8 +3735,8 @@
     "affirmativeTeam": "Shenton 13",
     "negativeTeam": "Shenton 3",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3785,8 +3745,8 @@
     "affirmativeTeam": "Scotch 5",
     "negativeTeam": "Scotch 3",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3795,8 +3755,8 @@
     "affirmativeTeam": "John XXIII 2",
     "negativeTeam": "Perth Mod 12",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -3805,7 +3765,7 @@
     "affirmativeTeam": "Perth Mod 12",
     "negativeTeam": "Bye",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3815,7 +3775,7 @@
     "affirmativeTeam": "Scotch 3",
     "negativeTeam": "John XXIII 2",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3825,7 +3785,7 @@
     "affirmativeTeam": "Shenton 3",
     "negativeTeam": "Scotch 5",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3835,7 +3795,7 @@
     "affirmativeTeam": "Shenton 8",
     "negativeTeam": "Shenton 13",
     "date": "May 9",
-    "time": "6:15",
+    "time": "05:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -3845,7 +3805,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 13",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3855,7 +3815,7 @@
     "affirmativeTeam": "Scotch 5",
     "negativeTeam": "Shenton 8",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3865,7 +3825,7 @@
     "affirmativeTeam": "John XXIII 2",
     "negativeTeam": "Shenton 3",
     "date": "June 6",
-    "time": "6:15",
+    "time": "05:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3875,7 +3835,7 @@
     "affirmativeTeam": "Perth Mod 12",
     "negativeTeam": "Scotch 3",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -3885,7 +3845,7 @@
     "affirmativeTeam": "Scotch 3",
     "negativeTeam": "Bye",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3895,7 +3855,7 @@
     "affirmativeTeam": "Shenton 3",
     "negativeTeam": "Perth Mod 12",
     "date": "June 20",
-    "time": "6:15",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3905,7 +3865,7 @@
     "affirmativeTeam": "Shenton 8",
     "negativeTeam": "John XXIII 2",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3915,7 +3875,7 @@
     "affirmativeTeam": "Shenton 13",
     "negativeTeam": "Scotch 5",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -3925,7 +3885,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Scotch 5",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3935,7 +3895,7 @@
     "affirmativeTeam": "John XXIII 2",
     "negativeTeam": "Shenton 13",
     "date": "August 8",
-    "time": "6:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3945,7 +3905,7 @@
     "affirmativeTeam": "Perth Mod 12",
     "negativeTeam": "Shenton 8",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3955,7 +3915,7 @@
     "affirmativeTeam": "Scotch 3",
     "negativeTeam": "Shenton 3",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -3965,7 +3925,7 @@
     "affirmativeTeam": "John XXIII 3",
     "negativeTeam": "Bye",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3975,7 +3935,7 @@
     "affirmativeTeam": "Perth Mod 13",
     "negativeTeam": "Scotch 6",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3985,7 +3945,7 @@
     "affirmativeTeam": "Scotch 4",
     "negativeTeam": "Shenton 14",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -3995,7 +3955,7 @@
     "affirmativeTeam": "Shenton 4",
     "negativeTeam": "Shenton 9",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "Shenton"
   },
@@ -4005,8 +3965,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 9",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -4015,8 +3975,8 @@
     "affirmativeTeam": "Shenton 14",
     "negativeTeam": "Shenton 4",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -4025,8 +3985,8 @@
     "affirmativeTeam": "Scotch 6",
     "negativeTeam": "Scotch 4",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -4035,8 +3995,8 @@
     "affirmativeTeam": "John XXIII 3",
     "negativeTeam": "Perth Mod 13",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "Shenton"
   },
   {
@@ -4045,7 +4005,7 @@
     "affirmativeTeam": "Perth Mod 13",
     "negativeTeam": "Bye",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -4055,7 +4015,7 @@
     "affirmativeTeam": "Scotch 4",
     "negativeTeam": "John XXIII 3",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -4065,7 +4025,7 @@
     "affirmativeTeam": "Shenton 4",
     "negativeTeam": "Scotch 6",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -4075,7 +4035,7 @@
     "affirmativeTeam": "Shenton 9",
     "negativeTeam": "Shenton 14",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "Shenton"
   },
@@ -4085,7 +4045,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Shenton 14",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -4095,7 +4055,7 @@
     "affirmativeTeam": "Scotch 6",
     "negativeTeam": "Shenton 9",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -4105,7 +4065,7 @@
     "affirmativeTeam": "John XXIII 3",
     "negativeTeam": "Shenton 4",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -4115,7 +4075,7 @@
     "affirmativeTeam": "Perth Mod 13",
     "negativeTeam": "Scotch 4",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "Shenton"
   },
@@ -4125,7 +4085,7 @@
     "affirmativeTeam": "Scotch 4",
     "negativeTeam": "Bye",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -4135,7 +4095,7 @@
     "affirmativeTeam": "Shenton 4",
     "negativeTeam": "Perth Mod 13",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -4145,7 +4105,7 @@
     "affirmativeTeam": "Shenton 9",
     "negativeTeam": "John XXIII 3",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -4155,7 +4115,7 @@
     "affirmativeTeam": "Shenton 14",
     "negativeTeam": "Scotch 6",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "Shenton"
   },
@@ -4165,7 +4125,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Scotch 6",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -4175,7 +4135,7 @@
     "affirmativeTeam": "John XXIII 3",
     "negativeTeam": "Shenton 14",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -4185,7 +4145,7 @@
     "affirmativeTeam": "Perth Mod 13",
     "negativeTeam": "Shenton 9",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -4195,7 +4155,7 @@
     "affirmativeTeam": "Scotch 4",
     "negativeTeam": "Shenton 4",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "Shenton"
   },
@@ -4205,7 +4165,7 @@
     "affirmativeTeam": "LJBC 1",
     "negativeTeam": "Duncraig 3",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "SSSD"
   },
@@ -4215,7 +4175,7 @@
     "affirmativeTeam": "SSSD 2",
     "negativeTeam": "Duncraig 1",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "SSSD"
   },
@@ -4225,7 +4185,7 @@
     "affirmativeTeam": "SSSC 1",
     "negativeTeam": "Sacred Heart 1",
     "date": "March 21",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "SSSD"
   },
@@ -4235,8 +4195,8 @@
     "affirmativeTeam": "Duncraig 3",
     "negativeTeam": "Sacred Heart 1",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "SSSD"
   },
   {
@@ -4245,8 +4205,8 @@
     "affirmativeTeam": "Duncraig 1",
     "negativeTeam": "SSSC 1",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "SSSD"
   },
   {
@@ -4255,8 +4215,8 @@
     "affirmativeTeam": "LJBC 1",
     "negativeTeam": "SSSD 2",
     "date": "April 4",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "06:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "SSSD"
   },
   {
@@ -4265,7 +4225,7 @@
     "affirmativeTeam": "SSSD 2",
     "negativeTeam": "Duncraig 3",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "SSSD"
   },
@@ -4275,7 +4235,7 @@
     "affirmativeTeam": "SSSC 1",
     "negativeTeam": "LJBC 1",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "SSSD"
   },
@@ -4285,7 +4245,7 @@
     "affirmativeTeam": "Sacred Heart 1",
     "negativeTeam": "Duncraig 1",
     "date": "May 9",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house, as an activist, would support climate engineering to combat global warming",
     "venue": "SSSD"
   },
@@ -4295,7 +4255,7 @@
     "affirmativeTeam": "Duncraig 3",
     "negativeTeam": "Duncraig 1",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "SSSD"
   },
@@ -4305,7 +4265,7 @@
     "affirmativeTeam": "LJBC 1",
     "negativeTeam": "Sacred Heart 1",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "SSSD"
   },
@@ -4315,7 +4275,7 @@
     "affirmativeTeam": "SSSD 2",
     "negativeTeam": "SSSC 1",
     "date": "June 6",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
     "venue": "SSSD"
   },
@@ -4325,7 +4285,7 @@
     "affirmativeTeam": "SSSC 1",
     "negativeTeam": "Duncraig 3",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "SSSD"
   },
@@ -4335,7 +4295,7 @@
     "affirmativeTeam": "Sacred Heart 1",
     "negativeTeam": "SSSD 2",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "SSSD"
   },
@@ -4345,7 +4305,7 @@
     "affirmativeTeam": "Duncraig 1",
     "negativeTeam": "LJBC 1",
     "date": "June 20",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "SSSD"
   },
@@ -4355,7 +4315,7 @@
     "affirmativeTeam": "Duncraig 3",
     "negativeTeam": "LJBC 1",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "SSSD"
   },
@@ -4365,7 +4325,7 @@
     "affirmativeTeam": "SSSD 2",
     "negativeTeam": "Duncraig 1",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "SSSD"
   },
@@ -4375,7 +4335,7 @@
     "affirmativeTeam": "SSSC 1",
     "negativeTeam": "Sacred Heart 1",
     "date": "August 8",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "SSSD"
   },
@@ -4385,7 +4345,7 @@
     "affirmativeTeam": "Butler 2",
     "negativeTeam": "Bye",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "SSSD"
   },
@@ -4395,7 +4355,7 @@
     "affirmativeTeam": "SSSD 1",
     "negativeTeam": "Butler 1",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "SSSD"
   },
@@ -4405,38 +4365,28 @@
     "affirmativeTeam": "Duncraig 4",
     "negativeTeam": "Duncraig 2",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "SSSD"
   },
   {
     "division": 21,
     "round": 1,
-    "affirmativeTeam": "SSSC 2",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "SSSD 3",
     "date": "March 21",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would lower the voting age to 16",
     "venue": "SSSD"
   },
   {
     "division": 21,
     "round": 2,
-    "affirmativeTeam": "Bye",
+    "affirmativeTeam": "Duncraig 2",
     "negativeTeam": "SSSD 3",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 2,
-    "affirmativeTeam": "Duncraig 2",
-    "negativeTeam": "SSSC 2",
-    "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "SSSD"
   },
   {
@@ -4445,8 +4395,8 @@
     "affirmativeTeam": "Butler 1",
     "negativeTeam": "Duncraig 4",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "SSSD"
   },
   {
@@ -4455,167 +4405,127 @@
     "affirmativeTeam": "Butler 2",
     "negativeTeam": "SSSD 1",
     "date": "April 4",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house believes that violent warfare is never justified",
+    "time": "05:15",
+    "topic": "This house believes that victims of war should be financially compensated for the harm they suffer.",
     "venue": "SSSD"
   },
   {
     "division": 21,
     "round": 3,
-    "affirmativeTeam": "SSSD 1",
-    "negativeTeam": "Bye",
-    "date": "May 9",
-    "time": "5:15",
-    "topic": "This house, as an activist, would support climate engineering to combat global warming",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 3,
-    "affirmativeTeam": "Duncraig 4",
-    "negativeTeam": "Butler 2",
-    "date": "May 9",
-    "time": "5:15",
-    "topic": "This house, as an activist, would support climate engineering to combat global warming",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 3,
-    "affirmativeTeam": "SSSC 2",
-    "negativeTeam": "Butler 1",
-    "date": "May 9",
-    "time": "5:15",
-    "topic": "This house, as an activist, would support climate engineering to combat global warming",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 3,
-    "affirmativeTeam": "SSSD 3",
-    "negativeTeam": "Duncraig 2",
-    "date": "May 9",
-    "time": "5:15",
-    "topic": "This house, as an activist, would support climate engineering to combat global warming",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 4,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "Duncraig 2",
-    "date": "June 6",
-    "time": "5:15",
-    "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 4,
-    "affirmativeTeam": "Butler 1",
-    "negativeTeam": "SSSD 3",
-    "date": "June 6",
-    "time": "5:15",
-    "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 4,
-    "affirmativeTeam": "Butler 2",
-    "negativeTeam": "SSSC 2",
-    "date": "June 6",
-    "time": "5:15",
-    "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 4,
-    "affirmativeTeam": "SSSD 1",
-    "negativeTeam": "Duncraig 4",
-    "date": "June 6",
-    "time": "5:15",
-    "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 5,
-    "affirmativeTeam": "Duncraig 4",
-    "negativeTeam": "Bye",
-    "date": "June 20",
-    "time": "5:15",
-    "topic": "This house regrets the notion that 'children are the future'",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 5,
-    "affirmativeTeam": "SSSC 2",
-    "negativeTeam": "SSSD 1",
-    "date": "June 20",
-    "time": "5:15",
-    "topic": "This house regrets the notion that 'children are the future'",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 5,
-    "affirmativeTeam": "SSSD 3",
-    "negativeTeam": "Butler 2",
-    "date": "June 20",
-    "time": "5:15",
-    "topic": "This house regrets the notion that 'children are the future'",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 5,
     "affirmativeTeam": "Duncraig 2",
     "negativeTeam": "Butler 1",
+    "date": "May 9",
+    "time": "05:15",
+    "topic": "This house, as an activist, would support climate engineering to combat global warming",
+    "venue": "SSSD"
+  },
+  {
+    "division": 21,
+    "round": 3,
+    "affirmativeTeam": "SSSD 1",
+    "negativeTeam": "Duncraig 4",
+    "date": "May 9",
+    "time": "05:15",
+    "topic": "This house, as an activist, would support climate engineering to combat global warming",
+    "venue": "SSSD"
+  },
+  {
+    "division": 21,
+    "round": 3,
+    "affirmativeTeam": "SSSD 3",
+    "negativeTeam": "Butler 2",
+    "date": "May 9",
+    "time": "05:15",
+    "topic": "This house, as an activist, would support climate engineering to combat global warming",
+    "venue": "SSSD"
+  },
+  {
+    "division": 21,
+    "round": 4,
+    "affirmativeTeam": "SSSD 3",
+    "negativeTeam": "Duncraig 4",
+    "date": "June 6",
+    "time": "05:15",
+    "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
+    "venue": "SSSD"
+  },
+  {
+    "division": 21,
+    "round": 4,
+    "affirmativeTeam": "Butler 2",
+    "negativeTeam": "Duncraig 2",
+    "date": "June 6",
+    "time": "05:15",
+    "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
+    "venue": "SSSD"
+  },
+  {
+    "division": 21,
+    "round": 4,
+    "affirmativeTeam": "SSSD 1",
+    "negativeTeam": "Butler 1",
+    "date": "June 6",
+    "time": "05:15",
+    "topic": "This house would encourage schools to study controversial texts (e.g. Of Mice and Men, Scarlet Letter, Catcher in the Rye)",
+    "venue": "SSSD"
+  },
+  {
+    "division": 21,
+    "round": 5,
+    "affirmativeTeam": "Duncraig 4",
+    "negativeTeam": "Duncraig 2",
     "date": "June 20",
-    "time": "5:15",
+    "time": "05:15",
+    "topic": "This house regrets the notion that 'children are the future'",
+    "venue": "SSSD"
+  },
+  {
+    "division": 21,
+    "round": 5,
+    "affirmativeTeam": "SSSD 3",
+    "negativeTeam": "SSSD 1",
+    "date": "June 20",
+    "time": "05:15",
+    "topic": "This house regrets the notion that 'children are the future'",
+    "venue": "SSSD"
+  },
+  {
+    "division": 21,
+    "round": 5,
+    "affirmativeTeam": "Butler 1",
+    "negativeTeam": "Butler 2",
+    "date": "June 20",
+    "time": "05:15",
     "topic": "This house regrets the notion that 'children are the future'",
     "venue": "SSSD"
   },
   {
     "division": 21,
     "round": 6,
-    "affirmativeTeam": "Bye",
-    "negativeTeam": "Butler 1",
+    "affirmativeTeam": "Duncraig 4",
+    "negativeTeam": "Butler 2",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "SSSD"
   },
   {
     "division": 21,
     "round": 6,
-    "affirmativeTeam": "Butler 2",
-    "negativeTeam": "Duncraig 2",
+    "affirmativeTeam": "Duncraig 2",
+    "negativeTeam": "SSSD 1",
     "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "SSSD"
   },
   {
     "division": 21,
     "round": 6,
-    "affirmativeTeam": "SSSD 1",
+    "affirmativeTeam": "Butler 1",
     "negativeTeam": "SSSD 3",
     "date": "August 8",
-    "time": "5:15",
-    "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
-    "venue": "SSSD"
-  },
-  {
-    "division": 21,
-    "round": 6,
-    "affirmativeTeam": "Duncraig 4",
-    "negativeTeam": "SSSC 2",
-    "date": "August 8",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets high fashion (e.g. Gucci, Louis Vuitton)",
     "venue": "SSSD"
   },
@@ -4625,18 +4535,18 @@
     "affirmativeTeam": "Harrisdale 1",
     "negativeTeam": "All Saints' 1",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "All Saints'"
   },
   {
     "division": 22,
     "round": 1,
-    "affirmativeTeam": "Kelmscott 2",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "SCBC 2",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "All Saints'"
   },
   {
@@ -4645,8 +4555,8 @@
     "affirmativeTeam": "Kelmscott 4",
     "negativeTeam": "Perth Mod 24",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "All Saints'"
   },
   {
@@ -4655,8 +4565,8 @@
     "affirmativeTeam": "Perth Mod 20",
     "negativeTeam": "Perth Mod 22",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "All Saints'"
   },
   {
@@ -4665,8 +4575,8 @@
     "affirmativeTeam": "All Saints' 1",
     "negativeTeam": "Perth Mod 22",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "All Saints'"
   },
   {
@@ -4675,8 +4585,8 @@
     "affirmativeTeam": "Perth Mod 24",
     "negativeTeam": "Perth Mod 20",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "All Saints'"
   },
   {
@@ -4685,27 +4595,27 @@
     "affirmativeTeam": "SCBC 2",
     "negativeTeam": "Kelmscott 4",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "All Saints'"
   },
   {
     "division": 22,
     "round": 2,
     "affirmativeTeam": "Harrisdale 1",
-    "negativeTeam": "Kelmscott 2",
+    "negativeTeam": "Bye",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "All Saints'"
   },
   {
     "division": 22,
     "round": 3,
-    "affirmativeTeam": "Kelmscott 2",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "All Saints' 1",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "All Saints'"
   },
@@ -4715,7 +4625,7 @@
     "affirmativeTeam": "Kelmscott 4",
     "negativeTeam": "Harrisdale 1",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "All Saints'"
   },
@@ -4725,7 +4635,7 @@
     "affirmativeTeam": "Perth Mod 20",
     "negativeTeam": "SCBC 2",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "All Saints'"
   },
@@ -4735,7 +4645,7 @@
     "affirmativeTeam": "Perth Mod 22",
     "negativeTeam": "Perth Mod 24",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "All Saints'"
   },
@@ -4745,7 +4655,7 @@
     "affirmativeTeam": "All Saints' 1",
     "negativeTeam": "Perth Mod 24",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "All Saints'"
   },
@@ -4755,7 +4665,7 @@
     "affirmativeTeam": "SCBC 2",
     "negativeTeam": "Perth Mod 22",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "All Saints'"
   },
@@ -4765,17 +4675,17 @@
     "affirmativeTeam": "Harrisdale 1",
     "negativeTeam": "Perth Mod 20",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "All Saints'"
   },
   {
     "division": 22,
     "round": 4,
-    "affirmativeTeam": "Kelmscott 2",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "Kelmscott 4",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "All Saints'"
   },
@@ -4785,18 +4695,18 @@
     "affirmativeTeam": "Kelmscott 4",
     "negativeTeam": "All Saints' 1",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "All Saints'"
   },
   {
     "division": 22,
     "round": 5,
     "affirmativeTeam": "Perth Mod 20",
-    "negativeTeam": "Kelmscott 2",
+    "negativeTeam": "Bye",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "All Saints'"
   },
   {
@@ -4805,8 +4715,8 @@
     "affirmativeTeam": "Perth Mod 22",
     "negativeTeam": "Harrisdale 1",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "All Saints'"
   },
   {
@@ -4815,8 +4725,8 @@
     "affirmativeTeam": "Perth Mod 24",
     "negativeTeam": "SCBC 2",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "All Saints'"
   },
   {
@@ -4825,8 +4735,8 @@
     "affirmativeTeam": "All Saints' 1",
     "negativeTeam": "SCBC 2",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "All Saints'"
   },
   {
@@ -4835,18 +4745,18 @@
     "affirmativeTeam": "Harrisdale 1",
     "negativeTeam": "Perth Mod 24",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "All Saints'"
   },
   {
     "division": 22,
     "round": 6,
-    "affirmativeTeam": "Kelmscott 2",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "Perth Mod 22",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "All Saints'"
   },
   {
@@ -4855,8 +4765,8 @@
     "affirmativeTeam": "Kelmscott 4",
     "negativeTeam": "Perth Mod 20",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "All Saints'"
   },
   {
@@ -4865,8 +4775,8 @@
     "affirmativeTeam": "Kelmscott 5",
     "negativeTeam": "Bye",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "All Saints'"
   },
   {
@@ -4875,8 +4785,8 @@
     "affirmativeTeam": "Kelmscott 3",
     "negativeTeam": "Perth Mod 26",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "All Saints'"
   },
   {
@@ -4885,8 +4795,8 @@
     "affirmativeTeam": "Aquinas 1",
     "negativeTeam": "All Saints' 2",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "All Saints'"
   },
   {
@@ -4895,8 +4805,8 @@
     "affirmativeTeam": "Perth Mod 21",
     "negativeTeam": "SCBC 3",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "All Saints'"
   },
   {
@@ -4905,8 +4815,8 @@
     "affirmativeTeam": "Perth Mod 23",
     "negativeTeam": "SCBC 1",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "All Saints'"
   },
   {
@@ -4915,8 +4825,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "SCBC 1",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "All Saints'"
   },
   {
@@ -4925,8 +4835,8 @@
     "affirmativeTeam": "SCBC 3",
     "negativeTeam": "Perth Mod 23",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "All Saints'"
   },
   {
@@ -4935,8 +4845,8 @@
     "affirmativeTeam": "All Saints' 2",
     "negativeTeam": "Perth Mod 21",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "All Saints'"
   },
   {
@@ -4945,8 +4855,8 @@
     "affirmativeTeam": "Perth Mod 26",
     "negativeTeam": "Aquinas 1",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "All Saints'"
   },
   {
@@ -4955,8 +4865,8 @@
     "affirmativeTeam": "Kelmscott 5",
     "negativeTeam": "Kelmscott 3",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "All Saints'"
   },
   {
@@ -4965,7 +4875,7 @@
     "affirmativeTeam": "Kelmscott 3",
     "negativeTeam": "Bye",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "All Saints'"
   },
@@ -4975,7 +4885,7 @@
     "affirmativeTeam": "Aquinas 1",
     "negativeTeam": "Kelmscott 5",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "All Saints'"
   },
@@ -4985,7 +4895,7 @@
     "affirmativeTeam": "Perth Mod 21",
     "negativeTeam": "Perth Mod 26",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "All Saints'"
   },
@@ -4995,7 +4905,7 @@
     "affirmativeTeam": "Perth Mod 23",
     "negativeTeam": "All Saints' 2",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "All Saints'"
   },
@@ -5005,7 +4915,7 @@
     "affirmativeTeam": "SCBC 1",
     "negativeTeam": "SCBC 3",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "All Saints'"
   },
@@ -5015,7 +4925,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "SCBC 3",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "All Saints'"
   },
@@ -5025,7 +4935,7 @@
     "affirmativeTeam": "All Saints' 2",
     "negativeTeam": "SCBC 1",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "All Saints'"
   },
@@ -5035,7 +4945,7 @@
     "affirmativeTeam": "Perth Mod 26",
     "negativeTeam": "Perth Mod 23",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "All Saints'"
   },
@@ -5045,7 +4955,7 @@
     "affirmativeTeam": "Kelmscott 5",
     "negativeTeam": "Perth Mod 21",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "All Saints'"
   },
@@ -5055,7 +4965,7 @@
     "affirmativeTeam": "Kelmscott 3",
     "negativeTeam": "Aquinas 1",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "All Saints'"
   },
@@ -5065,8 +4975,8 @@
     "affirmativeTeam": "Aquinas 1",
     "negativeTeam": "Bye",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "All Saints'"
   },
   {
@@ -5075,8 +4985,8 @@
     "affirmativeTeam": "Perth Mod 21",
     "negativeTeam": "Kelmscott 3",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "All Saints'"
   },
   {
@@ -5085,8 +4995,8 @@
     "affirmativeTeam": "Perth Mod 23",
     "negativeTeam": "Kelmscott 5",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "All Saints'"
   },
   {
@@ -5095,8 +5005,8 @@
     "affirmativeTeam": "SCBC 1",
     "negativeTeam": "Perth Mod 26",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "All Saints'"
   },
   {
@@ -5105,8 +5015,8 @@
     "affirmativeTeam": "SCBC 3",
     "negativeTeam": "All Saints' 2",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "All Saints'"
   },
   {
@@ -5115,8 +5025,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "All Saints' 2",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "All Saints'"
   },
   {
@@ -5125,8 +5035,8 @@
     "affirmativeTeam": "Perth Mod 26",
     "negativeTeam": "SCBC 3",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "All Saints'"
   },
   {
@@ -5135,8 +5045,8 @@
     "affirmativeTeam": "Kelmscott 5",
     "negativeTeam": "SCBC 1",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "All Saints'"
   },
   {
@@ -5145,8 +5055,8 @@
     "affirmativeTeam": "Kelmscott 3",
     "negativeTeam": "Perth Mod 23",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "All Saints'"
   },
   {
@@ -5155,8 +5065,8 @@
     "affirmativeTeam": "Aquinas 1",
     "negativeTeam": "Perth Mod 21",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "All Saints'"
   },
   {
@@ -5165,8 +5075,8 @@
     "affirmativeTeam": "Mount Lawley 6",
     "negativeTeam": "Bye",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "Mount Lawley"
   },
   {
@@ -5175,8 +5085,8 @@
     "affirmativeTeam": "Mount Lawley 8",
     "negativeTeam": "Governor Stirling 2",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "Mount Lawley"
   },
   {
@@ -5185,8 +5095,8 @@
     "affirmativeTeam": "Mount Lawley 10",
     "negativeTeam": "Helena 1",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "Mount Lawley"
   },
   {
@@ -5195,8 +5105,8 @@
     "affirmativeTeam": "Carmel 2",
     "negativeTeam": "Governor Stirling 1",
     "date": "March 22",
-    "time": "5:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "05:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "Mount Lawley"
   },
   {
@@ -5205,8 +5115,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Governor Stirling 1",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "Mount Lawley"
   },
   {
@@ -5215,8 +5125,8 @@
     "affirmativeTeam": "Helena 1",
     "negativeTeam": "Carmel 2",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "Mount Lawley"
   },
   {
@@ -5225,8 +5135,8 @@
     "affirmativeTeam": "Governor Stirling 2",
     "negativeTeam": "Mount Lawley 10",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "Mount Lawley"
   },
   {
@@ -5235,8 +5145,8 @@
     "affirmativeTeam": "Mount Lawley 6",
     "negativeTeam": "Mount Lawley 8",
     "date": "April 5",
-    "time": "5:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "05:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "Mount Lawley"
   },
   {
@@ -5245,7 +5155,7 @@
     "affirmativeTeam": "Mount Lawley 8",
     "negativeTeam": "Bye",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "Mount Lawley"
   },
@@ -5255,7 +5165,7 @@
     "affirmativeTeam": "Mount Lawley 10",
     "negativeTeam": "Mount Lawley 6",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "Mount Lawley"
   },
@@ -5265,7 +5175,7 @@
     "affirmativeTeam": "Carmel 2",
     "negativeTeam": "Governor Stirling 2",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "Mount Lawley"
   },
@@ -5275,7 +5185,7 @@
     "affirmativeTeam": "Governor Stirling 1",
     "negativeTeam": "Helena 1",
     "date": "May 10",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "Mount Lawley"
   },
@@ -5285,7 +5195,7 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Helena 1",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "Mount Lawley"
   },
@@ -5295,7 +5205,7 @@
     "affirmativeTeam": "Governor Stirling 2",
     "negativeTeam": "Governor Stirling 1",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "Mount Lawley"
   },
@@ -5305,7 +5215,7 @@
     "affirmativeTeam": "Mount Lawley 6",
     "negativeTeam": "Carmel 2",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "Mount Lawley"
   },
@@ -5315,7 +5225,7 @@
     "affirmativeTeam": "Mount Lawley 8",
     "negativeTeam": "Mount Lawley 10",
     "date": "June 7",
-    "time": "5:15",
+    "time": "05:15",
     "topic": "This house regrets NAPLAN",
     "venue": "Mount Lawley"
   },
@@ -5325,8 +5235,8 @@
     "affirmativeTeam": "Mount Lawley 10",
     "negativeTeam": "Bye",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "Mount Lawley"
   },
   {
@@ -5335,8 +5245,8 @@
     "affirmativeTeam": "Carmel 2",
     "negativeTeam": "Mount Lawley 8",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "Mount Lawley"
   },
   {
@@ -5345,8 +5255,8 @@
     "affirmativeTeam": "Governor Stirling 1",
     "negativeTeam": "Mount Lawley 6",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "Mount Lawley"
   },
   {
@@ -5355,8 +5265,8 @@
     "affirmativeTeam": "Helena 1",
     "negativeTeam": "Governor Stirling 2",
     "date": "June 21",
-    "time": "5:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "05:15",
+    "topic": "This house would legalise graffiti",
     "venue": "Mount Lawley"
   },
   {
@@ -5365,8 +5275,8 @@
     "affirmativeTeam": "Bye",
     "negativeTeam": "Governor Stirling 2",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "Mount Lawley"
   },
   {
@@ -5375,8 +5285,8 @@
     "affirmativeTeam": "Mount Lawley 6",
     "negativeTeam": "Helena 1",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "Mount Lawley"
   },
   {
@@ -5385,8 +5295,8 @@
     "affirmativeTeam": "Mount Lawley 8",
     "negativeTeam": "Governor Stirling 1",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "Mount Lawley"
   },
   {
@@ -5395,8 +5305,8 @@
     "affirmativeTeam": "Mount Lawley 10",
     "negativeTeam": "Carmel 2",
     "date": "August 9",
-    "time": "5:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "05:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "Mount Lawley"
   },
   {
@@ -5405,8 +5315,8 @@
     "affirmativeTeam": "Mount Lawley 7",
     "negativeTeam": "Trinity 1",
     "date": "March 22",
-    "time": "6:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "06:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "Mount Lawley"
   },
   {
@@ -5415,8 +5325,8 @@
     "affirmativeTeam": "Mount Lawley 9",
     "negativeTeam": "John Septimus 1",
     "date": "March 22",
-    "time": "6:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "06:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "Mount Lawley"
   },
   {
@@ -5425,8 +5335,8 @@
     "affirmativeTeam": "Carmel 1",
     "negativeTeam": "Carmel 3",
     "date": "March 22",
-    "time": "6:15",
-    "topic": "This house would make promises made by politicians enforceable ",
+    "time": "06:15",
+    "topic": "This house would make promises made by politicians enforceable",
     "venue": "Mount Lawley"
   },
   {
@@ -5435,8 +5345,8 @@
     "affirmativeTeam": "Trinity 1",
     "negativeTeam": "Carmel 3",
     "date": "April 5",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "06:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "Mount Lawley"
   },
   {
@@ -5445,8 +5355,8 @@
     "affirmativeTeam": "John Septimus 1",
     "negativeTeam": "Carmel 1",
     "date": "April 5",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "06:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "Mount Lawley"
   },
   {
@@ -5455,8 +5365,8 @@
     "affirmativeTeam": "Mount Lawley 7",
     "negativeTeam": "Mount Lawley 9",
     "date": "April 5",
-    "time": "6:15",
-    "topic": "PROVISIONAL: This house would ban the further development of explosive weapons",
+    "time": "06:15",
+    "topic": "This house supports the use of fully autonomous weapons in warfare.",
     "venue": "Mount Lawley"
   },
   {
@@ -5465,7 +5375,7 @@
     "affirmativeTeam": "Mount Lawley 9",
     "negativeTeam": "Trinity 1",
     "date": "May 10",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "Mount Lawley"
   },
@@ -5475,7 +5385,7 @@
     "affirmativeTeam": "Carmel 1",
     "negativeTeam": "Mount Lawley 7",
     "date": "May 10",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "Mount Lawley"
   },
@@ -5485,7 +5395,7 @@
     "affirmativeTeam": "Carmel 3",
     "negativeTeam": "John Septimus 1",
     "date": "May 10",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house would introduce sustainability classes at school",
     "venue": "Mount Lawley"
   },
@@ -5495,7 +5405,7 @@
     "affirmativeTeam": "Trinity 1",
     "negativeTeam": "John Septimus 1",
     "date": "June 7",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets NAPLAN",
     "venue": "Mount Lawley"
   },
@@ -5505,7 +5415,7 @@
     "affirmativeTeam": "Mount Lawley 7",
     "negativeTeam": "Carmel 3",
     "date": "June 7",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets NAPLAN",
     "venue": "Mount Lawley"
   },
@@ -5515,7 +5425,7 @@
     "affirmativeTeam": "Mount Lawley 9",
     "negativeTeam": "Carmel 1",
     "date": "June 7",
-    "time": "6:15",
+    "time": "06:15",
     "topic": "This house regrets NAPLAN",
     "venue": "Mount Lawley"
   },
@@ -5525,8 +5435,8 @@
     "affirmativeTeam": "Carmel 1",
     "negativeTeam": "Trinity 1",
     "date": "June 21",
-    "time": "6:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "06:15",
+    "topic": "This house would legalise graffiti",
     "venue": "Mount Lawley"
   },
   {
@@ -5535,8 +5445,8 @@
     "affirmativeTeam": "Carmel 3",
     "negativeTeam": "Mount Lawley 9",
     "date": "June 21",
-    "time": "6:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "06:15",
+    "topic": "This house would legalise graffiti",
     "venue": "Mount Lawley"
   },
   {
@@ -5545,8 +5455,8 @@
     "affirmativeTeam": "John Septimus 1",
     "negativeTeam": "Mount Lawley 7",
     "date": "June 21",
-    "time": "6:15",
-    "topic": "This house would legalise graffiti ",
+    "time": "06:15",
+    "topic": "This house would legalise graffiti",
     "venue": "Mount Lawley"
   },
   {
@@ -5555,8 +5465,8 @@
     "affirmativeTeam": "Trinity 1",
     "negativeTeam": "Mount Lawley 7",
     "date": "August 9",
-    "time": "6:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "06:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "Mount Lawley"
   },
   {
@@ -5565,8 +5475,8 @@
     "affirmativeTeam": "Mount Lawley 9",
     "negativeTeam": "John Septimus 1",
     "date": "August 9",
-    "time": "6:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "06:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "Mount Lawley"
   },
   {
@@ -5575,8 +5485,8 @@
     "affirmativeTeam": "Carmel 1",
     "negativeTeam": "Carmel 3",
     "date": "August 9",
-    "time": "6:15",
-    "topic": "This house, as a consumer, believes that streaming services have done more harm than good ",
+    "time": "06:15",
+    "topic": "This house, as a consumer, believes that streaming services have done more harm than good",
     "venue": "Mount Lawley"
   }
-]
+ ]

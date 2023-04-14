@@ -10,6 +10,8 @@ const tournamentStore = useTournamentStore();
 // const teamStore = useTeamStore();
 const route = useRoute();
 const isLoading = ref(true);
+const modalVisibility = ref(false);
+const topicData = ref(null);
 
 let selectedTournament = null;
 let selectedRound = null;
@@ -177,6 +179,12 @@ const handleFilter = (searchTerm) => {
   tableFilter.value = searchTerm;
 };
 
+const handleEdit = (row) => {
+  console.log("HELLO");
+  modalVisibility.value = row.modalVisibility;
+  topicData.value = row.data.topic;
+};
+
 const filteredTableData = computed(() => {
   return tableFilter.value
     ? tableData.value.filter(
@@ -195,6 +203,18 @@ const filteredTableData = computed(() => {
 </script>
 
 <template>
+  <Modal
+    :modal-visibility="modalVisibility"
+    size="w-8/12"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  >
+    <p class="m-8">{{ topicData }}</p></Modal
+  >
+
   <Tabs :tabs="levelTabs" font-size="text-xl" @handle-tab="handleLevel" />
   <div class="flex items-center justify-center w-full">
     <SearchBar @handle-filter="handleFilter" />
@@ -212,6 +232,7 @@ const filteredTableData = computed(() => {
       :data="filteredTableData"
       :can-edit="false"
       no-data-text="Please select a round"
+      @edit="handleEdit"
     />
   </div>
 </template>

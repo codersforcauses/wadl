@@ -1,5 +1,8 @@
 <template>
-  <div v-if="data.length > 0" class="block overflow-auto w-full md:w-11/12">
+  <div
+    v-if="data.length > 0"
+    class="block overflow-auto w-full md:w-11/12 max-w-7xl"
+  >
     <table class="w-full">
       <thead v-if="renderHeaders">
         <tr class="border-b font-montserrat text-left">
@@ -30,9 +33,20 @@
               :row="row"
               :row-id="index"
             >
-              <p>
-                {{ row[object.key] }}
+              <p v-if="object.title === 'Topic'">
+                <Button
+                  button-text="View Topic"
+                  size="medium"
+                  button-color="bg-light-orange-gold"
+                  @click.prevent="
+                    (e) => {
+                      handleEmit(row);
+                      e.stopPropagation();
+                    }
+                  "
+                />
               </p>
+              <p v-else>{{ row[object.key] }}</p>
             </slot>
           </td>
           <td v-if="canEdit" class="text-right p-2">
