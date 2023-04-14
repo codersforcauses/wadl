@@ -78,6 +78,8 @@ let levelTabsKey = 0;
 const selectedLevel = ref(juniorFixtures);
 const tableData = ref([]);
 const tableFilter = ref("");
+const modalVisibility = ref(false);
+const topicData = ref(null);
 
 const createRoundTabs = () => {
   let round = 1;
@@ -125,6 +127,12 @@ const handleRound = (roundName) => {
   tableData.value = [];
   selectedRound = parseInt(roundName.split("")[roundName.length - 1]);
   getFixturesTableData();
+};
+
+const handleEdit = (row) => {
+  console.log("HELLO");
+  modalVisibility.value = row.modalVisibility;
+  topicData.value = row.data.topic;
 };
 
 const getFixturesTableData = () => {
@@ -201,6 +209,18 @@ const filteredTableData = computed(() => {
 </script>
 
 <template>
+  <Modal
+    :modal-visibility="modalVisibility"
+    size="w-8/12"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  >
+    <p class="m-8">{{ topicData }}</p></Modal
+  >
+
   <Tabs :tabs="levelTabs" font-size="text-xl" @handle-tab="handleLevel" />
   <div class="flex items-center justify-center w-full">
     <SearchBar @handle-filter="handleFilter" />
@@ -219,6 +239,7 @@ const filteredTableData = computed(() => {
       :can-edit="false"
       :score-board="true"
       no-data-text="Please select a round"
+      @edit="handleEdit"
     />
   </div>
 </template>
