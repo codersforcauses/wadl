@@ -37,7 +37,9 @@
                 <Button
                   button-text="View Topic"
                   size="medium"
-                  button-color="bg-light-orange-gold"
+                  button-color="bg-white"
+                  text-color="text-light-orange-gold"
+                  class="underline underline-offset-2 hover:bg-light-orange-gold hover:text-black hover:font-medium"
                   @click.prevent="
                     (e) => {
                       handleEmit(row);
