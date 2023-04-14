@@ -217,7 +217,7 @@ const filteredTableData = computed(() => {
       :headers="headers"
       :data="filteredTableData"
       :can-edit="false"
-      :scoreBoard="true"
+      :score-board="true"
       no-data-text="Please select a round"
     />
   </div>
