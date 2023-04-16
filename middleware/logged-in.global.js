@@ -1,5 +1,6 @@
 import { useUserStore } from "../stores/user";
 import { defineNuxtRouteMiddleware, navigateTo } from "#imports";
+import { useTournamentStore } from "../stores/tournaments";
 
 export default defineNuxtRouteMiddleware(async (to, _from) => {
   // Running on client only to prevent routing conflicts -- admin
@@ -10,8 +11,16 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
       await userStore.clearStore();
     }
 
-    const publicRoutes = ["/", "/signup", "/login"];
-    if (publicRoutes.includes(to.path)) return;
+    const tournamentStore = useTournamentStore();
+
+    const allPublicRoutes = tournamentStore.getRunning.reduce(
+      (publicRoutes, tournament) => {
+        publicRoutes.push(`/fixtures/${tournament.id}`);
+        return publicRoutes;
+      },
+      ["/", "/signup", "/login", "/resetpassword"]
+    );
+    if (allPublicRoutes.includes(to.path)) return;
 
     if (userStore.auth === null) {
       return navigateTo({ path: "/login" });

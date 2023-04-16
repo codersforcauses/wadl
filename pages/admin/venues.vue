@@ -20,6 +20,8 @@ const editMode = ref(false);
 const filtering = ref(false);
 const loading = ref(true);
 const modalLoading = ref(false);
+const deleteVisibility = ref(false);
+const venueDelete = ref(null);
 
 const store = useVenueStore();
 
@@ -90,6 +92,22 @@ const createVenue = async () => {
   resetFormState();
 };
 
+const handleDelete = (venue) => {
+  deleteVisibility.value = true;
+  venueDelete.value = venue;
+};
+
+const deleteVenue = (id) => {
+  try {
+    store.deleteVenue(id);
+  } catch (error) {
+    notification.notifyError("Error occurred, please try again.");
+    return;
+  }
+  modalVisibility.value = false;
+  notification.notifySuccess("Successfully deleted venue.");
+};
+
 const headers = [
   {
     key: "name",
@@ -145,7 +163,7 @@ const headers = [
   >
     <div v-if="editMode">
       <Header title-text="Edit Venue" />
-      <form class="px-10" @submit.prevent="updateVenue">
+      <form class="px-10" @submit.prevent="">
         <FormField v-model="formInput.name" label="Venue Name" />
         <div class="grid grid-cols-2 gap-x-4">
           <div>
@@ -168,13 +186,20 @@ const headers = [
           placeholder="Select Days"
           @change="updateSelectedDays"
         />
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-evenly w-full my-5">
+          <Button
+            button-text="Delete"
+            button-color="bg-pink-100"
+            type="Submit"
+            class="text-red-700"
+            @click="handleDelete(formInput)"
+          />
           <Button
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
-            class="m-5 ml-8"
             :loading="modalLoading"
+            @click="updateVenue"
           />
         </div>
       </form>
@@ -223,5 +248,18 @@ const headers = [
     :is-success="notification.isSuccess"
     :body="notification.message"
     @close="notification.dismiss()"
+  />
+  <DeleteDialog
+    :modal-visibility="deleteVisibility"
+    @close="deleteVisibility = false"
+    @yes="
+      deleteVenue(venueDelete.id);
+      deleteVisibility = false;
+    "
+    @no="
+      () => {
+        deleteVisibility = false;
+      }
+    "
   />
 </template>

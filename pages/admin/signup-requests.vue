@@ -33,9 +33,9 @@ onUnmounted(() => {
 
 const filteredUsers = computed(() => {
   const query = searchTerm.value;
-  if (query === "") return adminStore.requestingUsers;
+  if (query === "") return adminStore.getRequestingUsers;
 
-  return adminStore.requestingUsers.filter(
+  return adminStore.getRequestingUsers.filter(
     (user) =>
       user.firstName?.toLowerCase().includes(query) ||
       user.lastName?.toLowerCase().includes(query) ||
@@ -43,7 +43,6 @@ const filteredUsers = computed(() => {
       user.role?.toLowerCase().includes(query)
   );
 });
-
 const headers = [
   {
     key: "firstName",
@@ -56,6 +55,10 @@ const headers = [
   {
     key: "email",
     title: "Email",
+  },
+  {
+    key: "school",
+    title: "School",
   },
   {
     key: "role",

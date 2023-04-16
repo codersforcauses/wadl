@@ -73,6 +73,16 @@
     />
   </div>
 
+  <ViewTeams
+    :modal-visibility="teamsVisibility"
+    :teams="team.teams"
+    @close="
+      () => {
+        teamsVisibility = false;
+      }
+    "
+  />
+
   <DeleteDialog
     :modal-visibility="modalVisibility"
     @close="
@@ -98,6 +108,13 @@
     type="button"
     class="m-5 ml-8"
     @click="modalVisibility = true"
+  />
+  <Button
+    button-text="Get Teams"
+    button-color="bg-gold"
+    type="button"
+    class="m-5 ml-8"
+    @click="teamsVisibility = true"
   />
   <Tabs :tabs="tabs" font-size="text-xl" @handle-tab="handleTabClicked" />
   <!-- Multiselect -->
@@ -131,16 +148,26 @@
       }
     "
   />
+
+  <div class="mt-20" />
+  <Stepper />
+
+  <div class="h-20"></div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import { useInstitutionStore } from "../stores/institutions";
+import { useTeamStore } from "../stores/teams";
 
 const store = useInstitutionStore();
+const team = useTeamStore();
 const institutions = ref(store.institutions);
 const modalVisibility = ref(false);
+const teamsVisibility = ref(false);
 const option = ref("");
+
+team.getTeams();
 
 const tabs = [
   { label: "Novice", active: false },

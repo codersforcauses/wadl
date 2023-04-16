@@ -80,5 +80,6 @@ extra_javascript:
 nav:
   - Home: index.md
   - Installation Guide: installation-guide.md
+  - Tournament Setup: tournament-setup.md
   - Team Coordinator Guide: user-guide.md
   - Components: components.md

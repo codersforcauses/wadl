@@ -14,6 +14,7 @@ services:
       - 8085:8085
       - 9199:9199
       - 4000:4000
+      - 9005:9005
     volumes:
       - ./Firebase:/app
-    command: firebase emulators:start --import=dummyData
+    command: sleep 9999999

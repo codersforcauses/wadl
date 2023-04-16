@@ -3,7 +3,7 @@
 import { useAdminStore } from "../../stores/admin";
 import { ref } from "vue";
 import { useHead } from "#imports";
-import { errorCodeToMessage } from "../../misc/firebaseHelpers";
+import { handleError } from "../../misc/firebaseHelpers";
 import useNotification from "../../composables/useNotification";
 useHead({
   title: "Create Admin",
@@ -32,10 +32,14 @@ const handleClose = () => {
 
 // Call The User Store
 const registerUser = async () => {
+  if (form.value.password !== form.value.confirmPassword) {
+    errorMessage.value = "The password does not match";
+    return;
+  }
   try {
     await userStore.createAdmin(form.value);
   } catch (error) {
-    errorMessage.value = errorCodeToMessage(error.code);
+    errorMessage.value = handleError(error);
     return;
   }
   notification.notifySuccess("Created a new admin successfully");

@@ -73,12 +73,32 @@ const notification = useNotification();
 const errorMessage = ref(null);
 
 const saveTeamRegistration = async () => {
-  // TODO:
-  // Perform validation
-  // POST to backend
   formInput.value.userTeam = institutionStore.userInstitution.name;
   try {
     await institutionStore.registerTeams(formInput.value);
+    if (institutionStore.userInstitution.tournaments == null) {
+      const tournamentList = [formInput.value.tournamentId];
+      await institutionStore.updateInstitutionTournaments(
+        institutionStore.userInstitution.id,
+        tournamentList
+      );
+    } else {
+      if (
+        institutionStore.userInstitution.tournaments.includes(
+          formInput.value.tournamentId
+        )
+      ) {
+        console.log("Tournament already in institution");
+      } else {
+        const tournamentList = institutionStore.userInstitution.tournaments;
+        tournamentList.push(formInput.value.tournamentId);
+        await institutionStore.updateInstitutionTournaments(
+          institutionStore.userInstitution.id,
+          tournamentList
+        );
+        console.log("updated");
+      }
+    }
   } catch (error) {
     errorMessage.value = error.message;
     return;

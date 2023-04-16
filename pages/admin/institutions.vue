@@ -37,6 +37,8 @@ const defaultInputState = {
 const modalVisibility = ref(false);
 const editMode = ref(false);
 const formInput = ref({ ...defaultInputState });
+const deleteVisibility = ref(false);
+const institutionDelete = ref(null);
 
 const store = useInstitutionStore();
 
@@ -87,6 +89,22 @@ const handleEdit = (row) => {
   editMode.value = row.editMode;
   formInput.value = row.data;
 };
+
+const handleDelete = (institution) => {
+  deleteVisibility.value = true;
+  institutionDelete.value = institution;
+};
+
+const deleteInstitution = (id) => {
+  try {
+    store.deleteInstitution(id);
+  } catch (error) {
+    notification.notifyError("Error occurred, please try again.");
+    return;
+  }
+  modalVisibility.value = false;
+  notification.notifySuccess("Successfully deleted institution.");
+};
 </script>
 
 <template>
@@ -104,28 +122,28 @@ const handleEdit = (row) => {
       <p class="text-3xl heading-montserrat font-bold px-6 py-3 text-center">
         Edit Institution
       </p>
-      <form
-        class="px-10"
-        @submit.prevent="
-          () => {
-            updateInstitution();
-          }
-        "
-      >
+      <form class="px-10" @submit.prevent="">
         <FormField v-model="formInput.name" label="Institution Name" />
-        <FormField v-model="formInput.code" label="Code" />
+        <FormField v-model="formInput.code" label="Code" :required="false" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
         <FormField v-model="formInput.number" label="Phone Number" type="tel" />
         <FormField v-model="formInput.email" label="Email" type="email" />
         <p v-if="errorMessage" class="text-danger-red">
           {{ errorMessage }}
         </p>
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-evenly w-full my-5">
+          <Button
+            button-text="Delete"
+            button-color="bg-pink-100"
+            type="Submit"
+            class="text-red-700"
+            @click="handleDelete(formInput)"
+          />
           <Button
             button-text="Update"
             button-color="bg-gold"
             type="Submit"
-            class="m-5 ml-8"
+            @click="updateInstitution(formInput.id)"
           />
         </div>
       </form>
@@ -143,7 +161,7 @@ const handleEdit = (row) => {
         "
       >
         <FormField v-model="formInput.name" label="Institution Name" />
-        <FormField v-model="formInput.code" label="Code" />
+        <FormField v-model="formInput.code" label="Code" :required="false" />
         <FormField v-model="formInput.abbreviation" label="Abbreviation" />
         <FormField v-model="formInput.number" label="Phone Number" type="tel" />
         <FormField v-model="formInput.email" label="Email" type="email" />
@@ -195,5 +213,18 @@ const handleEdit = (row) => {
     :is-success="notification.isSuccess"
     :body="notification.message"
     @close="notification.dismiss()"
+  />
+  <DeleteDialog
+    :modal-visibility="deleteVisibility"
+    @close="deleteVisibility = false"
+    @yes="
+      deleteInstitution(institutionDelete.id);
+      deleteVisibility = false;
+    "
+    @no="
+      () => {
+        deleteVisibility = false;
+      }
+    "
   />
 </template>

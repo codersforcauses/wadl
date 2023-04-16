@@ -11,6 +11,7 @@ import {
   setDoc,
   getDoc,
   writeBatch,
+  deleteDoc,
 } from "firebase/firestore";
 import { useUserStore } from "./user";
 
@@ -25,6 +26,7 @@ export const useInstitutionStore = defineStore("institution", {
   getters: {},
   actions: {
     async getInstitutions() {
+      this.institutions = [];
       const { $clientFirestore } = useNuxtApp();
       const ref = collection($clientFirestore, "institutions");
       const querySnapshot = await getDocs(ref);
@@ -50,22 +52,28 @@ export const useInstitutionStore = defineStore("institution", {
           email: doc.data().email,
           number: doc.data().number,
           abbreviation: doc.data().abbreviation,
+          tournaments: null,
         };
+        if (doc.data().tournaments !== undefined) {
+          this.userInstitution.tournaments = doc.data().tournaments;
+        }
       });
     },
     async checkInstitution(institution) {
       let newInstitution = true;
-      this.institutions.forEach(async (element) => {
-        if (element.name.toLowerCase() === institution.name.toLowerCase()) {
-          this.updateInstitution(element, institution);
-          newInstitution = !newInstitution;
-        }
-      });
+      await Promise.all(
+        this.institutions.map(async (element) => {
+          if (element.name.toLowerCase() === institution.name.toLowerCase()) {
+            await this.updateInstitution(element, institution);
+            newInstitution = false;
+          }
+        })
+      );
       if (newInstitution === true) {
-        this.createInstitution(institution);
+        await this.createInstitution(institution);
       } else {
         this.userInstitution = { ...institution };
-        this.updateProfile(institution);
+        await this.updateProfile(institution);
       }
     },
     async editInstitution(institution) {
@@ -78,16 +86,14 @@ export const useInstitutionStore = defineStore("institution", {
       );
 
       const snapshot = await getCountFromServer(sameName);
-      if (snapshot.data().count === 0) {
-        await updateDoc(ref, institution).then(() => {
-          const index = this.institutions.findIndex(function (item, i) {
-            return item.id === institution.id;
-          });
-          this.institutions[index] = institution;
-        });
-      } else {
+      if (snapshot.data().count > 0) {
         throw new Error("Institution with same name exists");
       }
+      await updateDoc(ref, institution);
+      const index = this.institutions.findIndex(function (item, i) {
+        return item.id === institution.id;
+      });
+      this.institutions[index] = institution;
     },
     async updateInstitution(element, institution) {
       const { $clientFirestore } = useNuxtApp();
@@ -102,9 +108,8 @@ export const useInstitutionStore = defineStore("institution", {
           email: institution.email,
           number: institution.number,
         };
-        await updateDoc(ref, data).then(() => {
-          this.updateProfile(ref);
-        });
+        await updateDoc(ref, data);
+        await this.updateProfile(ref);
       }
     },
     async createInstitution(institution) {
@@ -125,16 +130,16 @@ export const useInstitutionStore = defineStore("institution", {
           name: institution.name,
           email: institution.email,
           number: institution.number,
+          code: institution.code,
           abbreviation: institution.abbreviation,
         };
         if (userStore.role !== "Team Coordinator") {
           await setDoc(ref, data);
           this.institutions.push(data);
         } else {
-          await setDoc(ref, data).then(() => {
-            this.userInstitution = { ...data };
-            this.updateProfile(ref);
-          });
+          await setDoc(ref, data);
+          this.userInstitution = { ...data };
+          await this.updateProfile(ref);
         }
       }
     },
@@ -144,6 +149,7 @@ export const useInstitutionStore = defineStore("institution", {
       const ref = doc($clientFirestore, "users", $clientAuth.currentUser.uid);
       await updateDoc(ref, { institution: id.id });
       userStore.institution = id.id;
+      await this.getTeamsByID(id.id);
     },
     async clearStore() {
       this.institutions = [];
@@ -195,7 +201,8 @@ export const useInstitutionStore = defineStore("institution", {
       const { $clientFirestore } = useNuxtApp();
       const query_ = query(
         collection($clientFirestore, "teams"),
-        where("institutionId", "==", userStore.institution)
+        where("institutionId", "==", userStore.institution),
+        where("tournamentId", "==", team.tournamentId)
       );
       const snapshot = await getCountFromServer(query_);
       let teamCounter = snapshot.data().count + 1;
@@ -209,7 +216,7 @@ export const useInstitutionStore = defineStore("institution", {
         if (num > 0) {
           for (let i = 0; i < num; i++) {
             const ref = doc(collection($clientFirestore, "teams"));
-            batch.set(ref, {
+            const teamDetails = {
               name: team.userTeam + " " + teamCounter,
               tournamentId: team.tournamentId,
               institutionId: team.institutionId,
@@ -224,14 +231,15 @@ export const useInstitutionStore = defineStore("institution", {
                 : null,
               notes: team.notes,
               division: null,
-            });
+            };
+            batch.set(ref, teamDetails);
+            this.teams.push(teamDetails);
             teamCounter++;
           }
         }
       });
       await batch.commit();
     },
-
     async editTeam(team) {
       const { $clientFirestore } = useNuxtApp();
       const ref = doc($clientFirestore, "teams", team.id);
@@ -256,6 +264,7 @@ export const useInstitutionStore = defineStore("institution", {
       });
     },
     async getTeamsByID(institutionId) {
+      this.teams = [];
       const { $clientFirestore } = useNuxtApp();
       const ref = collection($clientFirestore, "teams");
       const q = query(ref, where("institutionId", "==", institutionId));
@@ -277,6 +286,25 @@ export const useInstitutionStore = defineStore("institution", {
           division: doc.data().division,
         };
         this.teams.push(data);
+      });
+    },
+    async deleteInstitution(id) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "institutions", id);
+      await deleteDoc(ref);
+      const index = this.institutions.findIndex((t) => {
+        return id === t.id;
+      });
+      this.institutions.splice(index, 1);
+    },
+    async updateInstitutionTournaments(institutionId, tournament) {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = doc($clientFirestore, "institutions", institutionId);
+      const data = {
+        tournaments: tournament,
+      };
+      await updateDoc(ref, data).then(() => {
+        this.updateProfile(ref);
       });
     },
   },

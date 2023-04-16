@@ -14,7 +14,7 @@
     "firebase-w": "yarn emu:stop-w & cd Firebase && firebase emulators:start --import=dummyData",
     "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill",
     "emu:stop-w": "yarn kill-port 9099 5001 8080 8085 9199",
-    "dev:docker": "docker-compose up"
+    "dev:docker": "docker-compose up -d && yarn dev"
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
