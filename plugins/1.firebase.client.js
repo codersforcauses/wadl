@@ -8,7 +8,7 @@ import { useUserStore } from "../stores/user";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig();
@@ -26,7 +26,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const firestore = getFirestore(app);
   const auth = getAuth(app);
   const functions = getFunctions(app);
-  const analytics = getAnalytics(app);
+  // const analytics = getAnalytics(app);
 
   if (config.firebaseMode === "dev") {
     connectFirestoreEmulator(firestore, "localhost", 8080);
@@ -40,11 +40,20 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   auth.onIdTokenChanged(async (user) => {
     // on sign-in, sign-out, and token refresh.
+    const tokenCookie = useCookie(
+      'auth-token',
+      {
+        default: "",
+        watch: true, // keeps cookie sync'ed
+        maxAge: 3600, // firebase cookies expire in an hour.
+      }
+    )
     if (user) {
-      const token = await user.getIdToken(true);
-      await setServerSession(token);
+      tokenCookie.value = await user.getIdToken(true);
     } else {
-      await setServerSession("");
+      // logged out.
+      tokenCookie.value = ""
+      userStore.clearStore();
     }
   });
 
@@ -52,15 +61,15 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     if (user) {
       userStore.setUser(user);
     } else {
-      userStore.setUser(null);
+      userStore.clearStore();
     }
   });
 
   return {
     provide: {
       clientFirestore: firestore,
-      clientAuth: auth,
-      clientAnalytics: analytics,
+      // clientAuth: auth,
+      // clientAnalytics: analytics,
     },
   };
 

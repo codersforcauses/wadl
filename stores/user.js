@@ -128,10 +128,16 @@ export const useUserStore = defineStore("user", {
       await updatePassword($clientAuth.currentUser, password.password);
     },
     async clearStore() {
+      // signs the user out.
       if (process.client) {
         // no login on server
         const { $clientAuth } = useNuxtApp();
-        await signOut($clientAuth);
+        try {
+          // easier than checking if there is a user curr logged in
+          await signOut($clientAuth);
+        } catch {
+          // no user was logged in
+        }
       }
       this.auth = null;
       this.firstName = null;
