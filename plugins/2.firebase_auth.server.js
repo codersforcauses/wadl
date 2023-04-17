@@ -8,7 +8,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // currently only checks cookie on page reload.
   // may cause minor issues if a user logs out on another tab
-  // await $serverAuth.revokeRefreshTokens("vbUqaLDGg5hop1BkIAFRVJqauajT")
 
   const token = await useCookie(`auth-token`);
   if (token.value) {
