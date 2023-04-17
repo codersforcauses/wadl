@@ -135,10 +135,12 @@
     <Button size="large" button-text="Submit" />
   </div>
 </template>
+
 <script setup>
 import { ref } from "vue";
 
 const initalState = {
+  adjudicator: [],
   affirmativeTeam: [
     {
       student1: {
