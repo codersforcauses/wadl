@@ -59,6 +59,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   });
 
   onAuthStateChanged(auth, (user) => {
+    // on log in or log out.
     if (user) {
       userStore.setUser(user);
     } else {
