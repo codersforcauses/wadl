@@ -42,7 +42,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   auth.onIdTokenChanged(async (user) => {
     // on sign-in, sign-out, and token refresh.
     const tokenCookie = await useCookie("auth-token", {
-      default: () => {return ""},
+      default: () => {
+        return "";
+      },
       watch: true, // keeps cookie sync'ed
       maxAge: 3600, // firebase cookies expire in an hour.
     });
