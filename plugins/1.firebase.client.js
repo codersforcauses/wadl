@@ -42,10 +42,11 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   auth.onIdTokenChanged(async (user) => {
     // on sign-in, sign-out, and token refresh.
     const tokenCookie = await useCookie("auth-token", {
-      default: "",
+      default: () => {return ""},
       watch: true, // keeps cookie sync'ed
       maxAge: 3600, // firebase cookies expire in an hour.
     });
+
     if (user) {
       tokenCookie.value = await user.getIdToken(true);
     } else {
@@ -71,13 +72,4 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       // clientAnalytics: analytics,
     },
   };
-
-  function setServerSession(token) {
-    return $fetch("/api/session", {
-      method: "POST",
-      body: {
-        token,
-      },
-    });
-  }
 });
