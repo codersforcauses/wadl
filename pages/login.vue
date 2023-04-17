@@ -26,6 +26,7 @@ const form = ref({
 
 const handleLogin = async () => {
   try {
+    console.log("here...?")
     await userStore.loginUser(form.value);
   } catch (error) {
     errorMessage.value = handleError(error);

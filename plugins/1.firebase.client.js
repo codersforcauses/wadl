@@ -8,6 +8,7 @@ import { useUserStore } from "../stores/user";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
+import { useCookie } from "#imports" 
 // import { getAnalytics } from "firebase/analytics";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
@@ -40,7 +41,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   auth.onIdTokenChanged(async (user) => {
     // on sign-in, sign-out, and token refresh.
-    const tokenCookie = useCookie(
+    const tokenCookie = await useCookie(
       'auth-token',
       {
         default: "",
@@ -68,7 +69,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   return {
     provide: {
       clientFirestore: firestore,
-      // clientAuth: auth,
+      clientAuth: auth,
       // clientAnalytics: analytics,
     },
   };
