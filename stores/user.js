@@ -128,6 +128,7 @@ export const useUserStore = defineStore("user", {
       await updatePassword($clientAuth.currentUser, password.password);
     },
     async clearStore() {
+      // logs out user -- no login on admin sdk.
       if (process.client) {
         const { $clientAuth } = useNuxtApp();
         if ($clientAuth.currentUser) {
