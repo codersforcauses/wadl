@@ -26,6 +26,7 @@
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
 import { useTournamentStore } from "../stores/tournaments";
+import { useMatchupStore } from "../stores/matchups";
 import { onMounted } from "vue";
 import { useHead } from "#imports";
 
@@ -33,8 +34,11 @@ useHead({
   title: "WADL",
 });
 const store = useTournamentStore();
+// example of how to call and load matchups
+const matchupStore = useMatchupStore();
 
 onMounted(async () => {
   await store.getTournaments();
+  await matchupStore.getMatchups();
 });
 </script>
