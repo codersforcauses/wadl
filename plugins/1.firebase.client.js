@@ -3,12 +3,12 @@ import {
   connectAuthEmulator,
   onAuthStateChanged,
 } from "firebase/auth";
-import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
+import { defineNuxtPlugin, useRuntimeConfig, useCookie } from "#imports";
 import { useUserStore } from "../stores/user";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
-import { useCookie } from "#imports" 
+
 // import { getAnalytics } from "firebase/analytics";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
@@ -41,19 +41,16 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   auth.onIdTokenChanged(async (user) => {
     // on sign-in, sign-out, and token refresh.
-    const tokenCookie = await useCookie(
-      'auth-token',
-      {
-        default: "",
-        watch: true, // keeps cookie sync'ed
-        maxAge: 3600, // firebase cookies expire in an hour.
-      }
-    )
+    const tokenCookie = await useCookie("auth-token", {
+      default: "",
+      watch: true, // keeps cookie sync'ed
+      maxAge: 3600, // firebase cookies expire in an hour.
+    });
     if (user) {
       tokenCookie.value = await user.getIdToken(true);
     } else {
       // logged out.
-      tokenCookie.value = ""
+      tokenCookie.value = "";
       userStore.clearStore();
     }
   });

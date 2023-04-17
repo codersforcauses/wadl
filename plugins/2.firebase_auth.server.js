@@ -11,9 +11,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // await $serverAuth.revokeRefreshTokens("vbUqaLDGg5hop1BkIAFRVJqauajT")
 
   const token = await useCookie(`auth-token`);
-  console.log("token value = " + token.value)
   if (token.value) {
-    console.log(token.value)
     try {
       const result = await $serverAuth.verifyIdToken(token.value);
       await userStore.setUser(result);

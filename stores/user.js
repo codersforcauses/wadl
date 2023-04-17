@@ -146,6 +146,6 @@ export const useUserStore = defineStore("user", {
       this.role = null;
       this.requesting = null;
       this.institution = null;
-    }
+    },
   },
 });
