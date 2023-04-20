@@ -33,20 +33,17 @@
               :row="row"
               :row-id="index"
             >
-              <p v-if="object.title === 'Topic'">
-                <Button
-                  button-text="View Topic"
-                  size="medium"
-                  button-color="bg-white"
-                  text-color="text-light-orange-gold"
-                  class="underline underline-offset-2 hover:bg-light-orange-gold hover:text-black hover:font-medium"
-                  @click.prevent="
-                    (e) => {
-                      handleEmit(row);
-                      e.stopPropagation();
-                    }
-                  "
-                />
+              <p
+                v-if="object.title === 'Topic'"
+                class="underline underline-offset-2 cursor-pointer text-xs"
+                @click.prevent="
+                  (e) => {
+                    handleEmit(row);
+                    e.stopPropagation();
+                  }
+                "
+              >
+                View Topic
               </p>
               <p v-else>{{ row[object.key] }}</p>
             </slot>
