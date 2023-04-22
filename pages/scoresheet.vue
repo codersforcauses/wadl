@@ -19,6 +19,17 @@
     </p>
   </div>
 
+  <!-- TODO LOAD ADJUDICATORS THAT ARE ATTACHED TO FIREBASE SCORESHEET-->
+  <div class="flex justify-evenly">
+    <p class="pt-1">Adjudicators</p>
+    <Multiselect
+      :items="adminStore.getAdjudicators"
+      @change="updateSelectedLevels"
+      placeholder="Select Adjudicators"
+      class="w-7/12"
+    />
+  </div>
+
   <p class="flex justify-center text-xl my-4">
     Affirmative Team: Perth College 4
   </p>
@@ -138,9 +149,17 @@
 
 <script setup>
 import { ref } from "vue";
+import { useAdminStore } from "../stores/admin";
+import { onMounted } from "vue";
+
+const adminStore = useAdminStore();
+
+onMounted(async () => {
+  await adminStore.fetchAdjudicators();
+});
 
 const initalState = {
-  adjudicator: [],
+  adjudicators: [],
   affirmativeTeam: [
     {
       student1: {
@@ -202,4 +221,8 @@ const initalState = {
 };
 
 const scoresheet = ref(initalState);
+
+const updateSelectedLevels = (adjs) => {
+  scoresheet.adjudicators = adjs;
+};
 </script>
