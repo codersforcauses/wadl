@@ -43,38 +43,200 @@
         <th class="w-36">POIs</th>
         <th>Total</th>
       </tr>
+      <!-- Affirmative Student 1 -->
       <tr class="border-b">
         <td class="text-center pt-2">
-          <FormField placeholder="Student Name" />
+          <FormField
+            placeholder="Student Name"
+            v-model="scoresheet.affirmativeTeam.student1.name"
+          />
         </td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student1.manner"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student1,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student1.matter"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student1,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student1.method"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student1,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
 
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="text-center">75</td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student1.poi"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student1,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="text-center">
+          {{ scoresheet.affirmativeTeam.student1.total }}
+        </td>
       </tr>
+      <!-- Affirmative Student 2 -->
       <tr class="border-b">
         <td class="text-center pt-2">
-          <FormField placeholder="Student Name" />
+          <FormField
+            placeholder="Student Name"
+            v-model="scoresheet.affirmativeTeam.student2.name"
+          />
         </td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student2.manner"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student2,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student2.matter"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student2,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student2.method"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student2,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
 
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="text-center">75</td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student2.poi"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student2,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="text-center">
+          {{ scoresheet.affirmativeTeam.student2.total }}
+        </td>
       </tr>
+      <!-- Affirmative Student 3 -->
       <tr class="border-b">
         <td class="text-center pt-2">
-          <FormField placeholder="Student Name" />
+          <FormField
+            placeholder="Student Name"
+            v-model="scoresheet.affirmativeTeam.student3.name"
+          />
         </td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student3.manner"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student3,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student3.matter"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student3,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student3.method"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student3,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
 
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="text-center">75</td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.affirmativeTeam.student3.poi"
+            @update="
+              updateTotal(
+                scoresheet.affirmativeTeam.student3,
+                scoresheet.affirmativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="text-center">
+          {{ scoresheet.affirmativeTeam.student3.total }}
+        </td>
       </tr>
       <tr>
         <td></td>
@@ -82,7 +244,9 @@
         <td></td>
         <td></td>
         <td></td>
-        <td class="text-center border-b py-2">75</td>
+        <td class="text-center border-b py-2">
+          {{ scoresheet.affirmativeTeam.total }}
+        </td>
       </tr>
     </table>
   </div>
@@ -100,36 +264,51 @@
       </tr>
       <tr class="border-b">
         <td class="text-center pt-2">
-          <FormField placeholder="Student Name" />
+          <FormField
+            placeholder="Student Name"
+            v-model="scoresheet.negativeTeam.student1.name"
+          />
         </td>
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
 
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="text-center">75</td>
+        <td class="text-center">
+          {{ scoresheet.negativeTeam.student1.total }}
+        </td>
       </tr>
       <tr class="border-b">
         <td class="text-center pt-2">
-          <FormField placeholder="Student Name" />
+          <FormField
+            placeholder="Student Name"
+            v-model="scoresheet.negativeTeam.student2.name"
+          />
         </td>
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
 
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="text-center">75</td>
+        <td class="text-center">
+          {{ scoresheet.negativeTeam.student2.total }}
+        </td>
       </tr>
       <tr class="border-b">
         <td class="text-center pt-2">
-          <FormField placeholder="Student Name" />
+          <FormField
+            placeholder="Student Name"
+            v-model="scoresheet.negativeTeam.student3.name"
+          />
         </td>
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
 
         <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="text-center">75</td>
+        <td class="text-center">
+          {{ scoresheet.negativeTeam.student3.total }}
+        </td>
       </tr>
       <tr>
         <td></td>
@@ -137,7 +316,9 @@
         <td></td>
         <td></td>
         <td></td>
-        <td class="text-center border-b py-2">75</td>
+        <td class="text-center border-b py-2">
+          {{ scoresheet.negativeTeam.total }}
+        </td>
       </tr>
     </table>
   </div>
@@ -148,7 +329,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useAdminStore } from "../stores/admin";
 import { onMounted } from "vue";
 
@@ -160,69 +341,84 @@ onMounted(async () => {
 
 const initalState = {
   adjudicators: [],
-  affirmativeTeam: [
-    {
-      student1: {
-        name: "",
-        manner: 0,
-        matter: 0,
-        method: 0,
-        poi: 0,
-        total: 0,
-      },
-      student2: {
-        name: "",
-        manner: 0,
-        matter: 0,
-        method: 0,
-        poi: 0,
-        total: 0,
-      },
-      student3: {
-        name: "",
-        manner: 0,
-        matter: 0,
-        method: 0,
-        poi: 0,
-        total: 0,
-      },
+  affirmativeTeam: {
+    student1: {
+      name: "",
+      manner: 0,
+      matter: 0,
+      method: 0,
+      poi: 0,
       total: 0,
     },
-  ],
-  negativeTeam: [
-    {
-      student1: {
-        name: "",
-        manner: 0,
-        matter: 0,
-        method: 0,
-        poi: 0,
-        total: 0,
-      },
-      student2: {
-        name: "",
-        manner: 0,
-        matter: 0,
-        method: 0,
-        poi: 0,
-        total: 0,
-      },
-      student3: {
-        name: "",
-        manner: 0,
-        matter: 0,
-        method: 0,
-        poi: 0,
-        total: 0,
-      },
+    student2: {
+      name: "",
+      manner: 0,
+      matter: 0,
+      method: 0,
+      poi: 0,
       total: 0,
     },
-  ],
+    student3: {
+      name: "",
+      manner: 0,
+      matter: 0,
+      method: 0,
+      poi: 0,
+      total: 0,
+    },
+    total: 0,
+  },
+
+  negativeTeam: {
+    student1: {
+      name: "",
+      manner: 0,
+      matter: 0,
+      method: 0,
+      poi: 0,
+      total: 0,
+    },
+    student2: {
+      name: "",
+      manner: 0,
+      matter: 0,
+      method: 0,
+      poi: 0,
+      total: 0,
+    },
+    student3: {
+      name: "",
+      manner: 0,
+      matter: 0,
+      method: 0,
+      poi: 0,
+      total: 0,
+    },
+    total: 0,
+  },
 };
 
 const scoresheet = ref(initalState);
 
 const updateSelectedLevels = (adjs) => {
   scoresheet.adjudicators = adjs;
+};
+
+const updateTotal = (s, team) => {
+  const manner = Number(s.manner);
+  const matter = Number(s.matter);
+  const method = Number(s.method);
+  const poi = Number(s.poi);
+
+  if (!isNaN(manner) && !isNaN(matter) && !isNaN(method) && !isNaN(poi)) {
+    s.total = manner + matter + method + poi;
+  } else {
+    s.total = 0;
+  }
+
+  team.total =
+    Number(team.student1.total) +
+    Number(team.student2.total) +
+    Number(team.student3.total);
 };
 </script>
