@@ -269,11 +269,59 @@
             v-model="scoresheet.negativeTeam.student1.name"
           />
         </td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student1.manner"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student1,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student1.matter"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student1,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student1.method"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student1,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
 
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student1.poi"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student1,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
         <td class="text-center">
           {{ scoresheet.negativeTeam.student1.total }}
         </td>
@@ -285,11 +333,59 @@
             v-model="scoresheet.negativeTeam.student2.name"
           />
         </td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student2.manner"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student2,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student2.matter"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student2,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student2.method"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student2,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
 
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student2.poi"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student2,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
         <td class="text-center">
           {{ scoresheet.negativeTeam.student2.total }}
         </td>
@@ -301,11 +397,59 @@
             v-model="scoresheet.negativeTeam.student3.name"
           />
         </td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student3.manner"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student3,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student3.matter"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student3,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student3.method"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student3,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
 
-        <td class="px-4 pt-2"><FormField placeholder="0" type="number" /></td>
+        <td class="px-4 pt-2">
+          <FormField
+            placeholder="0"
+            type="number"
+            v-model="scoresheet.negativeTeam.student3.poi"
+            @update="
+              updateTotal(
+                scoresheet.negativeTeam.student3,
+                scoresheet.negativeTeam
+              )
+            "
+          />
+        </td>
         <td class="text-center">
           {{ scoresheet.negativeTeam.student3.total }}
         </td>
