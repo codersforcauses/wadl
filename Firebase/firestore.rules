@@ -82,7 +82,7 @@ service cloud.firestore {
     allow create, read, update, delete: if isAdmin();
     allow create, read, update: if true;
     }
-    match /matchups/{matchupId} {
+    match /matchups/{matchupID} {
     function isAdmin(){
         return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
       }

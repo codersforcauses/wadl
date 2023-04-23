@@ -39,6 +39,8 @@ const matchupStore = useMatchupStore();
 
 onMounted(async () => {
   await store.getTournaments();
+  // ! clean up before approval of pr
   await matchupStore.getMatchups();
+  console.log(matchupStore.matchups);
 });
 </script>
