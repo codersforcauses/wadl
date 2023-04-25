@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
-import { useNuxtApp } from "#imports";
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
-import junior from "~/data/juniorDraw.json";
-import senior from "~/data/seniorDraw.json";
-import novice from "~/data/noviceDraw.json";
-import { v4 as uuidv4 } from "uuid";
+// import { useNuxtApp } from "#imports";
+// import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+// import junior from "~/data/juniorDraw.json";
+// import senior from "~/data/seniorDraw.json";
+// import novice from "~/data/noviceDraw.json";
+// import { v4 as uuidv4 } from "uuid";
 
 export const useMatchupStore = defineStore("matchup", {
   state: () => {
@@ -21,14 +21,17 @@ export const useMatchupStore = defineStore("matchup", {
   getters: {},
   actions: {
     async getMatchups() {
-      const { $clientFirestore } = useNuxtApp();
-      if (!$clientFirestore) return;
+      // const { $clientFirestore } = useNuxtApp();
+      // if (!$clientFirestore) return;
       // const ref = collection($clientFirestore, "matchups");
       // const querySnapshot = await getDocs(ref);
       // querySnapshot.forEach((doc) => {
       //   this.matchups.push(doc.data());
       // });
-
+    },
+    async uploadMatchups() {
+      // const { $clientFirestore } = useNuxtApp();
+      // if (!$clientFirestore) return;
       // let junData = [];
       // junior.forEach((element) => {
       //   const data = {
@@ -74,7 +77,7 @@ export const useMatchupStore = defineStore("matchup", {
       //   };
       //   novData.push(data);
       // });
-      // const ref = doc($clientFirestore, "matchups", "Vh3zYFSjFBs1ljlOtv7x");
+      // const ref = doc($clientFirestore, "matchups", "PljEsUqQlxumed5lCBbK");
       // await setDoc(ref, {
       //   novice: novData,
       //   junior: junData,

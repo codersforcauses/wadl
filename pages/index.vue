@@ -26,7 +26,7 @@
 <script setup>
 import LevelButton from "../components/HomePage/LevelButton.vue";
 import { useTournamentStore } from "../stores/tournaments";
-import { useMatchupStore } from "../stores/matchups";
+// import { useMatchupStore } from "../stores/matchups";
 import { onMounted } from "vue";
 import { useHead } from "#imports";
 
@@ -35,12 +35,10 @@ useHead({
 });
 const store = useTournamentStore();
 // example of how to call and load matchups
-const matchupStore = useMatchupStore();
+// const matchupStore = useMatchupStore();
 
 onMounted(async () => {
   await store.getTournaments();
-  // ! clean up before approval of pr
-  await matchupStore.getMatchups();
-  console.log(matchupStore.matchups);
+  // await matchupStore.getMatchups();
 });
 </script>
