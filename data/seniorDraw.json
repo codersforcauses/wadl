@@ -203,7 +203,7 @@
     "division": 2,
     "round": 1,
     "affirmativeTeam": "Hale 3",
-    "negativeTeam": "St Mary's 1",
+    "negativeTeam": "Bye",
     "date": "March 15",
     "time": "07:15",
     "topic": "This house would introduce participatory budgeting. INFO SLIDE: Participatory budgeting is the practice of allowing citizens to be involved with determining how and where money is allocated in a budget.",
@@ -293,7 +293,7 @@
     "division": 2,
     "round": 3,
     "affirmativeTeam": "Hale 5",
-    "negativeTeam": "St Mary's 1",
+    "negativeTeam": "Bye",
     "date": "May 3",
     "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
@@ -303,7 +303,7 @@
     "division": 2,
     "round": 4,
     "affirmativeTeam": "SSSD 1",
-    "negativeTeam": "St Mary's 1",
+    "negativeTeam": "Bye",
     "date": "May 31",
     "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
@@ -372,7 +372,7 @@
   {
     "division": 2,
     "round": 5,
-    "affirmativeTeam": "St Mary's 1",
+    "affirmativeTeam": "Bye",
     "negativeTeam": "St Mary's 2",
     "date": "June 14",
     "time": "07:15",
@@ -393,7 +393,7 @@
     "division": 2,
     "round": 6,
     "affirmativeTeam": "Hale 1",
-    "negativeTeam": "St Mary's 1",
+    "negativeTeam": "Bye",
     "date": "August 2",
     "time": "07:15",
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
@@ -1319,4 +1319,5 @@
     "topic": "Impromptu (please arrive at least an hour early for topic release)",
     "venue": "All Saints'"
   }
-]
+ ]
+ 
