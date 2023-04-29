@@ -1,12 +1,15 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
-import { useTeamStore } from "../../stores/teams";
+// import { useTeamStore } from "../../stores/teams";
+import { useMatchupStore } from "../../stores/matchups";
 import { useRoute } from "#imports";
 import juniorFixtures from "../../data/juniorDraw.json";
 import noviceFixtures from "../../data/noviceDraw.json";
 import seniorFixtures from "../../data/seniorDraw.json";
+
 const tournamentStore = useTournamentStore();
+const matchupStore = useMatchupStore();
 // const teamStore = useTeamStore();
 const route = useRoute();
 const isLoading = ref(true);
@@ -17,13 +20,18 @@ let selectedTournament = null;
 let selectedRound = null;
 
 onMounted(async () => {
+  try {
+    await matchupStore.getMatchups(route.params.tournamentId);
+    selectedTournament = tournamentStore.getRunning.find(
+      (tournament) => tournament.id === route.params.tournamentId
+    );
+    selectedRound = parseInt(selectedTournament?.currentRound);
+    createRoundTabs();
+    await getFixturesTableData();
+  } catch (error) {
+    console.log(error);
+  }
   // await teamStore.getTeams();
-  selectedTournament = tournamentStore.getRunning.find(
-    (tournament) => tournament.id === route.params.tournamentId
-  );
-  selectedRound = parseInt(selectedTournament?.currentRound);
-  createRoundTabs();
-  await getFixturesTableData();
 });
 
 const headers = [
@@ -180,7 +188,6 @@ const handleFilter = (searchTerm) => {
 };
 
 const handleEdit = (row) => {
-  console.log("HELLO");
   modalVisibility.value = row.modalVisibility;
   topicData.value = row.data.topic;
 };
@@ -212,8 +219,8 @@ const filteredTableData = computed(() => {
       }
     "
   >
-    <p class="m-8">{{ topicData }}</p></Modal
-  >
+    <p class="m-8">{{ topicData }}</p>
+  </Modal>
 
   <Tabs :tabs="levelTabs" font-size="text-xl" @handle-tab="handleLevel" />
   <div class="flex items-center justify-center w-full">
