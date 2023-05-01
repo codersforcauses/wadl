@@ -33,21 +33,23 @@
               :row="row"
               :row-id="index"
             >
-              <p v-if="object.title === 'Topic'">
-                <Button
-                  button-text="View Topic"
-                  size="medium"
-                  button-color="bg-light-orange-gold"
-                  @click.prevent="
-                    (e) => {
-                      handleEmit(row);
-                      e.stopPropagation();
-                    }
-                  "
-                />
+              <p
+                v-if="object.title === 'Topic'"
+                class="underline underline-offset-2 cursor-pointer text-xs"
+                @click.prevent="
+                  (e) => {
+                    handleEmit(row);
+                    e.stopPropagation();
+                  }
+                "
+              >
+                View Topic
               </p>
               <p v-else>{{ row[object.key] }}</p>
             </slot>
+            <p v-if="scoreBoard && ind == 7" class="flex justify-center">
+              <TableCellsIcon class="w-[28px] h-[28px]" />
+            </p>
           </td>
           <td v-if="canEdit" class="text-right p-2">
             <button
@@ -61,6 +63,9 @@
               <PencilIcon class="w-4 h-4" />
             </button>
           </td>
+          <!-- <td v-if="scoreBoard" class="place-content-center items-center">
+            <TableCellsIcon class="w-5 h-5" />
+          </td> -->
         </tr>
       </tbody>
     </table>
@@ -72,6 +77,7 @@
 
 <script setup>
 import { PencilIcon } from "@heroicons/vue/24/solid";
+import { TableCellsIcon } from "@heroicons/vue/24/outline";
 
 const emit = defineEmits(["edit", "clickRow"]);
 
@@ -113,6 +119,10 @@ const props = defineProps({
   noDataText: {
     type: String,
     default: "No data available",
+  },
+  scoreBoard: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>
