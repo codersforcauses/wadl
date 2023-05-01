@@ -476,7 +476,7 @@
 
 <script setup>
 import { ref, watch, onMounted } from "vue";
-import { useAdminStore } from "../stores/admin";
+import { useAdminStore } from "../../../../stores/admin";
 
 const adminStore = useAdminStore();
 

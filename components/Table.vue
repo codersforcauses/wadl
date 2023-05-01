@@ -72,9 +72,6 @@
               <PencilIcon class="w-4 h-4" />
             </button>
           </td>
-          <!-- <td v-if="scoreBoard" class="place-content-center items-center">
-            <TableCellsIcon class="w-5 h-5" />
-          </td> -->
         </tr>
       </tbody>
     </table>

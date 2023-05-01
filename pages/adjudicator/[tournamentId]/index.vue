@@ -23,6 +23,7 @@ onMounted(async () => {
     selectedRound = parseInt(selectedTournament?.currentRound);
     createRoundTabs();
     await getFixturesTableData();
+    await tournamentStore.getTournaments();
   } catch (error) {
     console.log(error);
   }
@@ -57,7 +58,10 @@ const headers = [
     key: "topic",
     title: "Topic",
   },
-  { key: "scoreboard", title: "Scoreboard" },
+  {
+    key: "scoreboard",
+    title: "Scoreboard",
+  },
 ];
 const levelTabs = [
   { label: "Novice", active: false },
@@ -191,6 +195,10 @@ const filteredTableData = computed(() => {
       :score-board="true"
       @edit="handleEdit"
       @sheet="handleSheet"
-    />
+    >
+      <template #scoreboard="{ row }">
+        <NuxtLink :to="`/fixtures/${tournament.id}/${matchup.id}`" />
+      </template>
+    </Table>
   </div>
 </template>
