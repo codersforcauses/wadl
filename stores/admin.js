@@ -6,12 +6,15 @@ import {
   doc,
   deleteDoc,
   getDocs,
+  query,
+  where,
 } from "firebase/firestore";
 
 export const useAdminStore = defineStore("admin", {
   state() {
     return {
       users: [],
+      adjudicators: [],
     };
   },
 
@@ -21,6 +24,9 @@ export const useAdminStore = defineStore("admin", {
     },
     getApprovedUsers() {
       return this.users.filter((user) => user.requesting === false);
+    },
+    getAdjudicators() {
+      return this.adjudicators;
     },
   },
 
@@ -82,6 +88,18 @@ export const useAdminStore = defineStore("admin", {
       });
     },
 
+    async fetchAdjudicators() {
+      const { $clientFirestore } = useNuxtApp();
+      const ref = collection($clientFirestore, "users");
+      const q = query(ref, where("role", "==", "Adjudicator"));
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        const fullName = doc.data().firstName + " " + doc.data().lastName;
+        this.adjudicators.push(fullName);
+      });
+    },
+
     async denyUser(user) {
       const { $clientFirestore } = useNuxtApp();
       await deleteDoc(doc($clientFirestore, "users", user.id), {
@@ -93,6 +111,7 @@ export const useAdminStore = defineStore("admin", {
     async clearStore() {
       this.searchTerm = "";
       this.users = [];
+      this.adjudicators = [];
     },
   },
 });
