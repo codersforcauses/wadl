@@ -1,9 +1,6 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { collection, getDoc, setDoc, doc } from "firebase/firestore";
-// import junior from "~/data/juniorDraw.json";
-// import senior from "~/data/seniorDraw.json";
-// import novice from "~/data/noviceDraw.json";
+import { getDoc, doc } from "firebase/firestore";
 // import { v4 as uuidv4 } from "uuid";
 
 export const useMatchupStore = defineStore("matchup", {
