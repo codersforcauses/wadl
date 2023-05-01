@@ -1,27 +1,31 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { useTournamentStore } from "../../../stores/tournaments";
-// import { useTeamStore } from "../../stores/teams";
+import { useTournamentStore } from "~/stores/tournaments";
+import { useMatchupStore } from "~/stores/matchups";
 import { useRoute } from "#imports";
-import juniorFixtures from "../../../data/juniorDraw.json";
-import noviceFixtures from "../../../data/noviceDraw.json";
-import seniorFixtures from "../../../data/seniorDraw.json";
+
 const tournamentStore = useTournamentStore();
-// const teamStore = useTeamStore();
+const matchupStore = useMatchupStore();
 const route = useRoute();
 const isLoading = ref(true);
+const modalVisibility = ref(false);
+const topicData = ref(null);
 
 let selectedTournament = null;
 let selectedRound = null;
 
 onMounted(async () => {
-  // await teamStore.getTeams();
-  selectedTournament = tournamentStore.getRunning.find(
-    (tournament) => tournament.id === route.params.tournamentId
-  );
-  selectedRound = parseInt(selectedTournament?.currentRound);
-  createRoundTabs();
-  await getFixturesTableData();
+  try {
+    await matchupStore.getMatchups(route.params.tournamentId);
+    selectedTournament = tournamentStore.getRunning.find(
+      (tournament) => tournament.id === route.params.tournamentId
+    );
+    selectedRound = parseInt(selectedTournament?.currentRound);
+    createRoundTabs();
+    await getFixturesTableData();
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 const headers = [
@@ -53,14 +57,6 @@ const headers = [
     key: "topic",
     title: "Topic",
   },
-  // {
-  //   key: "status",
-  //   title: "Status",
-  // },
-  {
-    key: "scoreboard",
-    title: "Scoreboard",
-  },
 ];
 const levelTabs = [
   { label: "Novice", active: false },
@@ -68,18 +64,13 @@ const levelTabs = [
   { label: "Senior", active: false },
 ];
 const roundTabs = [];
-// const selectedTournament = tournamentStore.getRunning.find(
-//   (tournament) => tournament.id === route.params.tournamentId
-// );
 
 let levelSelected = "Junior";
 let levelTabsKey = 0;
 
-const selectedLevel = ref(juniorFixtures);
+const selectedLevel = ref(matchupStore.junior);
 const tableData = ref([]);
 const tableFilter = ref("");
-const modalVisibility = ref(false);
-const topicData = ref(null);
 
 const createRoundTabs = () => {
   let round = 1;
@@ -110,17 +101,15 @@ const handleLevel = (tabName) => {
 
   // Only used for JSON fixtures
   if (levelSelected === "Junior") {
-    selectedLevel.value = juniorFixtures;
+    selectedLevel.value = matchupStore.junior;
   } else if (levelSelected === "Novice") {
-    selectedLevel.value = noviceFixtures;
+    selectedLevel.value = matchupStore.novice;
   } else {
-    selectedLevel.value = seniorFixtures;
+    selectedLevel.value = matchupStore.senior;
   }
 
   tableFilter.value = "";
   getFixturesTableData();
-  console.log("hi");
-  console.log(tableData.value);
 };
 
 const handleRound = (roundName) => {
@@ -129,57 +118,9 @@ const handleRound = (roundName) => {
   getFixturesTableData();
 };
 
-const handleEdit = (row) => {
-  console.log("HELLO");
-  modalVisibility.value = row.modalVisibility;
-  topicData.value = row.data.topic;
-};
-
 const getFixturesTableData = () => {
-  // const levelFound = selectedTournament?.levels.find(
-  //   (lev) => lev.level === levelSelected
-  // );
-  // const formatTime = (date) => {
-  //   let hours = date.getHours();
-  //   let minutes = date.getMinutes();
-  //   const ampm = hours >= 12 ? "pm" : "am";
-  //   hours = hours % 12;
-  //   hours = hours || 12;
-  //   minutes = minutes.toString().padStart(2, "0");
-  //   const strTime = hours + ":" + minutes + " " + ampm;
-  //   return strTime;
-  // };
-  // levelFound?.divisions.map((div) => {
-  //   div.matchups.map((matchup) => {
-  //     if (matchup.round === roundSelected) {
-  //       const date = new Date(matchup.datetime)
-  //         .toDateString()
-  //         .split(" ")
-  //         .slice(0, 3)
-  //         .join(" ");
-  //       const time = formatTime(new Date(matchup.datetime));
-  //       const negativeTeam = teamStore.teams.find(
-  //         (team) => team.id === matchup.negativeTeam
-  //       )?.name;
-  //       const row = {
-  //         div: div.division,
-  //         venue: div.venue.name,
-  //         date,
-  //         time,
-  //         affirmative: teamStore.teams.find(
-  //           (team) => team.id === matchup.affirmativeTeam
-  //         ).name,
-  //         negative: negativeTeam || "Bye",
-  //         topic: matchup.topic,
-  //         status: matchup.status,
-  //       };
-  //       tableData.value.push(row);
-  //     }
-  //   });
-  // });
-
   // Used only for JSON fixtures
-  selectedLevel.value.forEach((matchup) => {
+  selectedLevel.value[0].forEach((matchup) => {
     if (matchup.round === selectedRound) {
       tableData.value.push(matchup);
     }
@@ -189,6 +130,11 @@ const getFixturesTableData = () => {
 
 const handleFilter = (searchTerm) => {
   tableFilter.value = searchTerm;
+};
+
+const handleEdit = (row) => {
+  modalVisibility.value = row.modalVisibility;
+  topicData.value = row.data.topic;
 };
 
 const filteredTableData = computed(() => {
@@ -218,8 +164,8 @@ const filteredTableData = computed(() => {
       }
     "
   >
-    <p class="m-8">{{ topicData }}</p></Modal
-  >
+    <p class="m-8">{{ topicData }}</p>
+  </Modal>
 
   <Tabs :tabs="levelTabs" font-size="text-xl" @handle-tab="handleLevel" />
   <div class="flex items-center justify-center w-full">
@@ -237,7 +183,6 @@ const filteredTableData = computed(() => {
       :headers="headers"
       :data="filteredTableData"
       :can-edit="false"
-      :score-board="true"
       no-data-text="Please select a round"
       @edit="handleEdit"
     />
