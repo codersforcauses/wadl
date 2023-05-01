@@ -477,11 +477,24 @@
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import { useAdminStore } from "../../../../stores/admin";
+import { useMatchupStore } from "../../../../stores/matchups";
+import { useRoute } from "#imports";
+
+const route = useRoute();
 
 const adminStore = useAdminStore();
+const matchupStore = useMatchupStore();
 
 onMounted(async () => {
-  await adminStore.fetchAdjudicators();
+  // ! change to user store not admin store
+  try {
+    // await adminStore.fetchAdjudicators();
+    console.log(route.params.matchupId);
+    console.log(matchupStore.junior, matchupStore.novice, matchupStore.senior);
+    console.log();
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 const initalState = {

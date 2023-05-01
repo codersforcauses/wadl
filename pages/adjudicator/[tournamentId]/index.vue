@@ -23,7 +23,7 @@ onMounted(async () => {
     selectedRound = parseInt(selectedTournament?.currentRound);
     createRoundTabs();
     await getFixturesTableData();
-    await tournamentStore.getTournaments();
+    // await tournamentStore.getTournaments();
   } catch (error) {
     console.log(error);
   }
@@ -196,9 +196,6 @@ const filteredTableData = computed(() => {
       @edit="handleEdit"
       @sheet="handleSheet"
     >
-      <template #scoreboard="{ row }">
-        <NuxtLink :to="`/fixtures/${tournament.id}/${matchup.id}`" />
-      </template>
     </Table>
   </div>
 </template>
