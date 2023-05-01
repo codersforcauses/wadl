@@ -1,16 +1,11 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "../../stores/tournaments";
-// import { useTeamStore } from "../../stores/teams";
 import { useMatchupStore } from "../../stores/matchups";
 import { useRoute } from "#imports";
-import juniorFixtures from "../../data/juniorDraw.json";
-import noviceFixtures from "../../data/noviceDraw.json";
-import seniorFixtures from "../../data/seniorDraw.json";
 
 const tournamentStore = useTournamentStore();
 const matchupStore = useMatchupStore();
-// const teamStore = useTeamStore();
 const route = useRoute();
 const isLoading = ref(true);
 const modalVisibility = ref(false);
@@ -31,7 +26,6 @@ onMounted(async () => {
   } catch (error) {
     console.log(error);
   }
-  // await teamStore.getTeams();
 });
 
 const headers = [
@@ -63,10 +57,6 @@ const headers = [
     key: "topic",
     title: "Topic",
   },
-  // {
-  //   key: "status",
-  //   title: "Status",
-  // },
 ];
 const levelTabs = [
   { label: "Novice", active: false },
@@ -74,14 +64,11 @@ const levelTabs = [
   { label: "Senior", active: false },
 ];
 const roundTabs = [];
-// const selectedTournament = tournamentStore.getRunning.find(
-//   (tournament) => tournament.id === route.params.tournamentId
-// );
 
 let levelSelected = "Junior";
 let levelTabsKey = 0;
 
-const selectedLevel = ref(juniorFixtures);
+const selectedLevel = ref(matchupStore.junior);
 const tableData = ref([]);
 const tableFilter = ref("");
 
@@ -114,11 +101,11 @@ const handleLevel = (tabName) => {
 
   // Only used for JSON fixtures
   if (levelSelected === "Junior") {
-    selectedLevel.value = juniorFixtures;
+    selectedLevel.value = matchupStore.junior;
   } else if (levelSelected === "Novice") {
-    selectedLevel.value = noviceFixtures;
+    selectedLevel.value = matchupStore.novice;
   } else {
-    selectedLevel.value = seniorFixtures;
+    selectedLevel.value = matchupStore.senior;
   }
 
   tableFilter.value = "";
@@ -132,50 +119,8 @@ const handleRound = (roundName) => {
 };
 
 const getFixturesTableData = () => {
-  // const levelFound = selectedTournament?.levels.find(
-  //   (lev) => lev.level === levelSelected
-  // );
-  // const formatTime = (date) => {
-  //   let hours = date.getHours();
-  //   let minutes = date.getMinutes();
-  //   const ampm = hours >= 12 ? "pm" : "am";
-  //   hours = hours % 12;
-  //   hours = hours || 12;
-  //   minutes = minutes.toString().padStart(2, "0");
-  //   const strTime = hours + ":" + minutes + " " + ampm;
-  //   return strTime;
-  // };
-  // levelFound?.divisions.map((div) => {
-  //   div.matchups.map((matchup) => {
-  //     if (matchup.round === roundSelected) {
-  //       const date = new Date(matchup.datetime)
-  //         .toDateString()
-  //         .split(" ")
-  //         .slice(0, 3)
-  //         .join(" ");
-  //       const time = formatTime(new Date(matchup.datetime));
-  //       const negativeTeam = teamStore.teams.find(
-  //         (team) => team.id === matchup.negativeTeam
-  //       )?.name;
-  //       const row = {
-  //         div: div.division,
-  //         venue: div.venue.name,
-  //         date,
-  //         time,
-  //         affirmative: teamStore.teams.find(
-  //           (team) => team.id === matchup.affirmativeTeam
-  //         ).name,
-  //         negative: negativeTeam || "Bye",
-  //         topic: matchup.topic,
-  //         status: matchup.status,
-  //       };
-  //       tableData.value.push(row);
-  //     }
-  //   });
-  // });
-
   // Used only for JSON fixtures
-  selectedLevel.value.map((matchup) => {
+  selectedLevel.value[0].forEach((matchup) => {
     if (matchup.round === selectedRound) {
       tableData.value.push(matchup);
     }
@@ -195,30 +140,25 @@ const handleEdit = (row) => {
 const filteredTableData = computed(() => {
   return tableFilter.value
     ? tableData.value.filter(
-        (data) =>
-          data?.division?.toString().includes(tableFilter.value) ||
-          data?.venue?.toLowerCase().includes(tableFilter.value) ||
-          data?.date?.toLowerCase().includes(tableFilter.value) ||
-          data?.time?.toLowerCase().includes(tableFilter.value) ||
-          data?.affirmativeTeam?.toLowerCase().includes(tableFilter.value) ||
-          data?.negativeTeam?.toLowerCase().includes(tableFilter.value) ||
-          data?.topic?.toLowerCase().includes(tableFilter.value) ||
-          data?.status?.toLowerCase().includes(tableFilter.value)
-      )
+      (data) =>
+        data?.division?.toString().includes(tableFilter.value) ||
+        data?.venue?.toLowerCase().includes(tableFilter.value) ||
+        data?.date?.toLowerCase().includes(tableFilter.value) ||
+        data?.time?.toLowerCase().includes(tableFilter.value) ||
+        data?.affirmativeTeam?.toLowerCase().includes(tableFilter.value) ||
+        data?.negativeTeam?.toLowerCase().includes(tableFilter.value) ||
+        data?.topic?.toLowerCase().includes(tableFilter.value) ||
+        data?.status?.toLowerCase().includes(tableFilter.value)
+    )
     : tableData.value;
 });
 </script>
 
 <template>
-  <Modal
-    :modal-visibility="modalVisibility"
-    size="w-8/12"
-    @close="
-      () => {
-        modalVisibility = false;
-      }
-    "
-  >
+  <Modal :modal-visibility="modalVisibility" size="w-8/12" @close="() => {
+      modalVisibility = false;
+    }
+    ">
     <p class="m-8">{{ topicData }}</p>
   </Modal>
 
@@ -226,20 +166,9 @@ const filteredTableData = computed(() => {
   <div class="flex items-center justify-center w-full">
     <SearchBar @handle-filter="handleFilter" />
   </div>
-  <Tabs
-    v-if="!isLoading"
-    :key="levelTabsKey"
-    :tabs="roundTabs"
-    font-size="text-base"
-    @handle-tab="handleRound"
-  />
+  <Tabs v-if="!isLoading" :key="levelTabsKey" :tabs="roundTabs" font-size="text-base" @handle-tab="handleRound" />
   <div v-if="!isLoading" class="flex justify-center w-full">
-    <Table
-      :headers="headers"
-      :data="filteredTableData"
-      :can-edit="false"
-      no-data-text="Please select a round"
-      @edit="handleEdit"
-    />
+    <Table :headers="headers" :data="filteredTableData" :can-edit="false" no-data-text="Please select a round"
+      @edit="handleEdit" />
   </div>
 </template>

@@ -9,7 +9,9 @@ import { collection, getDoc, setDoc, doc } from "firebase/firestore";
 export const useMatchupStore = defineStore("matchup", {
   state: () => {
     return {
-      matchups: [],
+      junior: [],
+      senior: [],
+      novice: [],
     };
   },
   // todo (may needs this later on)
@@ -26,11 +28,9 @@ export const useMatchupStore = defineStore("matchup", {
       if (!$clientFirestore) return;
       const ref = doc($clientFirestore, "matchups", torniID);
       const querySnapshot = await getDoc(ref);
-      console.log(querySnapshot.data());
-      this.matchups.push(querySnapshot.data());
-      // querySnapshot.forEach((doc) => {
-      //   this.matchups.push(doc.data());
-      // });
+      this.junior.push(querySnapshot.data().junior);
+      this.senior.push(querySnapshot.data().senior);
+      this.novice.push(querySnapshot.data().novice);
     },
     async uploadMatchups() {
       // const { $clientFirestore } = useNuxtApp();
