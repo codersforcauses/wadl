@@ -3,19 +3,19 @@
 
   <div class="flex justify-start ml-14 my-4">
     <p class="mr-4 text-mid-grey">
-      Division: <span class="text-dark-grey">1 </span>
+      Division: <span class="text-dark-grey">{{ divsion }} </span>
     </p>
     <p class="mr-4 text-mid-grey">
-      Round: <span class="text-dark-grey">3</span>
+      Round: <span class="text-dark-grey">{{ round }}</span>
     </p>
     <p class="mr-4 text-mid-grey">
-      Date: <span class="text-dark-grey">28 March</span>
+      Date: <span class="text-dark-grey">{{ date }}</span>
     </p>
     <p class="mr-4 text-mid-grey">
-      Time: <span class="text-dark-grey">5:15pm</span>
+      Time: <span class="text-dark-grey">{{ time }}</span>
     </p>
     <p class="text-mid-grey">
-      Level: <span class="text-dark-grey">Junior</span>
+      Level: <span class="text-dark-grey">{{ level }}</span>
     </p>
   </div>
 
@@ -24,14 +24,14 @@
     <p class="pt-1">Adjudicators</p>
     <Multiselect
       :items="adminStore.getAdjudicators"
-      @change="updateSelectedLevels"
       placeholder="Select Adjudicators"
       class="w-7/12"
+      @change="updateSelectedLevels"
     />
   </div>
 
   <p class="flex justify-center text-xl my-4">
-    Affirmative Team: Perth College 4
+    Affirmative Team: <span>{{ affirmativeTeam }}</span>
   </p>
   <div class="flex justify-center mx-6">
     <table class="w-full max-w-7xl">
@@ -47,15 +47,15 @@
       <tr class="border-b">
         <td class="text-center pt-2">
           <FormField
-            placeholder="Student Name"
             v-model="scoresheet.affirmativeTeam.student1.name"
+            placeholder="Student Name"
           />
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.affirmativeTeam.student1.manner"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student1,
@@ -66,9 +66,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.affirmativeTeam.student1.matter"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student1,
@@ -79,9 +79,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.affirmativeTeam.student1.method"
             placeholder="0"
             type="number"
-            v-model="scoresheet.affirmativeTeam.student1.method"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student1,
@@ -93,9 +93,9 @@
 
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.affirmativeTeam.student1.poi"
             placeholder="0"
             type="number"
-            v-model="scoresheet.affirmativeTeam.student1.poi"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student1,
@@ -112,15 +112,15 @@
       <tr class="border-b">
         <td class="text-center pt-2">
           <FormField
-            placeholder="Student Name"
             v-model="scoresheet.affirmativeTeam.student2.name"
+            placeholder="Student Name"
           />
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.affirmativeTeam.student2.manner"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student2,
@@ -131,9 +131,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.affirmativeTeam.student2.matter"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student2,
@@ -144,9 +144,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.affirmativeTeam.student2.method"
             placeholder="0"
             type="number"
-            v-model="scoresheet.affirmativeTeam.student2.method"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student2,
@@ -158,9 +158,9 @@
 
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.affirmativeTeam.student2.poi"
             placeholder="0"
             type="number"
-            v-model="scoresheet.affirmativeTeam.student2.poi"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student2,
@@ -177,15 +177,15 @@
       <tr class="border-b">
         <td class="text-center pt-2">
           <FormField
-            placeholder="Student Name"
             v-model="scoresheet.affirmativeTeam.student3.name"
+            placeholder="Student Name"
           />
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.affirmativeTeam.student3.manner"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student3,
@@ -196,9 +196,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.affirmativeTeam.student3.matter"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student3,
@@ -209,9 +209,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.affirmativeTeam.student3.method"
             placeholder="0"
             type="number"
-            v-model="scoresheet.affirmativeTeam.student3.method"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student3,
@@ -223,9 +223,9 @@
 
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.affirmativeTeam.student3.poi"
             placeholder="0"
             type="number"
-            v-model="scoresheet.affirmativeTeam.student3.poi"
             @update="
               updateTotal(
                 scoresheet.affirmativeTeam.student3,
@@ -251,7 +251,9 @@
     </table>
   </div>
 
-  <p class="flex justify-center text-xl mb-4">Negative Team: Mercy College 2</p>
+  <p class="flex justify-center text-xl mb-4">
+    Negative Team: <span>{{ negativeTeam }}</span>
+  </p>
   <div class="flex justify-center mx-6">
     <table class="w-full max-w-7xl">
       <tr class="border-b">
@@ -265,15 +267,15 @@
       <tr class="border-b">
         <td class="text-center pt-2">
           <FormField
-            placeholder="Student Name"
             v-model="scoresheet.negativeTeam.student1.name"
+            placeholder="Student Name"
           />
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.negativeTeam.student1.manner"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student1,
@@ -284,9 +286,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.negativeTeam.student1.matter"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student1,
@@ -297,9 +299,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.negativeTeam.student1.method"
             placeholder="0"
             type="number"
-            v-model="scoresheet.negativeTeam.student1.method"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student1,
@@ -311,9 +313,9 @@
 
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.negativeTeam.student1.poi"
             placeholder="0"
             type="number"
-            v-model="scoresheet.negativeTeam.student1.poi"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student1,
@@ -329,15 +331,15 @@
       <tr class="border-b">
         <td class="text-center pt-2">
           <FormField
-            placeholder="Student Name"
             v-model="scoresheet.negativeTeam.student2.name"
+            placeholder="Student Name"
           />
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.negativeTeam.student2.manner"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student2,
@@ -348,9 +350,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.negativeTeam.student2.matter"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student2,
@@ -361,9 +363,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.negativeTeam.student2.method"
             placeholder="0"
             type="number"
-            v-model="scoresheet.negativeTeam.student2.method"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student2,
@@ -375,9 +377,9 @@
 
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.negativeTeam.student2.poi"
             placeholder="0"
             type="number"
-            v-model="scoresheet.negativeTeam.student2.poi"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student2,
@@ -393,15 +395,15 @@
       <tr class="border-b">
         <td class="text-center pt-2">
           <FormField
-            placeholder="Student Name"
             v-model="scoresheet.negativeTeam.student3.name"
+            placeholder="Student Name"
           />
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.negativeTeam.student3.manner"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student3,
@@ -412,9 +414,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
-            placeholder="0"
-            type="number"
             v-model="scoresheet.negativeTeam.student3.matter"
+            placeholder="0"
+            type="number"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student3,
@@ -425,9 +427,9 @@
         </td>
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.negativeTeam.student3.method"
             placeholder="0"
             type="number"
-            v-model="scoresheet.negativeTeam.student3.method"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student3,
@@ -439,9 +441,9 @@
 
         <td class="px-4 pt-2">
           <FormField
+            v-model="scoresheet.negativeTeam.student3.poi"
             placeholder="0"
             type="number"
-            v-model="scoresheet.negativeTeam.student3.poi"
             @update="
               updateTotal(
                 scoresheet.negativeTeam.student3,
@@ -473,9 +475,8 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useAdminStore } from "../stores/admin";
-import { onMounted } from "vue";
 
 const adminStore = useAdminStore();
 
@@ -545,7 +546,7 @@ const initalState = {
 const scoresheet = ref(initalState);
 
 const updateSelectedLevels = (adjs) => {
-  scoresheet.adjudicators = adjs;
+  scoresheet.value.adjudicators = adjs;
 };
 
 const updateTotal = (s, team) => {
@@ -565,4 +566,26 @@ const updateTotal = (s, team) => {
     Number(team.student2.total) +
     Number(team.student3.total);
 };
+
+const props = defineProps({
+  divsion: {
+    type: Number,
+    default: 0,
+  },
+  round: {
+    type: Number,
+    default: 0,
+  },
+  date: {
+    type: String,
+    default: "NaN",
+  },
+  time: { type: String, default: "NaN" },
+  level: { type: String, default: "NaN" },
+  affirmativeTeam: {
+    type: String,
+    default: "NaN",
+  },
+  negativeTeam: { type: String, default: "NaN" },
+});
 </script>

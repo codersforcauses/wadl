@@ -48,7 +48,16 @@
               <p v-else>{{ row[object.key] }}</p>
             </slot>
             <p v-if="scoreBoard && ind == 7" class="flex justify-center">
-              <TableCellsIcon class="w-[28px] h-[28px]" />
+              <button
+                @click.prevent="
+                  (e) => {
+                    handleScoreSheet(row);
+                    e.stopPropagation();
+                  }
+                "
+              >
+                <TableCellsIcon class="w-[28px] h-[28px]" />
+              </button>
             </p>
           </td>
           <td v-if="canEdit" class="text-right p-2">
@@ -79,7 +88,7 @@
 import { PencilIcon } from "@heroicons/vue/24/solid";
 import { TableCellsIcon } from "@heroicons/vue/24/outline";
 
-const emit = defineEmits(["edit", "clickRow"]);
+const emit = defineEmits(["edit", "clickRow", "sheet"]);
 
 const handleRowClick = (id) => {
   if (props.clickableRows) {
@@ -93,6 +102,10 @@ const handleEmit = (info) => {
     modalVisibility: true,
     data: { ...info },
   });
+};
+
+const handleScoreSheet = (info) => {
+  emit("sheet", { data: { ...info } });
 };
 
 const props = defineProps({
