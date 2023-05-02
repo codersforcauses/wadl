@@ -596,6 +596,11 @@ const handleLevelButtons = (button, level) => {
       teamsModalVisibility.value = true;
       teamsModalLevel.value = level;
       break;
+    case "Draw":
+      router.push({
+        path: `/admin/tournaments/${route.params.tournamentId}/fixtures/${route.params.tournamentId}`,
+      });
+      break;
     default:
       throw new Error(`Unknown Frame button: ${button}`);
   }
