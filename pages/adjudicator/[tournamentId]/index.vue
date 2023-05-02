@@ -57,7 +57,10 @@ const headers = [
     key: "topic",
     title: "Topic",
   },
-  { key: "scoreboard", title: "Scoreboard" },
+  {
+    key: "scoreboard",
+    title: "Scoreboard",
+  },
 ];
 const levelTabs = [
   { label: "Novice", active: false },
@@ -187,6 +190,7 @@ const filteredTableData = computed(() => {
       no-data-text="Please select a round"
       :score-board="true"
       @edit="handleEdit"
-    />
+    >
+    </Table>
   </div>
 </template>
