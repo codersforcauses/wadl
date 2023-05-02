@@ -476,18 +476,27 @@
       </div>
     </form>
   </div>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="handleClose()"
+  />
 </template>
 
 <script setup>
-import { ref, watch, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive } from "vue";
 import { useMatchupStore } from "../../../../stores/matchups";
 import { useAdjudicatorStore } from "../../../../stores/adjudicator";
-import { useRoute, useHead } from "#imports";
+import { useRoute, useHead, useRouter } from "#imports";
+import useNotification from "../../../../composables/useNotification";
 useHead({
   title: "Scoresheet",
 });
 const route = useRoute();
+const router = useRouter();
 const loading = ref(true);
+const notification = useNotification();
 
 const matchupStore = useMatchupStore();
 const adjudicatorStore = useAdjudicatorStore();
@@ -597,11 +606,21 @@ const updateTotal = (s, team) => {
 };
 
 const handleSubmit = () => {
-  matchupStore.addScoreSheet(
-    scoresheet.value,
-    matchupInfo,
-    route.params.tournamentId
-  );
+  try {
+    matchupStore.addScoreSheet(
+      scoresheet.value,
+      matchupInfo,
+      route.params.tournamentId
+    );
+  } catch (e) {
+    notification.notifyError("Error submitting scoresheet, Please try again!");
+  }
+  notification.notifySuccess("Scoresheet submitted successfully");
+};
+
+const handleClose = () => {
+  notification.dismiss();
+  router.back();
 };
 
 onMounted(async () => {
