@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 // import { v4 as uuidv4 } from "uuid";
 
 export const useMatchupStore = defineStore("matchup", {
@@ -9,6 +9,7 @@ export const useMatchupStore = defineStore("matchup", {
       junior: [],
       senior: [],
       novice: [],
+      levelSelected: "",
     };
   },
   // todo (may needs this later on)
@@ -83,6 +84,23 @@ export const useMatchupStore = defineStore("matchup", {
       //   junior: junData,
       //   senior: senData,
       // });
+    },
+    async addScoreSheet(scoresheet, matchup, tournamentID) {
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const ref = doc($clientFirestore, "matchups", tournamentID);
+      const lvl = matchup.level;
+      for (let i = 0; i < this[lvl].length; i++) {
+        if (this[lvl][0][i].id === matchup.id) {
+          this[lvl][0][i].scoresheet = { ...scoresheet };
+          break;
+        }
+      }
+      await updateDoc(ref, {
+        junior: this.junior[0],
+        senior: this.senior[0],
+        novice: this.novice[0],
+      });
     },
   },
 });

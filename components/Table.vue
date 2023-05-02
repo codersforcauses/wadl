@@ -48,7 +48,11 @@
               <p v-else>{{ row[object.key] }}</p>
             </slot>
             <p v-if="scoreBoard && ind == 7" class="flex justify-center">
-              <TableCellsIcon class="w-[28px] h-[28px]" />
+              <NuxtLink
+                :to="`/adjudicator/${route.params.tournamentId}/scoresheet/${row.id}`"
+              >
+                <TableCellsIcon class="w-[28px] h-[28px]" />
+              </NuxtLink>
             </p>
           </td>
           <td v-if="canEdit" class="text-right p-2">
@@ -63,9 +67,6 @@
               <PencilIcon class="w-4 h-4" />
             </button>
           </td>
-          <!-- <td v-if="scoreBoard" class="place-content-center items-center">
-            <TableCellsIcon class="w-5 h-5" />
-          </td> -->
         </tr>
       </tbody>
     </table>
@@ -78,6 +79,9 @@
 <script setup>
 import { PencilIcon } from "@heroicons/vue/24/solid";
 import { TableCellsIcon } from "@heroicons/vue/24/outline";
+import { useRoute } from "#imports";
+
+const route = useRoute();
 
 const emit = defineEmits(["edit", "clickRow"]);
 

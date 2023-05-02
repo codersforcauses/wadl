@@ -24,7 +24,7 @@ service cloud.firestore {
         return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'requesting'])
       }
       allow create: if allowSignup();
-      allow read: if isOwner();
+      allow read: if isOwner() || isAdjudicator();
       allow update: if isOwner() && isNotUpdatingProtectedFields(resource);
       allow create, read, update, delete: if isAdmin();
     }
@@ -85,7 +85,11 @@ service cloud.firestore {
     function isAdmin(){
         return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
       }
+    function isAdjudicator(){
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "Adjudicator"
+    }
     allow create, read, update, delete: if isAdmin();
+    allow read, update: if isAdjudicator();
     allow read: if true;
     }
   }
