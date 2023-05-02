@@ -174,9 +174,11 @@ const filteredTableData = computed(() => {
 const editMode = ref(false);
 const handleRowEdit = (row) => {
   editMode.value = true;
-  console.log("&&&", row);
   form.value = row;
-  console.log(form.value);
+};
+
+const updateMatchup = () => {
+  console.log(levelSelected, form.value);
 };
 </script>
 
@@ -264,7 +266,12 @@ const handleRowEdit = (row) => {
           type="Submit"
           class="text-red-700"
         />
-        <Button button-text="Update" button-color="bg-gold" type="Update" />
+        <Button
+          button-text="Update"
+          button-color="bg-gold"
+          type="Update"
+          @click="updateMatchup"
+        />
       </div>
     </form>
   </Modal>
