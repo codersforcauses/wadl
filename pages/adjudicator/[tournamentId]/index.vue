@@ -23,7 +23,6 @@ onMounted(async () => {
     selectedRound = parseInt(selectedTournament?.currentRound);
     createRoundTabs();
     await getFixturesTableData();
-    // await tournamentStore.getTournaments();
   } catch (error) {
     console.log(error);
   }
@@ -141,9 +140,6 @@ const handleEdit = (row) => {
   modalVisibility.value = row.modalVisibility;
   topicData.value = row.data.topic;
 };
-const handleSheet = (row) => {
-  console.log(row);
-};
 
 const filteredTableData = computed(() => {
   return tableFilter.value
@@ -194,7 +190,6 @@ const filteredTableData = computed(() => {
       no-data-text="Please select a round"
       :score-board="true"
       @edit="handleEdit"
-      @sheet="handleSheet"
     >
     </Table>
   </div>
