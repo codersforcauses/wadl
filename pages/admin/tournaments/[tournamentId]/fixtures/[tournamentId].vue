@@ -178,7 +178,11 @@ const handleRowEdit = (row) => {
 };
 
 const updateMatchup = () => {
-  console.log(levelSelected, form.value);
+  matchupStore.updateMatchups(
+    levelSelected,
+    form.value,
+    route.params.tournamentId
+  );
 };
 </script>
 
