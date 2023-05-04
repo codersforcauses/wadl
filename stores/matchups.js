@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { getDoc, doc, updateDoc } from "firebase/firestore";
+import { getDoc, doc, updateDoc, setDoc } from "firebase/firestore";
+import Papa from "papaparse";
 // import { v4 as uuidv4 } from "uuid";
 
 export const useMatchupStore = defineStore("matchup", {
@@ -30,8 +31,37 @@ export const useMatchupStore = defineStore("matchup", {
       this.senior.push(querySnapshot.data().senior);
       this.novice.push(querySnapshot.data().novice);
     },
-    async uploadMatchups(files) {
-      console.log(files);
+    async uploadMatchups(files, tournamentID) {
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const jun = null;
+      let sen = [];
+      const nov = null;
+      files.forEach(async (file) => {
+        const fileName = file.fileMetaData.name.toLowerCase();
+        if (fileName.includes("senior")) {
+          const json = await Papa.parse(file.fileData, { header: true }).data;
+          const result = JSON.parse(JSON.stringify(json));
+          sen = [...result];
+        } else if (fileName.includes("junior")) {
+          const json = await Papa.parse(file.fileData, { header: true }).data;
+          const result = JSON.parse(JSON.stringify(json));
+          jun.push(result);
+        } else if (fileName.includes("novice")) {
+          const json = await Papa.parse(file.fileData, { header: true }).data;
+          const result = JSON.parse(JSON.stringify(json));
+          nov.push(result);
+        } else {
+          console.log("error");
+        }
+      });
+      console.log(sen);
+      // const ref = doc($clientFirestore, "matchups", tournamentID);
+      // await setDoc(ref, {
+      //   novice: nov,
+      //   junior: jun,
+      //   senior: sen,
+      // });
       // const { $clientFirestore } = useNuxtApp();
       // if (!$clientFirestore) return;
       // let junData = [];
