@@ -30,7 +30,8 @@ export const useMatchupStore = defineStore("matchup", {
       this.senior.push(querySnapshot.data().senior);
       this.novice.push(querySnapshot.data().novice);
     },
-    async uploadMatchups() {
+    async uploadMatchups(files) {
+      console.log(files);
       // const { $clientFirestore } = useNuxtApp();
       // if (!$clientFirestore) return;
       // let junData = [];

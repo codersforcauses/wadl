@@ -15,6 +15,18 @@
     <div class="mx-32 pt-5">
       <!--//?: can include "changes list" which just broadly lists what elements have been edited. -->
       <div class="justify-end flex rounded-md bg-gray-100 w-full h-full">
+        <!-- upload -->
+        <NuxtLink
+          :to="`/admin/tournaments/${route.params.tournamentId}/matchups-upload`"
+        >
+          <Button
+            button-text="Upload Matchups"
+            button-color="bg-gold"
+            text-color="text-black"
+            size="medium"
+            class="m-4 w-48"
+          />
+        </NuxtLink>
         <div v-if="!edited.changesMade" class="justify-end flex">
           <Button
             button-text="No Changes Made"
