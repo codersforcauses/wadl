@@ -34,10 +34,11 @@ export const useMatchupStore = defineStore("matchup", {
     async uploadMatchups(files, tournamentID) {
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
-      const jun = null;
+      const ref = doc($clientFirestore, "matchups", tournamentID);
+      let jun = [];
       let sen = [];
-      const nov = null;
-      files.forEach(async (file) => {
+      let nov = [];
+      await files.forEach(async (file) => {
         const fileName = file.fileMetaData.name.toLowerCase();
         if (fileName.includes("senior")) {
           const json = await Papa.parse(file.fileData, { header: true }).data;
@@ -46,75 +47,20 @@ export const useMatchupStore = defineStore("matchup", {
         } else if (fileName.includes("junior")) {
           const json = await Papa.parse(file.fileData, { header: true }).data;
           const result = JSON.parse(JSON.stringify(json));
-          jun.push(result);
+          jun = [...result];
         } else if (fileName.includes("novice")) {
           const json = await Papa.parse(file.fileData, { header: true }).data;
           const result = JSON.parse(JSON.stringify(json));
-          nov.push(result);
+          nov = [...result];
         } else {
-          console.log("error");
+          throw new Error("Invalid file name");
         }
       });
-      console.log(sen);
-      // const ref = doc($clientFirestore, "matchups", tournamentID);
-      // await setDoc(ref, {
-      //   novice: nov,
-      //   junior: jun,
-      //   senior: sen,
-      // });
-      // const { $clientFirestore } = useNuxtApp();
-      // if (!$clientFirestore) return;
-      // let junData = [];
-      // junior.forEach((element) => {
-      //   const data = {
-      //     id: uuidv4(),
-      //     affirmativeTeam: element.affirmativeTeam,
-      //     date: element.date,
-      //     division: element.division,
-      //     negativeTeam: element.negativeTeam,
-      //     round: element.round,
-      //     time: element.time,
-      //     venue: element.venue,
-      //     topic: element.topic,
-      //   };
-      //   junData.push(data);
-      // });
-      // let senData = [];
-      // senior.forEach((element) => {
-      //   const data = {
-      //     id: uuidv4(),
-      //     affirmativeTeam: element.affirmativeTeam,
-      //     date: element.date,
-      //     division: element.division,
-      //     negativeTeam: element.negativeTeam,
-      //     round: element.round,
-      //     time: element.time,
-      //     venue: element.venue,
-      //     topic: element.topic,
-      //   };
-      //   senData.push(data);
-      // });
-      // let novData = [];
-      // novice.forEach((element) => {
-      //   const data = {
-      //     id: uuidv4(),
-      //     affirmativeTeam: element.affirmativeTeam,
-      //     date: element.date,
-      //     division: element.division,
-      //     negativeTeam: element.negativeTeam,
-      //     round: element.round,
-      //     time: element.time,
-      //     venue: element.venue,
-      //     topic: element.topic,
-      //   };
-      //   novData.push(data);
-      // });
-      // const ref = doc($clientFirestore, "matchups", "PljEsUqQlxumed5lCBbK");
-      // await setDoc(ref, {
-      //   novice: novData,
-      //   junior: junData,
-      //   senior: senData,
-      // });
+      await setDoc(ref, {
+        novice: nov,
+        junior: jun,
+        senior: sen,
+      });
     },
     async addScoreSheet(scoresheet, matchup, tournamentID) {
       const { $clientFirestore } = useNuxtApp();
