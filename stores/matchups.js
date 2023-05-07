@@ -19,7 +19,18 @@ export const useMatchupStore = defineStore("matchup", {
   //   // eslint-disable-next-line no-undef
   //   storage: persistedState.localStorage,
   // },
-  getters: {},
+  getters: {
+    adminMatchup() {
+      return (
+        this.junior[0].filter((matchup) => matchup.adminSignoff === false) ||
+        [] +
+          this.senior[0].filter((matchup) => matchup.adminSignoff === false) ||
+        [] +
+          this.novice[0].filter((matchup) => matchup.adminSignoff === false) ||
+        []
+      );
+    },
+  },
   actions: {
     async getMatchups(torniID) {
       this.matchups = [];
@@ -70,6 +81,7 @@ export const useMatchupStore = defineStore("matchup", {
       for (let i = 0; i < this[lvl].length; i++) {
         if (this[lvl][0][i].id === matchup.id) {
           this[lvl][0][i].scoresheet = { ...scoresheet };
+          this[lvl][0][i].adminSignoff = false;
           break;
         }
       }
@@ -78,6 +90,9 @@ export const useMatchupStore = defineStore("matchup", {
         senior: this.senior[0],
         novice: this.novice[0],
       });
+    },
+    async updateCollection(matchup, tournamentID) {
+      console.log(matchup + tournamentID);
     },
   },
 });

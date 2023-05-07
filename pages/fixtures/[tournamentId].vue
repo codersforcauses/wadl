@@ -23,6 +23,7 @@ onMounted(async () => {
     selectedRound = parseInt(selectedTournament?.currentRound);
     createRoundTabs();
     await getFixturesTableData();
+    console.log(matchupStore.adminMatchup);
   } catch (error) {
     console.log(error);
   }
@@ -140,30 +141,25 @@ const handleEdit = (row) => {
 const filteredTableData = computed(() => {
   return tableFilter.value
     ? tableData.value.filter(
-        (data) =>
-          data?.division?.toString().includes(tableFilter.value) ||
-          data?.venue?.toLowerCase().includes(tableFilter.value) ||
-          data?.date?.toLowerCase().includes(tableFilter.value) ||
-          data?.time?.toLowerCase().includes(tableFilter.value) ||
-          data?.affirmativeTeam?.toLowerCase().includes(tableFilter.value) ||
-          data?.negativeTeam?.toLowerCase().includes(tableFilter.value) ||
-          data?.topic?.toLowerCase().includes(tableFilter.value) ||
-          data?.status?.toLowerCase().includes(tableFilter.value)
-      )
+      (data) =>
+        data?.division?.toString().includes(tableFilter.value) ||
+        data?.venue?.toLowerCase().includes(tableFilter.value) ||
+        data?.date?.toLowerCase().includes(tableFilter.value) ||
+        data?.time?.toLowerCase().includes(tableFilter.value) ||
+        data?.affirmativeTeam?.toLowerCase().includes(tableFilter.value) ||
+        data?.negativeTeam?.toLowerCase().includes(tableFilter.value) ||
+        data?.topic?.toLowerCase().includes(tableFilter.value) ||
+        data?.status?.toLowerCase().includes(tableFilter.value)
+    )
     : tableData.value;
 });
 </script>
 
 <template>
-  <Modal
-    :modal-visibility="modalVisibility"
-    size="w-8/12"
-    @close="
-      () => {
-        modalVisibility = false;
-      }
-    "
-  >
+  <Modal :modal-visibility="modalVisibility" size="w-8/12" @close="() => {
+    modalVisibility = false;
+  }
+    ">
     <p class="m-8">{{ topicData }}</p>
   </Modal>
 
@@ -171,20 +167,9 @@ const filteredTableData = computed(() => {
   <div class="flex items-center justify-center w-full">
     <SearchBar @handle-filter="handleFilter" />
   </div>
-  <Tabs
-    v-if="!isLoading"
-    :key="levelTabsKey"
-    :tabs="roundTabs"
-    font-size="text-base"
-    @handle-tab="handleRound"
-  />
+  <Tabs v-if="!isLoading" :key="levelTabsKey" :tabs="roundTabs" font-size="text-base" @handle-tab="handleRound" />
   <div v-if="!isLoading" class="flex justify-center w-full">
-    <Table
-      :headers="headers"
-      :data="filteredTableData"
-      :can-edit="false"
-      no-data-text="Please select a round"
-      @edit="handleEdit"
-    />
+    <Table :headers="headers" :data="filteredTableData" :can-edit="false" no-data-text="Please select a round"
+      @edit="handleEdit" />
   </div>
 </template>
