@@ -183,6 +183,7 @@ const updateMatchup = () => {
     form.value,
     route.params.tournamentId
   );
+  editMode.value = false;
 };
 </script>
 
