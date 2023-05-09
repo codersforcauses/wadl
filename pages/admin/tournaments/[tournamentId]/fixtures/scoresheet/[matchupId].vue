@@ -255,7 +255,7 @@
       </div>
 
       <p class="flex justify-center text-xl mb-4">
-        Negative Team: <span class="pl-2"> {{ matchup.negativeTeam }}</span>
+        Negative Team: <span class="pl-2">{{ matchup.negativeTeam }}</span>
       </p>
       <div class="flex justify-center mx-6">
         <table class="w-full max-w-7xl">
@@ -487,10 +487,10 @@
 
 <script setup>
 import { ref, onMounted, reactive } from "vue";
-import { useMatchupStore } from "../../../../stores/matchups";
-import { useAdjudicatorStore } from "../../../../stores/adjudicator";
+import { useMatchupStore } from "~/stores/matchups";
+import { useAdjudicatorStore } from "~/stores/adjudicator";
 import { useRoute, useHead, useRouter } from "#imports";
-import useNotification from "../../../../composables/useNotification";
+import useNotification from "~/composables/useNotification";
 useHead({
   title: "Scoresheet",
 });
@@ -627,7 +627,6 @@ const handleClose = () => {
 onMounted(async () => {
   try {
     await adjudicatorStore.fetchAdjudicators();
-    console.log("@$%@$%@$", adjudicatorStore.getAdjudicators);
     for (let i = 0; i < matchupStore.junior[0].length; i++) {
       if (matchupStore.junior[0][i].id === route.params.matchupId) {
         if (matchupStore.junior[0][i].scoresheet) {

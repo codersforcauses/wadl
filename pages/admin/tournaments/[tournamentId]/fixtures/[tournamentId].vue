@@ -4,6 +4,7 @@ import { useTournamentStore } from "~/stores/tournaments";
 import { useMatchupStore } from "~/stores/matchups";
 import { useRoute } from "#imports";
 import { PencilIcon } from "@heroicons/vue/24/solid";
+import { TableCellsIcon } from "@heroicons/vue/24/outline";
 
 const tournamentStore = useTournamentStore();
 const matchupStore = useMatchupStore();
@@ -305,6 +306,13 @@ const updateMatchup = () => {
         <button @click.prevent="handleRowEdit(row)">
           <PencilIcon class="w-4 h-4" />
         </button>
+      </template>
+      <template #scoreboard="{ row }">
+        <NuxtLink
+          :to="`/admin/tournaments/${route.params.tournamentId}/fixtures/scoresheet/${row.id}`"
+        >
+          <TableCellsIcon class="w-[28px] h-[28px]" />
+        </NuxtLink>
       </template>
     </Table>
   </div>

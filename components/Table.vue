@@ -47,14 +47,8 @@
               </p>
               <p v-else>{{ row[object.key] }}</p>
             </slot>
-            <p v-if="scoreBoard && ind == 7" class="flex justify-center">
-              <NuxtLink
-                :to="`/adjudicator/${route.params.tournamentId}/scoresheet/${row.id}`"
-              >
-                <TableCellsIcon class="w-[28px] h-[28px]" />
-              </NuxtLink>
-            </p>
           </td>
+
           <td v-if="canEdit" class="text-right p-2">
             <button
               @click.prevent="

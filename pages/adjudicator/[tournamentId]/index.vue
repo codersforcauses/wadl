@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useMatchupStore } from "~/stores/matchups";
 import { useRoute } from "#imports";
+import { TableCellsIcon } from "@heroicons/vue/24/outline";
 
 const tournamentStore = useTournamentStore();
 const matchupStore = useMatchupStore();
@@ -191,6 +192,13 @@ const filteredTableData = computed(() => {
       :score-board="true"
       @edit="handleEdit"
     >
+      <template #scoreboard="{ row }">
+        <NuxtLink
+          :to="`/adjudicator/${route.params.tournamentId}/scoresheet/${row.id}`"
+        >
+          <TableCellsIcon class="w-[28px] h-[28px]" />
+        </NuxtLink>
+      </template>
     </Table>
   </div>
 </template>
