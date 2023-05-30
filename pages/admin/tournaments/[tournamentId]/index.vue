@@ -161,8 +161,8 @@
             <div class="flex flex-col items-center justify-center">
               <p>Approve Matchups</p>
               <NuxtLink
-          :to="`/admin/tournaments/${route.params.tournamentId}/matchups-approve`"
-        >
+                :to="`/admin/tournaments/${route.params.tournamentId}/matchups-approve`"
+              >
                 <Button
                   button-text="Approve Matchups"
                   button-color="bg-gold"
@@ -171,7 +171,7 @@
                   class="transition duration-200 ease-in-out hover:bg-gold/50 hover:shadow-lg mt-6"
                 >
                 </Button>
-              </Nuxtlink>
+              </NuxtLink>
             </div>
           </div>
         </div>
