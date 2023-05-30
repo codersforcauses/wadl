@@ -23,7 +23,6 @@ onMounted(async () => {
     selectedRound = parseInt(selectedTournament?.currentRound);
     createRoundTabs();
     await getFixturesTableData();
-    console.log(matchupStore.adminMatchup);
   } catch (error) {
     console.log(error);
   }
@@ -60,8 +59,8 @@ const headers = [
   },
 ];
 const levelTabs = [
-  { label: "Novice", active: false },
-  { label: "Junior", active: true },
+  { label: "Novice", active: true },
+  { label: "Junior", active: false },
   { label: "Senior", active: false },
 ];
 const roundTabs = [];

@@ -20,15 +20,28 @@ export const useMatchupStore = defineStore("matchup", {
   //   storage: persistedState.localStorage,
   // },
   getters: {
-    adminMatchup() {
-      return (
-        this.junior[0].filter((matchup) => matchup.adminSignoff === false) ||
-        [] +
-          this.senior[0].filter((matchup) => matchup.adminSignoff === false) ||
-        [] +
-          this.novice[0].filter((matchup) => matchup.adminSignoff === false) ||
-        []
+    sortMatchups() {
+      const matchups = [];
+
+      const jun = this.junior[0].filter(
+        (matchup) => matchup.adminSignoff === false
       );
+      if (jun.length > 0) {
+        matchups.push({ junior: jun });
+      }
+      const sen = this.senior[0].filter(
+        (matchup) => matchup.adminSignoff === false
+      );
+      if (sen.length > 0) {
+        matchups.push(sen);
+      }
+      const nov = this.novice[0].filter(
+        (matchup) => matchup.adminSignoff === false
+      );
+      if (nov.length > 0) {
+        matchups.push(nov);
+      }
+      return matchups;
     },
   },
   actions: {
