@@ -45,8 +45,12 @@ export const useMatchupStore = defineStore("matchup", {
     },
   },
   actions: {
+    // todo redo how matchups are stored and fix them wherever they are loaded in
+    // ! ffs this shtis stupid
     async getMatchups(torniID) {
-      this.matchups = [];
+      this.junior = null;
+      this.senior = null;
+      this.novice = null;
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
       const ref = doc($clientFirestore, "matchups", torniID);
