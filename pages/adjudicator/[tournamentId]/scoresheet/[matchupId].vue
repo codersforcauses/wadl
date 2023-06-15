@@ -612,6 +612,7 @@ const handleSubmit = () => {
       matchupInfo,
       route.params.tournamentId
     );
+    console.log(matchupInfo);
   } catch (e) {
     notification.notifyError("Error submitting scoresheet, Please try again!");
   }
@@ -642,7 +643,7 @@ onMounted(async () => {
         if (matchupStore.novice[0][i].scoresheet) {
           scoresheet.value = { ...matchupStore.novice[0][i].scoresheet };
         }
-        matchupInfo = { ...matchupStore.junior[0][i], level: "novice" };
+        matchupInfo = { ...matchupStore.novice[0][i], level: "novice" };
         matchup.level = "novice";
         break;
       }
@@ -652,7 +653,7 @@ onMounted(async () => {
         if (matchupStore.senior[0][i].scoresheet) {
           scoresheet.value = { ...matchupStore.senior[0][i].scoresheet };
         }
-        matchupInfo = { ...matchupStore.junior[0][i], level: "senior" };
+        matchupInfo = { ...matchupStore.senior[0][i], level: "senior" };
         matchup.level = "senior";
         break;
       }
