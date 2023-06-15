@@ -10,17 +10,18 @@ export const useMatchupStore = defineStore("matchup", {
       junior: [],
       senior: [],
       novice: [],
-      levelSelected: "",
+      pendingMatchups: [],
     };
   },
-  getters: {
-    sortMatchups() {
-      const matchups = [];
+  actions: {
+    async sortPendingMatchups() {
+      // todo refactor this so it not only works with no entries but fix the admin approve as well
+      this.pendingMatchups.pop();
       const jun = this.junior[0].filter(
         (matchup) => matchup.adminSignoff === false
       );
       if (jun.length > 0) {
-        matchups.push(jun);
+        this.pendingMatchups.push(jun);
       } else {
         console.log("junior is empty");
       }
@@ -28,7 +29,7 @@ export const useMatchupStore = defineStore("matchup", {
         (matchup) => matchup.adminSignoff === false
       );
       if (sen.length > 0) {
-        matchups.push(sen);
+        this.pendingMatchups.push(sen);
       } else {
         console.log("sen is empty");
       }
@@ -36,14 +37,11 @@ export const useMatchupStore = defineStore("matchup", {
         (matchup) => matchup.adminSignoff === false
       );
       if (nov.length > 0) {
-        matchups.push(nov);
+        this.pendingMatchups.push(nov);
       } else {
         console.log("nov is empty");
       }
-      return matchups;
     },
-  },
-  actions: {
     async getMatchups(torniID) {
       this.junior.pop();
       this.senior.pop();
@@ -124,6 +122,27 @@ export const useMatchupStore = defineStore("matchup", {
     },
     async updateCollection(matchup, tournamentID) {
       console.log(matchup + tournamentID);
+    },
+    async apporveMatchup(matchup, tournamentID) {
+      console.log("APPROVE:", matchup);
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const ref = doc($clientFirestore, "matchups", tournamentID);
+      const lvl = matchup.level;
+
+      for (let i = 0; i < this[lvl][0].length; i++) {
+        if (this[lvl][0][i].id === matchup.id) {
+          this[lvl][0][i] = { ...matchup };
+          break;
+        } else {
+          console.log("didnt work");
+        }
+      }
+      await updateDoc(ref, {
+        junior: this.junior[0],
+        senior: this.senior[0],
+        novice: this.novice[0],
+      });
     },
   },
 });

@@ -41,11 +41,11 @@
 </template>
 
 <script setup>
-import { useMatchupStore } from "../../../../stores/matchups";
+import { useMatchupStore } from "../../../../../stores/matchups";
 import { onMounted, ref, computed } from "vue";
 import { useRoute, useRouter } from "#imports";
-import useNotification from "../../../../composables/useNotification";
-import { useTournamentStore } from "../../../../stores/tournaments";
+import useNotification from "../../../../../composables/useNotification";
+import { useTournamentStore } from "../../../../../stores/tournaments";
 
 onMounted(async () => {
   try {
@@ -128,7 +128,9 @@ const headers = [
 ];
 
 const handleMatchups = async () => {
-  matchups = matchupStore.sortMatchups;
+  await matchupStore.sortPendingMatchups();
+  matchups = matchupStore.pendingMatchups;
+  // console.log(matchups[0]);
   if (matchups.length === 0) {
     console.log("nothing");
     notification.notifySuccess("No Matchups to approve");
@@ -137,6 +139,7 @@ const handleMatchups = async () => {
     senior.value = matchups[1];
     novice.value = matchups[2];
   }
+  console.log(junior.value, novice.value, senior.value);
 };
 
 const handleClose = () => {
