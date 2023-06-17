@@ -30,6 +30,13 @@
       :score-board="true"
       @edit="handleEdit"
     >
+    <template #scoreboard="{ row }">
+        <NuxtLink
+          :to="`/admin/tournaments/${route.params.tournamentId}/matchups-approve/scoresheet/${row.id}`"
+        >
+          <TableCellsIcon class="w-[28px] h-[28px]" />
+        </NuxtLink>
+      </template>
     </Table>
   </div>
   <Notification
@@ -46,6 +53,7 @@ import { onMounted, ref, computed } from "vue";
 import { useRoute, useRouter } from "#imports";
 import useNotification from "../../../../../composables/useNotification";
 import { useTournamentStore } from "../../../../../stores/tournaments";
+import { TableCellsIcon } from "@heroicons/vue/24/outline";
 
 onMounted(async () => {
   try {

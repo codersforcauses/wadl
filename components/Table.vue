@@ -72,16 +72,6 @@
 
 <script setup>
 import { PencilIcon } from "@heroicons/vue/24/solid";
-import { TableCellsIcon } from "@heroicons/vue/24/outline";
-import { useRoute, useRouter } from "#imports";
-
-const route = useRoute();
-const router = useRouter();
-
-const newRoute = (info) => {
-  const newPath = route.path + "/scoresheet" + "/" + info;
-  router.push({ path: newPath });
-};
 
 const emit = defineEmits(["edit", "clickRow"]);
 
