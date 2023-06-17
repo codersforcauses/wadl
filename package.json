@@ -4,19 +4,23 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "dev:emu": "yarn firebase & (sleep 15 && yarn dev)",
+    "dev:emu-w": "yarn concurrently \"yarn firebase-w\" \"yarn dev\"",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore --fix .",
     "firebase": "yarn emu:stop & cd Firebase && firebase emulators:start --import=dummyData",
+    "firebase-w": "yarn emu:stop-w & cd Firebase && firebase emulators:start --import=dummyData",
     "emu:stop": "lsof -ti :9099 -ti :5001 -ti :8080 -ti :8085  -ti :9199 | xargs kill",
+    "emu:stop-w": "yarn kill-port 9099 5001 8080 8085 9199",
     "dev:docker": "docker-compose up -d && yarn dev"
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "@vue/eslint-config-standard": "^8.0.1",
     "autoprefixer": "^10.4.13",
+    "concurrently": "^7.6.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
@@ -25,6 +29,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-vue": "^9.8.0",
+    "kill-port": "^2.0.1",
     "nuxt": "3.0.0",
     "postcss": "^8.4.19",
     "prettier": "^2.8.0",
@@ -40,6 +45,7 @@
     "firebase-admin": "^11.5.0",
     "firebase-functions": "^4.2.1",
     "pinia": "^2.0.27",
+    "uuid": "^9.0.0",
     "vue": "^3.2.45"
   }
 }

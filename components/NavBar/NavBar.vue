@@ -16,6 +16,15 @@
             <Button button-text="Admin" size="small" class="shadow-none" />
           </NuxtLink>
         </div>
+        <div v-if="role === 'Adjudicator'">
+          <NuxtLink to="/adjudicator">
+            <Button
+              button-text="Adjudicator"
+              size="small"
+              class="shadow-none pr-6"
+            />
+          </NuxtLink>
+        </div>
         <div v-if="role === 'Team Coordinator'">
           <div v-if="!visibility" class="flex items-center">
             <button @click="visibility = !visibility">

@@ -37,7 +37,7 @@ onUnmounted(() => {
   adminStore.clearStore();
 });
 
-const currentTab = ref("Adjudicator");
+const currentTab = ref("Team Coordinator");
 const searchTerm = ref(null);
 const contacts = computed(() => {
   const tabContacts = adminStore.getApprovedUsers.filter(

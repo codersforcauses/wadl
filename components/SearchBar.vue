@@ -18,5 +18,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
 
 const emit = defineEmits(["handleFilter"]);
+
+// eslint-disable-next-line prefer-const
 let searchString = "";
 </script>
