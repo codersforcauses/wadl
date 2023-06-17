@@ -255,7 +255,7 @@
       </div>
 
       <p class="flex justify-center text-xl mb-4">
-        Negative Team: <span class="pl-2"> {{ matchup.negativeTeam }}</span>
+        Negative Team: <span class="pl-2">{{ matchup.negativeTeam }}</span>
       </p>
       <div class="flex justify-center mx-6">
         <table class="w-full max-w-7xl">
@@ -487,10 +487,10 @@
 
 <script setup>
 import { ref, onMounted, reactive } from "vue";
-import { useMatchupStore } from "../../../../stores/matchups";
-import { useAdjudicatorStore } from "../../../../stores/adjudicator";
+import { useMatchupStore } from "~/stores/matchups";
+import { useAdjudicatorStore } from "~/stores/adjudicator";
 import { useRoute, useHead, useRouter } from "#imports";
-import useNotification from "../../../../composables/useNotification";
+import useNotification from "~/composables/useNotification";
 useHead({
   title: "Scoresheet",
 });
@@ -613,7 +613,6 @@ const handleSubmit = () => {
       matchupInfo,
       route.params.tournamentId
     );
-    console.log(matchupInfo);
   } catch (e) {
     notification.notifyError("Error submitting scoresheet, Please try again!");
   }
@@ -628,7 +627,6 @@ const handleClose = () => {
 onMounted(async () => {
   try {
     await adjudicatorStore.fetchAdjudicators();
-    console.log("@$%@$%@$", adjudicatorStore.getAdjudicators);
     for (let i = 0; i < matchupStore.junior[0].length; i++) {
       if (matchupStore.junior[0][i].id === route.params.matchupId) {
         if (matchupStore.junior[0][i].scoresheet) {
@@ -645,7 +643,7 @@ onMounted(async () => {
         if (matchupStore.novice[0][i].scoresheet) {
           scoresheet.value = { ...matchupStore.novice[0][i].scoresheet };
         }
-        matchupInfo = { ...matchupStore.novice[0][i], level: "novice" };
+        matchupInfo = { ...matchupStore.junior[0][i], level: "novice" };
         matchup.level = "novice";
         break;
       }
@@ -655,7 +653,7 @@ onMounted(async () => {
         if (matchupStore.senior[0][i].scoresheet) {
           scoresheet.value = { ...matchupStore.senior[0][i].scoresheet };
         }
-        matchupInfo = { ...matchupStore.senior[0][i], level: "senior" };
+        matchupInfo = { ...matchupStore.junior[0][i], level: "senior" };
         matchup.level = "senior";
         break;
       }

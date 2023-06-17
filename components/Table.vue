@@ -47,18 +47,8 @@
               </p>
               <p v-else>{{ row[object.key] }}</p>
             </slot>
-            <p v-if="scoreBoard && ind == 7" class="flex justify-center">
-              <button
-                @click.prevent="
-                  (e) => {
-                    newRoute(row.id);
-                  }
-                "
-              >
-                <TableCellsIcon class="w-[28px] h-[28px]" />
-              </button>
-            </p>
           </td>
+
           <td v-if="canEdit" class="text-right p-2">
             <button
               @click.prevent="
