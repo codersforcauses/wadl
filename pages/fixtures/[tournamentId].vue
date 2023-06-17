@@ -59,16 +59,16 @@ const headers = [
   },
 ];
 const levelTabs = [
-  { label: "Novice", active: false },
-  { label: "Junior", active: true },
+  { label: "Novice", active: true },
+  { label: "Junior", active: false },
   { label: "Senior", active: false },
 ];
 const roundTabs = [];
 
-let levelSelected = "Junior";
+let levelSelected = "Novice";
 let levelTabsKey = 0;
 
-const selectedLevel = ref(matchupStore.junior);
+const selectedLevel = ref(matchupStore.novice);
 const tableData = ref([]);
 const tableFilter = ref("");
 
@@ -121,7 +121,7 @@ const handleRound = (roundName) => {
 const getFixturesTableData = () => {
   // Used only for JSON fixtures
   selectedLevel.value[0].forEach((matchup) => {
-    if (matchup.round === selectedRound) {
+    if (parseInt(matchup.round) === selectedRound) {
       tableData.value.push(matchup);
     }
   });
