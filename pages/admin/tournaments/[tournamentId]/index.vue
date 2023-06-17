@@ -15,6 +15,18 @@
     <div class="mx-32 pt-5">
       <!--//?: can include "changes list" which just broadly lists what elements have been edited. -->
       <div class="justify-end flex rounded-md bg-gray-100 w-full h-full">
+        <!-- upload -->
+        <NuxtLink
+          :to="`/admin/tournaments/${route.params.tournamentId}/matchups-upload`"
+        >
+          <Button
+            button-text="Upload Matchups"
+            button-color="bg-gold"
+            text-color="text-black"
+            size="medium"
+            class="m-4 w-48"
+          />
+        </NuxtLink>
         <div v-if="!edited.changesMade" class="justify-end flex">
           <Button
             button-text="No Changes Made"
@@ -118,8 +130,8 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-8 gap-4 text-center">
-        <div class="lg:col-span-3 md:col-span-5 col-span-8">
+      <div class="grid grid-row-1 grid-cols-8 gap-4 text-center">
+        <div class="lg:col-span-4 md:col-span-5 col-span-8">
           <div class="bg-lighter-grey rounded-md py-6 px-2">
             <div class="flex items-center justify-center">
               <Stepper :stage="stage" />
@@ -141,6 +153,25 @@
                 class="transition duration-200 ease-in-out hover:bg-light-green/70 hover:shadow-lg"
                 @click="changeStage(1)"
               />
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-4 md:col-span-5 col-span-8">
+          <div class="bg-lighter-grey rounded-md py-6 px-2">
+            <div class="flex flex-col items-center justify-center">
+              <p>Approve Matchups</p>
+              <NuxtLink
+                :to="`/admin/tournaments/${route.params.tournamentId}/matchups-approve`"
+              >
+                <Button
+                  button-text="Approve Matchups"
+                  button-color="bg-gold"
+                  text-color="text-dark-black"
+                  size="large"
+                  class="transition duration-200 ease-in-out hover:bg-gold/50 hover:shadow-lg mt-6"
+                >
+                </Button>
+              </NuxtLink>
             </div>
           </div>
         </div>

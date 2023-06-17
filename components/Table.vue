@@ -72,10 +72,6 @@
 
 <script setup>
 import { PencilIcon } from "@heroicons/vue/24/solid";
-import { TableCellsIcon } from "@heroicons/vue/24/outline";
-import { useRoute } from "#imports";
-
-const route = useRoute();
 
 const emit = defineEmits(["edit", "clickRow"]);
 

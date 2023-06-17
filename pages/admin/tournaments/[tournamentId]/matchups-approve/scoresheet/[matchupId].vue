@@ -31,10 +31,9 @@
         @change="updateSelectedLevels"
       />
     </div>
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="">
       <p class="flex justify-center text-xl my-4">
-        Affirmative Team:
-        <span class="pl-2">{{ matchup.affirmativeTeam }}</span>
+        Affirmative Team: <span>{{ matchup.affirmativeTeam }}</span>
       </p>
       <div class="flex justify-center mx-6">
         <table class="w-full max-w-7xl">
@@ -255,7 +254,7 @@
       </div>
 
       <p class="flex justify-center text-xl mb-4">
-        Negative Team: <span class="pl-2"> {{ matchup.negativeTeam }}</span>
+        Negative Team: <span>{{ matchup.negativeTeam }}</span>
       </p>
       <div class="flex justify-center mx-6">
         <table class="w-full max-w-7xl">
@@ -473,7 +472,26 @@
       </div>
 
       <div class="w-11/12 flex justify-end pt-6">
-        <Button size="large" button-text="Submit" />
+        <button
+          class="px-2"
+          @click.prevent="
+            (e) => {
+              handleSubmit();
+            }
+          "
+        >
+          <Button size="large" button-text="Submit" />
+        </button>
+        <button
+          class="px-2"
+          @click.prevent="
+            (e) => {
+              handleAdminApproval();
+            }
+          "
+        >
+          <Button size="large" button-text="Approve" />
+        </button>
       </div>
     </form>
   </div>
@@ -487,10 +505,10 @@
 
 <script setup>
 import { ref, onMounted, reactive } from "vue";
-import { useMatchupStore } from "../../../../stores/matchups";
-import { useAdjudicatorStore } from "../../../../stores/adjudicator";
+import { useMatchupStore } from "../../../../../../stores/matchups";
+import { useAdjudicatorStore } from "../../../../../../stores/adjudicator";
 import { useRoute, useHead, useRouter } from "#imports";
-import useNotification from "../../../../composables/useNotification";
+import useNotification from "../../../../../../composables/useNotification";
 useHead({
   title: "Scoresheet",
 });
@@ -620,6 +638,16 @@ const handleSubmit = () => {
   notification.notifySuccess("Scoresheet submitted successfully");
 };
 
+const handleAdminApproval = () => {
+  matchupInfo.adminSignoff = true;
+  try {
+    matchupStore.apporveMatchup(matchupInfo, route.params.tournamentId);
+  } catch (e) {
+    notification.notifyError("Error approving scoresheet, Please try again!");
+  }
+  notification.notifySuccess("Scoresheet approved successfully");
+};
+
 const handleClose = () => {
   notification.dismiss();
   router.back();
@@ -628,7 +656,6 @@ const handleClose = () => {
 onMounted(async () => {
   try {
     await adjudicatorStore.fetchAdjudicators();
-    console.log("@$%@$%@$", adjudicatorStore.getAdjudicators);
     for (let i = 0; i < matchupStore.junior[0].length; i++) {
       if (matchupStore.junior[0][i].id === route.params.matchupId) {
         if (matchupStore.junior[0][i].scoresheet) {
