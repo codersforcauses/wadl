@@ -26,7 +26,7 @@
       :headers="headers"
       :data="filteredTableData"
       :can-edit="false"
-      no-data-text="Please select a round"
+      no-data-text="No Matchups to approve"
       :score-board="true"
       @edit="handleEdit"
     >
@@ -56,11 +56,11 @@ onMounted(async () => {
     await createRoundTabs();
     await matchupStore.getMatchups(route.params.tournamentId);
     await handleMatchups();
-    await getFixturesTableData();
   } catch (error) {
     console.log(error);
-    //  uncomment out when finished testing
-    // notification.notifyError(error);
+    notification.notifyError(
+      "There has been an error please try again or contact cfc for help."
+    );
   }
 });
 
@@ -88,7 +88,8 @@ const roundTabs = [];
 
 let levelSelected = "Novice";
 let levelTabsKey = 0;
-const selectedLevel = ref(novice);
+const selectedLevel = ref();
+const pendingMatchups = ref(null);
 const tableData = ref([]);
 const tableFilter = ref("");
 
@@ -130,21 +131,30 @@ const headers = [
 const handleMatchups = async () => {
   await matchupStore.sortPendingMatchups();
   matchups = matchupStore.pendingMatchups;
-  // console.log(matchups[0]);
   if (matchups.length === 0) {
-    console.log("nothing");
     notification.notifySuccess("No Matchups to approve");
   } else {
-    junior.value = matchups[0];
-    senior.value = matchups[1];
-    novice.value = matchups[2];
+    matchups.forEach((info) => {
+      if (info.level === "junior") {
+        junior.value = info.junior;
+      } else if (info.level === "novice") {
+        novice.value = info.novice;
+      } else if (info.level === "senior") {
+        senior.value = info.senior;
+      }
+    });
+    selectedLevel.value = novice.value;
   }
-  console.log(junior.value, novice.value, senior.value);
+  await getFixturesTableData();
 };
 
 const handleClose = () => {
-  notification.dismiss();
-  router.back();
+  if (pendingMatchups.value) {
+    notification.dismiss();
+  } else {
+    notification.dismiss();
+    router.back();
+  }
 };
 
 const createRoundTabs = async () => {
@@ -175,11 +185,11 @@ const handleLevel = async (tabName) => {
   });
 
   if (levelSelected === "Junior") {
-    selectedLevel.value = junior;
+    selectedLevel.value = junior.value;
   } else if (levelSelected === "Novice") {
-    selectedLevel.value = novice;
+    selectedLevel.value = novice.value;
   } else {
-    selectedLevel.value = senior;
+    selectedLevel.value = senior.value;
   }
 
   tableFilter.value = "";
@@ -193,13 +203,16 @@ const handleRound = async (roundName) => {
 };
 
 const getFixturesTableData = async () => {
-  // Used only for JSON fixtures
-  // console.log(junior, novice, senior);
-  selectedLevel.value.forEach((matchup) => {
-    if (parseInt(matchup.round) === selectedRound) {
-      tableData.value.push(matchup);
-    }
-  });
+  if (selectedLevel.value === undefined) {
+    notification.notifySuccess("No Matchups to approve for this level");
+    pendingMatchups.value = true;
+  } else {
+    selectedLevel.value.forEach((matchup) => {
+      if (parseInt(matchup.round) === selectedRound) {
+        tableData.value.push(matchup);
+      }
+    });
+  }
   isLoading.value = false;
 };
 

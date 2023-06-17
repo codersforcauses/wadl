@@ -16,30 +16,24 @@ export const useMatchupStore = defineStore("matchup", {
   actions: {
     async sortPendingMatchups() {
       // todo refactor this so it not only works with no entries but fix the admin approve as well
-      this.pendingMatchups.pop();
+      this.pendingMatchups = [];
       const jun = this.junior[0].filter(
         (matchup) => matchup.adminSignoff === false
       );
       if (jun.length > 0) {
-        this.pendingMatchups.push(jun);
-      } else {
-        console.log("junior is empty");
+        this.pendingMatchups.push({ level: "junior", junior: jun });
       }
       const sen = this.senior[0].filter(
         (matchup) => matchup.adminSignoff === false
       );
       if (sen.length > 0) {
-        this.pendingMatchups.push(sen);
-      } else {
-        console.log("sen is empty");
-      }
+        this.pendingMatchups.push({ level: "senior", senior: sen });
+      } 
       const nov = this.novice[0].filter(
         (matchup) => matchup.adminSignoff === false
       );
       if (nov.length > 0) {
-        this.pendingMatchups.push(nov);
-      } else {
-        console.log("nov is empty");
+        this.pendingMatchups.push({ level: "novice", novice: nov });
       }
     },
     async getMatchups(torniID) {
@@ -68,7 +62,6 @@ export const useMatchupStore = defineStore("matchup", {
           const result = JSON.parse(JSON.stringify(json));
           result.forEach((matchup) => {
             matchup.id = uuidv4();
-            console.log(matchup);
           });
           sen = [...result];
         } else if (fileName.includes("junior")) {
@@ -76,7 +69,6 @@ export const useMatchupStore = defineStore("matchup", {
           const result = JSON.parse(JSON.stringify(json));
           result.forEach((matchup) => {
             matchup.id = uuidv4();
-            console.log(matchup);
           });
           jun = [...result];
         } else if (fileName.includes("novice")) {
@@ -84,7 +76,6 @@ export const useMatchupStore = defineStore("matchup", {
           const result = JSON.parse(JSON.stringify(json));
           result.forEach((matchup) => {
             matchup.id = uuidv4();
-            console.log(matchup);
           });
           nov = [...result];
         } else {
@@ -98,20 +89,15 @@ export const useMatchupStore = defineStore("matchup", {
       });
     },
     async addScoreSheet(scoresheet, matchup, tournamentID) {
-      console.log(matchup);
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
       const ref = doc($clientFirestore, "matchups", tournamentID);
       const lvl = matchup.level;
-      console.log(this[lvl][0].length, lvl);
       for (let i = 0; i < this[lvl][0].length; i++) {
         if (this[lvl][0][i].id === matchup.id) {
-          console.log(this[lvl][0][i].id, "match", matchup.id);
           this[lvl][0][i].scoresheet = { ...scoresheet };
           this[lvl][0][i].adminSignoff = false;
           break;
-        } else {
-          console.log("didnt work");
         }
       }
       await updateDoc(ref, {
@@ -124,7 +110,6 @@ export const useMatchupStore = defineStore("matchup", {
       console.log(matchup + tournamentID);
     },
     async apporveMatchup(matchup, tournamentID) {
-      console.log("APPROVE:", matchup);
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
       const ref = doc($clientFirestore, "matchups", tournamentID);
@@ -134,8 +119,6 @@ export const useMatchupStore = defineStore("matchup", {
         if (this[lvl][0][i].id === matchup.id) {
           this[lvl][0][i] = { ...matchup };
           break;
-        } else {
-          console.log("didnt work");
         }
       }
       await updateDoc(ref, {
