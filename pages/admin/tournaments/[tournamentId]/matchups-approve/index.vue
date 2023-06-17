@@ -30,7 +30,7 @@
       :score-board="true"
       @edit="handleEdit"
     >
-    <template #scoreboard="{ row }">
+      <template #scoreboard="{ row }">
         <NuxtLink
           :to="`/admin/tournaments/${route.params.tournamentId}/matchups-approve/scoresheet/${row.id}`"
         >

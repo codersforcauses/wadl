@@ -15,7 +15,6 @@ export const useMatchupStore = defineStore("matchup", {
   },
   actions: {
     async sortPendingMatchups() {
-      // todo refactor this so it not only works with no entries but fix the admin approve as well
       this.pendingMatchups = [];
       const jun = this.junior[0].filter(
         (matchup) => matchup.adminSignoff === false
@@ -28,7 +27,7 @@ export const useMatchupStore = defineStore("matchup", {
       );
       if (sen.length > 0) {
         this.pendingMatchups.push({ level: "senior", senior: sen });
-      } 
+      }
       const nov = this.novice[0].filter(
         (matchup) => matchup.adminSignoff === false
       );
