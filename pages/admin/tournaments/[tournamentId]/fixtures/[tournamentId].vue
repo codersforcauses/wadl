@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useMatchupStore } from "~/stores/matchups";
 import { useRoute } from "#imports";
+import { PencilIcon } from "@heroicons/vue/24/solid";
 import { TableCellsIcon } from "@heroicons/vue/24/outline";
 
 const tournamentStore = useTournamentStore();
@@ -11,6 +12,20 @@ const route = useRoute();
 const isLoading = ref(true);
 const modalVisibility = ref(false);
 const topicData = ref(null);
+
+const defaultInputState = {
+  id: null,
+  affirmativeTeam: null,
+  negativeTeam: null,
+  date: null,
+  round: null,
+  division: null,
+  venue: null,
+  time: null,
+  topic: null,
+};
+
+const form = ref({ ...defaultInputState });
 
 let selectedTournament = null;
 let selectedRound = null;
@@ -58,10 +73,8 @@ const headers = [
     key: "topic",
     title: "Topic",
   },
-  {
-    key: "scoreboard",
-    title: "Scoreboard",
-  },
+  { key: "scoreboard", title: "Scoreboard" },
+  { key: "edit", title: "Edit" },
 ];
 const levelTabs = [
   { label: "Novice", active: false },
@@ -140,6 +153,7 @@ const handleFilter = (searchTerm) => {
 const handleEdit = (row) => {
   modalVisibility.value = row.modalVisibility;
   topicData.value = row.data.topic;
+  console.log(row);
 };
 
 const filteredTableData = computed(() => {
@@ -157,6 +171,21 @@ const filteredTableData = computed(() => {
       )
     : tableData.value;
 });
+
+const editMode = ref(false);
+const handleRowEdit = (row) => {
+  editMode.value = true;
+  form.value = row;
+};
+
+const updateMatchup = () => {
+  matchupStore.updateMatchups(
+    levelSelected,
+    form.value,
+    route.params.tournamentId
+  );
+  editMode.value = false;
+};
 </script>
 
 <template>
@@ -170,6 +199,87 @@ const filteredTableData = computed(() => {
     "
   >
     <p class="m-8">{{ topicData }}</p>
+  </Modal>
+
+  <Modal
+    :modal-visibility="editMode"
+    size="w-8/12"
+    @close="
+      () => {
+        editMode = false;
+      }
+    "
+  >
+    <Header title-text="Edit Matchup" />
+    <form class="px-10 pt-2" @submit.prevent="">
+      <FormField
+        v-model="form.affirmativeTeam"
+        label="Affirmative Team"
+        placeholder="Affirmative Team"
+      />
+      <FormField
+        v-model="form.negativeTeam"
+        label="Negative Team"
+        placeholder="Negative Team"
+      />
+      <div class="grid grid-cols-2 gap-x-4">
+        <div>
+          <FormField
+            v-model="form.date"
+            label="Date"
+            placeholder="Enter the Date"
+          />
+        </div>
+        <div>
+          <FormField
+            v-model="form.time"
+            label="Time"
+            placeholder="Enter the Time"
+          />
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-x-4">
+        <div>
+          <FormField
+            v-model="form.division"
+            label="Division"
+            placeholder="Enter the Division"
+          />
+        </div>
+        <div>
+          <FormField
+            v-model="form.round"
+            label="Round"
+            placeholder="Select a Round"
+          />
+        </div>
+      </div>
+      <FormField
+        v-model="form.venue"
+        label="Venue"
+        placeholder="Enter a Venue Name"
+      />
+      <label class="heading-montserrat">Topic</label>
+      <textarea
+        v-model="form.topic"
+        placeholder="Change the topic"
+        class="p-1 pl-2.5 mb-2.5 border border-solid border-light-grey rounded-md w-full placeholder:heading-montserrat heading-montserrat"
+      ></textarea>
+      <div class="flex justify-evenly w-full my-5">
+        <Button
+          button-text="Delete"
+          button-color="bg-pink-100"
+          type="Submit"
+          class="text-red-700"
+        />
+        <Button
+          button-text="Update"
+          button-color="bg-gold"
+          type="Update"
+          @click="updateMatchup"
+        />
+      </div>
+    </form>
   </Modal>
 
   <Tabs :tabs="levelTabs" font-size="text-xl" @handle-tab="handleLevel" />
@@ -192,9 +302,14 @@ const filteredTableData = computed(() => {
       :score-board="true"
       @edit="handleEdit"
     >
+      <template #edit="{ row }">
+        <button @click.prevent="handleRowEdit(row)">
+          <PencilIcon class="w-4 h-4" />
+        </button>
+      </template>
       <template #scoreboard="{ row }">
         <NuxtLink
-          :to="`/adjudicator/${route.params.tournamentId}/scoresheet/${row.id}`"
+          :to="`/admin/tournaments/${route.params.tournamentId}/fixtures/scoresheet/${row.id}`"
         >
           <TableCellsIcon class="w-[28px] h-[28px]" />
         </NuxtLink>
