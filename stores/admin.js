@@ -93,6 +93,7 @@ export const useAdminStore = defineStore("admin", {
     async clearStore() {
       this.searchTerm = "";
       this.users = [];
+      this.adjudicators = [];
     },
   },
 });

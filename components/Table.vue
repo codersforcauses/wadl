@@ -33,22 +33,22 @@
               :row="row"
               :row-id="index"
             >
-              <p v-if="object.title === 'Topic'">
-                <Button
-                  button-text="View Topic"
-                  size="medium"
-                  button-color="bg-light-orange-gold"
-                  @click.prevent="
-                    (e) => {
-                      handleEmit(row);
-                      e.stopPropagation();
-                    }
-                  "
-                />
+              <p
+                v-if="object.title === 'Topic'"
+                class="underline underline-offset-2 cursor-pointer text-xs"
+                @click.prevent="
+                  (e) => {
+                    handleEmit(row);
+                    e.stopPropagation();
+                  }
+                "
+              >
+                View Topic
               </p>
               <p v-else>{{ row[object.key] }}</p>
             </slot>
           </td>
+
           <td v-if="canEdit" class="text-right p-2">
             <button
               @click.prevent="
@@ -72,6 +72,10 @@
 
 <script setup>
 import { PencilIcon } from "@heroicons/vue/24/solid";
+import { TableCellsIcon } from "@heroicons/vue/24/outline";
+import { useRoute } from "#imports";
+
+const route = useRoute();
 
 const emit = defineEmits(["edit", "clickRow"]);
 
@@ -113,6 +117,10 @@ const props = defineProps({
   noDataText: {
     type: String,
     default: "No data available",
+  },
+  scoreBoard: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

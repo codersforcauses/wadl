@@ -15,7 +15,7 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
 
     const allPublicRoutes = tournamentStore.getRunning.reduce(
       (publicRoutes, tournament) => {
-        publicRoutes.push(`/fixtures/${tournament.id}`);
+        publicRoutes.push(`/${tournament.id}`);
         return publicRoutes;
       },
       ["/", "/signup", "/login", "/resetpassword"]

@@ -37,7 +37,7 @@ watch(role, (currentValue, oldValue) => {
   if (currentValue === "Adjudicator Coordinator") {
     navigateTo({ path: "/" });
   } else if (currentValue === "Adjudicator") {
-    navigateTo({ path: "/" });
+    navigateTo({ path: "/adjudicator" });
   } else if (currentValue === "Team Coordinator") {
     if (userStore.institution) {
       navigateTo({ path: "/coordinator" });
