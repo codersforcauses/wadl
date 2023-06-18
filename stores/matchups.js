@@ -144,5 +144,86 @@ export const useMatchupStore = defineStore("matchup", {
         novice: this.novice[0],
       });
     },
+    async filterDivision(level, division) {
+      return this[level][0].filter((matchup) => matchup.division === division);
+    },
+    async createLeaderBoards(torniID) {
+      const sort = async (arr) => {
+        let juniorTeams = Array.from(
+          new Set(
+            arr[0].map(
+              (matchup) => matchup.affirmativeTeam || matchup.negativeTeam
+            )
+          )
+        );
+        juniorTeams = juniorTeams.filter((team) => team !== "Bye");
+        juniorTeams.sort((a, b) => {
+          if (a < b) return -1;
+          if (a > b) return 1;
+          return 0;
+        });
+        const test = [];
+        for (let i = 0; i <= juniorTeams.length; i++) {
+          arr[0].forEach((matchup) => {
+            if (
+              matchup.affirmativeTeam === juniorTeams[i] ||
+              matchup.negativeTeam === juniorTeams[i]
+            ) {
+              test.push({
+                name: juniorTeams[i],
+                division: matchup.division,
+                points: 0,
+              });
+            }
+          });
+        }
+        const uni = new Set();
+
+        test.filter((obj) => {
+          if (uni.has(obj.name)) {
+            return false;
+          } else {
+            uni.add(
+              JSON.stringify({
+                name: obj.name,
+                division: obj.division,
+                points: obj.points,
+              })
+            );
+            return true;
+          }
+        });
+        return uni;
+      };
+      const setup = async (arr) => {
+        let max = 0;
+        arr.forEach((team) => {
+          const data = JSON.parse(team);
+          if (JSON.parse(data.division) > max) {
+            max = data.division;
+          }
+        });
+        let data = [];
+        for (let i = 1; i <= max; i++) {
+          let newstuff = [];
+          arr.forEach((team) => {
+            const data = JSON.parse(team);
+            if (data.division === i) {
+              newstuff.push(data);
+            }
+          });
+          data.push(newstuff);
+        }
+        return data;
+      };
+      const junior = await sort(this.junior);
+      const senior = await sort(this.senior);
+      const novice = await sort(this.novice);
+      // console.log(torniID, junior, senior, novice);
+      const juniorSeperated = await setup(junior);
+      const seniorSeperated = await setup(senior);
+      const noviceSeperated = await setup(novice);
+      console.log(juniorSeperated, seniorSeperated, noviceSeperated);
+    },
   },
 });
