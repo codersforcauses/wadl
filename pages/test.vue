@@ -1,8 +1,10 @@
 <script setup>
 import { useMatchupStore } from "../stores/matchups";
+import { useLeaderboardStore } from "../stores/leaderboard";
 import { onMounted, ref } from "vue";
 
 const matchupStore = useMatchupStore();
+const LeaderboardStore = useLeaderboardStore();
 const possibleDivisions = [];
 const isLoading = ref(true);
 const info = [];
@@ -14,7 +16,11 @@ onMounted(async () => {
     // info.sort((a,b) => {
     //     if (a.date > b.date) return 1;
     // })
-    await matchupStore.createLeaderBoards("Vh3zYFSjFBs1ljlOtv7x");
+    // todo moveto the upload scoresheet functionality
+    // await matchupStore.createLeaderBoards("Vh3zYFSjFBs1ljlOtv7x");
+    //
+    await LeaderboardStore.getLeaderboard("Vh3zYFSjFBs1ljlOtv7x");
+    console.log(LeaderboardStore.leaderboard[0].senior);
     // await sortDivisions();
   } catch (error) {
     console.log(error);
@@ -43,6 +49,9 @@ const sortDivisions = async () => {
 
 <template>
   <div v-if="!isLoading">
-    <Leaderboard :divisions="possibleDivisions" :data="info" />
+    <Leaderboard
+      :divisions="possibleDivisions"
+      :data="LeaderboardStore.leaderboard"
+    />
   </div>
 </template>

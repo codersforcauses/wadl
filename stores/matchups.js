@@ -203,9 +203,9 @@ export const useMatchupStore = defineStore("matchup", {
             max = data.division;
           }
         });
-        let data = [];
+        const data = [];
         for (let i = 1; i <= max; i++) {
-          let newstuff = [];
+          const newstuff = [];
           arr.forEach((team) => {
             const data = JSON.parse(team);
             if (data.division === i) {
@@ -223,7 +223,23 @@ export const useMatchupStore = defineStore("matchup", {
       const juniorSeperated = await setup(junior);
       const seniorSeperated = await setup(senior);
       const noviceSeperated = await setup(novice);
-      console.log(juniorSeperated, seniorSeperated, noviceSeperated);
+      const juniorFinal = { ...juniorSeperated };
+      const seniorFinal = { ...seniorSeperated };
+      const noviceFinal = { ...noviceSeperated };
+
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const ref = doc($clientFirestore, "leaderboard", torniID);
+      try {
+        await setDoc(ref, {
+          junior: juniorFinal,
+          senior: seniorFinal,
+          novice: noviceFinal,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      // console.log(juniorFinal, seniorFinal, noviceFinal);
     },
   },
 });
