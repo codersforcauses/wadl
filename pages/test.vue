@@ -5,28 +5,18 @@ import { onMounted, ref } from "vue";
 
 const matchupStore = useMatchupStore();
 const LeaderboardStore = useLeaderboardStore();
-const possibleDivisions = [];
 const isLoading = ref(true);
 onMounted(async () => {
   try {
     await matchupStore.getMatchups("Vh3zYFSjFBs1ljlOtv7x");
-    // change to user input
-    // info = matchupStore.junior[0].filter((mat) => mat.division === 1);
-    // info.sort((a,b) => {
-    //     if (a.date > b.date) return 1;
-    // })
     // todo moveto the upload scoresheet functionality
-    // await matchupStore.createLeaderBoards("Vh3zYFSjFBs1ljlOtv7x");
-    //
+    await matchupStore.createLeaderBoards("Vh3zYFSjFBs1ljlOtv7x");
     await LeaderboardStore.getLeaderboard("Vh3zYFSjFBs1ljlOtv7x");
-    // console.log(LeaderboardStore.leaderboard[0].senior);
     await createDivisionTabs();
-    // await sortDivisions();
+    await getFixturesTableData();
   } catch (error) {
     console.log(error);
   }
-  isLoading.value = false;
-
 });
 
 const levelTabs = [
@@ -34,49 +24,70 @@ const levelTabs = [
   { label: "Junior", active: false },
   { label: "Senior", active: false },
 ];
-// undefined problems
-const selectedLevel = ref("Novice");
-const roundTabs = [];
+const tableData = ref([]);
+const selectedLevel = ref(LeaderboardStore.novice);
+let divisionTabs = [];
+let selectedDivision = 1;
 
 const createDivisionTabs = async () => {
-  let division = 1;
-  // while (round <= parseInt(selectedTournament?.numRounds)) {
-  //   if (round === parseInt(selectedTournament?.currentRound)) {
-  //     roundTabs.push({ label: `Round ${round}`, active: true });
-  //   } else {
-  //     roundTabs.push({ label: `Round ${round}`, active: false });
-  //   }
-  //   round++;
-  // }
+  divisionTabs = [];
+  const maxDivision = Object.entries(selectedLevel.value[0]).length;
+  for (let i = 0; i < maxDivision; i++) {
+    if (i === 0) {
+      divisionTabs.push({ label: `Division ${i + 1}`, active: true });
+    } else {
+      divisionTabs.push({ label: `Division ${i + 1}`, active: false });
+    }
+  }
 };
 
-// const sortDivisions = async () => {
-//   possibleDivisions.push({
-//     junior: Array.from(
-//       new Set(matchupStore.junior[0].map((matchup) => matchup.division))
-//     ),
-//   });
-//   possibleDivisions.push({
-//     novice: Array.from(
-//       new Set(matchupStore.novice[0].map((matchup) => matchup.division))
-//     ),
-//   });
-//   possibleDivisions.push({
-//     senior: Array.from(
-//       new Set(matchupStore.senior[0].map((matchup) => matchup.division))
-//     ),
-//   });
-// };
+const handleRound = async (divisionName) => {
+  isLoading.value = true;
+
+  tableData.value = [];
+  selectedDivision = parseInt(divisionName.match(/\d+/)[0]);
+  await getFixturesTableData();
+};
+
+const handleLevelChange = async (Level) => {
+  isLoading.value = true;
+  selectedDivision = 1;
+  tableData.value = [];
+
+  if (Level === "Novice") {
+    selectedLevel.value = LeaderboardStore.novice;
+  } else if (Level === "Junior") {
+    selectedLevel.value = LeaderboardStore.junior;
+  } else {
+    selectedLevel.value = LeaderboardStore.senior;
+  }
+
+  await createDivisionTabs();
+  await getFixturesTableData();
+};
+
+const getFixturesTableData = async () => {
+  selectedLevel.value[0][selectedDivision - 1].sort((a, b) =>
+    a.name > b.name ? 1 : -1
+  );
+  tableData.value = { ...selectedLevel.value[0][selectedDivision - 1] };
+  isLoading.value = false;
+};
 </script>
 
 <template>
   <div v-if="!isLoading">
-    <Tabs :tabs="levelTabs" font-size="text-xl" @handle-tab="handleLevel" />
-    <!-- change this so it supports searching leaderboard data i guess -->
-    <div class="flex items-center justify-center w-full">
-      <SearchBar @handle-filter="handleFilter" />
-      <Tabs v-if="!isLoading" :key="levelTabsKey" :tabs="roundTabs" font-size="text-base" @handle-tab="handleRound" />
-    </div>
-    <Leaderboard :divisions="possibleDivisions" :data="LeaderboardStore.leaderboard[0].senior" />
+    <Tabs
+      :tabs="levelTabs"
+      font-size="text-xl"
+      @handle-tab="handleLevelChange"
+    />
+    <Tabs
+      v-if="!isLoading"
+      :tabs="divisionTabs"
+      font-size="text-base"
+      @handle-tab="handleRound"
+    />
   </div>
+  <Leaderboard :data="tableData" />
 </template>

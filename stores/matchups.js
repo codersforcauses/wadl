@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { getDoc, doc, updateDoc, setDoc } from "firebase/firestore";
+import { getDoc, doc, updateDoc, setDoc, deleteDoc } from "firebase/firestore";
 import Papa from "papaparse";
 import { v4 as uuidv4 } from "uuid";
 
@@ -151,91 +151,97 @@ export const useMatchupStore = defineStore("matchup", {
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
       const ref = doc($clientFirestore, "leaderboard", torniID);
-      const sort = async (arr) => {
-        let juniorTeams = Array.from(
-          new Set(
-            arr[0].map(
-              (matchup) => matchup.affirmativeTeam || matchup.negativeTeam
+      // await deleteDoc(ref);
+      const querySnapshot = await getDoc(ref);
+      if (!querySnapshot.exists()) {
+        const sort = async (arr) => {
+          let juniorTeams = Array.from(
+            new Set(
+              arr[0].map(
+                (matchup) => matchup.affirmativeTeam || matchup.negativeTeam
+              )
             )
-          )
-        );
-        juniorTeams = juniorTeams.filter((team) => team !== "Bye");
-        juniorTeams.sort((a, b) => {
-          if (a < b) return -1;
-          if (a > b) return 1;
-          return 0;
-        });
-        const test = [];
-        for (let i = 0; i <= juniorTeams.length; i++) {
-          arr[0].forEach((matchup) => {
-            if (
-              matchup.affirmativeTeam === juniorTeams[i] ||
-              matchup.negativeTeam === juniorTeams[i]
-            ) {
-              test.push({
-                name: juniorTeams[i],
-                division: matchup.division,
-                points: 0,
-              });
-            }
+          );
+          juniorTeams = juniorTeams.filter((team) => team !== "Bye");
+          juniorTeams.sort((a, b) => {
+            if (a < b) return -1;
+            if (a > b) return 1;
+            return 0;
           });
-        }
-        const uni = new Set();
+          const test = [];
+          for (let i = 0; i <= juniorTeams.length; i++) {
+            arr[0].forEach((matchup) => {
+              if (
+                matchup.affirmativeTeam === juniorTeams[i] ||
+                matchup.negativeTeam === juniorTeams[i]
+              ) {
+                test.push({
+                  name: juniorTeams[i],
+                  division: matchup.division,
+                  points: 0,
+                });
+              }
+            });
+          }
+          const uni = new Set();
 
-        test.filter((obj) => {
-          if (uni.has(obj.name)) {
-            return false;
-          } else {
-            uni.add(
-              JSON.stringify({
-                name: obj.name,
-                division: obj.division,
-                points: obj.points,
-              })
-            );
-            return true;
-          }
-        });
-        return uni;
-      };
-      const setup = async (arr) => {
-        let max = 0;
-        arr.forEach((team) => {
-          const data = JSON.parse(team);
-          if (JSON.parse(data.division) > max) {
-            max = data.division;
-          }
-        });
-        const data = [];
-        for (let i = 1; i <= max; i++) {
-          const newstuff = [];
-          arr.forEach((team) => {
-            const data = JSON.parse(team);
-            if (data.division === i) {
-              newstuff.push(data);
+          test.filter((obj) => {
+            if (uni.has(obj.name)) {
+              return false;
+            } else {
+              uni.add(
+                JSON.stringify({
+                  name: obj.name,
+                  division: obj.division,
+                  points: obj.points,
+                })
+              );
+              return true;
             }
           });
-          data.push(newstuff);
+          return uni;
+        };
+        const setup = async (arr) => {
+          let max = 0;
+          arr.forEach((team) => {
+            const info = JSON.parse(team);
+            if (JSON.parse(info.division) > max) {
+              max = info.division;
+            }
+          });
+          const data = [];
+          for (let i = 1; i <= max; i++) {
+            const newstuff = [];
+            arr.forEach((team) => {
+              const data = JSON.parse(team);
+              if (parseInt(data.division) === i) {
+                newstuff.push(data);
+              }
+            });
+            data.push(newstuff);
+          }
+          return data;
+        };
+        const junior = await sort(this.junior);
+        const senior = await sort(this.senior);
+        const novice = await sort(this.novice);
+        const juniorSeperated = await setup(junior);
+        const seniorSeperated = await setup(senior);
+        const noviceSeperated = await setup(novice);
+        // console.log(juniorSeperated, seniorSeperated, noviceSeperated);
+        const juniorFinal = { ...juniorSeperated };
+        const seniorFinal = { ...seniorSeperated };
+        const noviceFinal = { ...noviceSeperated };
+        // console.log(juniorFinal, seniorFinal, noviceFinal);
+        try {
+          await setDoc(ref, {
+            junior: juniorFinal,
+            senior: seniorFinal,
+            novice: noviceFinal,
+          });
+        } catch (error) {
+          console.log(error);
         }
-        return data;
-      };
-      const junior = await sort(this.junior);
-      const senior = await sort(this.senior);
-      const novice = await sort(this.novice);
-      const juniorSeperated = await setup(junior);
-      const seniorSeperated = await setup(senior);
-      const noviceSeperated = await setup(novice);
-      const juniorFinal = { ...juniorSeperated };
-      const seniorFinal = { ...seniorSeperated };
-      const noviceFinal = { ...noviceSeperated };
-      try {
-        await setDoc(ref, {
-          junior: juniorFinal,
-          senior: seniorFinal,
-          novice: noviceFinal,
-        });
-      } catch (error) {
-        console.log(error);
       }
     },
   },
