@@ -482,6 +482,7 @@ import { useVenueStore } from "../../../../stores/venues";
 import { useTeamStore } from "../../../../stores/teams";
 import { useRoute, useRouter } from "#imports";
 import { ref, computed, onMounted } from "vue";
+import { useLeaderboardStore } from "../../../../stores/leaderboard";
 
 const router = useRouter();
 const defaultVenueInput = {
@@ -502,6 +503,7 @@ const defaultRoundInput = {
 };
 
 const route = useRoute();
+const LeaderboardStore = useLeaderboardStore();
 const tournamentStore = await useTournamentStore();
 const venueStore = await useVenueStore();
 const teamStore = await useTeamStore();
@@ -524,6 +526,7 @@ const edited = ref({
 onMounted(async () => {
   try {
     await venueStore.getVenues();
+    await LeaderboardStore.getLeaderboard(route.params.tournamentId);
   } catch (error) {
     console.log(error);
   }

@@ -1,8 +1,11 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { getDoc, doc, updateDoc, setDoc, deleteDoc } from "firebase/firestore";
+import { getDoc, doc, updateDoc, setDoc } from "firebase/firestore";
 import Papa from "papaparse";
 import { v4 as uuidv4 } from "uuid";
+import { useLeaderboardStore } from "./leaderboard";
+
+const leaderboardStore = useLeaderboardStore();
 
 export const useMatchupStore = defineStore("matchup", {
   state: () => {
@@ -125,6 +128,7 @@ export const useMatchupStore = defineStore("matchup", {
         senior: this.senior[0],
         novice: this.novice[0],
       });
+      await leaderboardStore.updateLeaderboard(matchup);
     },
 
     async updateMatchups(level, matchup, tournamentID) {
@@ -228,11 +232,9 @@ export const useMatchupStore = defineStore("matchup", {
         const juniorSeperated = await setup(junior);
         const seniorSeperated = await setup(senior);
         const noviceSeperated = await setup(novice);
-        // console.log(juniorSeperated, seniorSeperated, noviceSeperated);
         const juniorFinal = { ...juniorSeperated };
         const seniorFinal = { ...seniorSeperated };
         const noviceFinal = { ...noviceSeperated };
-        // console.log(juniorFinal, seniorFinal, noviceFinal);
         try {
           await setDoc(ref, {
             junior: juniorFinal,
