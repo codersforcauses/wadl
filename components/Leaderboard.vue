@@ -3,9 +3,11 @@
   <!-- <div class="pt-4" v-for="item in divisions" :key="item">
             {{ item }}
         </div> -->
-  <div v-for="matchup in data" :key="data">
-    <div class="pt-4 bg-cyan-200 border">
-      {{ matchup }}
+  <div v-for="matchup in data" :key="matchup">
+    <div class="py-4 mt-4 bg-cyan-200 border">
+      <div v-for="team in matchup" :key="team">
+        {{ team }}
+      </div>
     </div>
   </div>
   <!-- </div> -->
@@ -16,11 +18,11 @@
 const props = defineProps({
   divisions: {
     type: Object,
-    default: () => {},
+    default: () => { },
   },
   data: {
     type: Object,
-    default: () => {},
+    default: () => { },
   },
 });
 </script>

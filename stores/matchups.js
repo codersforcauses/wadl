@@ -148,6 +148,9 @@ export const useMatchupStore = defineStore("matchup", {
       return this[level][0].filter((matchup) => matchup.division === division);
     },
     async createLeaderBoards(torniID) {
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const ref = doc($clientFirestore, "leaderboard", torniID);
       const sort = async (arr) => {
         let juniorTeams = Array.from(
           new Set(
@@ -219,17 +222,12 @@ export const useMatchupStore = defineStore("matchup", {
       const junior = await sort(this.junior);
       const senior = await sort(this.senior);
       const novice = await sort(this.novice);
-      // console.log(torniID, junior, senior, novice);
       const juniorSeperated = await setup(junior);
       const seniorSeperated = await setup(senior);
       const noviceSeperated = await setup(novice);
       const juniorFinal = { ...juniorSeperated };
       const seniorFinal = { ...seniorSeperated };
       const noviceFinal = { ...noviceSeperated };
-
-      const { $clientFirestore } = useNuxtApp();
-      if (!$clientFirestore) return;
-      const ref = doc($clientFirestore, "leaderboard", torniID);
       try {
         await setDoc(ref, {
           junior: juniorFinal,
@@ -239,7 +237,6 @@ export const useMatchupStore = defineStore("matchup", {
       } catch (error) {
         console.log(error);
       }
-      // console.log(juniorFinal, seniorFinal, noviceFinal);
     },
   },
 });
