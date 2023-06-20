@@ -3,12 +3,13 @@ import {
   connectAuthEmulator,
   onAuthStateChanged,
 } from "firebase/auth";
-import { defineNuxtPlugin, useRuntimeConfig } from "#imports";
+import { defineNuxtPlugin, useRuntimeConfig, useCookie } from "#imports";
 import { useUserStore } from "../stores/user";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
-import { getAnalytics } from "firebase/analytics";
+
+// import { getAnalytics } from "firebase/analytics";
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig();
@@ -26,7 +27,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const firestore = getFirestore(app);
   const auth = getAuth(app);
   const functions = getFunctions(app);
-  const analytics = getAnalytics(app);
+  // const analytics = getAnalytics(app);
 
   if (config.firebaseMode === "dev") {
     connectFirestoreEmulator(firestore, "localhost", 8080);
@@ -40,19 +41,29 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   auth.onIdTokenChanged(async (user) => {
     // on sign-in, sign-out, and token refresh.
+    const tokenCookie = await useCookie("auth-token", {
+      default: () => {
+        return "";
+      },
+      watch: true, // keeps cookie sync'ed
+      maxAge: 3600, // firebase cookies expire in an hour.
+    });
+
     if (user) {
-      const token = await user.getIdToken(true);
-      await setServerSession(token);
+      tokenCookie.value = await user.getIdToken(true);
     } else {
-      await setServerSession("");
+      // logged out.
+      tokenCookie.value = "";
+      userStore.clearStore();
     }
   });
 
   onAuthStateChanged(auth, (user) => {
+    // on log in or log out.
     if (user) {
       userStore.setUser(user);
     } else {
-      userStore.setUser(null);
+      userStore.clearStore();
     }
   });
 
@@ -60,16 +71,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     provide: {
       clientFirestore: firestore,
       clientAuth: auth,
-      clientAnalytics: analytics,
+      // clientAnalytics: analytics,
     },
   };
-
-  function setServerSession(token) {
-    return $fetch("/api/session", {
-      method: "POST",
-      body: {
-        token,
-      },
-    });
-  }
 });
