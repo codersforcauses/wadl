@@ -20,10 +20,5 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
       },
       ["/", "/signup", "/login", "/resetpassword"]
     );
-    if (allPublicRoutes.includes(to.path)) return;
-
-    if (userStore.auth === null) {
-      return navigateTo({ path: "/login" });
-    }
   }
 });
