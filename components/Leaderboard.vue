@@ -6,7 +6,7 @@
           <thead class="border-b font-medium dark:border-neutral-500">
             <tr>
               <th scope="col" class="px-6 py-4">Place</th>
-              <th scope="col" class="px-6 py-4">Name</th>
+              <th scope="col" class="px-6 py-4">Team</th>
               <th scope="col" class="px-6 py-4">Points</th>
             </tr>
           </thead>
