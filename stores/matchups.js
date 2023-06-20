@@ -95,18 +95,22 @@ export const useMatchupStore = defineStore("matchup", {
       if (!$clientFirestore) return;
       const ref = doc($clientFirestore, "matchups", tournamentID);
       const lvl = matchup.level;
-      for (let i = 0; i < this[lvl][0].length; i++) {
-        if (this[lvl][0][i].id === matchup.id) {
-          this[lvl][0][i].scoresheet = { ...scoresheet };
-          this[lvl][0][i].adminSignoff = false;
-          break;
+      if (scoresheet.affirmativeTeam.total === scoresheet.negativeTeam.total) {
+        throw new Error("tie-occured");
+      } else {
+        for (let i = 0; i < this[lvl][0].length; i++) {
+          if (this[lvl][0][i].id === matchup.id) {
+            this[lvl][0][i].scoresheet = { ...scoresheet };
+            this[lvl][0][i].adminSignoff = false;
+            break;
+          }
         }
+        await updateDoc(ref, {
+          junior: this.junior[0],
+          senior: this.senior[0],
+          novice: this.novice[0],
+        });
       }
-      await updateDoc(ref, {
-        junior: this.junior[0],
-        senior: this.senior[0],
-        novice: this.novice[0],
-      });
     },
     async updateCollection(matchup, tournamentID) {
       console.log(matchup + tournamentID);

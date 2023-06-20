@@ -35,9 +35,9 @@ export const useLeaderboardStore = defineStore("leaderboard", {
       const scoresheet = matchup.scoresheet;
       const affirmativeTeamTotal = scoresheet.affirmativeTeam.total;
       const negativeTeamTotal = scoresheet.negativeTeam.total;
-      this[level][0][division - 1].forEach((team) => {
-        if (team.name ===)
-      });
+      // this[level][0][division - 1].forEach((team) => {
+      //   if (team.name ===)
+      // });
       const handleWin = (team) => {
         console.log("win", team);
       };
@@ -54,7 +54,6 @@ export const useLeaderboardStore = defineStore("leaderboard", {
       console.log(matchup);
       // later
       const forfeit = 0;
-
     },
   },
 });

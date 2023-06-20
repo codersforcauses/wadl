@@ -624,14 +624,13 @@ const updateTotal = (s, team) => {
     Number(team.student3.total);
 };
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   try {
-    matchupStore.addScoreSheet(
+    await matchupStore.addScoreSheet(
       scoresheet.value,
       matchupInfo,
       route.params.tournamentId
     );
-    console.log(matchupInfo);
   } catch (e) {
     notification.notifyError("Error submitting scoresheet, Please try again!");
   }
