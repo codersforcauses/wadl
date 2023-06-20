@@ -16,6 +16,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       await userStore.setUser(result);
     } catch {
       // Not authenticated or invalid token
+      await userStore.clearStore();
     }
   }
 });
