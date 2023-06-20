@@ -132,7 +132,7 @@ export const useMatchupStore = defineStore("matchup", {
         senior: this.senior[0],
         novice: this.novice[0],
       });
-      await leaderboardStore.updateLeaderboard(matchup);
+      await leaderboardStore.updateLeaderboard(matchup, tournamentID);
     },
 
     async updateMatchups(level, matchup, tournamentID) {

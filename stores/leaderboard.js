@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { useNuxtApp } from "#imports";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, updateDoc } from "firebase/firestore";
 
 export const useLeaderboardStore = defineStore("leaderboard", {
   state: () => {
@@ -25,7 +25,10 @@ export const useLeaderboardStore = defineStore("leaderboard", {
       this.senior.push(querySnapshot.data().senior);
       this.novice.push(querySnapshot.data().novice);
     },
-    async updateLeaderboard(matchup) {
+    async updateLeaderboard(matchup, tournamentID) {
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const ref = doc($clientFirestore, "leaderboard", tournamentID);
       const win = 2;
       const loss = 1;
       const level = matchup.level;
@@ -35,25 +38,33 @@ export const useLeaderboardStore = defineStore("leaderboard", {
       const scoresheet = matchup.scoresheet;
       const affirmativeTeamTotal = scoresheet.affirmativeTeam.total;
       const negativeTeamTotal = scoresheet.negativeTeam.total;
-      // this[level][0][division - 1].forEach((team) => {
-      //   if (team.name ===)
-      // });
-      const handleWin = (team) => {
-        console.log("win", team);
-      };
-      const handleLoss = (team) => {
-        console.log("loss", team);
-      };
-      if (affirmativeTeamTotal === negativeTeamTotal) {
-        console.log("Tie");
-      } else if (affirmativeTeamTotal > negativeTeamTotal) {
+      let winningTeam = null;
+      let losingTeam = null;
+      if (affirmativeTeamTotal > negativeTeamTotal) {
         console.log("Affirmative Team Wins", affirmativeTeam);
+        winningTeam = affirmativeTeam;
+        losingTeam = negativeTeam;
       } else {
         console.log("Negative Team Wins", negativeTeam);
+        winningTeam = negativeTeam;
+        losingTeam = affirmativeTeam;
       }
-      console.log(matchup);
+      // console.log(winningTeam, losingTeam);
+      this[level][0][division - 1].forEach((team) => {
+        if (team.name === winningTeam) {
+          team.points += win;
+        } else if (team.name === losingTeam) {
+          team.points += loss;
+        }
+      });
+      console.log(this[level][0]);
       // later
-      const forfeit = 0;
+      // const forfeit = 0;
+      await updateDoc(ref, {
+        junior: this.junior[0],
+        senior: this.senior[0],
+        novice: this.novice[0],
+      });
     },
   },
 });

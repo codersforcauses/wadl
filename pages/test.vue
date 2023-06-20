@@ -68,8 +68,16 @@ const handleLevelChange = async (Level) => {
 
 const getFixturesTableData = async () => {
   selectedLevel.value[0][selectedDivision - 1].sort((a, b) =>
-    a.name > b.name ? 1 : -1
+    a.points > b.points ? -1 : 1
   );
+  for (
+    let i = 0;
+    i < selectedLevel.value[0][selectedDivision - 1].length;
+    i++
+  ) {
+    selectedLevel.value[0][selectedDivision - 1][i].place = i + 1;
+  }
+  console.log(selectedLevel.value[0][selectedDivision - 1]);
   tableData.value = { ...selectedLevel.value[0][selectedDivision - 1] };
   isLoading.value = false;
 };

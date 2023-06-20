@@ -637,10 +637,10 @@ const handleSubmit = async () => {
   notification.notifySuccess("Scoresheet submitted successfully");
 };
 
-const handleAdminApproval = () => {
+const handleAdminApproval = async () => {
   matchupInfo.adminSignoff = true;
   try {
-    matchupStore.apporveMatchup(matchupInfo, route.params.tournamentId);
+    await matchupStore.apporveMatchup(matchupInfo, route.params.tournamentId);
   } catch (e) {
     notification.notifyError("Error approving scoresheet, Please try again!");
   }

@@ -16,7 +16,7 @@
               :key="team.name"
               class="border-y-2 border-gray-200"
             >
-              <td class="whitespace-nowrap px-6 py-4">1</td>
+              <td class="whitespace-nowrap px-6 py-4">{{ team.place }}</td>
               <td class="whitespace-nowrap px-6 py-4">
                 {{ team.name }}
               </td>
@@ -32,8 +32,7 @@
 </template>
 
 <script setup>
-// const emit = defineEmits(["close"]);
-const props = defineProps({
+defineProps({
   data: {
     type: Object,
     default: () => {},
