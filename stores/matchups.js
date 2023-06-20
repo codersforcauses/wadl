@@ -89,6 +89,7 @@ export const useMatchupStore = defineStore("matchup", {
         junior: jun,
         senior: sen,
       });
+      await this.createLeaderBoards(tournamentID);
     },
     async addScoreSheet(scoresheet, matchup, tournamentID) {
       const { $clientFirestore } = useNuxtApp();
@@ -156,6 +157,7 @@ export const useMatchupStore = defineStore("matchup", {
       return this[level][0].filter((matchup) => matchup.division === division);
     },
     async createLeaderBoards(torniID) {
+      await this.getMatchups(torniID);
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
       const ref = doc($clientFirestore, "leaderboard", torniID);
@@ -163,28 +165,28 @@ export const useMatchupStore = defineStore("matchup", {
       const querySnapshot = await getDoc(ref);
       if (!querySnapshot.exists()) {
         const sort = async (arr) => {
-          let juniorTeams = Array.from(
+          let teams = Array.from(
             new Set(
               arr[0].map(
                 (matchup) => matchup.affirmativeTeam || matchup.negativeTeam
               )
             )
           );
-          juniorTeams = juniorTeams.filter((team) => team !== "Bye");
-          juniorTeams.sort((a, b) => {
+          teams = teams.filter((team) => team !== "Bye");
+          teams.sort((a, b) => {
             if (a < b) return -1;
             if (a > b) return 1;
             return 0;
           });
-          const test = [];
-          for (let i = 0; i <= juniorTeams.length; i++) {
+          const info = [];
+          for (let i = 0; i <= teams.length; i++) {
             arr[0].forEach((matchup) => {
               if (
-                matchup.affirmativeTeam === juniorTeams[i] ||
-                matchup.negativeTeam === juniorTeams[i]
+                matchup.affirmativeTeam === teams[i] ||
+                matchup.negativeTeam === teams[i]
               ) {
-                test.push({
-                  name: juniorTeams[i],
+                info.push({
+                  name: teams[i],
                   division: matchup.division,
                   points: 0,
                 });
@@ -193,7 +195,7 @@ export const useMatchupStore = defineStore("matchup", {
           }
           const uni = new Set();
 
-          test.filter((obj) => {
+          info.filter((obj) => {
             if (uni.has(obj.name)) {
               return false;
             } else {
@@ -239,15 +241,11 @@ export const useMatchupStore = defineStore("matchup", {
         const juniorFinal = { ...juniorSeperated };
         const seniorFinal = { ...seniorSeperated };
         const noviceFinal = { ...noviceSeperated };
-        try {
-          await setDoc(ref, {
-            junior: juniorFinal,
-            senior: seniorFinal,
-            novice: noviceFinal,
-          });
-        } catch (error) {
-          console.log(error);
-        }
+        await setDoc(ref, {
+          junior: juniorFinal,
+          senior: seniorFinal,
+          novice: noviceFinal,
+        });
       }
     },
   },

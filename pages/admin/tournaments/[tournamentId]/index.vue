@@ -131,7 +131,7 @@
       </div>
 
       <div class="grid grid-row-1 grid-cols-8 gap-4 text-center">
-        <div class="lg:col-span-4 md:col-span-5 col-span-8">
+        <div class="lg:col-span-3 md:col-span-5 col-span-8">
           <div class="bg-lighter-grey rounded-md py-6 px-2">
             <div class="flex items-center justify-center">
               <Stepper :stage="stage" />
@@ -156,15 +156,34 @@
             </div>
           </div>
         </div>
-        <div class="lg:col-span-4 md:col-span-5 col-span-8">
-          <div class="bg-lighter-grey rounded-md py-6 px-2">
-            <div class="flex flex-col items-center justify-center">
+        <div class="lg:col-span-2 md:col-span-3 col-span-3">
+          <div class="bg-lighter-grey rounded-md py-6 px-2 h-full">
+            <div class="flex flex-col items-center justify-center pt-6">
               <p>Approve Matchups</p>
               <NuxtLink
                 :to="`/admin/tournaments/${route.params.tournamentId}/matchups-approve`"
               >
                 <Button
-                  button-text="Approve Matchups"
+                  button-text="Matchups"
+                  button-color="bg-gold"
+                  text-color="text-dark-black"
+                  size="large"
+                  class="transition duration-200 ease-in-out hover:bg-gold/50 hover:shadow-lg mt-6"
+                >
+                </Button>
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-2 md:col-span-3 col-span-3">
+          <div class="bg-lighter-grey rounded-md py-6 px-2 h-full">
+            <div class="flex flex-col items-center justify-center pt-6">
+              <p>View Leaderboards</p>
+              <NuxtLink
+                :to="`/admin/tournaments/${route.params.tournamentId}/leaderboard`"
+              >
+                <Button
+                  button-text="Leaderboards"
                   button-color="bg-gold"
                   text-color="text-dark-black"
                   size="large"

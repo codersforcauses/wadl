@@ -49,7 +49,6 @@ export const useLeaderboardStore = defineStore("leaderboard", {
         winningTeam = negativeTeam;
         losingTeam = affirmativeTeam;
       }
-      // console.log(winningTeam, losingTeam);
       this[level][0][division - 1].forEach((team) => {
         if (team.name === winningTeam) {
           team.points += win;
@@ -57,7 +56,6 @@ export const useLeaderboardStore = defineStore("leaderboard", {
           team.points += loss;
         }
       });
-      console.log(this[level][0]);
       // later
       // const forfeit = 0;
       await updateDoc(ref, {
