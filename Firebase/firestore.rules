@@ -97,6 +97,7 @@ service cloud.firestore {
         return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'Admin'
       }
       allow create, read, update, delete: if isAdmin();
+      allow read: if true;
     }
   }
 }
