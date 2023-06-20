@@ -25,7 +25,6 @@ class NotificationModalHelper {
 
   notifyError(error) {
     this.#isVisible.value = false;
-
     this.#message.value = handleError(error);
     this.#isSuccess.value = false;
     this.#isVisible.value = true;

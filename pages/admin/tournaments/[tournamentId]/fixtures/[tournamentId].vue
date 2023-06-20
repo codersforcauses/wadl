@@ -33,6 +33,7 @@ let selectedRound = null;
 onMounted(async () => {
   try {
     await matchupStore.getMatchups(route.params.tournamentId);
+    console.log(matchupStore.junior);
     selectedTournament = tournamentStore.getRunning.find(
       (tournament) => tournament.id === route.params.tournamentId
     );
@@ -137,9 +138,8 @@ const handleRound = (roundName) => {
 };
 
 const getFixturesTableData = () => {
-  // Used only for JSON fixtures
   selectedLevel.value[0].forEach((matchup) => {
-    if (matchup.round === selectedRound) {
+    if (parseInt(matchup.round) === selectedRound) {
       tableData.value.push(matchup);
     }
   });

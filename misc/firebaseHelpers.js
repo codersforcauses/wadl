@@ -30,6 +30,8 @@ export function handleError(error) {
     return errorCodeToMessage(error.code);
   } else if (error.message) {
     return error.message;
+  } else if (error === "tie-occured") {
+    return "A tie occurred, please resolve the tie before submitting.";
   } else {
     return "An error occurred.";
   }
