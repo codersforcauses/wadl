@@ -606,23 +606,34 @@ const updateTotal = (s, team) => {
     Number(team.student3.total);
 };
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   try {
-    matchupStore.addScoreSheet(
+    await matchupStore.addScoreSheet(
       scoresheet.value,
       matchupInfo,
       route.params.tournamentId
     );
-    console.log(matchupInfo);
-  } catch (e) {
-    notification.notifyError("Error submitting scoresheet, Please try again!");
+  } catch ({ name, message }) {
+    if (message.trim() === "tie-occured") {
+      notification.notifyError("tie-occured");
+      return;
+    } else {
+      notification.notifyError(
+        "Error submitting scoresheet, Please try again!"
+      );
+      return;
+    }
   }
   notification.notifySuccess("Scoresheet submitted successfully");
 };
 
 const handleClose = () => {
-  notification.dismiss();
-  router.back();
+  if (!notification.isSuccess) {
+    notification.dismiss();
+  } else {
+    notification.dismiss();
+    router.back();
+  }
 };
 
 onMounted(async () => {

@@ -624,24 +624,23 @@ const updateTotal = (s, team) => {
     Number(team.student3.total);
 };
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   try {
-    matchupStore.addScoreSheet(
+    await matchupStore.addScoreSheet(
       scoresheet.value,
       matchupInfo,
       route.params.tournamentId
     );
-    console.log(matchupInfo);
   } catch (e) {
     notification.notifyError("Error submitting scoresheet, Please try again!");
   }
   notification.notifySuccess("Scoresheet submitted successfully");
 };
 
-const handleAdminApproval = () => {
+const handleAdminApproval = async () => {
   matchupInfo.adminSignoff = true;
   try {
-    matchupStore.apporveMatchup(matchupInfo, route.params.tournamentId);
+    await matchupStore.apporveMatchup(matchupInfo, route.params.tournamentId);
   } catch (e) {
     notification.notifyError("Error approving scoresheet, Please try again!");
   }

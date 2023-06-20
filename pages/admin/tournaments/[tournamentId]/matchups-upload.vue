@@ -3,12 +3,21 @@
     <form class="" @submit.prevent="">
       <div>
         <p class="py-2">
-          <span class="text-orange-600">Warning: </span>This will delete the old
-          matchups that are assinged for a tournament.
+          <span class="text-orange-600 font-extrabold">Warning: </span>This will
+          delete the old matchups that are assinged for a tournament.
         </p>
         <p class="py-2">
-          <span class="text-orange-600">Warning: </span>Please make sure to name
-          the files by the level they represent: eg Junior.csv
+          <span class="text-orange-600 font-extrabold">Warning: </span>This will
+          also delete all pending matchups that need to be approved by the
+          admin.
+        </p>
+        <p class="py-2">
+          <span class="text-orange-600 font-extrabold">Warning: </span>Please
+          make sure to name the files by the level they represent: eg Junior.csv
+        </p>
+        <p class="py-2">
+          <span class="text-orange-600 font-extrabold">Warning: </span>If you
+          upload only novice, it will delete junior and senior matchups as well.
         </p>
       </div>
       <input
