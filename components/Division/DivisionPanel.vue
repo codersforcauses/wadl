@@ -1,138 +1,192 @@
 <template>
-  <div class="min-h-64 p-2 px-5 mt-4 rounded-md bg-light-grey/10">
-    <div class="flex justify-between">
-      <div class="flex">
-        <p class="my-auto text-xl">Division {{ divisionNumber }}</p>
-        <p class="flex items-center px-2 text-xs text-mid-grey font-montserrat">
-          ({{ getTeamCount }} teams)
-        </p>
-      </div>
-      <button
-        :disabled="currentVenue ? false : true"
-        @click.prevent="handleAdd(division)"
-      >
-        <PlusIcon
-          :class="[
-            `w-6 h-6`,
-            currentVenue ? 'bg-light-orange-gold' : 'bg-mid-grey/20',
-            'rounded-full',
-          ]"
+  <Header title-text="Manage Division" :subtitle-text="route.params.level" />
+  <section class="mx-6">
+    <!-- Division Controls -->
+    <div
+      class="flex justify-between w-full p-2 px-5 mt-4 rounded-md bg-light-grey/10"
+    >
+      <div class="flex flex-row justify-center">
+        <Button button-text="Auto Allocate" size="medium" class="my-2 mr-2" />
+        <Button
+          button-text="Allocate Bye"
+          button-color="bg-light-orange-gold"
+          size="medium"
+          class="my-2"
+          @click="allocateBye"
         />
-      </button>
+      </div>
+      <div class="flex flex-row justify-center">
+        <div class="flex flex-col justify-center">
+          <p class="mx-auto text-2xl font-montserrat">
+            {{ teamStore.unallocatedTeams.size
+            }}<span class="text-xs"
+              >/{{ teamStore.getNumberTeams(route.params.level) }}</span
+            >
+          </p>
+          <p class="text-[9px] text-mid-grey font-montserrat">
+            Remaining Teams
+          </p>
+        </div>
+        <Button
+          button-text="Submit"
+          button-color="bg-light-green"
+          text-color="text-white"
+          size="medium"
+          class="my-2 ml-5"
+          @click="updateDivisions"
+        />
+      </div>
     </div>
-    <Dropdown
-      v-model="currentVenue"
-      class="my-4"
-      :items="venues"
-      placeholder="Select Venue"
-      :is-venue="true"
-    />
-    <div v-for="team in teamStore.allocatedTeams.values()" :key="team.id">
-      <Chip
-        v-if="team.division == divisionNumber"
-        :text="team.name"
-        size="small"
-        :bg-color="venuePreferenceColor(team)"
+    <div
+      class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    >
+      <DivisionPanel
+        v-for="(d, idx) in tournamentStore.divisions"
+        :key="idx"
+        :division="d"
+        :tournament-id="tournamentStore.currentTournament.id"
+        :level="currentLevel"
+        :venues="tournamentStore.currentTournament.venues"
+        @edit="handleEdit"
       />
+
+      <div
+        class="flex items-center justify-center h-64 p-2 px-5 mt-4 border-2 rounded-md bg-light-grey/10 border-light-grey/20"
+        @click="addNewDivision"
+      >
+        <PlusIcon class="w-12 h-12 cursor-pointer text-light-grey/30" />
+      </div>
     </div>
-    <Chip
-        v-if="props.division.hasBye"
-        text="Bye"
-        size="small"
-        bg-color="bg-white"
-        :can-remove="true"
-        class="my-2"
-        @remove-chip="
-        () => {
-          props.division.hasBye = false;
-        }
-      "
-      />
-  </div>
+  </section>
+  <Modal
+    :modal-visibility="modalVisibility"
+    size="w-9/12"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  >
+    <div class="h-96">
+      <h1 class="py-4 text-3xl text-center font-montserrat">
+        Division {{ division }}
+      </h1>
+      <p
+        class="mb-2 text-sm text-center divide-y-4 font-montserrat text-mid-grey"
+      >
+        {{ venue }}
+      </p>
+      <p
+        v-if="teamStore.unallocatedTeams.size == 0"
+        class="w-full text-center font-montserrat text-light-grey/60"
+      >
+        No teams to allocate
+      </p>
+      <div class="container p-1 mx-auto">
+        <div class="flex flex-wrap justify-center">
+          <Chip
+            v-for="team in teamStore.unallocatedTeams.values()"
+            :key="team.id"
+            :text="team.name"
+            size="small"
+            :bg-color="venuePreferenceColor(team)"
+            :can-remove="false"
+            class="mx-2 my-2"
+            @add-chip="allocateTeam"
+          />
+        </div>
+      </div>
+    </div>
+  </Modal>
 </template>
+
 <script setup>
 import { PlusIcon } from "@heroicons/vue/24/solid";
-import { useTeamStore } from "../../stores/teams";
-import { useTournamentStore } from "../../stores/tournaments";
-import { ref, watch, computed } from "vue";
+import { useTournamentStore } from "~/stores/tournaments";
+import { useTeamStore } from "~/stores/teams";
+import { onMounted, ref } from "vue";
+import useNotification from "../../../../../composables/useNotification";
 
-const props = defineProps({
-  division: {
-    type: Object,
-    default: () => ({}),
-  },
-  level: {
-    type: String,
-    default: "",
-  },
-  tournamentId: {
-    type: String,
-    default: "",
-  },
-  venues: {
-    type: Array,
-    default: () => [],
-  },
-});
+// eslint-disable-next-line no-undef
+const route = useRoute();
 
-const teamStore = useTeamStore();
 const tournamentStore = useTournamentStore();
-const divisionNumber = ref(props.division.division);
+const notification = useNotification();
+const teamStore = useTeamStore();
 
-const currentVenue = ref(null);
+const initialState = { division: 1, venue: null, teams: null };
 
-const divisionVenue = ref(props.division.venue);
+const currentLevel = ref(route.params.level);
 
-watch(currentVenue, (newValue, oldValue) => {
-  if (oldValue) {
-    tournamentStore.updateDivision(newValue, divisionNumber.value);
-  }
-});
-
-const getTeamCount = computed(() => {
-  props.division.teamCount = 0;
-  teamStore.allocatedTeams.forEach((team) => {
-    if (team.division === divisionNumber.value) {
-      props.division.teamCount += 1;
-    }
-  });
-  return props.division.teamCount;
-});
-
-if (divisionVenue.value) {
-  const matchingVenue = props.venues.find(
-    (venue) =>
-      venue.name === divisionVenue.value.name &&
-      venue.week === divisionVenue.value.week &&
-      venue.day === divisionVenue.value.day
-  );
-  currentVenue.value = matchingVenue;
-}
-
-const emit = defineEmits(["edit"]);
-
-const handleAdd = (division) => {
-  emit("edit", {
-    editMode: true,
-    modalVisibility: true,
-    data: division.division,
-    venue: currentVenue.value,
-  });
+const addNewDivision = () => {
+  const newState = {
+    division: tournamentStore.divisions.length + 1,
+    venue: null,
+    teams: null,
+  };
+  tournamentStore.divisions.push(newState);
 };
 
-const unallocateTeam = (name) => {
-  const team = Array.from(teamStore.allocatedTeams.values()).find(
+const allocateTeam = (name) => {
+  const team = Array.from(teamStore.unallocatedTeams.values()).find(
     (team) => team.name === name
   );
   if (team) {
-    teamStore.allocatedTeams.delete(
-      Array.from(teamStore.allocatedTeams.keys()).find(
-        (key) => teamStore.allocatedTeams.get(key) === team
+    teamStore.unallocatedTeams.delete(
+      Array.from(teamStore.unallocatedTeams.keys()).find(
+        (key) => teamStore.unallocatedTeams.get(key) === team
       )
     );
-    team.division = null;
-    teamStore.unallocatedTeams.set(team.id, team);
+    team.division = division.value;
+    teamStore.allocatedTeams.set(team.id, team);
   }
+};
+
+const updateDivisions = async () => {
+  try {
+    await teamStore.updateTeamDivision();
+    await tournamentStore.updateDivisionVenue(route.params.level);
+  } catch {
+    notification.notifyError("Problem updating divisions and team divisions");
+    return;
+  }
+  notification.notifySuccess(
+    "Updated divisions and team divisions successfully"
+  );
+};
+
+onMounted(async () => {
+  try {
+    teamStore.sortTeamDivisionAllocation(route.params.level);
+    tournamentStore.getTournamentDivisionsByLevel(currentLevel.value);
+
+    if (tournamentStore.divisions === undefined) {
+      tournamentStore.divisions = [];
+      tournamentStore.divisions.push({ ...initialState });
+    }
+  } catch (error) {
+    notification.notifyError(error);
+  }
+});
+
+const modalVisibility = ref(false);
+const editMode = ref(false);
+const division = ref("");
+const venue = ref("");
+const currentVenue = ref(null);
+
+const handleEdit = (divisions) => {
+  modalVisibility.value = divisions.modalVisibility;
+  editMode.value = divisions.editMode;
+  division.value = divisions.data;
+  currentVenue.value = divisions.venue;
+
+  venue.value =
+    currentVenue.value.name +
+    " " +
+    currentVenue.value.day +
+    " W" +
+    currentVenue.value.week;
 };
 
 const venuePreferenceColor = (team) => {
@@ -165,6 +219,16 @@ const venuePreferenceColor = (team) => {
     return "bg-white";
   } else {
     return "bg-danger-red/20";
+  }
+};
+
+const allocateBye = () => {
+  // console.log(tournamentStore.divisions.length);
+  for (let i = 0; i < tournamentStore.divisions.length; i += 1) {
+    // console.log(tournamentStore.divisions[i].teamCount);
+    if (tournamentStore.divisions[i].teamCount % 2 === 1) {
+      tournamentStore.divisions[i].hasBye = true;
+    }
   }
 };
 </script>
