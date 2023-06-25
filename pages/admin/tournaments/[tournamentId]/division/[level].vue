@@ -105,7 +105,7 @@ import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useTeamStore } from "~/stores/teams";
 import { onMounted, ref } from "vue";
-import useNotification from "../../../../../composables/useNotification";
+import useNotification from "~/composables/useNotification";
 
 // eslint-disable-next-line no-undef
 const route = useRoute();
