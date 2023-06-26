@@ -4,7 +4,7 @@
       <div class="flex">
         <p class="my-auto text-xl">Division {{ divisionNumber }}</p>
         <p class="flex items-center px-2 text-xs text-mid-grey font-montserrat">
-          ({{ getTeamCount() }} teams)
+          ({{ getTeamCount }} teams)
         </p>
       </div>
       <button
@@ -33,16 +33,28 @@
         :text="team.name"
         size="small"
         :bg-color="venuePreferenceColor(team)"
-        @remove-chip="unallocateTeam"
       />
     </div>
+    <Chip
+      v-if="props.division.hasBye"
+      text="Bye"
+      size="small"
+      bg-color="bg-white"
+      :can-remove="true"
+      class="my-2"
+      @remove-chip="
+        () => {
+          props.division.hasBye = false;
+        }
+      "
+    />
   </div>
 </template>
 <script setup>
 import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTeamStore } from "../../stores/teams";
 import { useTournamentStore } from "../../stores/tournaments";
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 
 const props = defineProps({
   division: {
@@ -77,15 +89,15 @@ watch(currentVenue, (newValue, oldValue) => {
   }
 });
 
-const getTeamCount = () => {
-  let numberOfTeams = 0;
+const getTeamCount = computed(() => {
+  props.division.teamCount = 0;
   teamStore.allocatedTeams.forEach((team) => {
     if (team.division === divisionNumber.value) {
-      numberOfTeams += 1;
+      props.division.teamCount += 1;
     }
   });
-  return numberOfTeams;
-};
+  return props.division.teamCount;
+});
 
 if (divisionVenue.value) {
   const matchingVenue = props.venues.find(

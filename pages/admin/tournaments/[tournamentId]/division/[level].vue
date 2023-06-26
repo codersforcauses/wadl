@@ -12,6 +12,7 @@
           button-color="bg-light-orange-gold"
           size="medium"
           class="my-2"
+          @click="allocateBye"
         />
       </div>
       <div class="flex flex-row justify-center">
@@ -104,7 +105,7 @@ import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useTeamStore } from "~/stores/teams";
 import { onMounted, ref } from "vue";
-import useNotification from "../../../../../composables/useNotification";
+import useNotification from "~/composables/useNotification";
 
 // eslint-disable-next-line no-undef
 const route = useRoute();
@@ -218,6 +219,14 @@ const venuePreferenceColor = (team) => {
     return "bg-white";
   } else {
     return "bg-danger-red/20";
+  }
+};
+
+const allocateBye = () => {
+  for (let i = 0; i < tournamentStore.divisions.length; i += 1) {
+    if (tournamentStore.divisions[i].teamCount % 2 === 1) {
+      tournamentStore.divisions[i].hasBye = true;
+    }
   }
 };
 </script>
