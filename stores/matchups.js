@@ -161,7 +161,6 @@ export const useMatchupStore = defineStore("matchup", {
       const { $clientFirestore } = useNuxtApp();
       if (!$clientFirestore) return;
       const ref = doc($clientFirestore, "leaderboard", torniID);
-      // await deleteDoc(ref);
       const querySnapshot = await getDoc(ref);
       if (!querySnapshot.exists()) {
         const sort = async (arr) => {

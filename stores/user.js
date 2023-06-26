@@ -38,7 +38,6 @@ export const useUserStore = defineStore("user", {
   getters: {},
 
   actions: {
-    // to view how the data and other stuff happens inside these functions please read the README in the Firebase folder
     async registerUser(user) {
       const { $clientFirestore, $clientAuth } = useNuxtApp();
       const authUser = await createUserWithEmailAndPassword(
@@ -88,7 +87,7 @@ export const useUserStore = defineStore("user", {
         this.lastName = userInfo.lastName;
         this.phoneNumber = userInfo.phoneNumber;
         this.email = userInfo.email;
-        this.role = userInfo.requesting ? "" : userInfo.role; // role not tracked if requesting
+        this.role = userInfo.requesting ? "" : userInfo.role;
         this.requesting = userInfo.requesting;
         this.institution = userInfo.institution;
         this.school = userInfo.school;
@@ -128,12 +127,10 @@ export const useUserStore = defineStore("user", {
       await updatePassword($clientAuth.currentUser, password.password);
     },
     async clearStore() {
-      // logs out user -- no login on admin sdk.
       if (process.client) {
         const { $clientAuth } = useNuxtApp();
         if ($clientAuth.currentUser) {
           try {
-            // redundant error check -- better to be 100% sure that store is cleared.
             await signOut($clientAuth);
           } catch {}
         }

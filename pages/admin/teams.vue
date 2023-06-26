@@ -56,7 +56,6 @@ onMounted(async () => {
     class="flex flex-col items-center justify-center max-w-screen max-h-screen"
   >
     <Header title-text="Teams" />
-    <!-- <SearchBar /> -->
     <Table
       :headers="headers"
       :data="store.teams"

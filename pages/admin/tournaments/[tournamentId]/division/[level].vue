@@ -1,7 +1,6 @@
 <template>
   <Header title-text="Manage Division" :subtitle-text="route.params.level" />
   <section class="mx-6">
-    <!-- Division Controls -->
     <div
       class="flex justify-between w-full p-2 px-5 mt-4 rounded-md bg-light-grey/10"
     >
@@ -105,7 +104,12 @@ import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useTeamStore } from "~/stores/teams";
 import { onMounted, ref } from "vue";
-import useNotification from "~/composables/useNotification";
+import useNotification from "../../../../../composables/useNotification";
+import { useHead } from "#imports";
+
+useHead({
+  title: "Manage Divisions",
+});
 
 // eslint-disable-next-line no-undef
 const route = useRoute();

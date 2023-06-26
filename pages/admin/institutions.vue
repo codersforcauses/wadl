@@ -72,7 +72,6 @@ const updateInstitution = async () => {
 };
 
 const createInstitution = async () => {
-  // update store
   try {
     await store.createInstitution(formInput.value);
   } catch (error) {

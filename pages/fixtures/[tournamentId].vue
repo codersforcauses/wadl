@@ -99,7 +99,6 @@ const handleLevel = (tabName) => {
     }
   });
 
-  // Only used for JSON fixtures
   if (levelSelected === "Junior") {
     selectedLevel.value = matchupStore.junior;
   } else if (levelSelected === "Novice") {
@@ -119,7 +118,6 @@ const handleRound = (roundName) => {
 };
 
 const getFixturesTableData = () => {
-  // Used only for JSON fixtures
   selectedLevel.value[0].forEach((matchup) => {
     if (parseInt(matchup.round) === selectedRound) {
       tableData.value.push(matchup);

@@ -24,10 +24,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    // read more: https://nuxt.com/docs/guide/going-further/runtime-config
     // note: nuxt automatically converts .env vals to camelcase.
-
-    // public Keys, exposed to client.
     public: {
       firebaseApiKey: process.env.NUXT_PUBLIC_FIREBASE_API_KEY || "",
       firebaseAuthDomain: process.env.NUXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "",

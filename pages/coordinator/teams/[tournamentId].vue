@@ -3,14 +3,13 @@ import { ref, onMounted, computed } from "vue";
 import { useInstitutionStore } from "../../../stores/institutions";
 import { useTournamentStore } from "../../../stores/tournaments";
 import { useUserStore } from "../../../stores/user";
-import { useHead } from "#imports";
+import { useHead, useRoute } from "#imports";
 import useNotification from "../../../composables/useNotification";
 import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 useHead({
   title: "Teams",
 });
 
-// eslint-disable-next-line no-undef
 const route = useRoute();
 const store = useInstitutionStore();
 const tournamentStore = useTournamentStore();

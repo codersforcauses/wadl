@@ -132,7 +132,6 @@ const updateInput = () => {
   isRoleValid.value = true;
 };
 
-// Call The User Store
 const registerUser = async () => {
   if (form.value.password.length < 8) {
     isValid.value = false;

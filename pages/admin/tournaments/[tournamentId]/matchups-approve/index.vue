@@ -50,10 +50,14 @@
 <script setup>
 import { useMatchupStore } from "../../../../../stores/matchups";
 import { onMounted, ref, computed } from "vue";
-import { useRoute, useRouter } from "#imports";
+import { useRoute, useRouter, useHead } from "#imports";
 import useNotification from "../../../../../composables/useNotification";
 import { useTournamentStore } from "../../../../../stores/tournaments";
 import { TableCellsIcon } from "@heroicons/vue/24/outline";
+
+useHead({
+  title: "Approve Matchups",
+});
 
 onMounted(async () => {
   try {

@@ -65,7 +65,6 @@
         </div>
       </client-only>
     </div>
-    <!-- Team Coordinator Drop down menu - This only could be its own component.-->
     <div
       class="bg-gold z-60 absolute right-0 top-12 rounded-bl-md shadow-md"
       :class="visibility ? 'flex' : 'hidden'"
@@ -116,7 +115,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 import { ref } from "vue";
 
 const userStore = await useUserStore();
-// Will be updated when user store changes
 const { auth, firstName, role } = storeToRefs(userStore);
 
 const visibility = ref(false);

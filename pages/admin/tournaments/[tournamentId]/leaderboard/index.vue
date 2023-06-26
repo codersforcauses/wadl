@@ -2,7 +2,11 @@
 import { useMatchupStore } from "../../../../../stores/matchups";
 import { useLeaderboardStore } from "../../../../../stores/leaderboard";
 import { onMounted, ref } from "vue";
-import { useRoute } from "#imports";
+import { useRoute, useHead } from "#imports";
+
+useHead({
+  title: "Leaderboard",
+});
 
 const route = useRoute();
 const matchupStore = useMatchupStore();
@@ -11,8 +15,6 @@ const isLoading = ref(true);
 onMounted(async () => {
   try {
     await matchupStore.getMatchups(route.params.tournamentId);
-    // todo moveto the upload scoresheet functionality
-    // await matchupStore.createLeaderBoards(route.params.tournamentId);
     await LeaderboardStore.getLeaderboard(route.params.tournamentId);
     await createDivisionTabs();
     await getFixturesTableData();

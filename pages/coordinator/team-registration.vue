@@ -47,7 +47,6 @@ const formInput = ref({
   notes: null,
   userTeam: null,
   teams: [
-    // TODO double check on the timeslot allocations
     { teamLevel: "Novice", timeslot: "5.15pm", ...teamState },
     { teamLevel: "Junior", timeslot: "6.15pm", ...teamState },
     { teamLevel: "Senior", timeslot: "7.15pm", ...teamState },
@@ -104,22 +103,8 @@ const saveTeamRegistration = async () => {
     return;
   }
   notification.notifySuccess("Successfully Created Teams!");
-  // resetForm();
 };
-// commenting it out for now because we might need it in the future
-// const resetForm = () => {
-//   formInput.value = {
-//     tournament: null,
-//     hasVenuePreference: false,
-//     venuePreferences: [],
-//     notes: null,
-//     teams: [
-//       { teamLevel: "Novice", ...teamState },
-//       { teamLevel: "Junior", ...teamState },
-//       { teamLevel: "Senior", ...teamState },
-//     ],
-//   };
-// };
+
 const getInfo = (data) => {
   formInput.value.tournament = data.name;
   formInput.value.tournamentId = data.id;

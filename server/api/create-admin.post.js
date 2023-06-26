@@ -47,9 +47,6 @@ export default defineEventHandler(async (event) => {
       password: newUser.password,
     });
 
-    // TODO: Use custom claims for authorization
-    // auth.setCustomUserClaims(authUser.uid, { role: "admin" });
-
     await firestore.runTransaction(async (transaction) => {
       transaction.set(firestore.collection("users").doc(authUser.uid), {
         role: "Admin",

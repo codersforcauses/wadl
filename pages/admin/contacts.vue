@@ -26,7 +26,6 @@ useHead({
   title: "Contacts",
 });
 
-// pinia
 const adminStore = useAdminStore();
 
 onMounted(() => {

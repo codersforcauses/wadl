@@ -28,7 +28,6 @@ defineProps({
 <template>
   <div class="w-1/3">
     <div class="m-1 bg-lighter-grey rounded-md px-2">
-      <!-- HEADER -->
       <div>
         <div class="flex align-center items-center">
           <div
@@ -55,9 +54,7 @@ defineProps({
         </div>
         <hr />
       </div>
-      <!-- END HEADER -->
 
-      <!-- content -->
       <div class="flex flex-col min-h-[200px]">
         <div
           v-for="venue in venues"
@@ -74,7 +71,6 @@ defineProps({
           </button>
         </div>
       </div>
-      <!-- end content-->
     </div>
   </div>
 </template>

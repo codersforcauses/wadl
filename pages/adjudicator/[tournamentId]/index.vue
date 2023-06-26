@@ -2,8 +2,12 @@
 import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useMatchupStore } from "~/stores/matchups";
-import { useRoute } from "#imports";
+import { useRoute, useHead } from "#imports";
 import { TableCellsIcon } from "@heroicons/vue/24/outline";
+
+useHead({
+  title: "Adjudicator Fixtures",
+});
 
 const tournamentStore = useTournamentStore();
 const matchupStore = useMatchupStore();
@@ -104,7 +108,6 @@ const handleLevel = (tabName) => {
     }
   });
 
-  // Only used for JSON fixtures
   if (levelSelected === "Junior") {
     selectedLevel.value = matchupStore.junior;
   } else if (levelSelected === "Novice") {
@@ -124,7 +127,6 @@ const handleRound = (roundName) => {
 };
 
 const getFixturesTableData = () => {
-  // Used only for JSON fixtures
   selectedLevel.value[0].forEach((matchup) => {
     if (parseInt(matchup.round) === selectedRound) {
       tableData.value.push(matchup);
