@@ -7,7 +7,6 @@ import {
   BuildingLibraryIcon,
   UserGroupIcon,
   MapPinIcon,
-  TableCellsIcon,
   UsersIcon,
   ClipboardIcon,
   UserPlusIcon,
@@ -65,7 +64,6 @@ const exportTeams = async () => {
       <AdminButton title="Contacts" link="/admin/contacts" :icon="UsersIcon" />
       <AdminButton title="Teams" link="/admin/teams" :icon="UserGroupIcon" />
       <AdminButton title="Venues" link="/admin/venues" :icon="MapPinIcon" />
-      <AdminButton title="Fixtures" link="" :icon="TableCellsIcon" />
       <AdminButton
         title="Export Teams"
         :icon="ClipboardIcon"
