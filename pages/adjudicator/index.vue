@@ -30,7 +30,7 @@ import { useUserStore } from "../../stores/user";
 const user = await useUserStore();
 
 useHead({
-  title: "WADL",
+  title: "Adjudicator Home Page",
 });
 const store = useTournamentStore();
 

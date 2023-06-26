@@ -2,9 +2,13 @@
 import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useMatchupStore } from "~/stores/matchups";
-import { useRoute } from "#imports";
+import { useRoute, useHead } from "#imports";
 import { PencilIcon } from "@heroicons/vue/24/solid";
 import { TableCellsIcon } from "@heroicons/vue/24/outline";
+
+useHead({
+  title: "Fixtures",
+});
 
 const tournamentStore = useTournamentStore();
 const matchupStore = useMatchupStore();
@@ -33,7 +37,6 @@ let selectedRound = null;
 onMounted(async () => {
   try {
     await matchupStore.getMatchups(route.params.tournamentId);
-    console.log(matchupStore.junior);
     selectedTournament = tournamentStore.getRunning.find(
       (tournament) => tournament.id === route.params.tournamentId
     );

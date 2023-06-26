@@ -18,7 +18,7 @@ import { useUserStore } from "../../stores/user";
 import { useTeamStore } from "../../stores/teams";
 import { useHead } from "#imports";
 useHead({
-  title: "Admin",
+  title: "Admin Home Page",
 });
 const user = await useUserStore();
 const modalVisibility = ref(false);

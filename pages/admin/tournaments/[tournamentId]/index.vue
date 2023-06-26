@@ -498,7 +498,7 @@ import { PlusIcon } from "@heroicons/vue/24/solid";
 import { useTournamentStore } from "../../../../stores/tournaments";
 import { useVenueStore } from "../../../../stores/venues";
 import { useTeamStore } from "../../../../stores/teams";
-import { useRoute, useRouter } from "#imports";
+import { useRoute, useRouter, useHead } from "#imports";
 import { ref, computed, onMounted } from "vue";
 import { useLeaderboardStore } from "../../../../stores/leaderboard";
 
@@ -694,7 +694,6 @@ for (let i = 0; i < stageList.length; i++) {
   }
 }
 
-/** functions */
 const deleteVenue = async (name, week, day) => {
   edited.value.changesMade = true;
   edited.value.venueInfo = true;
@@ -713,7 +712,6 @@ const combineVenues = (venue) => {
   );
 
   if (findDayIndex === -1) {
-    // day was not found
     dayVenues.value.push({
       day: venue.day,
       week: venue.week,
@@ -789,7 +787,6 @@ const revertChanges = async () => {
 
   setDayVenues();
 };
-/** end Functions */
 
 setDayVenues();
 
@@ -809,11 +806,13 @@ const changeStage = (value) => {
   const origVal =
     stageList[stage.value - 1] === tournamentStore.currentTournament.status;
 
-  // note : multiple vals affect changes made
-  // TODO: make changes made more reactive based upon variables themselves rather than functions.
   edited.value.changesMade = true;
   edited.value.information = !origVal;
 
   currTournClone.status = stageList[stage.value - 1];
 };
+
+useHead({
+  title: `${currTournClone.name} | Manage Tournament`,
+});
 </script>

@@ -2,8 +2,12 @@
 import { ref, computed, onMounted } from "vue";
 import { useTournamentStore } from "~/stores/tournaments";
 import { useMatchupStore } from "~/stores/matchups";
-import { useRoute } from "#imports";
+import { useRoute, useHead } from "#imports";
 import { TableCellsIcon } from "@heroicons/vue/24/outline";
+
+useHead({
+  title: "Adjudicator Fixtures",
+});
 
 const tournamentStore = useTournamentStore();
 const matchupStore = useMatchupStore();
