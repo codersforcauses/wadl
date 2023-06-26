@@ -1,7 +1,9 @@
 <template>
   <Header title-text="Manage Division" :subtitle-text="route.params.level" />
   <section class="mx-6">
-    <div class="flex justify-between w-full p-2 px-5 mt-4 rounded-md bg-light-grey/10">
+    <div
+      class="flex justify-between w-full p-2 px-5 mt-4 rounded-md bg-light-grey/10"
+    >
       <div class="flex flex-row justify-center">
         <Button button-text="Auto Allocate" size="medium" class="my-2 mr-2" />
         <Button
@@ -16,46 +18,81 @@
         <div class="flex flex-col justify-center">
           <p class="mx-auto text-2xl font-montserrat">
             {{ teamStore.unallocatedTeams.size
-            }}<span class="text-xs">/{{ teamStore.getNumberTeams(route.params.level) }}</span>
+            }}<span class="text-xs"
+              >/{{ teamStore.getNumberTeams(route.params.level) }}</span
+            >
           </p>
           <p class="text-[9px] text-mid-grey font-montserrat">
             Remaining Teams
           </p>
         </div>
-        <Button button-text="Submit" button-color="bg-light-green" text-color="text-white" size="medium" class="my-2 ml-5"
-          @click="updateDivisions" />
+        <Button
+          button-text="Submit"
+          button-color="bg-light-green"
+          text-color="text-white"
+          size="medium"
+          class="my-2 ml-5"
+          @click="updateDivisions"
+        />
       </div>
     </div>
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <DivisionPanel v-for="(d, idx) in tournamentStore.divisions" :key="idx" :division="d"
-        :tournament-id="tournamentStore.currentTournament.id" :level="currentLevel"
-        :venues="tournamentStore.currentTournament.venues" @edit="handleEdit" />
+    <div
+      class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    >
+      <DivisionPanel
+        v-for="(d, idx) in tournamentStore.divisions"
+        :key="idx"
+        :division="d"
+        :tournament-id="tournamentStore.currentTournament.id"
+        :level="currentLevel"
+        :venues="tournamentStore.currentTournament.venues"
+        @edit="handleEdit"
+      />
 
       <div
         class="flex items-center justify-center h-64 p-2 px-5 mt-4 border-2 rounded-md bg-light-grey/10 border-light-grey/20"
-        @click="addNewDivision">
+        @click="addNewDivision"
+      >
         <PlusIcon class="w-12 h-12 cursor-pointer text-light-grey/30" />
       </div>
     </div>
   </section>
-  <Modal :modal-visibility="modalVisibility" size="w-9/12" @close="() => {
-      modalVisibility = false;
-    }
-    ">
+  <Modal
+    :modal-visibility="modalVisibility"
+    size="w-9/12"
+    @close="
+      () => {
+        modalVisibility = false;
+      }
+    "
+  >
     <div class="h-96">
       <h1 class="py-4 text-3xl text-center font-montserrat">
         Division {{ division }}
       </h1>
-      <p class="mb-2 text-sm text-center divide-y-4 font-montserrat text-mid-grey">
+      <p
+        class="mb-2 text-sm text-center divide-y-4 font-montserrat text-mid-grey"
+      >
         {{ venue }}
       </p>
-      <p v-if="teamStore.unallocatedTeams.size == 0" class="w-full text-center font-montserrat text-light-grey/60">
+      <p
+        v-if="teamStore.unallocatedTeams.size == 0"
+        class="w-full text-center font-montserrat text-light-grey/60"
+      >
         No teams to allocate
       </p>
       <div class="container p-1 mx-auto">
         <div class="flex flex-wrap justify-center">
-          <Chip v-for="team in teamStore.unallocatedTeams.values()" :key="team.id" :text="team.name" size="small"
-            :bg-color="venuePreferenceColor(team)" :can-remove="false" class="mx-2 my-2" @add-chip="allocateTeam" />
+          <Chip
+            v-for="team in teamStore.unallocatedTeams.values()"
+            :key="team.id"
+            :text="team.name"
+            size="small"
+            :bg-color="venuePreferenceColor(team)"
+            :can-remove="false"
+            class="mx-2 my-2"
+            @add-chip="allocateTeam"
+          />
         </div>
       </div>
     </div>
