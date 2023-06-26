@@ -56,8 +56,6 @@ export const useLeaderboardStore = defineStore("leaderboard", {
           team.points += loss;
         }
       });
-      // later
-      // const forfeit = 0;
       await updateDoc(ref, {
         junior: this.junior[0],
         senior: this.senior[0],

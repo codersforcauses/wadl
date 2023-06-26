@@ -1,9 +1,8 @@
-<!-- eslint-disable no-undef -->
 <script setup>
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { useUserStore } from "../stores/user";
-import { useHead } from "#imports";
+import { useHead, navigateTo } from "#imports";
 import { handleError } from "../misc/firebaseHelpers";
 useHead({
   title: "Login",

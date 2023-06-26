@@ -69,7 +69,6 @@ export const useTournamentStore = defineStore("tournament", {
         status: tournament.status,
       });
 
-      // Tournament ID becomes auto-generated ID assigned by firestore
       tournament.id = t.id;
 
       this.tournaments.push({
@@ -77,7 +76,6 @@ export const useTournamentStore = defineStore("tournament", {
       });
     },
 
-    // ?: use updateDoc rather than setDoc
     async editTournament(tournament) {
       const { $clientFirestore } = useNuxtApp();
       await setDoc(doc($clientFirestore, "tournaments", tournament.id), {
@@ -119,7 +117,6 @@ export const useTournamentStore = defineStore("tournament", {
       );
       this.divisions[divisionIndex].venue = { ...newVenue };
     },
-    // BUG: Permission Problem
     async updateDivisionVenue(level) {
       const { $clientFirestore } = useNuxtApp();
       const tournamentRef = doc(

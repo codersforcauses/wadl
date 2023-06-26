@@ -19,8 +19,6 @@
         Level: <span class="text-dark-grey">{{ matchup.level }}</span>
       </p>
     </div>
-
-    <!-- TODO LOAD ADJUDICATORS THAT ARE ATTACHED TO FIREBASE SCORESHEET-->
     <div class="flex justify-evenly">
       <p class="pt-1">Adjudicators</p>
       <Multiselect
@@ -46,7 +44,6 @@
             <th class="w-36">POIs</th>
             <th>Total</th>
           </tr>
-          <!-- Affirmative Student 1 -->
           <tr class="border-b">
             <td class="text-center pt-2">
               <FormField
@@ -111,7 +108,6 @@
               {{ scoresheet.affirmativeTeam.student1.total }}
             </td>
           </tr>
-          <!-- Affirmative Student 2 -->
           <tr class="border-b">
             <td class="text-center pt-2">
               <FormField
@@ -176,7 +172,6 @@
               {{ scoresheet.affirmativeTeam.student2.total }}
             </td>
           </tr>
-          <!-- Affirmative Student 3 -->
           <tr class="border-b">
             <td class="text-center pt-2">
               <FormField

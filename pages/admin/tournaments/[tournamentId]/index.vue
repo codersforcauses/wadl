@@ -13,7 +13,6 @@
   <!-- Content -->
   <div v-else>
     <div class="mx-32 pt-5">
-      <!--//?: can include "changes list" which just broadly lists what elements have been edited. -->
       <div class="justify-end flex rounded-md bg-gray-100 w-full h-full">
         <!-- upload -->
         <NuxtLink
@@ -676,7 +675,6 @@ await tournamentStore.getTournaments();
 
 await tournamentStore.getTournament(route.params.tournamentId);
 
-// clone tournament -- simplifies revertChanges.
 let currTournClone = JSON.parse(
   JSON.stringify(tournamentStore.currentTournament)
 );

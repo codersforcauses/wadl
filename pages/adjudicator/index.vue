@@ -1,13 +1,10 @@
-<!-- eslint-disable vue/attribute-hyphenation -->
 <template>
-  <!-- competitions -->
   <ProfileInfo :username="user.firstName" role="Adjudicator" />
   <Header title-text="Competitions" />
   <div
     v-if="store.getRunning.length > 0"
     class="mx-auto mt-4 flex justify-center flex-wrap"
   >
-    <!-- replace key with item.id when final data exists -->
     <div v-for="tournament in store.getRunning" :key="tournament.id">
       <NuxtLink :to="`/adjudicator/${tournament.id}`">
         <LevelButton :text="tournament.shortName" />

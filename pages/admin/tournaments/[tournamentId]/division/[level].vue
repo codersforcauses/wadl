@@ -1,7 +1,6 @@
 <template>
   <Header title-text="Manage Division" :subtitle-text="route.params.level" />
   <section class="mx-6">
-    <!-- Division Controls -->
     <div
       class="flex justify-between w-full p-2 px-5 mt-4 rounded-md bg-light-grey/10"
     >

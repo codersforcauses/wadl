@@ -118,7 +118,6 @@ const handleLevel = (tabName) => {
     }
   });
 
-  // Only used for JSON fixtures
   if (levelSelected === "Junior") {
     selectedLevel.value = matchupStore.junior;
   } else if (levelSelected === "Novice") {

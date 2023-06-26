@@ -11,8 +11,6 @@ const isLoading = ref(true);
 onMounted(async () => {
   try {
     await matchupStore.getMatchups(route.params.tournamentId);
-    // todo moveto the upload scoresheet functionality
-    // await matchupStore.createLeaderBoards(route.params.tournamentId);
     await LeaderboardStore.getLeaderboard(route.params.tournamentId);
     await createDivisionTabs();
     await getFixturesTableData();

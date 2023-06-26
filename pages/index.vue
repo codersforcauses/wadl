@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <!-- long logo -->
   <img class="mx-auto mt-16" src="../assets/logos/TransparentLongLogo.png" />
@@ -8,7 +7,6 @@
     v-if="store.getRunning.length > 0"
     class="mx-auto mt-4 flex justify-center flex-wrap"
   >
-    <!-- replace key with item.id when final data exists -->
     <div v-for="tournament in store.getRunning" :key="tournament.id">
       <NuxtLink :to="`/fixtures/${tournament.id}`">
         <LevelButton :text="tournament.shortName" />

@@ -1,8 +1,7 @@
-<!-- eslint-disable no-undef -->
 <script setup>
 import { useAdminStore } from "../../stores/admin";
 import { ref } from "vue";
-import { useHead } from "#imports";
+import { useHead, navigateTo } from "#imports";
 import { handleError } from "../../misc/firebaseHelpers";
 import useNotification from "../../composables/useNotification";
 useHead({
@@ -30,7 +29,6 @@ const handleClose = () => {
   }
 };
 
-// Call The User Store
 const registerUser = async () => {
   if (form.value.password !== form.value.confirmPassword) {
     errorMessage.value = "The password does not match";

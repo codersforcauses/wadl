@@ -16,7 +16,6 @@ defineProps({
 <template>
   <div class="w-1/3">
     <div class="m-1 bg-lighter-grey rounded-md px-2">
-      <!-- HEADER -->
       <div class="h-16 flex align-center items-center">
         <div
           class="w-1/4 py-2 flex flex-col justify-center text-center items-center"
@@ -36,7 +35,6 @@ defineProps({
         </div>
       </div>
       <hr />
-      <!-- END HEADER -->
 
       <div class="min-h-[200px]">
         <div>

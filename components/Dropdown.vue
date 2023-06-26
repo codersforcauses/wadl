@@ -6,7 +6,7 @@ import { vOnClickOutside } from "@vueuse/components";
 const props = defineProps({
   items: {
     type: Array,
-    default: () => ["Team Coordinator"], // Not MVP: "Adjudicator", "Head Adjudicator"],
+    default: () => ["Team Coordinator"],
   },
   placeholder: {
     type: String,

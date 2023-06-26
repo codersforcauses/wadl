@@ -20,7 +20,6 @@
       </p>
     </div>
 
-    <!-- TODO LOAD ADJUDICATORS THAT ARE ATTACHED TO FIREBASE SCORESHEET-->
     <div class="flex justify-evenly">
       <p class="pt-1">Adjudicators</p>
       <Multiselect
@@ -93,7 +92,6 @@
                 "
               />
             </td>
-
             <td class="px-4 pt-2">
               <FormField
                 v-model="scoresheet.affirmativeTeam.student1.poi"
@@ -111,7 +109,6 @@
               {{ scoresheet.affirmativeTeam.student1.total }}
             </td>
           </tr>
-          <!-- Affirmative Student 2 -->
           <tr class="border-b">
             <td class="text-center pt-2">
               <FormField
@@ -158,7 +155,6 @@
                 "
               />
             </td>
-
             <td class="px-4 pt-2">
               <FormField
                 v-model="scoresheet.affirmativeTeam.student2.poi"
@@ -176,7 +172,6 @@
               {{ scoresheet.affirmativeTeam.student2.total }}
             </td>
           </tr>
-          <!-- Affirmative Student 3 -->
           <tr class="border-b">
             <td class="text-center pt-2">
               <FormField
