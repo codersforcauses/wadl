@@ -4,7 +4,13 @@
     <div class="flex justify-between w-full p-2 px-5 mt-4 rounded-md bg-light-grey/10">
       <div class="flex flex-row justify-center">
         <Button button-text="Auto Allocate" size="medium" class="my-2 mr-2" />
-        <Button button-text="Allocate Bye" button-color="bg-light-orange-gold" size="medium" class="my-2" />
+        <Button
+          button-text="Allocate Bye"
+          button-color="bg-light-orange-gold"
+          size="medium"
+          class="my-2"
+          @click="allocateBye"
+        />
       </div>
       <div class="flex flex-row justify-center">
         <div class="flex flex-col justify-center">
@@ -180,6 +186,14 @@ const venuePreferenceColor = (team) => {
     return "bg-white";
   } else {
     return "bg-danger-red/20";
+  }
+};
+
+const allocateBye = () => {
+  for (let i = 0; i < tournamentStore.divisions.length; i += 1) {
+    if (tournamentStore.divisions[i].teamCount % 2 === 1) {
+      tournamentStore.divisions[i].hasBye = true;
+    }
   }
 };
 </script>
