@@ -5,6 +5,7 @@ import { useMatchupStore } from "~/stores/matchups";
 import { useRoute, useHead } from "#imports";
 import { PencilIcon } from "@heroicons/vue/24/solid";
 import { TableCellsIcon } from "@heroicons/vue/24/outline";
+import useNotification from "~/composables/useNotification";
 
 useHead({
   title: "Fixtures",
@@ -16,6 +17,7 @@ const route = useRoute();
 const isLoading = ref(true);
 const modalVisibility = ref(false);
 const topicData = ref(null);
+const notification = useNotification();
 
 const defaultInputState = {
   id: null,
@@ -139,8 +141,9 @@ const handleRound = (roundName) => {
   getFixturesTableData();
 };
 
-const getFixturesTableData = () => {
-  selectedLevel.value[0].forEach((matchup) => {
+const getFixturesTableData = async () => {
+  tableData.value = [];
+  await selectedLevel.value[0].forEach((matchup) => {
     if (parseInt(matchup.round) === selectedRound) {
       tableData.value.push(matchup);
     }
@@ -180,17 +183,43 @@ const handleRowEdit = (row) => {
   form.value = row;
 };
 
-const updateMatchup = () => {
-  matchupStore.updateMatchups(
+const updateMatchup = async () => {
+  await matchupStore.updateMatchups(
     levelSelected,
     form.value,
     route.params.tournamentId
   );
   editMode.value = false;
 };
+
+const deleteMatcup = async () => {
+  form.value.level = levelSelected;
+  try {
+    await matchupStore.deleteMatchup(
+      levelSelected,
+      form.value,
+      route.params.tournamentId
+    );
+  } catch (error) {
+    notification.notifyError(
+      "Matchup could not be deleted, please try again or contact support."
+    );
+    console.log(error);
+  }
+  isLoading.value = true;
+  notification.notifySuccess("Matchup deleted successfully");
+  editMode.value = false;
+  await getFixturesTableData();
+};
 </script>
 
 <template>
+  <Notification
+    :modal-visibility="notification.isVisible"
+    :is-success="notification.isSuccess"
+    :body="notification.message"
+    @close="notification.dismiss()"
+  />
   <Modal
     :modal-visibility="modalVisibility"
     size="w-8/12"
@@ -273,6 +302,7 @@ const updateMatchup = () => {
           button-color="bg-pink-100"
           type="Submit"
           class="text-red-700"
+          @click="deleteMatcup"
         />
         <Button
           button-text="Update"
