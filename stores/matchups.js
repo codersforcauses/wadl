@@ -153,6 +153,22 @@ export const useMatchupStore = defineStore("matchup", {
         novice: this.novice[0],
       });
     },
+
+    async deleteMatchup(level, matchup, tournamentID) {
+      const { $clientFirestore } = useNuxtApp();
+      if (!$clientFirestore) return;
+      const ref = doc($clientFirestore, "matchups", tournamentID);
+      const lvl = level.toLowerCase();
+
+      this[lvl][0] = this[lvl][0].filter((a) => a.id !== matchup.id);
+
+      await updateDoc(ref, {
+        junior: this.junior[0],
+        senior: this.senior[0],
+        novice: this.novice[0],
+      });
+    },
+
     async filterDivision(level, division) {
       return this[level][0].filter((matchup) => matchup.division === division);
     },
